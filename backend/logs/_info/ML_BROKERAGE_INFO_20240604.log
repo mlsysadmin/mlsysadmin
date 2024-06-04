@@ -1,0 +1,62 @@
+INFO 2024-06-04T10:04:09.305 ML Brokerage Server listening on port 8002
+INFO 2024-06-04T10:04:19.762 ML Brokerage Server listening on port 8002
+INFO 2024-06-04T10:05:27.043 ML Brokerage Server listening on port 8002
+INFO 2024-06-04T10:05:33.369 ML Brokerage Server listening on port 8002
+ERROR 2024-06-04T10:06:01.702 ML Brokerage Server listening on port 8002
+INFO 2024-06-04T10:19:18.100 null adsfdgg
+INFO 2024-06-04T10:19:18.104 ML Brokerage Server listening on port 8002
+INFO 2024-06-04T10:19:25.346 null adsfdgg
+INFO 2024-06-04T10:19:25.350 ML Brokerage Server listening on port 8002
+INFO 2024-06-04T10:21:49.079 ML Brokerage Server listening on port 8002
+INFO 2024-06-04T10:22:00.898 ML Brokerage Server listening on port 8002
+INFO 2024-06-04T10:23:44.188 ML Brokerage Server listening on port 8002
+INFO 2024-06-04T10:26:32.796 ML Brokerage Server listening on port 8002
+INFO 2024-06-04T10:26:44.843 ML Brokerage Server listening on port 8002
+INFO 2024-06-04T10:30:28.853 ML Brokerage Server listening on port 8002 
+ 20     at Server.<anonymous> (C:\Users\User\Documents\GitHub\ML-Brokerage\backend\src\server\mlbrokerage.entrypoint.js:20:16)
+    at Object.onceWrapper (node:events:632:28)
+    at Server.emit (node:events:530:35)
+    at emitListeningNT (node:net:1906:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+INFO 2024-06-04T10:36:10.287 ML Brokerage Server listening on port 8002 
+ 20     at Server.<anonymous> (C:\Users\User\Documents\GitHub\ML-Brokerage\backend\src\server\mlbrokerage.entrypoint.js:20:16)
+    at Object.onceWrapper (node:events:632:28)
+    at Server.emit (node:events:530:35)
+    at emitListeningNT (node:net:1906:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+INFO 2024-06-04T10:37:17.685 ML Brokerage Server listening on port 8002 
+ 20     at Server.<anonymous> (C:\Users\User\Documents\GitHub\ML-Brokerage\backend\src\server\mlbrokerage.entrypoint.js:20:16)
+    at Object.onceWrapper (node:events:632:28)
+    at Server.emit (node:events:530:35)
+    at emitListeningNT (node:net:1906:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+INFO 2024-06-04T10:40:17.262 ML Brokerage Server listening on port 8002 
+ 20     at Server.<anonymous> (C:\Users\User\Documents\GitHub\ML-Brokerage\backend\src\server\mlbrokerage.entrypoint.js:20:16)
+    at Object.onceWrapper (node:events:632:28)
+    at Server.emit (node:events:530:35)
+    at emitListeningNT (node:net:1906:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+INFO 2024-06-04T10:41:22.951 ML Brokerage Server listening on port 8002 
+ 20     at Server.<anonymous> (C:\Users\User\Documents\GitHub\ML-Brokerage\backend\src\server\mlbrokerage.entrypoint.js:20:16)
+    at Object.onceWrapper (node:events:632:28)
+    at Server.emit (node:events:530:35)
+    at emitListeningNT (node:net:1906:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+INFO 2024-06-04T10:41:25.327 ML Brokerage Server listening on port 8002 
+ 20     at Server.<anonymous> (C:\Users\User\Documents\GitHub\ML-Brokerage\backend\src\server\mlbrokerage.entrypoint.js:20:16)
+    at Object.onceWrapper (node:events:632:28)
+    at Server.emit (node:events:530:35)
+    at emitListeningNT (node:net:1906:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+INFO 2024-06-04T10:41:49.896 ML Brokerage Server listening on port 8002 
+ 20     at Server.<anonymous> (C:\Users\User\Documents\GitHub\ML-Brokerage\backend\src\server\mlbrokerage.entrypoint.js:20:16)
+    at Object.onceWrapper (node:events:632:28)
+    at Server.emit (node:events:530:35)
+    at emitListeningNT (node:net:1906:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+INFO 2024-06-04T10:42:02.294 ML Brokerage Server listening on port 8002 
+ 20     at Server.<anonymous> (C:\Users\User\Documents\GitHub\ML-Brokerage\backend\src\server\mlbrokerage.entrypoint.js:20:16)
+    at Object.onceWrapper (node:events:632:28)
+    at Server.emit (node:events:530:35)
+    at emitListeningNT (node:net:1906:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
