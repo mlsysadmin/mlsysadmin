@@ -1,0 +1,33 @@
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .pagination button {
+    background-color: #E59D9D;
+    border: none;
+    color: #000;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 30px;
+  }
+  
+  .pagination button.active {
+    background-color: #D90000;
+    color: #fff;
+  }
+  
+  .pagination button.chevron {
+    font-size: 20px;
+    padding: 10px 15px;
+  }
+  
+  .pagination button:hover:not(.active) {
+    background-color: #D90000;
+  }

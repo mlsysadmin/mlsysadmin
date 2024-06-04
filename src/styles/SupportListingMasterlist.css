@@ -1,0 +1,108 @@
+h1{
+    font-size: 1.5rem;
+}
+
+.listings-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  text-align: left;
+  justify-content: center;
+  align-items: center;
+}
+.showDetails {
+  padding: 5px;
+  background: transparent;
+  border: #d90000 solid 1px;
+}
+.options {
+  padding: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 95%;
+  justify-content: flex-start;
+  gap: 3%;
+}
+select {
+  padding: 5px;
+    border-radius: 10px;
+    outline: none;
+}
+
+tbody input[type="checkbox"],
+thead input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+}
+table {
+  width: 95%;
+}
+.text-center {
+    padding: 50px 50px;
+  text-align: center;
+}
+.controls {
+  width: 95%;
+  display: flex;
+  align-items: flex-end;
+  align-items: center;
+}
+hr {
+  background: black;
+}
+input[type="text"] {
+  border-radius: 10px;
+  border: 1px solid #8c9094;
+  outline: none;
+  width: 15%;
+  height: 30px;
+}
+
+.searchbar {
+  width: 100%;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: 1%;
+}
+.entries{
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.btns{
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.actionButtons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    height: 10%;
+}
+.approve,.decline{
+    padding: 8px;
+    border: none;
+    color: #fff;
+}
+.approve{
+    background: #256E2C;
+}
+.decline{
+    background: #d90000;
+}
