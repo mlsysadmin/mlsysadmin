@@ -19,12 +19,8 @@ const Pagination = ({ totalItems, itemsPerPage, onPageChange }) => {
 
     if (startPage > 1) {
       pageButtons.push(
-        <button
-          key="prev"
-          onClick={handlePreviousPage}
-          className="chevron"
-        >
-          &lt;
+        <button key="prev" onClick={handlePreviousPage} className="chevron">
+          <i class="fa-solid fa-chevron-left"></i>
         </button>
       );
     }
@@ -32,7 +28,7 @@ const Pagination = ({ totalItems, itemsPerPage, onPageChange }) => {
     for (let i = startPage; i <= Math.min(startPage + 2, totalPages); i++) {
       pageButtons.push(
         <button
-        id="btn"
+          id="btn"
           key={i}
           onClick={() => handlePageChange(i)}
           className={currentPage === i ? "active" : ""}
@@ -45,12 +41,12 @@ const Pagination = ({ totalItems, itemsPerPage, onPageChange }) => {
     if (startPage + 3 <= totalPages) {
       pageButtons.push(
         <button
-        id="btn"
+          id="btn"
           key="next"
           onClick={handleNextPage}
           className="chevron"
         >
-          &gt;
+          <i class="fa-solid fa-chevron-right"></i>
         </button>
       );
     }
@@ -63,14 +59,10 @@ const Pagination = ({ totalItems, itemsPerPage, onPageChange }) => {
   };
 
   const handleNextPage = () => {
-    handlePageChange(currentPage + 1,3);
+    handlePageChange(currentPage + 1, 3);
   };
 
-  return (
-    <div className="pagination">
-      {renderPageButtons()}
-    </div>
-  );
+  return <div className="pagination">{renderPageButtons()}</div>;
 };
 
 export default Pagination;

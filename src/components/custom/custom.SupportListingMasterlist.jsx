@@ -2,26 +2,17 @@ import React, { useState, useEffect } from "react";
 import Dummydata from "../../supportDummyData/openListingDummy.json";
 import "../../styles/SupportListingMasterlist.css";
 import Pagination from "./custom.pagination";
-import bin from '../../icons/bin.png';
-import edit from '../../icons/edit.png';
+import bin from "../../icons/bin.png";
+import edit from "../../icons/edit.png";
 
 const SupportDisapproveListingMasterlist = () => {
-  const [activeTab, setActiveTab] = useState("open");
+  const [activeTab, setActiveTab] = useState("disapproved");
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredListings, setFilteredListings] = useState([]);
-  const [entriesPerPage, setEntriesPerPage] = useState(5); // Default to 5 entries per page
   const [selectAllChecked, setSelectAllChecked] = useState(false);
+  const [entriesPerPage, setEntriesPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const handleSelectAllChange = (event) => {
-    const isChecked = event.target.checked;
-    setSelectAllChecked(isChecked);
-    const updatedFilteredListings = filteredListings.map((listing) => ({
-      ...listing,
-      selected: isChecked,
-    }));
-    setFilteredListings(updatedFilteredListings);
-  };
   useEffect(() => {
     const listings = Dummydata[`${activeTab}_listings`] || [];
     const filtered = listings.filter((listing) =>
@@ -32,17 +23,49 @@ const SupportDisapproveListingMasterlist = () => {
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
+    setCurrentPage(1); // Reset to the first page when search term changes
+  };
+
+  const handleSelectAllChange = (event) => {
+    const isChecked = event.target.checked;
+    setSelectAllChecked(isChecked);
+    const updatedFilteredListings = filteredListings.map((listing) => ({
+      ...listing,
+      selected: isChecked,
+    }));
+    setFilteredListings(updatedFilteredListings);
+  };
+
+  const handleCheckboxChange = (event, listingId) => {
+    const isChecked = event.target.checked;
+    const updatedFilteredListings = filteredListings.map((listing) =>
+      listing.listing_id === listingId
+        ? { ...listing, selected: isChecked }
+        : listing
+    );
+    setFilteredListings(updatedFilteredListings);
   };
 
   const handleEntriesChange = (event) => {
     const value = parseInt(event.target.value);
     setEntriesPerPage(value);
+    setCurrentPage(1); // Reset to the first page when entries per page changes
   };
+
+  const handleTabChange = (event) => {
+    setActiveTab(event.target.value);
+  };
+
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+
   const renderListings = (listings) => {
-    if (listings.length === 0) {
+    const indexOfLastItem = currentPage * entriesPerPage;
+    const indexOfFirstItem = indexOfLastItem - entriesPerPage;
+    const currentListings = listings.slice(indexOfFirstItem, indexOfLastItem);
+
+    if (currentListings.length === 0) {
       return (
         <tr>
           <td colSpan="11" className="text-center">
@@ -51,16 +74,8 @@ const SupportDisapproveListingMasterlist = () => {
         </tr>
       );
     }
-    const handleCheckboxChange = (event, listingId) => {
-      const isChecked = event.target.checked;
-      const updatedFilteredListings = filteredListings.map((listing) =>
-        listing.listing_id === listingId
-          ? { ...listing, selected: isChecked }
-          : listing
-      );
-      setFilteredListings(updatedFilteredListings);
-    };
-    return listings.slice(0, entriesPerPage).map((listing) => (
+
+    return currentListings.map((listing) => (
       <tr key={listing.listing_id}>
         <td>
           <input
@@ -80,17 +95,32 @@ const SupportDisapproveListingMasterlist = () => {
         <td>{listing.price}</td>
         <td>{listing.location}</td>
         <td>{listing.status}</td>
-        <td><img src={edit} alt="edit" /> <img src={bin} alt="bin" /></td>
+        <td>
+          <img src={edit} alt="edit" /> <img src={bin} alt="bin" />
+        </td>
       </tr>
     ));
+  };
+
+  const tabHeadings = {
+    open: "Manage Open Listings",
+    pending: "Manage Pending Listings",
+    disapproved: "Manage Disapproved Listings",
   };
 
   return (
     <div className="listings-container">
       <div className="menu">
-        <h1>Manage Open Listings</h1>
+        <h1>{tabHeadings[activeTab]}</h1>
+        <div className="options">
+          <select value={activeTab} onChange={handleTabChange}>
+            <option value="open">Open Listings</option>
+            <option value="pending">Pending Listings</option>
+            <option value="disapproved">Disapproved Listings</option>
+          </select>
+        </div>
       </div>
-      <hr style={{ border: "#D90000 solid 1px", width: "95%" }} />
+      <hr style={{ border: "#D90000 solid 1px", width: "100%" }} />
       <div className="controls">
         <div className="entries">
           <label>Show Entries</label>
@@ -101,7 +131,7 @@ const SupportDisapproveListingMasterlist = () => {
           </select>
         </div>
         <div className="searchbar">
-          <label>Search</label>
+          <p>Search</p>
           <input type="text" value={searchTerm} onChange={handleSearchChange} />
         </div>
       </div>
@@ -130,20 +160,13 @@ const SupportDisapproveListingMasterlist = () => {
         <tbody>{renderListings(filteredListings)}</tbody>
       </table>
       <div className="btns">
-        <div className="actionButtons">
-          <button className="approve">Approve</button>
-          <button className="decline">Disapprove</button>
-        </div>
+        <div></div>
         <Pagination
           totalItems={filteredListings.length}
           itemsPerPage={entriesPerPage}
           onPageChange={handlePageChange}
-          currentPage={currentPage}
         />
       </div>
-      <p style={{ color: "gray", float: "left", width: "95%" }}>
-        Showing 20 to 2,000 entries
-      </p>
     </div>
   );
 };
