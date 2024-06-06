@@ -3,12 +3,15 @@ import React, { useEffect, useState } from 'react';
 import MenuPopup from './MenuPopup';
 import MenuPopupContent from './MenuPopupContent';
 import { SubMenu } from '../../../../utils/MenuPopover.utils';
+import { useNavigate } from 'react-router-dom';
 
 const HeaderMenu = () => {
     const [currentMenu, setCurrent] = useState('');
     const [rentPopUpOpen, setrentPopUpOpen] = useState(false);
     const [buyPopUpOpen, setbuyPopUpOpen] = useState(false);
     const [homeLoanPopUpOpen, sethomeLoanPopUpOpen] = useState(false);
+
+    const navigate = useNavigate();
 
     // useEffect(() => {
     //     const setTogglePopoverOutside = (event) => {
@@ -27,7 +30,7 @@ const HeaderMenu = () => {
     //   }, []);
 
     const handleMenuOnClick = (menu) => {
-        setCurrent(menu.key);
+        console.log(menu);
         if (menu.key === "Rent") {
             setbuyPopUpOpen(false);
             sethomeLoanPopUpOpen(false);
@@ -44,6 +47,10 @@ const HeaderMenu = () => {
             sethomeLoanPopUpOpen(true);
         }
         else{
+            setCurrent(menu.key);
+            navigate({
+                pathname: menu.item.props.link
+            })
             setrentPopUpOpen(false);
             setbuyPopUpOpen(false);
             sethomeLoanPopUpOpen(false);
@@ -91,25 +98,25 @@ const HeaderMenu = () => {
             }
             popUpOpen={homeLoanPopUpOpen}
             label={"Home Loan"}
-            content={HomeLoanMenuPopContent}
-            
+            content={HomeLoanMenuPopContent}  
         />
     )
 
     const MenuItems = [
-        { label: "Sell", key: "Sell"}, 
-        { label: "New", key: "New"}, 
+        { label: "Sell", key: "Sell", link: '/sell'}, 
+        { label: "New", key: "New", link: '/new'}, 
         { label:  <RentMenu/>, key: "Rent" }, 
         { label: <BuyMenu/>, key: "Buy" }, 
         { label: <HomeLoanMenu/>, key: "Home Loan" }, 
-        { label: "Home Insurance", key: "Home Insurance" }, 
-        { label: "Other Services", key: "Other Services" }, 
-        { label: "Contact", key: "Contact" },
+        { label: "Home Insurance", key: "Home Insurance", link: '/home-insurance' }, 
+        { label: "Other Services", key: "Other Services", link: '/other-services' }, 
+        { label: "Contact", key: "Contact", link: '/contact' },
     ]
     
     const items = MenuItems.map((item, index) => ({
         key: item.key,
         label: item.label,
+        link: item.link
     }));
 
   return (
