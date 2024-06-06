@@ -94,7 +94,8 @@ const SubMenu =
                             Apply for a home loan at <br/> any M Lhuillier Branch <br/> nationwide. You may visit our
                         </span>
                         <p><a href="/home" className="redirect">Home Loan Dashboard <RightOutlined /></a></p>
-                        </div>
+                        </div>,
+                        link: '/home'
                     }
                 ]
             },

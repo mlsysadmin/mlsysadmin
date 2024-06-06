@@ -4,6 +4,8 @@ import MenuPopup from './MenuPopup';
 import MenuPopupContent from './MenuPopupContent';
 import { SubMenu } from '../../../../utils/MenuPopover.utils';
 import { useNavigate } from 'react-router-dom';
+import RoundBtn from '../../../custom/buttons/RoundBtn.custom';
+import TextBtn from '../../../custom/buttons/TextBtn.custom';
 
 const HeaderMenu = () => {
     const [currentMenu, setCurrent] = useState('');
@@ -148,13 +150,16 @@ const HeaderMenu = () => {
             >
             </Menu>
             <Row align={"middle"} className='menu-buttons'>
-                <Button style={{ color:"#D90000" }} type='text'>Login</Button>
+                <TextBtn label="Login" style={{ color:"#D90000" }}/>
                 <div style={{ color:"#D90000" }}>/</div>
-                <Button style={{ color:"#D90000" }} type='text'>Register</Button>
+                <TextBtn label="Register" style={{ color:"#D90000" }}/>
             </Row>
-            <Button type='primary' shape='round' className='menu-buttons' 
+            <RoundBtn 
+                type="primary"
+                className="menu-buttons"
                 style={{ background: "#D90000" }}
-            >List your Property</Button>
+                label="List your Property"
+            />
         </div>
     </>
   )

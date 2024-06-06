@@ -13,7 +13,10 @@ const { Header } = Layout;
 // }));
 
 
-const HeaderContainer = ({ showDrawer }) => {
+const HeaderContainer = ({ showDrawer, screenSize }) => {
+
+  console.log(screenSize);
+  const _swidth = screenSize;
 
   return (
     <Header
@@ -27,10 +30,17 @@ const HeaderContainer = ({ showDrawer }) => {
           width={200}
         />
       </div>
-      <HeaderMenu/>
-      {/* <Button type="text" onClick={showDrawer}>
-        <MenuOutlined style={{ fontSize: '20px', color: '#8C9094' }} />
-      </Button> */}
+      {
+        _swidth < 1098 ?
+        (
+          <Button type="text" onClick={showDrawer}>
+            <MenuOutlined style={{ fontSize: '20px', color: '#8C9094' }} />
+          </Button>
+        )
+        :
+        <HeaderMenu/>
+      
+      }
     </Header>
   )
 }

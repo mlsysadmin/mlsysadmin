@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { Drawer } from 'antd';
+import SidebarMenu from './Menu/SidebarMenu';
 
 const SideBar = ({ openDrawer, onClose }) => {
 
   return (
     <>
-      <Drawer title="Basic Drawer" onClose={onClose} open={openDrawer}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+      <Drawer title="M Lhuillier Brokerage" onClose={onClose} open={openDrawer} className='side-bar--drawer'>
+        <SidebarMenu/>
       </Drawer>
     </>
   );
