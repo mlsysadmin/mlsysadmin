@@ -1,15 +1,30 @@
-import { Button, Menu, Popover, Row } from 'antd'
-import React, { useState } from 'react';
+import { Button, Menu, Row } from 'antd'
+import React, { useEffect, useState } from 'react';
 import MenuPopup from './MenuPopup';
 import MenuPopupContent from './MenuPopupContent';
 import { SubMenu } from '../../../../utils/MenuPopover.utils';
-import { HomeOutlined } from '@ant-design/icons';
 
 const HeaderMenu = () => {
-    const [currentMenu, setCurrent] = useState('Rent');
+    const [currentMenu, setCurrent] = useState('');
     const [rentPopUpOpen, setrentPopUpOpen] = useState(false);
     const [buyPopUpOpen, setbuyPopUpOpen] = useState(false);
     const [homeLoanPopUpOpen, sethomeLoanPopUpOpen] = useState(false);
+
+    // useEffect(() => {
+    //     const setTogglePopoverOutside = (event) => {
+    //     //   if (modal) {
+    //         const classNameBtn = event.target.className === "ant-popover-open";
+      
+    //         setrentPopUpOpen(!classNameBtn);
+    //     //   }
+    //     };
+    
+    //     window.addEventListener("click", setTogglePopoverOutside);
+    
+    //     return () => {
+    //       window.removeEventListener("click", setTogglePopoverOutside);
+    //     };
+    //   }, []);
 
     const handleMenuOnClick = (menu) => {
         setCurrent(menu.key);
@@ -72,14 +87,6 @@ const HeaderMenu = () => {
         <MenuPopup 
             // handleOpenChange={handleBuyOpenChange}
             title={
-                // <>
-                //     <HomeOutlined 
-                //         style={{ fontSize: '18px' }}/> 
-                //     <span 
-                //     style={{ padding: '0 5px' }}>
-                //         Apply for a home loan
-                //     </span>
-                // </>
                 ''
             }
             popUpOpen={homeLoanPopUpOpen}

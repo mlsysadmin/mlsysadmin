@@ -10,7 +10,7 @@ const MenuPopup = ({ label, popUpOpen, handleOpenChange, content, title }) => {
         title={title}
         trigger="click"
         open={popUpOpen}
-        onOpenChange={handleOpenChange}
+        // onOpenChange={handleOpenChange}
         >
         <div type='text' className={`rent-menu--btn`}>{label}</div>
     </Popover>

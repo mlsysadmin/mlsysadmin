@@ -32,7 +32,7 @@ const MenuPopupContent = ({ submenu }) => {
                             submenu.sub_info ? (
                                 submenu.sub_info
                             ) 
-                            : <a>{submenu.sub}</a>
+                            : <a href={submenu.link}>{submenu.sub}</a>
                         }
                         
                         {
