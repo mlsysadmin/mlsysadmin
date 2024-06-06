@@ -5,4 +5,7 @@
 body {
   margin: 0;
   line-height: normal;
+.App {
+  font-family: "Poppins", sans-serif;
+}
 }

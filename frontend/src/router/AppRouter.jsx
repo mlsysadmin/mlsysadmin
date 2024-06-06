@@ -1,24 +1,21 @@
-import React, { useEffect } from "react";
-import { createBrowserRouter, Navigate } from "react-router-dom";
-import {
-  NewPage,
-  MainOutlet,
-} from "../pages";
-const routes = [
-  {
-    path: "/",
-    element: <MainOutlet />,
-    children: [
-      { path: "/", element: <Navigate to="/dashboard" replace /> },
-      { path: "/dashboard", element: <NewPage /> }
-    ],
-  },
-//   {
-//     path: "*",
-//     element: <Error />,
-//   },
-];
+import React from 'react';
+import { createBrowserRouter } from 'react-router-dom';
+import MainOutlet from '../pages/MainOutlet';
+import Dashboard from '../pages/Dashboard.page';
 
-const Router = createBrowserRouter(routes);
+const Routes = [
+    {
+        path: "/",
+        element: <MainOutlet/>,
+        children: [
+            {
+                path: "home",
+                element: <Dashboard/>
+            }
+        ]
+    }
+]
 
-export default Router;
+const AppRouter = createBrowserRouter(Routes);
+
+export default AppRouter
