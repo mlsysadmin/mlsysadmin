@@ -1,12 +1,13 @@
-.listing-application{
+.listing-application {
   border-width: 3px;
-  /* border-color: red;
+  /* border-color: #ff0000;
   border-style: solid; */
-  margin: 10px 105px 35px 105px;
+  margin: 10px 200px 35px 200px;
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  gap: 20px;
+  gap: 35px;
+  font-family: "Poppins", Helvetica;
 }
 
 .listing-steps {
@@ -17,12 +18,153 @@
 
 .property-details {
   flex: 3;
-  border-style: solid;
-  border-width: 2px;
+  border: solid 2px #ff0000;
   border-radius: 35px;
-  border-color: red;
 }
 
-.property-details-info{
+.property-details-info {
   margin: 20px;
+  margin-left: 50px;
+}
+
+.property-details-info .b {
+  font-size: 18px;
+  font-weight: 1000;
+}
+
+.property-details-tabs {
+  margin: 10px;
+  /* display: flex; */
+  padding: 10px;
+  /* border: solid 1px #ff0000; */
+}
+
+
+
+
+.property-type {
+  display: inline-flex;
+  /* border: solid 1px #ff0000; */
+}
+
+.property-details-label {
+  /* border: solid red; */
+  padding: 20px;
+}
+
+.label {
+  font-weight: 100;
+  margin-bottom: 10px;
+}
+
+.tab-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 5px;
+  /* border: solid 2px #ff0000; */
+}
+
+.tab-category {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  /* margin: auto; */
+}
+
+.tab-label {
+  margin-bottom: 1px;
+  font-size: 13px;
+  color: #ff0000;
+}
+
+.tabs {
+  /* display: flex; */
+  display: inline-flex;
+  border: 2px solid #ff0000;
+  border-radius: 25px;
+}
+
+.tab {
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.tab.selected {
+  background-color: #ff0000;
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+.listing-type {
+  display: flex;
+  display: inline-flex;
+  /* border: solid 1px #ff0000; */
+  margin-top: 50px;
+}
+
+.listing-details-label {
+  /* border: solid red; */
+  padding: 20px;
+  width: 155px;
+}
+
+.listing-tabs {
+  /* display: flex; */
+  display: inline-flex;
+  border: 2px solid #ff0000;
+  border-radius: 25px;
+}
+
+/* .listing-tab-wrapper{
+  margin-left: 40px;
+} */
+
+.listing-tab-container {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  padding: 5px;
+  /* border: solid 2px #ff0000; */
+}
+
+.note {
+  color: #8c9094;
+  font-size: 13px;
+  margin: 0px 105px 0px 50px;
+}
+
+.reminders {
+  background: #fff0f0;
+  border-radius: 35px;
+  padding: 20px;
+  margin: 0px 0px 10px 20px;
+}
+
+.reminders-label {
+  display: flex;
+  color: #d90000;
+}
+
+.warning-icon {
+  width: 35px;
+  color: #d90000;
+}
+
+b {
+  font-size: 15px;
+}
+
+ul li,
+.more {
+  color: #d90000;
+  font-size: 13px;
 }
