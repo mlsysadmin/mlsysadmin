@@ -1,0 +1,105 @@
+/* .overlap {
+  background-color: #d90000de;
+  height: 80px;
+  left: 0;
+  position: relative;
+  top: 0;
+  width: 100%;
+} */
+
+.support-navigation-bar {
+  width: 100%;
+  display: grid;
+  position: sticky;
+  top: 0;
+  grid-template-columns: 70% 29%;
+  grid-gap: 10px;
+  background-color: #d90000;
+  padding: 5px;
+  justify-content: space-between;
+}
+
+.support-navigation-bar > div {
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 30px;
+}
+.support-navigation-bar .leftSideNavigationBar {
+  display: inline-flex; /* or display: inline-flex; */
+  align-items: center;
+}
+.support-navigation-bar .image {
+  margin-top: 5px;
+  object-fit: cover;
+  width: 260px;
+  display: inline-block;
+  margin-left: 50px;
+}
+
+.ant-space-item {
+  height: 100%;
+  margin-left: 20px;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+}
+.ant-space-item:active {
+  background-color: gray;
+  color: #333;
+}
+.support-navigation-bar .rightSideNavigationBar {
+  display: inline-flex; /* or display: inline-flex; */
+  align-items: center;
+  justify-content: flex-end;
+}
+.support-navigation-bar .rightSideNavigationBar .list-property-div {
+  border-radius: 20px;
+  background-color: #fff;
+  width: 40%;
+}
+.support-navigation-bar
+  .rightSideNavigationBar
+  .list-property-div
+  .list-property-text {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: justify;
+}
+
+.support-navigation-bar .rightSideNavigationBar .list-your-property-button {
+  border-radius: 30px;
+}
+
+.support-navigation-bar .rightSideNavigationBar .div {
+  color: #ffffff;
+  font-family: "Poppins", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.SecondNavigationDiv {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 0px;
+  padding: 30px 10px 20px 10px;
+  justify-content: flex-start;
+}
+.SecondNavigationDiv .SecondDivTitle {
+  color: #000000;
+  font-family: "Poppins", Helvetica;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-left: 2%;
+  width: 96%;
+}
+
+.SecondNavigationDiv .line {
+  background-color: #d90000;
+  height: 1px;
+  margin-left: 2%;
+  width: 96%;
+}

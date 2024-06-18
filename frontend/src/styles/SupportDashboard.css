@@ -1,0 +1,139 @@
+.SupportDashboard {
+  background-color: #ffffff;
+  height: 1000px;
+  width: 100%;
+}
+
+.SupportDashboard .supportingDashboard {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+  padding: 10px;
+  justify-content: flex-start;
+}
+
+.SupportDashboard .supportingDashboard .overview{
+  display: grid;
+  color: #d90000;
+  font-family: "Poppins", Helvetica;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-left: 2%;
+}
+.SupportDashboard .supportingDashboard .listing-count {
+  display: grid;
+  color: #000000;
+  font-family: "Poppins", Helvetica;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin-left: 2%;
+  line-height: normal;
+}
+
+.SupportDashboard .card {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  margin-left: 2%;
+  justify-items: stretch;
+}
+.SupportDashboard .card .overview-card {
+  border: 1px solid #8C9094;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 10px;
+}
+
+.SupportDashboard .card .overview-card .top-card {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  gap: 1rem;
+}
+
+.SupportDashboard .card .overview-card .title {
+  color: #000000;
+  font-family: "Poppins", Helvetica;
+  font-size: 15px;
+  font-weight: 800;
+  margin-left: 15px;
+  margin-top: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.SupportDashboard .card .overview-card .total-head {
+  color: #000000;
+  font-family: "Poppins", Helvetica;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: 19px;
+}
+
+.SupportDashboard .card .overview-card .top-card .icon-background {
+  background-color: #d90000;
+  border-radius: 50%;
+  height: 50px;
+  margin-left: 5px;
+  width: 50px;
+}
+
+.SupportDashboard .card .overview-card .top-card .icon {
+  height: 35px;
+  margin-top: 7px;
+  margin-left: 8px;
+  width: 35px;
+}
+.SupportDashboard .performanceDiv {
+  margin-left: 2%;
+  display: grid;
+  grid-template-columns: 2fr;
+  grid-template-rows: 1fr;
+  gap: 1rem;
+  border-radius: 20px;
+  padding: 20px;
+  justify-items: start;
+}
+.SupportDashboard .performanceDiv .performance-title{
+  display: grid;
+  color: #d90000;
+  font-family: "Poppins", Helvetica;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.SupportDashboard .performanceDiv .totalDiv{
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 400px 400px;
+  justify-content: start;
+}
+
+.SupportDashboard .performanceDiv .totalDiv .totalCard{
+  display: grid;
+  justify-content: start;
+  border: 1px solid gray;
+  border-radius: 20px;
+  padding: 20px;
+}
+.SupportDashboard .performanceDiv .totalDiv .totalCard .totalSales{
+  font-family: "Poppins", Helvetica;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: normal;
+}
+.SupportDashboard .performanceDiv .totalDiv .totalCard .amountOfTotalSales{
+  font-family: "Poppins", Helvetica;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: normal;
+}
+.SupportDashboard .performanceDiv .totalDiv .totalCard p{
+}
