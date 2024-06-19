@@ -2,8 +2,15 @@ import React from "react";
 import CustomSupportOverviewCard from "./custom.SupportOverviewCard";
 
 const CustomSupportDashboardCard = (props) => {
-  const { propertySold, highlighted, activeListing, newListing, listingSaves, forApproval} = props
-  console.log("Console Props: ",props);
+  const {
+    propertySold,
+    highlighted,
+    activeListing,
+    newListing,
+    listingSaves,
+    forApproval,
+  } = props;
+  console.log("Console Props: ", props);
   return (
     <div className="card">
       <CustomSupportOverviewCard

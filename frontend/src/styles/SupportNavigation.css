@@ -1,33 +1,28 @@
-/* .overlap {
-  background-color: #d90000de;
-  height: 80px;
-  left: 0;
-  position: relative;
-  top: 0;
-  width: 100%;
-} */
-
+/* Base styles */
 .support-navigation-bar {
-  width: 100%;
+  max-width: 100%;
+  min-width: 99.2%;
   display: grid;
   position: sticky;
   top: 0;
-  grid-template-columns: 70% 29%;
+  grid-template-columns: 69% 29%;
   grid-gap: 10px;
   background-color: #d90000;
-  padding: 5px;
+  padding: 10px 0;
   justify-content: space-between;
 }
 
 .support-navigation-bar > div {
   text-align: center;
-  padding: 20px 10px;
+  padding: 6px 10px;
   font-size: 30px;
 }
+
 .support-navigation-bar .leftSideNavigationBar {
-  display: inline-flex; /* or display: inline-flex; */
+  display: inline-flex;
   align-items: center;
 }
+
 .support-navigation-bar .image {
   margin-top: 5px;
   object-fit: cover;
@@ -36,27 +31,18 @@
   margin-left: 50px;
 }
 
-.ant-space-item {
-  height: 100%;
-  margin-left: 20px;
-  color: white;
-  font-weight: bold;
-  display: inline-block;
-}
-.ant-space-item:active {
-  background-color: gray;
-  color: #333;
-}
 .support-navigation-bar .rightSideNavigationBar {
-  display: inline-flex; /* or display: inline-flex; */
+  display: inline-flex;
   align-items: center;
   justify-content: flex-end;
 }
+
 .support-navigation-bar .rightSideNavigationBar .list-property-div {
   border-radius: 20px;
   background-color: #fff;
   width: 40%;
 }
+
 .support-navigation-bar
   .rightSideNavigationBar
   .list-property-div
@@ -68,6 +54,7 @@
 
 .support-navigation-bar .rightSideNavigationBar .list-your-property-button {
   border-radius: 30px;
+  min-width: 10%;
 }
 
 .support-navigation-bar .rightSideNavigationBar .div {
@@ -86,6 +73,7 @@
   padding: 30px 10px 20px 10px;
   justify-content: flex-start;
 }
+
 .SecondNavigationDiv .SecondDivTitle {
   color: #000000;
   font-family: "Poppins", Helvetica;
@@ -102,4 +90,52 @@
   height: 1px;
   margin-left: 2%;
   width: 96%;
+}
+
+/* Media query for smaller devices */
+@media (max-width: 768px) {
+  .support-navigation-bar {
+    grid-template-columns: 1fr; /* Stack columns vertically */
+    text-align: center; /* Center align text */
+  }
+
+  .support-navigation-bar .leftSideNavigationBar {
+    justify-content: center; /* Center align items */
+    margin-bottom: 10px; /* Add space between sections */
+  }
+
+  .support-navigation-bar .image {
+    width: 50%; /* Reduce image width */
+    margin-left: 0; /* Remove left margin */
+  }
+  .custom-nav-link {
+    font-size: x-small;
+  }
+  .support-navigation-bar .rightSideNavigationBar {
+    justify-content: center; /* Center align items */
+  }
+
+  .support-navigation-bar .rightSideNavigationBar .list-property-div {
+    width: auto; /* Auto width */
+    max-width: 70%; /* Limit width */
+  }
+
+  .SecondNavigationDiv {
+    padding: 20px 10px; /* Adjust padding */
+  }
+
+  .SecondNavigationDiv .SecondDivTitle {
+    font-size: 16px;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .SecondNavigationDiv .line {
+    margin-left: 0;
+    width: 100%;
+  }
+  .rightSideNavigationBar {
+    padding: 10px;
+    font-size: xx-small !important;
+  }
 }

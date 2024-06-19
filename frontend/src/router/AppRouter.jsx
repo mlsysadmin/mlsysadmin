@@ -3,8 +3,10 @@ import {
   MainOutlet,
   SupportOutlet,
   SupportDashboardPage,
-  ErrorPage
-} from "../pages/index.js"
+  ErrorPage,
+  Masterlist,
+  ListingDetailsPage,
+} from "../pages/index.js";
 
 const routes = [
   {
@@ -22,6 +24,14 @@ const routes = [
           {
             path: "SupportDashboard",
             element: <SupportDashboardPage />,
+          },
+          {
+            path: "MasterlistDashboard",
+            element: <Masterlist />,
+          },
+          {
+            path: "listing-details/:listingId",
+            element: <ListingDetailsPage />,
           },
           {
             path: "Something/Similar",
