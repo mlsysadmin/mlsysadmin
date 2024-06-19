@@ -15,12 +15,8 @@ import { ListingForm } from "./seller-broker/ListingForm";
 
 
 
-export {
-    Navigation,
-    ListingBanner,
-    ListingSteps,
-
-    ListingForm
+export {Navigation, ListingBanner, ListingSteps, ListingForm
 }
+
 
 
