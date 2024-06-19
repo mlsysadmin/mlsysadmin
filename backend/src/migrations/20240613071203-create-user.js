@@ -1,4 +1,7 @@
 'use strict';
+
+const { Hash } = require('../utils/_helper/hash.helper');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -6,6 +9,15 @@ module.exports = {
     function notNullIfUserIsSeller(instance) {
       if (instance.role_id === 2 && (instance.license === null || instance.license === undefined)) {
         throw new Error('license cannot be null if user_role is seller');
+      }
+    }
+
+    
+    const HashPass = async(pass) => {
+      try {
+        return await Hash(pass);
+      } catch (error) {
+        return error
       }
     }
 
@@ -49,7 +61,10 @@ module.exports = {
       },
       password: {
           allowNull: false,
-          type: Sequelize.STRING(100)
+          type: Sequelize.STRING(100),
+          async set(pass){
+            this.setDataValue('password', await HashPass(pass))
+          },
       },
       user_desc: {
           allowNull: false,
