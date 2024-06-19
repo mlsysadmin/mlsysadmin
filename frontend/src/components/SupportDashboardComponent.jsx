@@ -4,11 +4,10 @@ import SupportDashboardCard from "./custom/custom.SupportDashboardCard";
 import FavoriteFill1 from "../assets/icons/FavoriteFill";
 import "../styles/SupportDashboard.css";
 import Order from "./layout/OrderLayout";
-import Footer from "./layout/FooterComponent";
+import Footer from "./layout/FooterComponent ";
 import SecondNavigationComponent from "./layout/SecondNavigationComponent";
 
 const SupportDashboardComponent = () => {
-  //Listing Count & Highlights
   const [propertySold, setPropertySold] = useState("1000000");
   const [highlighted, setHighlighted] = useState("20000");
   const [activeListing, setActiveListing] = useState("300");
@@ -18,6 +17,7 @@ const SupportDashboardComponent = () => {
 
   const [totalSales, setTotalSales] = useState("10,000");
   const [totalCommission, setTotalCommission] = useState("20,000");
+
   return (
     <div className="SupportDashboard">
       <SupportNavigation />
@@ -49,7 +49,7 @@ const SupportDashboardComponent = () => {
             <div className="totalSales">Total Commission</div>
             <div className="amountOfTotalSales">₱{totalCommission}</div>
             <p className="salesParagraph">
-              Potential Commission is the potential profit you’ll make when you
+              Potential Commission is the potential profit you{"'"}ll make when you
               close the deals with your clients.
             </p>
           </div>

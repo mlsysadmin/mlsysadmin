@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/pagination.css";
 
-const Pagination = ({ totalItems, itemsPerPage, onPageChange }) => {
+const Pagination = ({
+  totalItems,
+  itemsPerPage,
+  onPageChange,
+  currentPage,
+}) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const [currentPage, setCurrentPage] = useState(1);
   const [startPage, setStartPage] = useState(1);
+
+  useEffect(() => {
+    setStartPage(Math.max(1, Math.floor((currentPage - 1) / 3) * 3 + 1));
+  }, [currentPage]);
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-      setStartPage(Math.max(1, Math.floor((page - 1) / 3) * 3 + 1));
       onPageChange(page);
     }
   };
@@ -19,8 +25,12 @@ const Pagination = ({ totalItems, itemsPerPage, onPageChange }) => {
 
     if (startPage > 1) {
       pageButtons.push(
-        <button key="prev" onClick={handlePreviousPage} className="chevron">
-          <i class="fa-solid fa-chevron-left"></i>
+        <button
+          key="prev"
+          onClick={() => handlePageChange(startPage - 1)}
+          className="chevron"
+        >
+          &lt;
         </button>
       );
     }
@@ -28,7 +38,6 @@ const Pagination = ({ totalItems, itemsPerPage, onPageChange }) => {
     for (let i = startPage; i <= Math.min(startPage + 2, totalPages); i++) {
       pageButtons.push(
         <button
-          id="btn"
           key={i}
           onClick={() => handlePageChange(i)}
           className={currentPage === i ? "active" : ""}
@@ -38,28 +47,19 @@ const Pagination = ({ totalItems, itemsPerPage, onPageChange }) => {
       );
     }
 
-    if (startPage + 3 <= totalPages) {
+    if (startPage + 2 < totalPages) {
       pageButtons.push(
         <button
-          id="btn"
           key="next"
-          onClick={handleNextPage}
+          onClick={() => handlePageChange(startPage + 3)}
           className="chevron"
         >
-          <i class="fa-solid fa-chevron-right"></i>
+          &gt;
         </button>
       );
     }
 
     return pageButtons;
-  };
-
-  const handlePreviousPage = () => {
-    handlePageChange(currentPage - 3);
-  };
-
-  const handleNextPage = () => {
-    handlePageChange(currentPage + 1, 3);
   };
 
   return <div className="pagination">{renderPageButtons()}</div>;

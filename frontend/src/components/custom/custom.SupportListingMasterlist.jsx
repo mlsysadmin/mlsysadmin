@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Dummydata from "../../supportDummyData/openListingDummy.json";
 import "../../styles/SupportListingMasterlist.css";
 import Pagination from "./custom.pagination";
 import bin from "../../icons/bin.png";
 import edit from "../../icons/edit.png";
+import Menu from "./Menu";
+import FooterComponent from "../layout/FooterComponent ";
+import Modal from "./Modal";
 
-const SupportDisapproveListingMasterlist = () => {
-  const [activeTab, setActiveTab] = useState("disapproved");
+const SupportListingMasterlist = () => {
+  const [activeTab, setActiveTab] = useState("open");
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredListings, setFilteredListings] = useState([]);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [entriesPerPage, setEntriesPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalQuestion, setModalQuestion] = useState("");
+  const [remarks, setRemarks] = useState("");
+  const [actionType, setActionType] = useState(""); // 'approve' or 'disapprove'
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const listings = Dummydata[`${activeTab}_listings`] || [];
@@ -23,7 +33,7 @@ const SupportDisapproveListingMasterlist = () => {
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
-    setCurrentPage(1); // Reset to the first page when search term changes
+    setCurrentPage(1);
   };
 
   const handleSelectAllChange = (event) => {
@@ -49,7 +59,7 @@ const SupportDisapproveListingMasterlist = () => {
   const handleEntriesChange = (event) => {
     const value = parseInt(event.target.value);
     setEntriesPerPage(value);
-    setCurrentPage(1); // Reset to the first page when entries per page changes
+    setCurrentPage(1);
   };
 
   const handleTabChange = (event) => {
@@ -58,6 +68,37 @@ const SupportDisapproveListingMasterlist = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+  };
+
+  const handleShowDetails = (listing) => {
+    navigate(`/dashboard/Support/listing-details/${listing.listing_id}`, {
+      state: { listing, activeTab },
+    });
+  };
+
+  const handleApprove = () => {
+    setModalQuestion("Are you sure you want to approve the selected listings?");
+    setActionType("approve");
+    setModalVisible(true);
+  };
+
+  const handleDisapprove = () => {
+    setModalQuestion(
+      "Are you sure you want to disapprove the selected listings?"
+    );
+    setActionType("disapprove");
+    setModalVisible(true);
+  };
+
+  const handleModalClose = () => {
+    setModalVisible(false);
+    setRemarks("");
+  };
+
+  const handleModalConfirm = () => {
+    console.log(`${actionType} listings with remarks: ${remarks}`);
+    setModalVisible(false);
+    setRemarks("");
   };
 
   const renderListings = (listings) => {
@@ -85,7 +126,12 @@ const SupportDisapproveListingMasterlist = () => {
           />
         </td>
         <td>
-          <button className="showDetails">Show Details</button>
+          <button
+            className="showDetails"
+            onClick={() => handleShowDetails(listing)}
+          >
+            Show Details
+          </button>
         </td>
         <td>{listing.date_created}</td>
         <td>{listing.title}</td>
@@ -108,19 +154,22 @@ const SupportDisapproveListingMasterlist = () => {
     disapproved: "Manage Disapproved Listings",
   };
 
+  const startIndex = (currentPage - 1) * entriesPerPage + 1;
+  const endIndex = Math.min(
+    startIndex + entriesPerPage - 1,
+    filteredListings.length
+  );
+
   return (
     <div className="listings-container">
-      <div className="menu">
-        <h1>{tabHeadings[activeTab]}</h1>
-        <div className="options">
-          <select value={activeTab} onChange={handleTabChange}>
-            <option value="open">Open Listings</option>
-            <option value="pending">Pending Listings</option>
-            <option value="disapproved">Disapproved Listings</option>
-          </select>
-        </div>
-      </div>
+      <Menu
+        activeTab={activeTab}
+        tabHeadings={tabHeadings}
+        showOptions={true}
+        handleTabChange={handleTabChange}
+      />
       <hr style={{ border: "#D90000 solid 1px", width: "100%" }} />
+      <br />
       <div className="controls">
         <div className="entries">
           <label>Show Entries</label>
@@ -135,40 +184,65 @@ const SupportDisapproveListingMasterlist = () => {
           <input type="text" value={searchTerm} onChange={handleSearchChange} />
         </div>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>
-              <input
-                type="checkbox"
-                checked={selectAllChecked}
-                onChange={handleSelectAllChange}
-              />
-            </th>
-            <th>Select</th>
-            <th>Date Created</th>
-            <th>Title</th>
-            <th>Property Type</th>
-            <th>Listing Type</th>
-            <th>Floor Area</th>
-            <th>Price</th>
-            <th>Location</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>{renderListings(filteredListings)}</tbody>
-      </table>
+      <div className="table">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <input
+                  type="checkbox"
+                  checked={selectAllChecked}
+                  onChange={handleSelectAllChange}
+                />
+              </th>
+              <th>Select</th>
+              <th>Date Created</th>
+              <th>Title</th>
+              <th>Property Type</th>
+              <th>Listing Type</th>
+              <th>Floor Area</th>
+              <th>Price</th>
+              <th>Location</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>{renderListings(filteredListings)}</tbody>
+        </table>
+      </div>
       <div className="btns">
-        <div></div>
+        {activeTab !== "disapproved" && (
+          <div className="actions">
+            <button id="approve" onClick={handleApprove}>
+              Approve
+            </button>
+            <button id="disapprove" onClick={handleDisapprove}>
+              Disapprove
+            </button>
+          </div>
+        )}
         <Pagination
           totalItems={filteredListings.length}
           itemsPerPage={entriesPerPage}
           onPageChange={handlePageChange}
+          currentPage={currentPage}
         />
       </div>
+      <div className="entries-summary">
+        Showing {startIndex} to {endIndex} of {filteredListings.length} entries
+      </div>
+      <FooterComponent />
+      <Modal
+        show={modalVisible}
+        onClose={handleModalClose}
+        onConfirm={handleModalConfirm}
+        question={`Are you sure you want to ${actionType} the selected listings?`}
+        remarks={remarks}
+        setRemarks={setRemarks}
+        actionType={actionType}
+      />
     </div>
   );
 };
 
-export default SupportDisapproveListingMasterlist;
+export default SupportListingMasterlist;
