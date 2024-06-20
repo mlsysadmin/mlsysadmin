@@ -3,6 +3,7 @@
 const { User, Role } = require('../models/main.model');
 const Sequelize = require('../config/_db/mlbrokerage.db');
 const { VerifyHash } = require('../utils/_helper/hash.helper');
+const DataResponseHandlerHelper = require('../utils/_helper/DataResponseHandler.helper');
 
 module.exports = {
     FindUserOne: async (user) => {
@@ -22,35 +23,37 @@ module.exports = {
                const verifyPassword = await VerifyHash(password, findUser.password);
 
                 if (verifyPassword) {
-                    
-                    return {
-                        data: findUser,
-                        status: 200,
-                        success: true,
-                        message: "SUCCESS"
-                    };
+                    return DataResponseHandlerHelper(
+                        findUser,
+                        "VERIFY_SUCCESS",
+                        200,
+                        true,
+                        "SUCCESS"
+                    )
                 }
-                return {
-                    data: null,
-                    code: "AUTHENTICATION_ERROR",
-                    status: 401,
-                    success: false,
-                    message: 'Email or Password is incorrect'
-                }
+                return DataResponseHandlerHelper(
+                    null, 
+                    "AUTHENTICATION_ERROR",
+                    401,
+                    false,
+                    "Email or Password is incorrect"
+                );
             
             }
-            
-            return {
-                data: null,
-                code: "AUTHENTICATION_ERROR",
-                status: 401,
-                success: false,
-                message: 'Email or Password is incorrect'
-            }
+            return DataResponseHandlerHelper(
+                null, 
+                "AUTHENTICATION_ERROR",
+                401,
+                false,
+                "Email or Password is incorrect"
+            );
         })
 
         } catch (error) {
             console.log("error", error);
+            // if (error instanceof TypeError) {
+                
+            // }
             throw error
         }
     }
