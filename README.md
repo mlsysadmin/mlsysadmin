@@ -37,7 +37,6 @@ http://localhost:8002
 
 ## - FRONTEND SET UP -
 
-
 Run project on your local machine
 
 ## Install required packages
