@@ -1,0 +1,105 @@
+.card {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.01);
+}
+
+.card-img {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  position: relative;
+}
+
+.cardImage {
+  position: relative;
+}
+
+.card-content h3 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.card-content h4 {
+  margin: 0;
+  font-size: 1.4em;
+  color: #d90000;
+}
+
+.cardImage p {
+  position: absolute;
+  top: 1%;
+  left: 2%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1%;
+}
+
+.cardImage p.featured {
+  background-color: #ff0000;
+  font-weight: bold;
+  padding: 1% 2%;
+  color: #fff;
+}
+
+.card-content p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.likes {
+  position: absolute;
+  display: flex;
+  top: 5.5%;
+  left: 85%;
+  border-radius: 10px;
+  color: #d90000;
+  flex-direction: row;
+  background: #fff;
+  padding: 0.5% 2%;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottomicns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 82%;
+  font-size: large;
+  gap: 1rem;
+  top: 82%;
+}
+
+.icon {
+  color: #d90000;
+  background: #fff;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15%;
+}
+
+.bot {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.bot span {
+  color: #d90000;
+}
+
+.bot p {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+}
