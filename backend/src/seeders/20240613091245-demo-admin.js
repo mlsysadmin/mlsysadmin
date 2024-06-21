@@ -29,7 +29,7 @@ module.exports = {
       birth_date: birth_date,
       email: "jonalyn.mobilla@mlhuillier.com",
       password: await Hash("password"),
-      user_desc: "This account is for app demo",
+      user_desc: "I'm a licensed real estate broker",
       role_id: 0,
       license: "",
       createdAt: new Date(),

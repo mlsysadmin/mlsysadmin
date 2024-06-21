@@ -68,7 +68,7 @@ module.exports = {
       },
       user_desc: {
           allowNull: false,
-          type: Sequelize.STRING(255)
+          type: Sequelize.ENUM("I'm a licensed real estate broker", "I'm a real estate agent", "I'm looking for my nexthome Buy/Rent", "I'm looking to Sell/Rent")
       },
       role_id: {
           allowNull: false,

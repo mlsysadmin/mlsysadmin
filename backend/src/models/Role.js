@@ -4,7 +4,6 @@ const {
 } = require('sequelize');
 
 const Sequelize = require('../config/_db/mlbrokerage.db');
-const User = require('./User');
 
 const Role = Sequelize.define("roles", {
   role_id: {
