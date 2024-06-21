@@ -65,7 +65,7 @@ const User = Sequelize.define("users", {
   },
   user_desc: {
       allowNull: false,
-      type: DataTypes.STRING(255)
+      type: DataTypes.ENUM("I'm a licensed real estate broker", "I'm a real estate agent", "I'm looking for my nexthome Buy/Rent", "I'm looking to Sell/Rent")
   },
   role_id: {
       allowNull: false,
