@@ -1,6 +1,6 @@
 'use strict';
 const Sequelize = require('../config/_db/mlbrokerage.db');
-const { Hash, VerifyHash } = require('../utils/_helper/hash.helper');
+const { Hash } = require('../utils/_helper/hash.helper');
 const { DataTypes } = require('sequelize');
 const Role = require('./Role');
 

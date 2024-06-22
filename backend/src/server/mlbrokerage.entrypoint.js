@@ -5,9 +5,10 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
+const cookieParser = require('cookie-parser');
 
-const Logger = require('../config/_log/mlbrokerage.logger');
 const { USER_ROUTER, LISTING_ROUTER } = require('../routers/router.main');
+const Logger = require('../config/_log/mlbrokerage.logger');
 const ErrorHandler = require('../utils/_helper/ErrorHandler.helper');
 
 const app = express();
@@ -21,10 +22,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(helmet({
     maxAge: 31536000
 }))
+
 app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true,
 }));
+
+app.use(cookieParser(process.env.SECRET_KEY))
 
 // app.use(express.static(path.join(__dirname, "../../../frontend/public")));
 

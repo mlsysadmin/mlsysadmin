@@ -18,19 +18,21 @@ const sequelize = new Sequelize(
         dialect: 'mysql',
         max: 10,
         min: 10,
-        logging: (...msg) => {
-            FatalLogger.addContext('context', `Logging.. | ML BROKERAGE`);
-            FatalLogger.fatal(msg);
-        }
+        // logging: (...msg) => {
+        //     console.log("msg", msg);
+            
+        // }
     }
 )
 
 sequelize.authenticate()
-.then(() => {
+.then((r) => {
     console.log("Database is established successfully");
 })
 .catch(err => {
     console.log("Error authenticating database: ", err);
+    FatalLogger.addContext('context', `Logging.. | ML BROKERAGE`);
+    FatalLogger.fatal(err.toString());
 })
 
 module.exports = sequelize;

@@ -8,10 +8,36 @@ const DataResponseHandlerHelper = require('../utils/_helper/DataResponseHandler.
 module.exports = {
     FindUserOne: async (user) => {
         try {
-        const { email, password } = user;
 
          return await Sequelize.transaction(async (transaction) => {
+            
            const findUser = await User.findOne({
+                where: user,
+                attributes: { exclude: [ 'createdAt', 'updatedAt' ] },
+                include: 
+                [ 
+                    {
+                        model: Role, attributes: 
+                        { 
+                            exclude: ['createdAt', 'updatedAt'] 
+                        } 
+                    } 
+                ],
+                transaction
+           })
+           return findUser;
+        })
+
+        } catch (error) {
+            throw error
+        }
+    },
+    CreateUser: async (schema, data) => {
+        try {
+        const { email, password } = data;
+
+         return await Sequelize.transaction(async (transaction) => {
+           const findUser = await schema.findOne({
                 where: {
                     email,
                 },
