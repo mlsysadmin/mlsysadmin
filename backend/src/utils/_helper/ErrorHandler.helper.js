@@ -21,37 +21,37 @@ const ErrorHandler = async (error, request, response, next) => {
             }
         })
 
-        let errorContext = {
+        let errorContext = [{
             REQ: {
                 url: request.url,
                 method: request.method,
                 query: request.query,
                 params: request.params,
-                body: request.body,
+                body: JSON.stringify(request.body),
             },
             RES: {
-                data: error.data,
+                data: JSON.stringify(error.data),
                 status: error.status,
                 code: error.code,
                 message: error.message
             }
-        }
+        }]
 
         ErrLogger.addContext('context', `Logging.. | ML BROKERAGE`);
-        ErrLogger.error(JSON.stringify(errorContext));
+        ErrLogger.error(...errorContext);
 
-        const err = ErrorFormatter(request.url, error.code, error.status, error.message)
+        const err = ErrorFormatter(error.code, error.status, error.message);
 
-        response.send(err);
+        response.status(error.status).send(err);
 
     } catch (error) {
-        console.log("error catch");
+        console.log("error catch", error);
 
         FatalLogger.addContext('context', `Logging.. | ML BROKERAGE`);
         FatalLogger.fatal(error.toString());
 
-        let err = ErrorFormatter(request.url, "SERVER_ERROR", 500, "We're sorry, something went wrong on our end. Please try again later or contact our support team.")
-        response.send(err).status(500)
+        let err = ErrorFormatter("SERVER_ERROR", 500, "We're sorry, something went wrong on our end. Please try again later or contact our support team.")
+        response.status(500).send(err)
     }
 }
 
