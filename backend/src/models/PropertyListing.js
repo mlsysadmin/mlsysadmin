@@ -5,20 +5,66 @@ const {
 
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
-const Listing = Sequelize.define("property_listings", {
+const PropertyListing = Sequelize.define("property_listings", {
   id: {
     allowNull: false,
     primaryKey: true,
     type: DataTypes.STRING
   },
+  property_id: {
+    allowNull: false,
+    type: DataTypes.STRING,
+    unique: true,
+  },
   seller_id: {
+    allowNull: false,
+    type: DataTypes.INTEGER
+  },
+  property_type_id:{
     allowNull: false,
     type: DataTypes.INTEGER
   },
   listing_type: {
     allowNull: false,
-    type: DataTypes.ENUM("Rent", "Sell", "Preselling")
+    type: DataTypes.INTEGER
   },
+  unit_details_id: {
+    allowNull: false,
+    type: DataTypes.INTEGER
+  },
+  location_id: {
+    allowNull: false,
+    type: DataTypes.INTEGER
+  },
+  description_id: {
+    allowNull: false,
+    type: DataTypes.INTEGER
+  },
+  features_id: {
+    allowNull: false,
+    type: DataTypes.INTEGER
+  },
+  photos_id: {
+    allowNull: false,
+    type: DataTypes.INTEGER
+  },
+  listing_status: {
+    allowNull: false,
+    type: DataTypes.ENUM('OPEN', 'APPROVED', 'DISAPPROVED')
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: true
+  },
+  deletedAt: {
+    type: DataTypes.DATE,
+    allowNull: true
+  },
+
   classification: {
     allowNull: false,
     type: DataTypes.ENUM("New", "Resale")
@@ -30,14 +76,6 @@ const Listing = Sequelize.define("property_listings", {
   property_subtype: {
     allowNull: false,
     type: DataTypes.ENUM("Service Office", "Shop/Rental", "Commercial Land/Lot", "Condominium", "House & Lot", "Townhouse", "Warehouse", "Farm Lot", "Hotel/Resort")
-  },
-  description: {
-    allowNull: false,
-    type: DataTypes.TEXT
-  },
-  photos: {
-    allowNull: false,
-    type: DataTypes.TEXT
   },
   google_map_link: {
     allowNull: false,
@@ -78,22 +116,10 @@ const Listing = Sequelize.define("property_listings", {
   status: {
     allowNull: false,
     type: DataTypes.ENUM("Active", "Inactive")
-  },
-  createdAt: {
-    type: DataTypes.DATE,
-    allowNull: false
-  },
-  updatedAt: {
-    type: DataTypes.DATE,
-    allowNull: true
-  },
-  deletedAt: {
-    type: DataTypes.DATE,
-    allowNull: true
   }
 }, {
-  modelName: 'Listing',
+  modelName: 'PropertyListing',
   timestamps: false,
 })
 
-module.exports = Listing;
+module.exports = PropertyListing;
