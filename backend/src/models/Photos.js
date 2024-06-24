@@ -5,7 +5,7 @@ const {
 
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
-const Photo = Sequelize.define("photos", {
+const Photos = Sequelize.define("photos", {
   id: {
     allowNull: false,
     primaryKey: true,
@@ -34,8 +34,8 @@ const Photo = Sequelize.define("photos", {
     allowNull: true
   }
 },{
-  modelName: 'Photo',
+  modelName: 'Photos',
   timestamps: false,
 })
 
-module.exports = Photo;
+module.exports = Photos;

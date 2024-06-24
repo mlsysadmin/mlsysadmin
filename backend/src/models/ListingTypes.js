@@ -26,8 +26,8 @@ const ListingTypes = Sequelize.define("listing_types", {
     allowNull: true
   }
 },{
-  modelName: 'PropertyTypes',
+  modelName: 'ListingTypes',
   timestamps: false,
 })
 
-module.exports = PropertyTypes;
+module.exports = ListingTypes;

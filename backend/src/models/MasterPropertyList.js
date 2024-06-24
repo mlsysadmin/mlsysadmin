@@ -9,11 +9,11 @@ const MasterPropertyList = Sequelize.define("master_property_lists", {
         type: DataTypes.INTEGER,
         primaryKey: true
     },
-    seller_id: {
+    listing_id: {
         allowNull: false,
         type: DataTypes.INTEGER
     },
-    listing_id: {
+    seller_id: {
         allowNull: false,
         type: DataTypes.INTEGER
     },
@@ -57,16 +57,6 @@ const MasterPropertyList = Sequelize.define("master_property_lists", {
         type: DataTypes.DATE,
         allowNull: true,
         defaultValue:Sequelize.literal('CURRENT_TIMESTAMP(3)'),
-    },
-    
-    property_listing_id: {
-        allowNull: false,
-        type: DataTypes.INTEGER
-    },
-    status: {
-        allowNull: false,
-        type: DataTypes.ENUM("Pending", "Approved", "Rejected"),
-        defaultValue: "Pending"
     },
 },
     {

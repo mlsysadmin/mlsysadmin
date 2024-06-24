@@ -2,7 +2,7 @@
 
 const Role = require('./Role');
 const User = require('./User');
-const Listing = require('./Listing');
+const PropertyListing = require('./PropertyListing');
 const MasterPropertyList = require('./MasterPropertyList');
 
 User.hasOne(Role, {
@@ -13,11 +13,11 @@ Role.belongsTo(User, {
     foreignKey: 'role_id'
 });
 
-MasterPropertyList.hasOne(Listing, {
+MasterPropertyList.hasOne(PropertyListing, {
     foreignKey: "property_listing_id",
 });
 
-Listing.belongsTo(MasterPropertyList, {
+PropertyListing.belongsTo(MasterPropertyList, {
     foreignKey: "property_id"
 })
 

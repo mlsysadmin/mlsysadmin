@@ -15,7 +15,7 @@ const PropertyTypes = Sequelize.define("property_types", {
   type: {
       allowNull: false,
       primaryKey: true,
-      type: DataTypes.ENUM("Commercial", "Residential", "Industrial", "Others")
+      type: DataTypes.ENUM("Commercial", "Residential", "Industrial")
   },
   subtype: {
     allowNull: false,
