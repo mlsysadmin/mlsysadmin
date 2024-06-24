@@ -16,7 +16,7 @@ const SellComponent = () => {
       <MainLayout/>
       <div className="sell-container">
         <div className="sell-contents">
-          <div className="first-content-sell">
+          <div className="first-section">
             <img src={bannerImg} alt="" />
             <div className="bannerbg">
               <span className="sell-header">
@@ -36,12 +36,12 @@ const SellComponent = () => {
               </div>
             </div>
           </div>
-          <div className="second-content-sell-page">
+          <div className="second-section">
             <span className="second-content-span">
               Maximize your property{"'"}s potential: Sell or Rent with
               Confidence
             </span>
-            <div className="content-container">
+            <div className="section-container">
               <div className="content">
                 <p>
                   Do you want to Sell or put your house on Rent? <br /> M
@@ -53,37 +53,20 @@ const SellComponent = () => {
                   List Your Property
                 </Button>
               </div>
-              <div>
-                <Radio.Group
-                  className="options"
-                  onChange={onChange}
-                  value={value}
-                >
-                  <Radio
-                    style={{ fontSize: "30px", fontWeight: "lighter"}}
-                    value={1}
-                  >
-                    Choose the right time to sell.
-                  </Radio>
-                  <Radio
-                    style={{ fontSize: "30px", fontWeight: "lighter" }}
-                    value={2}
-                  >
-                    Sell the right price.
-                  </Radio>
-                  <Radio
-                    style={{ fontSize: "30px", fontWeight: "lighter" }}
-                    value={3}
-                  >
-                    Negotiate the best offer - not just the highest offer.
-                  </Radio>
-                </Radio.Group>
+              <div className="options">
+               
+                   <p> <span class="dot"></span> Choose the right time to sell.</p>
+                
+                   <p> <span class="dot"></span> Sell the right price.</p>
+                 
+                   <p> <span class="dot"></span> Negotiate the best offer - not just the highest offer.</p>
+             
               </div>
             </div>
           </div>
-          <div className="third-content">
+          <div className="third-section">
             <span className="third-cont-guide">How it works?</span>
-            <div className="cardContainer">
+            <div className="section-cards">
               <p>
                 If you{"'"}re a non-wallet user, please visit the nearest M
                 Lhuillier Branch for your listing.
@@ -108,7 +91,7 @@ const SellComponent = () => {
               </div>
             </div>
           </div>
-          <div className="fourth-content">
+          <div className="fourth-section">
             <h1>Have questions? We{"'"}re here to help.</h1>
             <p>
               If you{"'"}re just exploring the idea of selling or buying a home,

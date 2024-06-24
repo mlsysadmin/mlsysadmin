@@ -7,6 +7,7 @@
     flex-direction: column;
     height: auto;
     min-height: 100vh;
+    max-height: auto;
     position: relative;
 
   }
@@ -38,10 +39,10 @@
     /* font-size: 4rem; */
   }
   
-  .first-content-sell,
-  .second-content-sell-page,
-  .third-content,
-  .fourth-content {
+  .first-section,
+  .second-section,
+  .third-section,
+  .fourth-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -52,7 +53,7 @@
     /* padding: 40px; */
   }
   
-  .first-content-sell {
+  .first-section {
     background-color: #FFFFFF;
     padding: 0% 5% 2% ;
     display: flex;
@@ -83,7 +84,7 @@
     font-size: 100%;
   }
 
-  .first-content-sell #contactUs{
+  .first-section #contactUs{
     color: #D90000;
     font-weight: bold;
     border-color: #D90000;
@@ -92,11 +93,11 @@
     font-size: 1.5rem;
     padding: 30px;
   }
-  .first-content-sell #contactUs:hover{
+  .first-section #contactUs:hover{
     background: transparent;
 
   }
-  .first-content-sell #signIn{
+  .first-section #signIn{
     color: #FFFFFF;
     font-weight: bold;
     background-color: #D90000;
@@ -107,11 +108,21 @@
     padding-right: 50px;
   }
   
-  .second-content-sell-page {
+  .second-section {
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
     width: 100%;
+    gap: 3rem;
+    margin-top: 5%;
+  }
+
+  .section-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+
   }
 
   .second-content-span{
@@ -131,7 +142,7 @@
     font-size: 20px;
     padding: 40px;
     font-size: 25px;
-    margin-top: 3%;
+    margin-top: 10%;
   }
 
   .second-section .content p{
@@ -143,22 +154,21 @@
   }
 
   .options{
-    padding-top: 3%;
     display: flex;
     flex-direction: column;
     gap: 2rem;
     font-size: 2rem;
-    height: 30%;
     font-weight: normal;
     align-items: flex-start;
     justify-content: left;
+    width: 40%;
   }
-  .content-container .content{
+  .section-container .content{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start ;
-    height: 30vh;
+    width: 40%;
   }
 .content-container{
   display: flex;
@@ -167,36 +177,37 @@
 
   /*third*/
   .third-section {
+    margin-top: 10%;
     background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 2.5rem;
+    width: 100%;
+    height: auto;
   }
 
-  .third-content third-cont-guide{
+  .third-section .third-cont-guide{
     color: #000;
     font-weight: bold;
     font-size: 50px;
     margin-right: 69%;
-    margin-top: 5%;
   }
 
   .third-section p{
     color: #000;
-    font-size: 30px;
+    font-size: 35px;
     font-weight: lighter;
   }
 
-  
-  .section-container{
+  .section-cards {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    width: 100%;
     align-items: center;
-
+    gap: 3rem;
   }
+
 
   .cards{
     display: flex;
@@ -205,43 +216,36 @@
     width: 100%;
     justify-content: center;
     font-size: 2.2rem;
+    text-align: center;
   }
 
   .cards p{
     font-size: 1.5rem;
+    margin-top: 25%;
   }
 
-  .card1{
+  .cards .card1,.card2,.card3,.card4{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #D9D9D9;
     border-radius: 25px;
     width: 20%;
-  }
+    padding: 2% 2% 7% 2% ;
+    height: 100%;    
+    height: auto;
+  } 
 
-  .card2{
-    background-color: #D9D9D9;
-    border-radius: 20px;
-    width: 300px;
-  }
-
-  .card3{
-    background-color: #D9D9D9;
-    border-radius: 20px;
-    width: 300px;
-  }
   
-  .card4{
-    background-color: #D9D9D9;
-    border-radius: 20px;
-    width: 300px;
-  }
  
  /*fourth*/
  .fourth-section {
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    padding-top: 6%;
     padding-bottom: 6%;
+    gap: 2.5rem;
+    margin-top: 10%;
   }
 
   .fourth-section h1{
@@ -252,7 +256,7 @@
 
   .fourth-section p{
     color: #000;
-    font-size: 30px;
+    font-size: 35px;
     font-weight: lighter;
   }
 
