@@ -38,10 +38,10 @@
     /* font-size: 4rem; */
   }
   
-  .first-section,
-  .second-section,
-  .third-section,
-  .fourth-section {
+  .first-content-sell,
+  .second-content-sell-page,
+  .third-content,
+  .fourth-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -52,7 +52,7 @@
     /* padding: 40px; */
   }
   
-  .first-section {
+  .first-content-sell {
     background-color: #FFFFFF;
     padding: 0% 5% 2% ;
     display: flex;
@@ -76,15 +76,14 @@
     height: 100%;
 
   }
-
-  .first-section h1{
+.sell-header{
     color: black;
     text-align: left;
     margin-top: 70px;
     font-size: 100%;
   }
 
-  .first-section #contactUs{
+  .first-content-sell #contactUs{
     color: #D90000;
     font-weight: bold;
     border-color: #D90000;
@@ -93,11 +92,11 @@
     font-size: 1.5rem;
     padding: 30px;
   }
-  .first-section #contactUs:hover{
+  .first-content-sell #contactUs:hover{
     background: transparent;
 
   }
-  .first-section #signIn{
+  .first-content-sell #signIn{
     color: #FFFFFF;
     font-weight: bold;
     background-color: #D90000;
@@ -108,14 +107,14 @@
     padding-right: 50px;
   }
   
-  .second-section {
+  .second-content-sell-page {
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
     width: 100%;
   }
 
-  .second-section h1{
+  .second-content-span{
     color: black;
     font-size: 50px;
     font-weight: bold;
@@ -175,7 +174,7 @@
     align-items: center;
   }
 
-  .third-section h1{
+  .third-content third-cont-guide{
     color: #000;
     font-weight: bold;
     font-size: 50px;

@@ -1,0 +1,35 @@
+.property-information-container .prop-info-wrap-up-input input {
+    border:1px solid #ff2800;
+    border-radius: 10px;
+    width: 30%;
+    height: 50px;
+    margin: 20px 0px 0px 0px;
+    font-size: 14px;
+    padding:0px 0px 0px 10px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .property-information-container .prop-info-wrap-up-input2 input {
+    border:1px solid #ff2800;
+    border-radius: 10px;
+    width: 14%;
+    height: 50px;
+    margin: 20px 0px 0px 0px;
+    font-size: 14px;
+    padding:0px 0px 0px 10px;
+  }
+  h3{
+    color: #ff2800;
+    font-size:24px;
+  }
+  .prop-quest{
+    font-size:18px;
+    font-weight: bold;
+  }
+  .prop-info-wrap-up-input2 {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+}
