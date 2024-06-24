@@ -7,6 +7,8 @@ import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
 import HeaderContainer from "./layout/Navigation/HeaderContainer";
 import SideBar from "./layout/Navigation/SideBar";
 import MainLayout from "./layout/layout.component";
+import AllComponent from "./Buyer.AllComponent";
+import FeaturedComponent from "./Buyer.FeaturedComponent";
 
 //application details
 import WrapUpDetails from "./custom/application/wrapup.custom";
@@ -39,5 +41,7 @@ export{
     InsuranceGuideComponent,
     WrapUpDetails,
     SubmitApplicationCustom,
-    CustomAdvanceSearch
+    CustomAdvanceSearch,
+    AllComponent,
+    FeaturedComponent
 }

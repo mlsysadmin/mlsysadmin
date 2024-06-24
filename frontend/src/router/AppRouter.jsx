@@ -4,6 +4,8 @@ import MainOutlet from '../pages/MainOutlet';
 import NewPage from '../pages/New.page'
 import Dashboard from '../pages/Dashboard.page';
 import { HouseForRentPage, DiscoverHomePage, BuyAHomePage, RefinancePage, InsuranceGuidePage} from '../pages';
+import Allpage from '../pages/Buyer.All.page';
+import Featuredpage from '../pages/Buyer.Featured.page';
 
 const Routes = [
     {
@@ -37,6 +39,14 @@ const Routes = [
             {
                 path: "/insurance-guide-page",
                 element: <InsuranceGuidePage/>
+            },
+            {
+                path: "all",
+                element: <Allpage/>
+            },
+            {
+                path: "featured",
+                element: <Featuredpage/>
             }
         ]
     }

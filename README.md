@@ -1,6 +1,6 @@
-<!-- Run project on your local machine -->
 # Get Started
 
+## - BACKEND SET UP -
 Run project on your local machine
 
 ## Install required packages
@@ -33,6 +33,42 @@ npm run dev
 Server will run on localhost on port 8002:
 `
 http://localhost:8002
+`
+
+## - FRONTEND SET UP -
+
+Run project on your local machine
+
+## Install required packages
+### Run Command: 
+This will create a node_modules folder containing installed packages.
+   
+```
+npm i 
+```
+
+## Copy and Create .env file
+### Run Command: 
+This will copy and paste .env.example to the directory and rename to .env.
+
+Ask for the values of .env file server
+```
+cp .env.example .env
+```
+     
+## Run frontend server
+### Run Command: 
+
+```
+npm start
+```
+
+## Running on localhost
+
+### Server
+Server will run on localhost on port `3000`:
+`
+http://localhost:3000
 `
 
 # Contributing
@@ -74,4 +110,3 @@ When ready, create a `Pull Request` from your branch to the dev branch.
 ### 5. Merge
 
 Good Job! Keep it up!! 🥳😎
-
