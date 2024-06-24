@@ -2,6 +2,7 @@ import PropertiesForRent from "./custom/Custom.PropertiesPagination";
 import FooterComponent from "./layout/FooterComponent";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
 import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
+import ListingSearch from "./custom/customsearch/custom.listingsearch";
 
 // navigation
 import HeaderContainer from "./layout/Navigation/HeaderContainer";
@@ -43,5 +44,6 @@ export{
     SubmitApplicationCustom,
     CustomAdvanceSearch,
     AllComponent,
-    FeaturedComponent
+    FeaturedComponent,
+    ListingSearch
 }

@@ -24,7 +24,23 @@ const Card = ({
     <div className="card">
       <div className="cardImage">
         <img src={imgSrc} alt={title} className="card-img" />
-        <p className={isFeatured ? "featured" : ""}>{forsale}</p>
+        <p
+          className={isFeatured ? "featured" : ""}
+          style={{
+            color:
+              forsale === "New"
+                ? "green"
+                : forsale === "For Sale"
+                  ? "red"
+                  : forsale === "For Rent"
+                    ? "orange"
+                    :forsale === "For Lease"
+                      ?"blue"
+                      : "inherit",
+          }}
+        >
+          {forsale}
+        </p>
         <div className="likes">
           <CameraAltIcon />
           <b>{likes}</b>
@@ -44,7 +60,7 @@ const Card = ({
         <div className="bot">
           <p>{price}</p>
           <p>
-            {beds} <span><BedOutlinedIcon/></span> • {baths} <span><ShowerOutlinedIcon/></span> • <span><ShortcutOutlinedIcon/></span> {size} SqM
+            {beds} <span><BedOutlinedIcon /></span> • {baths} <span><ShowerOutlinedIcon /></span> • <span><ShortcutOutlinedIcon /></span> {size} SqM
           </p>
         </div>
       </div>
