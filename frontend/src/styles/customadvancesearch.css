@@ -1,0 +1,53 @@
+.advance-searchdropdown span {
+    font-size: 16px;
+    color: #444444;
+  }
+  
+  .advance-searchdropdown {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    gap: 10px;
+  }
+  
+  .advance-searchdropdown .advance-search-group1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+  }
+  
+  .sub-options-search {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  
+  }
+  .sub-options-search span{
+    color: #666666;
+    font-size: 14px;
+  }
+  
+  .advance-searchdropdown p {
+    font-size: 16px;
+    color: #444444;
+  }
+  
+  .search-custom-slider {
+    display: inline-block;
+  }
+  .garage-group{
+    display: flex;
+  }
+  .sub-options-search-beds{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 100px;
+  }
+  .sub-options-search-bath{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 230px;
+  }

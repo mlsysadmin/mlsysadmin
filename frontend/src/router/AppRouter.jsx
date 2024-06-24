@@ -1,7 +1,9 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import MainOutlet from '../pages/MainOutlet';
+import NewPage from '../pages/New.page'
 import Dashboard from '../pages/Dashboard.page';
+import { HouseForRentPage, DiscoverHomePage, BuyAHomePage, RefinancePage, InsuranceGuidePage} from '../pages';
 
 const Routes = [
     {
@@ -9,8 +11,32 @@ const Routes = [
         element: <MainOutlet/>,
         children: [
             {
-                path: "home",
+                path: "/",
                 element: <Dashboard/>
+            },
+            {
+              path: "/new-page",
+              element: <NewPage/>
+            },
+            {
+                path: "/house-for-rent-page",
+                element: <HouseForRentPage/>
+            },
+            {
+                path: "/discover-home-page",
+                element: <DiscoverHomePage/>
+            },
+            {
+                path: "/buy-a-home-page",
+                element: <BuyAHomePage/>
+            },
+            {
+                path: "/refinance-page",
+                element: <RefinancePage/>
+            },
+            {
+                path: "/insurance-guide-page",
+                element: <InsuranceGuidePage/>
             }
         ]
     }

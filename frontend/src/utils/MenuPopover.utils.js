@@ -1,4 +1,4 @@
-import { ArrowRightOutlined, HomeOutlined, RightOutlined } from "@ant-design/icons"
+import {  HomeOutlined, RightOutlined } from "@ant-design/icons"
 
 const SubMenu = 
     {
@@ -6,7 +6,7 @@ const SubMenu =
             {
                 header: "Homes for rent",
                 submenu: [
-                    { sub: "House", link: '/house' }, 
+                    { sub: "House", link: '/house-for-rent-page' }, 
                     { sub: "Condominium", link: '/condominium' }, 
                     { sub: "Apartment", link: '/apartment' }, 
                     { sub: "Townhouse", link: '/townhouse' }
@@ -102,7 +102,7 @@ const SubMenu =
             {
                 header: "Home Loan Guide",
                 submenu: [
-                    {sub: "Discover Home Loan", link: '/home-loan'}, 
+                    {sub: "Discover Home Loan", link: '/discover-home-page'}, 
                     { sub: "Loan Calculator", link: '/loan-calculator' }
                 ]
             },
@@ -118,7 +118,85 @@ const SubMenu =
                 ],
                 
             },
-        ]
+        ],
+        homeInsurance: [
+            
+            {
+                header: <>
+                    <HomeOutlined 
+                        style={{ fontSize: '18px', color: "black" }}/> 
+                    <span 
+                    style={{ padding: '0 5px', color: "black", fontSize: '15px' }}>
+                        Apply for a home insurance?
+                    </span>
+                </>,
+                submenu: [
+                    {
+                        sub_info_insurance: <div className="sub-info">
+                        <span>
+                        Get insured today!  Safeguard  <br/> your home and property from <br/> a wide range of risks & threats. <br/> You may visit our
+                        </span>
+                        <p><a href="/home" className="redirect">Home Insurance Dashboard <RightOutlined /></a></p>
+                        </div>,
+                        link: '/home'
+                    }
+                ]
+            },
+            {
+                header: "Home Insurance Guide",
+                submenu: [
+                    {sub: "Insurance Guide", link: '/insurance-guide-page'}, 
+                ]
+            },
+            {
+                header: "Other  ML Insurance Products ",
+                submenu: [
+                    { sub: "Personal Accident Insurance", link: '/home-refinance' },
+                    { sub: "Auto Insurance", link: '/mortgage-process' },
+                    { sub: "Dengue RX Insurance", link: '/car-loan' },
+                    { sub: "Medicare Plus Insurance", link: '/quick-cash-loan' },
+                    { sub: "Global Travel Protect Insurance", link: '/pension-loan' },
+                    { sub: "OFW Balik Manggagawa Insurance", link: '/pension-loan' },
+
+                ],
+                
+            },
+        ],
+        otherServices: [
+            {
+                submenu: [
+                    {sub: "Quick Cash Loans", link: '/house-and-lot'}, 
+                    {sub: "Car Loan", link: '/condominium'},  
+                    {sub: "Home Loan", link: '/HomeLoan'}, 
+                    {sub: "Kwarta Padala", link: '/HomeLoan'}
+                ]
+            },
+            {
+                submenu: [
+                    {sub: "ML Wallet ", link: '/office-space'}, 
+                    { sub: "ML Payroll Pro", link: '/retail-space' }, 
+                    { sub: "ML Express", link: '/service-office' }, 
+                    { sub: "Money Changer", link: '/commercial' }
+                ]
+            },
+            {
+                submenu: [
+                    {sub: "Jewelry ", link: '/office-space'}, 
+                    { sub: "Insurance", link: '/retail-space' }, 
+                    { sub: "ML Moves", link: '/service-office' }, 
+                    { sub: "Telco, Gaming & TV Loading", link: '/commercial' }
+                ]
+                
+            },
+            {
+                header: "Online Services",
+                submenu: [
+                    { sub: "Shop Online", link: '/buyer-guide' },
+                    { sub: "Buy Eload", link: '/buyer-guide' },
+                    { sub: "Pay Bills", link: '/buyer-guide' }
+                ]
+            }
+        ],
 
     }
 

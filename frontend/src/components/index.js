@@ -1,21 +1,43 @@
-import NewPageComponent  from "./NewPageComponent";
-import TopbarComponent from "./layout/TopbarComponent";
 import PropertiesForRent from "./custom/Custom.PropertiesPagination";
 import FooterComponent from "./layout/FooterComponent";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
-import DashboardComponent from "./DashboardComponent";
+import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
+
+// navigation
 import HeaderContainer from "./layout/Navigation/HeaderContainer";
 import SideBar from "./layout/Navigation/SideBar";
-import MainLayout from "./layout/Layout.component";
+import MainLayout from "./layout/layout.component";
+
+//application details
+import WrapUpDetails from "./custom/application/wrapup.custom";
+import SubmitApplicationCustom from "./custom/application/submitapplication.custom";
+
+// components
+import DiscoverHomeComponent from "./DiscoverHomeComponent";
+import BuyAHomeComponent from "./BuyAHomeComponent";
+import DashboardComponent from "./DashboardComponent";
+import HouseForRentComponent from "./HouseForRentComponent";
+import NewPageComponent  from "./NewPageComponent";
+import RefinanceComponent from "./RefinanceComponent";
+import InsuranceGuideComponent from "./InsuranceGuideComponent";
+
+
 
 export{
     NewPageComponent,
-    TopbarComponent,
     PropertiesForRent,
     FooterComponent,
     CustomMlFooter,
     DashboardComponent,
     HeaderContainer,
     SideBar,
-    MainLayout
-},
+    MainLayout,
+    HouseForRentComponent,
+    DiscoverHomeComponent,
+    BuyAHomeComponent,
+    RefinanceComponent,
+    InsuranceGuideComponent,
+    WrapUpDetails,
+    SubmitApplicationCustom,
+    CustomAdvanceSearch
+}

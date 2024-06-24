@@ -12,6 +12,8 @@ const HeaderMenu = () => {
     const [rentPopUpOpen, setrentPopUpOpen] = useState(false);
     const [buyPopUpOpen, setbuyPopUpOpen] = useState(false);
     const [homeLoanPopUpOpen, sethomeLoanPopUpOpen] = useState(false);
+    const [homeInsurancePopUpOpen, sethomeInsurancePopUpOpen] = useState(false);
+    const [otherServicesPopUpOpen, setotherServicesPopUpOpen] = useState(false);
 
     const navigate = useNavigate();
 
@@ -36,17 +38,37 @@ const HeaderMenu = () => {
         if (menu.key === "Rent") {
             setbuyPopUpOpen(false);
             sethomeLoanPopUpOpen(false);
+            sethomeInsurancePopUpOpen(false);
+            setotherServicesPopUpOpen(false);
             setrentPopUpOpen(true);
         }
         else if (menu.key === "Buy") {
             setrentPopUpOpen(false);
             sethomeLoanPopUpOpen(false);
+            sethomeInsurancePopUpOpen(false);
+            setotherServicesPopUpOpen(false);
             setbuyPopUpOpen(true);
         }
         else if (menu.key === "Home Loan") {
             setrentPopUpOpen(false);
             setbuyPopUpOpen(false);
+            sethomeInsurancePopUpOpen(false);
+            setotherServicesPopUpOpen(false);
             sethomeLoanPopUpOpen(true);
+        }
+        else if (menu.key === "Home Insurance"){
+            setrentPopUpOpen(false);
+            setbuyPopUpOpen(false);
+            sethomeLoanPopUpOpen(false);
+            setotherServicesPopUpOpen(false);
+            sethomeInsurancePopUpOpen(true)
+        }
+        else if (menu.key === "Other Services"){
+            setrentPopUpOpen(false);
+            setbuyPopUpOpen(false);
+            sethomeLoanPopUpOpen(false);
+            sethomeInsurancePopUpOpen(false);
+            setotherServicesPopUpOpen(true);
         }
         else{
             setCurrent(menu.key);
@@ -56,11 +78,13 @@ const HeaderMenu = () => {
             setrentPopUpOpen(false);
             setbuyPopUpOpen(false);
             sethomeLoanPopUpOpen(false);
+            sethomeInsurancePopUpOpen(false);
+            setotherServicesPopUpOpen(false);
         }
     }
 
     const RentMenuPopContent = (
-        <MenuPopupContent submenu={SubMenu.rent}/>
+        <MenuPopupContent submenu={SubMenu.rent} />
     )
 
     const BuyMenuPopContent = (
@@ -70,6 +94,13 @@ const HeaderMenu = () => {
     const HomeLoanMenuPopContent = (
         <MenuPopupContent submenu={SubMenu.homeLoan}/>
     )
+    const HomeInsuranceMenuPopContent = (
+        <MenuPopupContent submenu={SubMenu.homeInsurance}/>
+    )
+    const OtherServicesMenuPopContent = (
+        <MenuPopupContent submenu={SubMenu.otherServices}/>
+    )
+
 
     const RentMenu = () => (
         <MenuPopup 
@@ -103,15 +134,36 @@ const HeaderMenu = () => {
             content={HomeLoanMenuPopContent}  
         />
     )
+    const HomeInsuranceMenu = () => (
+        <MenuPopup 
+            // handleOpenChange={handleBuyOpenChange}
+            title={
+                ''
+            }
+            popUpOpen={homeInsurancePopUpOpen}
+            label={"Home Insurance"}
+            content={HomeInsuranceMenuPopContent}  
+        />
+    )
+    const OtherServicesMenu = () => (
+        <MenuPopup 
+            // handleOpenChange={handleBuyOpenChange}
+            title={'Learn more about our Products and Services'}
+            popUpOpen={otherServicesPopUpOpen}
+            label={"Other Services"}
+            content={OtherServicesMenuPopContent}
+            
+        />
+    )
 
     const MenuItems = [
         { label: "Sell", key: "Sell", link: '/sell'}, 
-        { label: "New", key: "New", link: '/new'}, 
+        { label: "New", key: "New", link: '/new-page'}, 
         { label:  <RentMenu/>, key: "Rent" }, 
         { label: <BuyMenu/>, key: "Buy" }, 
         { label: <HomeLoanMenu/>, key: "Home Loan" }, 
-        { label: "Home Insurance", key: "Home Insurance", link: '/home-insurance' }, 
-        { label: "Other Services", key: "Other Services", link: '/other-services' }, 
+        { label: <HomeInsuranceMenu/>, key: "Home Insurance", link: '/home-insurance' }, 
+        { label: <OtherServicesMenu/>, key: "Other Services", link: '/other-services' }, 
         { label: "Contact", key: "Contact", link: '/contact' },
     ]
     
