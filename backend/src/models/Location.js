@@ -16,9 +16,17 @@ const Location = Sequelize.define("locations", {
       allowNull: false,
       type: DataTypes.STRING
   },
-  address: {
+  city: {
     allowNull: false,
-    type: DataTypes.STRING
+    type: DataTypes.STRING(20)
+  },
+  province: {
+    allowNull: false,
+    type: DataTypes.STRING(20)
+  },
+  postal_code: {
+    allowNull: false,
+    type: DataTypes.STRING(10)
   },
   map_location: {
     allowNull: false,
@@ -32,10 +40,6 @@ const Location = Sequelize.define("locations", {
     type: DataTypes.DATE,
     allowNull: true
   },
-  deletedAt: {
-    type: DataTypes.DATE,
-    allowNull: true
-  }
 },{
   modelName: 'Location',
   timestamps: false,

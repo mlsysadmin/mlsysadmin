@@ -20,7 +20,7 @@ const PropertyListing = Sequelize.define("property_listings", {
     allowNull: false,
     type: DataTypes.INTEGER
   },
-  property_type_id:{
+  property_type_id: {
     allowNull: false,
     type: DataTypes.INTEGER
   },
@@ -63,59 +63,6 @@ const PropertyListing = Sequelize.define("property_listings", {
   deletedAt: {
     type: DataTypes.DATE,
     allowNull: true
-  },
-
-  classification: {
-    allowNull: false,
-    type: DataTypes.ENUM("New", "Resale")
-  },
-  property_type: {
-    allowNull: false,
-    type: DataTypes.ENUM("Commercial", "Residential", "Industrial", "Others")
-  },
-  property_subtype: {
-    allowNull: false,
-    type: DataTypes.ENUM("Service Office", "Shop/Rental", "Commercial Land/Lot", "Condominium", "House & Lot", "Townhouse", "Warehouse", "Farm Lot", "Hotel/Resort")
-  },
-  google_map_link: {
-    allowNull: false,
-    type: DataTypes.STRING
-  },
-  no_of_beds: {
-    allowNull: false,
-    type: DataTypes.INTEGER
-  },
-  no_of_bathrooms: {
-    allowNull: false,
-    type: DataTypes.INTEGER
-  },
-  no_of_floors: {
-    allowNull: false,
-    type: DataTypes.INTEGER
-  },
-  floor_area: {
-    allowNull: false,
-    type: DataTypes.DECIMAL(10, 2)
-  },
-  lot_area: {
-    allowNull: false,
-    type: DataTypes.DECIMAL(10, 2)
-  },
-  price_per_sqm: {
-    allowNull: false,
-    type: DataTypes.DECIMAL(10, 2)
-  },
-  price: {
-    allowNull: false,
-    type: DataTypes.DECIMAL(10, 2)
-  },
-  discounted_price: {
-    allowNull: false,
-    type: DataTypes.DECIMAL(10, 2)
-  },
-  status: {
-    allowNull: false,
-    type: DataTypes.ENUM("Active", "Inactive")
   }
 }, {
   modelName: 'PropertyListing',

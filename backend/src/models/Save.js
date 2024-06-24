@@ -5,22 +5,24 @@ const {
 
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
-const OutdoorFeatures = Sequelize.define("outdoor_features", {
+const Save = Sequelize.define("saves", {
   id: {
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
     type: DataTypes.INTEGER
   },
-  features: {
+  user_id: {
       allowNull: false,
-      type: DataTypes.ENUM("Badminton", "Balcony", "Basketball Court", "Carport", "Clubhouse", "Courtyard", "Fully Fenced", "Function Area", "Garage", "Garden", "Gazebos", "Jacuzzi", "Jogging path", "Lanai", "Landscape Garden",
-        "Multi-purpose Lawn", "Open car spaces", "Parking Lot", "Parks", "Playground", "Remote Garage", "Secure Parking", "Shower Rooms", "Sports Facilities", "Swimming Pool", "Tennis Court"
-      ),
+      type: DataTypes.INTEGER
   },
-  createdAt: {
-    type: DataTypes.DATE,
+  master_property_id: {
     allowNull: false,
+    type: DataTypes.INTEGER
+  },
+  liked_at: {
+    allowNull: false,
+    type: DataTypes.DATE,
     defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)')
   },
   updatedAt: {
@@ -34,8 +36,8 @@ const OutdoorFeatures = Sequelize.define("outdoor_features", {
     defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)')
   }
 },{
-  modelName: 'OutdoorFeatures',
+  modelName: 'Save',
   timestamps: false,
 })
 
-module.exports = OutdoorFeatures;
+module.exports = Save;
