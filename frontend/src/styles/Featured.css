@@ -1,11 +1,16 @@
-.container{
+.feature-container{
     background: #fff;
     padding: 1% 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .card-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+
   }
   
   .card {

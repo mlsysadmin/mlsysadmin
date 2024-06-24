@@ -1,18 +1,18 @@
 import React from "react";
-import TopbarComponent from "./custom/TopbarComponent ";
 import {
   HomeFilled,
   DollarOutlined,  
 } from "@ant-design/icons";
+import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout } from "../components";
 import "../styles/mortgage.css";
 
-function Mortgage() {
+const MortgageComponent = () => {
   return (
     <div>
-      <TopbarComponent />
-      <div className="mortgageContent">
-        <div className="title">
-          <h1>Get pre-approved </h1>
+      <MainLayout/>
+      <div className="mortgageContent"> 
+        <div className="mortgage-title">
+          <span className="mortgage-h1">Get pre-approved </span>
           <p className="SubTitle">
             Home financing to make your goals a reality.
           </p>
@@ -26,11 +26,15 @@ function Mortgage() {
             <DollarOutlined style={{ fontSize: "4rem" }} />
             <p>I want to <span style={{fontWeight:"bold"}}>refinance</span> my home</p>
           </div>
+        </div><br/><br/><br/><br/><br/>
+        <div>
+          <CustomMlFooter/>
+          <FooterComponent/>
         </div>
-        <div></div>
+        
       </div>
     </div>
   );
 }
 
-export default Mortgage;
+export default MortgageComponent;

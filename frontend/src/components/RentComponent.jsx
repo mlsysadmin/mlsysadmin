@@ -1,11 +1,17 @@
-import React, { useState } from "react";
-import "../styles/All.css";
+import React from "react";
+import "../styles/rent.css";
+import { useState } from "react";
+import {
+  CameraFilled,
+  HeartOutlined,
+  ControlOutlined,
+} from "@ant-design/icons";
 import Card from "./custom/cards/Card";
 import property from "../images/Guest/property.png";
 import Pagination from "./custom/pagination/Pagination";
 import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout } from "../components";
 
-const AllComponent = () => {
+const RentComponent = () => {
   const prop = property;
   const cardData = [
     {
@@ -16,7 +22,7 @@ const AllComponent = () => {
       baths: 3,
       size: 250,
       likes: 15,
-      forsale: "For Sale",
+      forsale: "For Rent",
       subtitle: "House and Lot for Rent",
     },
     {
@@ -38,7 +44,7 @@ const AllComponent = () => {
       baths: 3,
       size: 250,
       likes: 15,
-      forsale: "For Lease",
+      forsale: "For Rent",
       subtitle: "House and Lot for Rent",
     },
     {
@@ -49,7 +55,7 @@ const AllComponent = () => {
       baths: 3,
       size: 250,
       likes: 15,
-      forsale: "For Sale",
+      forsale: "For Rent",
       subtitle: "House and Lot for Rent",
     },
     {
@@ -71,7 +77,7 @@ const AllComponent = () => {
       baths: 3,
       size: 250,
       likes: 15,
-      forsale: "For Lease",
+      forsale: "For Rent",
       subtitle: "House and Lot for Rent",
     },
     {
@@ -82,7 +88,7 @@ const AllComponent = () => {
       baths: 3,
       size: 250,
       likes: 15,
-      forsale: "For Sale",
+      forsale: "For Rent",
       subtitle: "House and Lot for Rent",
     },
     {
@@ -93,7 +99,7 @@ const AllComponent = () => {
       baths: 3,
       size: 250,
       likes: 15,
-      forsale: "For Sale",
+      forsale: "For Rent",
       subtitle: "House and Lot for Rent",
     },
     {
@@ -104,7 +110,7 @@ const AllComponent = () => {
       baths: 3,
       size: 250,
       likes: 15,
-      forsale: "For Sale",
+      forsale: "For Rent",
       subtitle: "House and Lot for Rent",
     },
     {
@@ -115,7 +121,7 @@ const AllComponent = () => {
       baths: 3,
       size: 250,
       likes: 15,
-      forsale: "For Sale",
+      forsale: "For Rent",
       subtitle: "House and Lot for Rent",
     },
     {
@@ -126,7 +132,7 @@ const AllComponent = () => {
       baths: 3,
       size: 250,
       likes: 15,
-      forsale: "For Sale",
+      forsale: "For Rent",
       subtitle: "House and Lot for Rent",
     },
     {
@@ -137,7 +143,7 @@ const AllComponent = () => {
       baths: 3,
       size: 250,
       likes: 15,
-      forsale: "For Sale",
+      forsale: "For Rent",
       subtitle: "House and Lot for Rent",
     }
   ];
@@ -153,14 +159,15 @@ const AllComponent = () => {
 
   const totalPages = Math.ceil(cardData.length / cardsPerPage);
   return (
-    <div className="all-container">
-        <MainLayout />
-        <div className="all-searchcomponent">
-          <ListingSearch />
-        </div>
-      <div className="all-page-container">
-        <span className="all-h1">For Sale/Rent</span>
-        <div className="card-container">
+    <div className="rent">
+      <MainLayout/>
+     <div className="topbar">
+     <ListingSearch/>
+     </div>
+      <div className="rentContainer">
+        <div className="rentContent">
+          <span className="rent-h1">Properties for Rent</span>
+          <div className="card-container">
           {currentCards.map((data, index) => (
             <Card
               key={index}
@@ -182,11 +189,11 @@ const AllComponent = () => {
           paginate={setCurrentPage}
         />
       </div>
-
-      <CustomMlFooter />
-      <FooterComponent />
+        <CustomMlFooter/>
+        <FooterComponent/>
+      </div>
     </div>
   );
-};
+}
 
-export default AllComponent;
+export default RentComponent;

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "../styles/sell.css";
 import { Row, Col } from "antd";
-import TopbarComponent from "./custom/TopbarComponent ";
 import bannerImg from "../asset/icons/banner.png";
 import { Button, Radio } from "antd";
+import { FooterComponent, CustomMlFooter, MainLayout } from "../components";
 
-function SellComponent() {
+const SellComponent = () => {
   const [value, setValue] = useState(1);
   const onChange = (e) => {
     console.log("radio checked", e.target.value);
@@ -13,19 +13,19 @@ function SellComponent() {
   };
   return (
     <div className="sell">
-      <TopbarComponent />
+      <MainLayout/>
       <div className="sell-container">
         <div className="sell-contents">
-          <div className="first-content">
+          <div className="first-content-sell">
             <img src={bannerImg} alt="" />
             <div className="bannerbg">
-              <h1>
+              <span className="sell-header">
                 {" "}
                 <span style={{ color: "red" }}>Sell</span> or{" "}
                 <span style={{ color: "red" }}>Rent</span> <br />
                 your property <br />
                 at the best price
-              </h1>
+              </span>
               <div>
                 <Button id="contactUs" type="primary">
                   Contact Us
@@ -36,11 +36,11 @@ function SellComponent() {
               </div>
             </div>
           </div>
-          <div className="second-content">
-            <h1>
+          <div className="second-content-sell-page">
+            <span className="second-content-span">
               Maximize your property{"'"}s potential: Sell or Rent with
               Confidence
-            </h1>
+            </span>
             <div className="content-container">
               <div className="content">
                 <p>
@@ -82,7 +82,7 @@ function SellComponent() {
             </div>
           </div>
           <div className="third-content">
-            <h1>How it works?</h1>
+            <span className="third-cont-guide">How it works?</span>
             <div className="cardContainer">
               <p>
                 If you{"'"}re a non-wallet user, please visit the nearest M
@@ -120,6 +120,8 @@ function SellComponent() {
           </div>
         </div>
       </div>
+      <CustomMlFooter/>
+      <FooterComponent/>
     </div>
   );
 }

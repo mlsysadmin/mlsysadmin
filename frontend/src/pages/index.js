@@ -5,6 +5,11 @@ import DiscoverHomePage from "./DiscoverHome.page";
 import BuyAHomePage from "./BuyAHome.page";
 import RefinancePage from "./Refinance.page";
 import InsuranceGuidePage from "./InsuranceGuide.page";
+import MortagagePage from "./Mortgage.page";
+import SellPage from "./Sell.page";
+import LoanCalculatorPage from "./LoanCalculator.page";
+import RentPage from "./Rent.page";
+import ContactUsPage from "./ContactUs.page";
 
 
 export {
@@ -14,5 +19,10 @@ export {
     DiscoverHomePage,
     BuyAHomePage,
     RefinancePage,
-    InsuranceGuidePage
+    InsuranceGuidePage,
+    MortagagePage,
+    RentPage,
+    SellPage,
+    LoanCalculatorPage,
+    ContactUsPage
 }

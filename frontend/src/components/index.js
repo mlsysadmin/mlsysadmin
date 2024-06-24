@@ -23,6 +23,11 @@ import HouseForRentComponent from "./HouseForRentComponent";
 import NewPageComponent  from "./NewPageComponent";
 import RefinanceComponent from "./RefinanceComponent";
 import InsuranceGuideComponent from "./InsuranceGuideComponent";
+import ContactUsComponent from "./ContactUsComponent";
+import LoanCalculatorComponent from "./LoanCalculatorComponent";
+import MortgageComponent from "./MortgageComponent";
+import RentComponent from "./RentComponent";
+import SellComponent from "./SellComponent";
 
 
 
@@ -45,5 +50,10 @@ export{
     CustomAdvanceSearch,
     AllComponent,
     FeaturedComponent,
-    ListingSearch
+    ListingSearch,
+    ContactUsComponent,
+    LoanCalculatorComponent,
+    MortgageComponent,
+    RentComponent,
+    SellComponent
 }

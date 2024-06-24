@@ -19,7 +19,7 @@
     display: flex;
 }
 
-.discover-home .content-container {
+.discover-home .disc-content-container {
     background-color: #ffffff66;
     border-radius: 30px;
     height: 468px;
@@ -636,7 +636,7 @@
     gap: 24px;
 }
 
-.questions {
+.discover-questions {
     display: flex;
     flex-direction: column;
     gap: 30px;

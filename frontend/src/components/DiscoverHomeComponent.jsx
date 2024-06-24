@@ -64,7 +64,7 @@ const DiscoverHomeComponent = () => {
             <div className="discover-home">
                 <div className="discover-home-content">
                     <div className="discover-overlap">
-                        <div className="content-container">
+                        <div className="disc-content-container">
                             <div className="discover-words">
                                 <span className="smart-way-to-get-a">
                                     Smart way to get a
@@ -284,7 +284,7 @@ const DiscoverHomeComponent = () => {
             <div className="faqs-container">
                 <div className="faqs-content">
                     <h2>Most-asked morgage questions</h2>
-                    <div className="questions">
+                    <div className="discover-questions">
                         <Dropdown
                             overlay={menu}
                             placement="bottomLeft"

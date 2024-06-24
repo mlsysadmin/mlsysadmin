@@ -25,8 +25,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: #ff2800;
     margin-top: 12%;
+    font-weight: bold;
   }
 
   .bannerSubTitle{

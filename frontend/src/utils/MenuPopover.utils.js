@@ -6,7 +6,7 @@ const SubMenu =
             {
                 header: "Homes for rent",
                 submenu: [
-                    { sub: "House", link: '/house-for-rent-page' }, 
+                    { sub: "House", link: '/rent-page' }, 
                     { sub: "Condominium", link: '/condominium' }, 
                     { sub: "Apartment", link: '/apartment' }, 
                     { sub: "Townhouse", link: '/townhouse' }
@@ -39,7 +39,7 @@ const SubMenu =
             {
                 header: "Homes for sale",
                 submenu: [
-                    {sub: "House and Lot", link: '/house-and-lot'}, 
+                    {sub: "House and Lot", link: '/all'}, 
                     {sub: "Condominium", link: '/condominium'},  
                     {sub: "Townhouse", link: '/townhouse'}, 
                     {sub: "Land/Lot", link: '/lot'}

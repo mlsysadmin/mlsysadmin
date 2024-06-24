@@ -157,14 +157,14 @@ const HeaderMenu = () => {
     )
 
     const MenuItems = [
-        { label: "Sell", key: "Sell", link: '/sell'}, 
+        { label: "Sell", key: "Sell", link: '/sell-page'}, 
         { label: "New", key: "New", link: '/new-page'}, 
         { label:  <RentMenu/>, key: "Rent" }, 
-        { label: <BuyMenu/>, key: "Buy" }, 
+        { label: <BuyMenu/>, key: 'Buy' }, 
         { label: <HomeLoanMenu/>, key: "Home Loan" }, 
         { label: <HomeInsuranceMenu/>, key: "Home Insurance", link: '/home-insurance' }, 
         { label: <OtherServicesMenu/>, key: "Other Services", link: '/other-services' }, 
-        { label: "Contact", key: "Contact", link: '/contact' },
+        { label: "Contact", key: "Contact", link: '/contact-us' },
     ]
     
     const items = MenuItems.map((item, index) => ({
@@ -178,7 +178,6 @@ const HeaderMenu = () => {
         <div 
             style={{
                 display: 'flex',
-                // justifyContent:"end",
                 borderBottom: "none",
                 alignItems:"center",
                 alignContent:"center",
@@ -193,11 +192,6 @@ const HeaderMenu = () => {
                 items={items}
                 selectedKeys={[currentMenu]}
                 onClick={handleMenuOnClick}
-                // style={{
-                //     flex: 1,
-                //     justifyContent:"end",
-                //     borderBottom: "none",
-                // }}
                 className='header--menu'
             >
             </Menu>

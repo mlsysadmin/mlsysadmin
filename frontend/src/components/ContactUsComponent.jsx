@@ -1,18 +1,19 @@
 import React from "react";
-import TopbarComponent from "./custom/TopbarComponent ";
 import "../styles/contactUs.css";
 import map from "../asset/icons/map.png";
 import logo from "../asset/icons/logo.png";
 import { Button } from "antd";
+import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout } from "../components";
+
 // import ContactUsComponent from "../components/custom/ContactUsComponent.jsx"
 
-function ContactUs() {
+const ContactUsComponent = () => {
   return (
     <div>
-      <TopbarComponent />
       <div className="contactUsContainer">
+        <MainLayout />
         <div className="banner">
-          <h1 className="bannerTitle">Let{"'"}s chat, Reach Out to Us</h1>
+          <span className="bannerTitle">Let{"'"}s chat, Reach Out to Us</span>
           <p className="bannerSubTitle">
             Please feel free to send us your inquiry, we will revert you within
             24 hours.
@@ -144,9 +145,11 @@ function ContactUs() {
             </div>
           </div>
         </div>
+        <CustomMlFooter/>
+        <FooterComponent/>
       </div>
     </div>
   );
 }
 
-export default ContactUs;
+export default ContactUsComponent;

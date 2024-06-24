@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import SecondaryGuestMenu from "./custom/menu/SecondaryGuestMenu";
 import "../styles/Featured.css";
 import Card from "./custom/cards/Card";
 import property from "../images/Guest/property.png";
 import Pagination from "./custom/pagination/Pagination";
+import ListingSearch from "./custom/customsearch/custom.listingsearch";
 
 const FeaturedComponent = () => {
   const prop = property;
@@ -593,8 +593,9 @@ const FeaturedComponent = () => {
   // Logic for page numbers
   const totalPages = Math.ceil(cardData.length / cardsPerPage);
   return (
-    <div className="container">
-    <SecondaryGuestMenu />
+    <div className="feature-container">
+    <ListingSearch/>
+    <span className="feature-h1">Featured Properties</span>
     <div className="card-container">
       {currentCards.map((data, index) => (
         <Card

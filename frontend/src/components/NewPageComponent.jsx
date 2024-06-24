@@ -95,7 +95,7 @@ export const NewPageComponent = () => {
         <div className="newpage-contents">
           <ListingSearch/>
           <div className="second-content">
-            <h1>New Properties for Sale/Rent</h1>
+            <h1 className="new-page-label">New Properties</h1>
             <div className="card-container">
               {currentCards.map((data, index) => (
                 <Card

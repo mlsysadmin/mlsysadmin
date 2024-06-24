@@ -3,7 +3,17 @@ import { createBrowserRouter } from 'react-router-dom';
 import MainOutlet from '../pages/MainOutlet';
 import NewPage from '../pages/New.page'
 import Dashboard from '../pages/Dashboard.page';
-import { HouseForRentPage, DiscoverHomePage, BuyAHomePage, RefinancePage, InsuranceGuidePage} from '../pages';
+import { 
+    HouseForRentPage, 
+    DiscoverHomePage, 
+    BuyAHomePage, 
+    RefinancePage, 
+    InsuranceGuidePage, 
+    ContactUsPage,
+    RentPage,
+    SellPage,
+    LoanCalculatorPage,
+    MortagagePage} from '../pages';
 import Allpage from '../pages/Buyer.All.page';
 import Featuredpage from '../pages/Buyer.Featured.page';
 
@@ -41,12 +51,32 @@ const Routes = [
                 element: <InsuranceGuidePage/>
             },
             {
-                path: "all",
+                path: "/all",
                 element: <Allpage/>
             },
             {
                 path: "featured",
                 element: <Featuredpage/>
+            },
+            {
+                path: "/contact-us",
+                element: <ContactUsPage/>
+            },
+            {
+                path: "/rent-page",
+                element: <RentPage/>
+            },
+            {
+                path: "/sell-page",
+                element: <SellPage/>
+            },
+            {
+                path: "/loan-calculator",
+                element: <LoanCalculatorPage/>
+            },
+            {
+                path: "/mortgage-page",
+                element: <MortagagePage/>
             }
         ]
     }

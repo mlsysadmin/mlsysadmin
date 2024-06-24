@@ -53,8 +53,8 @@
 .likes {
   position: absolute;
   display: flex;
-  top: 5.5%;
-  left: 85%;
+  top: 10px;
+  right:10px;
   border-radius: 10px;
   color: #d90000;
   flex-direction: row;
