@@ -13,12 +13,26 @@ const PropertyViews = Sequelize.define("property_views", {
     type: DataTypes.INTEGER
   },
   user_id: {
-      allowNull: false,
-      type: DataTypes.INTEGER
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    references: {
+      model: {
+        model: "User",
+        tableName: 'users',
+      },
+      key: 'user_id',
+    },
   },
   master_property_id: {
     allowNull: false,
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER,
+    references: {
+      model: {
+        model: "MasterPropertyList",
+        tableName: 'master_property_lists',
+      },
+      key: 'id',
+    },
   },
   viewed_at: {
     allowNull: false,
@@ -30,7 +44,7 @@ const PropertyViews = Sequelize.define("property_views", {
     allowNull: true,
     defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)')
   },
-},{
+}, {
   modelName: 'PropertyViews',
   timestamps: false,
 })

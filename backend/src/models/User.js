@@ -69,7 +69,14 @@ const User = Sequelize.define("users", {
   },
   role_id: {
       allowNull: false,
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      references: {
+        model: {
+          model: "Role",
+          tableName: 'roles',
+        },
+        key: 'role_id',
+      },
   },
   license: {
     allowNull: true,

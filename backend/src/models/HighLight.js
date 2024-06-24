@@ -14,11 +14,25 @@ const HighLight = Sequelize.define("highlights", {
   },
   user_id: {
       allowNull: false,
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      references: {
+        model: {
+          model: "User",
+          tableName: 'users',
+        },
+        key: 'user_id',
+      },
   },
   master_property_id: {
     allowNull: false,
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER,
+    references: {
+      model: {
+        model: "MasterPropertyList",
+        tableName: 'master_property_lists',
+      },
+      key: 'id',
+    },
   },
   highlighted_at: {
     allowNull: false,

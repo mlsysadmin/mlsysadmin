@@ -9,40 +9,51 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-
-    await queryInterface.createTable('custom_features', {
+    await queryInterface.createTable('saves', { 
       id: {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER
       },
-      feature_name: {
+      user_id: {
           allowNull: false,
-          type: Sequelize.STRING,
-          get(){
-            return JSON.parse(this.getDataValue('feature_name'));
+          type: Sequelize.INTEGER,
+          references: {
+            model: {
+              model: "User",
+              tableName: 'users',
+            },
+            key: 'user_id',
           },
-          set (name) {
-            this.setDataValue('feature_name', JSON.stringify(name));
-          }
       },
-      createdAt: {
-        type: Sequelize.DATE,
+      master_property_id: {
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)')
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            model: "MasterPropertyList",
+            tableName: 'master_property_lists',
+          },
+          key: 'id',
+        },
+      },
+      liked_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: true,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
       },
       deletedAt: {
         type: Sequelize.DATE,
         allowNull: true,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-    })
+     });
   },
 
   async down (queryInterface, Sequelize) {
@@ -52,7 +63,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable('custom_features');
-
+    await queryInterface.dropTable('saves');
   }
 };

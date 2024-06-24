@@ -17,24 +17,30 @@ module.exports = {
       },
       listing_id: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            model: "PropertyListing",
+            tableName: 'property_listings',
+          },
+          key: 'id',
+        },
       },
       seller_id: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            model: "User",
+            tableName: 'users',
+          },
+          key: 'user_id',
+        },
       },
       property_id: {
         allowNull: false,
         type: Sequelize.STRING,
         unique: true
-      },
-      features_and_amenities_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
-      custom_features_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER
       },
       listing_status: {
         allowNull: false,
@@ -47,22 +53,22 @@ module.exports = {
       approval_date: {
         allowNull: true,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
       },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)'),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       updatedAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)'),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
         allowNull: true
       },
       deletedAt: {
         type: Sequelize.DATE,
         allowNull: true,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)'),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
     })
   },

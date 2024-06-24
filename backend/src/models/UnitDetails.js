@@ -62,11 +62,11 @@ const UnitDetails = Sequelize.define('unit_details', {
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP(3)'),
+        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
     },
     updatedAt: {
         type: DataTypes.DATE,
-        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)'),
+        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
         allowNull: true
     },
 }, {

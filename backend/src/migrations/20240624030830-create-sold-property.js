@@ -18,11 +18,25 @@ module.exports = {
     },
     property_id: {
         allowNull: false,
-        type: Sequelize.STRING(15),
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            model: "MasterPropertyList",
+            tableName: 'master_property_lists',
+          },
+          key: 'id',
+        },
     },
     buyer_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: {
+          model: {
+            model: "User",
+            tableName: 'users',
+          },
+          key: 'user_id',
+        },
     },
     sale_price: {
         allowNull: false,
@@ -35,12 +49,12 @@ module.exports = {
     createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
     },
     updatedAt: {
         type: Sequelize.DATE,
         allowNull: true,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
     },
      });
   },
