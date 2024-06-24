@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,33 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap");
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* fonts */
+  --font-poppins: Poppins;
+
+  /* font sizes */
+  --font-size-smi: 13px;
+  --font-size-mini: 15px;
+
+  /* Colors */
+  --color-white: #fff;
+  --color-red: #d90000;
+  --color-gray: #8c9094;
+
+  /* Paddings */
+  --padding-10xs: 3px;
+  --padding-sm: 14px;
+  --padding-7xs: 6px;
+
+  /* Border radiuses */
+  --br-11xl: 30px;
 }

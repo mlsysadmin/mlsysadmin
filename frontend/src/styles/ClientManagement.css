@@ -1,70 +1,196 @@
-.overview-panel {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f5f5f5;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .listing-count-highlight {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 60%;
-  }
-  
-  .listing-count-highlight > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  }
-  
-  .listing-count-highlight .count {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .listing-count-highlight .label {
-    font-size: 14px;
-    color: #666;
-  }
-  
-  .performance {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: 40%;
-  }
-  
-  .performance > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
-  }
-  
-  .performance .label {
-    font-size: 14px;
-    color: #666;
-  }
-  
-  .performance .value {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-  }
+/* styles.css */
+
+.container {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.headerSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-radius: 20px;
+}
+
+.tabs {
+  display: flex;
+  gap: 20px;
+}
+
+.searchSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.srchwrapps{
+  display: flex;
+  align-items: center;
+  width: 161px;
+  height: 34px;
+  position: relative;
+}
+.srchIntContnr {
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  padding: 5px;
+}
+
+.srchIcony {
+  position: absolute;
+  left: 12px; /* Adjust the position of the icon */
+  top: 50%;
+  transform: translateY(-50%); /* Center the icon vertically */
+  color: black;
+}
+
+.searchsInput {
+  width: 100%;
+  padding: 8px 16px 8px 40px; /* Increase the left padding to make space for the icon */
+  font-size: 14px;
+  border: none;
+  outline: none;
+  border-radius: 30px;
+}
+
+.searchsInput::placeholder {
+  color: black;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.dropdown {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.overviewSection {
+  padding: 20px;
+}
+
+.overviewSection p {
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+  margin: 10px 0;
+}
+
+.overviewTitle {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: red;
+}
+
+.overviewStats {
+  display: flex;
+  gap: 20px;
+}
+
+.statBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border: 2px solid #8c9094;
+  border-radius: 30px;
+  width: 15%;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.statNumber {
+  font-size: 100%;
+  font-weight: bold;
+  /* margin-bottom: 5px; */
+  display: flex;
+}
+
+.statLabel {
+  font-size: 100%;
+  text-align: center;
+}
+
+.statIcon {
+  background-color: #d90000;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.performanceSection {
+  margin-bottom: 20px;
+}
+
+.performanceTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: red;
+}
+
+.performanceStats {
+  display: flex;
+  gap: 20px;
+}
+
+.performanceBox {
+  background-color: #f8f9fa;
+  border-radius: 30px;
+  border: 2px solid #8c9094;
+  width: 351px;
+  height: 126px;
+  padding: 20px;
+}
+
+.performanceBox p {
+  font-size: 12px;
+  color: #333;
+  margin: 0;
+  padding: 10px;
+}
+
+.performanceNumber {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.performanceLabel {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.listingsTableWrapper {
+  background-color: #e9ecef;
+  border-radius: 20px;
+  width: 100%;
+  height: 77px;
+}
+
+.newButton {
+  border: none;
+  color: black;
+  padding: 25px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+}
+
+.newButton:hover {
+  transform: scale(1.1);
+  background-color: #ffffff;
+}

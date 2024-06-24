@@ -1,0 +1,232 @@
+/* Container */
+.container {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Header Section */
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 30px;
+  background-color: rgba(140, 144, 148, 0.18);
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 20px;
+}
+
+/* Tab */
+.tab {
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.tab.active {
+  background-color: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px 10px 0 0;
+  font-weight: bold;
+}
+
+/* Search Section */
+.search-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Search Input Container */
+.search-inp-container {
+  display: flex;
+  align-items: center;
+  width: 161px;
+  height: 34px;
+  border-radius: 30px;
+  padding: 3px 8px;
+}
+.searchwrapper{
+  display: flex;
+  align-items: center;
+  width: 161px;
+  height: 34px;
+  position: relative;
+}
+
+/* Search Icon */
+.search-icon {
+  position: absolute;
+  left: 12px; /* Adjust the position of the icon */
+  top: 50%;
+  transform: translateY(-50%); /* Center the icon vertically */
+  color: black;
+}
+
+/* Search Input */
+.search-input {
+  width: 100%;
+  padding: 8px 16px 8px 40px; /* Increase the left padding to make space for the icon */
+  font-size: 14px;
+  border: none;
+  outline: none;
+  border-radius: 30px;
+}
+
+.search-Input::placeholder {
+  color: black;
+
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+/* Dropdown */
+.dropdown {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Header */
+.table th {
+  background-color: #f8f9fa;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+
+  
+}
+
+/* Row */
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+.table td {
+  padding: 10px;
+  text-align: center;
+ 
+}
+
+/* Status Cell */
+.status-cell.open {
+  color: green;
+}
+
+.status-cell.disapproved {
+  color: red;
+}
+
+.status-cell.other {
+  color: black;
+}
+
+/* Show Details Button */
+.show-details-button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #8c9094;
+  color: black;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.show-details-button:hover {
+  background-color: #5a6268;
+}
+
+/* Listings Table Wrapper */
+.listings-table-wrapper {
+  background-color: #e9ecef;
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+}
+
+/* New Button */
+.new-button {
+  border: none;
+  color: black;
+  padding: 25px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+}
+
+.new-button:hover {
+  transform: scale(1.1);
+  background-color: #ffffff;
+}
+
+/* Pagination */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.page-item {
+  margin: 0 5px;
+}
+
+  .pageLink {
+    display: block;
+    padding: 10px 15px;
+    color: Black;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+  }
+  
+  .pageLink.active {
+    background-color: #D90000;
+    color: white;
+  }
+  
+  .pageLink:hover {
+    background-color: #e9ecef;
+  }
+  
+
+  .container {
+    border-radius: 30px;
+   
+    border-radius: 4px;
+  }
+  
+  .headerSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }

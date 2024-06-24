@@ -1,0 +1,735 @@
+.real-estate-listing-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f7f7;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .gallery {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+    position: relative;
+  }
+  
+  .image-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .bedroom {
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+  .icn-circle{
+    background-color: #333;
+    width: 100%;
+    border-radius: 50%;
+  }
+  .LocationIcon{
+    gap: 1rem;
+  }
+  .bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+    
+  }
+  /* Bottom left text */
+.bottom-left h2 {
+  /* position: absolute; */
+  bottom: 8px;
+  left: 16px;
+  font-size: 30px;
+  /* font-weight: bold; */
+  color: white;
+}
+.bottom-left p {
+  /* position: absolute; */
+  bottom: 20px;
+  left: 16px;
+  font-size: 17px;
+  color: white;
+  gap: 1rem;
+}
+/* Bottom right text */
+
+.icns{
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 94%;
+  left: 85%;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  gap: 1rem;
+  font-size: 1.5rem;
+}
+.icns .right img{
+  width: 100%;
+}
+.bottom-right .fas.fa-heart {
+  color: white;
+  font-size: 20px;
+}
+.right .fas.fas.fa-filter {
+  color: white;
+  font-size: 20px;
+}
+
+.right .Printer {
+  color: white;
+  /* font-size: 20px; */
+}
+.php{
+  background-color: #D90000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* transform: translate(-50%, -50%); */
+  font-size: 20px;
+  
+  border-radius: 20px;
+  padding: 10px;
+}
+  .small-images {
+    padding: 2%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .small-image {
+    position: relative;
+    overflow: hidden;
+    width: 70%;
+    height: 300px;
+  }
+  
+  .livingroom,
+  .bathroom {
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+  }
+  /* .image-container.small {
+    /* height: 50%; */
+   
+    /* display: flex; */
+  /* } */ 
+
+  .camera {
+    display: flex;
+    width: 30px;
+    height: 25px;
+ 
+    background-size: contain;
+    /* background-repeat: no-repeat; */
+    /* margin-right: 0.5rem; */
+  }
+  .camera h2{
+    font-weight: bold;
+    font-size: 25px;
+  }
+  .camera p{
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .property-info {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 16px;
+    width: 80%;
+   
+  }
+  .property-info-item .img{
+    margin-left: 50px;
+  }
+  
+  .property-info-item {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    background-color: #FFE9E9;
+  }
+  
+  .property-info-item span {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #333;
+    height: 30%;
+  }
+  
+  
+  .price {
+    text-align: right;
+  }
+  
+  .price h2 {
+    color: #e53e3e;
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .overview {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    padding: 32px;
+    }
+    
+    .overview span {
+    font-weight: bold;
+    }
+    
+    .overview p {
+    margin-left: 16px;
+    }
+  .Description, .PropertyDetails {
+    width: 90%;
+    display: inline-block;
+    margin-right: 2%;
+    text-align: justify;
+}
+
+.Description {
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+    /* height: 1000%; */
+}
+
+.property-details {
+    width: 50%;
+    border-collapse: collapse;
+    /* margin: 20px 0; */
+    /* border-radius: 10px; */
+    overflow: hidden;
+
+}
+.property-details th, .property-details td {
+  border: 1px solid red;
+  padding: 8px 12px;
+  text-align: left;
+ 
+}
+.property-details th {
+  background-color: #fff;
+}
+.property-details td {
+  background-color: #fff;
+  border-top-right-radius: 10px;
+}
+
+
+
+  .features {
+    margin: 20px;
+}
+.features h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.feature-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.feature-item {
+    display: flex;
+    align-items: center;
+    width: 30%;
+}
+.feature-item input {
+    display: none;
+}
+.feature-item label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+}
+.feature-item label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid red;
+    border-radius: 50%;
+    background-color: white;
+}
+.feature-item input:checked + label:after {
+    content: '✔';
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: red;
+    font-size: 14px;
+}
+.similar-properties {
+    margin-top: 30px;
+}
+.similar-properties button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.recommendedactive {
+    background-color: red;
+    color: white;
+}
+.location, .property-type, .listing-type {
+    background-color: #f0f0f0;
+    color: black;
+}
+
+.similar-properties {
+    margin-top: 30px;
+}
+.similar-properties button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.recommendedactive {
+    background-color: red;
+    color: white;
+}
+.location, .property-type, .listing-type {
+    background-color: #f0f0f0;
+    color: black;
+}
+  .previewlist{
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+    height: 100%;
+    width: 100%;
+  }
+
+  .contentContainer {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+  }
+  
+  .real-estate-listing-card {
+    flex: 2;
+  }
+  .midContent{
+    display: flex;
+    flex-direction: row;
+    padding: 2%;
+  }
+   .right-side-container {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 20px;
+    width: 40%;
+} 
+.leftContent{
+width: 100%;
+justify-content: flex-start;
+}
+   
+
+  .calculator,
+  .contact-us {
+    background-color: #f8d7da;
+    padding: 1rem;
+    border-radius: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: auto;
+    gap: 1rem;
+  }
+  .contact-us{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+  }
+  .calculator h2,
+  .contact-us h2 {
+    color: #D90000;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .calculator-input,
+  .contact-input {
+    margin-bottom: 1rem;
+  }
+  .contact-input{
+    background: WHITE;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .contact-input textarea{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .contact-textarea{
+    display: flex;
+    justify-content: flex-start;
+    width: 95.5%;
+    padding: 10px;
+    background: white;
+    border-radius: 20px;
+    height: auto;
+    align-items: center;
+  }
+  .contact-textarea textarea{
+    border: none;
+    background: transparent;
+    width: 100%;
+    height: 50%;
+    resize: none;
+    outline: none;
+    padding: 20px;
+    overflow: hidden;
+  }
+  .contact-textarea img{
+    width: 20px;
+    height: 20px;
+  }
+  /* .slider-container {
+    position: relative;
+    margin-top: 20px;
+  }
+  
+  .slider-value {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: red;
+  } */
+  
+  
+  .calculator-input label,
+  .contact-input label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #8C9094;
+  }
+  
+  .calculator-field,
+  .contact-input input,
+  .contact-input textarea {
+
+    border-radius: 30px;
+    padding: 0.5rem;
+    border: NONE;
+   
+    background-color: #fff;
+  }
+  
+  .calculator-field {
+    display: flex;
+    align-items: center;
+    width: 200px;
+    height: 53px;
+    border-radius: 30px;
+  }
+  
+  .calculator-field i {
+    margin-right: 0.5rem;
+    color: #e74c3c;
+  }
+  
+  .calculator-result {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #f5f5f5;
+    border-radius: 30px;
+    height: 85%;
+    width: 200px;
+  }
+  
+  .pi {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .result-amount {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .red-bar {
+    width: 9px;
+    height: 50px;
+    background-color: #ff0000;
+    margin-right: 30px;
+    margin-left: 15px;
+    
+  }
+  
+  .apply-button,
+  .send-message-button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #D90000;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+  
+  .apply-button {
+    background-color: #D90000;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .apply-button:hover,
+  .send-message-button:hover {
+    background-color: #c0392b;
+  }
+  
+  .contact-input textarea {
+    height: 183px;
+    resize: none;
+    width: 430px;
+    
+  }
+  .progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .progress-value {
+    height: 100%;
+    background-color: #4CAF50;
+  }
+  
+  .progress-percentage {
+    margin-left: 10px;
+  }
+  .slider-container {
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .slider-value {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    /* font-weight: bold; */
+    color: black;
+  }
+  /* .slider{
+    color:#D90000;
+  }
+  .icon{
+    margin-bottom: 20px;
+  } */
+  
+  .property-map{
+    width: 100%;
+    height: 400px;
+
+  }
+  .similar-properties {
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 1rem;
+    color: #D90000;
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .similar-properties button {
+    /* background-color: #fff; */
+    border: 1px solid #D90000;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: 126px;
+    height: 53;
+    border-radius: 30px;
+    
+  }
+  
+  .similar-properties button.active {
+    background-color: #c00;
+    color: #fff;
+    border-color: #c00;
+  }
+  .recommendedactive{
+    background-color: #D90000;
+    color: #ebe6e6;
+    font-size: 15px;
+  }
+  .location{
+    color: #D90000;
+    font-size: 15px;
+  }
+  .property-type{
+    color: #D90000;
+    font-size: 15px;
+  }
+  .listing-type{
+    color: #D90000;
+    font-size: 15px;
+  }
+  .featured-properties{
+   
+    background-color: #f8d7da;
+    padding: 1rem;
+    border-radius: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 100%;
+  }
+  .commercial-property-rent {
+    background-color: #f8d7da;
+    padding: 1rem;
+    border-radius: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: auto; /* Remove the fixed height */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .commercial-property-rent .image-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    overflow: hidden;
+  }
+  
+  .commercial-property-rent .image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* height: 100%; */
+    object-fit: cover;
+  }
+  
+  .commercial-property-rent .content {
+    margin-top: 30px;
+  }
+  :where(.css-dev-only-do-not-override-3rel02).ant-progress.ant-progress-status-success .ant-progress-inner:not(.ant-progress-circle-gradient) .ant-progress-circle-path {
+    stroke: #d90000;
+}
+.ant-progress-circle:where(.css-dev-only-do-not-override-3rel02).ant-progress-status-success .ant-progress-text {
+  color: #d90000;
+}
+:where(.css-dev-only-do-not-override-3rel02).ant-slider .ant-slider-handle::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 2px #d90000;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: inset-inline-start 0.2s, inset-block-start 0.2s, width 0.2s, height 0.2s, box-shadow 0.2s;
+}
+
+.calc{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.calculatorRight{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 10%;
+  padding: 10% 0 1% 1%;
+}
+.carousel-caption-container {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+}
+
+
+.for-sale {
+  position: absolute;
+  top: 80%;
+  left: 20px;
+  background: white;
+  color: black;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 20px;
+}
+
+.price-tag {
+  position: absolute;
+  bottom: 80px;
+  right: 30%;
+  background: red;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+  font-size: 18px;
+}
+.sqm{
+  width: 20%;
+}
+
+
+

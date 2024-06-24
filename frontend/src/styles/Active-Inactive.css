@@ -1,0 +1,233 @@
+/* Styles for the component */
+.contentContainer {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+  }
+  
+  .side-bar {
+    width: 15%;
+    padding: 0;
+  }
+  
+  .list {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 0.5rem;
+  }
+  
+  .contentContainer .listing-table-wrapper {
+    background:#e9ecef;
+    border-radius: 10px;
+    width: 100%;
+    height: fit-content;
+  }
+  
+
+  
+  .headerSection {
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: 30px;
+  background-color: rgba(140, 144, 148, 0.18);
+  /* height: 100%; */
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 1rem;
+  }
+  .srchwrapp{
+    display: flex;
+  align-items: center;
+  width: 161px;
+  height: 34px;
+  position: relative;
+  }
+ 
+  
+  .searchSection {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dropdown {
+    margin-right: 10px;
+    padding: 5px;
+  }
+  
+  .searchInputCont {
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    padding: 5px;
+  }
+  
+  .searchinT {
+    width: 100%;
+    padding: 8px 16px 8px 40px; /* Increase the left padding to make space for the icon */
+    font-size: 14px;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+  }
+  .searchinT::placeholder {
+    color: black;
+  
+  }
+  
+  .search-input:focus {
+    outline: none;
+  }
+  .searchico{
+    position: absolute;
+  left: 12px; /* Adjust the position of the icon */
+  top: 50%;
+  transform: translateY(-50%); /* Center the icon vertically */
+  color: black;
+  }
+  
+  .listingsTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .listingsTable th,
+  .listingsTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .listingsTable th {
+    background-color: #f4f4f4;
+  }
+  
+  .evenRow {
+    background-color: #f9f9f9;
+  }
+  
+  .oddRow {
+    background-color: #fff;
+  }
+  
+  .showDetailsButton {
+    background-color: #8C9094;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 30px;
+  }
+  
+  .actionButtons {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .actionButton {
+    border: 1px solid black;
+    color: rgb(10, 10, 10);
+    
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 30px;
+  }
+  
+  .pageLink {
+    display: block;
+    padding: 10px 15px;
+    color: Black;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+  }
+  
+  .pageLink.active {
+    background-color: #D90000;
+    color: white;
+  }
+  
+  .pageLink:hover {
+    background-color: #e9ecef;
+  }
+  
+  .paginationContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0;
+  }
+  
+  .paginationList {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .pageItem {
+    margin: 0 5px;
+  }
+  /* New Button */
+.new-button {
+    border: none;
+    color: black;
+    padding: 25px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  .new-button:hover {
+    transform: scale(1.1);
+    background-color: #ffffff;
+  }
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .pagination-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .page-item {
+    margin: 0 5px;
+  }
+  
+    .pageLink {
+      display: block;
+      padding: 10px 15px;
+      color: Black;
+      text-decoration: none;
+      border: 1px solid #ddd;
+      border-radius: 50px;
+    }
+    
+    .pageLink.active {
+      background-color: #D90000;
+      color: white;
+    }
+    
+    .pageLink:hover {
+      background-color: #e9ecef;
+    }
+    
+    .paginationContainer {
+      display: flex;
+      justify-content: flex-end;
+      margin: 10px 0;
+    }
