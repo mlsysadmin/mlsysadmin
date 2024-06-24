@@ -5,7 +5,7 @@ const {
 
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
-const CustomFeatures = Sequelize.define("custom_features", {
+const CustomFeaturesAndAmenities = Sequelize.define("custom_features_and_amenities", {
   id: {
     allowNull: false,
     primaryKey: true,
@@ -38,8 +38,8 @@ const CustomFeatures = Sequelize.define("custom_features", {
     defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)')
   }
 },{
-  modelName: 'CustomFeatures',
+  modelName: 'CustomFeaturesAndAmenities',
   timestamps: false,
 })
 
-module.exports = CustomFeatures;
+module.exports = CustomFeaturesAndAmenities;

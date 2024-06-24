@@ -11,24 +11,30 @@ const MasterPropertyList = Sequelize.define("master_property_lists", {
     },
     listing_id: {
         allowNull: false,
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        references: {
+            model: {
+              model: "PropertyListing",
+              tableName: 'property_listings',
+            },
+            key: 'id',
+        },
     },
     seller_id: {
         allowNull: false,
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        references: {
+            model: {
+              model: "User",
+              tableName: 'users',
+            },
+            key: 'users_id',
+        },
     },
     property_id: {
         allowNull: false,
         type: DataTypes.STRING,
         unique: true
-    },
-    features_and_amenities_id: {
-        allowNull: false,
-        type: DataTypes.INTEGER
-    },
-    custom_features_id: {
-        allowNull: false,
-        type: DataTypes.INTEGER
     },
     listing_status: {
         allowNull: false,

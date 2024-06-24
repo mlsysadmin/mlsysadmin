@@ -1,25 +1,20 @@
 'use strict';
+const {
+    DataTypes
+} = require('sequelize');
 
-/** @type {import('sequelize-cli').Migration} */
-module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add altering commands here.
-     *
-     * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
-     */
+const Sequelize = require('../config/_db/mlbrokerage.db');
 
-    await queryInterface.createTable('features_and_amenities', {
-      id: {
+const PropertyFeaturesAndAmenities = Sequelize.define("property_features_and_amenities", {
+    id: {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
     },
     indoor_features: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         get() {
             return JSON.parse(this.getDataValue('indoor_features'));
         },
@@ -29,7 +24,7 @@ module.exports = {
     },
     outdoor_features: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         get() {
             return JSON.parse(this.getDataValue('outdoor_features'));
         },
@@ -37,30 +32,30 @@ module.exports = {
             this.setDataValue('outdoor_features', JSON.stringify(indoor));
         }
     },
-    custom_features_id: {
+    property_custom_features_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
+        references: {
+            model: {
+              model: "CustomFeaturesAndAmenities",
+              tableName: 'custom_features_and_amenities',
+            },
+            key: 'id',
+        },
     },
     createdAt: {
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)')
     },
     updatedAt: {
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
         allowNull: true,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)')
     }
-    })
-  },
+}, {
+    modelName: 'PropertyFeaturesAndAmenities',
+    timestamps: false,
+})
 
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
-    await queryInterface.dropTable('features_and_amenities');
-  }
-};
+module.exports = PropertyFeaturesAndAmenities;

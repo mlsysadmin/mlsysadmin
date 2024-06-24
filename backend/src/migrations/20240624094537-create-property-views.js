@@ -9,7 +9,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable('saves', { 
+    await queryInterface.createTable('property_views', { 
       id: {
         allowNull: false,
         primaryKey: true,
@@ -18,27 +18,36 @@ module.exports = {
       },
       user_id: {
           allowNull: false,
-          type: Sequelize.INTEGER
+          type: Sequelize.INTEGER,
+          references: {
+            model: {
+              model: "User",
+              tableName: 'users',
+            },
+            key: 'user_id',
+          },
       },
       master_property_id: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            model: "MasterPropertyList",
+            tableName: 'master_property_lists',
+          },
+          key: 'id',
+        },
       },
-      liked_at: {
+      viewed_at: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: true,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
       },
-      deletedAt: {
-        type: Sequelize.DATE,
-        allowNull: true,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)')
-      }
      });
   },
 
@@ -49,6 +58,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable('saves');
+    await queryInterface.dropTable('property_views');
   }
 };

@@ -14,11 +14,25 @@ const SoldProperties = Sequelize.define("sold_properties", {
     },
     property_id: {
         allowNull: false,
-        type: DataTypes.STRING(15),
+        type: DataTypes.INTEGER,
+        references: {
+            model: {
+              model: "MasterPropertyList",
+              tableName: 'master_property_lists',
+            },
+            key: 'id',
+          },
     },
     buyer_id: {
         allowNull: false,
         type: DataTypes.INTEGER,
+        references: {
+            model: {
+              model: "User",
+              tableName: 'users',
+            },
+            key: 'user_id',
+          },
     },
     sale_price: {
         allowNull: false,
