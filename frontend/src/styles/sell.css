@@ -10,25 +10,19 @@
     position: relative;
 
   }
-  
-  /* .dashboard-navbar {
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    padding: 0 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1;
+
+  .dot{
+    height: 20px;
+    width: 20px;
+    border: 1px solid #D90000;
+    border-radius: 50%;
+    display: inline-block;
   }
-  
-  .navbar-group {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  } */
   
   .sell-container {
     flex-grow: 1;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     font-size: 4rem;
@@ -44,11 +38,12 @@
     /* font-size: 4rem; */
   }
   
-  .first-content,
-  .second-content,
-  .third-content,
-  .fourth-content {
+  .first-section,
+  .second-section,
+  .third-section,
+  .fourth-section {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     /* font-size: 5rem; */
@@ -57,17 +52,19 @@
     /* padding: 40px; */
   }
   
-  .first-content {
+  .first-section {
     background-color: #FFFFFF;
     padding: 0% 5% 2% ;
+    display: flex;
+    flex-direction: row;
   }
 
-  .first-content img{
+  .first-section img{
     width: 50%;
     height: 100%;
   }
 
-  .first-content .bannerbg{
+  .first-section .bannerbg{
     background-color: #EDEDED;
     width: 50%;
     overflow: hidden;
@@ -80,14 +77,14 @@
 
   }
 
-  .first-content h1{
+  .first-section h1{
     color: black;
     text-align: left;
     margin-top: 70px;
     font-size: 100%;
   }
 
-  .first-content #contactUs{
+  .first-section #contactUs{
     color: #D90000;
     font-weight: bold;
     border-color: #D90000;
@@ -96,11 +93,11 @@
     font-size: 1.5rem;
     padding: 30px;
   }
-  .first-content #contactUs:hover{
+  .first-section #contactUs:hover{
     background: transparent;
 
   }
-  .first-content #signIn{
+  .first-section #signIn{
     color: #FFFFFF;
     font-weight: bold;
     background-color: #D90000;
@@ -111,14 +108,14 @@
     padding-right: 50px;
   }
   
-  .second-content {
+  .second-section {
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
     width: 100%;
   }
 
-  .second-content h1{
+  .second-section h1{
     color: black;
     font-size: 50px;
     font-weight: bold;
@@ -127,8 +124,7 @@
   }
   
 
-
-  .second-content .content #ListPropertybtn{
+  .second-section .content #ListPropertybtn{
     color: #FFFFFF;
     font-weight: bold;
     background-color: #D90000;
@@ -139,40 +135,39 @@
     margin-top: 3%;
   }
 
-  .second-content .content p{
+  .second-section .content p{
     color: #000;
-    font-size: 30px;
+    font-size: 2rem;
     align-items: flex-start;
     font-weight: lighter;
     text-align: left;
   }
 
-  .content-container{
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    align-items: center;
-  }
   .options{
     padding-top: 3%;
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    font-size: 1rem;
-    height: 30vh;
-    justify-content: flex-start;
+    font-size: 2rem;
+    height: 30%;
+    font-weight: normal;
+    align-items: flex-start;
+    justify-content: left;
   }
-  .content{
+  .content-container .content{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start ;
     height: 30vh;
   }
-
+.content-container{
+  display: flex;
+  flex-direction: row;
+}
 
   /*third*/
-  .third-content {
+  .third-section {
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -180,7 +175,7 @@
     align-items: center;
   }
 
-  .third-content h1{
+  .third-section h1{
     color: #000;
     font-weight: bold;
     font-size: 50px;
@@ -188,34 +183,39 @@
     margin-top: 5%;
   }
 
-  .third-content p{
+  .third-section p{
     color: #000;
     font-size: 30px;
     font-weight: lighter;
   }
 
+  
+  .section-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
+
+  }
+
   .cards{
     display: flex;
     flex-direction: row;
-    gap: 2rem;
+    gap: 3rem;
     width: 100%;
     justify-content: center;
+    font-size: 2.2rem;
   }
-.cardContainer{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+
   .cards p{
-    font-size: 27px;
+    font-size: 1.5rem;
   }
 
   .card1{
     background-color: #D9D9D9;
     border-radius: 25px;
-    width: 300px;
+    width: 20%;
   }
 
   .card2{
@@ -237,7 +237,7 @@
   }
  
  /*fourth*/
- .fourth-content {
+ .fourth-section {
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -245,19 +245,19 @@
     padding-bottom: 6%;
   }
 
-  .fourth-content h1{
+  .fourth-section h1{
     color: black;
     font-weight: bold;
     font-size: 50px;
   }
 
-  .fourth-content p{
+  .fourth-section p{
     color: #000;
     font-size: 30px;
     font-weight: lighter;
   }
 
-  .fourth-content #contactUs{
+  .fourth-section #contactUs{
     color: #D90000;
     font-weight: bold;
     border-color: #D90000;
@@ -266,6 +266,3 @@
     font-size: 30px;
     padding: 40px;
   }
- input[type="radio"]{
-    border-color: #D90000 solid ;
- }

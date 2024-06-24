@@ -24,7 +24,7 @@ import slider from "../asset/icons/slider.png";
 import SearchSubCompent from "./custom/SearchSubCompent";
 import Card from "./custom/RentComponent";
 
-function RentComponent() {
+const RentComponent = () => {
   return (
     <div className="rent">
      <div className="topbar">

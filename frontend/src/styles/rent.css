@@ -11,22 +11,29 @@
 }
 
 .cardContainer{
+  padding: 1%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 3rem;
   justify-content: center;
+  width: 96%;
 }
-
+.rentContent{
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .rent{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-h1{  
-  justify-content: left;
+.rentContent h1{  
+  padding-left: 3.5%;
+  width: 100%;
+  justify-content: flex-start;
   display: flex;
   align-items: center;
-  margin-left: 4%;
-  margin-top: 3%;
 }

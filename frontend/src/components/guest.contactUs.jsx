@@ -6,7 +6,7 @@ import logo from "../asset/icons/logo.png";
 import { Button } from "antd";
 // import ContactUsComponent from "../components/custom/ContactUsComponent.jsx"
 
-function ContactUs() {
+const ContactUs = () => {
   return (
     <div>
       <TopbarComponent />

@@ -15,11 +15,18 @@
     margin-top: 5%; 
 }
 
+.mortHeader-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 h1{
     font-size: 3rem;
 }
 
-.SubTitle{
+.mortSubheader{
     font-size: 1.7rem;
     color: #8C9094;
 }

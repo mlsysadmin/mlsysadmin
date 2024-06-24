@@ -5,7 +5,7 @@ import TopbarComponent from "./custom/TopbarComponent ";
 import bannerImg from "../asset/icons/banner.png";
 import { Button, Radio } from "antd";
 
-function SellComponent() {
+const SellComponent = () => {
   const [value, setValue] = useState(1);
   const onChange = (e) => {
     console.log("radio checked", e.target.value);
@@ -16,7 +16,7 @@ function SellComponent() {
       <TopbarComponent />
       <div className="sell-container">
         <div className="sell-contents">
-          <div className="first-content">
+          <div className="first-section">
             <img src={bannerImg} alt="" />
             <div className="bannerbg">
               <h1>
@@ -36,7 +36,7 @@ function SellComponent() {
               </div>
             </div>
           </div>
-          <div className="second-content">
+          <div className="second-section">
             <h1>
               Maximize your property{"'"}s potential: Sell or Rent with
               Confidence
@@ -53,37 +53,17 @@ function SellComponent() {
                   List Your Property
                 </Button>
               </div>
-              <div>
-                <Radio.Group
-                  className="options"
-                  onChange={onChange}
-                  value={value}
-                >
-                  <Radio
-                    style={{ fontSize: "30px", fontWeight: "lighter"}}
-                    value={1}
-                  >
-                    Choose the right time to sell.
-                  </Radio>
-                  <Radio
-                    style={{ fontSize: "30px", fontWeight: "lighter" }}
-                    value={2}
-                  >
-                    Sell the right price.
-                  </Radio>
-                  <Radio
-                    style={{ fontSize: "30px", fontWeight: "lighter" }}
-                    value={3}
-                  >
-                    Negotiate the best offer - not just the highest offer.
-                  </Radio>
-                </Radio.Group>
+              <div className="options">
+                <p><span class="dot"></span>Choose the right time to sell. </p>
+                <p> <span class="dot"></span>Sell the right price. </p>
+                <p> <span class="dot"></span>Negotiate
+                the best offer - not just the highest offer.</p>
               </div>
             </div>
           </div>
-          <div className="third-content">
+          <div className="third-section">
             <h1>How it works?</h1>
-            <div className="cardContainer">
+            <div className="section-container">
               <p>
                 If you{"'"}re a non-wallet user, please visit the nearest M
                 Lhuillier Branch for your listing.
@@ -108,7 +88,7 @@ function SellComponent() {
               </div>
             </div>
           </div>
-          <div className="fourth-content">
+          <div className="fourth-section">
             <h1>Have questions? We{"'"}re here to help.</h1>
             <p>
               If you{"'"}re just exploring the idea of selling or buying a home,
@@ -122,5 +102,5 @@ function SellComponent() {
       </div>
     </div>
   );
-}
+};
 export default SellComponent;

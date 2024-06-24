@@ -6,14 +6,14 @@ import {
 } from "@ant-design/icons";
 import "../styles/mortgage.css";
 
-function Mortgage() {
+const Mortgage = () => {
   return (
     <div>
       <TopbarComponent />
       <div className="mortgageContent">
-        <div className="title">
-          <h1>Get pre-approved </h1>
-          <p className="SubTitle">
+        <div className="mortHeader-container">
+          <h1 className="mortHeader">Get pre-approved </h1>
+          <p className="mortSubheader">
             Home financing to make your goals a reality.
           </p>
         </div>
