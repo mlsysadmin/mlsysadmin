@@ -12,8 +12,6 @@ log4js.addLayout("json", (config) => {
     }
 })
 
-console.log(__dirname);
-
 const patternInfo = '%p %d %h %n %X{context} %m' // %log level, %date, %addcontext, %log data, %newline, %line number
 const patternError = '%p %d %h %n %X{context} %m %l %s' // %log level, %date, %addcontext, %log data, %newline, %line number, %call stack
 
