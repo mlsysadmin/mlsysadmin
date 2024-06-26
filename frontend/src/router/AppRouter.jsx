@@ -6,6 +6,8 @@ import {
   SupportCreateListingPage,
   SupportListingMasterlistPage,
   ErrorPage,
+  Masterlist,
+  ListingDetailsPage,
 } from "../pages/index.js";
 
 const routes = [
@@ -32,6 +34,14 @@ const routes = [
           {
             path: "SupportCreateListingPage",
             element: <SupportCreateListingPage />,
+          },
+          {
+            path: "MasterlistDashboard",
+            element: <Masterlist />,
+          },
+          {
+            path: "listing-details/:listingId",
+            element: <ListingDetailsPage />,
           },
           {
             path: "Something/Similar",

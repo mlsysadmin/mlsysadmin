@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import FavoriteFill1 from "../../assets/icons/FavoriteFill";
 import "../../styles/SupportDashboard.css";
-import Order from "../layout/OrderLayout";
 
 const SecondNavigationComponent = (props) => {
   const { title, text, isCreateListing } = props;

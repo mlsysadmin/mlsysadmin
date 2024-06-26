@@ -16,6 +16,7 @@ const SupportDashboardComponent = () => {
   const [forApproval, setForApproval] = useState("60000000000");
   const [totalSales, setTotalSales] = useState("10,000");
   const [totalCommission, setTotalCommission] = useState("20,000");
+
   return (
     <div className="SupportDashboard">
       <SupportNavigation navigationActive="client-management" whatIsListingStatus="none"/>
@@ -47,7 +48,7 @@ const SupportDashboardComponent = () => {
             <div className="totalSales">Total Commission</div>
             <div className="amountOfTotalSales">₱{totalCommission}</div>
             <p className="salesParagraph">
-              Potential Commission is the potential profit you’ll make when you
+              Potential Commission is the potential profit you{"'"}ll make when you
               close the deals with your clients.
             </p>
           </div>
