@@ -3,8 +3,7 @@ import {
   MainOutlet,
   SupportOutlet,
   SupportDashboardPage,
-  SupportCreateListingPage,
-  SupportListingMasterlistPage,
+  SupportCreateListingComponent,
   ErrorPage,
   ListingDetailsPage,
   ActiveListingMasterlist,
@@ -45,17 +44,13 @@ const routes = [
           {
             path: "disapproved",
             element: <DisapprovedListingMasterlist />,
-            path: "SupportListingMasterlist/:status",
-            element: <SupportListingMasterlistPage />,
           },
+          
           {
             path: "SupportCreateListingPage",
-            element: <SupportCreateListingPage />,
+            element: <SupportCreateListingComponent />,
           },
-          {
-            path: "MasterlistDashboard",
-            element: <Masterlist />,
-          },
+
           {
             path: "listing-details/:listingId",
             element: <ListingDetailsPage />,

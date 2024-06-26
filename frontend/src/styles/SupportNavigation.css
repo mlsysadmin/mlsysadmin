@@ -1,9 +1,14 @@
 .support-navigation-bar {
   max-width: 100%;
+  min-width: 99.2%;
+  display: grid;
   display: flex;
   position: sticky;
   top: 0;
+  grid-template-columns: 69% 29%;
+  grid-gap: 10px;
   background-color: #d90000;
+  padding: 10px 0;
   justify-content: space-between;
   height: 8vh;
   padding: 0;
@@ -12,6 +17,7 @@
 
 .support-navigation-bar > div {
   text-align: center;
+  padding: 6px 10px;
   font-size: 30px;
 }
 
@@ -22,14 +28,10 @@
   width: 70%;
 }
 
-.support-navigation-bar .image {
-  object-fit: contain;
-  width: 250px;
-  display: inline-block;
-  margin: 0px 2% 0px 20px;
-}
+
 
 .support-navigation-bar .rightSideNavigationBar {
+  display: inline-flex;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -39,7 +41,7 @@
 .support-navigation-bar .rightSideNavigationBar .list-property-div {
   border-radius: 20px;
   background-color: #fff;
-  color: #000; /* override the white color with black */
+  width: 40%;
 }
 
 .support-navigation-bar
@@ -56,77 +58,88 @@
   min-width: 10%;
 }
 
-.dropdown_item:hover {
-  background-color: black;
+.support-navigation-bar .rightSideNavigationBar .div {
+  color: #ffffff;
+  padding: 0 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  font-family: "Poppins", Helvetica;
+  font-size: 14px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  color: #fff;
 }
-
-.navigation_links .dropdown-menu {
-  position: absolute;
-  width: 250px;
-  margin-left: calc(100px - 110px);
-  margin-top: 23px;
-  background-color: #fff;
-  /* border: 1px solid #000; */
-  padding: 0;
-  box-shadow: 0px 3px 0px 2px rgba(0, 0, 0, 0.1);
+.support-navigation-bar .rightSideNavigationBar .div p{
+  text-align: center;
+  display: flex;
+  align-items: center;
 }
-
-.dropdown-menu li {
-  padding: 0 0 0 20px;
-  height: 40px;
-  text-decoration: none;
-  list-style: none;
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 20px;
 }
-
-.dropdown-menu li a {
-  color: #333;
-  text-decoration: none;
+.nav-link.dropdown{
+  color: #f9f9f9;
 }
-.dropdown-menu li:hover {
-  background-color: #8c9094;
-}
-
-.active {
-  background-color: #8c9094;
+.dropdown .nav-link-text {
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .SecondNavigationDiv {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 0px;
-  padding: 30px 10px 10px 10px;
+  padding: 30px 10px 20px 10px;
   justify-content: flex-start;
+}
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 0;
+  background-color: #fff;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  display: none;
+  color: #fff;
 }
 
 .SecondNavigationDiv .SecondDivTitle {
   color: #000000;
   font-family: "Poppins", Helvetica;
-  grid-template-columns: 1fr 1fr;
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0;
   line-height: normal;
+  margin-left: 2%;
+  width: 96%;
 }
-.SecondNavigationDiv .SecondDivTitle {
-  justify-self: start;
-  color: #000000;
-  margin-left: 4%;
-}
-
-.SecondNavigationDiv .SecondDiv > div:nth-child(2) {
-  justify-self: end;
-  margin-right: 4%;
-}
-.SecondNavigationDiv .SecondDiv .listingID{
-  color: #d90000;
+.dropdown-options a {
+  color: #fff; /* White text color */
+  background-color: #fff;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
 .SecondNavigationDiv .line {
   background-color: #d90000;
-  margin-top: 10px;
-  height: 3px;
+  height: 1px;
   margin-left: 2%;
   width: 96%;
+}
+.dropdown-options a:hover {
+  background-color: #8C9094;
 }
 
 .dropdown:hover .dropdown-options {
@@ -179,16 +192,6 @@
 /* Media query for smaller devices */
 @media (max-width: 768px) {
   .support-navigation-bar {
-    grid-template-columns: 1fr; /* Stack columns vertically */
-    text-align: center; /* Center align text */
-  }
-
-  .support-navigation-bar .leftSideNavigationBar {
-    justify-content: center; /* Center align items */
-    margin-bottom: 10px; /* Add space between sections */
-  }
-
-  .support-navigation-bar .image {
     width: 50%; /* Reduce image width */
     margin-left: 0; /* Remove left margin */
   }
@@ -201,11 +204,25 @@
     justify-content: center; /* Center align items */
   }
 
-  .support-navigation-bar .rightSideNavigationBar .list-property-div {
-    width: auto; /* Auto width */
-    max-width: 70%; /* Limit width */
+
+  .SecondNavigationDiv {
+    padding: 20px 10px; /* Adjust padding */
   }
 
+  .SecondNavigationDiv .SecondDivTitle {
+    font-size: 16px;
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .SecondNavigationDiv .line {
+    margin-left: 0;
+    width: 100%;
+  }
+  .rightSideNavigationBar {
+    padding: 10px;
+    font-size: xx-small !important;
+  }
   .dropdown-options {
     top: initial; /* Reset top position for mobile */
     left: 50%; /* Center dropdown horizontally */

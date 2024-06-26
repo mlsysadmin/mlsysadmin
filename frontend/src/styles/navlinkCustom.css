@@ -1,85 +1,100 @@
-/* General Styles */
-.support-navigation-bar .leftSideNavigationBar .custom-nav-link {
-  margin-left: 20px;
-  font-weight: bold;
-  font-size: large;
-  height: 100%;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  text-align: center;
-}
 
-.navlnk {
-  color: #fff;
-}
-
-.support-navigation-bar .leftSideNavigationBar .custom-nav-link .nav-link {
-  text-decoration: none;
-  color: #fff;
-}
-
-.support-navigation-bar .leftSideNavigationBar .custom-nav-link .nav-link-active {
-  color: #000;
-}
-
-.support-navigation-bar .leftSideNavigationBar .custom-nav-link .nav-link.dropdown {
-  color: #000;
-  text-decoration: none;
-}
-
-.support-navigation-bar .leftSideNavigationBar .custom-nav-link .nav-link:hover {
-  border-bottom: 1px solid white;
-}
-
-.nav-link.dropdown .nav-link p {
-  font-size: small;
-  width: 100%;
-}
-
-.dropdown-options {
-  text-align: left;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.dropdown-options .nav-link {
-  padding: 5px 10px;
-}
-
-/* Active NavLink Style */
-.nav-link-active {
-  color: #000;
-  font-weight: bold;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: large;
-  height: 100%;
-}
-
-.nav-link-active .navlnk {
-  color: #000;
-}
-
-.dropdown-options .nav-link-active {
-  color: #000;
-  background-color: #ccc;
-}
-
-/* Ensuring specific link color */
-.nav-link .opt {
-  color: #000;
-}
-
-.nav-link-text {
-  padding: 4px;
-  width: 100%;
-}
-
-.nav-link .navtitle {
-  color: #fff;
-}
+  /* General Styles */
+  .custom-nav-link{
+    display: flex;
+    flex-direction: row;
+  }
+  .support-navigation-bar .leftSideNavigationBar .custom-nav-link {
+    margin-left: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: small;
+    padding: 10px;
+    font-size: large;
+    height: 100%;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .custom-nav-link:hover {
+    text-decoration: underline;
+  }
+  .navlnk {
+    color: #fff;
+  }
+  
+  .support-navigation-bar .leftSideNavigationBar .custom-nav-link .nav-link {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .support-navigation-bar .leftSideNavigationBar .custom-nav-link .nav-link-active {
+    color: #000;
+  }
+  
+  .support-navigation-bar .leftSideNavigationBar .custom-nav-link .nav-link.dropdown {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .support-navigation-bar .leftSideNavigationBar .custom-nav-link .nav-link:hover {
+    border-bottom: 1px solid white;
+  }
+  
+  .nav-link.dropdown .nav-link p {
+    font-size: small;
+    width: 100%;
+  }
+  
+  .dropdown-options {
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dropdown-options .nav-link {
+    padding: 5px 10px;
+  }
+  
+  /* Active NavLink Style */
+  .nav-link-active {
+    color: #000;
+    font-weight: bold;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    height: 100%;
+  }
+  
+  .custom-nav-link.active {
+    color: #8c9094;
+  }
+  .nav-link-active .navlnk {
+    color: #000;
+  }
+  
+  .dropdown-options .nav-link-active {
+    color: #000;
+    background-color: #ccc;
+  }
+  
+  /* Ensuring specific link color */
+  .nav-link .opt {
+    color: #000;
+  }
+  
+  .nav-link-text {
+    padding: 4px;
+    width: 100%;
+  }
+  
+  .nav-link .navtitle {
+    color: #fff;
+  }

@@ -4,8 +4,8 @@ import Dummydata from "../../supportDummyData/openListingDummy.json"; // Replace
 import "../../styles/SupportListingMasterlist.css";
 import Pagination from "./custom.pagination";
 import Modal from "./Modal";
-import FooterComponent from "../layout/FooterComponent ";
 import SupportNavigation from "./custom.NavigationComponent";
+import FooterComponent from "../layout/FooterComponent";
 
 const PendingListingMasterlist = () => {
   const [activeTab, setActiveTab] = useState("active");
@@ -164,19 +164,20 @@ const PendingListingMasterlist = () => {
     filteredListings.length
   );
   const navLinks = [
-    { text: "Create listing", to: "/dashboard/support/create-listing" },
+    { text: "Create listing", to: "/ML-Brokerage/Support/SupportCreateListingPage" },
     {
       text: "Listing Masterlist",
       dropdown: true,
       options: [
-        { text: "Open Listings", to: "/dashboard/Support/open" },
-        { text: "Pending Listings", to: "/dashboard/Support/pending" },
-        { text: "Active Listings", to: "/dashboard/Support/active" },
-        { text: "Disapproved Listings", to: "/dashboard/Support/disapproved" },
+        { text: "Open Listings", to: "/ML-Brokerage/Support/open" },
+        { text: "Pending Listings", to: "/ML-Brokerage/Support/pending" },
+        { text: "Active Listings", to: "/ML-Brokerage/Support/active" },
+        { text: "Disapproved Listings", to: "/ML-Brokerage/Support/disapproved" },
       ],
     },
-    { text: "Client Management", to: "/dashboard/support" },
+    { text: "Client Management", to: "/ML-Brokerage/Support" },
   ];
+
   return (
     <>
       <SupportNavigation navLinkProps={navLinks} />
@@ -249,7 +250,7 @@ const PendingListingMasterlist = () => {
           Showing {startIndex} to {endIndex} of {filteredListings.length}{" "}
           entries
         </div>
-        <FooterComponent />
+        <FooterComponent/>
         <Modal
           show={modalVisible}
           onClose={handleModalClose}
