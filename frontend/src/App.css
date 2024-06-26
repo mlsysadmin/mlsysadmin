@@ -46,7 +46,8 @@ body {
 }
 :root {
   /* fonts */
-  --font-poppins: Poppins;
+  --font-poppins: "Poppins", Helvetica;
+
 
   /* font sizes */
   --font-size-smi: 13px;
