@@ -8,8 +8,7 @@ import "../styles/mortgage.css";
 
 const MortgageComponent = () => {
   return (
-    <div>
-      <MainLayout/>
+    
       <div className="mortgageContent"> 
         <div className="mortgage-title">
           <span className="mortgage-h1">Get pre-approved </span>
@@ -33,7 +32,7 @@ const MortgageComponent = () => {
         </div>
         
       </div>
-    </div>
+    
   );
 }
 

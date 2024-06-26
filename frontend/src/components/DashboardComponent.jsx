@@ -7,12 +7,7 @@ const { Content } = Layout
 
 const DashboardComponent = () => {
   return (
-    <Layout>
-        <MainLayout/>
-        <Content>
             <Outlet/>
-        </Content>
-    </Layout>
   )
 }
 

@@ -8,12 +8,13 @@ import TravelInsurance from "../asset/icons/travelinsurance.png";
 import MainLayout from "./layout/layout.component";
 import { useState } from "react";
 import { Dropdown, Menu } from "antd";
-import { DownOutlined } from '@ant-design/icons';
+import { DownOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import CustomMlFooter from "./custom/Custom.Mlfooter";
 import FooterComponent from "./layout/FooterComponent";
 
 const InsuranceGuideComponent = () => {
     const [activeQuestion, setActiveQuestion] = useState(null);
+
 
     const menu = (
         <Menu>
@@ -37,7 +38,6 @@ const InsuranceGuideComponent = () => {
     };
     return (
         <div className="insurance-guide-container">
-            <MainLayout />
             <div className="insurance-guide-contents">
                 <div className="insurance-guide-content-one">
                     <div className="insurance-guide-tagline">
@@ -83,77 +83,43 @@ const InsuranceGuideComponent = () => {
                 <div className="insurance-guide-content-three">
                     <span>Get Insured Today!</span><br />
                     <div className="insurance-guide-content-three-input">
-                        <input type="email" placeholder="Enter your email address here" />
+                        <input type="email" placeholder="Enter your email address here" style={{ padding: '0px 0px 0px 10px' }} />
                         <button>Contact Us</button>
                     </div>
                 </div>
                 <div className="insurance-guide-content-four">
-                    <span>Other ML Insurance Products</span>
+                    <span className="insurance-header">Other ML Insurance Products</span>
                     <div className="other-insurance-products">
                         <div className="health-insurance-products">
-                            <span className="health-insurance-title">Health Insurance</span>
+                            <span className="insurance-title">Health Insurance</span>
                             <div className="insurance-child">
-                                <div className="check-circle">
-                                    <span className="check-icon">✓</span>
-                                    <p>Dengue Rx Insurance</p>
-                                </div>
-                                <div className="check-circle">
-                                    <span className="check-icon">✓</span>
-                                    <p>Emergency Room Insurance</p>
-                                </div>
-                                <div className="check-circle">
-                                    <span className="check-icon">✓</span>
-                                    <p>Medicare Plus Insurance</p>
-                                </div>
-                                <div className="check-circle">
-                                    <span className="check-icon">✓</span>
-                                    <p>Mediphone Insurance</p>
-                                </div>
-                                <div className="check-circle">
-                                    <span className="check-icon">✓</span>
-                                    <p>Personal Accident Insurance</p>
-                                </div>
-                                <div className="check-circle">
-                                    <span className="check-icon">✓</span>
-                                    <p>Virtual Medical Assistance</p>
-                                </div>
+                                <p><CheckCircleOutlined />&nbsp;&nbsp;&nbsp;Dengue Rx Insurance</p>
+                                <p><CheckCircleOutlined />&nbsp;&nbsp;&nbsp;Emergency Room Insurance</p>
+                                <p><CheckCircleOutlined />&nbsp;&nbsp;&nbsp;Medicare Plus Insurance</p>
+                                <p><CheckCircleOutlined />&nbsp;&nbsp;&nbsp;Mediphone Insurance</p>
+                                <p><CheckCircleOutlined />&nbsp;&nbsp;&nbsp;Personal Accident Insurance</p>
+                                <p><CheckCircleOutlined />&nbsp;&nbsp;&nbsp;Virtual Medical Assistance</p>
                             </div>
-
                         </div>
                         <div className="travel-insurance-products">
-                            <span className="health-insurance-title">Travel Insurance</span>
+                            <span className="insurance-title">Travel Insurance</span>
                             <div className="insurance-child">
-                            <div className="insurance-child">
-                                <div className="check-circle">
-                                    <span className="check-icon">✓</span>
-                                    <p>Global Travel Protect 
-                                    Insurance</p>
-                                </div>
-                                <div className="check-circle">
-                                    <span className="check-icon">✓</span>
-                                    <p>OFW Balik Manggagawa 
-                                    Insurance</p>
-                                </div>
-                            </div>
+                                    <p><CheckCircleOutlined />&nbsp;&nbsp;&nbsp;Global Travel Protect
+                                        Insurance</p>
+                                    <p><CheckCircleOutlined />&nbsp;&nbsp;&nbsp;OFW Balik Manggagawa
+                                        Insurance</p>
                             </div>
                         </div>
                         <div className="auto-insurance-products">
-                            <span className="health-insurance-title">Auto Insurance</span>
+                            <span className="insurance-title">Auto Insurance</span>
                             <div className="insurance-child">
-                                <div className="check-circle">
-                                    <span className="check-icon">✓</span>
-                                    <p>CTPL Insurance</p>
-                                </div>
-                                <div className="radio-buttons">
-                                    <input type="radio" name="vehicle-type" value="motorcycle" checked />
-                                    Motorcycle<br />
-                                    <input type="radio" name="vehicle-type" value="private-car" checked />
-                                    Private Car<br />
-                                    <input type="radio" name="vehicle-type" value="private-car" checked />
-                                    Commercial Vehicle
-                                    (Light/Medium/Heavy)<br />
-                                    <input type="radio" name="vehicle-type" value="private-car" checked />
-                                    LTO (MC/Heavy)
+                                <p><CheckCircleOutlined />&nbsp;&nbsp;&nbsp;CTPL Insurance</p>
+                                <div className="radio-buttons"> 
+                                    <p>Motorcycle</p>
+                                    <p>Private Car</p>
+                                    <p> Commercial Vehicle<br></br>
+                                    (Light/Medium/Heavy)</p>
+                                    <p>LTO (MC/Heavy)</p>
                                 </div>
                             </div>
                         </div>

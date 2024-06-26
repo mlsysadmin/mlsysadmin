@@ -5,6 +5,7 @@
 .newpage {
   display: flex;
   flex-direction: column;
+  background-color: white;
 }
 
 .newpage-container {

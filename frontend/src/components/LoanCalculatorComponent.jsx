@@ -39,8 +39,12 @@ const LoanCalculatorComponent = () => {
 
   return (
     <div>
+<<<<<<< HEAD
       <div className="mort-container">
         <MainLayout />
+=======
+      <div className="mortContainer">
+>>>>>>> 3df7f54945c0e2f395b3366e1d86b25bfcecd10e
         <div className="mort-content">
           <div className="calculator-header">
             <h1 className="title-header">Mortgage Calculator</h1>

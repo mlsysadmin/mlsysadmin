@@ -9,7 +9,6 @@ const HouseForRentComponent = () => {
     const { Option } = Select;
     return (
         <div className="newpage">
-         <MainLayout/>
           <div className="newpage-container">
             <div className="newpage-contents">
               <div className="first-content">

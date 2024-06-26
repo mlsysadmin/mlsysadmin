@@ -1,15 +1,20 @@
-.third-content {
+.third-content-footer {
   background: linear-gradient(180deg in oklab, #FFEDED, white);
   color: white;
-  padding: 30px;
+  /* padding: 30px; */
+  display: flex;
 }
 
 .third-cont {
-  width: 80%;
+  width: 100%;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   height: 300px;
+  /* gap: 100px; */
+  flex-wrap: wrap;
   margin: 50px 0px 0px 200px;
+  font-size: 14px;
 }
 
 .social-icon {
@@ -74,16 +79,60 @@
 }
 
 
-@media screen and (min-width: 368px) and (max-width: 480px) {
-  .logo-ml {
-    width: 300px;
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .third-cont {
+    margin: 50px 0px 0px 0px;
   }
+  .customer-care {
+    font-size: 14px;
+  }
+  .col-title {
+    font-size: 20px;
+  }
+  .col-cont {
+    font-size: 14px;
+  }
+  .logo-ml {
+    width: 250px;
+ }
 }
 
-@media screen and (min-width: 481px) and (max-width: 768px) {}
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .third-cont {
+    margin: 50px 0px 0px 100px;
+  }
+  .customer-care {
+    margin: 20px 0px 0px 20px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .col-title {
+    font-size: 20px;
+  }
+  .col-cont {
+    font-size: 14px;
+  }
+  .logo-ml {
+    width: 250px;
+ }
+}
 
-@media screen and (min-width: 769px) and (max-width: 1024px) {}
-
-@media screen and (min-width: 1025px) and (max-width: 1200px) {}
-
-@media screen and (min-width: 1201px) and (max-width: 1400px) {}
+@media screen and (min-width: 1201px) and (max-width: 1400px) {
+  .third-cont {
+    margin: 50px 0px 0px 100px;
+  }
+  .customer-care {
+    margin: 20px 0px 0px 20px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .col-title {
+    font-size: 20px;
+  }
+  .col-cont {
+    font-size: 14px;
+  }
+  .logo-ml {
+    width: 250px;
+ }
+}

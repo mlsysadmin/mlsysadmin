@@ -61,7 +61,7 @@
     background-color: transparent;
     border: 1px solid #ff2800;
     border-radius: 15px;
-    font-size:22px;
+    font-size:18px;
     cursor: pointer;
   } 
   .property-information-container .prop-btn:hover,
@@ -118,5 +118,38 @@ property-information-container .prop-content6{
   gap: 20px;
   flex-wrap: wrap;
 }
+.buy-a-home-container :where(.css-dev-only-do-not-override-3rel02).ant-steps .ant-steps-item-process .ant-steps-item-icon {
+  background-color: #ff2800;
+  border-color: #ff2800;
+}
+.buy-a-home-container :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-with-progress .ant-steps-item-process .ant-steps-item-container .ant-steps-item-icon .ant-steps-icon {
+/* color: #fff; */
+display: none;
+}
+.buy-a-home-container :where(.css-dev-only-do-not-override-3rel02).ant-progress .ant-progress-inner:not(.ant-progress-circle-gradient) .ant-progress-circle-path {
+stroke: #ff2800;
+}
+.buy-a-home-container .ant-steps-icon{
+font-size: 0;
+}
+.buy-a-home-container .ant-steps-item-tail{
+color: #ff2800;
+}
+.buy-a-home-container :where(.css-dev-only-do-not-override-3rel02).ant-steps .ant-steps-item-wait .ant-steps-item-icon {
+background-color: #cccccc;
+border-color: transparent;
+}
+.buy-a-home-container :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-with-progress.ant-steps-label-vertical .ant-steps-item .ant-steps-item-tail {
+background-color: #ff2800;
+}
 
+.buy-a-home-container :where(.css-dev-only-do-not-override-3rel02).ant-steps .ant-steps-item-tail::after {
+display: inline-block;
+width: 100%;
+height: 1px;
+background: #ff2800;
+border-radius: 1px;
+transition: background 0.3s;
+content: "";
+}
 
