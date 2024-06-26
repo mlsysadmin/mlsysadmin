@@ -1,24 +1,9 @@
 .footerDiv {
-  width: 100%;
-  display: flex;
-  
-justify-content: center;
-align-items: center;
-}
-.footerDiv .footerLayout:first-child {
-  justify-self: flex-start;
-  color: #8c9094;
-}
-
-.footerDiv .footerLayout:last-child {
-  justify-self: flex-end;
-  color: #8c9094;
-}
-@media (min-width: 600px) {
-
-
-  .footerDiv .footerLayout:first-child,
-  .footerDiv .footerLayout:last-child {
-    font-size: small; 
-  }
+  display: grid;
+  grid-gap: 10px;
+  justify-content: center;
+  position: sticky;
+  top: 20;
+  margin-top: 5%;
+  padding: 20px;
 }

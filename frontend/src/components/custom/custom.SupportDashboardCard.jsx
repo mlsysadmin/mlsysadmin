@@ -11,7 +11,6 @@ const CustomSupportDashboardCard = (props) => {
     listingSaves,
     forApproval,
   } = props;
-  console.log("Console Props: ", props);
   return (
     <div className="dashboardCard">
       <div className="card">

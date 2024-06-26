@@ -9,7 +9,7 @@ import SupportNavigation from "./custom/custom.NavigationComponent";
 import image1 from "../assets/images/image1.png";
 import image2 from "../assets/images/image2.png";
 import image3 from "../assets/images/image3.png";
-import Modal from "./custom/Modal";
+import Modal from "./custom/Modal"; // Import the Modal component
 import FooterComponent from "./layout/FooterComponent ";
 
 const ListingDetails = () => {

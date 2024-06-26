@@ -26,7 +26,7 @@ const ErrorComponent = () => {
                   occurred. <br></br>Go back to
                 </span>
                 <a href="/dashboard">
-                  <span className="text-wrapper-hp"> Homepage </span>
+                <span className="text-wrapper-hp" >Homepage</span>
                 </a>
                 <span className="dot-span">.</span>
               </div>

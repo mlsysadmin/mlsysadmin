@@ -3,6 +3,8 @@ import {
   MainOutlet,
   SupportOutlet,
   SupportDashboardPage,
+  SupportCreateListingPage,
+  SupportListingMasterlistPage,
   ErrorPage,
   ListingDetailsPage,
   ActiveListingMasterlist,
@@ -13,7 +15,7 @@ import {
 
 const routes = [
   {
-    path: "/dashboard",
+    path: "/ML-Brokerage",
     element: <MainOutlet />,
     children: [
       {
@@ -22,7 +24,7 @@ const routes = [
         children: [
           {
             index: true,
-            element: <SupportDashboardPage />,
+            element: <div />,
           },
           {
             path: "SupportDashboard",
@@ -43,6 +45,16 @@ const routes = [
           {
             path: "disapproved",
             element: <DisapprovedListingMasterlist />,
+            path: "SupportListingMasterlist/:status",
+            element: <SupportListingMasterlistPage />,
+          },
+          {
+            path: "SupportCreateListingPage",
+            element: <SupportCreateListingPage />,
+          },
+          {
+            path: "MasterlistDashboard",
+            element: <Masterlist />,
           },
           {
             path: "listing-details/:listingId",

@@ -1,9 +1,8 @@
 import React from "react";
 
 const CustomSupportOverviewCard = (props) => {
-  const { imgSrc, totalHead, valueTitle } = props;
-  const formattedPrice = new Intl.NumberFormat("en-US").format(totalHead);
-  console.log("Formatted Price: ", formattedPrice);
+    const {imgSrc, totalHead, valueTitle} =props;
+    const formattedPrice = new Intl.NumberFormat('en-US').format(totalHead);
   return (
     <div className="overview-card">
       <div className="top-card">

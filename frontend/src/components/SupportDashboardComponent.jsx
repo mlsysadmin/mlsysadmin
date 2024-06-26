@@ -4,7 +4,7 @@ import SupportDashboardCard from "./custom/custom.SupportDashboardCard";
 import FavoriteFill1 from "../assets/icons/FavoriteFill";
 import "../styles/SupportDashboard.css";
 import Order from "./layout/OrderLayout";
-import Footer from "./layout/FooterComponent ";
+import Footer from "./layout/FooterComponent";
 import SecondNavigationComponent from "./layout/SecondNavigationComponent";
 
 const SupportDashboardComponent = () => {
@@ -14,7 +14,6 @@ const SupportDashboardComponent = () => {
   const [newListing, setNewListing] = useState("40000000");
   const [listingSaves, setListingSaves] = useState("50000000");
   const [forApproval, setForApproval] = useState("60000000000");
-
   const [totalSales, setTotalSales] = useState("10,000");
   const [totalCommission, setTotalCommission] = useState("20,000");
   const navLinks = [

@@ -4,6 +4,9 @@ import Dummydata from "../../supportDummyData/openListingDummy.json";
 import "../../styles/SupportListingMasterlist.css";
 import Pagination from "./custom.pagination";
 
+import FooterComponent from "../layout/FooterComponent";
+import Modal from "./Modal";
+
 import Modal from "./Modal";
 import FooterComponent from "../layout/FooterComponent ";
 import SupportNavigation from "./custom.NavigationComponent";
