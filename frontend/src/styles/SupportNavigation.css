@@ -1,105 +1,127 @@
-/* .overlap {
-  background-color: #d90000de;
-  height: 80px;
-  left: 0;
-  position: relative;
-  top: 0;
-  width: 100%;
-} */
-
 .support-navigation-bar {
   width: 100%;
   display: grid;
   position: sticky;
   top: 0;
-  grid-template-columns: 70% 29%;
-  grid-gap: 10px;
+  grid-template-columns: 70% 30%;
   background-color: #d90000;
-  padding: 5px;
-  justify-content: space-between;
-}
-
-.support-navigation-bar > div {
-  text-align: center;
-  padding: 20px 10px;
-  font-size: 30px;
-}
-.support-navigation-bar .leftSideNavigationBar {
-  display: inline-flex; /* or display: inline-flex; */
+  height: 70px;
+  display: inline-flex;
   align-items: center;
+}
+.support-navigation-bar > div {
+  padding: 20px 10px;
 }
 .support-navigation-bar .image {
-  margin-top: 5px;
-  object-fit: cover;
-  width: 260px;
+  object-fit: contain;
+  width: 250px;
   display: inline-block;
-  margin-left: 50px;
+  margin: 0px 2% 0px 20px;
 }
-
-.ant-space-item {
-  height: 100%;
-  margin-left: 20px;
+.support-navigation-bar .navigation_links {
   color: white;
-  font-weight: bold;
-  display: inline-block;
+  font-size: 20px;
+  padding-top: 20px;
+  height: 30px;
+  font-weight: 500;
 }
-.ant-space-item:active {
-  background-color: gray;
-  color: #333;
-}
-.support-navigation-bar .rightSideNavigationBar {
-  display: inline-flex; /* or display: inline-flex; */
-  align-items: center;
-  justify-content: flex-end;
-}
-.support-navigation-bar .rightSideNavigationBar .list-property-div {
-  border-radius: 20px;
+.support-navigation-bar .navigation_links.active {
   background-color: #fff;
-  width: 40%;
+  color: #000; /* override the white color with black */
 }
-.support-navigation-bar
-  .rightSideNavigationBar
-  .list-property-div
-  .list-property-text {
-  font-size: 16px;
-  font-weight: bold;
-  text-align: justify;
+.support-navigation-bar .navigation_links:hover {
+  color: black;
+  background-color: white;
+}
+.support-navigation-bar .user_dropdown {
+  color: white;
+  font-size: 20px;
+  padding-top: 40px; 
+  height: 50px;
+  margin-left: auto;
+  font-weight: 500;
+}
+.dropdown_menu {
+  background-color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1000;
 }
 
-.support-navigation-bar .rightSideNavigationBar .list-your-property-button {
-  border-radius: 30px;
+.dropdown_item {
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
-.support-navigation-bar .rightSideNavigationBar .div {
-  color: #ffffff;
-  font-family: "Poppins", Helvetica;
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: normal;
+.dropdown_item:hover {
+  background-color: black;
+}
+
+.navigation_links .dropdown-menu {
+  position: absolute;
+  width: 250px;
+  margin-left: calc(100px - 110px);
+  margin-top: 23px;
+  background-color: #fff;
+  /* border: 1px solid #000; */
+  padding: 0;
+  box-shadow: 0px 3px 0px 2px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu li {
+  padding: 0 0 0 20px;
+  height: 40px;
+  text-decoration: none;
+  list-style: none;
+}
+
+.dropdown-menu li a {
+  color: #333;
+  text-decoration: none;
+}
+.dropdown-menu li:hover {
+  background-color: #8c9094;
+}
+
+.active {
+  background-color: #8c9094;
 }
 
 .SecondNavigationDiv {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 0px;
-  padding: 30px 10px 20px 10px;
+  padding: 30px 10px 10px 10px;
   justify-content: flex-start;
 }
-.SecondNavigationDiv .SecondDivTitle {
-  color: #000000;
+.SecondNavigationDiv .SecondDiv {
+  display: grid;
   font-family: "Poppins", Helvetica;
+  grid-template-columns: 1fr 1fr;
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0;
   line-height: normal;
-  margin-left: 2%;
-  width: 96%;
+}
+.SecondNavigationDiv .SecondDivTitle {
+  justify-self: start;
+  color: #000000;
+  margin-left: 4%;
+}
+
+.SecondNavigationDiv .SecondDiv > div:nth-child(2) {
+  justify-self: end;
+  margin-right: 4%;
+}
+.SecondNavigationDiv .SecondDiv .listingID{
+  color: #d90000;
 }
 
 .SecondNavigationDiv .line {
   background-color: #d90000;
-  height: 1px;
+  margin-top: 10px;
+  height: 3px;
   margin-left: 2%;
   width: 96%;
 }

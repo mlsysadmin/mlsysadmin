@@ -8,20 +8,18 @@ import Footer from "./layout/FooterComponent";
 import SecondNavigationComponent from "./layout/SecondNavigationComponent";
 
 const SupportDashboardComponent = () => {
-  //Listing Count & Highlights
   const [propertySold, setPropertySold] = useState("1000000");
   const [highlighted, setHighlighted] = useState("20000");
   const [activeListing, setActiveListing] = useState("300");
   const [newListing, setNewListing] = useState("40000000");
   const [listingSaves, setListingSaves] = useState("50000000");
   const [forApproval, setForApproval] = useState("60000000000");
-
   const [totalSales, setTotalSales] = useState("10,000");
   const [totalCommission, setTotalCommission] = useState("20,000");
   return (
     <div className="SupportDashboard">
-      <SupportNavigation />
-      <SecondNavigationComponent title="Dashboard" text="These is Dashboard!" />
+      <SupportNavigation navigationActive="client-management" whatIsListingStatus="none"/>
+      <SecondNavigationComponent title="Dashboard" text="These is Dashboard!" isCreateListing={false} />
       <div className="supportingDashboard">
         <div className="overview">OVERVIEW</div>
         <div className="listing-count">Listing Count &amp; Highlight</div>

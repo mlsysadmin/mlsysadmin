@@ -3,12 +3,14 @@ import {
   MainOutlet,
   SupportOutlet,
   SupportDashboardPage,
-  ErrorPage
-} from "../pages/index.js"
+  SupportCreateListingPage,
+  SupportListingMasterlistPage,
+  ErrorPage,
+} from "../pages/index.js";
 
 const routes = [
   {
-    path: "/dashboard",
+    path: "/ML-Brokerage",
     element: <MainOutlet />,
     children: [
       {
@@ -17,11 +19,19 @@ const routes = [
         children: [
           {
             index: true,
-            element: <SupportDashboardPage />,
+            element: <div />,
           },
           {
             path: "SupportDashboard",
             element: <SupportDashboardPage />,
+          },
+          {
+            path: "SupportListingMasterlist/:status",
+            element: <SupportListingMasterlistPage />,
+          },
+          {
+            path: "SupportCreateListingPage",
+            element: <SupportCreateListingPage />,
           },
           {
             path: "Something/Similar",
