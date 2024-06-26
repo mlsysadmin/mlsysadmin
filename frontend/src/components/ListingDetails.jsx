@@ -3,18 +3,14 @@ import { useLocation } from "react-router-dom";
 import Dummydata from "../supportDummyData/openListingDummy.json";
 import Menu from "./custom/Menu";
 import "../styles/ListingDetails.css";
+import { EnvironmentOutlined, HomeOutlined } from "@ant-design/icons";
+
 import SupportNavigation from "./custom/custom.NavigationComponent";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import BedIcon from "@mui/icons-material/Bed";
-import ShowerIcon from "@mui/icons-material/Shower";
-import RoofingIcon from "@mui/icons-material/Roofing";
-import OpenWithIcon from "@mui/icons-material/OpenWith";
-import PublicIcon from "@mui/icons-material/Public";
 import image1 from "../assets/images/image1.png";
 import image2 from "../assets/images/image2.png";
 import image3 from "../assets/images/image3.png";
 import Modal from "./custom/Modal"; // Import the Modal component
-import FooterComponent from "./layout/FooterComponent";
+import FooterComponent from "./layout/FooterComponent ";
 
 const ListingDetails = () => {
   const location = useLocation();
@@ -54,7 +50,6 @@ const ListingDetails = () => {
 
   const handleConfirm = () => {
     console.log(`Action: ${actionType}, Remarks: ${remarks}`);
-    // Perform action based on actionType and remarks
     setShowModal(false);
     setRemarks("");
   };
@@ -67,10 +62,24 @@ const ListingDetails = () => {
   if (!detailedListing) {
     return <div>Loading...</div>;
   }
+  const navLinks = [
+    { text: "Create listing", to: "/dashboard/support/create-listing" },
+    {
+      text: "Listing Masterlist",
+      dropdown: true,
+      options: [
+        { text: "Open Listings", to: "/dashboard/Support/open" },
+        { text: "Pending Listings", to: "/dashboard/Support/pending" },
+        { text: "Active Listings", to: "/dashboard/Support/active" },
+        { text: "Disapproved Listings", to: "/dashboard/Support/disapproved" },
+      ],
+    },
+    { text: "Client Management", to: "/dashboard/support" },
+  ];
 
   return (
     <div className="listing-details-container">
-      <SupportNavigation />
+      <SupportNavigation navLinkProps={navLinks} />
       <div className="bodySection">
         <Menu activeTab={activeTab} tabHeadings={tabHeadings} />
         <hr style={{ border: "#D90000 solid 1px", width: "100%" }} />
@@ -79,7 +88,7 @@ const ListingDetails = () => {
             <div className="texts">
               <h2 className="title">{detailedListing.title}</h2>
               <div className="location">
-                <LocationOnIcon style={{ color: "red" }} />
+                <EnvironmentOutlined style={{ color: "red" }} />
                 <p>{detailedListing.location}</p>
               </div>
               <h2 className="price">
@@ -94,28 +103,48 @@ const ListingDetails = () => {
               <div className="card">
                 <p>Bedrooms</p>
                 <div className="num">
-                  <BedIcon style={{ color: "red" }} />
+                  <span
+                    class="material-symbols-outlined"
+                    style={{ color: "red" }}
+                  >
+                    bed
+                  </span>
                   <p>{detailedListing.bedroom}</p>
                 </div>
               </div>
               <div className="card">
                 <p>Bathrooms</p>
                 <div className="num">
-                  <ShowerIcon style={{ color: "red" }} />
+                  <span
+                    style={{ color: "red" }}
+                    class="material-symbols-outlined"
+                  >
+                    shower
+                  </span>
                   <p>{detailedListing.bathroom}</p>
                 </div>
               </div>
               <div className="card">
                 <p>Garage</p>
                 <div className="num">
-                  <RoofingIcon style={{ color: "red" }} />
+                  <span
+                    style={{ color: "red" }}
+                    class="material-symbols-outlined"
+                  >
+                    roofing
+                  </span>
                   <p>{detailedListing.car_parking}</p>
                 </div>
               </div>
               <div className="card">
                 <p>Area</p>
                 <div className="num">
-                  <OpenWithIcon style={{ color: "red" }} />
+                  <span
+                    class="material-symbols-outlined"
+                    style={{ color: "red" }}
+                  >
+                    open_with
+                  </span>
                   <p>{detailedListing.lot_area}</p>
                 </div>
               </div>
@@ -159,11 +188,11 @@ const ListingDetails = () => {
             </div>
             <div className="btns">
               <a href="#" className="fbutton">
-                <LocationOnIcon />
+                <EnvironmentOutlined />
                 <p>Show Property on Map </p>
               </a>
               <a href="#" className="sbutton">
-                <PublicIcon />
+                <span class="material-symbols-outlined">public</span>
                 <p>Show Property on Map </p>
               </a>
             </div>
@@ -220,7 +249,8 @@ const ListingDetails = () => {
             </button>
           )}
         </div>
-        <FooterComponent/>
+          
+        <FooterComponent />
       </div>
       <Modal
         show={showModal}

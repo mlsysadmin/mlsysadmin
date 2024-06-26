@@ -10,7 +10,7 @@
   align-items: center;
 }
 
-.modal {
+.modal-backdrop .modal {
   background: #fff;
   padding: 20px;
   border-radius: 25px;
@@ -20,17 +20,17 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.modal-content {
+.modal-backdrop .modal .modal-content {
   display: flex;
   flex-direction: column;
 }
 
-.modal-content h3 {
+.modal-backdrop .modal .modal-content h3 {
   margin: 0 0 10px;
   font-size: smaller;
 }
 
-.modal-content textarea {
+.modal-backdrop .modal .modal-content textarea {
   resize: none;
   width: 95%;
   height: 50px;
@@ -41,7 +41,7 @@
   border-radius: 5px;
 }
 
-.modal-actions {
+.modal-backdrop .modal .modal-content .modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 1%;

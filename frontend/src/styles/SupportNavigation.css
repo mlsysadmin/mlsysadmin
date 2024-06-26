@@ -1,26 +1,25 @@
-/* Base styles */
 .support-navigation-bar {
   max-width: 100%;
-  min-width: 99.2%;
-  display: grid;
+  display: flex;
   position: sticky;
   top: 0;
-  grid-template-columns: 69% 29%;
-  grid-gap: 10px;
   background-color: #d90000;
-  padding: 10px 0;
   justify-content: space-between;
+  height: 8vh;
+  padding: 0;
+  margin: 0;
 }
 
 .support-navigation-bar > div {
   text-align: center;
-  padding: 6px 10px;
   font-size: 30px;
 }
 
 .support-navigation-bar .leftSideNavigationBar {
   display: inline-flex;
   align-items: center;
+  padding: 0;
+  width: 70%;
 }
 
 .support-navigation-bar .image {
@@ -31,9 +30,10 @@
 }
 
 .support-navigation-bar .rightSideNavigationBar {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: flex-end;
+  width: 28%;
 }
 
 .support-navigation-bar .rightSideNavigationBar .list-property-div {
@@ -129,6 +129,53 @@
   width: 96%;
 }
 
+.dropdown:hover .dropdown-options {
+  display: block;
+}
+
+/* Media query for smaller devices */
+@media (max-width: 768px) {
+  .support-navigation-bar {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .support-navigation-bar .leftSideNavigationBar {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .support-navigation-bar .image {
+    width: 50%;
+    margin-left: 0;
+  }
+
+  .custom-nav-link {
+    font-size: x-small;
+  }
+
+  .support-navigation-bar .rightSideNavigationBar {
+    justify-content: center;
+  }
+
+  .support-navigation-bar .rightSideNavigationBar .list-property-div {
+    width: auto;
+    max-width: 70%;
+  }
+
+  .dropdown-options {
+    top: initial;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .dropdown-options a {
+    text-align: center;
+  }
+}
+
+
+
 /* Media query for smaller devices */
 @media (max-width: 768px) {
   .support-navigation-bar {
@@ -145,9 +192,11 @@
     width: 50%; /* Reduce image width */
     margin-left: 0; /* Remove left margin */
   }
+
   .custom-nav-link {
     font-size: x-small;
   }
+
   .support-navigation-bar .rightSideNavigationBar {
     justify-content: center; /* Center align items */
   }
@@ -157,22 +206,9 @@
     max-width: 70%; /* Limit width */
   }
 
-  .SecondNavigationDiv {
-    padding: 20px 10px; /* Adjust padding */
-  }
-
-  .SecondNavigationDiv .SecondDivTitle {
-    font-size: 16px;
-    margin-left: 0;
-    width: 100%;
-  }
-
-  .SecondNavigationDiv .line {
-    margin-left: 0;
-    width: 100%;
-  }
-  .rightSideNavigationBar {
-    padding: 10px;
-    font-size: xx-small !important;
+  .dropdown-options {
+    top: initial; /* Reset top position for mobile */
+    left: 50%; /* Center dropdown horizontally */
+    transform: translateX(-50%);
   }
 }
