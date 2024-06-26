@@ -14,6 +14,7 @@ import FeaturedComponent from "./Buyer.FeaturedComponent";
 //application details
 import WrapUpDetails from "./custom/application/wrapup.custom";
 import SubmitApplicationCustom from "./custom/application/submitapplication.custom";
+import CertainFeatureMenu from "./custom/customsearch/certainfeature";
 
 // components
 import DiscoverHomeComponent from "./DiscoverHomeComponent";
@@ -55,5 +56,6 @@ export{
     LoanCalculatorComponent,
     MortgageComponent,
     RentComponent,
-    SellComponent
+    SellComponent, 
+    CertainFeatureMenu
 }

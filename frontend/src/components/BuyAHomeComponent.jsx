@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../styles/buyahome.css"
 import MainLayout from "./layout/layout.component";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
@@ -10,6 +10,11 @@ import SubmitApplicationCustom from "./custom/application/submitapplication.cust
 
 const BuyAHomeComponent = () => {
     const { Step } = Steps
+    const [current, setCurrent] = useState(0);
+    const TimelineGroupRef = useRef(null);
+    const PropertyGroupRef = useRef(null);
+    const DetailsGroupRef = useRef(null);
+    const WrapUpGroupRef = useRef(null);
     //property handler
     const [selectedButton, setSelectedButton] = useState(null);
     const [selectedHomeButton, setSelectedHomeButton] = useState(null);
@@ -74,49 +79,78 @@ const BuyAHomeComponent = () => {
         setDetailsquest6(event.target.textContent);
     }
 
+    const onChange = (value) => {
+        console.log('onChange:', value);
+        setCurrent(value);
+        if (value === 0) {
+            PropertyGroupRef.current.scrollIntoView({ behavior: 'smooth' });
+        } else if (value === 1) {
+            TimelineGroupRef.current.scrollIntoView({ behavior: 'smooth' });
+        } else if (value === 2) {
+            DetailsGroupRef.current.scrollIntoView({ behavior: 'smooth' });
+        } else if (value === 3) {
+            WrapUpGroupRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const propertyGroupRect = PropertyGroupRef.current.getBoundingClientRect();
+            const TimelineGroupRect = TimelineGroupRef.current.getBoundingClientRect();
+            const detailsGroupRect = DetailsGroupRef.current.getBoundingClientRect();
+            const wrapUpGroupRect = WrapUpGroupRef.current.getBoundingClientRect();
 
+            if (scrollTop >= propertyGroupRect.top && scrollTop < TimelineGroupRect.top) {
+                setCurrent(0);
+            } else if (scrollTop >= TimelineGroupRect.top && scrollTop < detailsGroupRect.top) {
+                setCurrent(1);
+            } else if (scrollTop >= detailsGroupRect.top && scrollTop < wrapUpGroupRect.top) {
+                setCurrent(2);
+            } else if (scrollTop >= wrapUpGroupRect.top) {
+                setCurrent(3);
+            }
+        };
 
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [PropertyGroupRef, TimelineGroupRef, DetailsGroupRef, WrapUpGroupRef]);
+    
+    const items = [
+        {
+            title: 'Property',
+
+        },
+        {
+            title: 'Timeline',
+
+        },
+        {
+            title: 'Details',
+
+        },
+        {
+            title: 'Wrap Up',
+
+        },
+    ];
     return (
         <div className="buy-a-home-container">
-            <MainLayout />
             <div className="buy-a-home-content" >
                 <div className="radiobtn-group">
-                    <Steps
-                        // current={0}
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            marginTop: '24px',
-                            color: 'red'
-
-                        }}
+                <Steps
+                        current={current}
+                        onChange={onChange}
+                        percent={100}
                         labelPlacement="vertical"
-                    >
-                        <Step
-
-                            description="Property"
-                            style={{ cursor: 'pointer' }}
-                        />
-                        <Step
-
-                            description="Timeline"
-                            style={{ cursor: 'pointer' }}
-                        />
-                        <Step
-
-                            description="Details"
-                            style={{ cursor: 'pointer' }}
-                        />
-                        <Step
-                            description="Wrap-up"
-                            style={{ cursor: 'pointer' }}
-                        />
-                    </Steps>
+                        items={items} size="20px"
+                />
                 </div>
             </div>
             <div className="property-information-container">
                 <div className="prop-content">
-                    <div className="prop-content1">
+                    <div className="prop-content1" ref={PropertyGroupRef}>
                         <h3>Property</h3>
                         <span className="prop-quest">How much do you plan to spend on your new home?</span><br />
                         <span>(An estimate is fine)</span>
@@ -256,7 +290,7 @@ const BuyAHomeComponent = () => {
                         </div>
                     </div><br /><br /><br /><br />
                     {/* timeline */}
-                    <div className="prop-content1">
+                    <div className="prop-content1" ref={TimelineGroupRef}>
                         <h3>Timeline</h3>
                         <span className="prop-quest">When are you planning to make your home purchase?</span><br />
                         <div className="prop-info-btn-group-timeline">
@@ -347,7 +381,7 @@ const BuyAHomeComponent = () => {
                         </div>
                     </div><br /><br /><br /><br />
                     {/* Details */}
-                    <div className="prop-content5">
+                    <div className="prop-content5" ref={DetailsGroupRef}>
                         <h3>Details</h3>
                         <span className="prop-quest">Do you currently own a home?</span><br />
                         <div className="prop-info-btn-group-details">
@@ -558,13 +592,13 @@ const BuyAHomeComponent = () => {
                             <span className="prop-quest">Where are you looking to buy?</span><br />
                             <span>Enter the city or zip code of the area where you are home shopping</span>
                             <div className="prop-info-btn-group-details-input">
-                                <input type="text" placeholder="City or zip code"
+                                <input type="text" placeholder="City or zip code" style={{padding:'0px 0px 0px 10px'}}
                                 />
                             </div>
                         </div>
                     </div><br /><br /><br /><br />
                     {/* Wrap-up */}
-                    <div className="prop-content1">
+                    <div className="prop-content1" ref={WrapUpGroupRef}>
                         <WrapUpDetails />
                         <div className="prop-content3">
                             <br />

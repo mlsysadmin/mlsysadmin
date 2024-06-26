@@ -8,13 +8,16 @@
     flex-direction: column;
     /* align-items: center; */
     gap: 10px;
+    padding: 0px 0px 0px 40px;
   }
   
   .advance-searchdropdown .advance-search-group1 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 50px;
+    gap: 60px;
+    width: 95%;
+    
   }
   
   .sub-options-search {
@@ -55,6 +58,8 @@
     padding: 5px 0px 0px 20px;
   }
 
+
+
 /* 
 listing search */
 
@@ -62,32 +67,29 @@ listing search */
   background-color: #FFE9E9;
   color: white;
   height: auto;
-  width: 90%;
-  margin: 50px 0px 0px 100px;
+  width: 95%;
+  margin: 50px 0px 0px 50px;
   border-radius: 20px;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; */
 
 }
 
 .sub-content1 {
-  width: 90%;
+  width: 95%;
   background-color: white;
   height: auto;
   border-radius: 30px;
   margin: 10px 30px 20px 80px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   flex-wrap: wrap;
   padding: 20px;
 
 }
 
 .subcontent-inputs {
-  /* justify-content: space-between; */
   display: flex;
   width: 90%;
   flex-wrap: wrap;
@@ -122,8 +124,6 @@ listing search */
 .subcontent-buttons {
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
-  /* margin-top: 0px; */
   width: 90%;
   margin-left: auto;
   margin-right: auto;
@@ -198,3 +198,52 @@ listing search */
 .left-button:hover .button-icon {
   background-color: #ff2800;
 }
+
+/* //certainfeatures css */
+.search-certain-features{
+  display: flex;
+  margin: 10px 0px 20px 150px;
+  align-items: center;
+}
+.certain-feature-label{
+  color: #444444;
+  font-weight: bold;
+  font-size: 18px;
+}
+.feature-name{
+  color: #444444;
+  margin: 0px 0px 0px 5px;
+  font-size: 16px;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {}
+.first-content {
+  margin: 50px 0px 0px 40px;
+}
+.sub-content1 {
+    margin: 10px 30px 20px 60px;
+    width: 90%;
+}
+.advance-searchdropdown {
+  width: 90%;
+}
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .first-content {
+    margin: 50px 0px 0px 20px;
+  }
+  .sub-content1 {
+      margin: 10px 30px 20px 40px;
+  }
+}
+@media screen and (min-width: 1201px) and (max-width: 1400px) {
+  .first-content {
+    margin: 50px 0px 0px 30px;
+  }
+  .sub-content1 {
+      margin: 10px 30px 20px 10px;
+  }
+  .advance-searchdropdown {
+    width: 100%;
+  }
+}
+

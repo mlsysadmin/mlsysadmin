@@ -60,7 +60,6 @@ const DiscoverHomeComponent = () => {
     };
     return (
         <div className="discover-home-container">
-            <MainLayout />
             <div className="discover-home">
                 <div className="discover-home-content">
                     <div className="discover-overlap">

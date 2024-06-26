@@ -160,7 +160,7 @@ const RentComponent = () => {
   const totalPages = Math.ceil(cardData.length / cardsPerPage);
   return (
     <div className="rent">
-      <MainLayout/>
+      
      <div className="topbar">
      <ListingSearch/>
      </div>

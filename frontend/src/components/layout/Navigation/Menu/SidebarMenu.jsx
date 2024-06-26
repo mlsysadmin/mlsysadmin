@@ -71,7 +71,7 @@ const SidebarMenu = () => {
         { label: "Home Loan", key: "Home Loan", children: SubMenuChild(SubMenu.homeLoan) }, 
         { label: "Home Insurance", key: "Home Insurance", children:SubMenuChild(SubMenu.homeInsurance)}, 
         { label: "Other Services", key: "Other Services", link: '/other-services' }, 
-        { label: "Contact", key: "Contact", link: '/contact' },
+        { label: "Contact", key: "Contact", link: '/contact-us' },
     ]
 
     const items = MenuItems.map((item, index) => ({
