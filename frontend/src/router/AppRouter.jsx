@@ -1,11 +1,14 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import {
   MainOutlet,
   SupportOutlet,
   SupportDashboardPage,
   ErrorPage,
-  Masterlist,
   ListingDetailsPage,
+  ActiveListingMasterlist,
+  OpenListingMasterlist,
+  PendingListingMasterlist,
+  DisapprovedListingMasterlist,
 } from "../pages/index.js";
 
 const routes = [
@@ -26,8 +29,20 @@ const routes = [
             element: <SupportDashboardPage />,
           },
           {
-            path: "MasterlistDashboard",
-            element: <Masterlist />,
+            path: "open",
+            element: <OpenListingMasterlist />,
+          },
+          {
+            path: "pending",
+            element: <PendingListingMasterlist />,
+          },
+          {
+            path: "active",
+            element: <ActiveListingMasterlist />,
+          },
+          {
+            path: "disapproved",
+            element: <DisapprovedListingMasterlist />,
           },
           {
             path: "listing-details/:listingId",

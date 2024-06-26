@@ -3,13 +3,12 @@ import { useNavigate } from "react-router-dom";
 import Dummydata from "../../supportDummyData/openListingDummy.json";
 import "../../styles/SupportListingMasterlist.css";
 import Pagination from "./custom.pagination";
-import bin from "../../icons/bin.png";
-import edit from "../../icons/edit.png";
-import Menu from "./Menu";
-import FooterComponent from "../layout/FooterComponent ";
-import Modal from "./Modal";
 
-const SupportListingMasterlist = () => {
+import Modal from "./Modal";
+import FooterComponent from "../layout/FooterComponent ";
+import SupportNavigation from "./custom.NavigationComponent";
+
+const OpenListingMasterlist = () => {
   const [activeTab, setActiveTab] = useState("open");
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredListings, setFilteredListings] = useState([]);
@@ -19,16 +18,25 @@ const SupportListingMasterlist = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalQuestion, setModalQuestion] = useState("");
   const [remarks, setRemarks] = useState("");
-  const [actionType, setActionType] = useState(""); // 'approve' or 'disapprove'
+  const [actionType, setActionType] = useState("");
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const listings = Dummydata[`${activeTab}_listings`] || [];
-    const filtered = listings.filter((listing) =>
-      listing.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredListings(filtered);
+    const fetchListings = async () => {
+      try {
+        const listings = Dummydata[`${activeTab}_listings`] || [];
+        const filtered = listings.filter((listing) =>
+          listing.title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredListings(filtered);
+      } catch (error) {
+        console.error("Error fetching listings:", error);
+        setFilteredListings([]);
+      }
+    };
+
+    fetchListings();
   }, [activeTab, searchTerm]);
 
   const handleSearchChange = (event) => {
@@ -62,8 +70,8 @@ const SupportListingMasterlist = () => {
     setCurrentPage(1);
   };
 
-  const handleTabChange = (event) => {
-    setActiveTab(event.target.value);
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
   };
 
   const handlePageChange = (page) => {
@@ -141,9 +149,6 @@ const SupportListingMasterlist = () => {
         <td>{listing.price}</td>
         <td>{listing.location}</td>
         <td>{listing.status}</td>
-        <td>
-          <img src={edit} alt="edit" /> <img src={bin} alt="bin" />
-        </td>
       </tr>
     ));
   };
@@ -159,90 +164,106 @@ const SupportListingMasterlist = () => {
     startIndex + entriesPerPage - 1,
     filteredListings.length
   );
-
+  const navLinks = [
+    { text: "Create listing", to: "/dashboard/support/create-listing" },
+    {
+      text: "Listing Masterlist",
+      dropdown: true,
+      options: [
+        { text: "Open Listings", to: "/dashboard/Support/open" },
+        { text: "Pending Listings", to: "/dashboard/Support/pending" },
+        { text: "Active Listings", to: "/dashboard/Support/active" },
+        { text: "Disapproved Listings", to: "/dashboard/Support/disapproved" },
+      ],
+    },
+    { text: "Client Management", to: "/dashboard/support" },
+  ];
   return (
-    <div className="listings-container">
-      <Menu
-        activeTab={activeTab}
-        tabHeadings={tabHeadings}
-        showOptions={true}
-        handleTabChange={handleTabChange}
-      />
-      <hr style={{ border: "#D90000 solid 1px", width: "100%" }} />
-      <br />
-      <div className="controls">
-        <div className="entries">
-          <label>Show Entries</label>
-          <select value={entriesPerPage} onChange={handleEntriesChange}>
-            <option value={5}>5</option>
-            <option value={8}>8</option>
-            <option value={10}>10</option>
-          </select>
-        </div>
-        <div className="searchbar">
-          <p>Search</p>
-          <input type="text" value={searchTerm} onChange={handleSearchChange} />
-        </div>
-      </div>
-      <div className="table">
-        <table>
-          <thead>
-            <tr>
-              <th>
-                <input
-                  type="checkbox"
-                  checked={selectAllChecked}
-                  onChange={handleSelectAllChange}
-                />
-              </th>
-              <th>Select</th>
-              <th>Date Created</th>
-              <th>Title</th>
-              <th>Property Type</th>
-              <th>Listing Type</th>
-              <th>Floor Area</th>
-              <th>Price</th>
-              <th>Location</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>{renderListings(filteredListings)}</tbody>
-        </table>
-      </div>
-      <div className="btns">
-        {activeTab !== "disapproved" && (
-          <div className="actions">
-            <button id="approve" onClick={handleApprove}>
-              Approve
-            </button>
-            <button id="disapprove" onClick={handleDisapprove}>
-              Disapprove
-            </button>
+    <>
+      <SupportNavigation navLinkProps={navLinks} />
+      <div className="listings-container">
+        <h1>{tabHeadings[activeTab]}</h1>
+        <hr style={{ border: "#D90000 solid 1px", width: "100%" }} />
+        <br />
+        <div className="controls">
+          <div className="entries">
+            <label>Show Entries</label>
+            <select value={entriesPerPage} onChange={handleEntriesChange}>
+              <option value={5}>5</option>
+              <option value={8}>8</option>
+              <option value={10}>10</option>
+            </select>
           </div>
-        )}
-        <Pagination
-          totalItems={filteredListings.length}
-          itemsPerPage={entriesPerPage}
-          onPageChange={handlePageChange}
-          currentPage={currentPage}
-        />
-      </div>
-      <div className="entries-summary">
-        Showing {startIndex} to {endIndex} of {filteredListings.length} entries
+          <div className="searchbar">
+            <input
+              placeholder="Search"
+              type="text"
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
+          </div>
+        </div>
+        <div className="table">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  <input
+                    type="checkbox"
+                    checked={selectAllChecked}
+                    onChange={handleSelectAllChange}
+                  />
+                </th>
+                <th>Select</th>
+                <th>Date Created</th>
+                <th>Title</th>
+                <th>Property Type</th>
+                <th>Listing Type</th>
+                <th>Floor Area</th>
+                <th>Price</th>
+                <th>Location</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>{renderListings(filteredListings)}</tbody>
+          </table>
+        </div>
+        <div className="btns">
+          {activeTab !== "disapproved" && (
+            <div className="actions">
+              <button id="approve" onClick={handleApprove}>
+                Approve
+              </button>
+              <button id="disapprove" onClick={handleDisapprove}>
+                Disapprove
+              </button>
+            </div>
+          )}
+          <Pagination
+            totalItems={filteredListings.length}
+            itemsPerPage={entriesPerPage}
+            onPageChange={handlePageChange}
+            currentPage={currentPage}
+          />
+        </div>
+        <div className="entries-summary">
+          Showing {startIndex} to {endIndex} of {filteredListings.length}{" "}
+          entries
+        </div>
+        
       </div>
       <FooterComponent />
-      <Modal
-        show={modalVisible}
-        onClose={handleModalClose}
-        onConfirm={handleModalConfirm}
-        question={`Are you sure you want to ${actionType} the selected listings?`}
-        remarks={remarks}
-        setRemarks={setRemarks}
-        actionType={actionType}
-      />
-    </div>
+        <Modal
+          show={modalVisible}
+          onClose={handleModalClose}
+          onConfirm={handleModalConfirm}
+          question={`Are you sure you want to ${actionType} the selected listings?`}
+          remarks={remarks}
+          setRemarks={setRemarks}
+          actionType={actionType}
+        />
+    </>
   );
 };
 
-export default SupportListingMasterlist;
+export default OpenListingMasterlist;

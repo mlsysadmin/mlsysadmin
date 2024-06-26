@@ -12,7 +12,7 @@
   justify-content: flex-start;
 }
 
-.SupportDashboard .supportingDashboard .overview{
+.SupportDashboard .supportingDashboard .overview {
   display: grid;
   color: #d90000;
   font-family: "Poppins", Helvetica;
@@ -22,6 +22,7 @@
   line-height: normal;
   margin-left: 2%;
 }
+ 
 .SupportDashboard .supportingDashboard .listing-count {
   display: grid;
   color: #000000;
@@ -35,10 +36,11 @@
 
 .SupportDashboard .card {
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns:  25% 25% 25%;
   margin-left: 2%;
   justify-items: stretch;
 }
+
 .SupportDashboard .card .overview-card {
   border: 1px solid #8C9094;
   border-radius: 20px;
@@ -87,6 +89,7 @@
   margin-left: 8px;
   width: 35px;
 }
+
 .SupportDashboard .performanceDiv {
   margin-left: 2%;
   display: grid;
@@ -97,7 +100,8 @@
   padding: 20px;
   justify-items: start;
 }
-.SupportDashboard .performanceDiv .performance-title{
+
+.SupportDashboard .performanceDiv .performance-title {
   display: grid;
   color: #d90000;
   font-family: "Poppins", Helvetica;
@@ -107,28 +111,34 @@
   line-height: normal;
 }
 
-.SupportDashboard .performanceDiv .totalDiv{
+.SupportDashboard .performanceDiv .totalDiv {
   display: grid;
   gap: 1rem;
   grid-template-columns: 400px 400px;
   justify-content: start;
 }
 
-.SupportDashboard .performanceDiv .totalDiv .totalCard{
+.SupportDashboard .performanceDiv .totalDiv .totalCard {
   display: grid;
   justify-content: start;
   border: 1px solid gray;
   border-radius: 20px;
   padding: 20px;
 }
-.SupportDashboard .performanceDiv .totalDiv .totalCard .totalSales{
+.SecondDivTitle{
+  font-size: 2rem;
+  font-weight: bold;
+  padding-left: 2%;
+}
+.SupportDashboard .performanceDiv .totalDiv .totalCard .totalSales {
   font-family: "Poppins", Helvetica;
   font-size: 15px;
   font-weight: 800;
   letter-spacing: 0;
   line-height: normal;
 }
-.SupportDashboard .performanceDiv .totalDiv .totalCard .amountOfTotalSales{
+
+.SupportDashboard .performanceDiv .totalDiv .totalCard .amountOfTotalSales {
   font-family: "Poppins", Helvetica;
   font-size: 15px;
   font-weight: 800;
