@@ -269,3 +269,273 @@
     font-size: 30px;
     padding: 40px;
   }
+
+  @media only screen and (max-width: 1024px ) {
+    
+    .sell-container{
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .first-section{
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+    }
+
+    .sell-header{
+      font-size: 35px;
+      margin-top:10%;
+    }
+
+    .banner-buttons {
+      display: flex;
+      flex-direction: row;
+      font-size: 10px;
+      gap: 1rem;
+      margin-top: 5%;
+    }
+
+    .banner-buttons #contactUs{
+      font-size: 15px;
+      padding: 5%;
+      border-radius: 12px;
+    }
+
+    .banner-buttons #signIn{
+      font-size: 15px;
+      padding: 5% 12%;
+      border-radius: 12px;
+    }
+
+    .second-section{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .second-content-span{
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .section-container{
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+
+    .section-container .content p{
+      font-size: 18px;
+    }
+
+    .section-container .content #ListPropertybtn{
+      font-size: 18px;
+      padding: 10% 10%;
+    }
+
+    .options{
+      display: flex;
+      flex-direction: column;
+      font-size: 18px;
+      gap: 1rem;
+    }
+
+    .options .dot{
+      height: 10px;
+      width: 10px;
+    }
+
+    .third-section{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      text-align: center;
+    }
+
+    .third-section .third-cont-guide{
+      font-size: 30px;
+    }
+
+    .third-section .section-cont-guide{
+      font-size: 18px;
+    }
+
+    .cards{
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      height: 60%;
+      width: 95%;
+    }
+
+    .cards h5{
+      font-size: 20px;
+    }
+
+    .cards p{
+      font-size: 16px;
+    }
+
+    .fourth-section{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      text-align: center;
+    }
+
+    .fourth-section h1{
+      font-size: 30px;
+    }
+
+    .fourth-section p{
+      font-size: 18px;
+    }
+
+    .fourth-section #contactUs{
+      font-size: 20px;
+      width: 20%;
+      padding: 3%;
+      border-radius: 15px;
+    }
+
+  }
+
+ @media only screen and (max-width: 720px ) {
+    
+  .sell-container{
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .first-section{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+  }
+
+  .sell-header{
+    font-size: 24%;
+    margin-top:8%;
+  }
+
+  .banner-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    margin-top: 5%;
+  }
+
+  .banner-buttons #contactUs{
+    font-size: 70%;
+    padding: 5%;
+    height: 90%;
+    border-radius: 6px;
+  }
+
+  .banner-buttons #signIn{
+    font-size: 70%;
+    padding: 5% 12%;
+    border-radius: 6px;
+    height: 90%;
+  }
+
+  .second-section{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .second-content-span{
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .section-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .section-container .content p{
+    font-size: 12%;
+  }
+
+  .section-container .content #ListPropertybtn{
+    font-size: 12%;
+    padding: 7%;
+    height: 5%;
+    border-radius: 5px;
+  }
+
+  .options{
+    display: flex;
+    flex-direction: column;
+    font-size: 12%;
+    gap: .5rem;
+  }
+
+  .options .dot{
+    height: 5px;
+    width: 5px;
+  }
+
+  .third-section{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+
+  .third-section .third-cont-guide{
+    font-size: 20%;
+  }
+
+  .third-section .section-cont-guide{
+    font-size: 12%;
+  }
+
+  .cards{
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    height: 50%;
+    width: 85%;
+  }
+
+  .cards h5{
+    font-size: 20%;
+    margin-top: 3%;
+  }
+
+  .cards p{
+    font-size: 17%;
+    margin-top: 15%;
+  }
+
+  .fourth-section{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+
+  .fourth-section h1{
+    font-size: 30px;
+  }
+
+  .fourth-section p{
+    font-size: 18px;
+  }
+
+  .fourth-section #contactUs{
+    font-size: 20px;
+    width: 20%;
+    padding: 3%;
+    border-radius: 15px;
+  }
+
+  }

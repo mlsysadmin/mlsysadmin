@@ -26,7 +26,7 @@ const SellComponent = () => {
                 your property <br />
                 at the best price
               </span>
-              <div>
+              <div className="banner-buttons">
                 <Button id="contactUs" type="primary">
                   Contact Us
                 </Button>{" "}
@@ -44,8 +44,8 @@ const SellComponent = () => {
             <div className="section-container">
               <div className="content">
                 <p>
-                  Do you want to Sell or put your house on Rent? <br /> M
-                  Lhuillier has the right solution for you. <br /> Your
+                  Do you want to Sell or put your house on Rent?  M
+                  Lhuillier has the right solution for you.  Your
                   advertisement will be viewed.
                 </p>
                 <Button id="ListPropertybtn" type="primary">
@@ -67,7 +67,7 @@ const SellComponent = () => {
           <div className="third-section">
             <span className="third-cont-guide">How it works?</span>
             <div className="section-cards">
-              <p>
+              <p className="section-cont-guide">
                 If you{"'"}re a non-wallet user, please visit the nearest M
                 Lhuillier Branch for your listing.
               </p>
