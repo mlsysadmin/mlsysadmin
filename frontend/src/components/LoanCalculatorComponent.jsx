@@ -38,91 +38,84 @@ const LoanCalculatorComponent = () => {
   };
 
   return (
-    <div>
-<<<<<<< HEAD
-      <div className="mort-container">
-        <MainLayout />
-=======
-      <div className="mortContainer">
->>>>>>> 3df7f54945c0e2f395b3366e1d86b25bfcecd10e
-        <div className="mort-content">
-          <div className="calculator-header">
-            <h1 className="title-header">Mortgage Calculator</h1>
-            <p className="sub-title-header">
-              Find an estimated monthly payment and explore various payment
-              based on your chosen amortization duration, payment frequency or
-              down payment. Find the mortgage option best for you.
-            </p>
-          </div>
-          <div className="mort-content-1">
-            <div className="first-column">
-              <div className="mortgage-content">
-                <div className="calc-container">
-                  <span className="Label">Home price</span>
-                  <p className="sub-label">
-                    The amount you plan to offer for a home.
-                  </p>
-                  <div className="price-display">
-                    <p className="price-container-1">PHP {price1}</p>
-                  </div>
-                  <Slider
-                    value={price1}
-                    min={minPrice}
-                    max={maxPrice}
-                    onChange={onPriceChange1}
-                    onChangeComplete={onChangeComplete}
-                  />
+    <div className="mort-container">
+      {/* <MainLayout /> */}
+      <div className="mort-content">
+        <div className="calculator-header">
+          <h1 className="title-header">Mortgage Calculator</h1>
+          <p className="sub-title-header">
+            Find an estimated monthly payment and explore various payment based
+            on your chosen amortization duration, payment frequency or down
+            payment. Find the mortgage option best for you.
+          </p>
+        </div>
+        <div className="mort-content-1">
+          <div className="first-column">
+            <div className="mortgage-content">
+              <div className="calc-container">
+                <span className="Label">Home price</span>
+                <p className="sub-label">
+                  The amount you plan to offer for a home.
+                </p>
+                <div className="price-display">
+                  <p className="price-container-1">PHP {price1}</p>
                 </div>
-                <div className="percentage-container">
-                  <span className="Label">Down payment</span>
-                  <p className="sub-label">Cash you can pay when you close.</p>
-                  <div className="price-percentage-container">
-                    <p className="price-container">PHP {price2}</p>
-                    <p className="price-percentage">
-                      {" "}
-                      {percentage2.toFixed(2)}%
-                    </p>
-                  </div>
-                  <Slider
-                    value={percentage2}
-                    min={0}
-                    max={maxPercentage}
-                    onChange={onPercentageChange2}
-                    onChangeComplete={onChangeComplete}
-                  />
+                <Slider
+                  value={price1}
+                  min={minPrice}
+                  max={maxPrice}
+                  onChange={onPriceChange1}
+                  onChangeComplete={onChangeComplete}
+                />
+              </div>
+              <div className="percentage-container">
+                <span className="Label">Down payment</span>
+                <p className="sub-label">Cash you can pay when you close.</p>
+                <div className="price-percentage-container">
+                  <p className="price-container">PHP {price2}</p>
+                  <p className="price-percentage"> {percentage2.toFixed(2)}%</p>
                 </div>
-                <div>
-                  <h3 className="payment">Where are you buying?</h3>
-                  <p className="payment-desc">Enter your desired location</p>
-                  <p className="input-infos">City, neighborhood, or zip code</p>
-                </div>
-                <div>
-                  <h3 className="payment">Loan type</h3>
-                  <p className="payment-desc">
-                    Affects interest rates. 30 or 15 year loans are standard
-                  </p>
-                  <div className="year-loans">
-                  <p>30-year fixed</p>
+                <Slider
+                  value={percentage2}
+                  min={0}
+                  max={maxPercentage}
+                  onChange={onPercentageChange2}
+                  onChangeComplete={onChangeComplete}
+                />
+              </div>
+              <div>
+                <h3 className="payment">Where are you buying?</h3>
+                <p className="payment-desc">Enter your desired location</p>
+                <p className="input-infos">City, neighborhood, or zip code</p>
+              </div>
+              <div>
+                <h3 className="payment">Loan type</h3>
+                <p className="payment-desc">
+                  Affects interest rates. 30 or 15 year loans are standard
+                </p>
+                <div className="year-loans">
+                  <p className="year">30-year fixed</p>
                   <p className="dropdown-btn">{">"}</p>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="payment">Mortgage interest rate</h3>
-                  <p className="payment-desc">
-                    Varies depending on lender and credit score.
-                  </p>
-                  <p className="input-infos">7.123 %</p>
                 </div>
               </div>
+              <div>
+                <h3 className="payment">Mortgage interest rate</h3>
+                <p className="payment-desc">
+                  Varies depending on lender and credit score.
+                </p>
+                <p className="input-infos">7.123 %</p>
+              </div>
             </div>
-            <div className="second-column">
-              <div className="calc-range-container">
-                <div className="calc-range">
-                  <div className="resetbtn">
-                    <Button id="Resetbtn" type="primary">
-                      Reset
-                    </Button>
-                  </div>
+          </div>
+          <div className="second-column">
+            <div className="calc-range-container">
+              <div className="calc-range">
+                <div className="resetbtn">
+                  <Button id="Resetbtn" type="primary">
+                    Reset
+                  </Button>
+                </div>
+                <div className="mortgage-section">
                   <div className="mort-range">
                     <div>
                       <h2>PHP11,154.89 per month</h2>
@@ -171,14 +164,14 @@ const LoanCalculatorComponent = () => {
               </div>
             </div>
           </div>
-        </div>{" "}
-        <br />
-        <br />
-        <br />
-        <br />
-        <CustomMlFooter />
-        <FooterComponent />
-      </div>
+        </div>
+      </div>{" "}
+      <br />
+      <br />
+      <br />
+      <br />
+      <CustomMlFooter />
+      <FooterComponent />
     </div>
   );
 };

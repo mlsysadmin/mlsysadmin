@@ -97,10 +97,11 @@ refinance-property-group .ref-prop-btn:hover{
     border-color: red !important;
   } */
   :where(.css-dev-only-do-not-override-3rel02).ant-slider .ant-slider-handle::after{
-    background-color: #ff2800;
+    /* background-color: #ff2800; */
     box-shadow:0 0 0 2px #ff2800;
     cursor: pointer;
   }
+
   :where(.css-dev-only-do-not-override-3rel02).ant-slider .ant-slider-rail{
     background-color: rgb(217, 0, 0, 38%);
   }

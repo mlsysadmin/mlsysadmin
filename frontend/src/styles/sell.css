@@ -28,7 +28,6 @@
     justify-content: center;
     align-items: center;
     font-size: 4rem;
-    /* padding: 40px 0; */
   }
   
   .sell-contents {
@@ -37,7 +36,6 @@
     width: 100%;
     max-width: 100%;
     height: 100%;
-    /* font-size: 4rem; */
   }
   
   .first-section,
@@ -63,7 +61,7 @@
 
   .first-section img{
     width: 50%;
-    height: 100%;
+    height: 80%;
   }
 
   .first-section .bannerbg{
@@ -75,14 +73,17 @@
     justify-content: flex-start;
     align-items: flex-start;
     padding-left: 3% ;
-    height: 100%;
-
+    height: 80%;
   }
 .sell-header{
     color: black;
     text-align: left;
-    margin-top: 70px;
-    font-size: 100%;
+    margin-top: 12%;
+    font-size: 80%;
+  }
+
+  .banner-buttons{
+    /* margin-top: 8%; */
   }
 
   .first-section #contactUs{
@@ -90,9 +91,9 @@
     font-weight: bold;
     border-color: #D90000;
     background-color: transparent;
-    border-radius: 25px;
-    font-size: 1.5rem;
-    padding: 30px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    padding: 25px;
   }
   .first-section #contactUs:hover{
     background: transparent;
@@ -102,9 +103,9 @@
     color: #FFFFFF;
     font-weight: bold;
     background-color: #D90000;
-    border-radius: 25px;
-    font-size: 1.5rem;
-    padding: 30px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    padding: 25px;
     padding-left: 50px;
     padding-right: 50px;
   }
@@ -115,7 +116,6 @@
     flex-direction: column;
     width: 100%;
     gap: 3rem;
-    margin-top: 5%;
   }
 
   .section-container{
@@ -128,10 +128,12 @@
 
   .second-content-span{
     color: black;
-    font-size: 50px;
+    font-size: 60%;
     font-weight: bold;
+    width: 90%;
+    display: flex;
     justify-content: flex-start;
-    align-items: start;
+
   }
   
 
@@ -140,15 +142,14 @@
     font-weight: bold;
     background-color: #D90000;
     border-radius: 20px;
-    font-size: 20px;
-    padding: 40px;
-    font-size: 25px;
+    padding: 35px;
+    font-size: 35%;
     margin-top: 10%;
   }
 
   .second-section .content p{
     color: #000;
-    font-size: 2rem;
+    font-size: 40%;
     align-items: flex-start;
     font-weight: lighter;
     text-align: left;
@@ -157,8 +158,8 @@
   .options{
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    font-size: 2rem;
+    gap: 1.5rem;
+    font-size: 40%;
     font-weight: normal;
     align-items: flex-start;
     justify-content: left;
@@ -178,7 +179,7 @@
 
   /*third*/
   .third-section {
-    margin-top: 10%;
+    margin-top: 5%;
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -192,13 +193,13 @@
   .third-section .third-cont-guide{
     color: #000;
     font-weight: bold;
-    font-size: 50px;
-    margin-right: 69%;
+    font-size: 60%;
+    margin-right: 74%;
   }
 
   .third-section p{
     color: #000;
-    font-size: 35px;
+    font-size: 40%;
     font-weight: lighter;
   }
 
@@ -220,8 +221,12 @@
     text-align: center;
   }
 
+  .cards h5{
+    font-size: 65%;
+  }
+
   .cards p{
-    font-size: 1.5rem;
+    font-size: 50%;
     margin-top: 25%;
   }
 
@@ -245,19 +250,19 @@
     display: flex;
     flex-direction: column;
     padding-bottom: 6%;
-    gap: 2.5rem;
-    margin-top: 10%;
+    gap: 2rem;
+    margin-top: 5%;
   }
 
   .fourth-section h1{
     color: black;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 60%;
   }
 
   .fourth-section p{
     color: #000;
-    font-size: 35px;
+    font-size: 40%;
     font-weight: lighter;
   }
 
@@ -266,9 +271,9 @@
     font-weight: bold;
     border-color: #D90000;
     background-color: transparent;
-    border-radius: 25px;
-    font-size: 30px;
-    padding: 40px;
+    border-radius: 20px;
+    font-size: 40%;
+    padding: 1.5%;
   }
 
   @media only screen and (max-width: 1024px ) {
@@ -317,6 +322,7 @@
 
     .second-content-span{
       font-size: 32%;
+      width: 88%;
     }
 
     .section-container{
@@ -343,8 +349,8 @@
     }
 
     .options .dot{
-      height: 8px;
-      width: 8px;
+      height: 6px;
+      width: 6px;
     }
 
     .third-section{
@@ -428,7 +434,7 @@
   }
 
   .sell-header{
-    font-size: 23%;
+    font-size: 21%;
     margin-top:8%;
   }
 
@@ -463,7 +469,7 @@
   .second-content-span{
     font-size: 14%;
     display: flex;
-    width: 90%;
+    width: 88%;
     justify-content: flex-start;
   }
 

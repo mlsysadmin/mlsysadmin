@@ -9,29 +9,30 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    background-color: #fff;
   }
 
   .banner{
     background-image: url('../asset/icons/contactBanner.png');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: 70vh;
     width: 100%;
     max-height: 70%;
   }
 
   .bannerTitle{
-    font-size: 5rem;
+    font-size: 4rem;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
-    margin-top: 12%;
+    margin-top: 5%;
     font-weight: bold;
   }
 
   .bannerSubTitle{
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,7 +42,7 @@
 
   .contactUsContent{
     position: relative;
-    margin-top: 23%;
+    margin-top: 15%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,7 +61,7 @@
   }
 
   #location {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     color: #000;
   }
 
@@ -70,7 +71,7 @@
   }
 
   #map{
-    width: 100%;
+    width: 80%;
     height: auto;
   }
 
@@ -82,12 +83,11 @@
     align-items: center;
     text-align: center;
     gap: 1rem;
-    font-size: .9rem;
     background-color: #fff;
-    border-radius: 30px;
+    border-radius: 20px;
     height: 25%;
-    width: 35%;
-    left: 50%;
+    width: 30%;
+    left: 40%;
     top: 35%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
@@ -113,7 +113,7 @@
   .questions{
     width: 35%;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -122,11 +122,11 @@
   }
   
   #questions{
-    font-size: 1.5rem;
+    font-size: 1.1rem;
   }
 
   #sub-info{
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   hr{
@@ -142,46 +142,45 @@
   }
 
   #FAQs{
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   .FAQs-email{
     border-radius: 30px;
     color: #8C9094;
     text-align: left;
-    padding: 8%;
+    padding: 7%;
+    height: 9%;
     outline: none;
-    border: 1px solid red;
-    font-size: .9rem;  
+    border: 1px solid red; 
   }
 
   
   #submitbtn{
     background-color: #d90000;
     color: #fff;
-    font-size: .9rem;
-    padding: 10%;
+    padding: 6%;
     height: 1%;
     border-radius: 30px;
     
   }
 
-  .contactField{
+  .contact-field{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    top: 23%;
+    top:15%;
     position: absolute;
     background-color: #fff;
-    width: 75%;
-    left: 13%;
-    height: 21%;
+    width: 70%;
+    left: 15%;
+    height: 22%;
     border-radius: 40px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .inputFields{
-  padding-top: 4%;
+  padding-top: 3%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -197,13 +196,13 @@
 }
 
 #input-header h1{
-  font-size: 2.1rem;
+  font-size: 2rem;
   padding: 0;
   margin: 0%;
 }
 
 #input-header p{
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .inputFields #inputField{
@@ -226,11 +225,10 @@
   border-radius: 30px;
   color: #8C9094;
   text-align: left;
-  padding: 3%;
+  padding: 2.5%;
   width: 100%;
   outline: none;
   border: none;
-  font-size: 1rem;
 }
 
 .input{
@@ -238,10 +236,9 @@
   border-radius: 30px;
   color: #8C9094;
   text-align: left;
-  padding: 3%;
+  padding: 2.5%;
   outline: none;
   border: none;
-  font-size: 1rem;
 }
 
 #messageField{
@@ -251,11 +248,10 @@
   color: #8C9094;
   display: flex;
   text-align: left;
-  padding-bottom:12% ;
+  padding-bottom:10% ;
   padding-top: 2%;
   padding-left: 2%;
   border: none  ;
-  font-size: 1rem;
 }
 
 .contactInfos{
@@ -274,33 +270,38 @@
   gap: 1.5rem;
 }
 
+.contactInfos h2{
+  font-size: 1.2rem;
+}
+
 #customercare{
   display: flex;
-  font-size: 1.2rem;
+  font-size: .9rem;
 }
 
 .phone-num{
   display: flex;
   flex-direction: row;
   gap: 4rem;
-  font-size: 1.2rem;
+  font-size: .9rem;
 }
 
 #foreignContact{
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  font-size: 1.2rem;
+  font-size: .9rem;
 }
 
 #foreignContact h4{
   color: #000;
+  font-size: 1.2rem;
 }
 
 #others{
   display: flex;
   margin-top: 7%;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 #messagebtn{
@@ -308,10 +309,10 @@
   border-radius: 25px;
   padding: 5%;
   color: #FFFFFF;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
-.contactField .field-container{
+.contact-field .field-container{
   width: 100%;
   display: flex;
   flex-direction: column;
