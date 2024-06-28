@@ -84,10 +84,10 @@ const ContactUsComponent = () => {
         </div>
         <div className="contactUsContent">
           <div className="location">
-            <p style={{ fontSize: "1.5rem" }}>Our Location</p>
-            <div >
+            <p className="location-header">Our Location</p>
+            <div className="location-container">
               <h3 id="location">Connecting Near and Far</h3>
-              <p style={{ fontSize: "1.2rem" }}>
+              <p className="pinned-location">
                 M Lhuillier Financial Services Inc. <br /> B. Benedicto St, Cebu
                 City,
                 <br />
