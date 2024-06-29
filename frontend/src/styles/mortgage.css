@@ -159,3 +159,86 @@
         gap: .5rem;
     }
 }
+
+@media only screen and (max-width: 720px ){
+    .mortgageContent{
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        width: 100%;
+    }
+    
+    .mortgage-h1{
+        font-size: 60%;
+        margin-top: 5%;
+    }
+    
+    .mortgage-subheader{
+        font-size: 40%;
+        font-weight: lighter;
+        color: #8C9094;
+    }
+    
+    .mortBtn{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+        font-size: 1.5rem;
+        margin-top: 1%;
+    }
+
+    .button-container{
+        display: flex;
+        height: 100%;
+        width: 100%;
+    }
+    
+    .purchasebtn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #D90000;
+        color: #fff;
+        width: 40%;
+        border-radius: 20px;
+        gap: 1rem;
+    }
+    
+    #home-icon{
+        font-size: 1.5rem;
+    }
+    
+    .purchasebtn p{
+        font-size: 35%;
+    }
+    
+    #dollar-icon{
+        font-size: 1.5rem;
+    }
+    
+    .refinancebtn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #D90000;
+        color: #fff;
+        width: 40%;
+        border-radius: 20px;
+        gap: 1rem;
+    }
+    
+    .refinancebtn p{
+        font-size: 35%;
+    }
+    
+    .mortgage-title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: .5rem;
+    }
+}

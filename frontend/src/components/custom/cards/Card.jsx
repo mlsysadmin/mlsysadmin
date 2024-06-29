@@ -60,7 +60,7 @@ const Card = ({
         <div className="bot">
           <p>{price}</p>
           <p>
-            {beds} <span><BedOutlinedIcon /></span> • {baths} <span><ShowerOutlinedIcon /></span> • <span><ShortcutOutlinedIcon /></span> {size} SqM
+            {beds} <span  id="bed-icon"><BedOutlinedIcon/></span> • {baths} <span><ShowerOutlinedIcon /></span> • <span><ShortcutOutlinedIcon /></span> {size} SqM
           </p>
         </div>
       </div>
