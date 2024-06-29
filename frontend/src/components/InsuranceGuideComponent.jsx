@@ -65,7 +65,7 @@ const InsuranceGuideComponent = () => {
                         <div className="health-insurance-inbox">
                             <img src={HealthInsurance}></img>
                             <span>Health Insurance</span><br />
-                            <p>Elevate Your Well-being with ML Health Insurance.
+                            <p>Elevate Your Well-being with ML Health Insurance and be healthy.
                             </p>
                         </div>
                         <div className="travel-insurance-inbox">

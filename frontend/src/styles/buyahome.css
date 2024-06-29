@@ -1,3 +1,7 @@
+.buy-a-home-container{
+  background-color: #ffffff;
+  width: 100%;
+}
 .buy-a-home-content{
     background-color: #ffffff;
     display: flex;
@@ -44,6 +48,10 @@
   .property-information-container .prop-quest{
     font-size:18px;
     font-weight: bold;
+  }
+  .prop-quest-subheader{
+    font-size:18px;
+    font-weight: bold
   }
   .property-information-container .prop-info-btn-group{
     display: flex;
@@ -151,5 +159,94 @@ background: #ff2800;
 border-radius: 1px;
 transition: background 0.3s;
 content: "";
+}
+
+@media screen and (min-width:320px) and (max-width:359px){
+  .property-information-container .prop-content {
+    width: 80%;
+    margin-top:50px;
+}
+.property-information-container h3 {
+  font-size: 22px;
+
+}
+.property-information-container .prop-quest {
+  font-size: 14px;
+}
+.property-information-container .prop-info-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  gap: 0px;
+}
+.property-information-container .prop-btn {
+  margin: 10px;
+  width: 290px;
+  height: 50px;
+  font-size: 16px;
+}
+.prop-content2,.prop-content3, .prop-content4,.prop-content5,.prop-content51{
+  margin-top: -70px;
+}
+.property-information-container .prop-info-btn-group1 {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.property-information-container .prop-quest {
+  font-size: 16px;
+}
+.property-information-container .prop-btn {
+  width: 290px;
+  height: 50px;
+  font-size: 16px;
+}
+.property-information-container .prop-info-btn-group3 {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.property-information-container .prop-info-btn-group-timeline {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 0px;
+  margin: 10px 0px 0px 0px;
+}
+.prop-content1-timeline{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap:10px
+}
+.prop-info-btn-group-timeline .prop-btn{
+  /* width: 330px; */
+  height: 60px;
+  font-size: 15px;
+}
+.prop-quest-subheader{
+  font-size: 15px;
+}
+.property-information-container .prop-content32 .prop-info-btn-group1,
+.prop-content41 .prop-info-btn-group3 {
+  width: 85%;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 15px;
+  justify-content: center;
+}
+.property-information-container .prop-info-btn-group-details {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 0px;
+  margin: 30px 10px 10px 0px;
+}
+.prop-content51 .prop-quest{
+  margin: 0px 0px 20px 0px;
+}
 }
 

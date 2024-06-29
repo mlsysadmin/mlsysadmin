@@ -112,8 +112,6 @@
     width: 50%;
     display: flex;
     justify-content: center;
-    /* margin: 0px 0px 0px 50pc; */
-    /* align-items: center; */
     flex-direction: column;
 }
 
@@ -128,7 +126,6 @@
     font-size: 18px;
     color: #444444;
     margin: 50px 0px 0px 150px;
-    /* width: 50%; */
 }
 
 .insurance-guide-content-three {
@@ -149,20 +146,11 @@
 }
 
 .insurance-guide-content-three-input {
-    /* width: 100%;
-    justify-content: center;
-    display: flex;
-    align-items: center; */
     position: relative;
     width: 50%;
 }
 
 .insurance-guide-content-three-input input {
-    /* height: 50px;
-    width: 50%;
-    border: 1px solid #ff2800;
-    border-radius: 20px;
-    font-size: 18px; */
     height: 50px;
     width: 100%;
     border: 1px solid #ff2800;
@@ -358,17 +346,10 @@
         display: flex;
         flex-wrap: wrap;
         margin: 0px;
-        /* justify-content: center;
-        align-items: center; */
-        /* justify-content: center; */
-        /* margin: 0px 0px 0px 50pc; */
-        /* align-items: center; */
-        /* flex-direction: column; */
     }
     
     .insurance-guide-tagline-two span {
         font-size: 24px;
-        color: #444444;
         margin: 0px 0px 0px 30px;
         width: 100%;
     }
@@ -376,9 +357,93 @@
     .insurance-guide-tagline-two p {
         font-size: 16px;
         width: 100%;
-        color: #444444;
         margin: 30px 0px 0px 30px;
         /* width: 50%; */
+    }
+    .insurance-guide-content-three {
+        width: 100%;
+    }
+    
+    .insurance-guide-content-three span {
+        font-size: 24px;
+    }
+    
+    .insurance-guide-content-three-input {
+        width: 80%;
+    }
+    
+    .insurance-guide-content-three-input input {
+        font-size: 10px;
+    }
+    
+    .insurance-guide-content-three-input button {
+        right: 5px;
+        font-size: 8px;
+    }
+    
+    .insurance-guide-content-four {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .insurance-header {
+        font-size: 18px;
+        margin: 0px 0px 0px 10px;
+
+    }
+    
+    .other-insurance-products {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        margin: 50px 0px 0px 0px;
+       
+    }
+    
+    .health-insurance-products,
+    .travel-insurance-products,
+    .auto-insurance-products {
+        width: 80%;
+        height: 350px;
+        padding: 0px 0px 10px 0px;
+    }
+    
+    .insurance-title {
+        font-weight: bold;
+    }
+    
+    .other-insurance-products span {
+        font-size: 20px;
+    
+    }
+    
+    .insurance-child {
+        padding: 30px 0px 0px 10px;
+        gap: 20px;
+    }
+    
+    .insurance-child p {
+        font-size: 14px;
+    }
+    .insurance-guide-content-five {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0px 10px 0px 10px;
+    }
+    
+    .insurance-guide-content-five .questions {
+        width: 100%;
+        margin: 20px 0px 0px 0px;
+    }
+    .insurance-guide-content-five .questions .dropdown-label{
+        font-size: 12px;
+    }
+    .insurance-guide-content-five span {
+        font-size: 18px;
+        margin: 0px 0px 0px 10px;
     }
     
 }
@@ -412,15 +477,796 @@
         width: 100%;
         margin: 0px 0px 0px 10px;
     }
+    .insurance-guide-content-two {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 30px;
+    }
+    
+    .insurance-guide-inboxes {
+        width: 100%;
+        gap: 20px;
+        margin: 0px;
+    }
+    
+    .home-insurance-inbox,
+    .auto-insurance-inbox,
+    .health-insurance-inbox,
+    .travel-insurance-inbox {
+        width: 200px;
+        height: 20px;
+        height: auto;
+        margin: 0px 0px 0px 0px;
+    }
+    
+    .insurance-guide-inboxes p {
+        margin: 0px 0px 0px 10px;
+        font-size: 14px;
+    }
+    
+    .insurance-guide-inboxes span {
+        margin: 10px 0px 0px 2px;
+        font-size: 18px;
+    }
+    
+    .insurance-guide-inboxes img {
+        width: 70px;
+        height: 70px;
+        margin: 20px 0px 0px 0px;
+    }
+    
+    .insurance-guide-tagline-two {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 0px;
+    }
+    
+    .insurance-guide-tagline-two span {
+        font-size: 24px;
+        margin: 0px 0px 0px 60px;
+        width: 100%;
+    }
+    
+    .insurance-guide-tagline-two p {
+        font-size: 14px;
+        width: 80%;
+        margin: 0px 0px 0px 0px;
+
+    }
+    .insurance-guide-content-three {
+        width: 100%;
+    }
+    
+    .insurance-guide-content-three span {
+        font-size: 24px;
+    }
+    
+    .insurance-guide-content-three-input {
+        width: 80%;
+    }
+    
+    .insurance-guide-content-three-input input {
+        font-size: 10px;
+    }
+    
+    .insurance-guide-content-three-input button {
+        right: 5px;
+        font-size: 8px;
+    }
+    
+    .insurance-guide-content-four {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .insurance-header {
+        font-size: 18px;
+        margin: 0px 0px 0px 10px;
+
+    }
+    
+    .other-insurance-products {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        margin: 50px 0px 0px 0px;
+       
+    }
+    
+    .health-insurance-products,
+    .travel-insurance-products,
+    .auto-insurance-products {
+        width: 80%;
+        height: 350px;
+        padding: 0px 0px 10px 0px;
+    }
+    
+    .insurance-title {
+        font-weight: bold;
+    }
+    
+    .other-insurance-products span {
+        font-size: 20px;
+    
+    }
+    
+    .insurance-child {
+        padding: 30px 0px 0px 10px;
+        gap: 20px;
+    }
+    
+    .insurance-child p {
+        font-size: 14px;
+    }
+    .insurance-guide-content-five {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0px 10px 0px 10px;
+    }
+    
+    .insurance-guide-content-five .questions {
+        width: 100%;
+        margin: 20px 0px 0px 0px;
+    }
+    .insurance-guide-content-five .questions .dropdown-label{
+        font-size: 12px;
+    }
+    .insurance-guide-content-five span {
+        font-size: 18px;
+        margin: 0px 0px 0px 10px;
+    }
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
+    .insurance-guide-content-one {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 0px 0px 0px;
+        flex-wrap: nowrap;
+    }
 
+    .insurance-guide-tagline {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* align-items: flex-start; */
+        margin: 0px 10px 0px 0px;
+    }
+
+    .insurance-guide-tagline span {
+        font-size: 22px;
+        margin: 0px 0px 0px 50px;
+    }
+
+    .insurance-guide-tagline p {
+        font-size: 12px;
+      
+    }
+
+    .insurance-guide-content-one img {
+        width: 50%;
+        margin: 0px 0px 0px 10px;
+    }
+    .insurance-guide-content-two {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 30px;
+    }
+    
+    .insurance-guide-inboxes {
+        width: 100%;
+        gap: 20px;
+        margin: 0px;
+    }
+    
+    .home-insurance-inbox,
+    .auto-insurance-inbox,
+    .health-insurance-inbox,
+    .travel-insurance-inbox {
+        width: 300px;
+        height: 250px;
+        margin: 0px 0px 0px 0px;
+    }
+    
+    .insurance-guide-inboxes p {
+        margin: 0px 0px 0px 10px;
+        font-size: 14px;
+    }
+    
+    .insurance-guide-inboxes span {
+        margin: 10px 0px 0px 2px;
+        font-size: 18px;
+    }
+    
+    .insurance-guide-inboxes img {
+        width: 70px;
+        height: 70px;
+        margin: 20px 0px 0px 0px;
+    }
+    
+    .insurance-guide-tagline-two {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0px;
+    }
+    
+    .insurance-guide-tagline-two span {
+        font-size: 24px;
+        margin: 20px 0px 0px 100px;
+        width: 100%;
+    }
+    
+    .insurance-guide-tagline-two p {
+        font-size: 16px;
+        width: 100%;
+        margin: 10px 0px 0px 50px;
+
+    }
+    .insurance-guide-content-three {
+        width: 100%;
+    }
+    
+    .insurance-guide-content-three span {
+        font-size: 30px;
+    }
+    
+    .insurance-guide-content-three-input {
+        width: 80%;
+    }
+    
+    .insurance-guide-content-three-input input {
+        font-size: 16px;
+    }
+    
+    .insurance-guide-content-three-input button {
+        right: 5px;
+        font-size: 14px;
+    }
+    
+    .insurance-guide-content-four {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .insurance-header {
+        font-size: 22px;
+        margin: 0px 0px 0px 10px;
+
+    }
+    
+    .other-insurance-products {
+        display: flex;
+        flex-direction: row;
+        gap: 50px;
+        margin: 50px 0px 0px 0px;
+        padding: 0px 20px 0px 20px;
+       
+    }
+    
+    .health-insurance-products,
+    .travel-insurance-products,
+    .auto-insurance-products {
+        width: 80%;
+        height: 430px;
+        padding: 0px 0px 10px 0px;
+    }
+    
+    .insurance-title {
+        font-weight: bold;
+    }
+    
+    .other-insurance-products span {
+        font-size: 20px;
+    
+    }
+    
+    .insurance-child {
+        padding: 30px 0px 0px 10px;
+        gap: 20px;
+    }
+    
+    .insurance-child p {
+        font-size: 14px;
+    }
+    .insurance-guide-content-five {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0px 10px 0px 10px;
+    }
+    
+    .insurance-guide-content-five .questions {
+        width: 100%;
+        margin: 20px 0px 0px 0px;
+    }
+    .insurance-guide-content-five .questions .dropdown-label{
+        font-size: 18px;
+    }
+    .insurance-guide-content-five span {
+        font-size: 26px;
+        margin: 0px 0px 0px 10px;
+    }
 }
-@media screen and (min-width: 769px) and (max-width: 1024px) {}
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .insurance-guide-content-one {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 0px 0px 0px;
+        flex-wrap: nowrap;
+    }
+
+    .insurance-guide-tagline {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* align-items: flex-start; */
+        margin: 0px 10px 0px 0px;
+    }
+
+    .insurance-guide-tagline span {
+        font-size: 22px;
+        margin: 0px 0px 0px 50px;
+    }
+
+    .insurance-guide-tagline p {
+        font-size: 12px;
+      
+    }
+
+    .insurance-guide-content-one img {
+        width: 50%;
+        margin: 0px 0px 0px 10px;
+    }
+    .insurance-guide-content-two {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 30px;
+    }
+    
+    .insurance-guide-inboxes {
+        width: 100%;
+        gap: 20px;
+        margin: 0px;
+    }
+    
+    .home-insurance-inbox,
+    .auto-insurance-inbox,
+    .health-insurance-inbox,
+    .travel-insurance-inbox {
+        width: 300px;
+        height: 250px;
+        margin: 0px 0px 0px 0px;
+    }
+    
+    .insurance-guide-inboxes p {
+        margin: 0px 0px 0px 10px;
+        font-size: 14px;
+    }
+    
+    .insurance-guide-inboxes span {
+        margin: 10px 0px 0px 2px;
+        font-size: 18px;
+    }
+    
+    .insurance-guide-inboxes img {
+        width: 70px;
+        height: 70px;
+        margin: 20px 0px 0px 0px;
+    }
+    
+    .insurance-guide-tagline-two {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0px;
+    }
+    
+    .insurance-guide-tagline-two span {
+        font-size: 24px;
+        margin: 20px 0px 0px 100px;
+        width: 100%;
+    }
+    
+    .insurance-guide-tagline-two p {
+        font-size: 16px;
+        width: 100%;
+        margin: 10px 0px 0px 50px;
+
+    }
+    .insurance-guide-content-three {
+        width: 100%;
+    }
+    
+    .insurance-guide-content-three span {
+        font-size: 24px;
+    }
+    
+    .insurance-guide-content-three-input {
+        width: 80%;
+    }
+    
+    .insurance-guide-content-three-input input {
+        font-size: 10px;
+    }
+    
+    .insurance-guide-content-three-input button {
+        right: 5px;
+        font-size: 8px;
+    }
+    
+    .insurance-guide-content-four {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .insurance-header {
+        font-size: 18px;
+        margin: 0px 0px 0px 10px;
+
+    }
+    
+    .other-insurance-products {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        margin: 50px 0px 0px 0px;
+        padding: 0px 20px 0px 20px;
+       
+    }
+    
+    .health-insurance-products,
+    .travel-insurance-products,
+    .auto-insurance-products {
+        width: 80%;
+        height: 350px;
+        padding: 0px 0px 10px 0px;
+    }
+    
+    .insurance-title {
+        font-weight: bold;
+    }
+    
+    .other-insurance-products span {
+        font-size: 20px;
+    
+    }
+    
+    .insurance-child {
+        padding: 30px 0px 0px 10px;
+        gap: 20px;
+    }
+    
+    .insurance-child p {
+        font-size: 14px;
+    }
+    .insurance-guide-content-five {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0px 30px 0px 30px;
+    }
+    
+    .insurance-guide-content-five .questions {
+        width: 100%;
+        margin: 20px 0px 0px 0px;
+    }
+    .insurance-guide-content-five .questions .dropdown-label{
+        font-size: 18px;
+    }
+    .insurance-guide-content-five span {
+        font-size: 26px;
+        margin: 0px 0px 0px 10px;
+    }
+}
 
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
+    .insurance-guide-content-one {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 0px 0px 0px;
+        flex-wrap: nowrap;
+    }
 
+    .insurance-guide-tagline {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0px 10px 0px 0px;
+    }
+
+    .insurance-guide-tagline span {
+        font-size: 24px;
+        margin: 0px 0px 0px 50px;
+    }
+
+    .insurance-guide-tagline p {
+        font-size: 14px;
+      
+    }
+
+    .insurance-guide-content-one img {
+        width: 50%;
+        margin: 0px 0px 0px 10px;
+    }
+    .insurance-guide-content-two {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 30px;
+    }
+    
+    .insurance-guide-inboxes {
+        width: 100%;
+        gap: 20px;
+        margin: 0px;
+    }
+    
+    .home-insurance-inbox,
+    .auto-insurance-inbox,
+    .health-insurance-inbox,
+    .travel-insurance-inbox {
+        width: 300px;
+        height: 250px;
+        margin: 0px 0px 0px 0px;
+    }
+    
+    .insurance-guide-inboxes p {
+        margin: 0px 0px 0px 10px;
+        font-size: 14px;
+    }
+    
+    .insurance-guide-inboxes span {
+        margin: 10px 0px 0px 2px;
+        font-size: 18px;
+    }
+    
+    .insurance-guide-inboxes img {
+        width: 70px;
+        height: 70px;
+        margin: 20px 0px 0px 0px;
+    }
+    
+    .insurance-guide-tagline-two {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0px;
+    }
+    
+    .insurance-guide-tagline-two span {
+        font-size: 24px;
+        margin: 20px 0px 0px 100px;
+        width: 100%;
+    }
+    
+    .insurance-guide-tagline-two p {
+        font-size: 16px;
+        width: 100%;
+        margin: 10px 0px 0px 50px;
+
+    }
+    .insurance-guide-content-three {
+        width: 100%;
+    }
+    
+    .insurance-guide-content-three span {
+        font-size: 24px;
+    }
+    
+    .insurance-guide-content-three-input {
+        width: 80%;
+    }
+    
+    .insurance-guide-content-three-input input {
+        font-size: 10px;
+    }
+    
+    .insurance-guide-content-three-input button {
+        right: 5px;
+        font-size: 8px;
+    }
+    
+    .insurance-guide-content-four {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .insurance-header {
+        font-size: 18px;
+        margin: 0px 0px 0px 10px;
+
+    }
+    
+    .other-insurance-products {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        margin: 50px 0px 0px 0px;
+        padding: 0px 20px 0px 20px;
+       
+    }
+    
+    .health-insurance-products,
+    .travel-insurance-products,
+    .auto-insurance-products {
+        width: 80%;
+        height: 350px;
+        padding: 0px 0px 10px 0px;
+    }
+    
+    .insurance-title {
+        font-weight: bold;
+    }
+    
+    .other-insurance-products span {
+        font-size: 20px;
+    
+    }
+    
+    .insurance-child {
+        padding: 30px 0px 0px 10px;
+        gap: 20px;
+    }
+    
+    .insurance-child p {
+        font-size: 14px;
+    }
+    .insurance-guide-content-five {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0px 30px 0px 30px;
+    }
+    
+    .insurance-guide-content-five .questions {
+        width: 100%;
+        margin: 20px 0px 0px 0px;
+    }
+    .insurance-guide-content-five .questions .dropdown-label{
+        font-size: 18px;
+    }
+    .insurance-guide-content-five span {
+        font-size: 26px;
+        margin: 0px 0px 0px 10px;
+    }
 }
 @media screen and (min-width: 1201px) and (max-width: 1400px) {
+    .insurance-guide-content-one {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 0px 0px 0px;
+        flex-wrap: nowrap;
+    }
 
+    .insurance-guide-tagline {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0px 10px 0px 0px;
+    }
+
+    .insurance-guide-tagline span {
+        font-size: 26px;
+        margin: 0px 0px 0px 50px;
+    }
+
+    .insurance-guide-tagline p {
+        font-size: 18px;
+      
+    }
+
+    .insurance-guide-content-one img {
+        width: 50%;
+        margin: 0px 0px 0px 10px;
+    }
+    .insurance-guide-content-two {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 30px;
+    }
+    
+    .insurance-guide-inboxes {
+        width: 100%;
+        gap: 20px;
+        margin: 0px;
+    }
+    
+    .home-insurance-inbox,
+    .auto-insurance-inbox,
+    .health-insurance-inbox,
+    .travel-insurance-inbox {
+        width: 300px;
+        height: 250px;
+        margin: 0px 0px 0px 0px;
+    }
+    
+    .insurance-guide-inboxes p {
+        margin: 0px 0px 0px 10px;
+        font-size: 14px;
+    }
+    
+    .insurance-guide-inboxes span {
+        margin: 10px 0px 0px 2px;
+        font-size: 18px;
+    }
+    
+    .insurance-guide-inboxes img {
+        width: 70px;
+        height: 70px;
+        margin: 20px 0px 0px 0px;
+    }
+    
+    .insurance-guide-tagline-two {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0px;
+    }
+    
+    .insurance-guide-tagline-two span {
+        font-size: 24px;
+        margin: 20px 0px 0px 100px;
+        width: 100%;
+    }
+    
+    .insurance-guide-tagline-two p {
+        font-size: 16px;
+        width: 100%;
+        margin: 10px 0px 0px 0px;
+
+    }
+    .insurance-guide-content-five {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0px 50px 0px 50px;
+    }
+    
+    .insurance-guide-content-five .questions {
+        width: 100%;
+        margin: 20px 0px 0px 0px;
+    }
+    .insurance-guide-content-five .questions .dropdown-label{
+        font-size: 18px;
+    }
+    .insurance-guide-content-five span {
+        font-size: 26px;
+        margin: 0px 0px 0px 10px;
+    }
 }

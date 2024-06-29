@@ -249,7 +249,7 @@ const BuyAHomeComponent = () => {
                         <div className="prop-content3">
                             <br />
                             <span className="prop-quest">How will you use your new home?</span><br />
-                            <div className="prop-info-btn-group2">
+                            <div className="prop-info-btn-group3">
                                 <button
                                     className={`prop-btn ${selectedNewHomeButton === 'Primary residence' ? 'active' : ''}`}
                                     onClick={handleNewHomeButtonClick}
@@ -290,9 +290,9 @@ const BuyAHomeComponent = () => {
                         </div>
                     </div><br /><br /><br /><br />
                     {/* timeline */}
-                    <div className="prop-content1" ref={TimelineGroupRef}>
+                    <div className="prop-content1-timeline" ref={TimelineGroupRef}>
                         <h3>Timeline</h3>
-                        <span className="prop-quest">When are you planning to make your home purchase?</span><br />
+                        <span className="prop-quest-subheader">When are you planning to make your home purchase?</span>
                         <div className="prop-info-btn-group-timeline">
                             <button
                                 className={`prop-btn ${timelinequest1 === 'Immediately: I have a signed purchase agreement' ? 'active' : ''}`}
@@ -337,7 +337,7 @@ const BuyAHomeComponent = () => {
                                 I dont know
                             </button>
                         </div>
-                        <div className="prop-content2">
+                        <div className="prop-content32">
                             <br />
                             <span className="prop-quest">Do you currently own a home?</span><br />
                             <div className="prop-info-btn-group1">
@@ -361,7 +361,7 @@ const BuyAHomeComponent = () => {
                                 </button>
                             </div>
                         </div>
-                        <div className="prop-content4">
+                        <div className="prop-content41">
                             <br />
                             <span className="prop-quest">Do you have a real estate agent?</span><br />
                             <div className="prop-info-btn-group3">
@@ -449,7 +449,7 @@ const BuyAHomeComponent = () => {
                                 </button>
                             </div>
                         </div><br /><br />
-                        <div className="prop-content3">
+                        {/* <div className="prop-content3">
                             <br />
                             <span className="prop-quest">What is your current employment status?</span><br />
                             <div className="prop-info-btn-group2">
@@ -478,8 +478,8 @@ const BuyAHomeComponent = () => {
                                     Not employed
                                 </button>
                             </div>
-                        </div><br /><br />
-                        <div className="prop-content2">
+                        </div><br /><br /> */}
+                        <div className="prop-content52">
                             <br />
                             <span className="prop-quest">What is your current employment status?</span><br />
                             <div className="prop-info-btn-group1">

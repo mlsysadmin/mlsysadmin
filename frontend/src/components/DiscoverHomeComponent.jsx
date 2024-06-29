@@ -119,7 +119,7 @@ const DiscoverHomeComponent = () => {
                 <div className="mortgage-calc-cont">
                     <div className="mortgage-cont1">
                         <div className="mortrange">
-                            <div className="mortgage-title">Mortgage Calculator</div>
+                            <div className="mortgage-title-mort">Mortgage Calculator</div>
                             <div className="range-group">
                                 <div className="home-price-frame">
                                     <div className="home-price-frame-title">Home price</div>
@@ -214,7 +214,7 @@ const DiscoverHomeComponent = () => {
                                         strokeColor="#ff2800"
                                         trailColor="#d900002b"
                                         format={(percent) => (
-                                            <div style={{ fontSize: '16px', fontWeight: 'bold' }}>
+                                            <div style={{ fontSize: '16px', fontWeight: 'bold' }} className="montly-pay-cal">
                                                 PHP 200  <br />per month
                                             </div>
 
@@ -222,7 +222,8 @@ const DiscoverHomeComponent = () => {
                                         gapDegree={10}
                                         gapPosition="bottom"
                                     />
-                                    <div className="principal">
+                                </div>
+                                <div className="principal">
                                         <div className="content-info-mortgage">
                                             <div className="payment-breakdown">
                                                 <div className="radio-circle" style={{ backgroundColor: 'rgba(140, 144, 148, 0.62)' }} />
@@ -253,8 +254,6 @@ const DiscoverHomeComponent = () => {
                                             </div>
                                         </div>
                                     </div>
-
-                                </div>
                             </div>
                         </div>
                     </div>

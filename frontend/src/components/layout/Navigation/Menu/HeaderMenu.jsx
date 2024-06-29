@@ -16,23 +16,6 @@ const HeaderMenu = () => {
     const [otherServicesPopUpOpen, setotherServicesPopUpOpen] = useState(false);
 
     const navigate = useNavigate();
-
-    // useEffect(() => {
-    //     const setTogglePopoverOutside = (event) => {
-    //     //   if (modal) {
-    //         const classNameBtn = event.target.className === "ant-popover-open";
-      
-    //         setrentPopUpOpen(!classNameBtn);
-    //     //   }
-    //     };
-    
-    //     window.addEventListener("click", setTogglePopoverOutside);
-    
-    //     return () => {
-    //       window.removeEventListener("click", setTogglePopoverOutside);
-    //     };
-    //   }, []);
-
     const handleMenuOnClick = (menu) => {
         console.log(menu);
         if (menu.key === "Rent") {
