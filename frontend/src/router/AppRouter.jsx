@@ -5,6 +5,7 @@ import NewPage from '../pages/New.page'
 import Dashboard from '../pages/Dashboard.page';
 import { 
     ListingPage,
+    ListingFormPage,
     HouseForRentPage, 
     DiscoverHomePage, 
     BuyAHomePage, 
@@ -84,6 +85,10 @@ const Routes = [
             {
                 path: "/listing",
                 element: <ListingPage/>
+            },
+            {
+                path: "/listing-form",
+                element: <ListingFormPage/>
             }
         ]
     }

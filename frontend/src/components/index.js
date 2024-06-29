@@ -1,4 +1,5 @@
-import { ListingForm } from "./seller-broker/ListingForm";
+import { ListingForm } from "./ListingForm";
+import SellerListingForm from "./SellerListingForm";
 
 import PropertiesForRent from "./custom/Custom.PropertiesPagination";
 import FooterComponent from "./layout/FooterComponent";
@@ -35,6 +36,7 @@ import SellComponent from "./SellComponent";
 
 export{
     ListingForm,
+    SellerListingForm,
     NewPageComponent,
     PropertiesForRent,
     FooterComponent,

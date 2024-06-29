@@ -10,9 +10,14 @@ import SellPage from "./Sell.page";
 import LoanCalculatorPage from "./LoanCalculator.page";
 import RentPage from "./Rent.page";
 import ContactUsPage from "./ContactUs.page";
+import ListingPage from "./ListingPage";
+import ListingFormPage from "./SellerListingForm.page";
+
 
 
 export {
+    ListingPage,
+    ListingFormPage,
     MainOutlet,
     Dashboard,
     HouseForRentPage,

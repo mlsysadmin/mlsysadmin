@@ -13,7 +13,6 @@ const SellComponent = () => {
   };
   return (
     <div className="sell">
-      <MainLayout/>
       <div className="sell-container">
         <div className="sell-contents">
           <div className="first-content-sell">

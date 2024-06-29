@@ -1,45 +1,16 @@
 import React, { useState } from "react";
-import Navigation from "../layout/NavigationComponent";
-
 import { WarningOutlined } from "@ant-design/icons";
-import PropIdLogo from "../../assets/icons/PropertyId/PropIdLogo";
-import floorlogo from "../../assets/images/floorlogo.png";
-import SearchIcon from "../../assets/icons/SearchIcon/SearchIcon";
+import PropIdLogo from "../assets/icons/PropertyId/PropIdLogo";
+import floorlogo from "../assets/images/floorlogo.png";
+import SearchIcon from "../assets/icons/SearchIcon/SearchIcon";
+import ListingSteps from "./layout/ListingSteps";
+import ListingBanner from "./layout/ListingBanner";
+import BedsInputSlider from "./Slider/BedSlider";
+import ParkingInputSlider from "./Slider/ParkingSlider";
+import BathroomInputSlider from "./Slider/BathroomsSlider";
+import NoOfFloorsInputSlider from "./Slider/NoOfFloors";
+import "../styles/listing-form.css";
 
-import ListingSteps from "../layout/ListingSteps";
-import ListingBanner from "../layout/ListingBanner";
-
-import BedsInputSlider from "../Slider/BedSlider";
-import ParkingInputSlider from "../Slider/ParkingSlider";
-import BathroomInputSlider from "../Slider/BathroomsSlider";
-import NoOfFloorsInputSlider from "../Slider/NoOfFloors";
-
-import "../../styles/listing-form.css";
-
-// export default function ColorTabs() {
-//   const [value, setValue] = React.useState('one');
-
-//   const handleChange = (event, newValue) => {
-//     setValue(newValue);
-//   };
-
-//   return (
-//     <Box className="tabs" sx={{ width: '100%' }}>
-//       <p>Commercial</p>
-//       <Tabs
-//         value={value}
-//         onChange={handleChange}
-//         textColor="secondary"
-//         indicatorColor="secondary"
-//         aria-label="secondary tabs example"
-//       >
-//         <Tab value="one" label="Item One" />
-//         <Tab value="two" label="Item Two" />
-//         <Tab value="three" label="Item Three" />
-//       </Tabs>
-//     </Box>
-//   );
-// }
 
 function ListingDetailsForm() {
   const [selectedPropertyTab, setSelectedPropertyTab] = useState(null);
@@ -65,13 +36,13 @@ function ListingDetailsForm() {
 
   return (
     <div className="listing-form-application">
-      <div className="property-details">
-        <div className="property-details-info">
+      <div className="listing-property-details">
+        <div className="listing-property-details-info">
           <b className="b">Property Details</b>
         </div>
-        <div className="property-details-tabs">
-          <div className="property-type">
-            <div className="property-details-label">
+        <div className="listing-property-details-tabs">
+          <div className="listing-property-type">
+            <div className="listing-property-details-label">
               <div className="label"> Property Type </div>
             </div>
 
@@ -141,8 +112,8 @@ function ListingDetailsForm() {
             </div>
           </div>
 
-          <div className="listing-type">
-            <div className="listing-details-label">
+          <div className="listing-listing-type">
+            <div className="listing-listing-details-label">
               <div className="label"> Listing Type </div>
             </div>
 
@@ -165,15 +136,15 @@ function ListingDetailsForm() {
                 </div>
               </div>
 
-              <div className="note">
+              <div className="listing-note">
                 <p>
                   To help home buyers better, we only accept these 3 types of
                   listing.
                 </p>
               </div>
 
-              <div className="reminders">
-                <div className="reminders-label">
+              <div className="listing-reminders">
+                <div className="listing-reminders-label">
                   <WarningOutlined className="warning-icon" />
                   <b>A few reminders when posting a unit.</b>
                 </div>
@@ -200,14 +171,15 @@ function ListingDetailsForm() {
         </div>
       </div>
 
-      <div className="unit-details">
-        <div className="unit-details-label">Unit Details</div>
+      <div className="listing-unit-details">
+        <div className="listing-unit-details-label">Unit Details</div>
 
-        <div className="unit-details-div">
-          <div className="unit-details-left">
+        <div className="listing-unit-details-div">
+          <div className="listing-unit-details-left">
+            
             <div className="form-group">
               <div className="text-wrapper-37">Selling Price</div>
-              <div className="input-group">
+              <div className="listing-unit-input-group">
                 <label className="text-wrapper-38" htmlFor="selling-price">
                   What is the selling price of the unit?
                 </label>
@@ -222,7 +194,7 @@ function ListingDetailsForm() {
 
             <div className="form-group">
               <div className="text-wrapper-37">Furnishing</div>
-              <div className="input-group">
+              <div className="listing-unit-input-group">
                 <label className="text-wrapper-38" htmlFor="furnish-tabs">
                   Is the unit fully furnished?
                 </label>
@@ -248,12 +220,12 @@ function ListingDetailsForm() {
 
             <div className="form-group">
               <div className="text-wrapper-37">Beds</div>
-              <div className="input-group">
+              <div className="listing-unit-input-group">
                 <label className="text-wrapper-38" htmlFor="beds">
                   How many beds?
                 </label>
 
-                <div className="beds-input-group">
+                <div className="beds-listing-unit-input-group">
                   <div className="overlap-10">
                     <div className="beds-number">
                       <BedsInputSlider />
@@ -271,12 +243,12 @@ function ListingDetailsForm() {
 
             <div className="form-group">
               <div className="text-wrapper-37">Parking</div>
-              <div className="input-group">
+              <div className="listing-unit-input-group">
                 <label className="text-wrapper-38" htmlFor="beds">
                   How many parking slots?
                 </label>
 
-                <div className="parking-input-group">
+                <div className="parking-listing-unit-input-group">
                   <div className="overlap-10">
                     <div className="parking-number">
                       <ParkingInputSlider />
@@ -294,7 +266,7 @@ function ListingDetailsForm() {
 
             <div className="form-group">
               <div className="text-wrapper-37">Floor Area</div>
-              <div className="input-group">
+              <div className="listing-unit-input-group">
                 <label className="text-wrapper-38" htmlFor="floor-logo">
                   What is the floor area of the unit?
                 </label>
@@ -320,7 +292,7 @@ function ListingDetailsForm() {
 
             <div className="form-group">
               <div className="text-wrapper-37">Price per sqm</div>
-              <div className="input-group">
+              <div className="listing-unit-input-group">
                 <label className="text-wrapper-38" htmlFor="pricepersqm">
                   What is the selling price of per sqm?
                 </label>
@@ -339,13 +311,13 @@ function ListingDetailsForm() {
           </div>
 
           {/* right */}
-          <div className="unit-details-right">
+          <div className="listing-unit-details-right">
             <div className="form-group">
               <div className="text-wrapper-37">
                 {" "}
                 Discounted <br /> Selling Price
               </div>
-              <div className="input-group">
+              <div className="listing-unit-input-group">
                 <label className="text-wrapper-38" htmlFor="disc-selling-price">
                   What is the discounted selling price of the unit?
                 </label>
@@ -364,7 +336,7 @@ function ListingDetailsForm() {
 
             <div className="form-group">
               <div className="text-wrapper-37">Classification</div>
-              <div className="input-group">
+              <div className="listing-unit-input-group">
                 <label className="text-wrapper-38" htmlFor="classification">
                   Is the unit fully furnished?
                 </label>
@@ -390,12 +362,12 @@ function ListingDetailsForm() {
 
             <div className="form-group">
               <div className="text-wrapper-37">Bathrooms</div>
-              <div className="input-group">
+              <div className="listing-unit-input-group">
                 <label className="text-wrapper-38" htmlFor="bathrooms">
                   How many bathrooms?
                 </label>
 
-                <div className="bathroom-input-group">
+                <div className="bathroom-listing-unit-input-group">
                   <div className="overlap-10">
                     <div className="bathroom-number">
                       <BathroomInputSlider />
@@ -413,12 +385,12 @@ function ListingDetailsForm() {
 
             <div className="form-group">
               <div className="text-wrapper-37">No. of Floors</div>
-              <div className="input-group">
+              <div className="listing-unit-input-group">
                 <label className="text-wrapper-38" htmlFor="nofloors">
                   How many floors?
                 </label>
 
-                <div className="nofloors-input-group">
+                <div className="nofloors-listing-unit-input-group">
                   <div className="overlap-10">
                     <div className="nofloors-number">
                       <NoOfFloorsInputSlider />
@@ -436,7 +408,7 @@ function ListingDetailsForm() {
 
             <div className="form-group">
               <div className="text-wrapper-37">Lot Area</div>
-              <div className="input-group">
+              <div className="listing-unit-input-group">
                 <label className="text-wrapper-38" htmlFor="lot-area">
                   What is the lot area of the unit?
                 </label>
@@ -462,7 +434,7 @@ function ListingDetailsForm() {
 
             <div className="form-group">
               <div className="text-wrapper-37">Property ID Number</div>
-              <div className="input-group">
+              <div className="listing-unit-input-group">
                 <label className="text-wrapper-38" htmlFor="lot-area">
                   What is the lot area of the unit?
                 </label>
@@ -572,7 +544,6 @@ export const ListingForm = () => {
   return (
     <div>
       <div className="nav">
-        <Navigation />
       </div>
 
       <div>

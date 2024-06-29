@@ -90,7 +90,6 @@ export const NewPageComponent = () => {
   const totalPages = Math.ceil(cardData.length / cardsPerPage);
   return (
     <div className="newpage">
-      <MainLayout />
       <div className="newpage-container">
         <div className="newpage-contents">
           <ListingSearch/>
