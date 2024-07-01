@@ -116,7 +116,7 @@
   font-size: 20px;
 }
 
-property-information-container .prop-content6{
+.property-information-container .prop-content6{
   width: 80%;
 }
 
@@ -186,9 +186,10 @@ content: "";
   height: 50px;
   font-size: 16px;
 }
-.prop-content2,.prop-content3, .prop-content4,.prop-content5,.prop-content51{
-  margin-top: -70px;
+.prop-content2,.prop-content5,.prop-content51{
+  margin-top: -50px;
 }
+
 .property-information-container .prop-info-btn-group1 {
   width: 100%;
   display: flex;
@@ -248,5 +249,261 @@ content: "";
 .prop-content51 .prop-quest{
   margin: 0px 0px 20px 0px;
 }
+.prop-content-looking .prop-info-btn-group-details-input input{
+width: 100%;
+}
+.prop-content-wrap-up .prop-content3{
+  margin: 0px;
+}
+.prop-content2-wrap-up .prop-info-wrap-up-input input{
+  width: 100%;
+}
+.wrap-up-inf .prop-content-wrap-up-2{
+  display: flex;
+  flex-direction: column;
+}
+.property-information-container .prop-info-wrap-up-input2{
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+.property-information-container .prop-info-wrap-up-input2 input{
+  width: 100%;
+}
+.prop-content3 .prop-info-wrap-up-input input{
+  width: 100%;
+}
+.prop-content4 .prop-info-wrap-up-input input{
+  width: 100%;
+}
+}
+@media screen and (min-width:360px) and (max-width:480px){
+  .property-information-container .prop-content {
+    width: 80%;
+    margin-top:50px;
+}
+.property-information-container h3 {
+  font-size: 22px;
+
+}
+.property-information-container .prop-quest {
+  font-size: 14px;
+}
+.property-information-container .prop-info-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 0px;
+}
+.property-information-container .prop-btn {
+  margin: 10px;
+  width: 290px;
+  height: 50px;
+  font-size: 16px;
+}
+.prop-content2,.prop-content5,.prop-content51{
+  margin-top: -50px;
 }
 
+.property-information-container .prop-info-btn-group1 {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.property-information-container .prop-quest {
+  font-size: 16px;
+}
+.property-information-container .prop-btn {
+  width: 290px;
+  height: 50px;
+  font-size: 16px;
+}
+.property-information-container .prop-info-btn-group3 {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap
+}
+.property-information-container .prop-info-btn-group-timeline {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 0px;
+  margin: 10px 0px 0px 0px;
+}
+.prop-content1-timeline{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap:10px
+}
+.prop-info-btn-group-timeline .prop-btn{
+  /* width: 330px; */
+  height: 60px;
+  font-size: 15px;
+}
+.prop-quest-subheader{
+  font-size: 15px;
+}
+.property-information-container .prop-content32 .prop-info-btn-group1,
+.prop-content41 .prop-info-btn-group3 {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 15px;
+  justify-content: center;
+}
+.property-information-container .prop-info-btn-group-details {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 0px;
+  margin: 30px 10px 10px 0px;
+}
+.prop-content51 .prop-quest{
+  margin: 0px 0px 20px 0px;
+}
+.prop-content-looking .prop-info-btn-group-details-input input{
+width: 90%;
+}
+.prop-content-wrap-up .prop-content3{
+  margin: 0px;
+}
+.prop-content2-wrap-up .prop-info-wrap-up-input input{
+  width: 90%;
+}
+.wrap-up-inf .prop-content-wrap-up-2{
+  display: flex;
+  flex-direction: column;
+}
+.property-information-container .prop-info-wrap-up-input2{
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+.property-information-container .prop-info-wrap-up-input2 input{
+  width: 90%;
+}
+.prop-content3 .prop-info-wrap-up-input input{
+  width: 90%;
+}
+.prop-content4 .prop-info-wrap-up-input input{
+  width: 90%;
+}
+}
+@media screen and (min-width:481px) and (max-width:768px){
+  .property-information-container .prop-info-btn-group1 {
+    width: 100%;
+    /* margin: 20px 0px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; */
+    gap: 20px;
+}
+.property-information-container .prop-info-btn-group3 {
+  width: 100%;
+  margin: 20px 0px 0px 0px;
+  display: flex;
+    flex-direction: row;
+}
+.property-information-container .prop-info-btn-group-timeline {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  gap: 0px;
+  margin: 30px 0px 0px 0px;
+}
+.property-information-container .prop-info-wrap-up-input input{
+  width: 90%;
+}
+.property-information-container .prop-info-wrap-up-input2 input{
+  width: 90%;
+}
+}
+@media screen and (min-width:469px) and (max-width:1024px){
+  .property-information-container .prop-info-btn-group1 {
+    width: 100%;
+    /* margin: 20px 0px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; */
+    gap: 20px;
+}
+.property-information-container .prop-info-btn-group3 {
+  width: 100%;
+  margin: 20px 0px 0px 0px;
+  display: flex;
+    flex-direction: row;
+}
+.property-information-container .prop-info-btn-group-timeline {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  gap: 0px;
+  margin: 30px 0px 0px 0px;
+}
+.property-information-container .prop-info-wrap-up-input2 input
+,.property-information-container .prop-info-btn-group-details-input input,
+.property-information-container .prop-info-wrap-up-input input{
+  width: 80%;
+}
+}
+@media screen and (min-width:1025px) and (max-width:1200px){
+  .property-information-container .prop-info-btn-group1 {
+    width: 100%;
+    /* margin: 20px 0px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; */
+    gap: 20px;
+}
+.property-information-container .prop-info-btn-group3 {
+  width: 100%;
+  margin: 20px 0px 0px 0px;
+  display: flex;
+    flex-direction: row;
+}
+.property-information-container .prop-info-btn-group-timeline {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  gap: 0px;
+  margin: 30px 0px 0px 0px;
+}
+.property-information-container .prop-info-wrap-up-input2 input
+,.property-information-container .prop-info-btn-group-details-input input,
+.property-information-container .prop-info-wrap-up-input input{
+  width: 70%;
+}
+}
+@media screen and (min-width:1201px) and (max-width:1400px){
+  .property-information-container .prop-info-btn-group1 {
+    width: 100%;
+    /* margin: 20px 0px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; */
+    gap: 20px;
+}
+.property-information-container .prop-info-btn-group3 {
+  width: 100%;
+  margin: 20px 0px 0px 0px;
+  display: flex;
+    flex-direction: row;
+}
+.property-information-container .prop-info-btn-group-timeline {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  gap: 0px;
+  margin: 30px 0px 0px 0px;
+}
+.property-information-container .prop-info-wrap-up-input2 input
+,.property-information-container .prop-info-btn-group-details-input input,
+.property-information-container .prop-info-wrap-up-input input{
+  width: 50%;
+}
+}

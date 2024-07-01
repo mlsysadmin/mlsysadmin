@@ -5,7 +5,7 @@ const WrapUpDetails = () => {
     return (
         <div className="wrap-up-inf">
             <h3>Wrap Up</h3>
-            <div className="prop-content2">
+            <div className="prop-content2-wrap-up">
                 <br />
                 <span className="prop-quest">What is your email address?</span><br />
                 <span className="protect-tagline">Your information is protected by SSL encryption.</span>
@@ -14,7 +14,7 @@ const WrapUpDetails = () => {
                     ></input>
                 </div>
             </div>
-            <div className="prop-content6">
+            <div className="prop-content-wrap-up-2">
                 <br />
                 <span className="prop-quest">What is your name?</span><br />
                 <span className="protect-tagline">Your information is protected by SSL encryption.</span>

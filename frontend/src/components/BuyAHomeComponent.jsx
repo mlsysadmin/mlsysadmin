@@ -587,7 +587,7 @@ const BuyAHomeComponent = () => {
                                 </button>
                             </div>
                         </div><br /><br />
-                        <div className="prop-content2">
+                        <div className="prop-content-looking">
                             <br />
                             <span className="prop-quest">Where are you looking to buy?</span><br />
                             <span>Enter the city or zip code of the area where you are home shopping</span>
@@ -598,7 +598,7 @@ const BuyAHomeComponent = () => {
                         </div>
                     </div><br /><br /><br /><br />
                     {/* Wrap-up */}
-                    <div className="prop-content1" ref={WrapUpGroupRef}>
+                    <div className="prop-content-wrap-up" ref={WrapUpGroupRef}>
                         <WrapUpDetails />
                         <div className="prop-content3">
                             <br />
