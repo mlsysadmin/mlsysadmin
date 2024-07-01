@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/dashboard.css';
 import { Button, Card, Col, Image, Menu, Row, Space, Tag } from 'antd';
+import { CaretDownOutlined, SearchOutlined } from '@ant-design/icons';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import '../styles/dashboard.css';
+
 import RoundBtn from './custom/buttons/RoundBtn.custom';
 import RoundInput from './custom/inputs/RoundInput.custom';
 import RoundSelect from './custom/selects/RoundSelect.custom';
-import { CaretDownOutlined, SearchOutlined } from '@ant-design/icons';
 import CardListingComponent from './CardListingComponent';
-import { MockData } from '../utils/ListingMockData';
+import FeaturedPropertiesComponent from './FeaturedPropertiesComponent';
+import RatingCarouselComponent from './RatingCarouselComponent';
 import SemiRoundBtn from './custom/buttons/SemiRoundBtn.custom';
+
+import { MockData } from '../utils/ListingMockData';
 import CardCategory from '../utils/CardCategoryDashboard.utils';
 import FuenteCircle from '../asset/banners/fuente-circle.png';
-import FeaturedPropertiesComponent from './FeaturedPropertiesComponent';
+import AdvanceSearch from '../asset/icons/advanceSearch.png';
+import Search from '../asset/icons/Search.png';
 
 const DashboardComponent = () => {
 
@@ -155,7 +160,8 @@ const DashboardComponent = () => {
                       className='advanced round-btn'
                       icon={
                         <>
-                          <SearchOutlined className='search-icon' style={{ fontWeight: '900' }} />
+                          <img src={AdvanceSearch} className='search-icon' style={{ fontWeight: '900' }} width={27}/>
+                          {/* <SearchOutlined className='search-icon' style={{ fontWeight: '900' }} /> */}
                           {/* <PlusOutlined className='plus-icon' /> */}
                         </>
                       }
@@ -163,7 +169,7 @@ const DashboardComponent = () => {
                     <RoundBtn
                       label={'Search'}
                       className='search round-btn'
-                      icon={<SearchOutlined className='search-icon' />}
+                      icon={<img src={Search} className='search-icon' style={{ fontWeight: '900' }} width={14}/>}
                       classname="card-item" />
                   </Row>
                 </Row>
@@ -277,18 +283,22 @@ const DashboardComponent = () => {
         <div className="discover--section-4">
           <div className="card--brokerage-featured">
             <div className='featured-container'>
-                <div className="featured--title">
-                  <h3>Featured Properties</h3>
-                </div>
-              <div className="featured--content">
-                <FeaturedPropertiesComponent/>
+              <div className="featured--title">
+                <h3>Featured Properties</h3>
               </div>
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
-              <br />
+              <div className="featured--content">
+                <FeaturedPropertiesComponent />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="ratings">
+          <div className='rating-container'>
+            <div className="rating--title">
+              <h3>What Our Clients are Saying?</h3>
+            </div>
+            <div className="rating--content">
+              <RatingCarouselComponent/>
             </div>
           </div>
         </div>
