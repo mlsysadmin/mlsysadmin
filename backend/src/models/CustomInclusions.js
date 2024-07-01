@@ -5,38 +5,26 @@ const {
 
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
-const Save = Sequelize.define("saves", {
-  save_id: {
+const CustomInclusions = Sequelize.define("custom_inclusions", {
+  custom_inclusion_id: {
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
     type: DataTypes.INTEGER.UNSIGNED
   },
-  user_id: {
+  inclusion_name: {
       allowNull: false,
-      type: DataTypes.INTEGER.UNSIGNED,
-      references: {
-        model: {
-          model: "User",
-          tableName: 'users',
-        },
-        key: 'user_id',
+      type: DataTypes.STRING,
+      get(){
+        return JSON.parse(this.getDataValue('feature_name'));
       },
+      set (name) {
+        this.setDataValue('feature_name', JSON.stringify(name));
+      }
   },
-  master_property_id: {
-    allowNull: false,
-    type: DataTypes.INTEGER.UNSIGNED,
-    references: {
-      model: {
-        model: "MasterPropertyList",
-        tableName: 'master_property_lists',
-      },
-      key: 'master_property_id',
-    },
-  },
-  liked_at: {
-    allowNull: false,
+  createdAt: {
     type: DataTypes.DATE,
+    allowNull: false,
     defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
   },
   updatedAt: {
@@ -50,8 +38,8 @@ const Save = Sequelize.define("saves", {
     defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
   }
 },{
-  modelName: 'Save',
+  modelName: 'CustomInclusions',
   timestamps: false,
 })
 
-module.exports = Save;
+module.exports = CustomInclusions;

@@ -10,15 +10,15 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
     await queryInterface.createTable('highlights', {
-      id: {
+      highlight_id: {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER.UNSIGNED
       },
       user_id: {
           allowNull: false,
-          type: Sequelize.INTEGER,
+          type: Sequelize.INTEGER.UNSIGNED,
           references: {
             model: {
               model: "User",
@@ -29,13 +29,13 @@ module.exports = {
       },
       master_property_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "MasterPropertyList",
             tableName: 'master_property_lists',
           },
-          key: 'id',
+          key: 'master_property_id',
         },
       },
       highlighted_at: {
@@ -47,11 +47,6 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: true,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
-      },
-      deletedAt: {
-        type: Sequelize.DATE,
-        allowNull: true,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     })
   },

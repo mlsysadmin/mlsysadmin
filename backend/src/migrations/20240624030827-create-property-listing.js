@@ -10,19 +10,16 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
     await queryInterface.createTable('property_listings', {
-      id: {
+      property_listing_id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      property_id: {
-        allowNull: false,
-        type: Sequelize.STRING,
-        unique: true,
+        type: Sequelize.INTEGER.UNSIGNED,
+        autoIncrement: true
+    
       },
       seller_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "User",
@@ -33,80 +30,77 @@ module.exports = {
       },
       property_type_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "PropertyTypes",
             tableName: 'property_types',
           },
-          key: 'id',
+          key: 'property_type_id',
         },
       },
-      listing_type: {
+      listing_type_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "ListingTypes",
             tableName: 'listing_types',
           },
-          key: 'id',
+          key: 'listing_type_id',
         },
       },
-      unit_details_id: {
+      unit_detail_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "UnitDetails",
             tableName: 'unit_details',
           },
-          key: 'id',
+          key: 'unit_detail_id',
         },
       },
       location_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "Location",
             tableName: 'locations',
           },
-          key: 'id',
+          key: 'location_id',
         },
       },
-      description_id: {
+      amenity_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
-            model: "Description",
-            tableName: 'descriptions',
+            model: "Amenities",
+            tableName: 'amenities',
           },
-          key: 'id',
+          key: 'amenity_id',
         },
       },
-      features_id: {
+      property_photos_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            model: "PropertyFeaturesAndAmenities",
-            tableName: 'property_features_and_amenities',
-          },
-          key: 'id',
-        },
-      },
-      photos_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "PropertyPhoto",
             tableName: 'property_photos',
           },
-          key: 'photos_id',
+          key: 'property_photos_id',
         },
+      },
+      title: {
+        allowNull: false,
+        type: Sequelize.STRING(100)
+      },
+      description: {
+        allowNull: false,
+        type: Sequelize.TEXT
       },
       listing_status: {
         allowNull: false,
@@ -117,10 +111,6 @@ module.exports = {
         allowNull: false
       },
       updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: true
-      },
-      deletedAt: {
         type: Sequelize.DATE,
         allowNull: true
       }

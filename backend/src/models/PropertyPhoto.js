@@ -6,15 +6,10 @@ const {
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
 const PropertyPhoto = Sequelize.define("property_photos", {
-  photos_id: {
+  property_photos_id: {
     allowNull: false,
     primaryKey: true,
-    type: DataTypes.INTEGER
-  },
-  property_listing_id: {
-    allowNull: false,
-    // primaryKey: true,
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER.UNSIGNED
   },
   photos: {
     allowNull: false,
@@ -25,18 +20,6 @@ const PropertyPhoto = Sequelize.define("property_photos", {
     allowNull: false,
     type: DataTypes.DATE,
     defaultValue: Sequelize.literal('CURRENT_TIMESTAMP()')
-  },
-  createdAt: {
-    type: DataTypes.DATE,
-    allowNull: false
-  },
-  updatedAt: {
-    type: DataTypes.DATE,
-    allowNull: true
-  },
-  deletedAt: {
-    type: DataTypes.DATE,
-    allowNull: true
   }
 }, {
   modelName: 'PropertyPhoto',

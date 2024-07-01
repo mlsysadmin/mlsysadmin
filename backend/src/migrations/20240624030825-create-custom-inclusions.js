@@ -10,14 +10,14 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
 
-    await queryInterface.createTable('custom_amenities', {
-      custom_amenity_id: {
+    await queryInterface.createTable('custom_inclusions', { 
+      custom_inclusion_id: {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER.UNSIGNED
       },
-      feature_name: {
+      inclusion_name: {
           allowNull: false,
           type: Sequelize.STRING,
           get(){
@@ -42,7 +42,7 @@ module.exports = {
         allowNull: true,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-    })
+     });
   },
 
   async down (queryInterface, Sequelize) {
@@ -52,7 +52,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable('custom_amenities');
-
+    await queryInterface.dropTable('custom_inclusions');
   }
 };

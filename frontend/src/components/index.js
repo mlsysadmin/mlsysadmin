@@ -1,7 +1,7 @@
 import DashboardComponent from "./DashboardComponent";
 import HeaderContainer from "./layout/Navigation/HeaderContainer";
 import SideBar from "./layout/Navigation/SideBar";
-import MainLayout from "./layout/Layout.component";
+import MainLayout from "./layout/layout.component";
 
 export {
     DashboardComponent,

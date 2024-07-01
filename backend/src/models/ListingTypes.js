@@ -6,11 +6,11 @@ const {
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
 const ListingTypes = Sequelize.define("listing_types", {
-  id: {
+  listing_type_id: {
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER.UNSIGNED
   },
   listing_type: {
       allowNull: false,

@@ -6,19 +6,16 @@ const {
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
 const PropertyListing = Sequelize.define("property_listings", {
-  id: {
+  property_listing_id: {
     allowNull: false,
     primaryKey: true,
-    type: DataTypes.STRING
-  },
-  property_id: {
-    allowNull: false,
-    type: DataTypes.STRING,
-    unique: true,
+    type: DataTypes.INTEGER.UNSIGNED,
+    autoIncrement: true
+
   },
   seller_id: {
     allowNull: false,
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
         model: "User",
@@ -29,80 +26,77 @@ const PropertyListing = Sequelize.define("property_listings", {
   },
   property_type_id: {
     allowNull: false,
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
         model: "PropertyTypes",
         tableName: 'property_types',
       },
-      key: 'id',
+      key: 'property_type_id',
     },
   },
-  listing_type: {
+  listing_type_id: {
     allowNull: false,
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
         model: "ListingTypes",
         tableName: 'listing_types',
       },
-      key: 'id',
+      key: 'listing_type_id',
     },
   },
-  unit_details_id: {
+  unit_detail_id: {
     allowNull: false,
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
         model: "UnitDetails",
         tableName: 'unit_details',
       },
-      key: 'id',
+      key: 'unit_detail_id',
     },
   },
   location_id: {
     allowNull: false,
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
         model: "Location",
         tableName: 'locations',
       },
-      key: 'id',
+      key: 'location_id',
     },
   },
-  description_id: {
+  amenity_id: {
     allowNull: false,
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
-        model: "Description",
-        tableName: 'descriptions',
+        model: "Amenities",
+        tableName: 'amenities',
       },
-      key: 'id',
+      key: 'amenity_id',
     },
   },
-  features_id: {
+  property_photos_id: {
     allowNull: false,
-    type: DataTypes.INTEGER,
-    references: {
-      model: {
-        model: "PropertyFeaturesAndAmenities",
-        tableName: 'property_features_and_amenities',
-      },
-      key: 'id',
-    },
-  },
-  photos_id: {
-    allowNull: false,
-    type: DataTypes.INTEGER,
+    type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
         model: "PropertyPhoto",
         tableName: 'property_photos',
       },
-      key: 'photos_id',
+      key: 'property_photos_id',
     },
+  },
+  title: {
+    allowNull: false,
+    type: DataTypes.STRING(100)
+  },
+  description: {
+    allowNull: false,
+    type: DataTypes.TEXT
   },
   listing_status: {
     allowNull: false,
@@ -113,10 +107,6 @@ const PropertyListing = Sequelize.define("property_listings", {
     allowNull: false
   },
   updatedAt: {
-    type: DataTypes.DATE,
-    allowNull: true
-  },
-  deletedAt: {
     type: DataTypes.DATE,
     allowNull: true
   }

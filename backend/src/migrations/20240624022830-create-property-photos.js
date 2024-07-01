@@ -10,15 +10,10 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
     await queryInterface.createTable('property_photos', { 
-      photos_id: {
+      property_photos_id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      property_listing_id: {
-          allowNull: false,
-          // primaryKey: true,
-          type: Sequelize.INTEGER
+        type: Sequelize.INTEGER.UNSIGNED
       },
       photos: {
         allowNull: false,
@@ -29,18 +24,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP()')
-      },
-      createdAt: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
-      updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: true
-      },
-      deletedAt: {
-        type: Sequelize.DATE,
-        allowNull: true
       }
      });
   },

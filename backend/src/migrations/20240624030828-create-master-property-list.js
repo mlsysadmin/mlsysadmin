@@ -10,25 +10,28 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
     await queryInterface.createTable("master_property_lists", {
-      id: {
+      master_property_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        unique: true,
+        // autoIncrement: true,
+        type: Sequelize.INTEGER.UNSIGNED
       },
-      listing_id: {
+      property_listing_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
+        unique: true,
         references: {
           model: {
             model: "PropertyListing",
             tableName: 'property_listings',
           },
-          key: 'id',
+          key: 'property_listing_id',
         },
       },
       seller_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "User",
@@ -39,7 +42,7 @@ module.exports = {
       },
       property_id: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(15),
         unique: true
       },
       listing_status: {

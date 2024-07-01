@@ -10,23 +10,27 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
     await queryInterface.createTable('locations', { 
-      id: {
+      location_id: {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER.UNSIGNED
       },
       subdivision: {
           allowNull: false,
-          type: Sequelize.STRING
+          type: Sequelize.STRING(60)
+      },
+      barangay: {
+        allowNull: false,
+        type: Sequelize.STRING(30)
       },
       city: {
         allowNull: false,
-        type: Sequelize.STRING(20)
+        type: Sequelize.STRING(30)
       },
       province: {
         allowNull: false,
-        type: Sequelize.STRING(20)
+        type: Sequelize.STRING(30)
       },
       postal_code: {
         allowNull: false,
@@ -35,15 +39,7 @@ module.exports = {
       map_location: {
         allowNull: false,
         type: Sequelize.STRING
-      },
-      createdAt: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
-      updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: true
-      },
+      }
      });
   },
 

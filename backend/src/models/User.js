@@ -22,7 +22,7 @@ const User = Sequelize.define("users", {
   user_id: {
     allowNull: false,
     primaryKey: true,
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER.UNSIGNED
   },
   ckyc_id: {
       allowNull: false,

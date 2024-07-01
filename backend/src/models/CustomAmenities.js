@@ -5,12 +5,12 @@ const {
 
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
-const CustomFeaturesAndAmenities = Sequelize.define("custom_features_and_amenities", {
-  id: {
+const CustomAmenities = Sequelize.define("custom_amenities", {
+  custom_amenity_id: {
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER.UNSIGNED
   },
   feature_name: {
       allowNull: false,
@@ -25,21 +25,21 @@ const CustomFeaturesAndAmenities = Sequelize.define("custom_features_and_ameniti
   createdAt: {
     type: DataTypes.DATE,
     allowNull: false,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)')
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
   },
   updatedAt: {
     type: DataTypes.DATE,
     allowNull: true,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)')
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
   },
   deletedAt: {
     type: DataTypes.DATE,
     allowNull: true,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)')
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
   }
 },{
-  modelName: 'CustomFeaturesAndAmenities',
+  modelName: 'CustomAmenities',
   timestamps: false,
 })
 
-module.exports = CustomFeaturesAndAmenities;
+module.exports = CustomAmenities;

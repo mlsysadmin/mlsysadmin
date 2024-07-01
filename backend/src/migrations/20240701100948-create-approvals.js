@@ -9,54 +9,42 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable('amenities', {
-      amenity_id: {
+    await queryInterface.createTable('approvals', {
+      approval_id: {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER.UNSIGNED
       },
-      indoor_features: {
+      level: {
         allowNull: false,
-        type: Sequelize.STRING,
-        get() {
-          return JSON.parse(this.getDataValue('indoor_features'));
-        },
-        set(indoor) {
-          this.setDataValue('indoor_features', JSON.stringify(indoor));
-        }
+        type: Sequelize.INTEGER.UNSIGNED
       },
-      outdoor_features: {
-        allowNull: false,
-        type: Sequelize.STRING,
-        get() {
-          return JSON.parse(this.getDataValue('outdoor_features'));
-        },
-        set(indoor) {
-          this.setDataValue('outdoor_features', JSON.stringify(indoor));
-        }
-      },
-      custom_amenity_id: {
+      property_listing_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
-            model: "CustomAmenities",
-            tableName: 'custom_amenities',
+            model: "PropertyListing",
+            tableName: 'property_listings',
           },
-          key: 'custom_amenity_id',
+          key: 'property_listing_id',
         },
       },
-      custom_inclusion_id: {
+      user_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
-            model: "CustomInclusions",
-            tableName: 'custom_inclusions',
+            model: "User",
+            tableName: 'users',
           },
-          key: 'custom_inclusion_id',
+          key: 'user_id',
         },
+      },
+      approval_status: {
+        allowNull: false,
+        type: Sequelize.ENUM('PENDING', 'APPROVED', 'DISAPPROVED'),
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -67,6 +55,11 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: true,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+      },
+      deletedAt: {
+        type: Sequelize.DATE,
+        allowNull: true,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
   },
@@ -78,6 +71,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable('amenities');
+    await queryInterface.dropTable('approvals');
   }
 };

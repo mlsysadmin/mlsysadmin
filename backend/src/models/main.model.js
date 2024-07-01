@@ -7,14 +7,15 @@ const MasterPropertyList = require('./MasterPropertyList');
 const Save = require('./Save');
 const PropertyViews = require('./PropertyViews');
 const SoldProperties = require('./SoldProperties');
-const PropertyFeaturesAndAmenities = require('./PropertyFeaturesAndAmenities');
-const CustomFeaturesAndAmenities = require('./CustomFeaturesAndAmenities');
+const PropertyFeaturesAndAmenities = require('./Amenities');
+const CustomFeaturesAndAmenities = require('./CustomAmenities');
 const PropertyTypes = require('./PropertyTypes');
 const ListingTypes = require('./ListingTypes');
 const UnitDetails = require('./UnitDetails');
 const Location = require('./Location');
 const Description = require('./Description');
 const PropertyPhoto = require('./PropertyPhoto');
+const Highlight = require('./HighLight');
 
 /** User Association **/ 
 User.hasOne(Role, {
@@ -44,7 +45,7 @@ PropertyTypes.hasOne(PropertyListing); // done
 PropertyListing.belongsTo(PropertyTypes, { foreignKey: 'property_type_id' }) // done
 
 ListingTypes.hasOne(PropertyListing); // done
-PropertyListing.belongsTo(ListingTypes, { foreignKey: 'listing_type' }) // done
+PropertyListing.belongsTo(ListingTypes, { foreignKey: 'listing_type_id' }) // done
 
 UnitDetails.hasOne(PropertyListing); // done
 PropertyListing.belongsTo(UnitDetails, { foreignKey: 'unit_details_id' }); //done
