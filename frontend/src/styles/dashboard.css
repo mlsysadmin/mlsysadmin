@@ -1,0 +1,500 @@
+#dashboard {
+    /* flex-direction: column; */
+    width: 100%;
+}
+
+#dashboard .banner {
+    /* background: linear-gradient(rgba(0, 0, 0, 0.7)), url('../asset/banners/dashboard-banner.png') !important; */
+    background: rgba(0, 0, 0, 0.496) url('../asset/banners/dashboard-banner.png') !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-blend-mode: darken !important;
+    height: 100vh;
+    /* height: 100%; */
+}
+
+#dashboard .banner .banner-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* margin: auto; */
+    padding: 0px 30px;
+    height: -webkit-fill-available;
+}
+
+#dashboard .banner .banner-content .ant-col {
+    margin: 10px auto;
+}
+
+#dashboard .banner .banner-title {
+    font-size: 35px;
+    text-align: center;
+    color: white;
+}
+
+#dashboard .banner .banner-tags .menu-tags {
+    background-color: transparent;
+    border-bottom: none;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#dashboard .banner .banner-tags .menu-tags li {
+    background: white;
+    margin: 6px;
+    border-radius: 30px;
+    line-height: 30px;
+    padding-inline: 13px;
+}
+
+#dashboard .banner .banner-tags .menu-tags li::after {
+    color: black;
+    border-bottom: none;
+}
+
+#dashboard .banner .banner-tags .menu-tags li.ant-menu-item-selected {
+    color: white;
+    background: var(--red);
+}
+
+#dashboard .banner .banner-content .banner-search {
+    background: #bbbcc184;
+    padding: 18px;
+    border-radius: 30px;
+}
+
+#dashboard .banner .banner-content .banner-search .ant-card {
+    border-radius: 15px;
+    width: 100% !important;
+}
+
+#dashboard .banner .banner-content .banner-search .card-item {
+    margin: 5px;
+}
+
+#dashboard .banner .banner-content .banner-search .card-item.field {
+    width: 140px;
+}
+
+#dashboard .banner .banner-content .banner-search .card-item.field .ant-select-selector,
+#dashboard .banner .banner-content .banner-search .card-item.field.ant-input {
+    border-radius: 32px !important;
+}
+
+#dashboard .banner .banner-content .banner-search .card-item.field .ant-select-selector:focus,
+#dashboard .banner .banner-content .banner-search .card-item.field.ant-input:focus,
+#dashboard .banner .banner-content .banner-search .card-item.field .ant-select-selector:hover,
+#dashboard .banner .banner-content .banner-search .card-item.field.ant-input:hover {
+    border-color: var(--red) !important;
+}
+
+#dashboard .banner .banner-content .banner-search .round-btn {
+    font-size: 12px;
+    font-weight: 600;
+    margin: 5px;
+}
+
+#dashboard .banner .banner-content .banner-search .advanced.round-btn {
+    background-color: var(--mute-red);
+    border: none;
+}
+
+#dashboard .banner .banner-content .banner-search .search.round-btn {
+    color: white;
+    background-color: var(--red);
+    margin: auto 5px;
+}
+
+#dashboard .banner .banner-content .banner-search .search.round-btn:hover,
+#dashboard .banner .banner-content .banner-search .advanced.round-btn:hover {
+    border-color: var(--red);
+}
+
+#dashboard .banner .banner-content .banner-search .advanced.round-btn:hover {
+    color: black;
+}
+
+#dashboard .banner .banner-content .banner-search .advanced.round-btn svg {
+    color: var(--red);
+}
+
+/* Section 2 Discover*/
+.dashboard .discover {
+    text-align: center;
+}
+
+.dashboard .discover .discover-content {
+    text-align: center;
+    justify-content: center;
+    /* flex-direction: column; */
+    margin: 90px auto 50px auto;
+}
+
+.dashboard .discover .discover-content .discover-section--title h2 {
+    font-size: 32px;
+}
+
+.dashboard .discover .discover-content .discover-section--title p {
+    font-size: 18px;
+    color: var(--mute-gray);
+}
+
+.dashboard .discover .discover-content .card-listing-row .ant-card {
+    margin: auto 15px;
+}
+
+.discover .container-carousel.card-listing--carousel .react-multiple-carousel__arrow {
+    background-color: var(--red);
+}
+
+.discover .listing-carousel {
+    width: 80%;
+    margin: auto;
+}
+
+.discover .container-carousel {
+    margin: auto;
+    border: none;
+    /* width: 80%; */
+}
+
+.discover .carousel-item {
+    width: 350px !important;
+    margin: auto 20px;
+}
+
+/* .discover .carousel-slider-ul{
+    justify-content: center;
+    margin: auto;
+} */
+
+.dashboard .discover .see-more--container {
+    margin: 15px auto 20px auto;
+}
+
+.dashboard .discover .see-more--container {
+    margin: 15px auto 60px auto;
+}
+
+.dashboard .discover .see-more--btn {
+    padding: 8px 12px;
+    border-radius: 13px;
+    color: var(--red);
+    font-weight: bold;
+    border: 1px solid var(--red);
+}
+
+.dashboard .discover .see-more--btn:hover {
+    background-color: var(--red);
+    color: white;
+    border: 1px solid var(--red);
+}
+
+.dashboard .discover .discover--section-2 {
+    margin: 130px auto 50px auto;
+    width: 80%;
+}
+
+.dashboard .discover .discover--section-2 h3,
+.dashboard .discover .discover--section-4 h3 {
+    color: black;
+    font-size: 30px;
+}
+
+.dashboard .discover .discover--section-2 .card--brokerage-category {
+    margin: 50px auto;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.dashboard .discover .discover--section-2 .card--brokerage-category .ant-card {
+    /* margin: auto 10px; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 330px;
+    /* width: 100%; */
+}
+
+.dashboard .discover .discover--section-2 .card--brokerage-category .overlay-content {
+    background-color: rgba(0, 0, 0, 0.373);
+    height: 34vh;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    /* width: 210px; */
+}
+
+.dashboard .discover .card--brokerage-category .overlay-content .overlay-icon {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.dashboard .discover .card--brokerage-category .overlay-content .overlay-icon span {
+    background-color: white;
+    padding: 10px 13px;
+    border-radius: 80px;
+}
+
+.dashboard .discover .card--brokerage-category .overlay-content .overlay-description,
+.dashboard .discover .card--brokerage-category .overlay-content .overlay-title {
+    padding: 15px auto !important;
+}
+
+.dashboard .discover .card--brokerage-category .overlay-content .overlay-title {
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 0.95px;
+}
+
+.dashboard .discover .card--brokerage-category .overlay-content .overlay-description {
+    font-weight: 300;
+    font-size: 14px;
+    margin: 10px auto;
+}
+
+.dashboard .discover .discover--section-3 {
+    /* background-color: #d9d9d9a1; */
+    background-color: #d9d9d945;
+    margin: 180px auto 0px auto;
+}
+
+.dashboard .discover .discover--section-3 .card--brokerage-inquire {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--content {
+    margin: 50px;
+}
+
+.dashboard .discover .discover--section-3 h3 {
+    font-size: 35px;
+    color: black;
+}
+
+.dashboard .discover .discover--section-3 .card--brokerage-inquire .ant-col {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-image {
+    width: 50%;
+}
+
+.dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-image .ant-image {
+    display: block;
+}
+
+.dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-image .ant-image-img {
+    height: 70vh;
+}
+
+.dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-container {
+    width: 50%;
+}
+
+.dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--description,
+.dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--sub-desc {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1111119b;
+    text-align: center;
+}
+
+.dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--sub-desc {
+    width: 87%;
+    margin: 30px auto;
+}
+
+.dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--description {
+    width: 73%;
+    margin: 40px auto;
+}
+
+.dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--content .inquire--actions {
+    text-align: center;
+    margin: 60px 10px 10px 10px;
+}
+
+.dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--actions .action-btn {
+    border: 1px solid var(--red);
+    width: 200px;
+    font-weight: bold;
+    margin: auto 15px;
+    padding-top: 23px;
+    padding-bottom: 23px;
+}
+
+.dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--actions .contact-us--action.action-btn,
+.dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--actions .contact-us--action.action-btn:hover {
+    background-color: transparent;
+    color: black
+}
+
+.dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--actions .sign-in--action.action-btn {
+    background-color: var(--red);
+    color: white;
+}
+
+/* FEATURED PROPERTIES */
+.dashboard .discover .discover--section-4{
+    background-color: #fff0f058;
+    padding-top: 70px;
+}
+
+.dashboard .discover .card--brokerage-featured {
+    margin: auto;
+    width: 75%;
+}
+.dashboard .discover .discover--section-4 h3{
+    text-align: left;
+}
+
+
+@media screen and (min-width: 315px) and (max-width: 480px) {
+    #dashboard .banner{
+        height: auto;
+    }
+    #dashboard .banner .banner-content .banner-search .card-item.field,
+    #dashboard .banner .banner-content .banner-search .round-btn,
+    #dashboard .banner .banner-content .banner-search .search-buttons {
+        width: 100%;
+    }
+
+    /* #dashboard .banner{
+        height:auto;
+    } */
+
+    #dashboard .banner .banner-content {
+        padding: 20px 10px;
+    }
+
+    #dashboard .banner .banner-content .banner-title {
+        font-size: 26px;
+    }
+
+    /* #dashboard .banner .banner-tags .menu-tags{
+        margin-top: 35px;
+        margin-bottom: 35px;
+    } */
+    .dashboard .discover .discover-content{
+        margin: 70px 5px 50px 5px;
+    }
+    .discover .listing-carousel {
+        width: 100%;
+    }
+
+    .discover .carousel-item {
+        width: 288px !important;
+        margin: auto 5px;
+    }
+
+    .dashboard .discover .discover--section-2 .card--brokerage-category .ant-col {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .dashboard .discover .discover--section-2 .card--brokerage-category .overlay-content {
+        padding: 15px 10px;
+        height: auto;
+    }
+
+    .dashboard .discover .discover--section-2 .card--brokerage-category .ant-card {
+        width: 100%;
+    }
+
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire {
+        display: block
+    }
+
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-image,
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-container {
+        width: 100%;
+    }
+
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-container {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--content {
+        margin: 0px !important;
+    }
+
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--description,
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--sub-desc {
+        width: 100%;
+    }
+
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--actions .action-btn {
+        width: 100%;
+        margin: 10px auto;
+    }
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-image .ant-image-img{
+        height: 55vh;
+    }
+    .dashboard .discover .discover--section-2{
+        margin: 80px auto 0px auto;
+    }
+    .dashboard .discover .discover--section-2 .card--brokerage-category{
+        margin: 40px auto 0px auto;
+    }
+    .dashboard .discover .discover--section-3{
+        margin: 100px auto;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 800px) {
+    #dashboard .banner .banner-tags .menu-tags{
+        margin-top: 30px;
+    }
+    .dashboard .discover .discover-content{
+        margin: 80px 5px 50px 5px;
+    }
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire {
+        display: block
+    }
+
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-image,
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-container {
+        width: 100%;
+    }
+
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-container {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--content {
+        margin: 0px !important;
+    }
+
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--description,
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--sub-desc {
+        width: 100%;
+    }
+
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--actions .action-btn {
+        width: 100%;
+        margin: 10px auto;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1024px) {
+    /* .dashboard .discover .discover--section-3 .card--brokerage-inquire{
+        flex-direction: column;
+    } */
+}

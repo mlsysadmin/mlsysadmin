@@ -28,6 +28,7 @@ import LoanCalculatorComponent from "./LoanCalculatorComponent";
 import MortgageComponent from "./MortgageComponent";
 import RentComponent from "./RentComponent";
 import SellComponent from "./SellComponent";
+import CardListingComponent from "./CardListingComponent";
 
 
 
@@ -55,5 +56,6 @@ export{
     LoanCalculatorComponent,
     MortgageComponent,
     RentComponent,
-    SellComponent
+    SellComponent,
+    CardListingComponent
 }

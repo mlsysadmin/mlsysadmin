@@ -1,0 +1,29 @@
+#featured-properties{
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+#featured-properties .featured-property {
+    display: flex;
+    /* justify-content: center; */
+    height: 30vh;
+    /* align-items: center; */
+    /* margin: 20px; */
+}
+#featured-properties .featured-property .featured-img{
+    position: relative;
+}
+
+#featured-properties .featured-property .featured-img .ant-image{
+    display: block;
+}
+
+#featured-properties .featured-property--content{
+    width: 300px;
+    position: absolute;
+    bottom: 0;
+    top: 190px;
+    /* height: 20vh; */
+    margin: 0 auto;
+    /* z-index: 1000; */
+}

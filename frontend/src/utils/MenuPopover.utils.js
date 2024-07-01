@@ -6,7 +6,7 @@ const SubMenu =
             {
                 header: "Homes for rent",
                 submenu: [
-                    { sub: "House", link: '/rent-page' }, 
+                    { sub: "House", link: '/rent' }, 
                     { sub: "Condominium", link: '/condominium' }, 
                     { sub: "Apartment", link: '/apartment' }, 
                     { sub: "Townhouse", link: '/townhouse' }

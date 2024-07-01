@@ -27,27 +27,27 @@ const Routes = [
                 element: <Dashboard/>
             },
             {
-              path: "/new-page",
+              path: "/new", // removed page
               element: <NewPage/>
             },
             {
-                path: "/house-for-rent-page",
+                path: "/house-for-rent",
                 element: <HouseForRentPage/>
             },
             {
-                path: "/discover-home-page",
+                path: "/discover-home",
                 element: <DiscoverHomePage/>
             },
             {
-                path: "/buy-a-home-page",
+                path: "/buy-a-home",
                 element: <BuyAHomePage/>
             },
             {
-                path: "/refinance-page",
+                path: "/refinance",
                 element: <RefinancePage/>
             },
             {
-                path: "/insurance-guide-page",
+                path: "/insurance-guide",
                 element: <InsuranceGuidePage/>
             },
             {
@@ -63,11 +63,11 @@ const Routes = [
                 element: <ContactUsPage/>
             },
             {
-                path: "/rent-page",
+                path: "/rent",
                 element: <RentPage/>
             },
             {
-                path: "/sell-page",
+                path: "/sell",
                 element: <SellPage/>
             },
             {
@@ -75,7 +75,7 @@ const Routes = [
                 element: <LoanCalculatorPage/>
             },
             {
-                path: "/mortgage-page",
+                path: "/mortgage",
                 element: <MortagagePage/>
             }
         ]
