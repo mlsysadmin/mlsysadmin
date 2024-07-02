@@ -1,97 +1,67 @@
-import React, { useState } from "react";
+import React, { useImperativeHandle, forwardRef, useState } from "react";
 import CustomFeatureField from "../custom/custom.FeatureField";
-import CustomTextField from "../custom/custom.TextField";
-import { Upload } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
-import useFilePreview from "./useFilePreview";
 import FileUpload from "../custom/custom.DrogDropImages";
 
-const SupportFeatureLayout = (props) => {
+const SupportFeatureLayout = forwardRef((props, ref) => {
   const { labelname, classname } = props;
   const [numFieldsIndoor, setNumFieldsIndoor] = useState(4);
   const [numFieldsOutdoor, setNumFieldsOutdoor] = useState(4);
   const [numFieldsAmmenities, setNumFieldsAmmenities] = useState(2);
   const [numFieldsIncludes, setNumFieldsIncludes] = useState(2);
 
-  const [selectedValuesIndoor, setSelectedValuesIndoor] = useState([]);
-  const [selectedValuesOutdoor, setSelectedValuesOutdoor] = useState([]);
-  const [selectedValuesAmmenities, setSelectedValuesAmmenities] = useState([]);
-  const [selectedValuesIncludes, setSelectedValuesIncludes] = useState([]);
+  const [selectedValuesIndoor, setSelectedValuesIndoor] = useState(
+    new Array(4).fill("")
+  );
+  const [selectedValuesOutdoor, setSelectedValuesOutdoor] = useState(
+    new Array(4).fill("")
+  );
+  const [selectedValuesAmmenities, setSelectedValuesAmmenities] = useState(
+    new Array(2).fill("")
+  );
+  const [selectedValuesIncludes, setSelectedValuesIncludes] = useState(
+    new Array(2).fill("")
+  );
 
-  const allSelectedValuesIndoor = selectedValuesIndoor;
-  const allSelectedValuesOutdoor = selectedValuesOutdoor;
-  const allSelectedValuesAmmenities = selectedValuesAmmenities;
-  const allSelectedValuesIncludes = selectedValuesIncludes;
+  const [errors, setErrors] = useState({
+    indoor: false,
+    outdoor: false,
+    ammenities: false,
+    includes: false,
+  });
 
-  const handleAddFieldIndoor = () => {
-    setNumFieldsIndoor(numFieldsIndoor + 1);
-    console.log(allSelectedValuesIndoor);
+  useImperativeHandle(ref, () => ({
+    validateFields,
+  }));
+
+  const handleAddField = (type, setNumFields, numFields, setValues) => {
+    setNumFields(numFields + 1);
+    setValues((prev) => [...prev, ""]);
   };
 
-  const handleRemoveFieldIndoor = () => {
-    if (numFieldsIndoor > 4) {
-      setNumFieldsIndoor(numFieldsIndoor - 1);
+  const handleRemoveField = (type, setNumFields, numFields, minFields) => {
+    if (numFields > minFields) {
+      setNumFields(numFields - 1);
     }
   };
-  const handleSelectChangeIndoor = (index, value) => {
-    console.log("Handle Select Change: ", index, " and Value: ", value);
-    // update the selectedValues array when a selection is made
-    setSelectedValuesIndoor((prevValues) => {
+
+  const handleSelectChange = (index, value, setValues) => {
+    setValues((prevValues) => {
       prevValues[index] = value;
       return [...prevValues];
     });
   };
 
-  const handleAddFieldOutdoor = () => {
-    setNumFieldsOutdoor(numFieldsOutdoor + 1);
-    console.log(allSelectedValuesOutdoor);
-  };
-  const handleRemoveFieldOutdoor = () => {
-    if (numFieldsOutdoor > 4) {
-      setNumFieldsOutdoor(numFieldsOutdoor - 1);
-    }
-  };
-  const handleSelectChangeOutdoor = (index, value) => {
-    console.log("Handle Select Change: ", index, " and Value: ", value);
-    // update the selectedValues array when a selection is made
-    setSelectedValuesOutdoor((prevValues) => {
-      prevValues[index] = value;
-      return [...prevValues];
-    });
-  };
-  const handleAddFieldAmmenities = () => {
-    setNumFieldsAmmenities(numFieldsAmmenities + 1);
-    console.log(allSelectedValuesAmmenities);
-  };
-  const handleRemoveFieldAmmenities = () => {
-    if (numFieldsAmmenities > 2) {
-      setNumFieldsAmmenities(numFieldsAmmenities - 1);
-    }
-  };
-  const handleSelectChangeAmmenities = (index, value) => {
-    console.log("Handle Select Change: ", index, " and Value: ", value);
-    // update the selectedValues array when a selection is made
-    setSelectedValuesAmmenities((prevValues) => {
-      prevValues[index] = value;
-      return [...prevValues];
-    });
-  };
-  const handleAddFieldIncludes = () => {
-    setNumFieldsIncludes(numFieldsIncludes + 1);
-    console.log(allSelectedValuesIncludes);
-  };
-  const handleRemoveFieldIncludes = () => {
-    if (numFieldsIncludes > 2) {
-      setNumFieldsIncludes(numFieldsIncludes - 1);
-    }
-  };
-  const handleSelectChangeIncludes = (index, value) => {
-    console.log("Handle Select Change: ", index, " and Value: ", value);
-    // update the selectedValues array when a selection is made
-    setSelectedValuesIncludes((prevValues) => {
-      prevValues[index] = value;
-      return [...prevValues];
-    });
+  const validateFields = () => {
+    const newErrors = {
+      indoor: selectedValuesIndoor.some((value) => value === ""),
+      outdoor: selectedValuesOutdoor.some((value) => value === ""),
+      ammenities: selectedValuesAmmenities.some((value) => value === ""),
+      includes: selectedValuesIncludes.some((value) => value === ""),
+    };
+
+    setErrors(newErrors);
+
+    return !Object.values(newErrors).some((error) => error);
   };
 
   return (
@@ -102,11 +72,28 @@ const SupportFeatureLayout = (props) => {
       <div className="IndoorFeatures">
         <div className="indoorFeaturesText">Indoor Features</div>
         <div className="featuresButton">
-          <button onClick={handleAddFieldIndoor} className="addButton">
+          <button
+            onClick={() =>
+              handleAddField(
+                "indoor",
+                setNumFieldsIndoor,
+                numFieldsIndoor,
+                setSelectedValuesIndoor
+              )
+            }
+            className="addButton"
+          >
             Add +
           </button>
           <button
-            onClick={handleRemoveFieldIndoor}
+            onClick={() =>
+              handleRemoveField(
+                "indoor",
+                setNumFieldsIndoor,
+                numFieldsIndoor,
+                4
+              )
+            }
             disabled={numFieldsIndoor <= 4}
             className="subtractButton"
           >
@@ -116,14 +103,20 @@ const SupportFeatureLayout = (props) => {
       </div>
       <div className="inputFieldss">
         {[...Array(numFieldsIndoor)].map((_, index) => (
-          <CustomFeatureField
-            key={index}
-            labelName="Indoor Features"
-            onChange={(value) => handleSelectChangeIndoor(index, value)}
-            value={selectedValuesOutdoor[index]}
-            fieldType="select"
-            className="fieldFeatures"
-          />
+          <div key={index}>
+            <CustomFeatureField
+              labelName="Indoor Features"
+              onChange={(value) =>
+                handleSelectChange(index, value, setSelectedValuesIndoor)
+              }
+              value={selectedValuesIndoor[index]}
+              fieldType="select"
+              className="fieldFeatures"
+            />
+            {errors.indoor && selectedValuesIndoor[index] === "" && (
+              <div className="error">This field is required</div>
+            )}
+          </div>
         ))}
       </div>
 
@@ -131,11 +124,28 @@ const SupportFeatureLayout = (props) => {
       <div className="OutdoorFeatures">
         <div className="outdoorFeaturesText">Outdoor Features</div>
         <div className="featuresButton">
-          <button onClick={handleAddFieldOutdoor} className="addButton">
+          <button
+            onClick={() =>
+              handleAddField(
+                "outdoor",
+                setNumFieldsOutdoor,
+                numFieldsOutdoor,
+                setSelectedValuesOutdoor
+              )
+            }
+            className="addButton"
+          >
             Add +
           </button>
           <button
-            onClick={handleRemoveFieldOutdoor}
+            onClick={() =>
+              handleRemoveField(
+                "outdoor",
+                setNumFieldsOutdoor,
+                numFieldsOutdoor,
+                4
+              )
+            }
             disabled={numFieldsOutdoor <= 4}
             className="subtractButton"
           >
@@ -145,26 +155,49 @@ const SupportFeatureLayout = (props) => {
       </div>
       <div className="inputFieldss">
         {[...Array(numFieldsOutdoor)].map((_, index) => (
-          <CustomFeatureField
-            key={index}
-            labelName="Outdoor Features"
-            onChange={(value) => handleSelectChangeOutdoor(index, value)}
-            value={selectedValuesOutdoor[index]}
-            fieldType="select"
-            className="fieldFeatures"
-          />
+          <div key={index}>
+            <CustomFeatureField
+              labelName="Outdoor Features"
+              onChange={(value) =>
+                handleSelectChange(index, value, setSelectedValuesOutdoor)
+              }
+              value={selectedValuesOutdoor[index]}
+              fieldType="select"
+              className="fieldFeatures"
+            />
+            {errors.outdoor && selectedValuesOutdoor[index] === "" && (
+              <div className="error">This field is required</div>
+            )}
+          </div>
         ))}
       </div>
 
-      {/* Features and Ammenites Features */}
+      {/* Features and Ammenities Features */}
       <div className="featuresAndAmmenities">
         <div className="featuresAndAmenitiesText">Features and Amenities</div>
         <div className="featuresButton">
-          <button onClick={handleAddFieldAmmenities} className="addButton">
+          <button
+            onClick={() =>
+              handleAddField(
+                "ammenities",
+                setNumFieldsAmmenities,
+                numFieldsAmmenities,
+                setSelectedValuesAmmenities
+              )
+            }
+            className="addButton"
+          >
             Add +
           </button>
           <button
-            onClick={handleRemoveFieldAmmenities}
+            onClick={() =>
+              handleRemoveField(
+                "ammenities",
+                setNumFieldsAmmenities,
+                numFieldsAmmenities,
+                2
+              )
+            }
             disabled={numFieldsAmmenities <= 2}
             className="subtractButton"
           >
@@ -174,25 +207,48 @@ const SupportFeatureLayout = (props) => {
       </div>
       <div className="ammenitiesFields">
         {[...Array(numFieldsAmmenities)].map((_, index) => (
-          <CustomFeatureField
-            key={index}
-            labelName="Ammenities Features"
-            onChange={(value) => handleSelectChangeAmmenities(index, value)}
-            value={selectedValuesAmmenities[index]}
-            fieldType="text"
-            className="ammenitiesInputField"
-          />
+          <div key={index}>
+            <CustomFeatureField
+              labelName="Ammenities Features"
+              onChange={(value) =>
+                handleSelectChange(index, value, setSelectedValuesAmmenities)
+              }
+              value={selectedValuesAmmenities[index]}
+              fieldType="text"
+              className="ammenitiesInputField"
+            />
+            {errors.ammenities && selectedValuesAmmenities[index] === "" && (
+              <div className="error">This field is required</div>
+            )}
+          </div>
         ))}
       </div>
 
       <div className="includes">
         <div className="includesText">Includes</div>
         <div className="featuresButton">
-          <button onClick={handleAddFieldIncludes} className="addButton">
+          <button
+            onClick={() =>
+              handleAddField(
+                "includes",
+                setNumFieldsIncludes,
+                numFieldsIncludes,
+                setSelectedValuesIncludes
+              )
+            }
+            className="addButton"
+          >
             Add +
           </button>
           <button
-            onClick={handleRemoveFieldIncludes}
+            onClick={() =>
+              handleRemoveField(
+                "includes",
+                setNumFieldsIncludes,
+                numFieldsIncludes,
+                2
+              )
+            }
             disabled={numFieldsIncludes <= 2}
             className="subtractButton"
           >
@@ -202,14 +258,20 @@ const SupportFeatureLayout = (props) => {
       </div>
       <div className="includesFields">
         {[...Array(numFieldsIncludes)].map((_, index) => (
-          <CustomFeatureField
-            key={index}
-            labelName="Ammenities Features"
-            onChange={(value) => handleSelectChangeIncludes(index, value)}
-            value={selectedValuesIncludes[index]}
-            fieldType="text"
-            className="includesInputField"
-          />
+          <div key={index}>
+            <CustomFeatureField
+              labelName="Includes Features"
+              onChange={(value) =>
+                handleSelectChange(index, value, setSelectedValuesIncludes)
+              }
+              value={selectedValuesIncludes[index]}
+              fieldType="text"
+              className="includesInputField"
+            />
+            {errors.includes && selectedValuesIncludes[index] === "" && (
+              <div className="error">This field is required</div>
+            )}
+          </div>
         ))}
       </div>
 
@@ -221,5 +283,6 @@ const SupportFeatureLayout = (props) => {
       </div>
     </div>
   );
-};
+});
+
 export default SupportFeatureLayout;

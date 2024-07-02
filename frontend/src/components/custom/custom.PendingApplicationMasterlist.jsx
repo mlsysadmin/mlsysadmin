@@ -3,15 +3,12 @@ import { useNavigate } from "react-router-dom";
 import Dummydata from "../../supportDummyData/openListingDummy.json";
 import "../../styles/SupportListingMasterlist.css";
 import Pagination from "./custom.pagination";
-
-import FooterComponent from "../layout/FooterComponent";
 import Modal from "./Modal";
-
+import FooterComponent from "../layout/FooterComponent";
 import SupportNavigation from "./custom.NavigationComponent";
-import PropertyMapModal from "./PropertyMapModal";
 
-const OpenListingMasterlist = () => {
-  const [activeTab, setActiveTab] = useState("open");
+const PendingApplicationMasterlist = () => {
+  const [activeTab, setActiveTab] = useState("pending");
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredListings, setFilteredListings] = useState([]);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
@@ -21,7 +18,6 @@ const OpenListingMasterlist = () => {
   const [modalQuestion, setModalQuestion] = useState("");
   const [remarks, setRemarks] = useState("");
   const [actionType, setActionType] = useState("");
-  const propertyAddress = "123 Property St, City, Country";
 
   const navigate = useNavigate();
 
@@ -82,7 +78,7 @@ const OpenListingMasterlist = () => {
   };
 
   const handleShowDetails = (listing) => {
-    navigate(`/ML-Brokerage/Support/listing-details/${listing.listing_id}`, {
+    navigate(`/ML-Brokerage/Support/Application-details/${listing.listing_id}`, {
       state: { listing, activeTab },
     });
   };
@@ -157,9 +153,9 @@ const OpenListingMasterlist = () => {
   };
 
   const tabHeadings = {
-    open: "Manage Open Listings",
-    pending: "Manage Pending Listings",
-    disapproved: "Manage Disapproved Listings",
+    open: "Manage Open Application",
+    pending: "Manage Pending Application",
+    disapproved: "Manage Disapproved Application",
   };
 
   const startIndex = (currentPage - 1) * entriesPerPage + 1;
@@ -205,7 +201,6 @@ const OpenListingMasterlist = () => {
     },
     { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
   ];
-
   return (
     <>
       <SupportNavigation navLinkProps={navLinks} />
@@ -278,19 +273,19 @@ const OpenListingMasterlist = () => {
           Showing {startIndex} to {endIndex} of {filteredListings.length}{" "}
           entries
         </div>
+        <FooterComponent />
+        <Modal
+          show={modalVisible}
+          onClose={handleModalClose}
+          onConfirm={handleModalConfirm}
+          question={`Are you sure you want to ${actionType} the selected listings?`}
+          remarks={remarks}
+          setRemarks={setRemarks}
+          actionType={actionType}
+        />
       </div>
-      <FooterComponent />
-      <Modal
-        show={modalVisible}
-        onClose={handleModalClose}
-        onConfirm={handleModalConfirm}
-        question={`Are you sure you want to ${actionType} the selected listings?`}
-        remarks={remarks}
-        setRemarks={setRemarks}
-        actionType={actionType}
-      />
     </>
   );
 };
 
-export default OpenListingMasterlist;
+export default PendingApplicationMasterlist;

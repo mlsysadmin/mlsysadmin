@@ -9,9 +9,33 @@ const Modal = ({
   remarks,
   setRemarks,
   actionType,
+  Title,
 }) => {
   if (!show) {
     return null;
+  }
+  let hideTextarea = false; // Variable to control textarea visibility
+
+  let titleClass = "";
+
+  switch (actionType) {
+    case "pending":
+      titleClass = "title-pending";
+      break;
+    case "disapprove":
+      titleClass = "title-disapprove";
+      break;
+    case "approve":
+      titleClass = "title-approve";
+      break;
+    case "create-listing":
+      titleClass = "confirm-create-listing";
+      hideTextarea = true; // Hide textarea for "approve" action
+
+      break;
+    default:
+      titleClass = "title-default";
+      break;
   }
 
   let confirmButtonClass = "";
@@ -29,6 +53,9 @@ const Modal = ({
     default:
       confirmButtonClass = "confirm-default";
       break;
+    case "create-listing":
+      confirmButtonClass = "confirm-create-listing";
+      break;
   }
 
   let cancelButtonClass = "";
@@ -43,6 +70,9 @@ const Modal = ({
     case "approve":
       cancelButtonClass = "cancel-approve";
       break;
+    case "create-listing":
+      cancelButtonClass = "cancel-create-listing";
+      break;
     default:
       cancelButtonClass = "cancel-default";
       break;
@@ -52,12 +82,15 @@ const Modal = ({
     <div className="modal-backdrop">
       <div className="modal">
         <div className="modal-content">
+          <h2 className={`modal-title ${titleClass}`}>{Title}</h2>
           <h3>{question}</h3>
-          <textarea
-            value={remarks}
-            onChange={(e) => setRemarks(e.target.value)}
-            placeholder="Enter remarks..."
-          ></textarea>
+          {!hideTextarea && (
+            <textarea
+              value={remarks}
+              onChange={(e) => setRemarks(e.target.value)}
+              placeholder="Enter remarks..."
+            ></textarea>
+          )}
           <div className="modal-actions">
             <button
               className={`modal-confirm ${confirmButtonClass}`}

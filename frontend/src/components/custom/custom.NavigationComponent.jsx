@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import UserCircle from "../../assets/icons/UserCircle";
-import "../../styles/SupportNavigation.css";
-import "../../styles/navlinkCustom.css";
-
-
 import { IoMdArrowDropdown } from "react-icons/io";
+import { FiMenu } from "react-icons/fi";
+import "../../styles/SupportNavigation.css";
 
 const SupportNavigation = ({ navLinkProps }) => {
   const defaultNavLinkProps = [
@@ -20,25 +17,41 @@ const SupportNavigation = ({ navLinkProps }) => {
         { text: "Option 4", to: "/dashboard/Support/option4" },
       ],
     },
+    {
+      text: "Application Review",
+      dropdown: true,
+      options: [
+        { text: "Open Applications", to: "/dashboard/Support/openApplication" },
+        {
+          text: "Pending Applications",
+          to: "/dashboard/Support/pendingApplication",
+        },
+        {
+          text: "Disapproved Applications",
+          to: "/dashboard/Support/disapprovedApplication",
+        },
+      ],
+    },
     { text: "Client Management", to: "/client-management" },
   ];
-  const linksToRender = navLinkProps || defaultNavLinkProps;
+
+  const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
-  const [showMasterlistOptions, setShowMasterlistOptions] = useState(false);
+  const linksToRender = navLinkProps || defaultNavLinkProps;
 
-  const handleMasterlistToggle = () => {
-    setShowMasterlistOptions(!showMasterlistOptions);
+  const handleNavLinkClick = () => {
+    setMenuOpen(false); // Close menu after selecting a link
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
   const isLinkActive = (link) => {
-    if (link.dropdown) {
-      return link.options.some((option) =>
-        location.pathname.startsWith(option.to)
-      );
-    }
     return location.pathname === link.to;
   };
+
   return (
     <div className="support-navigation-bar">
       <div className="leftSideNavigationBar">
@@ -47,38 +60,42 @@ const SupportNavigation = ({ navLinkProps }) => {
           alt="Image"
           src="https://c.animaapp.com/1RDRTvCv/img/image-87-1@2x.png"
         />
-        <div className="custom-nav-link">
+        <div className="menu-toggle" onClick={toggleMenu}>
+          <FiMenu size={24} color="#fff" />
+        </div>
+        <div className={`custom-nav-link ${menuOpen ? "open" : ""}`}>
+          <div className="menu-toggle" onClick={toggleMenu}>
+            <FiMenu size={24} color="#fff" />
+          </div>
           {linksToRender.map((link, index) => (
             <React.Fragment key={index}>
               {link.dropdown ? (
-                <div
-                  className={`nav-link dropdown ${
-                    isLinkActive(link) ? "nav-link-active" : ""
-                  }`}
-                >
+                <div className="dropdown">
                   <div
-                    className="nav-link-text"
-                    onClick={handleMasterlistToggle}
+                    className={`nav-link ${
+                      isLinkActive(link) ? "nav-link-active" : ""
+                    }`}
                   >
-                    <p className="navlnk">{link.text}</p>
+                    <p className="navlnk" onClick={toggleMenu}>
+                      {link.text} <IoMdArrowDropdown />
+                    </p>
                   </div>
-                  {showMasterlistOptions && (
-                    <div className="dropdown-options">
-                      {link.options.map((option, optionIndex) => (
-                        <NavLink
-                          key={optionIndex}
-                          to={option.to}
-                          className={`nav-link ${
-                            location.pathname.startsWith(option.to)
-                              ? "nav-link-active"
-                              : ""
-                          }`}
-                        >
-                          <p className="opt">{option.text}</p>
-                        </NavLink>
-                      ))}
-                    </div>
-                  )}
+                  <div className="dropdown-options">
+                    {link.options.map((option, optionIndex) => (
+                      <NavLink
+                        key={optionIndex}
+                        to={option.to}
+                        className={`nav-link ${
+                          location.pathname === option.to
+                            ? "nav-link-active"
+                            : ""
+                        }`}
+                        onClick={handleNavLinkClick}
+                      >
+                        {option.text}
+                      </NavLink>
+                    ))}
+                  </div>
                 </div>
               ) : (
                 <NavLink
@@ -86,18 +103,22 @@ const SupportNavigation = ({ navLinkProps }) => {
                   className={`nav-link ${
                     isLinkActive(link) ? "nav-link-active" : ""
                   }`}
+                  onClick={handleNavLinkClick}
                 >
                   {link.text}
                 </NavLink>
               )}
             </React.Fragment>
           ))}
+          <div className="user">
+            <div className="div">
+              Irene Joy Andales <IoMdArrowDropdown />
+            </div>
+          </div>
         </div>
-
       </div>
 
       <div className="rightSideNavigationBar">
-
         <div className="div">
           Irene Joy Andales <IoMdArrowDropdown />
         </div>

@@ -2,7 +2,8 @@
 
 .ListingDetails {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 49% 49%;
+  gap: 1rem;
   align-items: baseline;
 }
 
@@ -30,6 +31,7 @@
 .unitDetailsFields {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: .5rem;
 }
 .ListingDetails .leftSide .select-field {
   margin: 10px 0px 0px 0px;
@@ -40,7 +42,7 @@
   border-color: var(--gray-border-color);
   border-radius: 10px;
   height: 50px;
-  width: 353px;
+  width: 100%;
   padding: 0px 10px 0px 10px;
 }
 .select-field .labelClassName {
@@ -94,16 +96,16 @@
 .ListingDetails .features {
   display: grid;
   grid-template-columns: 1fr;
-  margin: 5% 0px 5% 5%;
   height: 100%;
-  width: 190%;
+  width: 99%;
+  padding: 1%;
+  grid-column: 1 / span 2;
 }
 
 .ListingDetails .features .IndoorFeatures,
 .OutdoorFeatures,
 .featuresAndAmmenities,
-.includes
- {
+.includes {
   display: grid;
   grid-template-columns: 3fr 1fr;
   width: 100%;
@@ -114,8 +116,7 @@
 .outdoorFeaturesText,
 .featuresAndAmenitiesText,
 .includesText,
-.uploadPhotosText
-{
+.uploadPhotosText {
   display: grid;
   align-items: end;
   color: #8c9094;
@@ -174,7 +175,8 @@
   padding: 0px 10px 0px 10px;
 }
 
-.ListingDetails .features .ammenitiesFields, .includesFields {
+.ListingDetails .features .ammenitiesFields,
+.includesFields {
   display: grid;
   width: 100%;
   height: 50%;
@@ -182,14 +184,232 @@
   gap: 10px;
   padding: 5px;
 }
-.ListingDetails .features .FeaturesFields .ammenitiesInputField, .includesInputField {
+.ListingDetails .features .FeaturesFields .ammenitiesInputField,
+.includesInputField {
   border: 1px solid;
   border-radius: 10px;
   height: 50px;
   width: 98%;
   padding: 0px 10px 0px 10px;
 }
-
-.ListingDetails .uploadPhotos{
+@media only screen and (max-width: 330px){  
+  .IndoorFeatures, .OutdoorFeatures, .featuresAndAmmenities, .includes {
+    padding-bottom: 5%;
+  }
   
+}
+
+@media only screen and (max-width: 770px) {
+  .ListingDetails .leftSide {
+    padding-left: 0;
+    width: 80%;
+  }
+  .uploadPhotos {
+    width: 85%;
+  }
+  .leftSide {
+    padding-left: 0px;
+  }
+  .ListingDetails {
+    display: flex;
+    flex-direction: column;
+  }
+  .ListingDetails .leftSide .propertyDetailsFields,
+  .unitDetailsFields {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+  }
+  .features {
+    padding-top: 60%;
+  }
+  .ListingDetails .features .IndoorFeatures,
+  .OutdoorFeatures,
+  .featuresAndAmmenities,
+  .includes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 100%;
+  }
+  .featuresButton {
+    display: flex;
+    flex-direction: column;
+  }
+  .featuresButton {
+    display: flex;
+    flex-direction: column;
+  }
+  .featuresAndAmmenities {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ListingDetails .features .inputFieldss {
+    padding-top: 8%;
+    grid-template-columns: 1fr;
+    display: grid;
+    width: 80%;
+  }
+
+  .ListingDetails .features .featuresButton {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+  }
+  .ListingDetails .features .featuresButton .addButton {
+    width: 100%;
+  }
+  .ListingDetails .features .featuresButton .subtractButton {
+    width: 100%;
+  }
+  .googleMapDisplay {
+    margin: 100px 0px 0px 0px;
+    border-radius: 10px;
+    border: 1px #8c9094 solid;
+    width: 100%;
+    height: 30%;
+  }
+  .ListingDetails .features .ammenitiesFields {
+    padding-top: 8%;
+    display: flex;
+    flex-direction: column;
+    width: 76%;
+  }
+  .ListingDetails .features .includesFields {
+    padding-top: 8%;
+    display: flex;
+    flex-direction: column;
+    width: 76%;
+  }
+  .uploadPhotos {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 860px) and (min-width: 770px) {
+  .featureText {
+    width: 50%;
+  }
+  .indoorFeaturesText {
+    width: 60%;
+  }
+  .ListingDetails {
+    display: flex;
+    flex-direction: column;
+  }
+  .ListingDetails .leftSide .propertyDetailsFields,
+  .unitDetailsFields {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .features {
+    width: 90%;
+    padding-top: 60%;
+  }
+  .ListingDetails .features .IndoorFeatures,
+  .OutdoorFeatures,
+  .featuresAndAmmenities,
+  .includes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 100%;
+  }
+  .featuresButton {
+    display: flex;
+    flex-direction: column;
+  }
+  .featuresButton {
+    display: flex;
+    flex-direction: column;
+  }
+  .featuresAndAmmenities {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ListingDetails .features .inputFieldss {
+    padding-top: 8%;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+  }
+
+  .ListingDetails .features .featuresButton {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  .ListingDetails .features .featuresButton .addButton {
+    width: 30%;
+  }
+  .ListingDetails .features .featuresButton .subtractButton {
+    width: 30%;
+  }
+  .googleMapDisplay {
+    margin: 100px 0px 0px 0px;
+    border-radius: 10px;
+    border: 1px #8c9094 solid;
+    width: 100%;
+    height: 30%;
+  }
+  .ListingDetails .features .ammenitiesFields {
+    padding-top: 8%;
+    display: flex;
+    flex-direction: column;
+    width: 76%;
+  }
+  .ListingDetails .features .includesFields {
+    padding-top: 8%;
+    display: flex;
+    flex-direction: column;
+    width: 76%;
+  }
+  .location{
+    display: flex;
+    gap: 1rem;
+  }
+}
+@media only screen and (min-width: 900px) and (max-width: 1200px) {
+  .ListingDetails {
+    display: flex;
+    flex-direction: column;
+  }
+  .ListingDetails .leftSide {
+    width: 100vw;
+  }
+  .ListingDetails .features {
+    padding-top: 6%;
+  }
+  .ListingDetails .features .inputFieldss {
+    width: 90vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .ListingDetails .features .IndoorFeatures,
+  .ListingDetails .features .OutdoorFeatures,
+  .ListingDetails .features .featuresAndAmmenities,
+  .ListingDetails .features .includes {
+    width: 90vw;
+  }
+  .ListingDetails .features .ammenitiesFields,
+  .ListingDetails .features .includesFields {
+    grid-template-columns: 1fr 1fr;
+    width: 89vw;
+  }
+  .googleMapDisplay {
+    margin: 100px 0px 0px 0px;
+    border-radius: 10px;
+    border: 1px #8c9094 solid;
+    width: 100%;
+    height: 20%;
+  }
+  .unitDetailsFields {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
 }

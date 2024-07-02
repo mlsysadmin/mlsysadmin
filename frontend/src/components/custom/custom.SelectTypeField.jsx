@@ -75,6 +75,7 @@ const CustomSelectTypeField = (props) => {
       <label htmlFor={labelName} className="labelClassName">
         {labelName}
       </label>
+      <br />
       <select
         name={labelName}
         className="fieldClassName"

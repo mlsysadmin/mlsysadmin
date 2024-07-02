@@ -92,7 +92,7 @@ const CustomFeatureField = (props) => {
       {fieldType === 'select' ? (
         <select
           name={labelName}
-          className={className}        //"fieldFeatures"
+          className={className}        
           defaultValue=""
           onChange={handleSelectChange}
         >

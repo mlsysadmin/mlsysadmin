@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Dummydata from "../../supportDummyData/openListingDummy.json"; 
+import Dummydata from "../../supportDummyData/openListingDummy.json";
 import "../../styles/SupportListingMasterlist.css";
 import Pagination from "./custom.pagination";
 import Modal from "./Modal";
@@ -17,7 +17,7 @@ const PendingListingMasterlist = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalQuestion, setModalQuestion] = useState("");
   const [remarks, setRemarks] = useState("");
-  const [actionType, setActionType] = useState(""); 
+  const [actionType, setActionType] = useState("");
 
   const navigate = useNavigate();
 
@@ -78,7 +78,7 @@ const PendingListingMasterlist = () => {
   };
 
   const handleShowDetails = (listing) => {
-    navigate(`/dashboard/Support/listing-details/${listing.listing_id}`, {
+    navigate(`/ML-Brokerage/Support/listing-details/${listing.listing_id}`, {
       state: { listing, activeTab },
     });
   };
@@ -164,7 +164,10 @@ const PendingListingMasterlist = () => {
     filteredListings.length
   );
   const navLinks = [
-    { text: "Create listing", to: "/ML-Brokerage/Support/SupportCreateListingPage" },
+    {
+      text: "Create listing",
+      to: "/ML-Brokerage/Support/SupportCreateListingPage",
+    },
     {
       text: "Listing Masterlist",
       dropdown: true,
@@ -172,12 +175,32 @@ const PendingListingMasterlist = () => {
         { text: "Open Listings", to: "/ML-Brokerage/Support/open" },
         { text: "Pending Listings", to: "/ML-Brokerage/Support/pending" },
         { text: "Active Listings", to: "/ML-Brokerage/Support/active" },
-        { text: "Disapproved Listings", to: "/ML-Brokerage/Support/disapproved" },
+        {
+          text: "Disapproved Listings",
+          to: "/ML-Brokerage/Support/disapproved",
+        },
+      ],
+    },
+    {
+      text: "Application Review",
+      dropdown: true,
+      options: [
+        {
+          text: "Open Applications",
+          to: "/ML-Brokerage/Support/openApplication",
+        },
+        {
+          text: "Pending Applications",
+          to: "/ML-Brokerage/Support/pendingApplication",
+        },
+        {
+          text: "Disapproved Applications",
+          to: "/ML-Brokerage/Support/disapprovedApplication",
+        },
       ],
     },
     { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
   ];
-
   return (
     <>
       <SupportNavigation navLinkProps={navLinks} />

@@ -1,0 +1,214 @@
+.contentContainer .mainContent {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  padding: 1% 0;
+}
+.mainContent .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 70%;
+}
+
+.mainContent .right .topCard {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 0 1%;
+  border: 1px solid #8c9094;
+  align-items: center;
+  border-radius: 20px;
+}
+.mainContent .right .bottomCard {
+  display: flex;
+  width: 100%;
+  padding: 1%;
+}
+.mainContent .right .topCard .leftPart {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+.mainContent .right .topCard .leftPart .cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+.mainContent .right .topCard .leftPart .cards .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px #8c9094 solid;
+  padding: 0% 0.5%;
+  width: 100%;
+  border-radius: 10px;
+}
+.mainContent #title {
+  width: 100%;
+}
+.mainContent #loc {
+  font-weight: normal;
+  width: 100%;
+  font-size: 1rem;
+}
+.mainContent .right .topCard .rightCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+}
+.mainContent .right .topCard .rightCard img {
+  width: 350px;
+  height: 70%;
+  border-radius: 20px;
+}
+.mainContent .mainTitle {
+  padding-top: 3%;
+}
+.centerContent {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  grid-area: 1rem;
+}
+.centerContent h1 {
+  color: black;
+  opacity: 80%;
+  width: 95%;
+}
+.centerContent .firstField {
+  width: 95%;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+.centerContent p {
+  padding: 10px;
+  border: #8c9094 1px solid;
+  border-radius: 10px;
+}
+.centerContent .secondField {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 1rem;
+  width: 95%;
+}
+.centerContent .secondField .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.centerContent p.ID {
+  width: 23%;
+}
+.centerContent label {
+  color: #8c9094;
+}
+.centerContent .lastField {
+  width: 95%;
+}
+.centerContent p.address {
+  width: 50%;
+}
+.contentContainer .actionButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1% 3%;
+  align-items: center;
+}
+.actionButtons .back {
+  font-size: 3rem;
+  width: 20%;
+  color: #ff2800;
+}
+.actionButtons button {
+  padding: 10px 15px;
+  font-weight: bold;
+  color: #fff;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 1px 2px 2px gray;
+  border: none;
+  background: #ff2800;
+}
+
+@media only screen and (max-width: 770px) {
+  .contentContainer .mainContent {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .contentContainer .mainContent .right .topCard {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .mainContent .right .topCard .leftPart .cards {
+    display: flex;
+    flex-direction: column;
+  }
+  .bottomCard .btns {
+    display: flex;
+    flex-direction: column;
+  }
+  .centerContent .secondField {
+    display: flex;
+    flex-direction: column;
+  }
+  .centerContent p.ID {
+    width: 30%;
+  }
+  .centerContent p.address {
+    width: 94%;
+  }
+  .mainContent .contentContainer .actionButtons {
+    padding-top: 5%;
+  }
+}
+
+@media only screen and (max-width: 860px) and (min-width: 770px) {
+  .contentContainer .mainContent {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .contentContainer .mainContent .right .topCard {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .mainContent .right .topCard .leftPart .cards {
+    display: flex;
+    flex-direction: column;
+  }
+  .bottomCard .btns {
+    display: flex;
+    flex-direction: column;
+  }
+  .centerContent .secondField {
+    display: flex;
+    flex-direction: column;
+  }
+  .centerContent p.ID {
+    width: 30%;
+  }
+  .centerContent p.address {
+    width: 94%;
+  }
+  .mainContent .contentContainer .actionButtons {
+    padding-top: 5%;
+  }
+}

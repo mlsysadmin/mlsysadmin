@@ -1,0 +1,98 @@
+/* ViewMoreModal.css */
+.view-more-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+  }
+  
+  .view-more-modal {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 10px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    position: relative;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .view-more-modal .title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .view-more-modal .title span{
+    color: #d90000;
+  }
+  .view-more-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  
+  .view-more-photos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 80%;
+    overflow: scroll;
+  }
+  
+  .row {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .fcol {
+    flex: 2;
+  }
+  .fcol img{
+    border-radius: 20px;
+  }
+  
+  .scol {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .bigimage {
+    width: 100%;
+    height: auto;
+  }
+  
+  .fimage, .secImage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .fimage img, .secImage img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+  
+  .dropzone {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  

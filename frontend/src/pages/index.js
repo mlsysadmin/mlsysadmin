@@ -8,6 +8,10 @@ import SupportDashboardPage from "./SupportPage";
 import ErrorPage from "./error.page";
 import OpenListingMasterlist from "../components/custom/custom.OpenListingMasterlist";
 import { SupportCreateListingComponent } from "../components";
+import PendingApplicationpage from "./PendingApplication.page";
+import OpenApplicationpage from "./OpenApplication.page";
+import DisapprovedApplicationpage from "./DisapprovedApplication.page";
+import ApplicationDetailspage from "./ApplicationDetails.page";
 
 export {
   MainOutlet,
@@ -19,5 +23,9 @@ export {
   PendingListingMasterlist,
   DisapprovedListingMasterlist,
   OpenListingMasterlist,
-  SupportCreateListingComponent
+  SupportCreateListingComponent,
+  PendingApplicationpage,
+  OpenApplicationpage,
+  DisapprovedApplicationpage,
+  ApplicationDetailspage
 };

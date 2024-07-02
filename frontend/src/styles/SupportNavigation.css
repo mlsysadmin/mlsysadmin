@@ -1,231 +1,387 @@
 .support-navigation-bar {
-  max-width: 100%;
-  min-width: 99.2%;
-  display: grid;
   display: flex;
   position: sticky;
   top: 0;
-  grid-template-columns: 69% 29%;
-  grid-gap: 10px;
   background-color: #d90000;
-  padding: 10px 0;
   justify-content: space-between;
-  height: 8vh;
-  padding: 0;
-  margin: 0;
-}
-
-.support-navigation-bar > div {
-  text-align: center;
-  padding: 6px 10px;
-  font-size: 30px;
+  align-items: center;
+  padding: 10px 20px;
+  z-index: 1000;
 }
 
 .support-navigation-bar .leftSideNavigationBar {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  padding: 0;
-  width: 70%;
+  width: 100%;
 }
-
-
 
 .support-navigation-bar .rightSideNavigationBar {
-  display: inline-flex;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  width: 28%;
+  justify-content: center;
 }
-
-.support-navigation-bar .rightSideNavigationBar .list-property-div {
-  border-radius: 20px;
-  background-color: #fff;
-  width: 40%;
+.support-navigation-bar .rightSideNavigationBar{
+  
+  width: 10%;
 }
-
-.support-navigation-bar
-  .rightSideNavigationBar
-  .list-property-div
-  .list-property-text {
-  font-size: 16px;
-  font-weight: bold;
-  text-align: justify;
-}
-
-.support-navigation-bar .rightSideNavigationBar .list-your-property-button {
-  border-radius: 30px;
-  min-width: 10%;
-}
-
-.support-navigation-bar .rightSideNavigationBar .div {
-  color: #ffffff;
-  padding: 0 5%;
+.support-navigation-bar .rightSideNavigationBar .div{
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: center;
-  align-content: center;
-  font-family: "Poppins", Helvetica;
-  font-size: 14px;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: normal;
-  color: #fff;
+  
 }
-.support-navigation-bar .rightSideNavigationBar .div p{
-  text-align: center;
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+.custom-nav-link {
   display: flex;
   align-items: center;
+  height: 100%;
 }
-/* Dropdown Styles */
+
+.custom-nav-link .nav-link {
+  text-decoration: none;
+  color: #fff;
+  margin: 0 15px;
+  font-size: 16px;
+  position: relative;
+  height:max-content;
+}
+.custom-nav-link .dropdown-options  .nav-link{
+  display: flex;
+  flex-direction: column;
+  color: #000;
+  font-size: 1rem;
+}
+.custom-nav-link .nav-link:hover {
+  text-decoration: underline;
+}
+
 .dropdown {
   position: relative;
-  display: inline-block;
-  margin-left: 20px;
 }
-.nav-link.dropdown{
-  color: #f9f9f9;
-}
+
 .dropdown .nav-link-text {
-  color: #fff;
   cursor: pointer;
   display: flex;
   align-items: center;
 }
 
-.SecondNavigationDiv {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 0px;
-  padding: 30px 10px 20px 10px;
-  justify-content: flex-start;
-}
 .dropdown-options {
   position: absolute;
   top: 100%;
   left: 0;
-  padding: 0;
   background-color: #fff;
-  min-width: 200px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  width: 13vw;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 100;
   display: none;
-  color: #fff;
 }
-
-.SecondNavigationDiv .SecondDivTitle {
-  color: #000000;
-  font-family: "Poppins", Helvetica;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: normal;
-  margin-left: 2%;
-  width: 96%;
+.user{
+  display: none;
 }
-.dropdown-options a {
-  color: #fff; /* White text color */
-  background-color: #fff;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+.user .div{
+  padding: 2%;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #ccc;
+  border: 1px solid #ccc;
+  border-radius: 20px;
 }
-
-.SecondNavigationDiv .line {
-  background-color: #d90000;
-  height: 1px;
-  margin-left: 2%;
-  width: 96%;
-}
-.dropdown-options a:hover {
-  background-color: #8C9094;
-}
-
 .dropdown:hover .dropdown-options {
   display: block;
 }
 
-/* Media query for smaller devices */
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
   .support-navigation-bar {
-    grid-template-columns: 1fr;
-    text-align: center;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
   }
 
   .support-navigation-bar .leftSideNavigationBar {
-    justify-content: center;
+    width: 100%;
+    justify-content: space-between;
     margin-bottom: 10px;
   }
+  .support-navigation-bar .leftSideNavigationBar img{
+    width: 200px;
+  }
+  .support-navigation-bar .rightSideNavigationBar {
+    display: none;
 
-  .support-navigation-bar .image {
-    width: 50%;
-    margin-left: 0;
+  }
+  .user{
+    display: flex;
+    padding: 1% 6%;
+    display: block;
+
+  }
+
+  .menu-toggle {
+    display: block;
   }
 
   .custom-nav-link {
-    font-size: x-small;
+    background: #d90000;
+    left: 0;
+    top: 12%;
+    position: absolute;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+    display: none;
   }
 
-  .support-navigation-bar .rightSideNavigationBar {
-    justify-content: center;
+  .custom-nav-link.open {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    height: 100vh;
+  }
+  .custom-nav-link.open .menu-toggle{
+    padding-left: 5%;
+  } 
+  .nav-link {
+    padding: 10px 10px;
+    width: 100%;
+    text-align: left;
   }
 
-  .support-navigation-bar .rightSideNavigationBar .list-property-div {
-    width: auto;
-    max-width: 70%;
+  .dropdown {
+    margin: 10px 0;
   }
 
   .dropdown-options {
-    top: initial;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
+    top: 100%;
+    left: 30%;
+    min-width: auto;
   }
 
   .dropdown-options a {
-    text-align: center;
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #000;
+  }
+  .nav-link-active {
+    color: #000 !important;
+    background-color: #ccc;
+    width: 70%;
   }
 }
 
 
 
-/* Media query for smaller devices */
-@media (max-width: 768px) {
+@media only screen and (max-width: 860px) {
   .support-navigation-bar {
-    width: 50%; /* Reduce image width */
-    margin-left: 0; /* Remove left margin */
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .support-navigation-bar .leftSideNavigationBar {
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .support-navigation-bar .leftSideNavigationBar img{
+    width: 200px;
+  }
+  .support-navigation-bar .rightSideNavigationBar {
+    display: none;
+
+  }
+  .user{
+    display: flex;
+    padding: 1% 3%;
+    display: block;
+
+  }
+
+  .menu-toggle {
+    display: block;
   }
 
   .custom-nav-link {
-    font-size: x-small;
+    background: #d90000;
+    left: 0;
+    top: 12%;
+    position: absolute;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+    display: none;
   }
 
-  .support-navigation-bar .rightSideNavigationBar {
-    justify-content: center; /* Center align items */
-  }
-
-
-  .SecondNavigationDiv {
-    padding: 20px 10px; /* Adjust padding */
-  }
-
-  .SecondNavigationDiv .SecondDivTitle {
-    font-size: 16px;
-    margin-left: 0;
+  .custom-nav-link.open {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     width: 100%;
   }
-
-  .SecondNavigationDiv .line {
-    margin-left: 0;
+  .custom-nav-link.open .menu-toggle{
+    padding-left: 5%;
+  } 
+  .nav-link {
+    padding: 10px 10px;
     width: 100%;
+    text-align: left;
   }
-  .rightSideNavigationBar {
+
+  .dropdown {
+    margin: 10px 0;
+  }
+
+  .dropdown-options {
+    width: 100%;
+    top: 100%;
+    left: 30%;
+    min-width: auto;
+  }
+
+  .dropdown-options a {
+    display: block;
     padding: 10px;
-    font-size: xx-small !important;
+    text-decoration: none;
+    color: #000;
+  }
+  .nav-link-active {
+    color: #000 !important;
+    background-color: #ccc;
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 960px) {
+  .support-navigation-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .support-navigation-bar .leftSideNavigationBar {
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .support-navigation-bar .leftSideNavigationBar img{
+    width: 200px;
+  }
+  .support-navigation-bar .rightSideNavigationBar {
+    display: none;
+
+  }
+  .user{
+    display: flex;
+    padding: 1% 3%;
+    display: block;
+
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .custom-nav-link {
+    background: #d90000;
+    left: 0;
+    top: 12%;
+    position: absolute;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+    display: none;
+  }
+
+  .custom-nav-link.open {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    height: 100vh;
+
+  }
+  .custom-nav-link.open .menu-toggle{
+    padding-left: 5%;
+  } 
+  .nav-link {
+    padding: 10px 10px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .dropdown {
+    margin: 10px 0;
+  }
+
+  .dropdown-options {
+    width: 100%;
+    top: 100%;
+    left: 30%;
+    min-width: auto;
+  }
+
+  .dropdown-options a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #000;
+  }
+  .nav-link-active {
+    color: #000 !important;
+    background-color: #ccc;
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 1280px) {
+  .support-navigation-bar {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .support-navigation-bar .leftSideNavigationBar {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .support-navigation-bar .leftSideNavigationBar img{
+    width: 200px;
+  }
+  .nav-link-active {
+    color: #000 !important;
+    background-color: #ccc;
+    width:auto;
   }
   .dropdown-options {
-    top: initial; /* Reset top position for mobile */
-    left: 50%; /* Center dropdown horizontally */
-    transform: translateX(-50%);
+    width: 250px;
+    top: 100%;
+    left: 0%;
+    min-width: auto;
   }
+  .rightSideNavigationBar .div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .support-navigation-bar .rightSideNavigationBar{
+    width: 20%;
+    padding: 1%;
+  }
+}
+
+.nav-link-active {
+  color: #000 !important;
+  background-color: #ccc;
+  height: 100%;
+  padding: 0;
 }

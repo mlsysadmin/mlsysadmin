@@ -10,6 +10,10 @@ import {
   OpenListingMasterlist,
   PendingListingMasterlist,
   DisapprovedListingMasterlist,
+  PendingApplicationpage,
+  OpenApplicationpage,
+  DisapprovedApplicationpage,
+  ApplicationDetailspage
 } from "../pages/index.js";
 
 const routes = [
@@ -30,6 +34,18 @@ const routes = [
             element: <SupportDashboardPage />,
           },
           {
+            path: "openApplication",
+            element: <OpenApplicationpage />,
+          },
+          {
+            path: "pendingApplication",
+            element: <PendingApplicationpage />,
+          },
+          {
+            path: "disapprovedApplication",
+            element: <DisapprovedApplicationpage />,
+          },
+          {
             path: "open",
             element: <OpenListingMasterlist />,
           },
@@ -45,15 +61,17 @@ const routes = [
             path: "disapproved",
             element: <DisapprovedListingMasterlist />,
           },
-          
           {
             path: "SupportCreateListingPage",
             element: <SupportCreateListingComponent />,
           },
-
           {
             path: "listing-details/:listingId",
             element: <ListingDetailsPage />,
+          },
+          {
+            path: "Application-details/:listingId",
+            element: <ApplicationDetailspage />,
           },
           {
             path: "Something/Similar",
@@ -72,6 +90,8 @@ const routes = [
     element: <ErrorPage />,
   },
 ];
+
+
 
 const Router = createBrowserRouter(routes);
 

@@ -71,7 +71,6 @@ const FileUpload = () => {
                 <div className="modal">
                     <span className="close" onClick={closeModal}>&times;</span>
                     <img className="modal-content" src={currentImage} alt="view" />
-                    {/* <div className="caption">Image Viewer</div> */}
                 </div>
             )}
         </div>

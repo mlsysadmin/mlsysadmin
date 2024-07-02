@@ -5,6 +5,19 @@ import SupportFeatureLayout from "./SupportFeatureLayout";
 import "../../styles/Support.css";
 
 const ListingDetailsLayout = () => {
+  const [subdivision, setSubdivision] = useState("");
+  const [completeAddress, setCompleteAddress] = useState("");
+  const [mapLocation, setMapLocation] = useState("");
+
+  const handleSubdivisionChange = (e) => setSubdivision(e.target.value);
+  const handleCompleteAddressChange = (e) => setCompleteAddress(e.target.value);
+  const handleMapLocationChange = (e) => setMapLocation(e.target.value);
+
+  // const generateMapSrc = () => {
+  //   const query = `${subdivision} ${completeAddress} ${mapLocation}`;
+  //   return `https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${encodeURIComponent(query)}`;
+  // };
+
   return (
     <div className="ListingDetails">
       <div className="leftSide">
@@ -18,34 +31,12 @@ const ListingDetailsLayout = () => {
           <CustomTextField
             inputType="input"
             labelName="Selling Price"
-            inputStyle={{
-              fontSize: "12px",
-              fontWeight: "400",
-              letterSpacing: "0",
-              lineHeight: "normal",
-              border: "1px solid",
-              borderColor: "#8c9094",
-              borderRadius: "10px",
-              height: "50px",
-              width: "333px",
-              padding: "0px 10px 0px 10px",
-            }}
+            
           />
           <CustomTextField
             inputType="input"
             labelName="Discounted Selling Price"
-            inputStyle={{
-              fontSize: "12px",
-              fontWeight: "400",
-              letterSpacing: "0",
-              lineHeight: "normal",
-              border: "1px solid",
-              borderColor: "#8c9094",
-              borderRadius: "10px",
-              height: "50px",
-              width: "333px",
-              padding: "0px 10px 0px 10px",
-            }}
+           
           />
           <CustomSelectTypeField labelName="Furnishing" />
           <CustomSelectTypeField labelName="Classification" />
@@ -56,66 +47,22 @@ const ListingDetailsLayout = () => {
           <CustomTextField
             inputType="input"
             labelName="Floor Area (sqm)"
-            inputStyle={{
-              fontSize: "12px",
-              fontWeight: "400",
-              letterSpacing: "0",
-              lineHeight: "normal",
-              border: "1px solid",
-              borderColor: "#8c9094",
-              borderRadius: "10px",
-              height: "50px",
-              width: "333px",
-              padding: "0px 10px 0px 10px",
-            }}
+            
           />
           <CustomTextField
             inputType="input"
             labelName="Lot Area (sqm)"
-            inputStyle={{
-              fontSize: "12px",
-              fontWeight: "400",
-              letterSpacing: "0",
-              lineHeight: "normal",
-              border: "1px solid",
-              borderColor: "#8c9094",
-              borderRadius: "10px",
-              height: "50px",
-              width: "333px",
-              padding: "0px 10px 0px 10px",
-            }}
+            
           />
           <CustomTextField
             inputType="input"
             labelName="Price per sqm"
-            inputStyle={{
-              fontSize: "12px",
-              fontWeight: "400",
-              letterSpacing: "0",
-              lineHeight: "normal",
-              border: "1px solid",
-              borderColor: "#8c9094",
-              borderRadius: "10px",
-              height: "50px",
-              width: "333px",
-              padding: "0px 10px 0px 10px",
-            }}
+            
           />
           <CustomTextField
             inputType="input"
             labelName="Property ID"
-            inputStyle={{
-              fontSize: "12px",
-              fontWeight: "400",
-              letterSpacing: "0",
-              lineHeight: "normal",
-              border: "1px solid",
-              borderColor: "#8c9094",
-              borderRadius: "10px",
-              height: "50px",
-              width: "333px",
-              padding: "0px 10px 0px 10px",
-            }}
+            
           />
         </div>
         <div className="location">
@@ -123,46 +70,23 @@ const ListingDetailsLayout = () => {
           <CustomTextField
             inputType="textarea"
             labelName="Subdivision"
-            inputStyle={{
-              fontSize: "12px",
-              fontWeight: "400",
-              letterSpacing: "0",
-              lineHeight: "normal",
-              border: "1px solid",
-              borderColor: "#8c9094",
-              borderRadius: "10px",
-              height: "100px",
-              width: "88%",
-              padding: "10px 10px 10px 10px",
-            }}
+            value={subdivision}
+            onChange={handleSubdivisionChange}
+            
           />
           <CustomTextField
             inputType="textarea"
             labelName="Complete Address"
-            inputStyle={{
-              fontSize: "12px",
-              fontWeight: "400",
-              letterSpacing: "0",
-              lineHeight: "normal",
-              border: "1px solid",
-              borderColor: "#8c9094",
-              borderRadius: "10px",
-              height: "100px",
-              width: "88%",
-              padding: "10px 10px 10px 10px",
-            }}
+            value={completeAddress}
+            onChange={handleCompleteAddressChange}
+            
           />
           <CustomTextField
             inputType="input"
             labelName="Map Location"
-            inputStyle={{
-              border: "1px solid",
-              borderColor: "#8c9094",
-              borderRadius: "10px",
-              height: "50px",
-              padding: "5px 15px 5px 15px",
-              width: "87%",
-            }}
+            value={mapLocation}
+            onChange={handleMapLocationChange}
+            
           />
         </div>
       </div>
@@ -172,48 +96,26 @@ const ListingDetailsLayout = () => {
           <CustomTextField
             inputType="input"
             labelName="Title"
-            inputStyle={{
-              border: "1px solid",
-              borderColor: "#8c9094",
-              borderRadius: "10px",
-              height: "50px",
-              padding: "0px 20px 0px 10px",
-              width: "90%",
-            }}
+           
           />
           <CustomTextField
             inputType="textarea"
             labelName="Caption"
-            inputType="textarea"
-            inputStyle={{
-              border: "1px solid",
-              borderColor: "#8c9094",
-              borderRadius: "10px",
-              height: "560px",
-              padding: "10px 20px 0px 10px",
-              width: "90%",
-            }}
+           
           />
           <div className="googleMapDisplay">
-            {/* <Map
-              defaultZoom={13}
-              defaultCenter={{ lat: -33.860664, lng: 151.208138 }}
-              mapId="DEMO_MAP_ID"
-              onCameraChanged={(ev: MapCameraChangedEvent) =>
-                console.log(
-                  "camera changed:",
-                  ev.detail.center,
-                  "zoom:",
-                  ev.detail.zoom
-                )
-              }
-            >
-              {/* Add markers or other map elements here 
-            </Map> */}
+            {/* <iframe
+              width="600"
+              height="450"
+              frameborder="0"
+              style={{ border: 0 }}
+              src={generateMapSrc()}
+              allowfullscreen
+            ></iframe> */}
           </div>
         </div>
       </div>
-      <SupportFeatureLayout/>
+      <SupportFeatureLayout />
     </div>
   );
 };

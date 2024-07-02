@@ -4,7 +4,10 @@ import Footer from "./layout/FooterComponent";
 import ListingDetailsLayout from "./layout/ListingDetailsLayout";
 const SupportCreateListingComponent = () => {
   const navLinks = [
-    { text: "Create listing", to: "/ML-Brokerage/Support/SupportCreateListingPage" },
+    {
+      text: "Create listing",
+      to: "/ML-Brokerage/Support/SupportCreateListingPage",
+    },
     {
       text: "Listing Masterlist",
       dropdown: true,
@@ -12,7 +15,28 @@ const SupportCreateListingComponent = () => {
         { text: "Open Listings", to: "/ML-Brokerage/Support/open" },
         { text: "Pending Listings", to: "/ML-Brokerage/Support/pending" },
         { text: "Active Listings", to: "/ML-Brokerage/Support/active" },
-        { text: "Disapproved Listings", to: "/ML-Brokerage/Support/disapproved" },
+        {
+          text: "Disapproved Listings",
+          to: "/ML-Brokerage/Support/disapproved",
+        },
+      ],
+    },
+    {
+      text: "Application Review",
+      dropdown: true,
+      options: [
+        {
+          text: "Open Applications",
+          to: "/ML-Brokerage/Support/openApplication",
+        },
+        {
+          text: "Pending Applications",
+          to: "/ML-Brokerage/Support/pendingApplication",
+        },
+        {
+          text: "Disapproved Applications",
+          to: "/ML-Brokerage/Support/disapprovedApplication",
+        },
       ],
     },
     { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
@@ -20,9 +44,13 @@ const SupportCreateListingComponent = () => {
 
   return (
     <div className="SupportCreateListingDiv">
-           <SupportNavigation navLinkProps={navLinks} />
+      <SupportNavigation navLinkProps={navLinks} />
 
-      <SecondNavigationComponent title="Create Listing" text="These is Create Listing Page!" isCreateListing={true}/>
+      <SecondNavigationComponent
+        title="Create Listing"
+        text="These is Create Listing Page!"
+        isCreateListing={true}
+      />
       <ListingDetailsLayout />
       <Footer />
     </div>

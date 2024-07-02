@@ -10,7 +10,7 @@ import Modal from "./Modal";
 import SupportNavigation from "./custom.NavigationComponent";
 import PropertyMapModal from "./PropertyMapModal";
 
-const OpenListingMasterlist = () => {
+const OpenApplicationMasterlist = () => {
   const [activeTab, setActiveTab] = useState("open");
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredListings, setFilteredListings] = useState([]);
@@ -82,7 +82,7 @@ const OpenListingMasterlist = () => {
   };
 
   const handleShowDetails = (listing) => {
-    navigate(`/ML-Brokerage/Support/listing-details/${listing.listing_id}`, {
+    navigate(`/ML-Brokerage/Support/Application-details/${listing.listing_id}`, {
       state: { listing, activeTab },
     });
   };
@@ -157,9 +157,9 @@ const OpenListingMasterlist = () => {
   };
 
   const tabHeadings = {
-    open: "Manage Open Listings",
-    pending: "Manage Pending Listings",
-    disapproved: "Manage Disapproved Listings",
+    open: "Manage Open Application",
+    pending: "Manage Pending Application",
+    disapproved: "Manage Disapproved Application",
   };
 
   const startIndex = (currentPage - 1) * entriesPerPage + 1;
@@ -293,4 +293,4 @@ const OpenListingMasterlist = () => {
   );
 };
 
-export default OpenListingMasterlist;
+export default OpenApplicationMasterlist;

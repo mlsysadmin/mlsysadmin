@@ -70,8 +70,8 @@ const DisapprovedListingMasterlist = () => {
   };
 
   const handleShowDetails = (listing) => {
-    navigate(`/dashboard/Support/listing-details/${listing.listing_id}`, {
-      state: { listing, activeTab: "disapproved" }, // Pass activeTab explicitly
+    navigate(`/ML-Brokerage/Support/listing-details/${listing.listing_id}`, {
+      state: { listing, activeTab: "disapproved" },
     });
   };
 
@@ -135,8 +135,27 @@ const DisapprovedListingMasterlist = () => {
         { text: "Disapproved Listings", to: "/ML-Brokerage/Support/disapproved" },
       ],
     },
+    {
+      text: "Application Review",
+      dropdown: true,
+      options: [
+        {
+          text: "Open Applications",
+          to: "/ML-Brokerage/Support/openApplication",
+        },
+        {
+          text: "Pending Applications",
+          to: "/ML-Brokerage/Support/pendingApplication",
+        },
+        {
+          text: "Disapproved Applications",
+          to: "/ML-Brokerage/Support/disapprovedApplication",
+        },
+      ],
+    },
     { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
   ];
+  
 
   return (
     <>

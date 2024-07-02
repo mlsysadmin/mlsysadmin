@@ -1,31 +1,45 @@
-.modal-backdrop {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: center;
+  align-items: flex-start; 
+  justify-content: center; 
+  z-index: 1000;
+}
+
+.modal-content {
+  position: absolute;
+  top: 10%;
+  background: white;
+  padding: 40px 10px;
+  border-radius: 10px;
+  width: 500px;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  margin-top: 50px; /* Adds some space from the top of the screen */
 }
 
-.modal-backdrop .modal {
-  background: #fff;
-  padding: 20px;
-  border-radius: 25px;
-  width: 40%;
-  height: auto;
-  max-width: 80%;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.modal-header {
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
-.modal-backdrop .modal .modal-content {
+.modal-body {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
 .modal-backdrop .modal .modal-content h3 {
+  text-align: center;
   margin: 0 0 10px;
   font-size: smaller;
 }
@@ -43,18 +57,16 @@
 
 .modal-backdrop .modal .modal-content .modal-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 1%;
 }
 
 .modal-actions button {
   padding: 10px 20px;
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   cursor: pointer;
 }
-
-/* Button background colors based on actionType */
 
 .modal-actions .confirm-pending {
   background-color: #F68721;
@@ -74,8 +86,6 @@
   color: #fff;
 }
 
-/* Cancel button border colors based on actionType */
-
 .modal-actions .cancel-pending {
   border: 1px solid #F68721; /* Yellow border for Cancel button */
 }
@@ -83,7 +93,43 @@
 .modal-actions .cancel-disapprove {
   border: 1px solid red; /* Red border for Cancel button */
 }
-
+.modal-actions .cancel-create-listing{
+  border: #EA4335 1px solid;
+}
 .modal-actions .cancel-approve {
   border: 1px solid green; /* Green border for Cancel button */
+}
+.modal-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.title-pending {
+  color: #f68721; /* Orange */
+}
+
+.title-disapprove {
+  color: red;
+}
+.modal-title{
+  text-align: center;
+}
+.title-approve {
+  color: green;
+}
+.title-approve
+.title-default {
+  color: black;
+}
+
+.modal-actions .confirm-create-listing {
+  background-color: #EA4335;
+  border: 1px solid #EA4335; /* Red border for Confirm button */
+  color: #fff;
+}
+
+.confirm-create-listing{
+  text-align: center;
+  color: #EA4335;
 }

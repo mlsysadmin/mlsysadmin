@@ -114,3 +114,24 @@
     font-size: 20px;
     padding: 10px 0;
 }
+
+@media only screen and (max-width: 768px) {
+    .upload-container{
+        width: 100vw;
+    }
+    .drag-area{
+        width: 80%;
+    }
+  }
+  
+  
+  
+  @media only screen and (max-width: 860px) {
+    .drag-area{
+        width: 100%;
+    }
+  }
+  @media only screen and (max-width: 960px) {
+    
+  }
+  

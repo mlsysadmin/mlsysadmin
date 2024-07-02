@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import '../../styles/CustomTextField.css'
 const CustomTextField = (props) => {
   const { labelName, inputStyle, inputType } = props;
   return (
@@ -13,14 +13,12 @@ const CustomTextField = (props) => {
           name={labelName}
           placeholder={`Enter ${labelName}`}
           className="textField"
-          style={inputStyle}
         />
       ) : (
         <textarea
           name={labelName}
           placeholder={labelName === "Address" ? "Enter Complete Address" : `Enter ${labelName}`}
           className="textField"
-          style={inputStyle}
         />
       )}
     </div>
