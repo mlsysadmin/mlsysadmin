@@ -1,0 +1,23 @@
+.listing-banner {
+  background-color: #d90000;
+  border-radius: 35px;
+  padding: 20px; /* Adjust padding to match design */
+  text-align: center;
+  width: 85%;
+  margin: 10px auto;
+  height: 75px; /* Adjust the height as needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.listing-banner h1 {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.listing-banner p {
+  color: white;
+  font-size: 16px;
+}

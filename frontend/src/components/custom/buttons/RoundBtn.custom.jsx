@@ -1,14 +1,19 @@
-import { Button } from 'antd';
-import React from 'react';
+import { Button } from "antd";
+import React from "react";
 
-const RoundBtn = ({ label, style, className, type}) => {
+const RoundBtn = ({ label, style, className, type, beforeIcon, afterIcon }) => {
   return (
-    <Button type={type} shape='round' className={className} 
-                style={style}
+    <Button
+      type={type}
+      shape="round"
+      className={className}
+      style={style}
     >
-       {label}
+      {beforeIcon}
+      {label}
+      {afterIcon}
     </Button>
-  )
-}
+  );
+};
 
-export default RoundBtn
+export default RoundBtn;
