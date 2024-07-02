@@ -58,10 +58,15 @@ const Card = ({
         <h3>{title}</h3>
         <h4>{subtitle}</h4>
         <div className="bot">
-          <p>{price}</p>
-          <p>
-            {beds} <span><BedOutlinedIcon /></span> • {baths} <span><ShowerOutlinedIcon /></span> • <span><ShortcutOutlinedIcon /></span> {size} SqM
-          </p>
+          <div className="card-price-detail">
+            <p>{price}</p>
+          </div>
+          <div className="card-icons">
+            <p>
+              {beds} <span  id="bed-icon"><BedOutlinedIcon/></span> • {baths} <span><ShowerOutlinedIcon /></span> • <span><ShortcutOutlinedIcon /></span> {size} SqM
+            </p>
+          </div>
+          
         </div>
       </div>
     </div>

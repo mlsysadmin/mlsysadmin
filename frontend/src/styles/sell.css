@@ -7,68 +7,86 @@
     flex-direction: column;
     height: auto;
     min-height: 100vh;
+    max-height: auto;
     position: relative;
     background-color: white;
 
   }
-  
-  /* .dashboard-navbar {
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    padding: 0 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1;
+
+  .dot{
+    height: 20px;
+    width: 20px;
+    border: 1px solid #D90000;
+    border-radius: 50%;
+    display: inline-block;
   }
   
-  .navbar-group {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  } */
-  
   .sell-container {
-    flex-grow: 1;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     font-size: 4rem;
-    /* padding: 40px 0; */
   }
   
   .sell-contents {
-    display: grid;
-    grid-gap: 0px;
-    width: 100%;
-    max-width: 100%;
-    height: 100%;
-    /* font-size: 4rem; */
-  }
-  
-  .first-content-sell,
-  .second-content-sell-page,
-  .third-content,
-  .fourth-content {
     display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    margin: 10px 0px 0px 0px;
+  }
+  .first-section{
+    font-weight: bold;
+    background-color: #fff;
+    width: 100%;
+    /* height: 700px; */
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0px 0px 0px;
+    justify-content: center;
+    align-items: center;
+  }
+  .second-section{
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0px 0px 0px;
     justify-content: center;
     align-items: center;
     /* font-size: 5rem; */
     font-weight: bold;
     background-color: #fff;
+    width: 100%;
+    height: 500px;
+    /* padding: 40px; */
+  }
+  .fourth-section {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 0px 0px 0px;
+    justify-content: center;
+    align-items: center;
+    /* font-size: 5rem; */
+    font-weight: bold;
+    background-color: #fff;
+    width: 100%;
+    height: 500px;
     /* padding: 40px; */
   }
   
-  .first-content-sell {
+  .first-section {
     background-color: #FFFFFF;
     padding: 0% 5% 2% ;
+    display: flex;
+    flex-direction: row;
   }
 
-  .first-content img{
+  .first-section img{
     width: 50%;
-    height: 100%;
+    height: 500px;
   }
 
-  .first-content .bannerbg{
+  .first-section .bannerbg{
     background-color: #EDEDED;
     width: 50%;
     overflow: hidden;
@@ -77,195 +95,1036 @@
     justify-content: flex-start;
     align-items: flex-start;
     padding-left: 3% ;
-    height: 100%;
-
+   height: 500px;
   }
 .sell-header{
     color: black;
     text-align: left;
-    margin-top: 70px;
-    font-size: 100%;
+    margin-top: 12%;
+    font-size: 80%;
   }
 
-  .first-content-sell #contactUs{
+  .banner-buttons{
+    /* margin-top: 8%; */
+  }
+
+  .first-section #contactUs{
     color: #D90000;
     font-weight: bold;
     border-color: #D90000;
     background-color: transparent;
-    border-radius: 25px;
-    font-size: 1.5rem;
-    padding: 30px;
+    border-radius: 20px;
+    font-size: 20px;
+    padding: 25px;
+    border:1px solid #ff2800;
+    width: 200px;
+    height: 80px;
   }
-  .first-content-sell #contactUs:hover{
+  .first-section #contactUs:hover{
     background: transparent;
 
   }
-  .first-content-sell #signIn{
-    color: #FFFFFF;
-    font-weight: bold;
-    background-color: #D90000;
-    border-radius: 25px;
-    font-size: 1.5rem;
-    padding: 30px;
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-  
-  .second-content-sell-page {
-    background-color: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .second-content-span{
-    color: black;
-    font-size: 50px;
-    font-weight: bold;
-    justify-content: flex-start;
-    align-items: start;
-  }
-  
-
-
-  .second-content .content #ListPropertybtn{
+  .first-section #signIn{
     color: #FFFFFF;
     font-weight: bold;
     background-color: #D90000;
     border-radius: 20px;
     font-size: 20px;
-    padding: 40px;
-    font-size: 25px;
-    margin-top: 3%;
+    padding: 25px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border:1px solid #ff2800;
+    width: 200px;
+    height: 80px;
+  }
+  
+  .second-section {
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 3rem;
   }
 
-  .second-content .content p{
+  .section-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+
+  }
+
+  .second-content-span{
+    color: black;
+    font-size: 60%;
+    font-weight: bold;
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+
+  }
+  
+
+  .second-section .content #ListPropertybtn{
+    border:1px solid #ff2800;
+    width: 300px;
+    height: 80px;
+    color: #FFFFFF;
+    font-weight: bold;
+    background-color: #D90000;
+    border-radius: 20px;
+    padding: 35px;
+    font-size: 24px;
+    margin: 50px 0px 0px 100px;
+    justify-content: center;
+    display:flex;
+    align-items: center;
+  }
+
+  .second-section .content p{
     color: #000;
-    font-size: 30px;
+    font-size: 40%;
     align-items: flex-start;
     font-weight: lighter;
     text-align: left;
+    width: 500px;
+    margin: 0px 0px 0px 100px;
   }
 
-  .content-container{
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    align-items: center;
-  }
   .options{
-    padding-top: 3%;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    font-size: 1rem;
-    height: 30vh;
-    justify-content: flex-start;
+    gap: 1.5rem;
+    font-size: 40%;
+    font-weight: normal;
+    align-items: flex-start;
+    justify-content: left;
+    width: 40%;
   }
-  .content{
+  .section-container .content{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start ;
-    height: 30vh;
+    width: 40%;
   }
-
+.content-container{
+  display: flex;
+  flex-direction: row;
+}
 
   /*third*/
-  .third-content {
+  .third-section {
+    margin-top: 5%;
     background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 2.5rem;
+    width: 100%;
+    height: auto;
   }
 
-  .third-content third-cont-guide{
+  .third-section .third-cont-guide{
     color: #000;
     font-weight: bold;
-    font-size: 50px;
-    margin-right: 69%;
-    margin-top: 5%;
+    font-size: 60%;
+    margin-right: 74%;
   }
 
-  .third-content p{
+.third-section .section-cont-guide {
     color: #000;
-    font-size: 30px;
-    font-weight: lighter;
+    font-size: 24px;
+    font-weight: 300px;
   }
+
+  .section-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
 
   .cards{
     display: flex;
     flex-direction: row;
-    gap: 2rem;
+    gap: 3rem;
     width: 100%;
     justify-content: center;
+    font-size: 2.2rem;
+    text-align: center;
   }
-.cardContainer{
-    width: 100%;
+
+  .cards h5{
+    font-size: 65%;
+  }
+
+  .cards p{
+    font-size: 50%;
+    margin-top: 25%;
+  }
+
+  .cards .card1,.card2,.card3,.card4{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-}
-  .cards p{
-    font-size: 27px;
-  }
-
-  .card1{
     background-color: #D9D9D9;
     border-radius: 25px;
-    width: 300px;
-  }
+    width: 20%;
+    padding: 2% 2% 7% 2% ;
+    height: 100%;    
+    height: auto;
+  } 
 
-  .card2{
-    background-color: #D9D9D9;
-    border-radius: 20px;
-    width: 300px;
-  }
-
-  .card3{
-    background-color: #D9D9D9;
-    border-radius: 20px;
-    width: 300px;
-  }
   
-  .card4{
-    background-color: #D9D9D9;
-    border-radius: 20px;
-    width: 300px;
-  }
  
  /*fourth*/
- .fourth-content {
+ .fourth-section {
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    padding-top: 6%;
     padding-bottom: 6%;
+    gap: 2rem;
+    margin-top: 5%;
   }
 
-  .fourth-content h1{
+  .fourth-section h1{
     color: black;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 60%;
   }
 
-  .fourth-content p{
+  .fourth-section p{
     color: #000;
-    font-size: 30px;
+    font-size: 40%;
     font-weight: lighter;
   }
 
-  .fourth-content #contactUs{
+  .fourth-section #contactUs{
     color: #D90000;
     font-weight: bold;
     border-color: #D90000;
     background-color: transparent;
-    border-radius: 25px;
-    font-size: 30px;
-    padding: 40px;
+    border-radius: 20px;
+    font-size: 40%;
+    padding: 1.5%;
   }
- input[type="radio"]{
-    border-color: #D90000 solid ;
- }
+@media screen and (min-width:320px) and (max-width:359px) {
+  .sell{
+    width: 100%;
+  }
+  .sell-contents{
+   display: flex;
+   flex-direction: column;
+   margin: 0px;
+  }
+  .first-section{
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+  }
+  .first-section img, .first-section .bannerbg  {
+    width: 100%;
+    height: auto;
+}
+.first-section .bannerbg  {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size:24px;
+  padding: 0px 0px 20px 20px;
+}
+.second-section {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px;
+  /* margin: 200px 0px 0px 0px; */
+  height: auto;
+}
+.second-content-span{
+  font-size:24px;
+  margin: 10px 0px 0px 0px;
+}
+.sell .banner-buttons{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.banner-buttons #contactUs,
+.banner-buttons #signIn{
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 700px;
+  width: 120px;
+  height: 50px;
+  margin: 10px 0px 0px 0px;
+}
+.section-container {
+  display: flex;
+  flex-direction: column;
+  /* width: 100%; */
+}
+.sell .content p{
+  font-size: 18px;
+  margin:0px 0px 0px 20px;
+  width: 300px;
+}
+.second-section .content #ListPropertybtn{
+  width: 250px;
+  height: 50px;
+  font-size: 18px;
+  padding: 5px;
+  margin: 20px 0px 0px 20px;
+}
+.sell .second-section .options{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 30px 0px 0px 10px;
+}
+.sell .second-section .options p{
+  font-size: 18px;
+}
+.third-section{
+  width: 100%;
+  margin: 0px;
+}
+.sell .third-section .third-cont-guide{
+  color: #000;
+  font-weight: bold;
+  font-size:24px;
+  margin: 30px 0px 0px 0px;
+}
+.third-section .section-cont-guide {
+  font-size: 16px;
+  width: 100%;
+  margin: 0px 0px 0px 20px;
+}
+.third-section .section-cards .cards{
+display: flex;
+flex-direction: column;
+width: 80%;
+}
+.cards .card1, .card2, .card3, .card4{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  height: 150px;
+}
+.third-section .cards p{
+  margin: 0px;
+}
+.sell .fourth-section{
+  width: 100%;
+  height: auto;
+  margin: 20px 0px 30px 0px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.sell .fourth-section .fourth-section-content{
+  margin: 0px 0px 0px 20px;
+}
+.fourth-section h1 {
+  font-size: 24px;
+}
+.sell .fourth-section p{
+  font-size: 16px;
+}
+.sell .fourth-section #contactUs{
+  width: 200px;
+  height: 50px;
+  margin: 0px 0px 0px 50px;
+}
+}
+@media screen and (min-width:360px) and (max-width:480px) {
+  .sell{
+    width: 100%;
+  }
+  .sell-contents{
+   display: flex;
+   flex-direction: column;
+   margin: 0px;
+  }
+  .first-section{
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+  }
+  .first-section img, .first-section .bannerbg  {
+    width: 100%;
+    height: auto;
+}
+.first-section .bannerbg  {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size:24px;
+  padding: 0px 0px 20px 20px;
+}
+.second-section {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px;
+  /* margin: 200px 0px 0px 0px; */
+  height: auto;
+}
+.second-content-span{
+  font-size:24px;
+  margin: 10px 0px 0px 0px;
+}
+.sell .banner-buttons{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.banner-buttons #contactUs,
+.banner-buttons #signIn{
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 700px;
+  width: 120px;
+  height: 50px;
+  margin: 10px 0px 0px 0px;
+}
+.section-container {
+  display: flex;
+  flex-direction: column;
+  /* width: 100%; */
+}
+.sell .content p{
+  font-size: 18px;
+  margin:0px 0px 0px 20px;
+  width: 300px;
+}
+.second-section .content #ListPropertybtn{
+  width: 250px;
+  height: 50px;
+  font-size: 18px;
+  padding: 5px;
+  margin: 20px 0px 0px 20px;
+}
+.sell .second-section .options{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 30px 0px 0px 10px;
+}
+.sell .second-section .options p{
+  font-size: 18px;
+}
+.third-section{
+  width: 100%;
+  margin: 0px;
+}
+.sell .third-section .third-cont-guide{
+  color: #000;
+  font-weight: bold;
+  font-size:24px;
+  margin: 30px 0px 0px 0px;
+}
+.third-section .section-cont-guide {
+  font-size: 16px;
+  width: 100%;
+  margin: 0px 0px 0px 20px;
+}
+.third-section .section-cards .cards{
+display: flex;
+flex-direction: column;
+width: 80%;
+}
+.cards .card1, .card2, .card3, .card4{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  height: 150px;
+}
+.third-section .cards p{
+  margin: 0px;
+}
+.sell .fourth-section{
+  width: 100%;
+  height: auto;
+  margin: 20px 0px 30px 0px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.sell .fourth-section .fourth-section-content{
+  margin: 0px 0px 0px 20px;
+}
+.fourth-section h1 {
+  font-size: 24px;
+}
+.sell .fourth-section p{
+  font-size: 16px;
+}
+.sell .fourth-section #contactUs{
+  width: 200px;
+  height: 50px;
+  margin: 0px 0px 0px 80px;
+}
+}
+@media screen and (min-width:481px) and (max-width:768px) {
+  .sell{
+    width: 100%;
+  }
+  .sell-contents{
+   display: flex;
+   flex-direction: column;
+   margin: 0px;
+  }
+  .first-section{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0px;
+  }
+  .first-section img, .first-section .bannerbg  {
+    width: 50%;
+    height: 280px;
+}
+.first-section .bannerbg  {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size:24px;
+  padding: 0px 0px 20px 20px;
+}
+.second-section {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px;
+  /* margin: 200px 0px 0px 0px; */
+  height: auto;
+}
+.second-content-span{
+  font-size:24px;
+  margin: 10px 0px 0px 0px;
+}
+.sell .banner-buttons{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.banner-buttons #contactUs,
+.banner-buttons #signIn{
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 700px;
+  width: 120px;
+  height: 50px;
+  margin: 10px 0px 0px 0px;
+}
+.section-container {
+  display: flex;
+  flex-direction: row;
+  /* width: 100%; */
+}
+.sell .content p{
+  font-size: 20px;
+  margin:0px 0px 0px 40px;
+  width: 300px;
+}
+.second-section .content #ListPropertybtn{
+  width: 250px;
+  height: 50px;
+  font-size: 20px;
+  padding: 5px;
+  margin: 20px 0px 0px 40px;
+}
+.sell .second-section .options{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px 0px 0px 80px;
+}
+.sell .second-section .options p{
+  font-size: 20px;
+}
+.third-section{
+  width: 100%;
+  margin: 0px;
+}
+.sell .third-section .third-cont-guide{
+  color: #000;
+  font-weight: bold;
+  font-size:24px;
+  margin: 30px 0px 0px 0px;
+}
+.third-section .section-cont-guide {
+  font-size: 16px;
+  width: 100%;
+  margin: 0px 0px 0px 20px;
+}
+.third-section .section-cards .cards{
+display: flex;
+flex-direction: row;
+width: 100%;
+}
+.cards .card1, .card2, .card3, .card4{
+  width: 150px;
+  display: flex;
+  gap: 0px;
+  height: 220px;
+}
+.third-section .cards p{
+  margin: 0px;
+}
+.sell .fourth-section{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sell .fourth-section .fourth-section-content{
+  /* margin: 0px 0px 0px 20px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.fourth-section h1 {
+  font-size: 24px;
+}
+.sell .fourth-section p{
+  font-size: 16px;
+  margin: 0px 0px 0px 100px;
+}
+.sell .fourth-section #contactUs{
+  width: 200px;
+  height: 50px;
+  margin: 0px;
+}
+}
+@media screen and (min-width:769px) and (max-width:1024px) {
+  .sell{
+    width: 100%;
+  }
+  .sell-contents{
+   display: flex;
+   flex-direction: column;
+   margin: 0px;
+  }
+  .first-section{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0px;
+  }
+  .first-section img, .first-section .bannerbg  {
+    width: 50%;
+    height: 290px;
+}
+.first-section .bannerbg  {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size:24px;
+  padding: 0px 0px 20px 20px;
+}
+.second-section {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px;
+  /* margin: 200px 0px 0px 0px; */
+  height: auto;
+}
+.second-content-span{
+  font-size:24px;
+  margin: 10px 0px 0px 0px;
+}
+.sell .banner-buttons{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.banner-buttons #contactUs,
+.banner-buttons #signIn{
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 700px;
+  width: 120px;
+  height: 50px;
+  margin: 10px 0px 0px 0px;
+}
+.section-container {
+  display: flex;
+  flex-direction: row;
+  /* width: 100%; */
+}
+.sell .content p{
+  font-size: 20px;
+  margin:0px 0px 0px 40px;
+  width: 300px;
+}
+.second-section .content #ListPropertybtn{
+  width: 250px;
+  height: 50px;
+  font-size: 20px;
+  padding: 5px;
+  margin: 20px 0px 0px 40px;
+}
+.sell .second-section .options{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px 0px 0px 80px;
+}
+.sell .second-section .options p{
+  font-size: 20px;
+}
+.third-section{
+  width: 100%;
+  margin: 0px;
+}
+.sell .third-section .third-cont-guide{
+  color: #000;
+  font-weight: bold;
+  font-size:24px;
+  margin: 30px 0px 0px 0px;
+}
+.third-section .section-cont-guide {
+  font-size: 16px;
+  width: 100%;
+  margin: 0px 0px 0px 20px;
+}
+.third-section .section-cards .cards{
+display: flex;
+flex-direction: row;
+width: 100%;
+}
+.cards .card1, .card2, .card3, .card4{
+  width: 150px;
+  display: flex;
+  gap: 0px;
+  height: 220px;
+}
+.third-section .cards p{
+  margin: 0px;
+}
+.sell .fourth-section{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sell .fourth-section .fourth-section-content{
+  /* margin: 0px 0px 0px 20px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.fourth-section h1 {
+  font-size: 24px;
+}
+.sell .fourth-section p{
+  font-size: 16px;
+  margin: 0px 0px 0px 80px;
+}
+.sell .fourth-section #contactUs{
+  width: 200px;
+  height: 50px;
+  margin: 0px;
+}
+}
+@media screen and (min-width:1025px) and (max-width:1200px) {
+  .sell{
+    width: 100%;
+  }
+  .sell-contents{
+   display: flex;
+   flex-direction: column;
+   margin: 0px;
+  }
+  .first-section{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0px;
+  }
+  .first-section img, .first-section .bannerbg  {
+    width: 50%;
+    height: 300px;
+}
+.first-section .bannerbg  {
+  display: flex;
+  flex-direction: column;
+  font-size:24px;
+  padding: 0px 0px 20px 20px;
+}
+.second-section {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px;
+  /* margin: 200px 0px 0px 0px; */
+  height: auto;
+}
+.second-content-span{
+  font-size:24px;
+  margin: 10px 0px 0px 0px;
+}
+.sell .banner-buttons{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.banner-buttons #contactUs,
+.banner-buttons #signIn{
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 700px;
+  width: 120px;
+  height: 50px;
+  margin: 10px 0px 0px 0px;
+}
+.section-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* width: 100%; */
+}
+.sell .content p{
+  font-size: 20px;
+  width: 300px;
+}
+.second-section .content #ListPropertybtn{
+  width: 250px;
+  height: 50px;
+  font-size: 20px;
+  padding: 5px;
+  margin: 20px 0px 0px 40px;
+}
+.sell .second-section .options{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px 0px 0px 80px;
+}
+.sell .second-section .options p{
+  font-size: 20px;
+}
+.third-section{
+  width: 100%;
+  margin: 0px;
+}
+.sell .third-section .third-cont-guide{
+  color: #000;
+  font-weight: bold;
+  font-size:24px;
+  margin: 30px 0px 0px 0px;
+}
+.third-section .section-cont-guide {
+  font-size: 16px;
+  width: 100%;
+  margin: 0px 0px 0px 20px;
+}
+.third-section .section-cards .cards{
+display: flex;
+flex-direction: row;
+width: 100%;
+}
+.cards .card1, .card2, .card3, .card4{
+  width: 150px;
+  display: flex;
+  gap: 0px;
+  height: 220px;
+}
+.third-section .cards p{
+  margin: 0px;
+}
+.sell .fourth-section{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sell .fourth-section .fourth-section-content{
+  /* margin: 0px 0px 0px 20px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.fourth-section h1 {
+  font-size: 24px;
+}
+.sell .fourth-section p{
+  font-size: 16px;
+  margin: 0px 0px 0px 80px;
+}
+.sell .fourth-section #contactUs{
+  width: 200px;
+  height: 50px;
+  margin: 0px;
+}
+.section-container .content {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+  width: 50%;
+}
+}
+@media screen and (min-width:1201px) and (max-width:1400px) {
+  .sell{
+    width: 100%;
+  }
+  .sell-contents{
+   display: flex;
+   flex-direction: column;
+   margin: 0px;
+  }
+  .first-section{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0px;
+  }
+  .first-section img, .first-section .bannerbg  {
+    width: 50%;
+    height: 400px;
+}
+.first-section .bannerbg  {
+  display: flex;
+  flex-direction: column;
+  font-size:40px;
+  padding: 0px 0px 20px 20px;
+}
+.second-section {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px;
+  /* margin: 200px 0px 0px 0px; */
+  height: auto;
+}
+.second-content-span{
+  font-size:24px;
+  margin: 10px 0px 0px 0px;
+}
+.sell .banner-buttons{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.banner-buttons #contactUs,
+.banner-buttons #signIn{
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 700px;
+  width: 150px;
+  height: 60px;
+  margin: 10px 0px 0px 0px;
+}
+.section-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* width: 100%; */
+}
+.sell .content p{
+  font-size: 20px;
+  width: 300px;
+}
+.second-section .content #ListPropertybtn{
+  width: 250px;
+  height: 50px;
+  font-size: 20px;
+  padding: 5px;
+  margin: 20px 0px 0px 40px;
+}
+.sell .second-section .options{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px 0px 0px 80px;
+}
+.sell .second-section .options p{
+  font-size: 20px;
+}
+.third-section{
+  width: 100%;
+  margin: 0px;
+}
+.sell .third-section .third-cont-guide{
+  color: #000;
+  font-weight: bold;
+  font-size:24px;
+  margin: 30px 0px 0px 0px;
+}
+.third-section .section-cont-guide {
+  font-size: 18px;
+  width: 100%;
+  margin: 0px 0px 0px 150px;
+}
+.third-section .section-cards .cards{
+display: flex;
+flex-direction: row;
+width: 100%;
+}
+.cards .card1, .card2, .card3, .card4{
+  width: 180px;
+  display: flex;
+  gap: 0px;
+  height: 220px;
+}
+.third-section .cards p{
+  margin: 0px;
+}
+.sell .fourth-section{
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sell .fourth-section .fourth-section-content{
+  /* margin: 0px 0px 0px 20px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.fourth-section h1 {
+  font-size: 24px;
+}
+.sell .fourth-section p{
+  font-size: 16px;
+  /* margin: 0px 0px 0px 0px; */
+}
+.sell .fourth-section #contactUs{
+  width: 200px;
+  height: 50px;
+  margin: 0px;
+}
+.section-container .content {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+  width: 50%;
+}
+}
+

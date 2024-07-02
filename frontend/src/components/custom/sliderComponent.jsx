@@ -1,5 +1,6 @@
 import React from 'react';
 import { Slider } from 'antd';
+
 function getGradientColor(percentage) {
   const startColor = [135, 208, 104];
   const endColor = [255, 204, 199];

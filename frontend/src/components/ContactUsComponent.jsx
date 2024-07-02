@@ -18,7 +18,7 @@ const ContactUsComponent = () => {
             24 hours.
           </p>
         </div>
-        <div className="contactField">
+        <div className="contact-field">
           <div className="field-container">
             <div className="inputFields">
               <div id="inputField">
@@ -84,10 +84,10 @@ const ContactUsComponent = () => {
         </div>
         <div className="contactUsContent">
           <div className="location">
-            <p style={{ fontSize: "2rem" }}>Our Location</p>
-            <div style={{ fontSize: "1.7rem" }}>
-              <h3>Connecting Near and Far</h3>
-              <p style={{ fontSize: "1.5rem" }}>
+            <p className="location-header">Our Location</p>
+            <div className="location-container">
+              <h3 id="location">Connecting Near and Far</h3>
+              <p className="pinned-location">
                 M Lhuillier Financial Services Inc. <br /> B. Benedicto St, Cebu
                 City,
                 <br />

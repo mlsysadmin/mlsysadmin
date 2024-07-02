@@ -12,17 +12,17 @@ const MortgageComponent = () => {
       <div className="mortgageContent"> 
         <div className="mortgage-title">
           <span className="mortgage-h1">Get pre-approved </span>
-          <p className="SubTitle">
+          <p className="mortgage-subheader">
             Home financing to make your goals a reality.
           </p>
         </div>
         <div className="mortBtn">
           <div className="purchasebtn">
-            <HomeFilled style={{ fontSize: "4rem" }} />
+            <HomeFilled id="home-icon"/>
             <p>I want to <span style={{fontWeight:"bold"}}>purchase</span> a home</p>
           </div>
           <div className="refinancebtn">
-            <DollarOutlined style={{ fontSize: "4rem" }} />
+            <DollarOutlined id="dollar-icon"/>
             <p>I want to <span style={{fontWeight:"bold"}}>refinance</span> my home</p>
           </div>
         </div><br/><br/><br/><br/><br/>

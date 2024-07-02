@@ -16,6 +16,8 @@ import {
     MortagagePage} from '../pages';
 import Allpage from '../pages/Buyer.All.page';
 import Featuredpage from '../pages/Buyer.Featured.page';
+import SuccessModal from '../components/SuccessModal';
+import SuccessfullySubmitted from '../components/SuccessfullySubmitted'
 
 const Routes = [
     {
@@ -77,6 +79,14 @@ const Routes = [
             {
                 path: "/mortgage-page",
                 element: <MortagagePage/>
+            },
+            {
+                path: "/modal",
+                element: <SuccessModal/>
+            },
+            {
+                path: "/modal2",
+                element: <SuccessfullySubmitted/>
             }
         ]
     }
