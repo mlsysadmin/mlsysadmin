@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Typography, Radio, Space, Alert } from 'antd';
 import WarningOutlined from '@ant-design/icons';
 import '../../styles/seller-broker/propertyDetails.css';
@@ -7,11 +7,20 @@ import '../../styles/seller-broker/propertyDetails.css';
 const { Title, Text } = Typography;
 
 
-const PropertyDetails = () => {
+const PropertyDetails = ({ onComplete }) => {
   const [propertyType, setPropertyType] = useState('');
   const [listingType, setListingType] = useState('');
 
 
+  useEffect(() => {
+    if (propertyType && listingType) {
+      onComplete(true);
+    } else {
+      onComplete(false);
+    }
+  }, [propertyType, listingType, onComplete]);
+
+  
   const propertyTypes = {
     Commercial: ['Service Office', 'Shop/Retail', 'Commercial Land/Lot'],
     Residential: ['Condominium', 'House and Lot', 'Townhouse'],
@@ -66,24 +75,27 @@ const PropertyDetails = () => {
                             <Radio.Button value='For Sale'>For Sale</Radio.Button>
                             <Radio.Button value='Pre-Selling'>Pre-Selling</Radio.Button>
                         </Radio.Group>
-                        <Text type='secondary' style={{display:'block', marginTop:'8px'}}>
+                        <Text type='secondary' style={{display:'block', marginTop:'8px', marginLeft:'35px'}}>
                             To help some buyers better, we only accept these 3 types of listing.
-                            </Text>
+                        </Text>
+
+                        <Alert
+                        style={{margin:'10px'}}
+                            message='A few reminders when posting a unit:'
+                            description={
+                            <ul>
+                                <li>We DO NOT accept pre-selling properties, ONLY ready for occupancy (RFO) ones that have either been bought from a developer or have been constructed by a person for sale or rent.</li>
+                                <li>If you are posting more than one (1) unit, please create one listing per unit. DO NOT advertise all your units in one (1) post. For more assistance, you refer to our photo guide or watch our video guide.</li>
+                            </ul>
+                            }
+                            type='error'
+                            showIcon={<WarningOutlined 
+                            />} 
+                    // does not show icon
+                        />
                     </div>
                 </div>
 
-                <Alert
-                    message='A few reminders when posting a unit:'
-                    description={
-                    <ul>
-                        <li>We DO NOT accept pre-selling properties, ONLY ready for occupancy (RFO) ones that have either been bought from a developer or have been constructed by a person for sale or rent.</li>
-                        <li>If you are posting more than one (1) unit, please create one listing per unit. DO NOT advertise all your units in one (1) post. For more assistance, you refer to our photo guide or watch our video guide.</li>
-                      </ul>
-                    }
-                    type='error'
-                    showIcon={<WarningOutlined />} 
-                    // does not show icon
-                />
             </Form>
         </div>
     </div>

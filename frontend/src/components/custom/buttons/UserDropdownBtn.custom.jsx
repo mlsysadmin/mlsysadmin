@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import React from "react";
 
-const RoundBtn = ({ label, style, className, type, beforeIcon, afterIcon }) => {
+const UserDropdownBtn = ({ label, style, className, type, beforeIcon, afterIcon }) => {
   return (
     <Button
       type={type}
@@ -16,4 +16,4 @@ const RoundBtn = ({ label, style, className, type, beforeIcon, afterIcon }) => {
   );
 };
 
-export default RoundBtn;
+export default UserDropdownBtn;
