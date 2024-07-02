@@ -15,52 +15,51 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER.UNSIGNED
-      },
-      level: {
+    },
+    property_listing_id: {
         allowNull: false,
-        type: Sequelize.INTEGER.UNSIGNED
-      },
-      property_listing_id: {
+        type: Sequelize.INTEGER.UNSIGNED,
+        unique: true,
+        references: {
+            model: {
+              model: "PropertyListing",
+              tableName: 'property_listings',
+            },
+            key: 'property_listing_id',
+        },
+    },
+    approver_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
-          model: {
-            model: "PropertyListing",
-            tableName: 'property_listings',
-          },
-          key: 'property_listing_id',
+            model: {
+              model: "Approvers",
+              tableName: 'approvers',
+            },
+            key: 'approver_id',
         },
-      },
-      user_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER.UNSIGNED,
-        references: {
-          model: {
-            model: "User",
-            tableName: 'users',
-          },
-          key: 'user_id',
-        },
-      },
-      approval_status: {
+    },
+    approval_status: {
         allowNull: false,
         type: Sequelize.ENUM('PENDING', 'APPROVED', 'DISAPPROVED'),
-      },
-      createdAt: {
+    },
+    createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-      },
-      updatedAt: {
+    },
+    updatedAt: {
         type: Sequelize.DATE,
         allowNull: true,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
-      },
-      deletedAt: {
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
+        // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+    },
+    deletedAt: {
         type: Sequelize.DATE,
         allowNull: true,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-      }
+    }
     });
   },
 

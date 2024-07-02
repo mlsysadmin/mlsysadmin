@@ -44,8 +44,6 @@ outdoor_lists.forEach((e, i) => {
   features.push(sy)
 })
 
-console.log('features', features);
-
 module.exports = {
   async up(queryInterface, Sequelize) {
     /**

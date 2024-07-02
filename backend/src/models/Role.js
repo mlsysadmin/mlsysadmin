@@ -9,21 +9,25 @@ const Role = Sequelize.define("roles", {
   role_id: {
     allowNull: false,
     primaryKey: true,
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER.UNSIGNED
   },
   user_role: {
-      allowNull: false,
-      type: DataTypes.ENUM('buyer', 'seller', "support")
+    allowNull: false,
+    type: DataTypes.ENUM('buyer', 'seller', "support")
   },
   createdAt: {
     type: DataTypes.DATE,
-    allowNull: false
+    allowNull: false,
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
   },
   updatedAt: {
     type: DataTypes.DATE,
-    allowNull: true
-  }
-},{
+    allowNull: true,
+    // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+    onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+  },
+}, {
   modelName: 'Role',
   timestamps: false,
 })

@@ -30,10 +30,10 @@ module.exports = {
       email: "jonalyn.mobilla@mlhuillier.com",
       password: await Hash("password"),
       user_desc: "I'm a licensed real estate broker",
-      role_id: 0,
+      role_id: 1,
       license: "",
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+      updatedAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
     }
    ])
   },

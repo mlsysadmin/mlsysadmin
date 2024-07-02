@@ -13,15 +13,15 @@ const HighLight = Sequelize.define("highlights", {
     type: DataTypes.INTEGER.UNSIGNED
   },
   user_id: {
-      allowNull: false,
-      type: DataTypes.INTEGER.UNSIGNED,
-      references: {
-        model: {
-          model: "User",
-          tableName: 'users',
-        },
-        key: 'user_id',
+    allowNull: false,
+    type: DataTypes.INTEGER.UNSIGNED,
+    references: {
+      model: {
+        model: "User",
+        tableName: 'users',
       },
+      key: 'user_id',
+    },
   },
   master_property_id: {
     allowNull: false,
@@ -42,9 +42,11 @@ const HighLight = Sequelize.define("highlights", {
   updatedAt: {
     type: DataTypes.DATE,
     allowNull: true,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+    // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+    onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
   }
-},{
+}, {
   modelName: 'HighLight',
   timestamps: false,
 })

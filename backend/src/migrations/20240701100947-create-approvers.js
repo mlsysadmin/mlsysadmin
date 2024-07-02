@@ -2,30 +2,58 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     /**
      * Add altering commands here.
      *
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-
-    await queryInterface.createTable('custom_inclusions', { 
-      custom_inclusion_id: {
+    await queryInterface.createTable('approvers', {
+      approver_id: {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER.UNSIGNED
       },
-      inclusion_name: {
+      mobile_number: {
         allowNull: false,
-        type: Sequelize.STRING,
-        get() {
-          return JSON.parse(this.getDataValue('inclusion_name'));
+        type: Sequelize.STRING(15),
+      },
+      first_name: {
+        allowNull: false,
+        type: Sequelize.STRING(60)
+      },
+      middle_name: {
+        allowNull: true,
+        type: Sequelize.STRING(60)
+      },
+      last_name: {
+        allowNull: false,
+        type: Sequelize.STRING(60)
+      },
+      suffix: {
+        allowNull: true,
+        type: Sequelize.STRING(5)
+      },
+      email: {
+        allowNull: false,
+        type: Sequelize.STRING(100)
+      },
+      level: {
+        allowNull: false,
+        type: Sequelize.INTEGER.UNSIGNED
+      },
+      role_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER.UNSIGNED,
+        references: {
+          model: {
+            model: "Role",
+            tableName: 'roles',
+          },
+          key: 'role_id',
         },
-        set(name) {
-          this.setDataValue('inclusion_name', JSON.stringify(name));
-        }
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -44,16 +72,16 @@ module.exports = {
         allowNull: true,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-     });
+    });
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     /**
      * Add reverting commands here.
      *
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable('custom_inclusions');
+    await queryInterface.dropTable('approvers');
   }
 };

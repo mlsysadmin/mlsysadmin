@@ -22,7 +22,8 @@ const User = Sequelize.define("users", {
   user_id: {
     allowNull: false,
     primaryKey: true,
-    type: DataTypes.INTEGER.UNSIGNED
+    type: DataTypes.INTEGER.UNSIGNED,
+    autoIncrement: true
   },
   ckyc_id: {
       allowNull: false,
@@ -69,7 +70,7 @@ const User = Sequelize.define("users", {
   },
   role_id: {
       allowNull: false,
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER.UNSIGNED,
       references: {
         model: {
           model: "Role",

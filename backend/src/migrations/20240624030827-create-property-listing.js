@@ -15,7 +15,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER.UNSIGNED,
         autoIncrement: true
-    
+      },
+      listing_id: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        unique: true
       },
       seller_id: {
         allowNull: false,
@@ -83,17 +87,17 @@ module.exports = {
           key: 'amenity_id',
         },
       },
-      property_photos_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER.UNSIGNED,
-        references: {
-          model: {
-            model: "PropertyPhoto",
-            tableName: 'property_photos',
-          },
-          key: 'property_photos_id',
-        },
-      },
+      // property_photos_id: {
+      //   allowNull: false,
+      //   type: Sequelize.INTEGER.UNSIGNED,
+      //   references: {
+      //     model: {
+      //       model: "PropertyPhoto",
+      //       tableName: 'property_photos',
+      //     },
+      //     key: 'property_photos_id',
+      //   },
+      // },
       title: {
         allowNull: false,
         type: Sequelize.STRING(100)
@@ -112,7 +116,9 @@ module.exports = {
       },
       updatedAt: {
         type: Sequelize.DATE,
-        allowNull: true
+        allowNull: true,
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       }
     })
   },

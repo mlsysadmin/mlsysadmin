@@ -1,5 +1,6 @@
 'use strict';
-const DayJS = require("dayjs");
+
+const DayJS = require('dayjs');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -13,22 +14,19 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('roles', [
+    await queryInterface.bulkInsert('listing_types', [
       {
-        role_id: 0,
-        user_role: "support",
+        listing_type: "For Rent",
         createdAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
         updatedAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        role_id: 1,
-        user_role: "seller",
+        listing_type: "For Sale",
         createdAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
         updatedAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        role_id: 2,
-        user_role: "buyer",
+        listing_type: "Pre-selling",
         createdAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
         updatedAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
       }
@@ -42,6 +40,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('roles', null, {});
+    await queryInterface.bulkDelete('listing_types', null, {});
   }
 };

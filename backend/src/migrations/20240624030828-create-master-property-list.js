@@ -14,65 +14,69 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         unique: true,
-        // autoIncrement: true,
+        autoIncrement: true,
         type: Sequelize.INTEGER.UNSIGNED
-      },
-      property_listing_id: {
+    },
+    property_listing_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
-        unique: true,
+        // unique: true,
         references: {
-          model: {
-            model: "PropertyListing",
-            tableName: 'property_listings',
-          },
-          key: 'property_listing_id',
+            model: {
+              model: "PropertyListing",
+              tableName: 'property_listings',
+            },
+            key: 'property_listing_id',
         },
-      },
-      seller_id: {
+    },
+    seller_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
-          model: {
-            model: "User",
-            tableName: 'users',
-          },
-          key: 'user_id',
+            model: {
+              model: "User",
+              tableName: 'users',
+            },
+            key: 'user_id',
         },
-      },
-      property_id: {
+    },
+    property_id: {
         allowNull: false,
         type: Sequelize.STRING(15),
         unique: true
-      },
-      listing_status: {
+    },
+    listing_status: {
         allowNull: false,
         type: Sequelize.ENUM('OPEN', 'APPROVED', 'DISAPPROVED')
-      },
-      property_status: {
+    },
+    property_status: {
         allowNull: false,
         type: Sequelize.ENUM('ACTIVE', 'INACTIVE', 'SOLD')
-      },
-      approval_date: {
+    },
+    approval_date: {
         allowNull: true,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
-      },
-      createdAt: {
+        // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
+    },
+    createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-      },
-      updatedAt: {
+        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
+    },
+    updatedAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
+        // defaultValue:Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
         allowNull: true
-      },
-      deletedAt: {
+    },
+    deletedAt: {
         type: Sequelize.DATE,
         allowNull: true,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-      },
+        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
+    },
     })
   },
 

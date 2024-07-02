@@ -66,8 +66,10 @@ const UnitDetails = Sequelize.define('unit_details', {
     },
     updatedAt: {
         type: DataTypes.DATE,
-        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
-        allowNull: true
+        allowNull: true,
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
+        // defaultValue:Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
     },
 }, {
     modelName: 'UnitDetails',

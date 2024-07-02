@@ -32,10 +32,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(30)
       },
-      postal_code: {
-        allowNull: false,
-        type: Sequelize.STRING(10)
-      },
       map_location: {
         allowNull: false,
         type: Sequelize.STRING

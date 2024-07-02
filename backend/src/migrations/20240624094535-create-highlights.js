@@ -17,15 +17,15 @@ module.exports = {
         type: Sequelize.INTEGER.UNSIGNED
       },
       user_id: {
-          allowNull: false,
-          type: Sequelize.INTEGER.UNSIGNED,
-          references: {
-            model: {
-              model: "User",
-              tableName: 'users',
-            },
-            key: 'user_id',
+        allowNull: false,
+        type: Sequelize.INTEGER.UNSIGNED,
+        references: {
+          model: {
+            model: "User",
+            tableName: 'users',
           },
+          key: 'user_id',
+        },
       },
       master_property_id: {
         allowNull: false,
@@ -46,7 +46,9 @@ module.exports = {
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: true,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       }
     })
   },

@@ -11,7 +11,11 @@ const PropertyListing = Sequelize.define("property_listings", {
     primaryKey: true,
     type: DataTypes.INTEGER.UNSIGNED,
     autoIncrement: true
-
+  },
+  listing_id: {
+    allowNull: false,
+    type: DataTypes.STRING,
+    unique: true
   },
   seller_id: {
     allowNull: false,
@@ -79,17 +83,17 @@ const PropertyListing = Sequelize.define("property_listings", {
       key: 'amenity_id',
     },
   },
-  property_photos_id: {
-    allowNull: false,
-    type: DataTypes.INTEGER.UNSIGNED,
-    references: {
-      model: {
-        model: "PropertyPhoto",
-        tableName: 'property_photos',
-      },
-      key: 'property_photos_id',
-    },
-  },
+  // property_photos_id: {
+  //   allowNull: false,
+  //   type: DataTypes.INTEGER.UNSIGNED,
+  //   references: {
+  //     model: {
+  //       model: "PropertyPhoto",
+  //       tableName: 'property_photos',
+  //     },
+  //     key: 'property_photos_id',
+  //   },
+  // },
   title: {
     allowNull: false,
     type: DataTypes.STRING(100)
@@ -104,11 +108,14 @@ const PropertyListing = Sequelize.define("property_listings", {
   },
   createdAt: {
     type: DataTypes.DATE,
-    allowNull: false
+    allowNull: false,
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
   },
   updatedAt: {
     type: DataTypes.DATE,
-    allowNull: true
+    allowNull: true,
+    onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
   }
 }, {
   modelName: 'PropertyListing',

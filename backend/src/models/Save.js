@@ -13,15 +13,15 @@ const Save = Sequelize.define("saves", {
     type: DataTypes.INTEGER.UNSIGNED
   },
   user_id: {
-      allowNull: false,
-      type: DataTypes.INTEGER.UNSIGNED,
-      references: {
-        model: {
-          model: "User",
-          tableName: 'users',
-        },
-        key: 'user_id',
+    allowNull: false,
+    type: DataTypes.INTEGER.UNSIGNED,
+    references: {
+      model: {
+        model: "User",
+        tableName: 'users',
       },
+      key: 'user_id',
+    },
   },
   master_property_id: {
     allowNull: false,
@@ -42,14 +42,16 @@ const Save = Sequelize.define("saves", {
   updatedAt: {
     type: DataTypes.DATE,
     allowNull: true,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+    // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+    onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
   },
   deletedAt: {
     type: DataTypes.DATE,
     allowNull: true,
     defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
   }
-},{
+}, {
   modelName: 'Save',
   timestamps: false,
 })

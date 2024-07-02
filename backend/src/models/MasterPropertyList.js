@@ -8,13 +8,13 @@ const MasterPropertyList = Sequelize.define("master_property_lists", {
         allowNull: false,
         primaryKey: true,
         unique: true,
-        // autoIncrement: true,
+        autoIncrement: true,
         type: DataTypes.INTEGER.UNSIGNED
     },
     property_listing_id: {
         allowNull: false,
         type: DataTypes.INTEGER.UNSIGNED,
-        unique: true,
+        // unique: true,
         references: {
             model: {
               model: "PropertyListing",
@@ -50,7 +50,9 @@ const MasterPropertyList = Sequelize.define("master_property_lists", {
     approval_date: {
         allowNull: true,
         type: DataTypes.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
     },
     createdAt: {
         type: DataTypes.DATE,
@@ -59,7 +61,9 @@ const MasterPropertyList = Sequelize.define("master_property_lists", {
     },
     updatedAt: {
         type: DataTypes.DATE,
-        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
+        // defaultValue:Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
         allowNull: true
     },
     deletedAt: {

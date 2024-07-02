@@ -7,15 +7,18 @@ const MasterPropertyList = require('./MasterPropertyList');
 const Save = require('./Save');
 const PropertyViews = require('./PropertyViews');
 const SoldProperties = require('./SoldProperties');
-const PropertyFeaturesAndAmenities = require('./Amenities');
-const CustomFeaturesAndAmenities = require('./CustomAmenities');
+const Amenities = require('./Amenities');
+const CustomAmenities = require('./CustomAmenities');
 const PropertyTypes = require('./PropertyTypes');
 const ListingTypes = require('./ListingTypes');
 const UnitDetails = require('./UnitDetails');
 const Location = require('./Location');
-const Description = require('./Description');
 const PropertyPhoto = require('./PropertyPhoto');
 const Highlight = require('./HighLight');
+const Approvals = require('./Approvals');
+const Approvers = require('./Approvers');
+const FeaturesLists = require('./FeaturesList');
+const CustomInclusions = require('./CustomInclusions'); 
 
 /** User Association **/ 
 User.hasOne(Role, {
@@ -53,21 +56,18 @@ PropertyListing.belongsTo(UnitDetails, { foreignKey: 'unit_details_id' }); //don
 Location.hasOne(PropertyListing); // done
 PropertyListing.belongsTo(Location, { foreignKey: 'location_id' }); //done
 
-Description.hasOne(PropertyListing); // done
-PropertyListing.belongsTo(Description, { foreignKey: 'description_id' }); //done
-
-PropertyFeaturesAndAmenities.hasOne(PropertyListing); // done
-PropertyListing.belongsTo(PropertyFeaturesAndAmenities, { foreignKey: 'features_id' }); //done
+Amenities.hasOne(PropertyListing); // done
+PropertyListing.belongsTo(Amenities, { foreignKey: 'amenity_id' }); //done
 
 PropertyPhoto.hasOne(PropertyListing); // done
-PropertyListing.belongsTo(PropertyPhoto, { foreignKey: 'photos_id' }); //done
+PropertyListing.belongsTo(PropertyPhoto, { foreignKey: 'property_photos_id' }); //done
 
 /* ------------------------------------------------------------------------------- */
 
 /** Master Property Listing Association **/ 
 
 PropertyListing.hasOne(MasterPropertyList); // done
-MasterPropertyList.belongsTo(PropertyListing, { foreignKey: 'listing_id' }); //done
+MasterPropertyList.belongsTo(PropertyListing, { foreignKey: 'property_listing_id' }); //done
 
 User.hasMany(MasterPropertyList);// done
 MasterPropertyList.belongsTo(User, { foreignKey: 'seller_id' }); // done
@@ -95,16 +95,29 @@ PropertyViews.belongsTo(MasterPropertyList, { foreignKey: 'master_property_id' }
 
 /** Sold Properties Association **/ 
 MasterPropertyList.hasOne(SoldProperties); // done
-SoldProperties.belongsTo(MasterPropertyList, { foreignKey: 'property_id' }); // done
+SoldProperties.belongsTo(MasterPropertyList, { foreignKey: 'master_property_id' }); // done
 
 User.hasMany(SoldProperties); // done 
 SoldProperties.belongsTo(User, { foreignKey: 'user_id' }); // done
 
 /* ------------------------------------------------------------------------------- */
 
-/** Property Features and Amenities Association **/ 
-CustomFeaturesAndAmenities.hasOne(PropertyFeaturesAndAmenities);
-PropertyFeaturesAndAmenities.belongsTo(CustomFeaturesAndAmenities, { foreignKey: 'property_custom_features_id' });
+/** Property Amenities Association **/ 
+CustomAmenities.hasOne(Amenities);
+Amenities.belongsTo(CustomAmenities, { foreignKey: 'custom_amenity_id' });
+
+CustomInclusions.hasOne(Amenities);
+Amenities.belongsTo(CustomInclusions, { foreignKey: 'custom_inclusion_id' });
+
+/* ------------------------------------------------------------------------------- */
+
+
+/** Property Approvals Association **/ 
+Approvals.hasOne(Approvers);
+Approvers.belongsTo(Approvals, { foreignKey: 'approver_id' });
+
+Approvals.hasOne(PropertyListing);
+PropertyListing.belongsTo(Approvals, { foreignKey: 'property_listing_id' });
 
 /* ------------------------------------------------------------------------------- */
 
@@ -117,12 +130,15 @@ module.exports = {
     Highlight,
     PropertyViews,
     SoldProperties,
-    CustomFeaturesAndAmenities,
-    PropertyFeaturesAndAmenities,
+    CustomAmenities,
+    Amenities,
     PropertyTypes,
     ListingTypes,
     UnitDetails,
     Location,
-    Description,
-    PropertyPhoto
+    PropertyPhoto,
+    FeaturesLists,
+    Approvals,
+    Approvers,
+    CustomInclusions
 }

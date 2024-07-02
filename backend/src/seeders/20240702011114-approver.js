@@ -1,5 +1,5 @@
 'use strict';
-const DayJS = require("dayjs");
+const DayJS = require('dayjs');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -13,26 +13,34 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('roles', [
+    await queryInterface.bulkInsert('approvers', [
       {
+        // user_id: 0,
+        mobile_number: "09856346185",
+        first_name: "DEVTESTQD",
+        middle_name: "",
+        last_name: "QDTEST",
+        suffix: "",
+        email: "jonalyn.mobilla@mlhuillier.com",
+        level: 1,
         role_id: 0,
-        user_role: "support",
         createdAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
         updatedAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        role_id: 1,
-        user_role: "seller",
-        createdAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
-        updatedAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
-      },
-      {
-        role_id: 2,
-        user_role: "buyer",
+        // user_id: 0,
+        mobile_number: "09071152272",
+        first_name: "JONALYN",
+        middle_name: "MOBILLA",
+        last_name: "TAKAHASHI",
+        suffix: "",
+        email: "jonalyn.mobilla@mlhuillier.com",
+        level: 2,
+        role_id: 0,
         createdAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
         updatedAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
       }
-    ])
+     ])
   },
 
   async down (queryInterface, Sequelize) {
@@ -42,6 +50,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('roles', null, {});
+    await queryInterface.bulkDelete('approvers', null, {});
   }
 };

@@ -9,9 +9,15 @@ const PropertyPhoto = Sequelize.define("property_photos", {
   property_photos_id: {
     allowNull: false,
     primaryKey: true,
-    type: DataTypes.INTEGER.UNSIGNED
+    type: DataTypes.INTEGER.UNSIGNED,
+    autoIncrement: true
   },
-  photos: {
+  listing_id: {
+    allowNull: false,
+    type: DataTypes.STRING,
+    // unique: true
+  },
+  photo: {
     allowNull: false,
     primaryKey: true,
     type: DataTypes.STRING,
@@ -19,7 +25,8 @@ const PropertyPhoto = Sequelize.define("property_photos", {
   upload_date: {
     allowNull: false,
     type: DataTypes.DATE,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP()')
+    onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
   }
 }, {
   modelName: 'PropertyPhoto',

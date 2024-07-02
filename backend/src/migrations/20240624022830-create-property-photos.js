@@ -13,9 +13,15 @@ module.exports = {
       property_photos_id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.INTEGER.UNSIGNED
+        type: Sequelize.INTEGER.UNSIGNED,
+        autoIncrement: true
       },
-      photos: {
+      listing_id: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        // unique: true
+      },
+      photo: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING,
@@ -23,7 +29,8 @@ module.exports = {
       upload_date: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP()')
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
      });
   },

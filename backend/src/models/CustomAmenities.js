@@ -30,7 +30,9 @@ const CustomAmenities = Sequelize.define("custom_amenities", {
   updatedAt: {
     type: DataTypes.DATE,
     allowNull: true,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+    onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+    defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
+    // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
   },
   deletedAt: {
     type: DataTypes.DATE,

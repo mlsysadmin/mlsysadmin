@@ -28,10 +28,6 @@ const Location = Sequelize.define("locations", {
     allowNull: false,
     type: DataTypes.STRING(30)
   },
-  postal_code: {
-    allowNull: false,
-    type: DataTypes.STRING(10)
-  },
   map_location: {
     allowNull: false,
     type: DataTypes.STRING

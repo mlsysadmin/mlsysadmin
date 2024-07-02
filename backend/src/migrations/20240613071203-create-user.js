@@ -25,7 +25,8 @@ module.exports = {
       user_id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.INTEGER.UNSIGNED
+        type: Sequelize.INTEGER.UNSIGNED,
+        autoIncrement: true
       },
       ckyc_id: {
         allowNull: false,
@@ -64,7 +65,7 @@ module.exports = {
         type: Sequelize.STRING(100),
         async set(pass) {
           this.setDataValue('password', await HashPass(pass))
-        },
+        }
       },
       user_desc: {
         allowNull: false,
@@ -72,7 +73,7 @@ module.exports = {
       },
       role_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "Role",
@@ -91,12 +92,15 @@ module.exports = {
         type: Sequelize.BLOB
       },
       createdAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: true,
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       }
     });
   },

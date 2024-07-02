@@ -5,39 +5,51 @@ const {
 
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
-const Approvals = Sequelize.define("approvals", {
-    approval_id: {
+const Approvers = Sequelize.define("approvers", {
+    approver_id: {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
         type: DataTypes.INTEGER.UNSIGNED
     },
-    property_listing_id: {
+    mobile_number: {
+        allowNull: false,
+        type: DataTypes.STRING(15),
+    },
+    first_name: {
+        allowNull: false,
+        type: DataTypes.STRING(60)
+    },
+    middle_name: {
+        allowNull: true,
+        type: DataTypes.STRING(60)
+    },
+    last_name: {
+        allowNull: false,
+        type: DataTypes.STRING(60)
+    },
+    suffix: {
+        allowNull: true,
+        type: DataTypes.STRING(5)
+    },
+    email: {
+        allowNull: false,
+        type: DataTypes.STRING(100)
+    },
+    level: {
+        allowNull: false,
+        type: DataTypes.INTEGER.UNSIGNED
+    },
+    role_id: {
         allowNull: false,
         type: DataTypes.INTEGER.UNSIGNED,
-        unique: true,
         references: {
-            model: {
-              model: "PropertyListing",
-              tableName: 'property_listings',
-            },
-            key: 'property_listing_id',
+          model: {
+            model: "Role",
+            tableName: 'roles',
+          },
+          key: 'role_id',
         },
-    },
-    approver_id: {
-        allowNull: false,
-        type: DataTypes.INTEGER.UNSIGNED,
-        references: {
-            model: {
-              model: "Approvers",
-              tableName: 'approvers',
-            },
-            key: 'approver_id',
-        },
-    },
-    approval_status: {
-        allowNull: false,
-        type: DataTypes.ENUM('PENDING', 'APPROVED', 'DISAPPROVED'),
     },
     createdAt: {
         type: DataTypes.DATE,
@@ -57,8 +69,8 @@ const Approvals = Sequelize.define("approvals", {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
     }
 }, {
-    modelName: 'Approvals',
+    modelName: 'Approvers',
     timestamps: false,
 })
 
-module.exports = Approvals;
+module.exports = Approvers;

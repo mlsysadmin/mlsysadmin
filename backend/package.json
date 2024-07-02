@@ -33,6 +33,7 @@
     "jsonwebtoken": "^9.0.2",
     "log4js": "^6.9.1",
     "mysql2": "^3.10.0",
+    "randomstring": "^1.3.0",
     "sequelize": "^6.37.3",
     "winston": "^3.13.0"
   },
