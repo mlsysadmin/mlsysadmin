@@ -1,0 +1,309 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .contactUsContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .banner{
+    background-image: url('../asset/icons/contactBanner.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    max-height: 70%;
+  }
+
+  .bannerTitle{
+    font-size: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff2800;
+    margin-top: 12%;
+    font-weight: bold;
+  }
+
+  .bannerSubTitle{
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .contactUsContent{
+    position: relative;
+    margin-top: 23%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .location{
+    width: 30%;
+    text-align: left;
+    /* margin-top: 2%; */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .map{
+    width: 30%;
+    position: relative;
+  }
+
+  #map{
+    width: 100%;
+    height: auto;
+  }
+
+  .pinned{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    font-size: .9rem;
+    background-color: #fff;
+    border-radius: 30px;
+    height: 25%;
+    width: 35%;
+    left: 50%;
+    top: 35%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .FAQs-container{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-bottom: 5%;
+    margin-top: 3%;
+  }
+
+  .FAQs-field{
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .questions{
+    width: 35%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 7%;
+  }
+  
+  #questions{
+    font-size: 1.5rem;
+  }
+
+  #sub-info{
+    font-size: 1.2rem;
+  }
+
+  hr{
+    border-top: 1px solid #C8CCD0;
+  }
+
+  .FAQs{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    text-align: left;
+  }
+
+  #FAQs{
+    font-size: 1.5rem;
+  }
+
+  .FAQs-email{
+    border-radius: 30px;
+    color: #8C9094;
+    text-align: left;
+    padding: 8%;
+    outline: none;
+    border: 1px solid red;
+    font-size: .9rem;  
+  }
+
+  
+  #submitbtn{
+    background-color: #d90000;
+    color: #fff;
+    font-size: .9rem;
+    padding: 10%;
+    height: 1%;
+    border-radius: 30px;
+    
+  }
+
+  .contactField{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    top: 25%;
+    position: absolute;
+    background-color: #fff;
+    width: 75%;
+    left: 13%;
+    height: 25%;
+    border-radius: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.inputFields{
+  padding-top: 4%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+    /* gap: 1rem; */
+
+}
+#input-header{
+  padding: 0;
+  text-align: start;
+  width: 100%;
+}
+
+#input-header h1{
+  font-size: 2.1rem;
+  padding: 0;
+  margin: 0%;
+}
+
+#input-header p{
+  font-size: 1.2rem;
+}
+
+.inputFields #inputField{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.nameField{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    text-align: left;
+    width: 100%;
+}
+
+.name{
+  background-color: #D9D9D9;
+  border-radius: 30px;
+  color: #8C9094;
+  text-align: left;
+  padding: 3%;
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+}
+
+.input{
+  background-color: #D9D9D9;
+  border-radius: 30px;
+  color: #8C9094;
+  text-align: left;
+  padding: 3%;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+}
+
+#messageField{
+  background-color: #D9D9D9;
+  border-radius: 20px;
+  outline: none;
+  color: #8C9094;
+  display: flex;
+  text-align: left;
+  padding-bottom:12% ;
+  padding-top: 2%;
+  padding-left: 2%;
+  border: none  ;
+  font-size: 1rem;
+}
+
+.contactInfos{
+  width: 36%;
+}
+
+#contactInfos{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border:#d90000 1px solid;
+  border-radius: 30px;
+  text-align: left;
+  padding: 3%;
+  gap: 1.5rem;
+}
+
+#customercare{
+  display: flex;
+  font-size: 1.2rem;
+}
+
+.phone-num{
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+  font-size: 1.2rem;
+}
+
+#foreignContact{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 1.2rem;
+}
+
+#others{
+  display: flex;
+  margin-top: 7%;
+  font-size: 1.2rem;
+}
+
+#messagebtn{
+  background-color: #d90000;
+  border-radius: 25px;
+  padding: 5%;
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.contactField .field-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;  
+  height: 100%;
+}

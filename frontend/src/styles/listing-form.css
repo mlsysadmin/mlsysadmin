@@ -1,0 +1,28 @@
+.listing-application{
+  border-width: 3px;
+  /* border-color: red;
+  border-style: solid; */
+  margin: 10px 105px 35px 105px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  gap: 20px;
+}
+
+.listing-steps {
+  flex: 1;
+  max-width: 300px;
+  /* border-style: solid; */
+}
+
+.property-details {
+  flex: 3;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 35px;
+  border-color: red;
+}
+
+.property-details-info{
+  margin: 20px;
+}
