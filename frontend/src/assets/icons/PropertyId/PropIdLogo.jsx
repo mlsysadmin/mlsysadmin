@@ -1,14 +1,9 @@
-/*
-We're constantly improving the code you see. 
-Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcNg&d=1152665201300829
-*/
-
 import React from "react";
 
-export const NewsLight1 = ({ className }) => {
+export const PropIdLogo = ({ className }) => {
   return (
     <svg
-      className={`news-light-1 ${className}`}
+      className={`prop-id-logo ${className}`}
       fill="none"
       height="24"
       viewBox="0 0 24 24"
@@ -20,3 +15,7 @@ export const NewsLight1 = ({ className }) => {
     </svg>
   );
 };
+
+
+
+export default PropIdLogo;
