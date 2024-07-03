@@ -72,7 +72,7 @@
   position: absolute;
   left: 82%;
   font-size: large;
-  gap: 1rem;
+  gap: 10px;
   top: 82%;
 }
 
@@ -83,7 +83,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15%;
+  width: 35px;
+  height: 30px;
+  cursor: pointer;
 }
 
 .bot {

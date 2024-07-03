@@ -26,12 +26,16 @@ const SellComponent = () => {
                 at the best price
               </span>
               <div className="banner-buttons">
-                <button id="contactUs" type="primary">
-                  Contact Us
-                </button>{" "}
+                <a href="/contact-us">
+                  <button id="contactUs" type="primary">
+                    Contact Us
+                  </button>{" "}
+                </a>
+                <a href="/contact-us">
                 <button id="signIn" type="primary">
                   Sign In
                 </button>
+                </a>
               </div>
             </div>
           </div>
@@ -98,9 +102,11 @@ const SellComponent = () => {
                 we{"'"}re here to talk through your options.
               </p>
             </div>
-            <Button id="contactUs" type="primary">
+            <a href="/contact-us">
+            <button id="contactUs">
               Contact Us
-            </Button>
+            </button>
+            </a>
           </div>
         </div>
       </div>

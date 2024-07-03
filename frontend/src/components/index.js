@@ -29,7 +29,11 @@ import LoanCalculatorComponent from "./LoanCalculatorComponent";
 import MortgageComponent from "./MortgageComponent";
 import RentComponent from "./RentComponent";
 import SellComponent from "./SellComponent";
+import CardListingComponent from "./CardListingComponent";
 
+// modals
+
+import SuccessModal from "./modals/SuccessModal";
 
 
 export{
@@ -57,5 +61,7 @@ export{
     MortgageComponent,
     RentComponent,
     SellComponent, 
-    CertainFeatureMenu
+    CertainFeatureMenu,
+    CardListingComponent,
+    SuccessModal
 }

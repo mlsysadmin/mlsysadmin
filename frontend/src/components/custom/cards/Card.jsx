@@ -1,11 +1,13 @@
 import React from "react";
 import "../../../styles/Card.css";
+import { useState } from "react";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import TuneIcon from "@mui/icons-material/Tune";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import BedOutlinedIcon from '@mui/icons-material/BedOutlined';
 import ShowerOutlinedIcon from '@mui/icons-material/ShowerOutlined';
 import ShortcutOutlinedIcon from '@mui/icons-material/ShortcutOutlined';
+import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 
 const Card = ({
   title,
@@ -19,7 +21,11 @@ const Card = ({
   forsale,
 }) => {
   const isFeatured = forsale.toLowerCase() === "featured";
-
+  const [isHeartFilled, setIsHeartFilled] = useState(false);
+  
+  const handleHeartClick = () => {
+    setIsHeartFilled(!isHeartFilled);
+  }
   return (
     <div className="card">
       <div className="cardImage">
@@ -46,8 +52,8 @@ const Card = ({
           <b>{likes}</b>
         </div>
         <div className="bottomicns">
-          <div className="icon">
-            <FavoriteBorderOutlinedIcon />
+          <div className="icon" onClick={handleHeartClick}>
+            {isHeartFilled ? <HeartFilled /> : <HeartOutlined />}
           </div>
           <div className="icon">
             <TuneIcon />

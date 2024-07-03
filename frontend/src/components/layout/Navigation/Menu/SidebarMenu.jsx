@@ -54,8 +54,6 @@ const SidebarMenu = () => {
             }
         })
 
-        console.log(m);
-
         return m;
     }
 

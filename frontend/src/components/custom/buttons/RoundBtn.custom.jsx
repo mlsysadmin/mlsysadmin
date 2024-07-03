@@ -1,10 +1,10 @@
 import { Button } from 'antd';
 import React from 'react';
 
-const RoundBtn = ({ label, style, className, type}) => {
+const RoundBtn = ({ label, style, className, type, icon, size}) => {
   return (
-    <Button type={type} shape='round' className={className} 
-                style={style}
+    <Button type={type} shape='round' className={className} icon={icon}
+                style={style} size={size}
     >
        {label}
     </Button>

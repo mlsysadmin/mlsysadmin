@@ -16,9 +16,9 @@
     margin-top: 5%;
 }
 
-.mortgage-subheader{
+.mortgageContent .mortgage-subheader{
     font-size: 1.2rem;
-    font-weight: lighter;
+    font-weight: 300px;
     color: #8C9094;
 }
 

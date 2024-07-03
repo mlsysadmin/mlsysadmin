@@ -12,7 +12,7 @@
     background-color: #fff;
   }
 
-  .banner{
+  .contactUsContainer .banner{
     background-image: url('../asset/icons/contactBanner.png');
     background-size: cover;
     background-repeat: no-repeat;

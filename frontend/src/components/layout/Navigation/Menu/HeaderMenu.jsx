@@ -1,11 +1,11 @@
-import { Button, Menu, Row } from "antd";
-import React, { useEffect, useState } from "react";
-import MenuPopup from "./MenuPopup";
-import MenuPopupContent from "./MenuPopupContent";
-import { SubMenu } from "../../../../utils/MenuPopover.utils";
-import { useNavigate } from "react-router-dom";
-import RoundBtn from "../../../custom/buttons/RoundBtn.custom";
-import TextBtn from "../../../custom/buttons/TextBtn.custom";
+import { Button, Menu, Row } from 'antd'
+import React, { useEffect, useState } from 'react';
+import MenuPopup from './MenuPopup';
+import MenuPopupContent from './MenuPopupContent';
+import { SubMenu } from '../../../../utils/MenuPopover.utils';
+import { useNavigate, useLocation } from 'react-router-dom';
+import RoundBtn from '../../../custom/buttons/RoundBtn.custom';
+import TextBtn from '../../../custom/buttons/TextBtn.custom';
 
 const HeaderMenu = () => {
   const [currentMenu, setCurrent] = useState('');
@@ -16,37 +16,60 @@ const HeaderMenu = () => {
   const [otherServicesPopUpOpen, setotherServicesPopUpOpen] = useState(false);
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    // useEffect(() => {
+    //     const setTogglePopoverOutside = (event) => {
+    //     //   if (modal) {
+    //         const classNameBtn = event.target.className === "ant-popover-open";
+      
+    //         setrentPopUpOpen(!classNameBtn);
+    //     //   }
+    //     };
+    
+    //     window.addEventListener("click", setTogglePopoverOutside);
+    
+    //     return () => {
+    //       window.removeEventListener("click", setTogglePopoverOutside);
+    //     };
+    //   }, []);
+
+    useEffect(() => {
+        const path = location.pathname.replace('/', '');
+
+        setCurrent(path)
+    }, [setCurrent])
+
     const handleMenuOnClick = (menu) => {
-        console.log(menu);
-        if (menu.key === "Rent") {
+        if (menu.key === "rent") {
             setbuyPopUpOpen(false);
             sethomeLoanPopUpOpen(false);
             sethomeInsurancePopUpOpen(false);
             setotherServicesPopUpOpen(false);
             setrentPopUpOpen(true);
         }
-        else if (menu.key === "Buy") {
+        else if (menu.key === "buy") {
             setrentPopUpOpen(false);
             sethomeLoanPopUpOpen(false);
             sethomeInsurancePopUpOpen(false);
             setotherServicesPopUpOpen(false);
             setbuyPopUpOpen(true);
         }
-        else if (menu.key === "Home Loan") {
+        else if (menu.key === "home-loan") {
             setrentPopUpOpen(false);
             setbuyPopUpOpen(false);
             sethomeInsurancePopUpOpen(false);
             setotherServicesPopUpOpen(false);
             sethomeLoanPopUpOpen(true);
         }
-        else if (menu.key === "Home Insurance"){
+        else if (menu.key === "home-insurance"){
             setrentPopUpOpen(false);
             setbuyPopUpOpen(false);
             sethomeLoanPopUpOpen(false);
             setotherServicesPopUpOpen(false);
             sethomeInsurancePopUpOpen(true)
         }
-        else if (menu.key === "Other Services"){
+        else if (menu.key === "other-services"){
             setrentPopUpOpen(false);
             setbuyPopUpOpen(false);
             sethomeLoanPopUpOpen(false);
@@ -54,6 +77,7 @@ const HeaderMenu = () => {
             setotherServicesPopUpOpen(true);
         }
         else{
+            console.log("menu",menu);
             setCurrent(menu.key);
             navigate({
                 pathname: menu.item.props.link
@@ -138,22 +162,22 @@ const OtherServicesMenu = () => (
     />
 )
 
-const MenuItems = [
-    { label: "Sell", key: "Sell", link: '/sell-page'}, 
-    { label: "New", key: "New", link: '/new-page'}, 
-    { label:  <RentMenu/>, key: "Rent" }, 
-    { label: <BuyMenu/>, key: 'Buy' }, 
-    { label: <HomeLoanMenu/>, key: "Home Loan" }, 
-    { label: <HomeInsuranceMenu/>, key: "Home Insurance", link: '/home-insurance' }, 
-    { label: <OtherServicesMenu/>, key: "Other Services", link: '/other-services' }, 
-    { label: "Contact", key: "Contact", link: '/contact-us' },
-]
-
-const items = MenuItems.map((item, index) => ({
-  key: item.key,
-  label: item.label,
-  link: item.link
-}));
+    const MenuItems = [
+        { label: "Sell", key: "sell", link: '/sell'}, 
+        { label: "New", key: "new", link: '/new'}, 
+        { label:  <RentMenu/>, key: "rent" }, 
+        { label: <BuyMenu/>, key: 'buy' }, 
+        { label: <HomeLoanMenu/>, key: "home-loan" }, 
+        { label: <HomeInsuranceMenu/>, key: "home-insurance", link: '/home-insurance' }, 
+        { label: <OtherServicesMenu/>, key: "other-services", link: '/other-services' }, 
+        { label: "Contact", key: "contact", link: '/contact-us' },
+    ]
+    
+    const items = MenuItems.map((item, index) => ({
+        key: item.key,
+        label: item.label,
+        link: item.link
+    }));
 
 return (
 <>
