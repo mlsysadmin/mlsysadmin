@@ -2,6 +2,7 @@
 
 /** @type {import('sequelize-cli').Migration} */
 const DayJS = require("dayjs");
+const { Hash } = require('../utils/_helper/hash.helper');
 
 const birth_date = DayJS("01/17/2000").format('YYYY-MM-DD');
 
@@ -27,8 +28,8 @@ module.exports = {
       suffix: "",
       birth_date: birth_date,
       email: "jonalyn.mobilla@mlhuillier.com",
-      password: "password",
-      user_desc: "This account is for app demo",
+      password: await Hash("password"),
+      user_desc: "I'm a licensed real estate broker",
       role_id: 0,
       license: "",
       createdAt: new Date(),

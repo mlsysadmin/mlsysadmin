@@ -31,10 +31,12 @@ import LoanCalculatorComponent from "./LoanCalculatorComponent";
 import MortgageComponent from "./MortgageComponent";
 import RentComponent from "./RentComponent";
 import SellComponent from "./SellComponent";
+import ListingSearchLoggedin from "./custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
 
 
 
 export{
+    ListingSearchLoggedin,
     ListingForm,
     SellerListingForm,
     NewPageComponent,

@@ -36,7 +36,7 @@ const ListingSteps = () => {
     {
       title: "Contact",
       completed: current > 6,
-    }
+    },
   ];
 
   const onChange = (value) => {

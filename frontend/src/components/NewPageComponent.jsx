@@ -1,10 +1,11 @@
 import React from "react";
 import "../styles/newpage.css";
 import { useState } from "react";
-import { FooterComponent, CustomMlFooter, ListingSearch , MainLayout} from "../components";
+import { FooterComponent, CustomMlFooter, MainLayout} from "../components";
 import Card from "./custom/cards/Card";
 import Pagination from "./custom/pagination/Pagination";
 import property from "../images/Guest/property.png";
+import ListingSearch from "./custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
 
 export const NewPageComponent = () => {
   const prop = property;
