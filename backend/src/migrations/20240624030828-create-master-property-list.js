@@ -47,7 +47,7 @@ module.exports = {
     },
     listing_status: {
         allowNull: false,
-        type: Sequelize.ENUM('OPEN', 'APPROVED', 'DISAPPROVED')
+        type: Sequelize.ENUM('OPEN', 'PENDING','APPROVED', 'DISAPPROVED')
     },
     property_status: {
         allowNull: false,
@@ -58,7 +58,7 @@ module.exports = {
         type: Sequelize.DATE,
         // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
         onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
-        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
+        // defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
     },
     createdAt: {
         type: Sequelize.DATE,

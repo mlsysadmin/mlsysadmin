@@ -1,7 +1,7 @@
 'use strict'
 
 const Sequelize = require('../config/_db/mlbrokerage.db');
-const { FeaturesLists, PropertyTypes, ListingTypes, UnitDetails, Location, CustomAmenities, CustomInclusions, Amenities, PropertyPhoto, PropertyListing, MasterPropertyList } = require('../models/main.model');
+const { FeaturesLists, PropertyTypes, ListingTypes, UnitDetails, Location, CustomAmenities, CustomInclusions, Amenities, PropertyPhoto, PropertyListing, MasterPropertyList, Approvals, Approvers, User, Role, Escalations } = require('../models/main.model');
 
 module.exports = {
     FindAllFeaturesLists: async () => {
@@ -200,7 +200,7 @@ module.exports = {
             const {
                 listing_id, seller_id, property_type_id,
                 listing_type_id, unit_detail_id, location_id,
-                amenity_id, 
+                amenity_id,
                 // property_photos_id, 
                 title, description,
                 listing_status
@@ -216,9 +216,10 @@ module.exports = {
                 { transaction }
 
             );
+            console.log(add_property_listing);
 
             return {
-                property_listing_id: add_property_listing. property_listing_id
+                property_listing_id: add_property_listing.property_listing_id
             };
 
         } catch (error) {
@@ -243,6 +244,153 @@ module.exports = {
             );
 
             return add_masterproperty_listing;
+
+        } catch (error) {
+            throw error
+        }
+    },
+    AddApproval: async (approvals, transaction) => {
+        try {
+
+            const {
+                master_property_id, approver_id, approval_status, levels
+            } = approvals;
+
+            const add_approval = await Approvals.create(
+                {
+                    master_property_id, approver_id, approval_status, levels
+                },
+                { transaction }
+
+            );
+
+            return {
+                approval_id: add_approval.approval_id
+            }
+
+        } catch (error) {
+            throw error
+        }
+    },
+    GetApprover: async (approver_level, transaction) => {
+        try {
+
+            const get_approver = await Approvers.findAll({
+                where: approver_level,
+                attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
+                transaction,
+            })
+
+            return get_approver
+
+        } catch (error) {
+            throw error
+        }
+    },
+    GetAllListingBySeller: async (seller_id, transaction) => {
+        try {
+
+            const get_all_listing_byseller = await MasterPropertyList.findAll({
+                where: { seller_id },
+                attributes: { exclude: ['updatedAt', 'deletedAt'] },
+                include: [
+                    {
+                        model: PropertyListing, attributes:
+                        {
+                            exclude: ['createdAt', 'updatedAt', 'property_listing_id'],
+                        },
+                        include: [
+                            {
+                                model: PropertyTypes, attributes: {
+                                    exclude: ["property_type_id"]
+                                }
+                            },
+                            {
+                                model: ListingTypes, attributes: ['listing_type']
+                            },
+                            {
+                                model: UnitDetails, attributes:
+                                {
+                                    exclude: ['createdAt', 'updatedAt', 'unit_detail_id']
+                                },
+                            },
+                            {
+                                model: Location, attributes: {
+                                    exclude: ["location_id"]
+                                }
+                            },
+                            {
+                                model: Amenities, attributes:
+                                {
+                                    exclude: ['createdAt', 'updatedAt', 'amenity_id', "custom_amenity_id", "custom_inclusion_id"]
+                                },
+                                include: [
+                                    {
+                                        model: CustomAmenities, attributes:
+                                        {
+                                            exclude: ['createdAt', 'updatedAt', "deletedAt", "custom_amenity_id"]
+                                        },
+                                    },
+                                    {
+                                        model: CustomInclusions, attributes:
+                                        {
+                                            exclude: ['createdAt', 'updatedAt', "deletedAt", "custom_inclusion_id"]
+                                        },
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        model: User, attributes:
+                        {
+                            exclude: ['createdAt', 'updatedAt', 'user_id']
+                        },
+                        include: [
+                            {
+                                model: Role, attributes:
+                                {
+                                    exclude: ['createdAt', 'updatedAt', 'role_id']
+                                },
+                            }
+                        ]
+                    }
+                ],
+                transaction,
+            })
+
+            return get_all_listing_byseller
+
+        } catch (error) {
+            throw error
+        }
+    },
+    AddEscalations: async (escalation, transaction) => {
+        try {
+
+            const add_escalations = await Escalations.bulkCreate(
+                escalation,
+                { transaction }
+            );
+
+            return add_escalations
+
+        } catch (error) {
+            throw error
+        }
+    },
+    GetApprovalsByMasterId: async (master_id, transaction) => {
+        try {
+
+            const get_approvals = await Approvals.findAll({
+                where: master_id,
+                transaction,
+                attributes: {
+                    exclude: ['createdAt', 'updatedAt', 'deletedAt']
+                }
+            });
+
+            return get_approvals
 
         } catch (error) {
             throw error

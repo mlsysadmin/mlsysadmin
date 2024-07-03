@@ -12,32 +12,45 @@ const Approvals = Sequelize.define("approvals", {
         autoIncrement: true,
         type: DataTypes.INTEGER.UNSIGNED
     },
-    property_listing_id: {
+    master_property_id: {
         allowNull: false,
         type: DataTypes.INTEGER.UNSIGNED,
         unique: true,
         references: {
             model: {
-              model: "PropertyListing",
-              tableName: 'property_listings',
+                model: "MasterPropertyList",
+                tableName: 'master_property_lists',
             },
-            key: 'property_listing_id',
+            key: 'master_property_id',
         },
     },
-    approver_id: {
-        allowNull: false,
-        type: DataTypes.INTEGER.UNSIGNED,
-        references: {
-            model: {
-              model: "Approvers",
-              tableName: 'approvers',
-            },
-            key: 'approver_id',
-        },
-    },
+    // approver_id: {
+    //     allowNull: false,
+    //     type: DataTypes.INTEGER.UNSIGNED,
+    //     references: {
+    //         model: {
+    //             model: "Approvers",
+    //             tableName: 'approvers',
+    //         },
+    //         key: 'approver_id',
+    //     },
+    // },
     approval_status: {
         allowNull: false,
         type: DataTypes.ENUM('PENDING', 'APPROVED', 'DISAPPROVED'),
+        set(status) {
+            this.setDataValue('approval_status', status.toUpperCase());
+        }
+    },
+    levels: {
+        allowNull: false,
+        type: DataTypes.ENUM("1", "2"),
+        get() {
+            return Number(this.getDataValue("levels"))
+        },
+        set(level){
+            this.setDataValue('levels', level.toString())
+        }
     },
     createdAt: {
         type: DataTypes.DATE,
@@ -48,7 +61,7 @@ const Approvals = Sequelize.define("approvals", {
         type: DataTypes.DATE,
         allowNull: true,
         onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
-        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
     },
     deletedAt: {

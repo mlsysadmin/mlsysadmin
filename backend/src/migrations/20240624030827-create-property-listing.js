@@ -108,7 +108,7 @@ module.exports = {
       },
       listing_status: {
         allowNull: false,
-        type: Sequelize.ENUM('OPEN', 'APPROVED', 'DISAPPROVED')
+        type: Sequelize.ENUM('OPEN', 'PENDING','APPROVED', 'DISAPPROVED')
       },
       createdAt: {
         type: Sequelize.DATE,

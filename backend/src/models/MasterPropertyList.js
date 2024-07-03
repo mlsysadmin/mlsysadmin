@@ -41,7 +41,7 @@ const MasterPropertyList = Sequelize.define("master_property_lists", {
     },
     listing_status: {
         allowNull: false,
-        type: DataTypes.ENUM('OPEN', 'APPROVED', 'DISAPPROVED')
+        type: DataTypes.ENUM('OPEN', 'PENDING', 'APPROVED', 'DISAPPROVED')
     },
     property_status: {
         allowNull: false,
@@ -52,7 +52,7 @@ const MasterPropertyList = Sequelize.define("master_property_lists", {
         type: DataTypes.DATE,
         // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
         onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
-        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
+        // defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
     },
     createdAt: {
         type: DataTypes.DATE,

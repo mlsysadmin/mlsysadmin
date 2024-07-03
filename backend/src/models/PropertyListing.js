@@ -104,7 +104,7 @@ const PropertyListing = Sequelize.define("property_listings", {
   },
   listing_status: {
     allowNull: false,
-    type: DataTypes.ENUM('OPEN', 'APPROVED', 'DISAPPROVED')
+    type: DataTypes.ENUM('OPEN', 'PENDING' ,'APPROVED', 'DISAPPROVED')
   },
   createdAt: {
     type: DataTypes.DATE,
