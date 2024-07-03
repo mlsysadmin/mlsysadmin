@@ -7,4 +7,4 @@ const ListingPage = () => {
     );
 };
 
-export default ListingPage
+export default ListingPage;

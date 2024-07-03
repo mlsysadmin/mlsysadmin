@@ -3,6 +3,9 @@ import { createBrowserRouter } from 'react-router-dom';
 import MainOutlet from '../pages/MainOutlet';
 import NewPage from '../pages/New.page'
 import Dashboard from '../pages/Dashboard.page';
+import Allpage from '../pages/Buyer.All.page';
+import Featuredpage from '../pages/Buyer.Featured.page';    
+
 import { 
     ListingPage,
     ListingFormPage,
@@ -23,12 +26,18 @@ import Featuredpage from '../pages/Buyer.Featured.page';
 
 const Routes = [
     {
+
         path: "/",
         element: <MainOutlet/>,
         children: [
+        
             {
                 path: "/",
                 element: <Dashboard/>
+            },
+            {
+                path: "/listing",
+                element: <ListingPage/>
             },
             {
               path: "/new-page",
