@@ -1,5 +1,4 @@
 import React from "react";
-import { UserCicrle } from "../../assets/icons/UserCicrle/UserCicrle";
 import "../../styles/navigation.css";
 import logo from '../../assets/red-ml-logo.png'
 import user_icon from '../../assets/images/User_cicrle.png'

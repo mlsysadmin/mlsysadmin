@@ -7,13 +7,6 @@ import Allpage from '../pages/Buyer.All.page';
 import Featuredpage from '../pages/Buyer.Featured.page';    
 
 import { 
-    LoginModal,
-    RegistrationModal,
-    ModalComponents,
-    Sidebar,
-    ListingsTable,
-    SoldPropertiesPage,
-    MyDrafts,
     ListingPage,
     HouseForRentPage, 
     DiscoverHomePage, 
@@ -24,15 +17,10 @@ import {
     RentPage,
     SellPage,
     LoanCalculatorPage,
-    MortagagePage,
-    ActiveSummaryListsPage,
-    ClientManagementPage,
-    ListingSummaryLists,
-    PreviewListing} from '../pages';
+    MortagagePage} from '../pages';
+import ListingFormPage from "../pages/SellerListingForm.page";
 
 
-
-   
 
 const Routes = [
     {
@@ -102,49 +90,12 @@ const Routes = [
                 element: <MortagagePage/>
             },
             {
-                path: "/drafts",
-                element: <MyDrafts/>
+                path: "/listing",
+                element: <ListingPage/>
             },
             {
-                path: "/sold-properties",
-                element: <SoldPropertiesPage/>
-            }
-            ,
-            {
-                path: "/active-summary-lists",
-                element: <ActiveSummaryListsPage/>
-            },
-            {
-                path: "/clientmanagement",
-                element: <ClientManagementPage/>
-            },
-            {
-                path: "/listing-summary-lists",
-                element: <ListingSummaryLists/>
-            },
-            {
-                path: "/listingsTable",
-                element: <ListingsTable/>
-            },
-            {
-                path: "/sidebar",
-                element: <Sidebar/>
-            },
-            {
-                path: "/previewListing",
-                element: <PreviewListing/>
-            },
-            {
-                path: "/Modalcomponents",
-                element: <ModalComponents/>
-            },
-            {
-                path: "/RegistrationModal",
-                element: <RegistrationModal/>
-            },
-            {
-                path: "/LoginModal",
-                element: <LoginModal/>
+                path: "/listing-form",
+                element: <ListingFormPage/>
             }
         ]
     }
@@ -152,6 +103,5 @@ const Routes = [
 
 const AppRouter = createBrowserRouter(Routes);
 
-
-export default AppRouter;
+export default AppRouter
 

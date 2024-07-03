@@ -10,8 +10,10 @@ import SellPage from "./Sell.page";
 import LoanCalculatorPage from "./LoanCalculator.page";
 import RentPage from "./Rent.page";
 import ContactUsPage from "./ContactUs.page";
-
 import ListingPage from "./ListingPage";
+import ListingFormPage from "./SellerListingForm.page";
+
+
 
 //seller
 import MyDrafts from "./MyDrafts.page";
@@ -25,6 +27,7 @@ import  PreviewListing  from "./PreviewListing.page";
 import ModalComponents from "./ModalComponents.page";
 import RegistrationModal from "./RegistrationModal.page";
 import LoginModal from "./LoginModal.page";
+import ListingSearchLoggedin from "../components/custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
 
 export {
     LoginModal,
@@ -50,5 +53,6 @@ export {
     SellPage,
     LoanCalculatorPage,
     ContactUsPage,
-    MyDrafts
+    MyDrafts,
+    ListingSearchLoggedin
 }

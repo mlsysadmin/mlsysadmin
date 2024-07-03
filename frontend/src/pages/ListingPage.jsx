@@ -1,5 +1,5 @@
 import React from "react";
-import { ListingForm } from "../components/seller-broker/ListingForm";
+import { ListingForm } from "../components/ListingForm";
 
 const ListingPage = () => {
     return (
