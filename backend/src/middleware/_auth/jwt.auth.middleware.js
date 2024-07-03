@@ -1,16 +1,26 @@
 require("dotenv").config();
-const jwt = require("jsonwebtoken");
+require('cookie-parser');
+const { JsonWebTokenError, TokenExpiredError, verify, NotBeforeError } = require("jsonwebtoken");
 const DayJS = require('dayjs');
+const DataResponseHandler = require("../../utils/_helper/DataResponseHandler.helper");
 
 const verifyToken = (req, res, next) => {
     const token =
-        req.body.token || req.query.token || req.headers["x-access-token"];
+        // req.body.token || req.query.token || req.headers["x-access-token"];
+        req.signedCookies.access_token;
 
-    if (!token) {
-        return res.status(403).send("A token is required for authentication");
-    }
     try {
-        const decoded = jwt.verify(token, process.env.SECRET_KEY, {
+        if (!token) {
+            throw DataResponseHandler(
+                token,
+                "TOKEN_NOT_FOUND",
+                403,
+                false,
+                "You are not authorized to access the resource"
+            )
+        }
+
+        const decoded = verify(token, process.env.SECRET_KEY, {
             maxAge: '5m'
         });
         
@@ -22,7 +32,7 @@ const verifyToken = (req, res, next) => {
         const api_key = process.env.API_KEY;
 
         if (payload.api_key === api_key && payload.date === dateNow) {
-            return next(); 
+            next(); 
         }else{
             let error = {
                 name: "TokenInvalidError",
@@ -30,13 +40,35 @@ const verifyToken = (req, res, next) => {
                 exp: payload.exp
             };
 
-            throw error
+            throw DataResponseHandler(
+                JSON.stringify(error),
+                "AUTHENTICATION_FAILED",
+                401,
+                false,
+                "You are not authorized to access the resource"
+            )
         }
     } catch (err) {
         console.log(err);
         // const expiredAt = DayJS(err.expiredAt).format('DD-MM-YYYY');
+        const JsonErrors = [JsonWebTokenError, TokenExpiredError, NotBeforeError];
         
-        return res.status(401).send(err);
+        JsonErrors.forEach(e => {
+            if (err instanceof e) {
+                
+                next(
+                    DataResponseHandler(
+                        JSON.stringify(err),
+                        "AUTHENTICATION_FAILED",
+                        401,
+                        false,
+                        "You are not authorized to access the resource"
+                    )
+                )
+            }
+        })
+        
+        next(err);
     }
 }
 
