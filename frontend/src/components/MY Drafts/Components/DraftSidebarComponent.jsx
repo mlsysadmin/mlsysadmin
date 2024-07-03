@@ -9,7 +9,11 @@ const SidebarContainer = (props) => {
   return (
     <div
       className={`sidebar-container ${props.isOpen ? "open" : ""}`}
-      onClick={props.onClose} > {props.children} </div>
+      onClick={props.onClose}
+    >
+      {" "}
+      {props.children}{" "}
+    </div>
   );
 };
 
@@ -35,7 +39,6 @@ const HamburgerButton = ({ onClick }) => {
       <div className="line"></div>
       <div className="line"></div>
       <div className="line"></div>
-      
     </div>
   );
 };
@@ -47,7 +50,6 @@ const Sidebar = () => {
     setIsOpen(!isOpen);
     setIsClose(!isClose);
   };
-  
 
   return (
     <Container>
@@ -56,7 +58,7 @@ const Sidebar = () => {
         <SidebarHeader>Marie Rodriguez</SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <a href="/drafts" style={{ color: "Black" }}>
+            <a href="/MyDrafts" style={{ color: "Black" }}>
               My Drafts
             </a>
           </SidebarMenuItem>

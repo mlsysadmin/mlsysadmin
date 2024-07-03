@@ -7,6 +7,7 @@ import Allpage from '../pages/Buyer.All.page';
 import Featuredpage from '../pages/Buyer.Featured.page';    
 
 import { 
+    MyDrafts,
     ListingPage,
     ListingFormPage,
     HouseForRentPage, 
@@ -18,10 +19,18 @@ import {
     RentPage,
     SellPage,
     LoanCalculatorPage,
-    MortagagePage} from '../pages';
+    MortagagePage,
+    MyDraftsPage,
+     ActiveSummaryListsPage, 
+    ClientManagementPage,
+    ListingSummaryListsPage,
+    SoldPropertiesPage, 
+   ListingsTablePage, 
+    PreviewListingPage, 
+    ModalComponentsPage, 
+    RegistrationModalPage, 
+    LoginModalPage} from '../pages';
 
-import Allpage from '../pages/Buyer.All.page';
-import Featuredpage from '../pages/Buyer.Featured.page';
 
 
 const Routes = [
@@ -98,6 +107,47 @@ const Routes = [
             {
                 path: "/listing-form",
                 element: <ListingFormPage/>
+            }
+            ,
+            {
+                path: "/MyDrafts",
+                element: <MyDraftsPage/>
+            },
+            {
+                path: "/active-summary-lists",
+                element: <ActiveSummaryListsPage/>
+            },
+            {
+                path: "/clientmanagement",
+                element: <ClientManagementPage/>
+            },
+            {
+                path: "/listings-table",
+                element: <ListingsTablePage/>
+            },
+            {
+                path: "/listing-summary-lists",
+                element: <ListingSummaryListsPage/>
+            },
+            {
+                path: "/sold-properties",
+                element: <SoldPropertiesPage/>
+            },
+            {
+                path: "/preview-listing-page",
+                element: <PreviewListingPage/>
+            },
+            {
+                path: "/modal-components",
+                element: <ModalComponentsPage/>
+            },
+            {
+                path: "/Registration-Modal",
+                element: <RegistrationModalPage/>
+            },
+            {
+                path: "/Login-Modal",
+                element: <LoginModalPage/>
             }
         ]
     }

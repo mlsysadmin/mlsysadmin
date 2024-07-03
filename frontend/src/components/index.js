@@ -34,7 +34,6 @@ import SubmitApplicationCustom from "./custom/application/submitapplication.cust
 // components
 import DiscoverHomeComponent from "./DiscoverHomeComponent";
 import BuyAHomeComponent from "./BuyAHomeComponent";
-import DashboardComponent from "./DashboardComponent";
 import HouseForRentComponent from "./HouseForRentComponent";
 import NewPageComponent  from "./NewPageComponent";
 import RefinanceComponent from "./RefinanceComponent";
@@ -45,6 +44,8 @@ import MortgageComponent from "./MortgageComponent";
 import RentComponent from "./RentComponent";
 import SellComponent from "./SellComponent";
 import ListingSearchLoggedin from "./custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
+import Sidebar from "./MY Drafts/Components/DraftSidebarComponent";
+import DashboardComponent from "./DashboardComponent";
 
 
 export{
@@ -55,7 +56,6 @@ export{
     PropertiesForRent,
     FooterComponent,
     CustomMlFooter,
-    DashboardComponent,
     HeaderContainer,
     SideBar,
     MainLayout,
@@ -74,5 +74,17 @@ export{
     LoanCalculatorComponent,
     MortgageComponent,
     RentComponent,
-    SellComponent
+    SellComponent,
+    Drafts,
+    ActiveSummaryLists ,
+    ClientManagement,
+    ListingSummaryLists,
+    SoldProperties, 
+   ListingsTable, 
+    PreviewListing, 
+    ModalComponents, 
+    RegistrationModal, 
+    LoginModal,
+    Sidebar,
+    DashboardComponent
 }

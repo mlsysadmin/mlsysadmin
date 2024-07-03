@@ -331,7 +331,7 @@ const PreviewListing = () => {
               <div className="view-features">
                 <h3>Features:</h3>
                 <div className="feature-grid">
-                  <div className="feature-item">
+                  <div className="feature-items">
                     <input
                       type="checkbox"
                       id="air-conditioning"
@@ -340,11 +340,11 @@ const PreviewListing = () => {
                     />
                     <label>Air Conditioning</label>
                   </div>
-                  <div className="feature-item">
+                  <div className="feature-items">
                     <input type="checkbox" id="laundry-room" checked readOnly />
                     <label>Laundry Room</label>
                   </div>
-                  <div className="feature-item">
+                  <div className="feature-items">
                     <input
                       type="checkbox"
                       id="open-car-spaces"
@@ -353,27 +353,27 @@ const PreviewListing = () => {
                     />
                     <label>Open Car Spaces</label>
                   </div>
-                  <div className="feature-item">
+                  <div className="feature-items">
                     <input type="checkbox" id="balcony" checked readOnly />
                     <label>Balcony</label>
                   </div>
-                  <div className="feature-item">
+                  <div className="feature-items">
                     <input type="checkbox" id="cctv" checked readOnly />
                     <label>CCTV</label>
                   </div>
-                  <div className="feature-item">
+                  <div className="feature-items">
                     <input type="checkbox" id="driver-room" checked readOnly />
                     <label>Driver Room</label>
                   </div>
-                  <div className="feature-item">
+                  <div className="feature-items">
                     <input type="checkbox" id="maid-room" checked readOnly />
                     <label>Maid Room</label>
                   </div>
-                  <div className="feature-item">
+                  <div className="feature-items">
                     <input type="checkbox" id="powder-room" checked readOnly />
                     <label>Powder Room</label>
                   </div>
-                  <div className="feature-item">
+                  <div className="feature-items">
                     <input
                       type="checkbox"
                       id="landscape-garden"
@@ -382,7 +382,7 @@ const PreviewListing = () => {
                     />
                     <label>Landscape Garden</label>
                   </div>
-                  <div className="feature-item">
+                  <div className="feature-items">
                     <input
                       type="checkbox"
                       id="sports-facilities"
@@ -391,7 +391,7 @@ const PreviewListing = () => {
                     />
                     <label>Sports Facilities</label>
                   </div>
-                  <div className="feature-item">
+                  <div className="feature-items">
                     <input
                       type="checkbox"
                       id="swimming-pool"
@@ -400,7 +400,7 @@ const PreviewListing = () => {
                     />
                     <label>Swimming Pool</label>
                   </div>
-                  <div className="feature-item">
+                  <div className="feature-items">
                     <input type="checkbox" id="security" checked readOnly />
                     <label>24/7 Security</label>
                   </div>
@@ -601,8 +601,8 @@ const PreviewListing = () => {
                     {/* <img src={cpr} className="commercial-property-img" /> */}
                     <img src={all[index]} className="all" />
                     <div className="property-labels">
-                      <span className="property-label">For Sale</span>
-                      <span className="property-label featured">Featured</span>
+                      <span className="property-label-for-sale">For Sale</span>
+                      <span className="property-label-featured">Featured</span>
                     </div>
                   </div>
                 </div>

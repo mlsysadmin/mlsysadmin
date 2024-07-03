@@ -36,7 +36,7 @@ const ModalComponents = () => {
       {showKYCModal && (
         <div className="modal-overlay" onClick={handleModalClose}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <a href="/registrationModal" className="modal-kycheader">
+            <a href="/Registration-Modal" className="modal-kycheader">
               Select and proceed with Registration
             </a>
 

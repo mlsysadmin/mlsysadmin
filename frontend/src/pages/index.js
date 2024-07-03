@@ -14,20 +14,19 @@ import ListingPage from "./ListingPage";
 import ListingFormPage from "./SellerListingForm.page";
 
 
-import ListingPage from "./ListingPage";
 
 //seller
-import MyDrafts from "./MyDrafts.page";
+import MyDraftsPage from "./MyDrafts.page";
 import ActiveSummaryListsPage from "./ActiveSummaryLists.page";
 import ClientManagementPage from "./ClientManagement.page";
-import ListingSummaryLists from "./ListingSummaryLists.page";
+import ListingSummaryListsPage from "./ListingSummaryLists.page";
 import SoldPropertiesPage from "./SoldProperties.page";
-import ListingsTable from "./ListingsTable.page";
-import Sidebar from "./DraftSidebar.page";
-import  PreviewListing  from "./PreviewListing.page";
-import ModalComponents from "./ModalComponents.page";
-import RegistrationModal from "./RegistrationModal.page";
-import LoginModal from "./LoginModal.page";
+import ListingsTablePage from "./ListingsTable.page";
+import SidebarPage from "./DraftSidebar.page";
+import  PreviewListingPage  from "./PreviewListing.page";
+import ModalComponentsPage from "./ModalComponents.page";
+import RegistrationModalPage from "./RegistrationModal.page";
+import LoginModalPage from "./LoginModal.page";
 
 export {
     ListingPage,
@@ -44,5 +43,20 @@ export {
     SellPage,
     LoanCalculatorPage,
     ContactUsPage,
-    MyDrafts
+    MyDraftsPage,
+    ActiveSummaryListsPage, 
+    ClientManagementPage,
+    SoldPropertiesPage,
+    ListingSummaryListsPage, 
+    ListingsTablePage,
+    SidebarPage,
+    PreviewListingPage,
+    ModalComponentsPage,
+    RegistrationModalPage,
+    LoginModalPage
+    
+ 
+   
+ 
+ 
 }
