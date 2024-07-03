@@ -1,17 +1,16 @@
 /* LoginModal.css */
-.modal {
+.login-modal {
   position: fixed;
   z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.logo {
+.login-logo {
   display: flex;
   justify-content: center;
   width: 10%;
@@ -19,57 +18,59 @@
   margin-left: 42%;
 }
 
-.modal-content {
+.login-modal-content {
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
   width: 336px;
-  /* height: 415px; */
   border-radius: 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   align-items: center;
   justify-content: center;
 }
 
-.close-button {
+.login-close-button {
   color: #aaa;
   float: right;
   font-size: 20px;
   font-weight: bold;
 }
 
-.close-button:hover,
-.close-button:focus {
+.login-close-button:hover,
+.login-close-button:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
 }
 
-.MLheader {
+.login-MLheader {
   text-align: center;
-  font-size: 12px;
+  font-size: 18px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
-.input-group {
+.login-input-group {
   margin-bottom: 15px;
   width: 275px;
   height: 34px;
 }
 
-.input {
-  width: 100%;
-  height: 100%;
+.login-input {
+  width: 115%;
+  height: 45%;
   padding: 10px;
-  margin: 5px 0;
+  /* margin: 5px 0; */
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 30px;
-  box-sizing: border-box;
+
   font-size: 12px;
+  
 }
 
-.button {
+.login-button {
   background-color: #d90000;
   color: white;
   padding: 14px 20px;
@@ -81,31 +82,31 @@
   border-radius: 30px;
 }
 
-.button:hover {
+.login-button:hover {
   background-color: gray;
 }
 
-.forgot-password {
+.login-forgot-password {
   text-align: center;
   margin: 10px 0;
 }
 
-.forgot-password-link {
+.login-forgot-password-link {
   color: #3d3af8;
   text-decoration: none;
   font-size: 12px;
 }
 
-.forgot-password-link:hover {
+.login-forgot-password-link:hover {
   text-decoration: underline;
 }
 
-.connect-with {
+.login-connect-with {
   font-size: 12px;
   text-align: center;
 }
 
-.social-login {
+.login-social-login {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -113,7 +114,7 @@
   margin: 20px 0;
 }
 
-.social-button {
+.login-social-button {
   background-color: white;
   color: black;
   border: 1px solid #ccc;
@@ -126,43 +127,66 @@
   justify-content: center;
 }
 
-.social-button:hover {
+.login-social-button:hover {
   background-color: #f1f1f1;
 }
 
-.social-button img {
+.login-social-button img {
   margin-right: 10px;
 }
 
-.signup {
+.login-signup {
   text-align: center;
   margin-top: 10px;
   font-size: 12px;
 }
 
-.signup-link {
+.login-signup-link {
   color: #3d3af8;
   text-decoration: none;
 }
 
-.signup-link:hover {
+.login-signup-link:hover {
   text-decoration: underline;
 }
 
 /* Media queries for responsiveness */
 @media (max-width: 768px) {
-  .modal-content {
+  .login-modal-content {
     width: 90%;
     height: auto;
     margin: 10% auto;
   }
 
-  .logo {
+  .login-logo {
     width: 20%;
     margin-left: 40%;
   }
 
-  .input {
-    width: 100%;
+  .login-input {
+    width: 120%;
+  }
+  .login-input-group{
+    width: 77%;
+  }
+}
+@media (max-width: 320px) {
+  .login-modal-content {
+    width: 80%;
+    height: 80%;
+    margin: 10% auto;
+    overflow-y: auto;
+  }
+
+  .login-logo {
+    width: 20%;
+    margin-left: 40%;
+  }
+
+  .login-input {
+    width: 120%;
+  }
+  .login-input-group{
+    width: 77%;
   }
 }

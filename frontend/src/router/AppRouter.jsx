@@ -1,13 +1,18 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
-export default AppRouter;
-import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import MainOutlet from '../pages/MainOutlet';
 import NewPage from '../pages/New.page'
 import Dashboard from '../pages/Dashboard.page';
+import Allpage from '../pages/Buyer.All.page';
+import Featuredpage from '../pages/Buyer.Featured.page';    
+
 import { 
+    LoginModal,
+    RegistrationModal,
+    ModalComponents,
+    Sidebar,
+    ListingsTable,
+    SoldPropertiesPage,
     MyDrafts,
     ListingPage,
     HouseForRentPage, 
@@ -19,15 +24,23 @@ import {
     RentPage,
     SellPage,
     LoanCalculatorPage,
-    MortagagePage} from '../pages';
-import Allpage from '../pages/Buyer.All.page';
-import Featuredpage from '../pages/Buyer.Featured.page';
+    MortagagePage,
+    ActiveSummaryListsPage,
+    ClientManagementPage,
+    ListingSummaryLists,
+    PreviewListing} from '../pages';
+
+
+
+   
 
 const Routes = [
     {
+
         path: "/",
         element: <MainOutlet/>,
         children: [
+        
             {
                 path: "/",
                 element: <Dashboard/>
@@ -91,10 +104,54 @@ const Routes = [
             {
                 path: "/drafts",
                 element: <MyDrafts/>
+            },
+            {
+                path: "/sold-properties",
+                element: <SoldPropertiesPage/>
+            }
+            ,
+            {
+                path: "/active-summary-lists",
+                element: <ActiveSummaryListsPage/>
+            },
+            {
+                path: "/clientmanagement",
+                element: <ClientManagementPage/>
+            },
+            {
+                path: "/listing-summary-lists",
+                element: <ListingSummaryLists/>
+            },
+            {
+                path: "/listingsTable",
+                element: <ListingsTable/>
+            },
+            {
+                path: "/sidebar",
+                element: <Sidebar/>
+            },
+            {
+                path: "/previewListing",
+                element: <PreviewListing/>
+            },
+            {
+                path: "/Modalcomponents",
+                element: <ModalComponents/>
+            },
+            {
+                path: "/RegistrationModal",
+                element: <RegistrationModal/>
+            },
+            {
+                path: "/LoginModal",
+                element: <LoginModal/>
             }
         ]
     }
 ]
 
 const AppRouter = createBrowserRouter(Routes);
+
+
+export default AppRouter;
 

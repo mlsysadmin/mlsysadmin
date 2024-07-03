@@ -1,8 +1,8 @@
 import React from "react";
-import Sidebar from "./Components/SidebarComponent";
+import Sidebar from "./Components/DraftSidebarComponent";
 import Footer from "./Components/FooterComponent";
 import { Link } from "react-router-dom";
-import NavigationHeader from "../layout/NavigationComponent";
+// import NavigationHeader from "../layout/NavigationComponent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faStar, faHeart, faList, faEye, faSearch } from "@fortawesome/free-solid-svg-icons";
 import "../../styles/ClientManagement.css";
@@ -11,17 +11,17 @@ const ClientManagement = () => {
   return (
     <div>
       <div>
-        <NavigationHeader />
+        {/* <NavigationHeader /> */}
         <div className="contentContainer" style={{ display: "flex", width: "100%", gap: "1rem" }}>
           <div className="sidebar" style={{ width: "15%", padding: "none" }}>
             <Sidebar />
           </div>
           <div className="list" style={{ display: "flex", flexDirection: "column", width: "80%", gap: "0.5rem" }}>
             {/* <div className="listingsTableWrapper"> */}
-              <div className="container">
+              <div className="client-management-container">
                 <div className="headerSection">
                   <div className="tabs">
-                    <Link to="/listingsapproval">
+                    <Link to="/listing-summary-lists">
                       <div className="newButton">Listings</div>
                     </Link>
                     <Link to="/clientmanagement">

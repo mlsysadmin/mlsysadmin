@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
-import SidebarComponent from "./Components/SidebarComponent";
+import SidebarComponent from "./Components/DraftSidebarComponent";
 import Footer from "./Components/FooterComponent";
-import Navigation from "../layout/NavigationComponent";
+// import Navigation from "../layout/NavigationComponent";
 import "../../styles/Soldproperties.css"; // Import the CSS file
+
+
+
 
 const SoldProperties = () => {
   const [listings] = useState([
@@ -18,8 +21,8 @@ const SoldProperties = () => {
       price: "5,000,000",
       location: "Mandaue City, Cebu",
       status: "Draft",
-      datesold: "03-14-2024",
-      action: ["Sold"],
+      datesold: "03/14/2024",
+      
     },
     {
       date: "03-11-2024",
@@ -30,25 +33,26 @@ const SoldProperties = () => {
       price: "5,000,000",
       location: "Mandaue City, Cebu",
       status: "Draft",
-      datesold: "03-14-2024",
-      action: ["Sold"],
+      datesold: "03/14/2024",
+      
     },
   ]);
 
   return (
+    
     <div>
       <div>
-        <Navigation />
+        {/* <Navigation /> */}
         <div className="contentContainer" style={{ display: "flex", width: "100%", gap: "1rem" }}>
           <div className="sidebar" style={{ width: "15%", padding: "none" }}>
             <SidebarComponent />
           </div>
           <div className="list" style={{ display: "flex", flexDirection: "column", width: "80%", gap: "0.5rem" }}>
             {/* <div className="listingsTableWrapper"> */}
-              <div className="container">
+              <div className="sold-properties-container">
                 <div className="headerSection">
                   <div className="tabs">
-                    <Link to="/listingsapproval">
+                    <Link to="/listing-summary-lists">
                       <div className="newButton">
                         Listings
                       </div>
@@ -88,7 +92,7 @@ const SoldProperties = () => {
                       <th>Location</th>
                       <th>Status</th>
                       <th>Date Sold</th>
-                      <th>Action</th>
+                    
                     </tr>
                   </thead>
                   
@@ -109,11 +113,7 @@ const SoldProperties = () => {
                         <td>{listing.status}</td>
                         <td>{listing.datesold}</td>
                         <td>
-                          <div className="actionButtons">
-                            {listing.action.map((action, index) => (
-                              <button key={index} className="actionButton">{action}</button>
-                            ))}
-                          </div>
+                          
                         </td>
                       </tr>
                     ))}
@@ -129,8 +129,8 @@ const SoldProperties = () => {
         <nav className="paginationContainer" aria-label="Page navigation example">
           <ul className="paginationList">
             <li className="pageItem"><a className="page-link active" href="/drafts">1</a></li>
-            <li className="pageItem"><a className="page-link" href="/listingsApproval">2</a></li>
-            <li className="pageItem"><a className="page-link" href="active-inactive">3</a></li>
+            <li className="pageItem"><a className="page-link" href="/listing-summary-lists">2</a></li>
+            <li className="pageItem"><a className="page-link" href="active-summary-lists">3</a></li>
             <li className="pageItem">
               <a className="page-link" href="sold-properties">
                 <FontAwesomeIcon icon={faPlay} />

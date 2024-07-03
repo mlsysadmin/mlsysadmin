@@ -77,18 +77,17 @@ const ListingsTable = () => {
 
   return (
     <div>
-      {/* <div className="listings-table-wrapper"> */}
-      <div className="container">
-        <div className="header-section">
+      <div className="listings-table-container">
+        <div className="listings-table-header-section">
           <div className="tabs">
-            <Link to="/listingsapproval">
-              <div className="new-button">Listings</div>
+            <Link to="/listing-summary-lists">
+              <div className="table-header-button">Listings</div>
             </Link>
             <Link to="/clientmanagement">
-              <div className="new-button">Client Management</div>
+              <div className="table-header-button">Client Management</div>
             </Link>
           </div>
-          <div className="searchsection">
+          <div className="listsum-search-section">
             <select className="dropdown">
               <option>Show entries</option>
               <option>10</option>
@@ -96,7 +95,7 @@ const ListingsTable = () => {
               <option>50</option>
               <option>100</option>
             </select>
-            <div className="SearchInputContainer">
+            <div className="search-input-container">
               <div className="search-input-wrapper">
                 <input
                   type="text"
@@ -120,7 +119,6 @@ const ListingsTable = () => {
               <th>Price</th>
               <th>Location</th>
               <th>Status</th>
-              
             </tr>
           </thead>
           <tbody>
@@ -137,23 +135,14 @@ const ListingsTable = () => {
                 <td>{listing.price}</td>
                 <td>{listing.location}</td>
                 <td>{listing.status}</td>
-                <td>
-                  
-                </td>
+                <td></td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      {/* </div> */}
-      <div
-        className="d-flex justify-content-end"
-        style={{ marginLeft: "85%", marginTop: "10%" }}
-      >
-        <nav
-          aria-label="Page navigation example"
-          className="pagination-container"
-        >
+      <div className="d-flex justify-content-end" style={{ marginLeft: "85%", marginTop: "10%" }}>
+        <nav aria-label="Page navigation example" className="pagination-container">
           <ul className="pagination-list">
             <li className="page-item">
               <a className="page-link active" href="#">
@@ -161,7 +150,7 @@ const ListingsTable = () => {
               </a>
             </li>
             <li className="page-item">
-              <a className="page-link" href="/listingsApproval">
+              <a className="page-link" href="/listing-summary-lists">
                 <FontAwesomeIcon icon={faPlay} />
               </a>
             </li>

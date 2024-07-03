@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 // import styled from "styled-components";
-import Navigation from "../layout/NavigationComponent";
-import SidebarComponent from "./Components/SidebarComponent";
+// import Navigation from "../layout/NavigationComponent";
+import SidebarComponent from "./Components/DraftSidebarComponent";
 import ListingsTableComponent from "./Components/ListingsTableComponent";
 import FooterComponent from "./Components/FooterComponent";
+// import MainLayout from "../layout/layout.component";
 
 const Drafts = () => {
   return (
     <div>
-      <Navigation />
+      {/* <Navigation /> */}
+      {/* <MainLayout/> */}
       <div
         className="contentContainer"
         style={{ display: "flex", width: "100%", gap:'1rem' }}
