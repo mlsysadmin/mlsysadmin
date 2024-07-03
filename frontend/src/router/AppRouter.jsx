@@ -17,7 +17,8 @@ import {
 import Allpage from '../pages/Buyer.All.page';
 import Featuredpage from '../pages/Buyer.Featured.page';
 import SuccessModal from '../components/SuccessModal';
-import SuccessfullySubmitted from '../components/SuccessfullySubmitted'
+import SuccessfullySubmitted from '../components/SuccessfullySubmitted';
+import ApplicationModal from '../components/ApplicationModal';
 
 const Routes = [
     {
@@ -87,6 +88,10 @@ const Routes = [
             {
                 path: "/modal2",
                 element: <SuccessfullySubmitted/>
+            },
+            {
+                path: "/modal3",
+                element: <ApplicationModal/>
             }
         ]
     }

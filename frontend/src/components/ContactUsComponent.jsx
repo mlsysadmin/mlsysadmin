@@ -97,7 +97,7 @@ const ContactUsComponent = () => {
           </div>
           <div className="map">
             <div className="pinned">
-              <p>
+              <p> 
                 {" "}
                 <img src={logo} alt="" /> M Lhuillier Financial <br />
                 Services Inc.

@@ -530,11 +530,11 @@
   }
 
   .title-header{
-    font-size: 80%;
+    font-size: 15px;
   }
 
   .sub-title-header{
-    font-size: 50%;
+    font-size: 65%;
   }
 
   .mort-content-1{
@@ -542,7 +542,7 @@
     flex-direction: column;
     gap: 5%;
     justify-content: center;
-    width: 80%;
+    width: 90%;
     margin-top: 3%;
   }
   
@@ -555,22 +555,22 @@
   }
   
   .Label{
-    font-size: 60%;
+    font-size: 100%;
     font-weight: bold;
   }
   
   .sub-label{
-    font-size: 40%;
+    font-size: 75%;
     color: #8C9094;
   }
   
   .payment{
     color: #000;
-    font-size: 60%;
+    font-size: 100%;
   }
   
   .payment-desc{
-    font-size: 40%;
+    font-size: 75%;
     color: #8C9094;
   }
   
@@ -585,12 +585,12 @@
   .input-infos{
       display: flex;
       border-color: #d90000;
-      padding: 8px;
+      padding: 10px;
       border-radius: 5px;
       border-style: solid;
       border-width: .5px;
       color: #8C9094;
-      font-size: 50%;
+      font-size: 70%;
     }
   
     .year-loans{
@@ -605,11 +605,11 @@
       display: flex;
       justify-content: space-between;
       width: 100%;
-      height: 42%;
+      height: 45%;
     }
 
     .year{
-      font-size: 52%;
+      font-size: 72%;
     }
   
     .dropdown-btn{
@@ -626,11 +626,11 @@
     .price-container-1{
       display: flex;
       border-color: #d90000;
-      padding: 8px;
-      border-radius: 5px;
+      padding: 12px;
+      border-radius: 8px;
       border-style: solid;
       border-width: .5px;
-      font-size: 50%;
+      font-size:100%;
     }
   
     .price-percentage-container{
@@ -641,23 +641,23 @@
     .price-percentage{
       display: flex;
       border-color: #d90000;
-      padding: 8px;
-      border-radius: 0px 5px 5px 0px;
+      padding: 12px;
+      border-radius: 0px 8px 8px 0px;
       border-style: solid;
       border-width: .5px;
       width: 20%;
-      font-size: 50%;
+      font-size: 100%;
     }
   
     .price-container{
       display: flex;
       border-color: #d90000;
-      padding: 8px;
-      border-radius: 5px 0px 0px 5px;
+      padding: 12px;
+      border-radius: 8px 0px 0px 8px;
       border-style: solid;
       border-width: .5px;
-      width: 80%;
-      font-size: 50%;
+      width: 90%;
+      font-size: 100%;
     }
   
   .first-column{
