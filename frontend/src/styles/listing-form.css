@@ -1,49 +1,190 @@
+.ContentContainer{
+  padding: 1% 5%;
+}
+
 .listing-application {
-  /* border-width: 3px;
-  border-color: #ff0000;
-  border-style: solid; */
-  margin: 10px 100px 35px 200px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 30% 70%;
   justify-content: space-between;
-  padding: 10px;
-  gap: 35px;
   font-family: "Poppins", Helvetica;
 }
 
 .listing-steps {
   flex: 1;
-  max-width: 300px;
-  padding: 10px;
   /* border-style: solid; */
 }
 
 
 .listing-form{
+
   /* border: solid 2px #ff0000; */
   padding: 10px;
 }
-
+.listing-property-details{
+  padding: 1% 5%;
+}
 .listing-property-details,
 .listing-unit-details,
-.location-details{
+.location-details,
+.descriptionDetails,
+.uploadPhotos,
+.featureList{
   flex: 3;
   border: solid 2px #ff0000;
   border-radius: 35px;
   margin-bottom: 25px;
 }
-
-.listing-property-details-info {
-  margin: 20px;
-  margin-left: 50px;
+.uploadPhotos h1{
+  font-size: 22px;
+  font-weight: 1000;
 }
 
+.uploadPhotos .uploadPhotosContent,.featureList{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+}
+.featureCOntainer{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.featureList{
+  padding: 1% 5%;
+}
+.featureList h2,.featureList p{
+  width: 100%;
+}
+.featureList p{
+  color: #8b8f94;
+}
+.uploadPhotosContent ul{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  color: #8b8f94;
+}
+.uploadPhotosContent ul li{
+  width: 100%;
+  text-align: justify;
+}
+.dragAndDropPhotoHere{
+  border: dotted 2px #8C9094;
+  padding: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+.dragAndDropPhotoHere p{
+  font-size: 1.1rem;
+}
+.image{
+  width: 100%;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.image img{
+  border-radius: 10px;
+}
+.DisplayUploadedPhotoHere{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 1rem ;
+  grid-template-columns: repeat(3,1fr);
+}
+.features {
+    display: flex;
+    flex-wrap: wrap;
+}
+.buttonSubmit{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.buttonSubmit button{
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background: #d90000;
+  color: #fff;
+  font-weight: bold;
+}
+.featuresCont{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.feature-item {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #8b8f94;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.feature-item.selected {
+    background-color: red;
+    color: white;
+}
+
+.descriptionDetails,.uploadPhotos{
+  padding: 2% 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.descriptionDetails h1{
+  font-size: 22px;
+  font-weight: 1000;
+}
+.descriptionDetails .descriptionText{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.descriptionDetails .descriptionText .titleText{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.titleText h2{
+  font-size: 20px;
+  font-weight: normal;
+}
+.titleText input{
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: -2px 3px 3px #8b8f94;
+}
+.descriptionText .example{
+  color: #8b8f94;
+  font-size: small;
+}
+.descriptionContent textarea{
+  padding: 10px;
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  box-shadow: -2px 5px 5px #8b8f94;
+  height: 20vh;
+}
 .listing-property-details-info .b {
   font-size: 22px;
   font-weight: 1000;
 }
 
 .listing-property-details-tabs {
-  margin: 5px 10px 10px 75px;
   /* display: flex; */
   padding: 10px;
   /* border: solid 1px #ff0000; */
@@ -138,30 +279,32 @@
 .listing-note {
   color: #8c9094;
   font-size: 13px;
-  margin: 0px 105px 0px 50px;
+  padding-left: 1%;
 }
 
 .listing-reminders {
-  background: #fff0f0;
+  background: #c4acac 20%;
   border-radius: 35px;
   padding: 20px;
-  margin: 0px 0px 10px 20px;
+  opacity: 0.6;
 }
 
 .listing-reminders-label {
   display: flex;
+  gap: .5rem;
   color: #d90000;
 }
 
 .warning-icon {
-  width: 35px;
   color: #d90000;
 }
 
 .listing-reminders b {
   font-size: 15px;
 }
-
+.listing-reminders ul{
+  padding-left: 6%;
+}
 .listing-reminders ul li,
 .more {
   color: #d90000;

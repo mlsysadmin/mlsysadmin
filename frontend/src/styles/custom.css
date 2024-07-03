@@ -19,7 +19,7 @@
   
   .sub-options-search {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
   
   }
@@ -38,18 +38,18 @@
   }
   .garage-group{
     display: flex;
+    width: 100%;
+    gap: 1rem;
   }
   .sub-options-search-beds{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
-    gap: 100px;
   }
   .sub-options-search-bath{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
-    gap: 230px;
   }
   .bed-select option {
     padding: 5px 0px 0px 20px;
@@ -59,7 +59,7 @@
 listing search */
 
 .first-content {
-  background-color: #FFE9E9;
+  background-color: #BBBCC1;
   color: white;
   height: auto;
   width: 90%;
@@ -68,15 +68,17 @@ listing search */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding: 1%;
 
 }
 
 .sub-content1 {
-  width: 90%;
+  opacity: 100%;
+  width: 99%;
   background-color: white;
   height: auto;
   border-radius: 30px;
-  margin: 10px 30px 20px 80px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -89,7 +91,7 @@ listing search */
 .subcontent-inputs {
   /* justify-content: space-between; */
   display: flex;
-  width: 90%;
+  width: 100%;
   flex-wrap: wrap;
   padding: 20px;
 }
@@ -99,6 +101,7 @@ listing search */
   flex: 1;
   margin: 0 10px;
   color: black;
+  border-radius: 15px;
 }
 
 .input-field::placeholder {

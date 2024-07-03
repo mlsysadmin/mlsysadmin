@@ -9,15 +9,82 @@ import BedsInputSlider from "./Slider/BedSlider";
 import ParkingInputSlider from "./Slider/ParkingSlider";
 import BathroomInputSlider from "./Slider/BathroomsSlider";
 import NoOfFloorsInputSlider from "./Slider/NoOfFloors";
+import { useDropzone } from "react-dropzone";
+import Resizer from "react-image-file-resizer";
 import "../styles/listing-form.css";
-
+import AddFeature from "./custom/custom.featureLists";
 
 function ListingDetailsForm() {
   const [selectedPropertyTab, setSelectedPropertyTab] = useState(null);
   const [selectedListingTab, setSelectedListingTab] = useState(null);
   const [selectedSellingPrice, setSelectedSellingPrice] = useState(null);
   const [selectedClassification, setSelectedClassification] = useState(null);
+  const [uploadedPhotos, setUploadedPhotos] = useState([]);
+  const [selectedFeatures, setSelectedFeatures] = useState([]);
 
+  const toggleFeature = (feature) => {
+    if (selectedFeatures.includes(feature)) {
+      setSelectedFeatures(selectedFeatures.filter((item) => item !== feature));
+    } else {
+      setSelectedFeatures([...selectedFeatures, feature]);
+    }
+  };
+
+  const FeatureList = ({ title, features }) => (
+    <div className="">
+      <h2>{title}</h2>
+      <div className="features">
+        {features.map((feature) => (
+          <span
+            key={feature}
+            className={`feature-item ${
+              selectedFeatures.includes(feature) ? "selected" : ""
+            }`}
+            onClick={() => toggleFeature(feature)}
+          >
+            {feature}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+  const onDrop = (acceptedFiles) => {
+    acceptedFiles.forEach((file) => {
+      if (validateFile(file)) {
+        Resizer.imageFileResizer(
+          file,
+          800,
+          600,
+          "JPEG",
+          100,
+          0,
+          (uri) => {
+            setUploadedPhotos((prev) => [...prev, { file, preview: uri }]);
+          },
+          "base64"
+        );
+      }
+    });
+  };
+
+  const validateFile = (file) => {
+    const maxFileSize = 15 * 1024 * 1024; // 15 MB
+    const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+
+    if (!allowedTypes.includes(file.type)) {
+      alert("Only JPEG, PNG, and GIF files are allowed.");
+      return false;
+    }
+
+    if (file.size > maxFileSize) {
+      alert("File size should not exceed 15 MB.");
+      return false;
+    }
+
+    return true;
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
   const handlePropertyTabClick = (tab) => {
     setSelectedPropertyTab(tab);
   };
@@ -33,7 +100,72 @@ function ListingDetailsForm() {
   const handleClassificationClick = (tab) => {
     setSelectedClassification(tab);
   };
+  const indoorFeatures = [
+    "Alarm System",
+    "Air Conditioning",
+    "Attic",
+    "Balcony",
+    "Bar",
+    "Basement",
+    "Broadband Internet Available",
+    "Built-in Wardrobes",
+    "CCTV",
+    "Central Air Conditioning",
+    "Ducted Cooling",
+    "Ducted Vacuum System",
+    "Driver Room",
+    "Ensuite",
+    "Entertainment Room",
+    "Fire Alarm",
+    "Fireplace",
+    "Floorboards",
+    "Gym",
+    "Jacuzzi",
+    "Laundry Room",
+    "Lawn",
+    "Library",
+    "Lounge",
+    "Maid Room",
+    "Pay TV Access",
+    "Powder Room",
+    "Sauna",
+    "Service Area",
+    "Service Kitchen",
+    "Smoke Detector",
+    "Split System Heating",
+    "Storage Room",
+    "Study Room",
+    "Terrace",
+    "Wifi",
+  ];
 
+  const outdoorFeatures = [
+    "Badminton Court",
+    "Basketball Court",
+    "Carport",
+    "Clubhouse",
+    "Courtyard",
+    "Fully Fenced",
+    "Function Area",
+    "Garage",
+    "Garden",
+    "Gazebos",
+    "Jogging Path",
+    "Lanai",
+    "Landscaped Garden",
+    "Multi-purpose Lawn",
+    "Open Car Spaces",
+    "Parks",
+    "Parking Lot",
+    "Playground",
+    "Remote Garage",
+    "Secure Parking",
+    "Shower Rooms",
+    "Sports Facilities",
+    "Swimming Pool",
+    "Tennis Court",
+    "24/7 Security",
+  ];
   return (
     <div className="listing-form-application">
       <div className="listing-property-details">
@@ -176,7 +308,6 @@ function ListingDetailsForm() {
 
         <div className="listing-unit-details-div">
           <div className="listing-unit-details-left">
-            
             <div className="form-group">
               <div className="text-wrapper-37">Selling Price</div>
               <div className="listing-unit-input-group">
@@ -459,7 +590,6 @@ function ListingDetailsForm() {
       <div className="location-details">
         <div className="location-label">Location</div>
         <div className="location-div">
-
           <div className="form-group">
             <div className="text-wrapper-37">Subdivision</div>
             <div className="input-group">
@@ -519,7 +649,7 @@ function ListingDetailsForm() {
 
               <div className="map-location-input-container">
                 <div className="map-search-logo">
-                  <SearchIcon className="search"/>
+                  <SearchIcon className="search" />
                 </div>
 
                 <input
@@ -529,12 +659,104 @@ function ListingDetailsForm() {
                 />
               </div>
 
-              <div className="map">
-                
-              </div>
+              <div className="map"></div>
             </div>
           </div>
         </div>
+      </div>
+      <div className="descriptionDetails">
+        <h1>Description</h1>
+        <div className="descriptionText">
+          <div className="titleText">
+            <h2 className="title">Title</h2>
+            <input type="text" placeholder="input title" />
+            <p className="example">
+              If there are important details that we weren't able to ask, you
+              can specify it here.
+              <br /> Please note: links and contact info entered will be
+              removed.
+            </p>
+          </div>
+          <div className="descriptionContent">
+            <textarea
+              name=""
+              id=""
+              placeholder="Description of the place.."
+            ></textarea>
+            <p className="example">
+              Here's a nice, simple and concise example:
+            </p>
+            <br />
+            <p className="example">
+              This semi-furnished unit for sale in Quezon City is an ideal space
+              for young professionals or starting families. The Project is near
+              Araneta Center, Ali Mall Shopping Complex, MRT, LRT, and EDSA.
+              Residents will also have access to condominium amenities like a
+              swimming pool, a gym, a playground, a basketball court and a
+              function room.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="uploadPhotos">
+        <h1>Upload Photos</h1>
+        <center>
+          <div className="uploadPhotosContent">
+            <ul>
+              <li>
+                Photos that have watermarks, phone numbers, website URLs, email
+                addresses, or in collage format will be removed.
+              </li>
+              <li>
+                Horizontal/landscape images display best and are recommended.
+                Vertical/portrait images and panoramic images are accepted but
+                not recommended as they do not take full advantage of the space
+                provided.
+              </li>
+              <li>
+                We require a minimum of two (1) distinct photos that pertain to
+                the actual property being posted. The higher the quality of the
+                photos, the better it is for your listing{" "}
+                {"(maximum file size of 15 MB per photo)"}. DO NOT duplicate
+                photos please.
+              </li>
+              <li>
+                Computer drawings or artist renders for the properties are NOT
+                ALLOWED. We do ALLOW floor plans of the property as long as it
+                is accompanied with actual photos of the property's interiors
+                and facade.
+              </li>
+            </ul>
+            <div {...getRootProps({ className: "dragAndDropPhotoHere" })}>
+              <input {...getInputProps()} />
+              <p>Drag & drop photos here, or click to select photos</p>
+            </div>
+            <div className="DisplayUploadedPhotoHere">
+              {uploadedPhotos.map((photo, index) => (
+                <div key={index} className="image">
+                  <img
+                    src={photo.preview}
+                    alt={`Uploaded preview ${index}`}
+                    style={{ width: "200px", height: "160px" }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </center>
+      </div>
+      <div className="featureList">
+        <h2>Features</h2>
+        <p>Why is your property so great? Tell us more about your property so that property seekers can learn even more about your offer.</p>
+        <div className="features">
+          <FeatureList title="Indoor Features" features={indoorFeatures} />
+          <FeatureList title="Outdoor Features" features={outdoorFeatures} />
+        </div>
+        <AddFeature/>
+      </div>
+      <p style={{fontWeight:"500"}}>By proceeding, I agree and review that all information are correct.</p>
+      <div className="buttonSubmit">
+        <button type="submit">Submit Application</button>
       </div>
     </div>
   );
@@ -542,10 +764,7 @@ function ListingDetailsForm() {
 
 export const ListingForm = () => {
   return (
-    <div>
-      <div className="nav">
-      </div>
-
+    <div className="ContentContainer">
       <div>
         <ListingBanner />
       </div>
