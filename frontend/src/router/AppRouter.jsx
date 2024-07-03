@@ -8,7 +8,6 @@ import Featuredpage from '../pages/Buyer.Featured.page';
 
 import { 
     ListingPage,
-    ListingFormPage,
     HouseForRentPage, 
     DiscoverHomePage, 
     BuyAHomePage, 
@@ -19,9 +18,8 @@ import {
     SellPage,
     LoanCalculatorPage,
     MortagagePage} from '../pages';
+import ListingFormPage from "../pages/SellerListingForm.page";
 
-import Allpage from '../pages/Buyer.All.page';
-import Featuredpage from '../pages/Buyer.Featured.page';
 
 
 const Routes = [

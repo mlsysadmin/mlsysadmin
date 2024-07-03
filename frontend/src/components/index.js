@@ -1,4 +1,3 @@
-import { ListingForm } from "./seller-broker/ListingForm";
 import PropertiesForRent from "./custom/Custom.PropertiesPagination";
 import FooterComponent from "./layout/FooterComponent";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
@@ -43,6 +42,7 @@ import MortgageComponent from "./MortgageComponent";
 import RentComponent from "./RentComponent";
 import SellComponent from "./SellComponent";
 import ListingSearchLoggedin from "./custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
+import { ListingForm } from "./ListingForm";
 
 
 export{
@@ -56,7 +56,6 @@ export{
     ListingSummaryLists,
     ClientManagement,
     ActiveSummaryLists,
-    ListingForm,
     Drafts,
     NewPageComponent,
     PropertiesForRent,
@@ -81,5 +80,7 @@ export{
     LoanCalculatorComponent,
     MortgageComponent,
     RentComponent,
-    SellComponent
+    SellComponent,
+    ListingSearchLoggedin,
+    ListingForm
 }
