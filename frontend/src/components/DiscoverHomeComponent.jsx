@@ -318,7 +318,6 @@ const DiscoverHomeComponent = () => {
                   style={{
                     backgroundColor:
                       activeIndex === index ? "#ffffff" : "white",
-                    color: activeIndex === index? "#ff2800":"#444444",
                     display:activeIndex === index? "flex": "flex",
                     flexDirection:activeIndex === index? "column": "row",
                   }}
@@ -329,11 +328,10 @@ const DiscoverHomeComponent = () => {
                       color: "#ff2800",
                       transform:
                         activeIndex === index ? "rotate(180deg)" : "none",
-                      transition: "transform 0.3s ease",
                     }}
                   />
                   {activeIndex === index && (
-                  <div className="dropdown-content" style={{ height: "auto" }}>
+                  <div className="dropdown-content" style={{ height: "auto" ,fontWeight:'100px'}}>
                     {item.answer}
                   </div>
                 )}

@@ -2,9 +2,10 @@ import React from "react";
 import "../../../styles/submitapplicationcustom.css";
 import { useState } from "react";
 import SuccessModal from "../../modals/SuccessModal";
+import WrapUpDetails from "./wrapup.custom";
 
 const SubmitApplicationCustom = ({ successModalMessage ,isSubmitButtonDisabled,
-  setIsSubmitButtonDisabled, mobileNumber,zipCode,firstname, lastname, email}) => {
+  setIsSubmitButtonDisabled, mobileNumber,zipCode}) => {
     const [showModal, setShowModal] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [hasError, setHasError] = useState(false);
@@ -14,13 +15,6 @@ const SubmitApplicationCustom = ({ successModalMessage ,isSubmitButtonDisabled,
       if (!isSubmitButtonDisabled) {
         setShowModal(true);
       }
-      if (mobileNumber.trim() === '' || zipCode.trim() === ''||  firstname.trim() === ''||lastname.trim() === '' || email.trim() === '') {
-        setHasError(true);
-        return;
-      }
-      console.log('Mobile Number:', mobileNumber);
-      console.log('Zip Code:', zipCode);
-      setHasError(false);
     };
   
     const handleCloseModal = () => {

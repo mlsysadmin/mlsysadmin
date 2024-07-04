@@ -30,6 +30,7 @@ import MortgageComponent from "./MortgageComponent";
 import RentComponent from "./RentComponent";
 import SellComponent from "./SellComponent";
 import CardListingComponent from "./CardListingComponent";
+import AllPropertiesComponent from "./AllPropertiesComponent";
 
 // modals
 
@@ -63,5 +64,6 @@ export{
     SellComponent, 
     CertainFeatureMenu,
     CardListingComponent,
-    SuccessModal
+    SuccessModal,
+    AllPropertiesComponent
 }
