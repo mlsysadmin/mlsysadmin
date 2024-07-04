@@ -1,0 +1,64 @@
+INFO 2024-06-04T10:43:25.138 ML Brokerage Server listening on port 8002 
+ 20     at Server.<anonymous> (C:\Users\User\Documents\GitHub\ML-Brokerage\backend\src\server\mlbrokerage.entrypoint.js:20:16)
+    at Object.onceWrapper (node:events:632:28)
+    at Server.emit (node:events:530:35)
+    at emitListeningNT (node:net:1906:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+INFO 2024-06-04T10:43:31.065 ML Brokerage Server listening on port 8002 
+ 20     at Server.<anonymous> (C:\Users\User\Documents\GitHub\ML-Brokerage\backend\src\server\mlbrokerage.entrypoint.js:20:16)
+    at Object.onceWrapper (node:events:632:28)
+    at Server.emit (node:events:530:35)
+    at emitListeningNT (node:net:1906:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+INFO 2024-06-04T10:43:54.637 ML Brokerage Server listening on port 8002 
+ 20     at Server.<anonymous> (C:\Users\User\Documents\GitHub\ML-Brokerage\backend\src\server\mlbrokerage.entrypoint.js:20:16)
+    at Object.onceWrapper (node:events:632:28)
+    at Server.emit (node:events:530:35)
+    at emitListeningNT (node:net:1906:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+INFO 2024-06-04T10:44:32.966 ML Brokerage Server listening on port 8002 
+ 20     at Server.<anonymous> (C:\Users\User\Documents\GitHub\ML-Brokerage\backend\src\server\mlbrokerage.entrypoint.js:20:16)
+    at Object.onceWrapper (node:events:632:28)
+    at Server.emit (node:events:530:35)
+    at emitListeningNT (node:net:1906:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+INFO 2024-06-04T10:44:48.207 ML Brokerage Server listening on port 8002 
+ 20     at Server.<anonymous> (C:\Users\User\Documents\GitHub\ML-Brokerage\backend\src\server\mlbrokerage.entrypoint.js:20:16)
+    at Object.onceWrapper (node:events:632:28)
+    at Server.emit (node:events:530:35)
+    at emitListeningNT (node:net:1906:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+INFO 2024-06-04T10:46:26.763 ML Brokerage Server listening on port 8002 
+ 20     at Server.<anonymous> (C:\Users\User\Documents\GitHub\ML-Brokerage\backend\src\server\mlbrokerage.entrypoint.js:20:16)
+    at Object.onceWrapper (node:events:632:28)
+    at Server.emit (node:events:530:35)
+    at emitListeningNT (node:net:1906:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+INFO 2024-06-04T10:47:03.299 ML Brokerage Server listening on port 8002 
+ 20     at Server.<anonymous> (C:\Users\User\Documents\GitHub\ML-Brokerage\backend\src\server\mlbrokerage.entrypoint.js:20:16)
+    at Object.onceWrapper (node:events:632:28)
+    at Server.emit (node:events:530:35)
+    at emitListeningNT (node:net:1906:10)
+    at process.processTicksAndRejections (node:internal/process/task_queues:81:21)
+{"startTime":"2024-06-04T02:55:43.521Z","categoryName":"default","data":["GET /"],"level":{"level":20000,"levelStr":"INFO","colour":"green"},"context":{},"pid":5180},
+{"startTime":"2024-06-04T02:55:43.549Z","categoryName":"default","data":["GET /favicon.ico"],"level":{"level":20000,"levelStr":"INFO","colour":"green"},"context":{},"pid":5180},
+{"startTime":"2024-06-04T03:06:13.733Z","categoryName":"default","data":["GET / 304 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"],"level":{"level":20000,"levelStr":"INFO","colour":"green"},"context":{},"pid":29868},
+INFO 2024-06-04T11:47:21.576 null GET / 304 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 
+  
+INFO 2024-06-04T11:49:07.225 null GET / 304 
+  
+INFO 2024-06-04T11:49:18.298 null GET / 304 
+  
+INFO 2024-06-04T11:50:12.872 null GET / 304 
+  
+[object Object],
+INFO 2024-06-04T11:53:10.951 null GET / 304 
+  
+INFO 2024-06-04T11:58:40.922 null GET / 304 
+ 
+INFO 2024-06-04T11:59:21.276 null GET / 304 
+ 
+INFO 2024-06-04T12:00:17.072 
+ null GET / 304 
+INFO 2024-06-04T12:00:47.994 HOTGQCD06 
+ null GET / 304 

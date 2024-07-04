@@ -32,10 +32,6 @@ const MenuPopupContent = ({ submenu }) => {
                             submenu.sub_info ? (
                                 submenu.sub_info
                             ) 
-                            :
-                            submenu.sub_info_insurance?(
-                                submenu.sub_info_insurance
-                            )
                             : <a href={submenu.link}>{submenu.sub}</a>
                         }
                         
