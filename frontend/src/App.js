@@ -1,4 +1,7 @@
-import './App.css';
+// // import logo from './images/';
+// import './App.css';
+// // import AppRouter from './router/AppRouter';
+// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { RouterProvider } from 'react-router-dom';
 import AppRouter from './router/AppRouter';
 
@@ -25,6 +28,7 @@ function App() {
   return (
     <div className='App'>
       <RouterProvider router={AppRouter}/>
+      
     </div>
   );
 }

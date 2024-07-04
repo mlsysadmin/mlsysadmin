@@ -21,16 +21,26 @@ import ActiveSummaryListsPage from "./ActiveSummaryLists.page";
 import ClientManagementPage from "./ClientManagement.page";
 import ListingSummaryListsPage from "./ListingSummaryLists.page";
 import SoldPropertiesPage from "./SoldProperties.page";
-import ListingsTablePage from "./ListingsTable.page";
-import SidebarPage from "./DraftSidebar.page";
-import  PreviewListingPage  from "./PreviewListing.page";
-import ModalComponentsPage from "./ModalComponents.page";
-import RegistrationModalPage from "./RegistrationModal.page";
-import LoginModalPage from "./LoginModal.page";
+import ListingsTable from "./ListingsTable.page";
+import Sidebar from "./DraftSidebar.page";
+import  PreviewListing  from "./PreviewListing.page";
+import ModalComponents from "./ModalComponents.page";
+import RegistrationModal from "./RegistrationModal.page";
+import LoginModal from "./LoginModal.page";
+import ListingSearchLoggedin from "../components/custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
 
 export {
+    LoginModal,
+    RegistrationModal,
+    ModalComponents,
+    PreviewListing,
+    Sidebar,
+    ListingsTable,
+    SoldPropertiesPage,
+    ListingSummaryListsPage,
+    ClientManagementPage,
+    ActiveSummaryListsPage,
     ListingPage,
-    ListingFormPage,
     MainOutlet,
     Dashboard,
     HouseForRentPage,
@@ -44,19 +54,6 @@ export {
     LoanCalculatorPage,
     ContactUsPage,
     MyDraftsPage,
-    ActiveSummaryListsPage, 
-    ClientManagementPage,
-    SoldPropertiesPage,
-    ListingSummaryListsPage, 
-    ListingsTablePage,
-    SidebarPage,
-    PreviewListingPage,
-    ModalComponentsPage,
-    RegistrationModalPage,
-    LoginModalPage
-    
- 
-   
- 
- 
+    ListingSearchLoggedin,
+    ListingFormPage
 }

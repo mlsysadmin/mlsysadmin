@@ -13,6 +13,7 @@ import { useDropzone } from "react-dropzone";
 import Resizer from "react-image-file-resizer";
 import "../styles/listing-form.css";
 import AddFeature from "./custom/custom.featureLists";
+import Footer from "./MY Drafts/Components/FooterComponent";
 
 function ListingDetailsForm() {
   const [selectedPropertyTab, setSelectedPropertyTab] = useState(null);
@@ -21,7 +22,10 @@ function ListingDetailsForm() {
   const [selectedClassification, setSelectedClassification] = useState(null);
   const [uploadedPhotos, setUploadedPhotos] = useState([]);
   const [selectedFeatures, setSelectedFeatures] = useState([]);
-
+  const [showSuccessfulMsgModal, setShowSuccessfulMsgModal] = useState(false);
+  const handleModalClose = () => {
+    setShowSuccessfulMsgModal(false);
+  };
   const toggleFeature = (feature) => {
     if (selectedFeatures.includes(feature)) {
       setSelectedFeatures(selectedFeatures.filter((item) => item !== feature));
@@ -31,7 +35,7 @@ function ListingDetailsForm() {
   };
 
   const FeatureList = ({ title, features }) => (
-    <div className="">
+    <div className="featureCards">
       <h2>{title}</h2>
       <div className="features">
         {features.map((feature) => (
@@ -756,14 +760,31 @@ function ListingDetailsForm() {
       </div>
       <p style={{fontWeight:"500"}}>By proceeding, I agree and review that all information are correct.</p>
       <div className="buttonSubmit">
-        <button type="submit">Submit Application</button>
+        <button type="submit"  onClick={() => setShowSuccessfulMsgModal(true)}>Submit Application</button>
       </div>
+      {showSuccessfulMsgModal && (
+        <div className="modal-overlay" onClick={handleModalClose}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h2 className="modalsuccess-header">Successfully Submitted!</h2>
+            <div className="success-details">
+              <p>
+                Waiting for Approval. Your listing has been submitted and will
+                undergo screening.
+              </p>
+              <button className="buttonkyc" onClick={handleModalClose}>
+                Preview Listing
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
 export const ListingForm = () => {
   return (
+    <>
     <div className="ContentContainer">
       <div>
         <ListingBanner />
@@ -778,6 +799,9 @@ export const ListingForm = () => {
           <ListingDetailsForm />
         </div>
       </div>
+      
     </div>
+    <Footer/>
+    </>
   );
 };

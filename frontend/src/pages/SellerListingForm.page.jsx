@@ -1,8 +1,8 @@
-import { SellerListingForm } from "../components";
+import { ListingForm } from "../components";
 
 const ListingFormPage = () =>{
     return (
-        <SellerListingForm/>
+        <ListingForm/>
     )
 }
 
