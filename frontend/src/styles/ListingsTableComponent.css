@@ -25,7 +25,7 @@
   margin: 0 ;
 }
 /* Tabs */
-.tabs {
+.tabs-listings-table {
   display: flex;
   gap: 20px;
 }
@@ -235,14 +235,15 @@
   background-color: #ff0000;
   color: black;
 }
-@media (max-width: 768px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   .table,
   .table thead,
   .table tbody,
   .table th,
   .table td,
   .table tr {
-    display: block;
+   font-size: 12px;
+   max-width:86px;
   }
 
   .table th {
@@ -281,19 +282,5 @@
     height: 30px;
     line-height: 30px;
     font-size: 14px;
-  }
-}
-@media (max-width: 768px) {
-  .show-details-button,
-  .action-button {
-    /* padding: 3px 8px; */
-    font-size: 14px;
-  }
-}
-@media (max-width: 768px) {
-  .listings-table-wrapper {
-    width: 90%;
-    padding: 10px;
-    align-items: center;
   }
 }

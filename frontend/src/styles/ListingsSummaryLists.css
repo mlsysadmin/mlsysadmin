@@ -41,7 +41,7 @@ background-color: #ffffff;
 
 }
 /* Tabs */
-.tabs {
+.listings-summary-tabs {
   display: flex;
   gap: 20px;
 }

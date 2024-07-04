@@ -83,7 +83,7 @@ const ActiveInactive = () => {
         {/* <div className="listing-table-wrapper"> */}
           <div className="active-container">
             <div className="active-header-section">
-              <div className="tabs">
+              <div className="active-tabs">
                 <Link to="/listing-summary-lists">
                   <div className="new-button">Listings</div>
                 </Link>

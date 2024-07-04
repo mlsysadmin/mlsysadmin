@@ -13,7 +13,7 @@
     background-color: rgba(140, 144, 148, 0.18);
   }
   
-  .tabs {
+  .sold-properties-tabs {
     display: flex;
     gap: 20px;
   }

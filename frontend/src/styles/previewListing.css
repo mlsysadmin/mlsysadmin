@@ -886,7 +886,32 @@
     border-radius: 10px;
     padding: 2px;
   }
-  
+  :where(.css-dev-only-do-not-override-m4timi).ant-slider .ant-slider-handle::after {
+    content: "";
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    width: 10px;
+    height: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 2px #d90000;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: inset-inline-start 0.2s, inset-block-start 0.2s, width 0.2s, height 0.2s, box-shadow 0.2s;
+}
+:where(.css-dev-only-do-not-override-m4timi).ant-slider .ant-slider-handle::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 2px #d90000;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: inset-inline-start 0.2s, inset-block-start 0.2s, width 0.2s, height 0.2s, box-shadow 0.2s;
+}
 
 
 
@@ -1387,7 +1412,7 @@
   width: 40px;
   height: 40px;
   top: 100px;
-  left: 10%;
+
   position: absolute;
  }
  .fanext{
@@ -1420,7 +1445,7 @@
     padding: 6px;
     border-radius: 30px;
     margin: 5px;
-    width: 170px; /* Adjust width as needed */
+    /* width: 170px; Adjust width as needed */
     margin-top: 60px;
     height: 130px;
 }
@@ -1437,8 +1462,8 @@
     top: 35px;
     left: 710px;
     width: 150px;
-    height: 30px;
-    font-size: 18px;
+    height: 35px;
+    font-size: 16px;
    
 
   }
@@ -1451,7 +1476,12 @@
     
     .previewlist-overview span {
     font-weight: bold;
+    font-size: 20px;
     }
+    .previewlist-overview p {
+    
+      font-size: 14px;
+      }
     
   .Listing-property-details {
     width: 600px;
@@ -1539,7 +1569,7 @@
   .pl-for-sale{
     width: 90px;
     height: 28px;
-    padding: 0.3rem;
+    padding: 0.2rem;
     align-items: center;
     font-size: 16px;
 }
@@ -1609,10 +1639,10 @@
   max-width: 1000px;
 }
 .calculator-field, .calculator-result, .contact-input textarea span {
-font-size: 12px;
+font-size: 16px;
 }
 .slider-value {
-  font-size: 12px;
+  font-size: 16px;
 
   
 }
@@ -1626,7 +1656,7 @@ font-size: 12px;
   font-weight: bold;
 }
 .pi {
-  font-size: 14px;
+  font-size: 18px;
 }
 .red-bar {
   margin-right: 20px;
@@ -1636,38 +1666,47 @@ font-size: 12px;
   {
     position: absolute;
     /* top: 50%; */
-    transform: translateY(-290%);
+    transform: translateY(-495%);
     cursor: pointer;
   }
   .next-img{
-    position: absolute;
+   
     /* top: 50%; */
-    transform: translateY(-280%);
+    transform: translateY(-480%);
     cursor: pointer;
   }
   .small-image-icons{
-    position: absolute;
-  top: 80px;
-  right: 10px;
+
+    margin-top: 90px;
+
   display: flex;
   gap: 10px;
  
   }
   .property-label-featured{
-    margin-top: 9px;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    padding: 2px;
+    font-size: 12px;
   }
   .property-label{
     margin-top: 9px;
   }
   .property-labels {
-    
-    top: 75px;
     left: 35px;
     display: flex;
     gap: 10px;
-  
-  
-
+}
+.property-label-for-sale{
+  font-size: 12px;
+  font-weight: bold;
+  background-color: white;
+  border-radius: 10px;
+}
+.property-label-featured{
+  font-size: 12px;
+ 
 }
 }
 @media only screen and (max-width: 720px) and (min-width:320px) {
@@ -2089,7 +2128,7 @@ font-size: 12px;
     padding: 6px;
     border-radius: 30px;
     margin: 5px;
-    width: 100px;
+    width: 120px;
     top: 30px;
     height: 100px;
   }

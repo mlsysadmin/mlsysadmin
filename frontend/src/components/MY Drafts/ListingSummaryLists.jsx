@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faSearch } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/ListingsSummaryLists.css';  // Import the CSS file
 
-const ListingsApproval = () => {
+const ListingsSummaryLists = () => {
   const [listings] = useState([
     {
       date: "03-11-2024",
@@ -58,7 +58,7 @@ const ListingsApproval = () => {
           {/* <div className="listings-table-wrapper"> */}
             <div className="listings-summary-container">
               <div className="listings-summary-header-section">
-                <div className="tabs">
+                <div className="listings-summary-tabs">
                   <Link to="/listing-summary-lists">
                     <div className="listings-summary-button">
                       Listings
@@ -148,4 +148,4 @@ const ListingsApproval = () => {
   );
 };
 
-export default ListingsApproval;
+export default ListingsSummaryLists;

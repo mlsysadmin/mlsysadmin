@@ -58,7 +58,7 @@ const Sidebar = () => {
         <SidebarHeader>Marie Rodriguez</SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <a href="/MyDrafts" style={{ color: "Black" }}>
+            <a href="/drafts" style={{ color: "Black" }}>
               My Drafts
             </a>
           </SidebarMenuItem>

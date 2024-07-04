@@ -79,7 +79,7 @@ const ListingsTable = () => {
     <div>
       <div className="listings-table-container">
         <div className="listings-table-header-section">
-          <div className="tabs">
+          <div className="tabs-listings-table">
             <Link to="/listing-summary-lists">
               <div className="table-header-button">Listings</div>
             </Link>

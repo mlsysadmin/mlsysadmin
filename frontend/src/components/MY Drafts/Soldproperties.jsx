@@ -51,7 +51,7 @@ const SoldProperties = () => {
             {/* <div className="listingsTableWrapper"> */}
               <div className="sold-properties-container">
                 <div className="headerSection">
-                  <div className="tabs">
+                  <div className="sold-properties-tabs">
                     <Link to="/listing-summary-lists">
                       <div className="newButton">
                         Listings
