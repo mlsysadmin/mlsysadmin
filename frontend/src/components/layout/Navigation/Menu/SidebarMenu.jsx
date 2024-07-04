@@ -36,6 +36,13 @@ const SidebarMenu = () => {
                         link: sub.link,
                         
                     }
+                    : Object.keys(sub).includes("sub_info_insurance") ? 
+                    {
+                        key: sub.sub_info_insurance,
+                        label: 'Home Insurance Dashboard',
+                        link: sub.link,
+                        
+                    }
                     :
                     {
                         key: sub.sub,
@@ -46,8 +53,6 @@ const SidebarMenu = () => {
                 })
             }
         })
-
-        console.log(m);
 
         return m;
     }
@@ -62,9 +67,9 @@ const SidebarMenu = () => {
         }, 
         { label: "Buy", key: "Buy", children: SubMenuChild(SubMenu.buy) }, 
         { label: "Home Loan", key: "Home Loan", children: SubMenuChild(SubMenu.homeLoan) }, 
-        { label: "Home Insurance", key: "Home Insurance", link: '/home-insurance' }, 
+        { label: "Home Insurance", key: "Home Insurance", children:SubMenuChild(SubMenu.homeInsurance)}, 
         { label: "Other Services", key: "Other Services", link: '/other-services' }, 
-        { label: "Contact", key: "Contact", link: '/contact' },
+        { label: "Contact", key: "Contact", link: '/contact-us' },
     ]
 
     const items = MenuItems.map((item, index) => ({

@@ -1,9 +1,14 @@
+import { Button } from 'antd'
 import React from 'react'
 
-const SemiRoundBtn = () => {
+const SemiRoundBtn = ({ label, style, className, type, icon, size }) => {
   return (
-    <div>SemiRoundBtn</div>
+    <Button type={type} shape='default' className={className} icon={icon} size={size}
+                style={style}
+    >
+       {label}
+    </Button>
   )
 }
 
-export default SemiRoundBtn
+export default SemiRoundBtn;
