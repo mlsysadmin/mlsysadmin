@@ -16,10 +16,10 @@ import ListingFormPage from "./SellerListingForm.page";
 
 
 //seller
-import MyDrafts from "./MyDrafts.page";
+import MyDraftsPage from "./MyDrafts.page";
 import ActiveSummaryListsPage from "./ActiveSummaryLists.page";
 import ClientManagementPage from "./ClientManagement.page";
-import ListingSummaryLists from "./ListingSummaryLists.page";
+import ListingSummaryListsPage from "./ListingSummaryLists.page";
 import SoldPropertiesPage from "./SoldProperties.page";
 import ListingsTable from "./ListingsTable.page";
 import Sidebar from "./DraftSidebar.page";
@@ -37,7 +37,7 @@ export {
     Sidebar,
     ListingsTable,
     SoldPropertiesPage,
-    ListingSummaryLists,
+    ListingSummaryListsPage,
     ClientManagementPage,
     ActiveSummaryListsPage,
     ListingPage,
@@ -53,6 +53,7 @@ export {
     SellPage,
     LoanCalculatorPage,
     ContactUsPage,
-    MyDrafts,
-    ListingSearchLoggedin
+    MyDraftsPage,
+    ListingSearchLoggedin,
+    ListingFormPage
 }

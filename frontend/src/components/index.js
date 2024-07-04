@@ -31,7 +31,6 @@ import SubmitApplicationCustom from "./custom/application/submitapplication.cust
 // components
 import DiscoverHomeComponent from "./DiscoverHomeComponent";
 import BuyAHomeComponent from "./BuyAHomeComponent";
-import DashboardComponent from "./DashboardComponent";
 import HouseForRentComponent from "./HouseForRentComponent";
 import NewPageComponent  from "./NewPageComponent";
 import RefinanceComponent from "./RefinanceComponent";
@@ -61,7 +60,6 @@ export{
     PropertiesForRent,
     FooterComponent,
     CustomMlFooter,
-    DashboardComponent,
     HeaderContainer,
     SideBar,
     MainLayout,

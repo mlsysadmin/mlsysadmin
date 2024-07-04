@@ -1,11 +1,11 @@
 import React from "react";
+import { SideBar } from "../components";
 
 
-import { DraftSidebar } from "../components";
 
 
 const draftSidebar =()=>{
-    return <DraftSidebar/>
+    <SideBar/>
 }
 
 export default draftSidebar;
