@@ -15,7 +15,6 @@ const { Header } = Layout;
 
 const HeaderContainer = ({ showDrawer, screenSize }) => {
 
-  console.log(screenSize);
   const _swidth = screenSize;
 
   return (
