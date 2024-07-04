@@ -1,0 +1,103 @@
+#card-listing .ant-card{
+    box-shadow: none;
+    font-family: var(--font-family);
+}
+
+#card-listing .ant-card-body{
+    padding: 0px;
+}
+
+#card-listing .ant-card-body .listing-image{
+    background: url('../asset/banners/listing.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 25vh;
+    border-radius: 6px;
+    position: relative;
+}
+#card-listing .ant-card-body .listing-image .tags{
+    display: flex;
+    justify-content: space-between;
+    margin: auto 10px;
+    padding-top: 13px;
+}
+
+#card-listing .ant-card-body .listing-image .tags-right{
+    margin: 10px 10px;
+    padding-top: 13px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+
+#card-listing .ant-card-body .listing-image .ant-tag{
+    /* padding-inline: 5px; */
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 13px;
+    margin-inline-end: 0px;
+}
+
+#card-listing .ant-card-body .listing-image .image-tag{
+    display: flex;
+    align-items: center;
+    color: var(--red);
+}
+
+#card-listing .ant-card-body .listing-image .image-tag .anticon,
+#card-listing .ant-card-body .listing-image .image-tag p{
+    margin: auto 1.5px;
+}
+
+#card-listing .ant-card-body .listing-image .tags-right .circle-tags{
+    border-radius: 20px;
+    padding: 6px;
+}
+
+#card-listing .ant-card-body .listing-image .tags-right .circle-tags.heart{
+   background-color: white;
+   /* line-height: 1; */
+}
+
+#card-listing .ant-card-body .card-content{
+    text-align: left;
+    padding: 15px 0 !important;
+    font-family: var(--font-family);
+}
+
+#card-listing .ant-card-body .card-content .card-content--title h4{
+    color: black !important;
+}
+
+#card-listing .ant-card-body .card-content .card-content--subtitle .price{
+    color: var(--mute-gray);
+}
+
+#card-listing .ant-card-body .card-content .card-content--subtitle{
+    justify-content: space-between;
+    font-size: 12.5px;
+}
+
+#card-listing .ant-card-body .card-content .card-content--subtitle,
+#card-listing .ant-card-body .card-content .card-content--title{
+    margin: 5px auto;
+}
+
+#card-listing .ant-card-body .card-content .card-content--subtitle .features,
+#card-listing .ant-card-body .card-content .card-content--subtitle .features .feature-content{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+#card-listing .ant-card-body .card-content .card-content--subtitle .features .feature-content{
+    margin: auto 3px;
+}
+
+#card-listing .ant-card-body .card-content .card-content--subtitle .features .feature-icon,
+#card-listing .ant-card-body .card-content .card-content--subtitle .features .feature-icon{
+    margin: auto 2px;
+}

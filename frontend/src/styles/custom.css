@@ -1,0 +1,510 @@
+.advance-searchdropdown span {
+  font-size: 16px;
+  color: #444444;
+}
+
+.advance-searchdropdown {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  gap: 10px;
+  padding: 0px 0px 0px 40px;
+}
+
+.advance-searchdropdown .advance-search-group1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 60px;
+  width: 95%;
+}
+
+.sub-options-search {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.sub-options-search span {
+  color: #666666;
+  font-size: 14px;
+}
+
+.advance-searchdropdown p {
+  font-size: 16px;
+  color: #444444;
+}
+
+.search-custom-slider {
+  display: inline-block;
+}
+.garage-group {
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+}
+.sub-options-search-beds {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 100px;
+}
+.sub-options-search-bath {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 330px;
+}
+.bed-select option {
+  padding: 5px 0px 0px 20px;
+}
+.garage-group input {
+  width: 200px; 
+  height: 30px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  border-bottom: 1px solid rgba(140, 144, 148, 0.52);
+  outline: none;
+  font-size: 13px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z' fill='%23ff0000'/%3E%3C/svg%3E") no-repeat right center;
+  padding-right: 30px;
+}
+
+/* 
+listing search */
+
+.first-content {
+  background-color: #ffe9e9;
+  color: white;
+  height: auto;
+  width: 95%;
+  margin: 50px 0px 0px 50px;
+  border-radius: 20px;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+}
+
+.sub-content1 {
+  width: 95%;
+  background-color: white;
+  height: auto;
+  border-radius: 30px;
+  margin: 10px 30px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.subcontent-inputs {
+  display: flex;
+  width: 90%;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+.searh-custom-slider {
+  width: 100%;
+}
+.input-field,
+.select-field {
+  flex: 1;
+  margin: 0 10px;
+  color: black;
+}
+
+.input-field::placeholder {
+  color: black;
+}
+
+.select-field::placeholder {
+  color: black;
+}
+
+.select-field .ant-select-arrow {
+  color: red !important;
+}
+
+.select-field .ant-select-dropdown {
+  background-color: red !important;
+  color: white !important;
+}
+
+.subcontent-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.right-button {
+  background-color: #ff2800;
+  color: white;
+  border-radius: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.right-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-button-advanced {
+  border-radius: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+  background-color: white;
+  border: 2px solid #ff2800;
+  color: #ff2800;
+  margin: 0px 10px 0px 0px;
+  font-weight: bold;
+}
+
+.right-button .anticon {
+  margin-right: 5px;
+}
+
+.right-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.left-button {
+  background-color: #ff2800;
+  color: white;
+  border-radius: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.button-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  /* background-color: white; */
+  color: white;
+  margin-right: 10px;
+  border: 1px solid white;
+}
+
+.left-button:hover {
+  background-color: #ff2800;
+}
+
+.left-button:hover .button-icon {
+  background-color: #ff2800;
+}
+
+/* //certainfeatures css */
+.search-certain-features {
+  display: flex;
+  margin: 10px 0px 20px 150px;
+  align-items: center;
+}
+.certain-feature-label {
+  color: #444444;
+  font-weight: bold;
+  font-size: 18px;
+}
+.feature-name {
+  color: #444444;
+  margin: 0px 0px 0px 5px;
+  font-size: 16px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 359px) {
+  .first-content {
+    margin: 10px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding:0px 0px 20px 0px;
+  }
+  .sub-content1 {
+    margin: 10px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+  .subcontent-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 5px;
+  }
+  .advance-searchdropdown {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+  .advance-searchdropdown .advance-search-group1 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .subcontent-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+  .search-custom-slider {
+    width: 100%;
+  }
+  .sub-options-search {
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .search-certain-features{
+    margin: 10px;
+  }
+  .right-buttons {
+    display: flex;
+    justify-content: center;
+}
+.garage-group{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.sub-options-search-beds {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.sub-options-search-bath {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.garage-group input{
+    width: 200px; 
+    height: 30px;
+    margin: 0px 0px 0px 0px
+};
+}
+
+@media screen and (min-width: 360px) and (max-width: 480px) {
+  .first-content {
+    margin: 10px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding:0px 0px 20px 0px;
+  }
+  .sub-content1 {
+    margin: 10px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+  .subcontent-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 5px;
+  }
+  .advance-searchdropdown {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+  .advance-searchdropdown .advance-search-group1 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .subcontent-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+  .search-custom-slider {
+    width: 100%;
+  }
+  .sub-options-search {
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .search-certain-features{
+    margin: 10px;
+  }
+  .right-buttons {
+    display: flex;
+    justify-content: center;
+}
+.garage-group{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.sub-options-search-beds {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.sub-options-search-bath {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.garage-group input{
+    width: 200px; 
+    height: 30px;
+    margin: 0px 0px 0px 0px
+};
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+ .first-content {
+    margin: 10px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding:0px 0px 20px 0px;
+  }
+  .sub-content1 {
+    margin: 30px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+  .subcontent-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 5px;
+  }
+  .advance-searchdropdown {
+    width: 90%;
+  }
+  .advance-searchdropdown .advance-search-group1 {
+    gap: 20px;
+  }
+  .subcontent-buttons {
+    display: flex;
+  }
+  .search-custom-slider {
+    width: 100%;
+  }
+  .sub-options-search {
+    margin: 0px;
+  }
+  .search-certain-features{
+    margin: 10px;
+  }
+.garage-group{
+  gap: 0px;
+}
+.sub-options-search-beds {
+  display: flex;
+  flex-direction:row;
+  gap: 10px;
+}
+.sub-options-search-bath {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.garage-group input{
+    width: 200px; 
+    height: 30px;
+    margin: 0px 0px 0px 20px
+};
+
+}
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .first-content {
+    margin: 10px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding:0px 0px 20px 0px;
+  }
+  .sub-content1 {
+    margin: 30px;
+    width: 90%;
+  }
+  .subcontent-inputs {
+    gap: 10px;
+    width: 100%;
+    padding: 5px;
+  }
+  .advance-searchdropdown {
+    width: 90%;
+  }
+  .advance-searchdropdown .advance-search-group1 {
+    gap: 20px;
+  }
+  .subcontent-buttons {
+    display: flex;
+  }
+  .search-custom-slider {
+    width: 100%;
+  }
+  .sub-options-search {
+    margin: 0px;
+  }
+  .search-certain-features{
+    margin: 10px;
+  }
+.garage-group{
+  gap: 0px;
+}
+.sub-options-search-beds {
+  display: flex;
+  flex-direction:row;
+  gap: 10px;
+}
+.sub-options-search-bath {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.garage-group input{
+    width: 200px; 
+    height: 30px;
+    margin: 0px 0px 0px 20px
+};
+
+}
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .first-content {
+    margin: 50px 0px 0px 20px;
+  }
+  .sub-content1 {
+    margin: 10px 30px 20px 40px;
+  }
+}
+@media screen and (min-width: 1201px) and (max-width: 1400px) {
+  .first-content {
+    margin: 50px 0px 0px 30px;
+  }
+  .sub-content1 {
+    margin: 10px 30px 20px 10px;
+  }
+  .advance-searchdropdown {
+    width: 100%;
+  }
+}
