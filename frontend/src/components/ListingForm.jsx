@@ -15,7 +15,8 @@ import "../styles/listing-form.css";
 import AddFeature from "./custom/custom.featureLists";
 import Footer from "./MY Drafts/Components/FooterComponent";
 
-function ListingDetailsForm() {
+
+export const ListingForm = () => {
   const [selectedPropertyTab, setSelectedPropertyTab] = useState(null);
   const [selectedListingTab, setSelectedListingTab] = useState(null);
   const [selectedSellingPrice, setSelectedSellingPrice] = useState(null);
@@ -171,7 +172,19 @@ function ListingDetailsForm() {
     "24/7 Security",
   ];
   return (
-    <div className="listing-form-application">
+    <>
+    <div className="ContentContainer">
+      <div>
+        <ListingBanner />
+      </div>
+
+      <div className="listing-application">
+        <div className="listing-steps">
+          <ListingSteps />
+        </div>
+
+        <div className="listing-form">
+        <div className="listing-form-application">
       <div className="listing-property-details">
         <div className="listing-property-details-info">
           <b className="b">Property Details</b>
@@ -779,24 +792,6 @@ function ListingDetailsForm() {
         </div>
       )}
     </div>
-  );
-}
-
-export const ListingForm = () => {
-  return (
-    <>
-    <div className="ContentContainer">
-      <div>
-        <ListingBanner />
-      </div>
-
-      <div className="listing-application">
-        <div className="listing-steps">
-          <ListingSteps />
-        </div>
-
-        <div className="listing-form">
-          <ListingDetailsForm />
         </div>
       </div>
       

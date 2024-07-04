@@ -154,7 +154,6 @@ const AllComponent = () => {
   const totalPages = Math.ceil(cardData.length / cardsPerPage);
   return (
     <div className="all-container">
-        <MainLayout />
         <div className="all-searchcomponent">
           <ListingSearch />
         </div>
