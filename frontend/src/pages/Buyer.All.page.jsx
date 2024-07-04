@@ -7,4 +7,4 @@ const Allpage = () => {
   )
 }
 
-export default Allpage
+export default Allpage;

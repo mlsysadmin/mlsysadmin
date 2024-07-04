@@ -11,7 +11,6 @@ const ContactUsComponent = () => {
   return (
     <div>
       <div className="contactUsContainer">
-        <MainLayout />
         <div className="banner">
           <span className="bannerTitle">Let{"'"}s chat, Reach Out to Us</span>
           <p className="bannerSubTitle">
