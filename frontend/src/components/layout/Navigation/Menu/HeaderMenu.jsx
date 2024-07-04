@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import { Button, Menu, Row } from 'antd'
-import React, { useEffect, useState } from 'react';
-import MenuPopup from './MenuPopup';
-import MenuPopupContent from './MenuPopupContent';
-import { SubMenu } from '../../../../utils/MenuPopover.utils';
-import { useNavigate, useLocation } from 'react-router-dom';
-import RoundBtn from '../../../custom/buttons/RoundBtn.custom';
-import TextBtn from '../../../custom/buttons/TextBtn.custom';
-=======
 import { Button, Menu, Dropdown } from "antd";
 import React, { useEffect, useState } from "react";
 import MenuPopup from "./MenuPopup";
@@ -18,7 +8,6 @@ import RoundBtn from "../../../custom/buttons/RoundBtn.custom";
 import TextBtn from "../../../custom/buttons/TextBtn.custom";
 
 import { CaretDownOutlined, UserOutlined } from "@ant-design/icons";
->>>>>>> 8edb24661dd3f2c82e6971d34c730be9ecd07299
 
 const HeaderMenu = () => {
   const [currentMenu, setCurrent] = useState("");
@@ -28,74 +17,13 @@ const HeaderMenu = () => {
   const [homeInsurancePopUpOpen, sethomeInsurancePopUpOpen] = useState(false);
   const [otherServicesPopUpOpen, setotherServicesPopUpOpen] = useState(false);
 
-<<<<<<< HEAD
-    const navigate = useNavigate();
-    const location = useLocation();
-=======
   const navigate = useNavigate();
->>>>>>> 8edb24661dd3f2c82e6971d34c730be9ecd07299
 
   // useEffect(() => {
   //     const setTogglePopoverOutside = (event) => {
   //     //   if (modal) {
   //         const classNameBtn = event.target.className === "ant-popover-open";
 
-<<<<<<< HEAD
-    useEffect(() => {
-        const path = location.pathname.replace('/', '');
-
-        setCurrent(path)
-    }, [setCurrent])
-
-    const handleMenuOnClick = (menu) => {
-        if (menu.key === "rent") {
-            setbuyPopUpOpen(false);
-            sethomeLoanPopUpOpen(false);
-            sethomeInsurancePopUpOpen(false);
-            setotherServicesPopUpOpen(false);
-            setrentPopUpOpen(true);
-        }
-        else if (menu.key === "buy") {
-            setrentPopUpOpen(false);
-            sethomeLoanPopUpOpen(false);
-            sethomeInsurancePopUpOpen(false);
-            setotherServicesPopUpOpen(false);
-            setbuyPopUpOpen(true);
-        }
-        else if (menu.key === "home-loan") {
-            setrentPopUpOpen(false);
-            setbuyPopUpOpen(false);
-            sethomeInsurancePopUpOpen(false);
-            setotherServicesPopUpOpen(false);
-            sethomeLoanPopUpOpen(true);
-        }
-        else if (menu.key === "home-insurance"){
-            setrentPopUpOpen(false);
-            setbuyPopUpOpen(false);
-            sethomeLoanPopUpOpen(false);
-            setotherServicesPopUpOpen(false);
-            sethomeInsurancePopUpOpen(true)
-        }
-        else if (menu.key === "other-services"){
-            setrentPopUpOpen(false);
-            setbuyPopUpOpen(false);
-            sethomeLoanPopUpOpen(false);
-            sethomeInsurancePopUpOpen(false);
-            setotherServicesPopUpOpen(true);
-        }
-        else{
-            console.log("menu",menu);
-            setCurrent(menu.key);
-            navigate({
-                pathname: menu.item.props.link
-            })
-            setrentPopUpOpen(false);
-            setbuyPopUpOpen(false);
-            sethomeLoanPopUpOpen(false);
-            sethomeInsurancePopUpOpen(false);
-            setotherServicesPopUpOpen(false);
-        }
-=======
   //         setrentPopUpOpen(!classNameBtn);
   //     //   }
   //     };
@@ -149,7 +77,6 @@ const HeaderMenu = () => {
       sethomeLoanPopUpOpen(false);
       sethomeInsurancePopUpOpen(false);
       setotherServicesPopUpOpen(false);
->>>>>>> 8edb24661dd3f2c82e6971d34c730be9ecd07299
     }
   };
 
@@ -283,26 +210,7 @@ const HeaderMenu = () => {
     }
   });
 
-<<<<<<< HEAD
-    const MenuItems = [
-        { label: "Sell", key: "sell", link: '/sell'}, 
-        { label: "New", key: "new", link: '/new'}, 
-        { label:  <RentMenu/>, key: "rent" }, 
-        { label: <BuyMenu/>, key: 'buy' }, 
-        { label: <HomeLoanMenu/>, key: "home-loan" }, 
-        { label: <HomeInsuranceMenu/>, key: "home-insurance", link: '/home-insurance' }, 
-        { label: <OtherServicesMenu/>, key: "other-services", link: '/other-services' }, 
-        { label: "Contact", key: "contact", link: '/contact-us' },
-    ]
-    
-    const items = MenuItems.map((item, index) => ({
-        key: item.key,
-        label: item.label,
-        link: item.link
-    }));
-=======
   const loginMenu = <Menu items={userMenuItems} />;
->>>>>>> 8edb24661dd3f2c82e6971d34c730be9ecd07299
 
   return (
     <>

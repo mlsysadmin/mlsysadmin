@@ -3,6 +3,7 @@ import FooterComponent from "./layout/FooterComponent";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
 import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
 import ListingSearch from "./custom/customsearch/custom.listingsearch";
+import ListingSearchLoggedin from "./custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
 
 //drafts
 
@@ -44,6 +45,7 @@ import SellComponent from "./SellComponent";
 
 
 export{
+    ListingSearchLoggedin,
     LoginModal,
     RegistrationModal,
     ModalComponents,
