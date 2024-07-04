@@ -1,36 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Slider } from 'antd';
+import Ellipse1 from '../../asset/icons/Ellipse 148.png';
+import Ellipse2 from '../../asset/icons/Ellipse 149.png';
+import Ellipse3 from '../../asset/icons/Ellipse 151.png';
 
-function getGradientColor(percentage) {
-  const startColor = [135, 208, 104];
-  const endColor = [255, 204, 199];
-  const midColor = startColor.map((start, i) => {
-    const end = endColor[i];
-    const delta = end - start;
-    return (start + delta * percentage).toFixed(0);
-  });
-  return `rgb(${midColor.join(',')})`;
-}
-const App = () => {
-  const [value, setValue] = React.useState([0, 10, 20]);
-  const start = value[0] / 100;
-  const end = value[value.length - 1] / 100;
+function App() {
+  const [sliderValue, setSliderValue] = useState(0);
+
+  // Handle slider change
+  const handleSliderChange = (value) => {
+    setSliderValue(value);
+  };
+
+  // Example calculations based on slider value (replace with your logic)
+  const principalAndInterest = 8256.10 + sliderValue * 10; // Example calculation
+  const propertyTaxes = 2548.79 + sliderValue * 5; // Example calculation
+  const homeownersInsurance = 350 + sliderValue * 1; // Example calculation
+
   return (
-    <Slider
-      range
-      defaultValue={value}
-      onChange={setValue}
-      styles={{
-        track: {
-          background: 'transparent',
-        },
-        tracks: {
-          background: `linear-gradient(to right, ${getGradientColor(start)} 0%, ${getGradientColor(
-            end,
-          )} 100%)`,
-        },
-      }}
-    />
+    <div>
+      <Slider
+        defaultValue={0}
+        max={100}
+        onChange={handleSliderChange}
+        style={{ width: '50%', margin: '20px auto' }}
+      />
+
+      <div className="interest-values">
+        <div className="interest-description">
+          <div className="interest">
+            <p>
+              <img src={Ellipse1} alt="" /> Principal and Interest
+            </p>
+          </div>
+          <div className="interest">
+            <p>
+              <img src={Ellipse2} alt="" /> Property Taxes
+            </p>
+          </div>
+          <div className="interest">
+            <p>
+              <img src={Ellipse3} alt="" /> Homeowners Insurance
+            </p>
+          </div>
+        </div>
+        <div className="value-percentage">
+          <div className="interest">
+            <p>PHP {principalAndInterest.toFixed(2)} ({((principalAndInterest / (principalAndInterest + propertyTaxes + homeownersInsurance)) * 100).toFixed(0)}%)</p>
+          </div>
+          <div className="interest">
+            <p>PHP {propertyTaxes.toFixed(2)} ({((propertyTaxes / (principalAndInterest + propertyTaxes + homeownersInsurance)) * 100).toFixed(0)}%)</p>
+          </div>
+          <div className="interest">
+            <p>PHP {homeownersInsurance.toFixed(2)} ({((homeownersInsurance / (principalAndInterest + propertyTaxes + homeownersInsurance)) * 100).toFixed(0)}%)</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
-};
+}
+
 export default App;

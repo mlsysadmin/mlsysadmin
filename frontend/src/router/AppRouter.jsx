@@ -19,6 +19,7 @@ import Featuredpage from '../pages/Buyer.Featured.page';
 import SuccessModal from '../components/SuccessModal';
 import SuccessfullySubmitted from '../components/SuccessfullySubmitted';
 import ApplicationModal from '../components/ApplicationModal';
+import OTPModal from '../components/OTPModal';
 
 const Routes = [
     {
@@ -92,6 +93,10 @@ const Routes = [
             {
                 path: "/modal3",
                 element: <ApplicationModal/>
+            },
+            {
+                path: "/modal4",
+                element: <OTPModal/>
             }
         ]
     }

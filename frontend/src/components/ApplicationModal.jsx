@@ -91,8 +91,8 @@ const ApplicationModal = () => {
           />
         </div>
         <Button id="application-submitbtn" type="primary">
-                        Submit
-                      </Button>
+          Submit
+        </Button>
       </div>
     </div>
   );

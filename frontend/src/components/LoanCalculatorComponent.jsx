@@ -37,6 +37,13 @@ const LoanCalculatorComponent = () => {
     console.log("onChangeComplete: ", value); // You can perform additional actions here if needed
   };
 
+  const [selectedOption, setSelectedOption] = useState('30-year fixed');
+
+  // Function to handle change in dropdown selection
+  const handleDropdownChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
   return (
     <div className="mort-container">
       {/* <MainLayout /> */}
@@ -94,8 +101,16 @@ const LoanCalculatorComponent = () => {
                   Affects interest rates. 30 or 15 year loans are standard
                 </p>
                 <div className="year-loans">
-                  <p className="year">30-year fixed</p>
-                  <p className="dropdown-btn">{">"}</p>
+                  <div className="dropdown">
+                    <select
+                      value={selectedOption}
+                      onChange={handleDropdownChange}
+                    >
+                      <option value="30-year fixed">30-year fixed</option>
+                      <option value="15-year fixed">15-year fixed</option>
+                    </select>  
+                    <p className="dropdown-btn"></p>
+                  </div>
                 </div>
               </div>
               <div>
@@ -122,36 +137,6 @@ const LoanCalculatorComponent = () => {
                       <p className="year-percentage">30-year fixed, 7.123 %</p>
                     </div>
                     <SliderComponent />
-                    <div className="interest-values">
-                      <div className="interest-description">
-                        <div className="interest">
-                          <p>
-                            <img src={Ellipse1} alt="" /> Principal and Interest
-                          </p>
-                        </div>
-                        <div className="interest">
-                          <p>
-                            <img src={Ellipse2} alt="" /> Property Taxes
-                          </p>
-                        </div>
-                        <div className="interest">
-                          <p>
-                            <img src={Ellipse3} alt="" /> Homeowners Insurance
-                          </p>
-                        </div>
-                      </div>
-                      <div className="value-percentage">
-                        <div className="interest">
-                          <p>PHP8,256.10 (80%)</p>
-                        </div>
-                        <div className="interest">
-                          <p>PHP2,548.79 (14%)</p>
-                        </div>
-                        <div className="interest">
-                          <p>PHP350 (5%)</p>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                   <div className="pre-approvedbtn">
                     <a href="/mortgage-page">
