@@ -60,8 +60,11 @@ PropertyListing.belongsTo(Location, { foreignKey: 'location_id' }); //done
 Amenities.hasOne(PropertyListing, { foreignKey: 'amenity_id' }); // done
 PropertyListing.belongsTo(Amenities, { foreignKey: 'amenity_id' }); //done
 
-// PropertyPhoto.hasOne(PropertyListing, { foreignKey: 'property_photos_id' }); // done
-// PropertyListing.belongsTo(PropertyPhoto, { foreignKey: 'property_photos_id' }); //done
+/* ------------------------------------------------------------------------------- */
+
+/** Master Property Listing Association **/ 
+PropertyListing.hasOne(PropertyPhoto, { foreignKey: 'property_listing_id' }); // done
+PropertyPhoto.belongsTo(PropertyListing, { foreignKey: 'property_listing_id' }); //done
 
 /* ------------------------------------------------------------------------------- */
 

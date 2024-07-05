@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.INTEGER.UNSIGNED
       },
       feature_name: {
-          allowNull: false,
+          allowNull: true,
           type: Sequelize.STRING,
           get(){
             return JSON.parse(this.getDataValue('feature_name'));

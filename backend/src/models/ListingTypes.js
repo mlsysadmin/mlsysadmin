@@ -13,7 +13,7 @@ const ListingTypes = Sequelize.define("listing_types", {
     type: DataTypes.INTEGER.UNSIGNED
   },
   listing_type: {
-      allowNull: false,
+      allowNull: true,
       primaryKey: true,
       type: DataTypes.ENUM("For Rent", "For Sale", "Pre-selling")
   },

@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.INTEGER.UNSIGNED
       },
       inclusion_name: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING,
         get() {
           return JSON.parse(this.getDataValue('inclusion_name'));

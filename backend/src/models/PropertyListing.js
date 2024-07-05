@@ -17,6 +17,11 @@ const PropertyListing = Sequelize.define("property_listings", {
     type: DataTypes.STRING,
     unique: true
   },
+  property_id: {
+    allowNull: false,
+    type: DataTypes.STRING(15),
+    unique: true
+  },
   seller_id: {
     allowNull: false,
     type: DataTypes.INTEGER.UNSIGNED,
@@ -29,7 +34,7 @@ const PropertyListing = Sequelize.define("property_listings", {
     },
   },
   property_type_id: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
@@ -40,7 +45,7 @@ const PropertyListing = Sequelize.define("property_listings", {
     },
   },
   listing_type_id: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
@@ -51,7 +56,7 @@ const PropertyListing = Sequelize.define("property_listings", {
     },
   },
   unit_detail_id: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
@@ -62,7 +67,7 @@ const PropertyListing = Sequelize.define("property_listings", {
     },
   },
   location_id: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
@@ -73,7 +78,7 @@ const PropertyListing = Sequelize.define("property_listings", {
     },
   },
   amenity_id: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
@@ -83,28 +88,17 @@ const PropertyListing = Sequelize.define("property_listings", {
       key: 'amenity_id',
     },
   },
-  // property_photos_id: {
-  //   allowNull: false,
-  //   type: DataTypes.INTEGER.UNSIGNED,
-  //   references: {
-  //     model: {
-  //       model: "PropertyPhoto",
-  //       tableName: 'property_photos',
-  //     },
-  //     key: 'property_photos_id',
-  //   },
-  // },
   title: {
-    allowNull: false,
-    type: DataTypes.STRING(100)
+    allowNull: true,
+    type: DataTypes.STRING(100),
   },
   description: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.TEXT
   },
   listing_status: {
     allowNull: false,
-    type: DataTypes.ENUM('OPEN', 'PENDING' ,'APPROVED', 'DISAPPROVED')
+    type: DataTypes.ENUM('DRAFT', 'OPEN', 'PENDING', 'APPROVED', 'DISAPPROVED')
   },
   createdAt: {
     type: DataTypes.DATE,

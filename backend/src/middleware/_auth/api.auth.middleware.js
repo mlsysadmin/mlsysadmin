@@ -5,12 +5,12 @@ const DayJS = require('dayjs');
 const DataResponseHandler = require("../../utils/_helper/DataResponseHandler.helper");
 
 const verifyApiKey = (req, res, next) => {
+    
     const api_key =
-         req.headers["api_key"];
+         req.headers["x-api-key"];
         // req.signedCookies.access_token;
 
     try {
-        console.log(api_key);
 
         if (!api_key) {
             let error = {
@@ -48,7 +48,6 @@ const verifyApiKey = (req, res, next) => {
             )
         }
     } catch (err) {
-        console.log(err);
         // const expiredAt = DayJS(err.expiredAt).format('DD-MM-YYYY');
         
         next(err);

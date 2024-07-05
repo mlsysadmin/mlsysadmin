@@ -13,23 +13,23 @@ const Location = Sequelize.define("locations", {
     type: DataTypes.INTEGER.UNSIGNED
   },
   subdivision: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.STRING(60)
   },
   barangay: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.STRING(30)
   },
   city: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.STRING(30)
   },
   province: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.STRING(30)
   },
   map_location: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.STRING
   }
 },{

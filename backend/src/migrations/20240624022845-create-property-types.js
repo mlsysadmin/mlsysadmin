@@ -17,12 +17,12 @@ module.exports = {
         type: Sequelize.INTEGER.UNSIGNED
       },
       type: {
-          allowNull: false,
-          primaryKey: true,
+          allowNull: true,
+          // primaryKey: true,
           type: Sequelize.ENUM("Commercial", "Residential", "Industrial")
       },
       subtype: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.ENUM("Service Office", "Shop/Retail", "Commercial Land/Lot", "Condominium", "House & Lot", "Townhouse", "Warehouse", "Farm Lot", "Hotel/Resort")
       }
      });

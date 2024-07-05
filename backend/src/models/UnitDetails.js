@@ -11,51 +11,51 @@ const UnitDetails = Sequelize.define('unit_details', {
         autoIncrement: true,
     },
     price: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.DECIMAL(10, 2),
         defaultValue: 0
     },
     discounted_price: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.DECIMAL(10, 2),
         defaultValue: 0
     },
     price_per_sqm: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.DECIMAL(10, 2),
         defaultValue: 0
     },
     furnishing: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.ENUM("YES", "NO", "SEMI")
     },
     classification: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.ENUM("New", "Resale")
     },
     no_of_beds: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.INTEGER.UNSIGNED
     },
     no_of_bathrooms: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.INTEGER.UNSIGNED
     },
     no_of_floors: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.INTEGER.UNSIGNED
     },
     parking: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.INTEGER.UNSIGNED
     },
     floor_area: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.DECIMAL(10, 2),
         defaultValue: 0
     },
     lot_area: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.DECIMAL(10, 2),
         defaultValue: 0
     },

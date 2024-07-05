@@ -11,7 +11,7 @@ const ValidationSchema = {
             errors.forEach(err => {
                 console.log(err.code);
                 if (Object.keys(err).includes('path')) {
-                    err.message = "api key is not valid"
+                    err.message = "api key is not allow"
                 }
             });
             return errors;
@@ -29,7 +29,9 @@ const ValidationSchema = {
         user_desc: Joi.string().required(),
         license: Joi.string().optional()
     }),
-    AddListing: Joi.object().keys({
+    master_id: Joi.number().required(),
+    seler_id: Joi.number().required(),
+    ListingBody: Joi.object().keys({
         seller_id: Joi.number().required(),
         property_id: Joi.string().required(),
         listing_type: Joi.string().required(),
@@ -70,6 +72,49 @@ const ValidationSchema = {
             outdoor_features: Joi.array().required(),
             feature_name: Joi.array().required(),
             inclusion_name: Joi.array().required()
+        }),
+    }),
+    DraftListingBody: Joi.object().keys({
+        seller_id: Joi.number().required(),
+        property_id: Joi.string().allow(...[null, ""]).optional(),
+        listing_type: Joi.string().allow(...[null, ""]).optional(),
+        property_details: Joi.object().keys({
+            type: Joi.string().allow(...[null, ""]).optional(),
+            subtype: Joi.string().allow(...[null, ""]).optional(),
+        }),
+        unit_details: Joi.object().keys({
+            price: Joi.number().optional(),
+            discounted_price: Joi.number().optional(),
+            price_per_sqm: Joi.number().optional(),
+            furnishing: Joi.string().allow(...[null, ""]).optional(),
+            classification: Joi.string().allow(...[null, ""]).optional(),
+            no_of_beds: Joi.number().optional(),
+            no_of_bathrooms: Joi.number().optional(),
+            no_of_floors: Joi.number().optional(),
+            parking: Joi.number().optional(),
+            floor_area: Joi.number().optional(),
+            lot_area: Joi.number().optional(),
+        }),
+        location: Joi.object().keys({
+            subdivision: Joi.string().allow(...[null, ""]).optional(),
+            barangay: Joi.string().allow(...[null, ""]).optional(),
+            city: Joi.string().allow(...[null, ""]).optional(),
+            province: Joi.string().allow(...[null, ""]).optional(),
+            map_location: Joi.string().allow(...[null, ""]).optional()
+        }),
+        description: Joi.object().keys({
+            title: Joi.string().allow(...[null, ""]).optional(),
+            description: Joi.string().allow(...[null, ""]).optional(),
+        }),
+        upload_photos: Joi.object().keys({
+            photos: Joi.array().optional(),
+            // upload_date: Joi.date().optional()
+        }),
+        amenities: Joi.object().keys({
+            indoor_features: Joi.array().optional(),
+            outdoor_features: Joi.array().optional(),
+            feature_name: Joi.array().optional(),
+            inclusion_name: Joi.array().optional()
         }),
     })
 }

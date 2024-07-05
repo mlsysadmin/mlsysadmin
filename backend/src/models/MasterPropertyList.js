@@ -52,7 +52,7 @@ const MasterPropertyList = Sequelize.define("master_property_lists", {
         type: DataTypes.DATE,
         // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
         onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
-        // defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
+        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
     },
     createdAt: {
         type: DataTypes.DATE,

@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.INTEGER.UNSIGNED
       },
       listing_type: {
-          allowNull: false,
+          allowNull: true,
           primaryKey: true,
           type: Sequelize.ENUM("For Rent", "For Sale", "Pre-selling")
       },

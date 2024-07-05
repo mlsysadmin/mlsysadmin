@@ -25,19 +25,21 @@ module.exports = {
     FindListingType: async (listing_type, transaction) => {
         try {
 
+            console.log(listing_type);
+
             const find_type_id = await ListingTypes.findOne({
                 where: { listing_type },
                 attributes: ['listing_type_id'],
                 transaction
             });
 
-            return find_type_id.listing_type_id
+            return find_type_id
 
         } catch (error) {
             throw error
         }
     },
-    AddPropertyType: async (property, transaction) => {
+    CreatePropertyType: async (property, transaction) => {
         try {
             const { type, subtype } = property;
 
@@ -54,7 +56,7 @@ module.exports = {
             throw error
         }
     },
-    AddUnitDetails: async (unit_details, transaction) => {
+    CreateUnitDetails: async (unit_details, transaction) => {
         try {
 
             const {
@@ -81,7 +83,7 @@ module.exports = {
             throw error
         }
     },
-    AddLocation: async (location, transaction) => {
+    CreateLocation: async (location, transaction) => {
         try {
 
             const {
@@ -104,7 +106,7 @@ module.exports = {
             throw error
         }
     },
-    AddCustomAmenities: async (custom_amenities, transaction) => {
+    CreateCustomAmenities: async (custom_amenities, transaction) => {
         try {
 
             const {
@@ -127,7 +129,7 @@ module.exports = {
             throw error
         }
     },
-    AddCustomInclusions: async (custom_inclusion, transaction) => {
+    CreateCustomInclusions: async (custom_inclusion, transaction) => {
         try {
 
             const {
@@ -150,7 +152,7 @@ module.exports = {
             throw error
         }
     },
-    AddAmenities: async (amenities, transaction) => {
+    CreateAmenities: async (amenities, transaction) => {
         try {
 
             const {
@@ -175,7 +177,7 @@ module.exports = {
             throw error
         }
     },
-    AddPhotos: async (photos, transaction) => {
+    CreatePhotos: async (photos, transaction) => {
         try {
 
             // const {
@@ -194,11 +196,11 @@ module.exports = {
             throw error
         }
     },
-    AddPropertyListing: async (property_fields, transaction) => {
+    CreatePropertyListing: async (property_fields, transaction) => {
         try {
 
             const {
-                listing_id, seller_id, property_type_id,
+                listing_id, seller_id, property_id, property_type_id,
                 listing_type_id, unit_detail_id, location_id,
                 amenity_id,
                 // property_photos_id, 
@@ -208,7 +210,7 @@ module.exports = {
 
             const add_property_listing = await PropertyListing.create(
                 {
-                    listing_id, seller_id, property_type_id,
+                    listing_id, seller_id, property_id, property_type_id,
                     listing_type_id, unit_detail_id, location_id,
                     amenity_id, title, description,
                     listing_status
@@ -216,7 +218,6 @@ module.exports = {
                 { transaction }
 
             );
-            console.log(add_property_listing);
 
             return {
                 property_listing_id: add_property_listing.property_listing_id
@@ -226,7 +227,7 @@ module.exports = {
             throw error
         }
     },
-    AddMasterPropertyList: async (master_property_fields, transaction) => {
+    CreateMasterPropertyList: async (master_property_fields, transaction) => {
         try {
 
             const {
@@ -249,7 +250,7 @@ module.exports = {
             throw error
         }
     },
-    AddApproval: async (approvals, transaction) => {
+    CreateApproval: async (approvals, transaction) => {
         try {
 
             const {
@@ -272,7 +273,7 @@ module.exports = {
             throw error
         }
     },
-    GetApprover: async (approver_level, transaction) => {
+    FindApprover: async (approver_level, transaction) => {
         try {
 
             const get_approver = await Approvers.findAll({
@@ -287,7 +288,7 @@ module.exports = {
             throw error
         }
     },
-    GetAllListingBySeller: async (seller_id, transaction) => {
+    FindAllListingBySeller: async (seller_id, transaction) => {
         try {
 
             const get_all_listing_byseller = await MasterPropertyList.findAll({
@@ -365,7 +366,7 @@ module.exports = {
             throw error
         }
     },
-    AddEscalations: async (escalation, transaction) => {
+    CreateEscalations: async (escalation, transaction) => {
         try {
 
             const add_escalations = await Escalations.bulkCreate(
@@ -379,7 +380,7 @@ module.exports = {
             throw error
         }
     },
-    GetApprovalsByMasterId: async (master_id, transaction) => {
+    FindApprovalsByMasterId: async (master_id, transaction) => {
         try {
 
             const get_approvals = await Approvals.findAll({
@@ -391,6 +392,70 @@ module.exports = {
             });
 
             return get_approvals
+
+        } catch (error) {
+            throw error
+        }
+    },
+    FindListingDetailsById: async (master_id, transaction) => {
+        try {
+
+            const get_listing_by_id = await MasterPropertyList.findOne({
+                where: { master_property_id: master_id },
+                attributes: { exclude: ['updatedAt', 'deletedAt'] },
+                include: [
+                    {
+                        model: PropertyListing, attributes:
+                        {
+                            exclude: ['createdAt', 'updatedAt', 'property_listing_id'],
+                        },
+                        include: [
+                            {
+                                model: PropertyTypes, attributes: {
+                                    exclude: ["property_type_id"]
+                                }
+                            },
+                            {
+                                model: ListingTypes, attributes: ['listing_type']
+                            },
+                            {
+                                model: UnitDetails, attributes:
+                                {
+                                    exclude: ['createdAt', 'updatedAt', 'unit_detail_id']
+                                },
+                            },
+                            {
+                                model: Location, attributes: {
+                                    exclude: ["location_id"]
+                                }
+                            },
+                            {
+                                model: Amenities, attributes:
+                                {
+                                    exclude: ['createdAt', 'updatedAt', 'amenity_id', "custom_amenity_id", "custom_inclusion_id"]
+                                },
+                                include: [
+                                    {
+                                        model: CustomAmenities, attributes:
+                                        {
+                                            exclude: ['createdAt', 'updatedAt', "deletedAt", "custom_amenity_id"]
+                                        },
+                                    },
+                                    {
+                                        model: CustomInclusions, attributes:
+                                        {
+                                            exclude: ['createdAt', 'updatedAt', "deletedAt", "custom_inclusion_id"]
+                                        },
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                transaction,
+            })
+
+            return get_listing_by_id
 
         } catch (error) {
             throw error

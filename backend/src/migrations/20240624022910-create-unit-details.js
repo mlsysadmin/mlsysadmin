@@ -17,51 +17,51 @@ module.exports = {
             autoIncrement: true,
         },
         price: {
-            allowNull: false,
+            allowNull: true,
             type: Sequelize.DECIMAL(10, 2),
             defaultValue: 0
         },
         discounted_price: {
-            allowNull: false,
+            allowNull: true,
             type: Sequelize.DECIMAL(10, 2),
             defaultValue: 0
         },
         price_per_sqm: {
-            allowNull: false,
+            allowNull: true,
             type: Sequelize.DECIMAL(10, 2),
             defaultValue: 0
         },
         furnishing: {
-            allowNull: false,
+            allowNull: true,
             type: Sequelize.ENUM("YES", "NO", "SEMI")
         },
         classification: {
-            allowNull: false,
+            allowNull: true,
             type: Sequelize.ENUM("New", "Resale")
         },
         no_of_beds: {
-            allowNull: false,
+            allowNull: true,
             type: Sequelize.INTEGER.UNSIGNED
         },
         no_of_bathrooms: {
-            allowNull: false,
+            allowNull: true,
             type: Sequelize.INTEGER.UNSIGNED
         },
         no_of_floors: {
-            allowNull: false,
+            allowNull: true,
             type: Sequelize.INTEGER.UNSIGNED
         },
         parking: {
-            allowNull: false,
+            allowNull: true,
             type: Sequelize.INTEGER.UNSIGNED
         },
         floor_area: {
-            allowNull: false,
+            allowNull: true,
             type: Sequelize.DECIMAL(10, 2),
             defaultValue: 0
         },
         lot_area: {
-            allowNull: false,
+            allowNull: true,
             type: Sequelize.DECIMAL(10, 2),
             defaultValue: 0
         },

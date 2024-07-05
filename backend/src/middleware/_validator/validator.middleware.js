@@ -6,12 +6,13 @@ const Joi = require('joi');
 const ErrorFormatter = require('../../utils/_helper/ErrorFormatter.helper');
 
 module.exports = {
-    Validation: (schemaName, property) => {
+    Validation: (schemaName, property, property_name) => {
         try {
             return async (req, res, next) => {
                 try {
+                    console.log(req[property][property_name]);
                     const isValidSchema = Joi.isSchema(schemaName);
-                    const parsedData = req[property].payload;
+                    const parsedData = req[property][property_name];
                     // const parsedData = JSON.parse(req[property].payload);
         
                     if (isValidSchema) {
@@ -19,7 +20,6 @@ module.exports = {
                         await schemaName.validateAsync(parsedData, {
                             abortEarly: false
                         });
-                        console.log(isValidSchema);
                         next();
                         
                     }else{
@@ -51,8 +51,6 @@ module.exports = {
                             success: false,
                             message: "Can't process your request right now. Please contact our support team."
                         }
-
-                        console.log("adsfdsgfh");
                         
                         // res.status(422).send(response);
                         next(response)

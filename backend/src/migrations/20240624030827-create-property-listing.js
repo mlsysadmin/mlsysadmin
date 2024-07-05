@@ -21,6 +21,11 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true
       },
+      property_id: {
+        allowNull: false,
+        type: Sequelize.STRING(15),
+        unique: true
+      },
       seller_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
@@ -33,7 +38,7 @@ module.exports = {
         },
       },
       property_type_id: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
@@ -44,7 +49,7 @@ module.exports = {
         },
       },
       listing_type_id: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
@@ -55,7 +60,7 @@ module.exports = {
         },
       },
       unit_detail_id: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
@@ -66,7 +71,7 @@ module.exports = {
         },
       },
       location_id: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
@@ -77,7 +82,7 @@ module.exports = {
         },
       },
       amenity_id: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
@@ -88,7 +93,7 @@ module.exports = {
         },
       },
       // property_photos_id: {
-      //   allowNull: false,
+      //   allowNull: true,
       //   type: Sequelize.INTEGER.UNSIGNED,
       //   references: {
       //     model: {
@@ -99,20 +104,21 @@ module.exports = {
       //   },
       // },
       title: {
-        allowNull: false,
-        type: Sequelize.STRING(100)
+        allowNull: true,
+        type: Sequelize.STRING(100),
       },
       description: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.TEXT
       },
       listing_status: {
         allowNull: false,
-        type: Sequelize.ENUM('OPEN', 'PENDING','APPROVED', 'DISAPPROVED')
+        type: Sequelize.ENUM('DRAFT', 'OPEN', 'PENDING', 'APPROVED', 'DISAPPROVED')
       },
       createdAt: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       updatedAt: {
         type: Sequelize.DATE,

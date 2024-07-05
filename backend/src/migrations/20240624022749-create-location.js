@@ -17,23 +17,23 @@ module.exports = {
         type: Sequelize.INTEGER.UNSIGNED
       },
       subdivision: {
-          allowNull: false,
+          allowNull: true,
           type: Sequelize.STRING(60)
       },
       barangay: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING(30)
       },
       city: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING(30)
       },
       province: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING(30)
       },
       map_location: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       }
      });

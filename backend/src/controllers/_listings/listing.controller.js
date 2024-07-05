@@ -2,7 +2,23 @@
 const DayJS = require('dayjs');
 
 const Sequelize = require('../../config/_db/mlbrokerage.db');
-const { AddPropertyType, FindListingType, AddUnitDetails, AddLocation, AddAmenities, AddCustomAmenities, AddCustomInclusions, AddPhotos, AddPropertyListing, AddMasterPropertyList, AddApproval, GetApprover, GetAllListingBySeller, AddEscalations, GetApprovalsByMasterId } = require('../../streamline/listing.datastream');
+const { 
+    CreatePropertyType, 
+    FindListingType, 
+    CreateUnitDetails, 
+    CreateLocation, 
+    CreateAmenities, 
+    CreateCustomAmenities, 
+    CreateCustomInclusions, 
+    CreatePhotos, 
+    CreatePropertyListing, 
+    CreateMasterPropertyList, 
+    CreateApproval, 
+    FindApprover, 
+    CreateEscalations, 
+    FindApprovalsByMasterId, 
+    FindListingDetailsById 
+} = require('../../streamline/listing.datastream');
 const ListingIdGeneratorHelper = require("../../utils/_helper/ListingIdGenerator.helper");
 const SuccessFormatter = require('../../utils/_helper/SuccessFormatter.helper');
 const SuccessLoggerHelper = require('../../utils/_helper/SuccessLogger.helper');
@@ -13,69 +29,6 @@ module.exports = {
     GetAllListing: (req, res) => {
         // console.log("REQUEST: ", req);
         res.send("HEHE");
-    },
-    GetSellerListing: async (req, res, next) => {
-        try {
-
-            const seller_id = req.params.seller_id;
-
-            const GetListings = await Sequelize.transaction(async (transaction) => {
-
-                const getAllListing = await GetAllListingBySeller(seller_id, transaction);
-
-                const get_master_id = getAllListing.map((listing, i) => {
-
-                    const master_id = listing.master_property_id;
-
-                    return {
-                        master_property_id: master_id
-                    }
-                    
-                });
-
-                const approvals_field = {
-                    [Op.or]: get_master_id
-                }
-
-                const approvals = await GetApprovalsByMasterId(approvals_field, transaction);
-                
-                const listings = [];
-                
-                getAllListing.forEach((g) => {
-                    let approval = [];
-                    approvals.forEach((a) => {
-                        if (a.master_property_id === g.master_property_id) {
-                            return approval.push(a)
-                        }
-                        return;
-                    })
-
-                    return listings.push({
-                        listing: g, approval
-                    })
-                })
-
-                return listings
-
-            })
-
-            const listings = DataResponseHandler(
-                GetListings,
-                "LISTING_RETRIEVED",
-                200,
-                true,
-                "SUCCESS"
-            )
-
-            const success = SuccessFormatter(listings, 200, "Retrieved Successfully");
-
-            SuccessLoggerHelper(req, listings);
-
-            res.status(200).send(success);
-
-        } catch (error) {
-            next(error);
-        }
     },
     AddPropertyListing: async (req, res, next) => {
         try {
@@ -105,19 +58,19 @@ module.exports = {
                 const listing_status = "OPEN";
                 const property_status = "ACTIVE";
 
-                const { property_type_id } = await AddPropertyType(property_details, transaction);
+                const { property_type_id } = await CreatePropertyType(property_details, transaction);
                 const listing_type_id = await FindListingType(listing_type, transaction);
-                const { unit_detail_id } = await AddUnitDetails(unit_details, transaction);
-                const { location_id } = await AddLocation(location, transaction);
-                const { custom_amenity_id } = await AddCustomAmenities(amenities, transaction);
-                const { custom_inclusion_id } = await AddCustomInclusions(amenities, transaction);
+                const { unit_detail_id } = await CreateUnitDetails(unit_details, transaction);
+                const { location_id } = await CreateLocation(location, transaction);
+                const { custom_amenity_id } = await CreateCustomAmenities(amenities, transaction);
+                const { custom_inclusion_id } = await CreateCustomInclusions(amenities, transaction);
 
                 const add_amenities = {
                     indoor_features, outdoor_features,
                     custom_amenity_id, custom_inclusion_id
                 };
 
-                const { amenity_id } = await AddAmenities(add_amenities, transaction);
+                const { amenity_id } = await CreateAmenities(add_amenities, transaction);
 
                 const add_photos = upload_photos.photos.map((photos, i) => {
                     return {
@@ -125,7 +78,7 @@ module.exports = {
                     }
                 })
 
-                await AddPhotos(add_photos, transaction);
+                await CreatePhotos(add_photos, transaction);
 
                 const property_listing_fields = {
                     listing_id, seller_id, property_type_id,
@@ -136,9 +89,9 @@ module.exports = {
                     listing_status
                 };
 
-                const { property_listing_id } = await AddPropertyListing(property_listing_fields, transaction);
+                const { property_listing_id } = await CreatePropertyListing(property_listing_fields, transaction);
 
-                const add_master_property_list = await AddMasterPropertyList({
+                const add_master_property_list = await CreateMasterPropertyList({
                     property_listing_id, seller_id, property_id, listing_status, property_status
                 }, transaction);
 
@@ -158,9 +111,9 @@ module.exports = {
                         }
                     ]
                 }
-                const { approval_id } = await AddApproval(approval_fields, transaction);
+                const { approval_id } = await CreateApproval(approval_fields, transaction);
 
-                const get_approvers = await GetApprover(level, transaction);
+                const get_approvers = await FindApprover(level, transaction);
 
                 const escalations = get_approvers.map((approver, i) => {
                     return {
@@ -172,7 +125,7 @@ module.exports = {
                     }
                 })
 
-                await AddEscalations(escalations, transaction);
+                await CreateEscalations(escalations, transaction);
 
                 return add_master_property_list;
             })
@@ -210,12 +163,60 @@ module.exports = {
                     ]
                 }
 
-                const GetApproverId = await GetApprover(level, transaction);
+                const GetApproverId = await FindApprover(level, transaction);
 
                 return GetApproverId;
             });
 
             res.send(AddListing)
+
+        } catch (error) {
+            throw error;
+        }
+    },
+    GetApproversByListing: async (req, res, next) => {
+        try {
+
+            const master_id = req.params.master_id;
+
+            const AddListing = await Sequelize.transaction(async (transaction) => {
+
+                const GetApproverId = await FindApprovalsByMasterId(master_id, transaction);
+
+                return GetApproverId;
+            });
+
+            res.send(AddListing)
+
+        } catch (error) {
+            throw error;
+        }
+    },
+    GetListingByMasterId: async (req, res, next) => {
+        try {
+
+            const master_id = req.params.payload;
+
+            const GetListingDetails = await Sequelize.transaction(async (transaction) => {
+
+                const get_listing_details = await FindListingDetailsById(master_id, transaction);
+
+                return get_listing_details;
+            });
+
+            const listing = DataResponseHandler(
+                GetListingDetails,
+                "LISTING_RETRIEVED",
+                200,
+                true,
+                "SUCCESS"
+            );
+
+            const success = SuccessFormatter(listing, 200, "Retrieved Successfully");
+
+            SuccessLoggerHelper(req, listing);
+
+            res.send(success)
 
         } catch (error) {
             throw error;

@@ -13,12 +13,12 @@ const PropertyTypes = Sequelize.define("property_types", {
     type: DataTypes.INTEGER.UNSIGNED
   },
   type: {
-      allowNull: false,
-      primaryKey: true,
+      allowNull: true,
+      // primaryKey: true,
       type: DataTypes.ENUM("Commercial", "Residential", "Industrial")
   },
   subtype: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.ENUM("Service Office", "Shop/Retail", "Commercial Land/Lot", "Condominium", "House & Lot", "Townhouse", "Warehouse", "Farm Lot", "Hotel/Resort")
   }
 },{

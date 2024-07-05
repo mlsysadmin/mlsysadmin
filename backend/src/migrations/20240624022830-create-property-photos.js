@@ -16,18 +16,30 @@ module.exports = {
         type: Sequelize.INTEGER.UNSIGNED,
         autoIncrement: true
       },
+      property_listing_id: {
+        allowNull: false,
+        primaryKey: true,
+        type: Sequelize.INTEGER.UNSIGNED,
+        references: {
+          model: {
+            model: "PropertyListing",
+            tableName: 'property_listings',
+          },
+          key: 'property_listing_id',
+        },
+      },
       listing_id: {
         allowNull: false,
         type: Sequelize.STRING,
         // unique: true
       },
       photo: {
-        allowNull: false,
+        allowNull: true,
         primaryKey: true,
         type: Sequelize.STRING,
       },
       upload_date: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
         onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')

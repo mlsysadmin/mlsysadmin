@@ -6,20 +6,20 @@ const { Hash } = require('../utils/_helper/hash.helper');
 module.exports = {
   async up(queryInterface, Sequelize) {
 
-    function notNullIfUserIsSeller(instance) {
-      if (instance.role_id === 2 && (instance.license === null || instance.license === undefined)) {
-        throw new Error('license cannot be null if user_role is seller');
-      }
-    }
+    // function notNullIfUserIsSeller(instance) {
+    //   if (instance.role_id === 2 && (instance.license === null || instance.license === undefined)) {
+    //     throw new Error('license cannot be null if user_role is seller');
+    //   }
+    // }
 
 
-    const HashPass = async (pass) => {
-      try {
-        return await Hash(pass);
-      } catch (error) {
-        return error
-      }
-    }
+    // const HashPass = async (pass) => {
+    //   try {
+    //     return await Hash(pass);
+    //   } catch (error) {
+    //     return error
+    //   }
+    // }
 
     await queryInterface.createTable('users', {
       user_id: {
@@ -60,17 +60,17 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(100)
       },
-      password: {
-        allowNull: false,
-        type: Sequelize.STRING(100),
-        async set(pass) {
-          this.setDataValue('password', await HashPass(pass))
-        }
-      },
-      user_desc: {
-        allowNull: false,
-        type: Sequelize.ENUM("I'm a licensed real estate broker", "I'm a real estate agent", "I'm looking for my nexthome Buy/Rent", "I'm looking to Sell/Rent")
-      },
+      // password: {
+      //   allowNull: false,
+      //   type: Sequelize.STRING(100),
+      //   async set(pass) {
+      //     this.setDataValue('password', await HashPass(pass))
+      //   }
+      // },
+      // user_desc: {
+      //   allowNull: false,
+      //   type: Sequelize.ENUM("I'm a licensed real estate broker", "I'm a real estate agent", "I'm looking for my nexthome Buy/Rent", "I'm looking to Sell/Rent")
+      // },
       role_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
@@ -82,15 +82,15 @@ module.exports = {
           key: 'role_id',
         },
       },
-      license: {
-        allowNull: true,
-        validate: {
-          notNullIfUserIsSeller(value) {
-            notNullIfUserIsSeller(this)
-          }
-        },
-        type: Sequelize.BLOB
-      },
+      // license: {
+      //   allowNull: true,
+      //   validate: {
+      //     notNullIfUserIsSeller(value) {
+      //       notNullIfUserIsSeller(this)
+      //     }
+      //   },
+      //   type: Sequelize.BLOB
+      // },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,

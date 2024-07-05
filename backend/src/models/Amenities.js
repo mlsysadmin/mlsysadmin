@@ -13,7 +13,7 @@ const Amenities = Sequelize.define("amenities", {
         type: DataTypes.INTEGER.UNSIGNED
     },
     indoor_features: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.STRING,
         get() {
             return JSON.parse(this.getDataValue('indoor_features'));
@@ -23,7 +23,7 @@ const Amenities = Sequelize.define("amenities", {
         }
     },
     outdoor_features: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.STRING,
         get() {
             return JSON.parse(this.getDataValue('outdoor_features'));
@@ -33,7 +33,7 @@ const Amenities = Sequelize.define("amenities", {
         }
     },
     custom_amenity_id: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.INTEGER.UNSIGNED,
         references: {
             model: {
@@ -44,7 +44,7 @@ const Amenities = Sequelize.define("amenities", {
         },
     },
     custom_inclusion_id: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.INTEGER.UNSIGNED,
         references: {
             model: {
