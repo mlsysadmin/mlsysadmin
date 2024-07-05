@@ -4,6 +4,16 @@
     align-items: center;
 }
 
+.modal-main-container .overlay{
+    top: 0;
+    height: 100vh;
+    background: black;
+    width: 100vw;
+    position: absolute;
+    opacity: 20%;
+    z-index: -100;
+}
+
 .application-modal-content {
     display: flex;
     flex-direction: column;

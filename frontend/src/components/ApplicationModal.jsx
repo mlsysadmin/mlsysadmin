@@ -124,6 +124,7 @@ const ApplicationModal = () => {
 
   return (
     <div className="modal-main-container">
+      <div className="overlay"></div>
       <div className="application-modal-container">
         <h3 className="application-header">Application Details</h3>
         <form onSubmit={handleSubmit} className="application-modal-content">
