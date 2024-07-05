@@ -48,8 +48,8 @@ function FileUploadGrid({ validateFiles }) {
               id={`file-input-${index}`}
               onChange={(event) => handleFileChange(index, event)}
               accept="image/*"
-              required
-            ></input>
+              required={index < 2} // Only the first two inputs are required
+            />
             {!file && (
               <label htmlFor={`file-input-${index}`} className="file-label">
                 <span className="plus-icon">+</span>
@@ -111,9 +111,9 @@ const ApplicationModal = () => {
       }
     }
 
-    const allFilesSelected = files.every((file) => file !== null);
+    const allFilesSelected = files.slice(0, 2).every((file) => file !== null);
     if (!allFilesSelected) {
-      message.error("All files must be uploaded!");
+      message.error("First two files must be uploaded!");
       return;
     }
 
