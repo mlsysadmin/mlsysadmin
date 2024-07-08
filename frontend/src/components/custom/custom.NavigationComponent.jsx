@@ -27,8 +27,16 @@ const SupportNavigation = ({ navLinkProps }) => {
           to: "/dashboard/Support/pendingApplication",
         },
         {
-          text: "Disapproved Applications",
+          text: "Denied Applications",
           to: "/dashboard/Support/disapprovedApplication",
+        },
+        {
+          text: "Canceled Applications",
+          to: "/dashboard/Support/CanceledApplications ",
+        },
+        {
+          text: "Closed Applications ",
+          to: "/dashboard/Support/ClosedApplications  ",
         },
       ],
     },

@@ -148,8 +148,16 @@ const DisapprovedListingMasterlist = () => {
           to: "/ML-Brokerage/Support/pendingApplication",
         },
         {
-          text: "Disapproved Applications",
-          to: "/ML-Brokerage/Support/disapprovedApplication",
+          text: "Denied Applications",
+          to: "/dashboard/Support/disapprovedApplication",
+        },
+        {
+          text: "Canceled Applications",
+          to: "/dashboard/Support/CanceledApplications ",
+        },
+        {
+          text: "Closed Applications ",
+          to: "/dashboard/Support/ClosedApplications  ",
         },
       ],
     },

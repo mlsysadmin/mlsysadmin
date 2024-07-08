@@ -13,7 +13,8 @@ import {
   PendingApplicationpage,
   OpenApplicationpage,
   DisapprovedApplicationpage,
-  ApplicationDetailspage
+  ApplicationDetailspage,
+  Signinpage
 } from "../pages/index.js";
 
 const routes = [
@@ -28,6 +29,10 @@ const routes = [
           {
             index: true,
             element: <div />,
+          },
+          {
+            path: "Signin",
+            element: <Signinpage/>,
           },
           {
             path: "SupportDashboard",

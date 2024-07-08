@@ -20,7 +20,22 @@
   letter-spacing: 0;
   line-height: normal;
 }
+ .submit{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 97%;
+  padding: 1%;
+}
+.submit button{
+  background: #d90000;
+  border: none;
+  padding: 10px 20px;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
 
+}
 .ListingDetails .leftSide {
   display: grid;
   grid-template-columns: 1fr;

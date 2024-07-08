@@ -12,6 +12,7 @@ import PendingApplicationpage from "./PendingApplication.page";
 import OpenApplicationpage from "./OpenApplication.page";
 import DisapprovedApplicationpage from "./DisapprovedApplication.page";
 import ApplicationDetailspage from "./ApplicationDetails.page";
+import Signinpage from "./signin.page";
 
 export {
   MainOutlet,
@@ -27,5 +28,6 @@ export {
   PendingApplicationpage,
   OpenApplicationpage,
   DisapprovedApplicationpage,
-  ApplicationDetailspage
+  ApplicationDetailspage,
+  Signinpage
 };
