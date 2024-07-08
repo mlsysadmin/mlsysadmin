@@ -18,12 +18,16 @@ const MortgageComponent = () => {
         </div>
         <div className="mortBtn">
           <div className="purchasebtn">
-            <HomeFilled id="home-icon"/>
-            <p>I want to <span style={{fontWeight:"bold"}}>purchase</span> a home</p>
+              <HomeFilled id="home-icon"/>
+              <a style={{textDecoration:"none"}} href="/buy-a-home">
+              <p style={{ color:"white"}}>I want to <span style={{fontWeight:"bold", color:"white"}}>purchase</span> a home</p>
+              </a>
           </div>
           <div className="refinancebtn">
             <DollarOutlined id="dollar-icon"/>
-            <p>I want to <span style={{fontWeight:"bold"}}>refinance</span> my home</p>
+            <a style={{textDecoration:"none"}} href="/refinance">
+              <p style={{ color:"white"}}>I want to <span style={{fontWeight:"bold", color:"white"}}>refinance</span> my home</p>
+            </a>
           </div>
         </div><br/><br/><br/><br/><br/>
         <div>

@@ -3,7 +3,21 @@ import FooterComponent from "./layout/FooterComponent";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
 import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
 import ListingSearch from "./custom/customsearch/custom.listingsearch";
+import ListingSearchLoggedin from "./custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
 
+//drafts
+
+import Drafts from "./MY Drafts/Drafts";
+import ActiveSummaryLists from "./MY Drafts/ActiveSummaryLists";
+import ClientManagement from "./MY Drafts/ClientManagement";
+import ListingSummaryLists from "./MY Drafts/ListingSummaryLists";
+import SoldProperties from "./MY Drafts/Soldproperties";
+import ListingsTable from "./MY Drafts/Components/ListingsTableComponent";
+import DraftSidebar from "./MY Drafts/Components/DraftSidebarComponent";
+import PreviewListing from "./PreviewListingComponent";
+import ModalComponents from "./ModalComponents";
+import RegistrationModal from "./RegistrationModal";
+import LoginModal from "./modals/loginmodal";
 // navigation
 import HeaderContainer from "./layout/Navigation/HeaderContainer";
 import SideBar from "./layout/Navigation/SideBar";
@@ -19,7 +33,6 @@ import CertainFeatureMenu from "./custom/customsearch/certainfeature";
 // components
 import DiscoverHomeComponent from "./DiscoverHomeComponent";
 import BuyAHomeComponent from "./BuyAHomeComponent";
-import DashboardComponent from "./DashboardComponent";
 import HouseForRentComponent from "./HouseForRentComponent";
 import NewPageComponent  from "./NewPageComponent";
 import RefinanceComponent from "./RefinanceComponent";
@@ -38,11 +51,22 @@ import SuccessModal from "./modals/SuccessModal";
 
 
 export{
+    ListingSearchLoggedin,
+    LoginModal,
+    RegistrationModal,
+    ModalComponents,
+    PreviewListing,
+    DraftSidebar,
+    ListingsTable,
+    SoldProperties,
+    ListingSummaryLists,
+    ClientManagement,
+    ActiveSummaryLists,
+    Drafts,
     NewPageComponent,
     PropertiesForRent,
     FooterComponent,
     CustomMlFooter,
-    DashboardComponent,
     HeaderContainer,
     SideBar,
     MainLayout,
@@ -61,9 +85,6 @@ export{
     LoanCalculatorComponent,
     MortgageComponent,
     RentComponent,
-    SellComponent, 
-    CertainFeatureMenu,
-    CardListingComponent,
-    SuccessModal,
-    AllPropertiesComponent
+    SellComponent,
+    CardListingComponent
 }

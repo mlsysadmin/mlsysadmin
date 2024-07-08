@@ -33,7 +33,11 @@
   font-size: 16px;
   color: #444444;
 }
-
+.advance-searchdropdown :where(.css-dev-only-do-not-override-m4timi).ant-slider-horizontal .ant-slider-rail {
+  height: 10px;
+  background-color: rgb(217,0,0, 40%);
+  border-radius: 10px;
+}
 .search-custom-slider {
   display: inline-block;
 }
@@ -70,7 +74,15 @@
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z' fill='%23ff0000'/%3E%3C/svg%3E") no-repeat right center;
   padding-right: 30px;
 }
-
+.advance-searchdropdown :where(.css-dev-only-do-not-override-m4timi).ant-slider .ant-slider-handle::after {
+  width: 20px;
+  height: 20px;
+  background-color: #ff2800;
+  border:1px solid #ff2800
+}
+.advance-searchdropdown .ant-slider-track{
+  height: 10px;
+}
 /* 
 listing search */
 
@@ -91,7 +103,7 @@ listing search */
   background-color: white;
   height: auto;
   border-radius: 30px;
-  margin: 10px 30px 20px 80px;
+  margin: 10px 30px 20px 50px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

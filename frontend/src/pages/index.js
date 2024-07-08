@@ -10,9 +10,37 @@ import SellPage from "./Sell.page";
 import LoanCalculatorPage from "./LoanCalculator.page";
 import RentPage from "./Rent.page";
 import ContactUsPage from "./ContactUs.page";
+import ListingPage from "./ListingPage";
+import ListingFormPage from "./SellerListingForm.page";
 
+
+
+//seller
+import MyDraftsPage from "./MyDrafts.page";
+import ActiveSummaryListsPage from "./ActiveSummaryLists.page";
+import ClientManagementPage from "./ClientManagement.page";
+import ListingSummaryListsPage from "./ListingSummaryLists.page";
+import SoldPropertiesPage from "./SoldProperties.page";
+import ListingsTable from "./ListingsTable.page";
+import Sidebar from "./DraftSidebar.page";
+import  PreviewListing  from "./PreviewListing.page";
+import ModalComponents from "./ModalComponents.page";
+import RegistrationModal from "./RegistrationModal.page";
+import LoginModal from "./LoginModal.page";
+// import ListingSearchLoggedin from "../components/custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
 
 export {
+    LoginModal,
+    RegistrationModal,
+    ModalComponents,
+    PreviewListing,
+    Sidebar,
+    ListingsTable,
+    SoldPropertiesPage,
+    ListingSummaryListsPage,
+    ClientManagementPage,
+    ActiveSummaryListsPage,
+    ListingPage,
     MainOutlet,
     Dashboard,
     HouseForRentPage,
@@ -24,5 +52,8 @@ export {
     RentPage,
     SellPage,
     LoanCalculatorPage,
-    ContactUsPage
+    ContactUsPage,
+    MyDraftsPage,
+    // ListingSearchLoggedin,
+    ListingFormPage
 }

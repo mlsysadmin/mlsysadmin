@@ -28,7 +28,7 @@
 
 .header--menu.ant-menu li{
     color: var(--mute-gray);
-    padding-inline: 7px;
+    padding-inline: 13px;
     margin: 0 5px;
     font-family: var(--font-family);
 }

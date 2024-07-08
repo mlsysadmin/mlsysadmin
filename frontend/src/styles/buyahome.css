@@ -143,6 +143,12 @@ font-size: 0;
 .buy-a-home-container .ant-steps-item-tail{
 color: #ff2800;
 }
+.buy-a-home-container .ant-steps-item-icon{
+    border-color: #D9D9D9 !important;
+    border-width: 3px !important;
+    background-color: #D9D9D9 !important;
+}
+
 .buy-a-home-container :where(.css-dev-only-do-not-override-3rel02).ant-steps .ant-steps-item-wait .ant-steps-item-icon {
 background-color: #cccccc;
 border-color: transparent;
@@ -150,7 +156,6 @@ border-color: transparent;
 .buy-a-home-container :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-with-progress.ant-steps-label-vertical .ant-steps-item .ant-steps-item-tail {
 background-color: #ff2800;
 }
-
 .buy-a-home-container :where(.css-dev-only-do-not-override-3rel02).ant-steps .ant-steps-item-tail::after {
 display: inline-block;
 width: 100%;
@@ -159,6 +164,9 @@ background: #ff2800;
 border-radius: 1px;
 transition: background 0.3s;
 content: "";
+}
+.buy-a-home-container :where(.css-dev-only-do-not-override-m4timi).ant-progress.ant-progress-status-success .ant-progress-inner{
+  stroke: #D90000;
 }
 
 @media screen and (min-width:320px) and (max-width:359px){
