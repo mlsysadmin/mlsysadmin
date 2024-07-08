@@ -156,6 +156,7 @@ const PendingListingMasterlist = () => {
     open: "Manage Open Listings",
     pending: "Manage Pending Listings",
     disapproved: "Manage Disapproved Listings",
+    active: "Manage Active Listings"
   };
 
   const startIndex = (currentPage - 1) * entriesPerPage + 1;
@@ -282,7 +283,7 @@ const PendingListingMasterlist = () => {
           Showing {startIndex} to {endIndex} of {filteredListings.length}{" "}
           entries
         </div>
-        <FooterComponent />
+        <FooterComponent/>
         <Modal
           show={modalVisible}
           onClose={handleModalClose}

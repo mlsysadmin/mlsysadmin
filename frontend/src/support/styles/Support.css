@@ -27,6 +27,60 @@
   width: 97%;
   padding: 1%;
 }
+/* Modals.css */
+
+ .fmodal,.smodal {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 350px;
+  text-align: center;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.fmodal h2 {
+  margin-bottom: 20px;
+  color: #d90000;
+}
+.smodal h2{
+  color: green;
+}
+.fmodal p{
+  font-size: 1.1rem;
+}
+ .button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.fmodal .button-primary {
+  background-color: #d90000;
+  color: white;
+}
+.smodal .button-primary{
+  background: green;
+  color: #fff;
+}
+.button-secondary {
+  background-color: #fff;
+  border: 1px solid #d90000;
+  color: black;
+}
+
 .submit button{
   background: #d90000;
   border: none;

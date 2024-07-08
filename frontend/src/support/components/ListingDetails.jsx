@@ -17,6 +17,7 @@ import CustomSelectTypeField from "./custom/custom.SelectTypeField";
 import CustomTextField from "./custom/custom.TextField";
 import PhotoGallery from "./custom/PhotoGallery";
 import PropertyMapButton from "./custom/PropertyMapModal";
+import ApprovalComponent from "./custom/ApprovalComponent";
 
 const ListingDetails = forwardRef((props, ref) => {
   const { labelname, classname } = props;
@@ -91,7 +92,6 @@ const ListingDetails = forwardRef((props, ref) => {
   const [remarks, setRemarks] = useState("");
   const [actionType, setActionType] = useState("");
   const [label, setLabel] = useState("");
-  const [confirmedAction, setConfirmedAction] = useState(false);
 
   useEffect(() => {
     if (listing) {
@@ -114,37 +114,13 @@ const ListingDetails = forwardRef((props, ref) => {
     pending: "Manage Pending Listings",
     disapproved: "Manage Disapproved Listings",
     approved: "Manage Approved Listings",
+    active: "Manage Active Listings"
+
   };
 
-  const handleAction = (type) => {
-    setActionType(type);
-    setShowModal(true);
-  };
 
-  const handleConfirm = () => {
-    console.log(`Action: ${actionType}, Remarks: ${remarks}`);
-    setShowModal(false);
-    setRemarks("");
 
-    // Set label and confirm action
-    switch (actionType) {
-      case "pending":
-        setLabel("Listing moved to Pending");
-        break;
-      case "edit":
-        setLabel("Listing edited successfully");
-        break;
-      case "disapprove":
-        setLabel("Listing disapproved");
-        break;
-      case "approve":
-        setLabel("Listing approved and active");
-        break;
-      default:
-        setLabel("");
-    }
-    setConfirmedAction(true);
-  };
+  
 
   const handleClose = () => {
     setShowModal(false);
@@ -214,6 +190,9 @@ const ListingDetails = forwardRef((props, ref) => {
         <hr style={{ border: "#D90000 solid 1px", width: "100%" }} />
         <div className="contentContainer">
           <div className="btns">
+            <a href="#" className="sbutton">
+              <p>Edit Listing</p>
+            </a>
             <PropertyMapButton address={propertyAddress} />
 
             <a href="#" className="sbutton">
@@ -221,13 +200,7 @@ const ListingDetails = forwardRef((props, ref) => {
               <p>View Listing as Public </p>
             </a>
           </div>
-          <center>
-            {confirmedAction && (
-              <div className="confirmedAction">
-                <h1 className={`labelForAction ${actionType}`}>{label}</h1>
-              </div>
-            )}
-          </center>
+          
 
           <div className="fields">
             <div className="leftSide">
@@ -561,73 +534,10 @@ const ListingDetails = forwardRef((props, ref) => {
           <b>Uploaded Photos</b>
           <PhotoGallery photos={photos} />
         </div>
-        <div className="bottomBtns">
-          {!confirmedAction && activeTab === "open" && (
-            <>
-              <button id="edit" onClick={() => handleAction("edit")}>
-                Edit Listing
-              </button>
-              <button
-                id="disapprove"
-                onClick={() => handleAction("disapprove")}
-              >
-                Disapprove
-              </button>
-              <button id="approve" onClick={() => handleAction("approve")}>
-                Approve
-              </button>
-              <button
-                id="move-to-pending"
-                onClick={() => handleAction("pending")}
-              >
-                Move to Pending
-              </button>
-            </>
-          )}
-          {!confirmedAction && activeTab === "approved" && (
-            <>
-              <button id="edit" onClick={() => handleAction("edit")}>
-                Edit Listing
-              </button>
-              <button
-                id="disapprove"
-                onClick={() => handleAction("disapprove")}
-              >
-                Disapprove
-              </button>
-              <button id="approve" onClick={() => handleAction("approve")}>
-                Approve
-              </button>
-            </>
-          )}
-          {!confirmedAction && activeTab === "pending" && (
-            <>
-              <button id="edit">Edit Listing</button>
-              <button
-                id="disapprove"
-                onClick={() => handleAction("disapprove")}
-              >
-                Disapprove
-              </button>
-              <button id="approve" onClick={() => handleAction("approve")}>
-                Approve
-              </button>
-            </>
-          )}
-        </div>
-
+            <ApprovalComponent/>
         <FooterComponent />
       </div>
-      <Modal
-        show={showModal}
-        onClose={handleClose}
-        onConfirm={handleConfirm}
-        question={`Are you sure you want to ${actionType} this listing?`}
-        remarks={remarks}
-        setRemarks={setRemarks}
-        actionType={actionType}
-        Title={"Confirmation Message"}
-      />
+      
     </div>
   );
 });

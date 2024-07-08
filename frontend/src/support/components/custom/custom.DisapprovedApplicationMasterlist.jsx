@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Dummydata from "../../supportDummyData/openListingDummy.json"; // Replace with actual data fetching logic
 import "../../styles/SupportListingMasterlist.css";
-import Pagination from "./custom.pagination";
 import FooterComponent from "../layout/FooterComponent";
 import SupportNavigation from "./custom.NavigationComponent";
+import Pagination from "./custom.pagination";
 
 const DisapprovedListingMasterlist = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -70,9 +70,12 @@ const DisapprovedListingMasterlist = () => {
   };
 
   const handleShowDetails = (listing) => {
-    navigate(`/ML-Brokerage/Support/Application-details/${listing.listing_id}`, {
+    navigate(
+      `/ML-Brokerage/Support/Application-details/${listing.listing_id}`,
+      {
         state: { listing, activeTab: "disapproved" }, // Pass activeTab explicitly
-    });
+      }
+    );
   };
 
   const renderListings = (listings) => {
@@ -132,7 +135,10 @@ const DisapprovedListingMasterlist = () => {
         { text: "Open Listings", to: "/ML-Brokerage/Support/open" },
         { text: "Pending Listings", to: "/ML-Brokerage/Support/pending" },
         { text: "Active Listings", to: "/ML-Brokerage/Support/active" },
-        { text: "Disapproved Listings", to: "/ML-Brokerage/Support/disapproved" },
+        {
+          text: "Disapproved Listings",
+          to: "/ML-Brokerage/Support/disapproved",
+        },
       ],
     },
     {
@@ -163,7 +169,6 @@ const DisapprovedListingMasterlist = () => {
     },
     { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
   ];
-  
 
   return (
     <>
@@ -217,7 +222,7 @@ const DisapprovedListingMasterlist = () => {
           </table>
         </div>
         <div className="btns">
-            <div></div>
+          <div></div>
           <Pagination
             totalItems={filteredListings.length}
             itemsPerPage={entriesPerPage}

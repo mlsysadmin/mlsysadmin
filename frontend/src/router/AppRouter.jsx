@@ -15,7 +15,7 @@ import {
   DisapprovedApplicationpage,
   ApplicationDetailspage,
   Signinpage
-} from "../pages/index.js";
+} from "../support/pages/index.js";
 
 const routes = [
   {
@@ -32,7 +32,7 @@ const routes = [
           },
           {
             path: "Signin",
-            element: <Signinpage/>,
+            element: <Signinpage/>
           },
           {
             path: "SupportDashboard",
