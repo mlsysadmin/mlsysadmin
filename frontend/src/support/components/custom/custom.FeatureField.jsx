@@ -4,9 +4,11 @@ const CustomFeatureField = (props) => {
   const labelName = props.labelName;
   const fieldType = props.fieldType;
   const className = props.className;
+  const disabled = props.disabled;
   const [selectedOption, setSelectedOption] = useState("");
   const [options, setOptions] = useState([]);
   const [listingInformation, setListingInformation] = useState([]);
+
   const handleSelectChange = (e) => {
     setSelectedOption(e.target.value);
   };
@@ -89,12 +91,13 @@ const CustomFeatureField = (props) => {
 
   return (
     <div className="FeaturesFields">
-      {fieldType === 'select' ? (
+      {fieldType === "select" ? (
         <select
           name={labelName}
-          className={className}        
+          className={className}
           defaultValue=""
           onChange={handleSelectChange}
+          disabled={disabled}
         >
           <option value="" disabled hidden>
             {"Select Type"}
@@ -112,10 +115,10 @@ const CustomFeatureField = (props) => {
           onChange={handleSelectChange}
           placeholder="Enter value"
           className={className} //"ammenitiesInputField"
+          disabled={disabled}
         />
       )}
     </div>
-
   );
 };
 export default CustomFeatureField;

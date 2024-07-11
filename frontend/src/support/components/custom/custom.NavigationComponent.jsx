@@ -11,20 +11,25 @@ const SupportNavigation = ({ navLinkProps }) => {
       text: "Listing Masterlist",
       dropdown: true,
       options: [
-        { text: "Dashboard", to: "/dashboard/Support" },
-        { text: "Masterlist", to: "/dashboard/Support/masterlist" },
-        { text: "Option 3", to: "/dashboard/Support/option3" },
-        { text: "Option 4", to: "/dashboard/Support/option4" },
+        { text: "Pending Listings", to: "/ML-Brokerage/Support/pending" },
+        { text: "Active Listings", to: "/ML-Brokerage/Support/active" },
+        {
+          text: "Denied Listings",
+          to: "/ML-Brokerage/Support/disapproved",
+        },
       ],
     },
     {
       text: "Application Review",
       dropdown: true,
       options: [
-        { text: "Open Applications", to: "/dashboard/Support/openApplication" },
         {
           text: "Pending Applications",
-          to: "/dashboard/Support/pendingApplication",
+          to: "/ML-Brokerage/Support/pendingApplication",
+        },
+        {
+          text: "Approved Applications",
+          to: "/ML-Brokerage/Support/open",
         },
         {
           text: "Denied Applications",
@@ -39,6 +44,10 @@ const SupportNavigation = ({ navLinkProps }) => {
           to: "/dashboard/Support/ClosedApplications  ",
         },
       ],
+    },
+    {
+      text: "Pre-Approved Request",
+      to: "/pre-approved",
     },
     { text: "Client Management", to: "/client-management" },
   ];

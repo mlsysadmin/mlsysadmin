@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Dummydata from "../../supportDummyData/openListingDummy.json"; // Replace with actual data fetching logic
+import Dummydata from "../../supportDummyData/openListingDummy.json";
 import "../../styles/SupportListingMasterlist.css";
 import Pagination from "./custom.pagination";
 import Modal from "./Modal";
-import SupportNavigation from "./custom.NavigationComponent";
 import FooterComponent from "../layout/FooterComponent";
+import SupportNavigation from "./custom.NavigationComponent";
 
-const PendingListingMasterlist = () => {
+const ActiveListingMasterlist = () => {
   const [activeTab, setActiveTab] = useState("active");
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredListings, setFilteredListings] = useState([]);
@@ -78,9 +78,12 @@ const PendingListingMasterlist = () => {
   };
 
   const handleShowDetails = (listing) => {
-    navigate(`/ML-Brokerage/Support/listing-details/${listing.listing_id}`, {
-      state: { listing, activeTab },
-    });
+    navigate(
+      `/ML-Brokerage/Support/Application-details/${listing.listing_id}`,
+      {
+        state: { listing, activeTab },
+      }
+    );
   };
 
   const handleApprove = () => {
@@ -141,9 +144,11 @@ const PendingListingMasterlist = () => {
           </button>
         </td>
         <td>{listing.date_created}</td>
-        <td>{listing.title}</td>
+        <td>APPLICATION_ID</td>
+        <td>APPLICANT NAME</td>
+        <td>MOBILE NUMBER</td>
+        <td>{listing.listing_id}</td>
         <td>{listing.property_type}</td>
-        <td>{listing.listing_type}</td>
         <td>{listing.floor_area} sqm</td>
         <td>{listing.price}</td>
         <td>{listing.location}</td>
@@ -153,10 +158,12 @@ const PendingListingMasterlist = () => {
   };
 
   const tabHeadings = {
-    open: "Manage Open Listings",
-    pending: "Manage Pending Listings",
-    disapproved: "Manage Disapproved Listings",
-    active: "Manage Active Listings"
+    pending: "Manage Pending Applications",
+    disapproved: "Manage Denied Applications",
+    open: "Manage Approved Applications",
+    active: " Manage Active Applications",
+    Cancelled: "Manage Canceled Applications",
+    closed: "Manage Closed Applications",
   };
 
   const startIndex = (currentPage - 1) * entriesPerPage + 1;
@@ -173,11 +180,10 @@ const PendingListingMasterlist = () => {
       text: "Listing Masterlist",
       dropdown: true,
       options: [
-        { text: "Open Listings", to: "/ML-Brokerage/Support/open" },
         { text: "Pending Listings", to: "/ML-Brokerage/Support/pending" },
         { text: "Active Listings", to: "/ML-Brokerage/Support/active" },
         {
-          text: "Disapproved Listings",
+          text: "Denied Listings",
           to: "/ML-Brokerage/Support/disapproved",
         },
       ],
@@ -187,30 +193,33 @@ const PendingListingMasterlist = () => {
       dropdown: true,
       options: [
         {
-          text: "Open Applications",
-          to: "/ML-Brokerage/Support/openApplication",
-        },
-        {
           text: "Pending Applications",
           to: "/ML-Brokerage/Support/pendingApplication",
         },
         {
+          text: "Approved Applications",
+          to: "/ML-Brokerage/Support/openApplication",
+        },
+        {
           text: "Denied Applications",
-          to: "/dashboard/Support/disapprovedApplication",
+          to: "/ML-Brokerage/Support/disapprovedApplication",
         },
         {
           text: "Canceled Applications",
-          to: "/dashboard/Support/CanceledApplications ",
+          to: "/ML-Brokerage/Support/CanceledApplications",
         },
         {
           text: "Closed Applications ",
-          to: "/dashboard/Support/ClosedApplications  ",
+          to: "/ML-Brokerage/Support/ClosedApplications",
         },
       ],
     },
+    {
+      text: "Pre-Approved Request",
+      to: "/pre-approved",
+    },
     { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
   ];
-
   return (
     <>
       <SupportNavigation navLinkProps={navLinks} />
@@ -248,10 +257,12 @@ const PendingListingMasterlist = () => {
                   />
                 </th>
                 <th>Select</th>
-                <th>Date Created</th>
-                <th>Title</th>
+                <th>Date Applied</th>
+                <th>Application ID</th>
+                <th>Applicant</th>
+                <th>Mobile Number</th>
+                <th>Property ID</th>
                 <th>Property Type</th>
-                <th>Listing Type</th>
                 <th>Floor Area</th>
                 <th>Price</th>
                 <th>Location</th>
@@ -283,7 +294,7 @@ const PendingListingMasterlist = () => {
           Showing {startIndex} to {endIndex} of {filteredListings.length}{" "}
           entries
         </div>
-        <FooterComponent/>
+        <FooterComponent />
         <Modal
           show={modalVisible}
           onClose={handleModalClose}
@@ -298,4 +309,4 @@ const PendingListingMasterlist = () => {
   );
 };
 
-export default PendingListingMasterlist;
+export default ActiveListingMasterlist;

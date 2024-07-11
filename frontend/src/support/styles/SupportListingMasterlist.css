@@ -71,7 +71,7 @@
   display: flex;
   list-style: none;
   padding: 0;
-  
+
   justify-content: flex-end;
 }
 
@@ -92,12 +92,13 @@
   color: #fff;
 }
 
-.listings-container .entries-summary .showDetails {
+.showDetails {
   padding: 5px 10px;
   font-size: 14px;
   color: black;
   border: #d90000 solid 1px;
   cursor: pointer;
+  border-radius: 10px;
   background: transparent;
 }
 
@@ -115,10 +116,12 @@
 
 .listings-container .btns .actions #approve {
   background: #256e2c;
+  border-radius: 10px;
 }
 
 .listings-container .btns .actions #disapprove {
   background: #d90000;
+  border-radius: 10px;
 }
 
 .listings-container .entries-summary {

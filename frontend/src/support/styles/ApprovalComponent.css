@@ -1,44 +1,49 @@
-.approvalContainer{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.approvalContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
 }
-.approvalContainer textarea{
-    resize: none;
-    border: 1px solid gray;
-    border-radius: 10px;
-    background: #fff;
-    width: 50%;
-    padding: 10px;
-    outline: none;
+.approvalContainer textarea {
+  resize: none;
+  border: 1px solid gray;
+  border-radius: 10px;
+  background: #fff;
+  width: 50%;
+  padding: 10px;
+  outline: none;
 }
-.approvalContainer input{
-    border: none;
-    outline: none;
+.approvalContainer input {
+  border: none;
+  outline: none;
 }
-.approvalContainer .approve{
-    background: green;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 10px;
-    color: #fff;
-    font-weight: bold;
-
+.fmodal textarea {
+  border: #d9d9d9 solid 1px;
+  background: #d9d9d9;
+  border-radius: 10px;
+  outline: #d90000;
+  resize: none;
 }
-.approvalContainer .disapproved{
-    background: #d90000;
-    padding: 10px 15px;
-    border: none;
-    color: #fff;
-    border-radius: 10px;
-    font-weight: bold;
-
-
+.approvalContainer .approve {
+  background: green;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
 }
-.approvalContainer .Buttons{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    width: 50.9%;
-    gap:1rem;
+.approvalContainer .disapproved {
+  background: #d90000;
+  padding: 10px 15px;
+  border: none;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: bold;
+}
+.approvalContainer .Buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 50.9%;
+  gap: 1rem;
 }

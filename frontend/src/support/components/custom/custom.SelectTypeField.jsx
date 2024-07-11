@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const CustomSelectTypeField = (props) => {
   const labelName = props.labelName;
+  const disabled = props.disabled;
   const [selectedOption, setSelectedOption] = useState("");
   const [options, setOptions] = useState([]);
   const [listingInformation, setListingInformation] = useState([]);
@@ -81,6 +82,7 @@ const CustomSelectTypeField = (props) => {
         className="fieldClassName"
         defaultValue=""
         onChange={handleSelectChange}
+        disabled={disabled}
       >
         <option value="" disabled hidden className="optionsClassName">
           {labelName === "Listing Type"

@@ -1,9 +1,10 @@
-import React, { useState, useCallback } from 'react';
-import { useDropzone } from 'react-dropzone';
-import '../../styles/ViewMoreModal.css';
+import React, { useState, useCallback } from "react";
+import { useDropzone } from "react-dropzone";
+import "../../styles/ViewMoreModal.css";
 
-const ViewMoreModal = ({ photos, onClose }) => {
+const ViewMoreModal = ({ photos, onClose, disabled }) => {
   const [photoList, setPhotoList] = useState(photos);
+  const [isUpdateDisabled, setIsUpdateDisabled] = useState(disabled);
 
   const onDrop = useCallback((acceptedFiles) => {
     const newPhotos = acceptedFiles.map((file) => URL.createObjectURL(file));
@@ -11,7 +12,9 @@ const ViewMoreModal = ({ photos, onClose }) => {
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
-
+  const handleCancel = () => {
+    onClose(); // Call the onClose prop to close the modal
+  };
   const rows = [];
   for (let i = 0; i < photoList.length; i += 3) {
     rows.push(photoList.slice(i, i + 3));
@@ -20,13 +23,16 @@ const ViewMoreModal = ({ photos, onClose }) => {
   return (
     <div className="view-more-modal-overlay" onClick={onClose}>
       <div className="view-more-modal" onClick={(e) => e.stopPropagation()}>
-        <span className="view-more-modal-close" onClick={onClose}>&times;</span>
+        <span className="view-more-modal-close" onClick={onClose}>
+          &times;
+        </span>
         <div className="title">
-          <strong>Photos</strong> <strong>Listing ID: <span>BRSABCDEFGH</span></strong>
+          <strong>Photos</strong>{" "}
+          <strong>
+            Listing ID: <span>BRSABCDEFGH</span>
+          </strong>
         </div>
-        <div
-          {...getRootProps({ className: 'drag-and-drop-area' })}
-        >
+        <div {...getRootProps({ className: "drag-and-drop-area" })}>
           <input {...getInputProps()} />
           {isDragActive ? (
             <p>Drop the files here ...</p>
@@ -56,8 +62,10 @@ const ViewMoreModal = ({ photos, onClose }) => {
           ))}
         </div>
         <div className="buttons">
-          <button>Cancel</button>
-          <button className='update'>Update Photos</button>
+          <button onClick={handleCancel}>Cancel</button>
+          <button disabled={disabled} className="update">
+            Update Photos
+          </button>
         </div>
       </div>
     </div>

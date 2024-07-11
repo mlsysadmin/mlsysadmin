@@ -25,11 +25,10 @@ const SupportDashboardComponent = () => {
       text: "Listing Masterlist",
       dropdown: true,
       options: [
-        { text: "Open Listings", to: "/ML-Brokerage/Support/open" },
         { text: "Pending Listings", to: "/ML-Brokerage/Support/pending" },
         { text: "Active Listings", to: "/ML-Brokerage/Support/active" },
         {
-          text: "Disapproved Listings",
+          text: "Denied Listings",
           to: "/ML-Brokerage/Support/disapproved",
         },
       ],
@@ -39,12 +38,12 @@ const SupportDashboardComponent = () => {
       dropdown: true,
       options: [
         {
-          text: "Open Applications",
-          to: "/ML-Brokerage/Support/openApplication",
-        },
-        {
           text: "Pending Applications",
           to: "/ML-Brokerage/Support/pendingApplication",
+        },
+        {
+          text: "Approved Applications",
+          to: "/ML-Brokerage/Support/openApplication",
         },
         {
           text: "Denied Applications",
@@ -52,13 +51,17 @@ const SupportDashboardComponent = () => {
         },
         {
           text: "Canceled Applications",
-          to: "/dashboard/Support/CanceledApplications ",
+          to: "/dashboard/Support/CanceledApplications",
         },
         {
           text: "Closed Applications ",
-          to: "/dashboard/Support/ClosedApplications  ",
+          to: "/dashboard/Support/ClosedApplications",
         },
       ],
+    },
+    {
+      text: "Pre-Approved Request",
+      to: "/pre-approved",
     },
     { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
   ];
@@ -70,8 +73,10 @@ const SupportDashboardComponent = () => {
           title="Dashboard"
           text="These is Dashboard!"
         />
-<center>        <hr style={{ border: "#D90000 solid 1px", width: "95%" }} />
-</center>
+        <center>
+          {" "}
+          <hr style={{ border: "#D90000 solid 1px", width: "95%" }} />
+        </center>
         <div className="SupportDashboard__container"></div>
         <div className="supportingDashboard">
           <div className="overview">OVERVIEW</div>

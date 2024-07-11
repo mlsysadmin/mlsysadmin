@@ -141,6 +141,7 @@ const PendingListingMasterlist = () => {
           </button>
         </td>
         <td>{listing.date_created}</td>
+        <td>{listing.listing_id}</td>
         <td>{listing.title}</td>
         <td>{listing.property_type}</td>
         <td>{listing.listing_type}</td>
@@ -153,9 +154,9 @@ const PendingListingMasterlist = () => {
   };
 
   const tabHeadings = {
-    open: "Manage Open Listings",
-    pending: "Manage Pending Listings",
-    disapproved: "Manage Disapproved Listings",
+    pending: "Manage Open Listings",
+    disapproved: "Manage Open Listings",
+    active: "Manage Open Listings",
   };
 
   const startIndex = (currentPage - 1) * entriesPerPage + 1;
@@ -172,11 +173,10 @@ const PendingListingMasterlist = () => {
       text: "Listing Masterlist",
       dropdown: true,
       options: [
-        { text: "Open Listings", to: "/ML-Brokerage/Support/open" },
         { text: "Pending Listings", to: "/ML-Brokerage/Support/pending" },
         { text: "Active Listings", to: "/ML-Brokerage/Support/active" },
         {
-          text: "Disapproved Listings",
+          text: "Denied Listings",
           to: "/ML-Brokerage/Support/disapproved",
         },
       ],
@@ -186,12 +186,12 @@ const PendingListingMasterlist = () => {
       dropdown: true,
       options: [
         {
-          text: "Open Applications",
-          to: "/ML-Brokerage/Support/openApplication",
-        },
-        {
           text: "Pending Applications",
           to: "/ML-Brokerage/Support/pendingApplication",
+        },
+        {
+          text: "Approved Applications",
+          to: "/ML-Brokerage/Support/openApplication",
         },
         {
           text: "Denied Applications",
@@ -199,13 +199,17 @@ const PendingListingMasterlist = () => {
         },
         {
           text: "Canceled Applications",
-          to: "/dashboard/Support/CanceledApplications ",
+          to: "/dashboard/Support/CanceledApplications",
         },
         {
           text: "Closed Applications ",
-          to: "/dashboard/Support/ClosedApplications  ",
+          to: "/dashboard/Support/ClosedApplications",
         },
       ],
+    },
+    {
+      text: "Pre-Approved Request",
+      to: "/pre-approved",
     },
     { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
   ];
@@ -247,6 +251,7 @@ const PendingListingMasterlist = () => {
                 </th>
                 <th>Select</th>
                 <th>Date Created</th>
+                <th>Listing ID</th>
                 <th>Title</th>
                 <th>Property Type</th>
                 <th>Listing Type</th>
