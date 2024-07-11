@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import "../../styles/Support.css";
 import CustomSelectTypeField from "../custom/custom.SelectTypeField";
 
-Modal.setAppElement('#root'); // Set this to your app root element
+Modal.setAppElement("#root"); // Set this to your app root element
 
 const ListingDetailsLayout = () => {
   const [subdivision, setSubdivision] = useState("");
@@ -36,8 +36,8 @@ const ListingDetailsLayout = () => {
         <div className="leftSide">
           <div className="propertyDetailsText">Property Details</div>
           <div className="propertyDetailsFields">
-          <CustomSelectTypeField labelName="Property Type" />
-          <CustomSelectTypeField labelName="Listing Type" />
+            <CustomSelectTypeField labelName="Property Type" />
+            <CustomSelectTypeField labelName="Listing Type" />
           </div>
           <div className="unitDetailsText">Unit Details</div>
           <div className="unitDetailsFields">
@@ -83,7 +83,7 @@ const ListingDetailsLayout = () => {
           <div className="descriptionText">Description</div>
           <div className="descriptionFields">
             <CustomTextField inputType="input" labelName="Title" />
-            <CustomTextField inputType="textarea" labelName="Caption" />
+            <textarea className="caption" name="" id=""></textarea>
             <div className="googleMapDisplay">
               {/* <iframe
                 width="600"
@@ -107,8 +107,15 @@ const ListingDetailsLayout = () => {
           <h2>Confirmation Message</h2>
           <p>Are you sure you want to create listing?</p>
           <div>
-          <button className="button button-primary" onClick={openSecondModal}>Confirm</button>
-          <button className="button button-secondary" onClick={closeFirstModal}>Cancel</button>
+            <button className="button button-primary" onClick={openSecondModal}>
+              Confirm
+            </button>
+            <button
+              className="button button-secondary"
+              onClick={closeFirstModal}
+            >
+              Cancel
+            </button>
           </div>
         </Modal>
 
@@ -125,7 +132,10 @@ const ListingDetailsLayout = () => {
         </Modal>
       </div>
       <div className="submit">
-        <button className="button button-primary" onClick={openFirstModal}>Create</button>
+        <div></div>
+        <button className="button button-primary" onClick={openFirstModal}>
+          Create
+        </button>
       </div>
     </>
   );

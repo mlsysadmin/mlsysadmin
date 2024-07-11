@@ -108,6 +108,7 @@ const DisapprovedListingMasterlist = () => {
           </button>
         </td>
         <td>{listing.date_created}</td>
+        <td>{listing.listing_id}</td>
         <td>{listing.title}</td>
         <td>{listing.property_type}</td>
         <td>{listing.listing_type}</td>
@@ -129,10 +130,12 @@ const DisapprovedListingMasterlist = () => {
       text: "Listing Masterlist",
       dropdown: true,
       options: [
-        { text: "Open Listings", to: "/ML-Brokerage/Support/open" },
         { text: "Pending Listings", to: "/ML-Brokerage/Support/pending" },
         { text: "Active Listings", to: "/ML-Brokerage/Support/active" },
-        { text: "Disapproved Listings", to: "/ML-Brokerage/Support/disapproved" },
+        {
+          text: "Denied Listings",
+          to: "/ML-Brokerage/Support/disapproved",
+        },
       ],
     },
     {
@@ -140,37 +143,40 @@ const DisapprovedListingMasterlist = () => {
       dropdown: true,
       options: [
         {
-          text: "Open Applications",
-          to: "/ML-Brokerage/Support/openApplication",
-        },
-        {
           text: "Pending Applications",
           to: "/ML-Brokerage/Support/pendingApplication",
         },
         {
+          text: "Approved Applications",
+          to: "/ML-Brokerage/Support/openApplication",
+        },
+        {
           text: "Denied Applications",
-          to: "/dashboard/Support/disapprovedApplication",
+          to: "/ML-Brokerage/Support/disapprovedApplication",
         },
         {
           text: "Canceled Applications",
-          to: "/dashboard/Support/CanceledApplications ",
+          to: "/ML-Brokerage/Support/CanceledApplications",
         },
         {
           text: "Closed Applications ",
-          to: "/dashboard/Support/ClosedApplications  ",
+          to: "/ML-Brokerage/Support/ClosedApplications",
         },
       ],
     },
+    {
+      text: "Pre-Approved Request",
+      to: "/pre-approved",
+    },
     { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
   ];
-  
 
   return (
     <>
       <SupportNavigation navLinkProps={navLinks} />
 
       <div className="listings-container">
-        <h1>Manage Disapproved Listings</h1>
+        <h1>Manage Open Listings</h1>
         <hr style={{ border: "#D90000 solid 1px", width: "100%" }} />
         <br />
         <div className="controls">
@@ -204,6 +210,7 @@ const DisapprovedListingMasterlist = () => {
                 </th>
                 <th>Select</th>
                 <th>Date Created</th>
+                <th>Listing ID</th>
                 <th>Title</th>
                 <th>Property Type</th>
                 <th>Listing Type</th>
@@ -217,7 +224,7 @@ const DisapprovedListingMasterlist = () => {
           </table>
         </div>
         <div className="btns">
-            <div></div>
+          <div></div>
           <Pagination
             totalItems={filteredListings.length}
             itemsPerPage={entriesPerPage}

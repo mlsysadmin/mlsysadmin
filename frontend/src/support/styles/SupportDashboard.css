@@ -27,7 +27,7 @@
   line-height: normal;
   margin-left: 2%;
 }
- 
+
 .SupportDashboard .supportingDashboard .listing-count {
   display: grid;
   color: #000000;
@@ -47,7 +47,7 @@
 }
 
 .SupportDashboard .card .overview-card {
-  border: 1px solid #8C9094;
+  border: 1px solid #8c9094;
   border-radius: 20px;
   padding: 20px;
   margin: 0 10px 10px 10px;
@@ -130,31 +130,30 @@
   border-radius: 20px;
   padding: 20px;
 }
-.SecondNavigationDiv{
+.SecondNavigationDiv {
   width: 100%;
 }
-.SecondDiv{
+.SecondDiv {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 95%;
   padding: 0 2%;
 }
-.SecondDiv .id{
+.SecondDiv .id {
   display: flex;
   flex-direction: row;
   width: 15%;
   flex-wrap: wrap;
-  gap: .5rem;
+  gap: 0.5rem;
   font-weight: bold;
-
 }
-.SecondDiv .id .listingID{
+.SecondDiv .id .listingID {
   color: #d90000;
   text-transform: uppercase;
 }
-.SecondDiv .SecondDivTitle{
+.SecondDiv .SecondDivTitle {
   font-size: 2rem;
   font-weight: bold;
 }
@@ -174,70 +173,65 @@
   line-height: normal;
 }
 @media only screen and (max-width: 768px) {
-  
-  .SecondDiv .SecondDivTitle{
+  .SecondDiv .SecondDivTitle {
     font-size: 1.5rem;
     font-weight: bold;
   }
-  .SecondDiv{
+  .SecondDiv {
     padding-left: 2%;
     display: flex;
     flex-direction: column;
   }
-  .SecondDiv .id{
+  .SecondDiv .id {
     width: 100%;
     font-size: 1rem;
     display: flex;
     flex-direction: row;
   }
-  .SupportDashboard .card{
+  .SupportDashboard .card {
     display: flex;
     flex-direction: column;
   }
-  .SupportDashboard .performanceDiv .totalDiv{
+  .SupportDashboard .performanceDiv .totalDiv {
     display: flex;
     flex-direction: column;
   }
 }
-
-
 
 @media only screen and (max-width: 860px) {
-  .SecondDiv .SecondDivTitle{
+  .SecondDiv .SecondDivTitle {
     font-size: 1.5rem;
     font-weight: bold;
   }
-  .SecondDiv{
+  .SecondDiv {
     padding-left: 2%;
     display: flex;
     flex-direction: column;
   }
-  .SecondDiv .id{
+  .SecondDiv .id {
     width: 100%;
     font-size: 1rem;
     display: flex;
     flex-direction: row;
   }
-  
-  
 }
 @media only screen and (max-width: 960px) and (min-width: 861px) {
-  .SecondDiv .SecondDivTitle{
+  .SecondDiv .SecondDivTitle {
     font-size: 1.5rem;
     font-weight: bold;
   }
-  .SecondDiv{
+  .SecondDiv {
     padding-left: 2%;
     display: flex;
     flex-direction: column;
   }
-  .SecondDiv .id{
+  .SecondDiv .id {
     width: 100%;
     font-size: 1rem;
     display: flex;
     flex-direction: row;
   }
-  .SupportDashboard .card{
+  .SupportDashboard .card {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }

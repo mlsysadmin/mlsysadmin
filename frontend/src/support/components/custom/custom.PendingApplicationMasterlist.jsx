@@ -78,9 +78,12 @@ const PendingApplicationMasterlist = () => {
   };
 
   const handleShowDetails = (listing) => {
-    navigate(`/ML-Brokerage/Support/Application-details/${listing.listing_id}`, {
-      state: { listing, activeTab },
-    });
+    navigate(
+      `/ML-Brokerage/Support/Application-details/${listing.listing_id}`,
+      {
+        state: { listing, activeTab },
+      }
+    );
   };
 
   const handleApprove = () => {
@@ -141,9 +144,11 @@ const PendingApplicationMasterlist = () => {
           </button>
         </td>
         <td>{listing.date_created}</td>
-        <td>{listing.title}</td>
+        <td>APPLICATION_ID</td>
+        <td>APPLICANT NAME</td>
+        <td>MOBILE NUMBER</td>
+        <td>{listing.listing_id}</td>
         <td>{listing.property_type}</td>
-        <td>{listing.listing_type}</td>
         <td>{listing.floor_area} sqm</td>
         <td>{listing.price}</td>
         <td>{listing.location}</td>
@@ -153,9 +158,12 @@ const PendingApplicationMasterlist = () => {
   };
 
   const tabHeadings = {
-    open: "Manage Open Application",
-    pending: "Manage Pending Application",
-    disapproved: "Manage Disapproved Application",
+    pending: "Manage Pending Applications",
+    disapproved: "Manage Denied Applications",
+    open: "Manage Approved Applications",
+    active: " Manage Active Applications",
+    Cancelled: "Manage Canceled Applications",
+    closed: "Manage Closed Applications",
   };
 
   const startIndex = (currentPage - 1) * entriesPerPage + 1;
@@ -172,11 +180,10 @@ const PendingApplicationMasterlist = () => {
       text: "Listing Masterlist",
       dropdown: true,
       options: [
-        { text: "Open Listings", to: "/ML-Brokerage/Support/open" },
         { text: "Pending Listings", to: "/ML-Brokerage/Support/pending" },
         { text: "Active Listings", to: "/ML-Brokerage/Support/active" },
         {
-          text: "Disapproved Listings",
+          text: "Denied Listings",
           to: "/ML-Brokerage/Support/disapproved",
         },
       ],
@@ -186,26 +193,30 @@ const PendingApplicationMasterlist = () => {
       dropdown: true,
       options: [
         {
-          text: "Open Applications",
-          to: "/ML-Brokerage/Support/openApplication",
-        },
-        {
           text: "Pending Applications",
           to: "/ML-Brokerage/Support/pendingApplication",
         },
         {
+          text: "Approved Applications",
+          to: "/ML-Brokerage/Support/openApplication",
+        },
+        {
           text: "Denied Applications",
-          to: "/dashboard/Support/disapprovedApplication",
+          to: "/ML-Brokerage/Support/disapprovedApplication",
         },
         {
           text: "Canceled Applications",
-          to: "/dashboard/Support/CanceledApplications ",
+          to: "/ML-Brokerage/Support/CanceledApplications",
         },
         {
           text: "Closed Applications ",
-          to: "/dashboard/Support/ClosedApplications  ",
+          to: "/ML-Brokerage/Support/ClosedApplications",
         },
       ],
+    },
+    {
+      text: "Pre-Approved Request",
+      to: "/pre-approved",
     },
     { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
   ];
@@ -246,10 +257,12 @@ const PendingApplicationMasterlist = () => {
                   />
                 </th>
                 <th>Select</th>
-                <th>Date Created</th>
-                <th>Title</th>
+                <th>Date Applied</th>
+                <th>Application ID</th>
+                <th>Applicant</th>
+                <th>Mobile Number</th>
+                <th>Property ID</th>
                 <th>Property Type</th>
-                <th>Listing Type</th>
                 <th>Floor Area</th>
                 <th>Price</th>
                 <th>Location</th>

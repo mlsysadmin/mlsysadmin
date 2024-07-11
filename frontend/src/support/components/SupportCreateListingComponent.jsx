@@ -12,11 +12,10 @@ const SupportCreateListingComponent = () => {
       text: "Listing Masterlist",
       dropdown: true,
       options: [
-        { text: "Open Listings", to: "/ML-Brokerage/Support/open" },
         { text: "Pending Listings", to: "/ML-Brokerage/Support/pending" },
         { text: "Active Listings", to: "/ML-Brokerage/Support/active" },
         {
-          text: "Disapproved Listings",
+          text: "Denied Listings",
           to: "/ML-Brokerage/Support/disapproved",
         },
       ],
@@ -26,12 +25,12 @@ const SupportCreateListingComponent = () => {
       dropdown: true,
       options: [
         {
-          text: "Open Applications",
-          to: "/ML-Brokerage/Support/openApplication",
-        },
-        {
           text: "Pending Applications",
           to: "/ML-Brokerage/Support/pendingApplication",
+        },
+        {
+          text: "Approved Applications",
+          to: "/ML-Brokerage/Support/openApplication",
         },
         {
           text: "Denied Applications",
@@ -39,13 +38,17 @@ const SupportCreateListingComponent = () => {
         },
         {
           text: "Canceled Applications",
-          to: "/dashboard/Support/CanceledApplications ",
+          to: "/dashboard/Support/CanceledApplications",
         },
         {
           text: "Closed Applications ",
-          to: "/dashboard/Support/ClosedApplications  ",
+          to: "/dashboard/Support/ClosedApplications",
         },
       ],
+    },
+    {
+      text: "Pre-Approved Request",
+      to: "/pre-approved",
     },
     { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
   ];

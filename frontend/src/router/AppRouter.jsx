@@ -14,7 +14,9 @@ import {
   OpenApplicationpage,
   DisapprovedApplicationpage,
   ApplicationDetailspage,
-  Signinpage
+  Signinpage,
+  CancelledApplicationpage,
+  ClosedApplicationpage,
 } from "../support/pages/index.js";
 
 const routes = [
@@ -32,7 +34,7 @@ const routes = [
           },
           {
             path: "Signin",
-            element: <Signinpage/>
+            element: <Signinpage />,
           },
           {
             path: "SupportDashboard",
@@ -50,10 +52,7 @@ const routes = [
             path: "disapprovedApplication",
             element: <DisapprovedApplicationpage />,
           },
-          {
-            path: "open",
-            element: <OpenListingMasterlist />,
-          },
+
           {
             path: "pending",
             element: <PendingListingMasterlist />,
@@ -79,6 +78,14 @@ const routes = [
             element: <ApplicationDetailspage />,
           },
           {
+            path: "CanceledApplications",
+            element: <CancelledApplicationpage />,
+          },
+          {
+            path: "ClosedApplications",
+            element: <ClosedApplicationpage />,
+          },
+          {
             path: "Something/Similar",
             element: <h1>Simlar to Me</h1>,
           },
@@ -95,8 +102,6 @@ const routes = [
     element: <ErrorPage />,
   },
 ];
-
-
 
 const Router = createBrowserRouter(routes);
 

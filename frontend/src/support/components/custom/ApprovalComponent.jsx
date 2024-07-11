@@ -1,6 +1,14 @@
-import React, { useState } from "react";
-import "../../styles/ApprovalComponent.css"
-const ApprovalComponent = ({ initialLayer = 1, buttonLabels = {} }) => {
+import React, { useState, useEffect } from "react";
+import "../../styles/ApprovalComponent.css";
+import Modal from "react-modal";
+Modal.setAppElement("#root");
+
+const ApprovalComponent = ({
+  initialLayer = 1,
+  buttonLabels = {},
+  loggedInUser = "loigen",
+  activeTab = "pending",
+}) => {
   const [currentLayer, setCurrentLayer] = useState(initialLayer);
   const [remarks, setRemarks] = useState({
     layer1: "",
@@ -8,88 +16,135 @@ const ApprovalComponent = ({ initialLayer = 1, buttonLabels = {} }) => {
     layer3: "",
   });
   const [approverNames, setApproverNames] = useState({
-    layer1: "",
-    layer2: "",
-    layer3: "",
+    layer1: loggedInUser,
+    layer2: loggedInUser,
+    layer3: loggedInUser,
   });
   const [details, setDetails] = useState({
     layer1: null,
     layer2: null,
     layer3: null,
   });
-  const [nameError, setNameError] = useState({
-    layer1: false,
-    layer2: false,
-    layer3: false,
-  });
-  const [remarksError, setRemarksError] = useState({
-    layer1: false,
-    layer2: false,
-    layer3: false,
-  });
+  const [isFirstModalOpen, setIsFirstModalOpen] = useState(false);
+  const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
+  const [modalRemarks, setModalRemarks] = useState("");
+  const [modalLayer, setModalLayer] = useState("");
+
+  useEffect(() => {
+    if (activeTab === "disapproved") {
+      setRemarks({
+        layer1: "Disapproved due to incomplete documentation.",
+        layer2: "Disapproved due to incomplete documentation.",
+        layer3: "Disapproved due to incomplete documentation.",
+      });
+      setCurrentLayer(4);
+    } else if (activeTab === "approved") {
+      setRemarks({
+        layer1: "Approved by Licensed Broker.",
+        layer2: "Approved by Licensed Broker.",
+        layer3: "Approved by Licensed Broker.",
+      });
+      setDetails({
+        layer1: {
+          approverName: loggedInUser,
+          time: new Date().toLocaleString(),
+        },
+        layer2: {
+          approverName: loggedInUser,
+          time: new Date().toLocaleString(),
+        },
+        layer3: {
+          approverName: loggedInUser,
+          time: new Date().toLocaleString(),
+        },
+      });
+      setCurrentLayer(4);
+    }
+  }, [activeTab, loggedInUser]);
+
+  const openFirstModal = (layer) => {
+    setModalLayer(layer);
+    setModalRemarks("");
+    setIsFirstModalOpen(true);
+  };
+
+  const closeFirstModal = () => setIsFirstModalOpen(false);
+
+  const openSecondModal = () => setIsSecondModalOpen(true);
+
+  const closeSecondModal = () => setIsSecondModalOpen(false);
 
   const handleApprove = async (layer) => {
     try {
-      // Fetch current universal time from an API (replace with your API endpoint)
-      const response = await fetch('https://worldtimeapi.org/api/ip');
+      const response = await fetch("https://worldtimeapi.org/api/ip");
       const data = await response.json();
       const currentTime = new Date(data.utc_datetime).toLocaleString();
-  
+
       const approverName = approverNames[layer];
-      const approverRemarks = remarks[layer];
-  
-      if (!approverName) {
-        setNameError({ ...nameError, [layer]: true });
-        return;
-      } else {
-        setNameError({ ...nameError, [layer]: false });
-      }
-  
+      let approverRemarks = remarks[layer];
+
       if (!approverRemarks) {
-        setRemarksError({ ...remarksError, [layer]: true });
-        return;
-      } else {
-        setRemarksError({ ...remarksError, [layer]: false });
+        approverRemarks = "Edited and Approved by Licensed Broker.";
+        setRemarks((prevRemarks) => ({
+          ...prevRemarks,
+          [layer]: approverRemarks,
+        }));
       }
-  
+
       const newDetails = {
         ...details,
         [layer]: { approverName, time: currentTime },
       };
       setDetails(newDetails);
-  
+
       if (layer === "layer1") {
         setCurrentLayer(2);
       } else if (layer === "layer2") {
         setCurrentLayer(3);
       } else if (layer === "layer3") {
-        setCurrentLayer(4); 
+        setCurrentLayer(4);
       }
     } catch (error) {
-      console.error('Error fetching current time:', error);
-      // Handle error if fetching time fails
+      console.error("Error fetching current time:", error);
     }
   };
-  
 
-  const handleCancel = () => {
-    alert("Approval process cancelled.");
-    setCurrentLayer(initialLayer);
-    setRemarks({ layer1: "", layer2: "", layer3: "" });
-    setApproverNames({ layer1: "", layer2: "", layer3: "" });
-    setDetails({ layer1: null, layer2: null, layer3: null });
-    setNameError({ layer1: false, layer2: false, layer3: false });
-    setRemarksError({ layer1: false, layer2: false, layer3: false });
+  const handleCancel = (layer) => {
+    openFirstModal(layer);
   };
 
-  const handlePending = () => {
-    alert("Approval marked as pending.");
+  const handleDisapprove = () => {
+    const disapproveRemarks = modalRemarks || "Disapproved by the user.";
+    setRemarks((prevRemarks) => ({
+      ...prevRemarks,
+      [modalLayer]: disapproveRemarks,
+    }));
+    if (modalLayer === "layer1") {
+      setCurrentLayer(2);
+    } else if (modalLayer === "layer2") {
+      setCurrentLayer(3);
+    } else if (modalLayer === "layer3") {
+      setCurrentLayer(4);
+    }
+    closeFirstModal();
+    openSecondModal();
   };
 
-  const handleNoted = () => {
-    alert("Approval noted.");
+  const renderButtons = (layer) => {
+    if (activeTab === "pending" && currentLayer === parseInt(layer.slice(-1))) {
+      return (
+        <div className="Buttons">
+          <button className="approve" onClick={() => handleApprove(layer)}>
+            {buttonLabels.approve || "Approve"}
+          </button>
+          <button className="disapproved" onClick={() => handleCancel(layer)}>
+            {buttonLabels.disapprove || "Deny Listing"}
+          </button>
+        </div>
+      );
+    }
+    return null;
   };
-
   return (
     <div className="approvalContainer">
       <h2>Level of Approvals</h2>
@@ -98,125 +153,96 @@ const ApprovalComponent = ({ initialLayer = 1, buttonLabels = {} }) => {
       <div>
         <h3>Level 1 Approval</h3>
         <div>
-          <label>
-            Noted by:
-            <input
-              type="text"
-              value={approverNames.layer1}
-              onChange={(e) =>
-                setApproverNames({ ...approverNames, layer1: e.target.value })
-              }
-              disabled={currentLayer !== 1}
-            />
-          </label>
-          {nameError.layer1 && (
-            <p style={{ color: "red" }}>Please enter the approver's name.</p>
-          )}
+          <label>Noted by: {loggedInUser}</label>
           <p>Date Approved: {details.layer1?.time}</p>
         </div>
         <textarea
           value={remarks.layer1}
           onChange={(e) => setRemarks({ ...remarks, layer1: e.target.value })}
           placeholder="Enter Remarks"
-          disabled={currentLayer !== 1}
+          disabled={currentLayer !== 1 || activeTab !== "pending"}
         />
-        {remarksError.layer1 && (
-          <p style={{ color: "red" }}>Please enter remarks.</p>
-        )}
-        {currentLayer === 1 && (
-          <div className="Buttons">
-            <button className="approve" onClick={() => handleApprove("layer1")}>
-              {buttonLabels.approve || "Approve"}
-            </button>
-
-            <button className="disapproved" onClick={handleCancel}>
-              {buttonLabels.disapprove || "Deny Listing"}
-            </button>
-          </div>
-        )}
+        {renderButtons("layer1")}
       </div>
 
       {/* Layer 2 */}
       <div>
         <h3>Level 2 Approval</h3>
         <div>
-          <label>
-            Approver:
-            <input
-              type="text"
-              value={approverNames.layer2}
-              onChange={(e) =>
-                setApproverNames({ ...approverNames, layer2: e.target.value })
-              }
-              disabled={currentLayer !== 2}
-            />
-          </label>
-          {nameError.layer2 && (
-            <p style={{ color: "red" }}>Please enter the approver's name.</p>
-          )}
+          <label>Noted by: {loggedInUser}</label>
           <p>Date Approved: {details.layer2?.time}</p>
         </div>
         <textarea
           value={remarks.layer2}
           onChange={(e) => setRemarks({ ...remarks, layer2: e.target.value })}
           placeholder="Enter Remarks"
-          disabled={currentLayer !== 2}
+          disabled={currentLayer !== 2 || activeTab !== "pending"}
         />
-        {remarksError.layer2 && (
-          <p style={{ color: "red" }}>Please enter remarks.</p>
-        )}
-        {currentLayer === 2 && (
-          <div className="Buttons">
-            <button className="approve" onClick={() => handleApprove("layer2")}>
-              {buttonLabels.approve || "Approve"}
-            </button>
-            <button className="disapproved" onClick={handleCancel}>
-              {buttonLabels.disapprove || "Deny Listing"}
-            </button>
-          </div>
-        )}
+        {renderButtons("layer2")}
       </div>
 
       {/* Layer 3 */}
       <div>
         <h3>Level 3 Approval</h3>
         <div>
-          <label>
-            Approver:
-            <input
-              type="text"
-              value={approverNames.layer3}
-              onChange={(e) =>
-                setApproverNames({ ...approverNames, layer3: e.target.value })
-              }
-              disabled={currentLayer !== 3}
-            />
-          </label>
-          {nameError.layer3 && (
-            <p style={{ color: "red" }}>Please enter the approver's name.</p>
-          )}
+          <label>Noted by: {loggedInUser}</label>
           <p>Date Approved: {details.layer3?.time}</p>
         </div>
         <textarea
           value={remarks.layer3}
           onChange={(e) => setRemarks({ ...remarks, layer3: e.target.value })}
           placeholder="Enter Remarks"
-          disabled={currentLayer !== 3}
+          disabled={currentLayer !== 3 || activeTab !== "pending"}
         />
-        {remarksError.layer3 && (
-          <p style={{ color: "red" }}>Please enter remarks.</p>
-        )}
-        {currentLayer === 3 && (
-          <div className="Buttons">
-            <button className="approve" onClick={() => handleApprove("layer3")}>
-              {buttonLabels.approve || "Approve"}
-            </button>
-            <button className="disapproved" onClick={handleCancel}>
-              {buttonLabels.disapprove || "Deny Listing"}
-            </button>
-          </div>
-        )}
+        {renderButtons("layer3")}
       </div>
+
+      {/* Confirmation Modal */}
+      <Modal
+        isOpen={isFirstModalOpen}
+        onRequestClose={closeFirstModal}
+        className="fmodal"
+        overlayClassName="overlay"
+        contentLabel="Confirmation Modal"
+      >
+        <h2>Confirmation Message</h2>
+        <p>Are you sure you want to deny this listing?</p>
+        <textarea
+          style={{ width: "90%", padding: "5%" }}
+          value={modalRemarks}
+          onChange={(e) => setModalRemarks(e.target.value)}
+          name="remarks"
+          id="remarks"
+          placeholder="Please Provide remarks"
+          required
+        />
+        <div>
+          <button
+            className="button button-secondary"
+            onClick={handleDisapprove}
+          >
+            Disapproved
+          </button>
+          <button className="button button-primary" onClick={closeFirstModal}>
+            Cancel
+          </button>
+        </div>
+      </Modal>
+
+      {/* Success Modal */}
+      <Modal
+        isOpen={isSecondModalOpen}
+        onRequestClose={closeSecondModal}
+        className="smodal"
+        overlayClassName="overlay"
+        contentLabel="Success Modal"
+      >
+        <h2>Deny Listing</h2>
+        <p>The listing has been denied successfully!</p>
+        <button className="button button-primary" onClick={closeSecondModal}>
+          Close
+        </button>
+      </Modal>
     </div>
   );
 };

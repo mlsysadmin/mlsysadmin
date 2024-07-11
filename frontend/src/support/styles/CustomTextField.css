@@ -1,9 +1,13 @@
-.text-field input{
-    padding: 5%;
-    border-radius: 10px;
-    border: 1px #8c9094 solid;
+.text-field input {
+  padding: 5%;
+  border-radius: 10px;
+  border: 1px #8c9094 solid;
 }
-.text-field textarea{
-    border: 1px #8c9094 solid;
-    border-radius: 10px;
+.text-field textarea {
+  border: 1px #8c9094 solid;
+  border-radius: 10px;
+}
+
+textarea[label="Caption"] {
+  height: 60vh;
 }

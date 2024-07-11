@@ -111,12 +111,13 @@ const DisapprovedListingMasterlist = () => {
           </button>
         </td>
         <td>{listing.date_created}</td>
-        <td>{listing.title}</td>
-        <td>{listing.property_type}</td>
-        <td>{listing.listing_type}</td>
-        <td>{listing.floor_area} sqm</td>
+        <td>APPLICATION_ID</td>
+        <td>APPLICANT NAME</td>
+        <td>MOBILE NUMBER</td>
+        <td>{listing.listing_id}</td>
         <td>{listing.price}</td>
-        <td>{listing.location}</td>
+        <td>Date Denied</td>
+        <td>Reason</td>
         <td>{listing.status}</td>
       </tr>
     ));
@@ -132,11 +133,10 @@ const DisapprovedListingMasterlist = () => {
       text: "Listing Masterlist",
       dropdown: true,
       options: [
-        { text: "Open Listings", to: "/ML-Brokerage/Support/open" },
         { text: "Pending Listings", to: "/ML-Brokerage/Support/pending" },
         { text: "Active Listings", to: "/ML-Brokerage/Support/active" },
         {
-          text: "Disapproved Listings",
+          text: "Denied Listings",
           to: "/ML-Brokerage/Support/disapproved",
         },
       ],
@@ -146,26 +146,30 @@ const DisapprovedListingMasterlist = () => {
       dropdown: true,
       options: [
         {
-          text: "Open Applications",
-          to: "/ML-Brokerage/Support/openApplication",
-        },
-        {
           text: "Pending Applications",
           to: "/ML-Brokerage/Support/pendingApplication",
         },
         {
+          text: "Approved Applications",
+          to: "/ML-Brokerage/Support/openApplication",
+        },
+        {
           text: "Denied Applications",
-          to: "/dashboard/Support/disapprovedApplication",
+          to: "/ML-Brokerage/Support/disapprovedApplication",
         },
         {
           text: "Canceled Applications",
-          to: "/dashboard/Support/CanceledApplications ",
+          to: "/ML-Brokerage/Support/CanceledApplications",
         },
         {
           text: "Closed Applications ",
-          to: "/dashboard/Support/ClosedApplications  ",
+          to: "/ML-Brokerage/Support/ClosedApplications",
         },
       ],
+    },
+    {
+      text: "Pre-Approved Request",
+      to: "/pre-approved",
     },
     { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
   ];
@@ -175,7 +179,7 @@ const DisapprovedListingMasterlist = () => {
       <SupportNavigation navLinkProps={navLinks} />
 
       <div className="listings-container">
-        <h1>Manage Disapproved Application</h1>
+        <h1>Manage Denied Application</h1>
         <hr style={{ border: "#D90000 solid 1px", width: "100%" }} />
         <br />
         <div className="controls">
@@ -208,13 +212,14 @@ const DisapprovedListingMasterlist = () => {
                   />
                 </th>
                 <th>Select</th>
-                <th>Date Created</th>
-                <th>Title</th>
-                <th>Property Type</th>
-                <th>Listing Type</th>
-                <th>Floor Area</th>
+                <th>Date Applied</th>
+                <th>Application ID</th>
+                <th>Applicant</th>
+                <th>Mobile Number</th>
+                <th>Property ID</th>
                 <th>Price</th>
-                <th>Location</th>
+                <th>Date Denied</th>
+                <th>Reason</th>
                 <th>Status</th>
               </tr>
             </thead>

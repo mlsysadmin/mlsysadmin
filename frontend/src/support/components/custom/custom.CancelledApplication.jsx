@@ -1,46 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Dummydata from "../../supportDummyData/openListingDummy.json";
+import Dummydata from "../../supportDummyData/openListingDummy.json"; // Replace with actual data fetching logic
 import "../../styles/SupportListingMasterlist.css";
+import FooterComponent from "../layout/FooterComponent";
+import SupportNavigation from "./custom.NavigationComponent";
 import Pagination from "./custom.pagination";
 
-import FooterComponent from "../layout/FooterComponent";
-import Modal from "./Modal";
-
-import SupportNavigation from "./custom.NavigationComponent";
-import PropertyMapModal from "./PropertyMapModal";
-
-const OpenApplicationMasterlist = () => {
-  const [activeTab, setActiveTab] = useState("open");
+const CancelledListingMasterlist = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredListings, setFilteredListings] = useState([]);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [entriesPerPage, setEntriesPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [modalQuestion, setModalQuestion] = useState("");
-  const [remarks, setRemarks] = useState("");
-  const [actionType, setActionType] = useState("");
-  const propertyAddress = "123 Property St, City, Country";
 
   const navigate = useNavigate();
 
+  // Fetch and filter disapproved listings
   useEffect(() => {
-    const fetchListings = async () => {
+    const fetchDisapprovedListings = async () => {
       try {
-        const listings = Dummydata[`${activeTab}_listings`] || [];
-        const filtered = listings.filter((listing) =>
+        // Simulate fetching data from a JSON file
+        const disapprovedListings = Dummydata["cancelled_listings"] || [];
+        const filtered = disapprovedListings.filter((listing) =>
           listing.title.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredListings(filtered);
       } catch (error) {
-        console.error("Error fetching listings:", error);
+        console.error("Error fetching cancelled listings:", error);
         setFilteredListings([]);
       }
     };
 
-    fetchListings();
-  }, [activeTab, searchTerm]);
+    fetchDisapprovedListings();
+  }, [searchTerm]);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -73,10 +65,6 @@ const OpenApplicationMasterlist = () => {
     setCurrentPage(1);
   };
 
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-  };
-
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -85,34 +73,9 @@ const OpenApplicationMasterlist = () => {
     navigate(
       `/ML-Brokerage/Support/Application-details/${listing.listing_id}`,
       {
-        state: { listing, activeTab },
+        state: { listing, activeTab: "cancelled" }, // Pass activeTab explicitly
       }
     );
-  };
-
-  const handleApprove = () => {
-    setModalQuestion("Are you sure you want to approve the selected listings?");
-    setActionType("approve");
-    setModalVisible(true);
-  };
-
-  const handleDisapprove = () => {
-    setModalQuestion(
-      "Are you sure you want to disapprove the selected listings?"
-    );
-    setActionType("disapprove");
-    setModalVisible(true);
-  };
-
-  const handleModalClose = () => {
-    setModalVisible(false);
-    setRemarks("");
-  };
-
-  const handleModalConfirm = () => {
-    console.log(`${actionType} listings with remarks: ${remarks}`);
-    setModalVisible(false);
-    setRemarks("");
   };
 
   const renderListings = (listings) => {
@@ -152,21 +115,12 @@ const OpenApplicationMasterlist = () => {
         <td>APPLICANT NAME</td>
         <td>MOBILE NUMBER</td>
         <td>{listing.listing_id}</td>
-        <td>{listing.property_type}</td>
-        <td>{listing.floor_area} sqm</td>
         <td>{listing.price}</td>
-        <td>{listing.location}</td>
+        <td>Date Denied</td>
+        <td>Reason</td>
         <td>{listing.status}</td>
       </tr>
     ));
-  };
-
-  const tabHeadings = {
-    pending: "Manage Pending Applications",
-    disapproved: "Manage Denied Applications",
-    open: "Manage Approved Applications",
-    Cancelled: "Manage Canceled Applications",
-    closed: "Manage Closed Applications",
   };
 
   const startIndex = (currentPage - 1) * entriesPerPage + 1;
@@ -175,10 +129,6 @@ const OpenApplicationMasterlist = () => {
     filteredListings.length
   );
   const navLinks = [
-    {
-      text: "Create listing",
-      to: "/ML-Brokerage/Support/SupportCreateListingPage",
-    },
     {
       text: "Listing Masterlist",
       dropdown: true,
@@ -227,13 +177,14 @@ const OpenApplicationMasterlist = () => {
   return (
     <>
       <SupportNavigation navLinkProps={navLinks} />
+
       <div className="listings-container">
-        <h1>{tabHeadings[activeTab]}</h1>
+        <h1>Manage Cancelled Application</h1>
         <hr style={{ border: "#D90000 solid 1px", width: "100%" }} />
         <br />
         <div className="controls">
           <div className="entries">
-            <label>Show Entries</label>
+            <h1>Show Entries</h1>
             <select value={entriesPerPage} onChange={handleEntriesChange}>
               <option value={5}>5</option>
               <option value={8}>8</option>
@@ -266,10 +217,9 @@ const OpenApplicationMasterlist = () => {
                 <th>Applicant</th>
                 <th>Mobile Number</th>
                 <th>Property ID</th>
-                <th>Property Type</th>
-                <th>Floor Area</th>
                 <th>Price</th>
-                <th>Location</th>
+                <th>Date Denied</th>
+                <th>Reason</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -277,16 +227,7 @@ const OpenApplicationMasterlist = () => {
           </table>
         </div>
         <div className="btns">
-          {activeTab !== "disapproved" && (
-            <div className="actions">
-              <button id="approve" onClick={handleApprove}>
-                Approve
-              </button>
-              <button id="disapprove" onClick={handleDisapprove}>
-                Disapprove
-              </button>
-            </div>
-          )}
+          <div></div>
           <Pagination
             totalItems={filteredListings.length}
             itemsPerPage={entriesPerPage}
@@ -298,19 +239,10 @@ const OpenApplicationMasterlist = () => {
           Showing {startIndex} to {endIndex} of {filteredListings.length}{" "}
           entries
         </div>
+        <FooterComponent />
       </div>
-      <FooterComponent />
-      <Modal
-        show={modalVisible}
-        onClose={handleModalClose}
-        onConfirm={handleModalConfirm}
-        question={`Are you sure you want to ${actionType} the selected listings?`}
-        remarks={remarks}
-        setRemarks={setRemarks}
-        actionType={actionType}
-      />
     </>
   );
 };
 
-export default OpenApplicationMasterlist;
+export default CancelledListingMasterlist;
