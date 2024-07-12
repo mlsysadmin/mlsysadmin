@@ -180,7 +180,7 @@ const ApprovalComponent = ({
       return (
         <div className="Buttons">
           <button className="approve" onClick={() => handleApprove(layer)}>
-            {buttonLabels.approve || "Acknowledge"}
+            {buttonLabels.approve || "Approve"}
           </button>
           <button className="disapproved" onClick={() => handleCancel(layer)}>
             {buttonLabels.disapprove || "Deny Listing"}
