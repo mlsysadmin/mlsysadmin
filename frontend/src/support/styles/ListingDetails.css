@@ -40,6 +40,7 @@ h2 {
   justify-content: flex-end;
   gap: 1rem;
   padding: 10px;
+  width: 100%;
 }
 .fields {
   width: 100%;

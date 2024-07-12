@@ -17,6 +17,8 @@ import {
   Signinpage,
   CancelledApplicationpage,
   ClosedApplicationpage,
+  PreApprovalRequestsPage,
+  PreApprovalRequestsListingPage,
 } from "../support/pages/index.js";
 
 const routes = [
@@ -88,6 +90,14 @@ const routes = [
           {
             path: "Something/Similar",
             element: <h1>Simlar to Me</h1>,
+          },
+          {
+            path: "pre-approved",
+            element: <PreApprovalRequestsPage />,
+          },
+          {
+            path: "pre-approved/:listingId",
+            element: <PreApprovalRequestsListingPage />,
           },
         ],
       },

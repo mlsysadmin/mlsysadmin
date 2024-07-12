@@ -13,10 +13,7 @@ const SupportNavigation = ({ navLinkProps }) => {
       options: [
         { text: "Pending Listings", to: "/ML-Brokerage/Support/pending" },
         { text: "Active Listings", to: "/ML-Brokerage/Support/active" },
-        {
-          text: "Denied Listings",
-          to: "/ML-Brokerage/Support/disapproved",
-        },
+        { text: "Denied Listings", to: "/ML-Brokerage/Support/disapproved" },
       ],
     },
     {
@@ -27,28 +24,22 @@ const SupportNavigation = ({ navLinkProps }) => {
           text: "Pending Applications",
           to: "/ML-Brokerage/Support/pendingApplication",
         },
-        {
-          text: "Approved Applications",
-          to: "/ML-Brokerage/Support/open",
-        },
+        { text: "Approved Applications", to: "/ML-Brokerage/Support/open" },
         {
           text: "Denied Applications",
           to: "/dashboard/Support/disapprovedApplication",
         },
         {
           text: "Canceled Applications",
-          to: "/dashboard/Support/CanceledApplications ",
+          to: "/dashboard/Support/CanceledApplications",
         },
         {
-          text: "Closed Applications ",
-          to: "/dashboard/Support/ClosedApplications  ",
+          text: "Closed Applications",
+          to: "/dashboard/Support/ClosedApplications",
         },
       ],
     },
-    {
-      text: "Pre-Approved Request",
-      to: "/pre-approved",
-    },
+    { text: "Pre-Approved Request", to: "/ML-Brokerage/Support/pre-approved" },
     { text: "Client Management", to: "/client-management" },
   ];
 
@@ -58,15 +49,11 @@ const SupportNavigation = ({ navLinkProps }) => {
   const linksToRender = navLinkProps || defaultNavLinkProps;
 
   const handleNavLinkClick = () => {
-    setMenuOpen(false); // Close menu after selecting a link
+    setMenuOpen(false);
   };
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-  };
-
-  const isLinkActive = (link) => {
-    return location.pathname === link.to;
   };
 
   return (
@@ -88,11 +75,7 @@ const SupportNavigation = ({ navLinkProps }) => {
             <React.Fragment key={index}>
               {link.dropdown ? (
                 <div className="dropdown">
-                  <div
-                    className={`nav-link ${
-                      isLinkActive(link) ? "nav-link-active" : ""
-                    }`}
-                  >
+                  <div className="nav-link">
                     <p className="navlnk" onClick={toggleMenu}>
                       {link.text} <IoMdArrowDropdown />
                     </p>
@@ -102,11 +85,9 @@ const SupportNavigation = ({ navLinkProps }) => {
                       <NavLink
                         key={optionIndex}
                         to={option.to}
-                        className={`nav-link ${
-                          location.pathname === option.to
-                            ? "nav-link-active"
-                            : ""
-                        }`}
+                        className={({ isActive }) =>
+                          `nav-link ${isActive ? "nav-link-active" : ""}`
+                        }
                         onClick={handleNavLinkClick}
                       >
                         {option.text}
@@ -117,9 +98,9 @@ const SupportNavigation = ({ navLinkProps }) => {
               ) : (
                 <NavLink
                   to={link.to}
-                  className={`nav-link ${
-                    isLinkActive(link) ? "nav-link-active" : ""
-                  }`}
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "nav-link-active" : ""}`
+                  }
                   onClick={handleNavLinkClick}
                 >
                   {link.text}

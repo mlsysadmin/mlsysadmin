@@ -8,14 +8,25 @@ import SupportNavigation from "./custom/custom.NavigationComponent";
 import FooterComponent from "./layout/FooterComponent";
 import first from "../assets/images/first.jpg";
 import PropertyMapButton from "./custom/PropertyMapModal";
-import ApprovalComponent from "./custom/ApprovalComponent";
+import ApprovalComponent from "./custom/ApplicationApprovalComponent";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap"; // Import Reactstrap components
+import CloseApplicationModal from "./custom/CloseApplicationModal";
 
 const ApplicationDetails = forwardRef((props, ref) => {
+  const [isConfirmationOpen, setConfirmationOpen] = useState(false);
+  const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const { listing, activeTab } = location.state || {};
   const [detailedListing, setDetailedListing] = useState(null);
+  const toggleConfirmationModal = () =>
+    setConfirmationOpen(!isConfirmationOpen);
+  const handleCloseApplication = ({ buyerName, mobileNumber, remarks }) => {
+    console.log("Closing application with:", buyerName, mobileNumber, remarks);
+    setSuccessModalOpen(true);
+  };
 
+  const toggleSuccessModal = () => setSuccessModalOpen(!isSuccessModalOpen);
   useEffect(() => {
     if (listing) {
       const listings = Dummydata[`${activeTab}_listings`] || [];
@@ -35,7 +46,7 @@ const ApplicationDetails = forwardRef((props, ref) => {
   const tabHeadings = {
     pending: "Pending Applications Details",
     disapproved: "Denied Applications Details",
-    open: " Approved Applications Details",
+    open: " Active Application Details",
     active: "  Active Applications Details",
     cancelled: " Canceled Applications Details",
     closed: " Closed Applications Details",
@@ -90,11 +101,16 @@ const ApplicationDetails = forwardRef((props, ref) => {
     },
     {
       text: "Pre-Approved Request",
-      to: "/pre-approved",
+      to: "/ML-Brokerage/Support/pre-approved",
     },
-    { text: "Client Management", to: "/ML-Brokerage/Support" },
+    { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
   ];
-
+  const tabColors = {
+    disapproved: "red",
+    open: "green",
+    cancelled: "red",
+    closed: "green",
+  };
   return (
     <div className="application-details-container">
       <SupportNavigation navLinkProps={navLinks} />
@@ -108,6 +124,36 @@ const ApplicationDetails = forwardRef((props, ref) => {
         <hr style={{ border: "#D90000 solid 1px", width: "100%" }} />
         <div className="contentContainer">
           <div className="mainContent">
+            {activeTab !== "pending" && (
+              <div className="details-header">
+                {activeTab === "cancelled" && (
+                  <div className="detailsCancelled">
+                    <p>Buyer: Juan Dela Cruz</p>
+                    <p>Date: 07-04-2024</p>
+                    <p>Status: Canceled</p>
+                    <p>Remarks: Found a Better Property</p>
+                  </div>
+                )}
+                {activeTab === "closed" && (
+                  <div className="detailsClosed">
+                    <p>Buyer Mobile Number: 09479992152</p>
+                    <p>Buyer: Juan Dela Cruz</p>
+                    <p>Date: 07-04-2024</p>
+                    <p>Status: Closed</p>
+                    <p>Remarks: Found a Better Property</p>
+                  </div>
+                )}
+                {activeTab === "disapproved" && (
+                  <div className="detailsClosed"></div>
+                )}
+                {activeTab === "open" && <div className="detailsClosed"></div>}
+                <center>
+                  <h1 style={{ color: tabColors[activeTab], width: "100%" }}>
+                    {tabHeadings[activeTab]}
+                  </h1>
+                </center>
+              </div>
+            )}
             <h1 className="mainTitle">Property Details</h1>
             <div className="right">
               <div className="topCard">
@@ -317,9 +363,48 @@ const ApplicationDetails = forwardRef((props, ref) => {
             </div>
           </div>
           <div style={{ width: "100%" }}>
-            <div className="approve">
+            <div className="approval">
               <ApprovalComponent activeTab={activeTab} />
             </div>
+          </div>
+          <div className="closeApplication">
+            {activeTab === "open" && (
+              <Button
+                className="closeApplicationBtn"
+                color="danger"
+                onClick={toggleConfirmationModal}
+              >
+                Close Application
+              </Button>
+            )}
+
+            <CloseApplicationModal
+              isOpen={isConfirmationOpen}
+              toggleModal={toggleConfirmationModal}
+              onCloseApplication={handleCloseApplication}
+            />
+
+            <Modal
+              className="success"
+              isOpen={isSuccessModalOpen}
+              toggle={toggleSuccessModal}
+            >
+              <ModalHeader
+                className="successHeader"
+                toggle={toggleSuccessModal}
+              >
+                Successful Message
+              </ModalHeader>
+              <ModalBody className="successBody">
+                The application has been successfully closed.{" "}
+              </ModalBody>
+              <br />
+              <ModalFooter className="okay">
+                <Button color="primary" onClick={toggleSuccessModal}>
+                  Close
+                </Button>
+              </ModalFooter>
+            </Modal>
           </div>
         </div>
 
