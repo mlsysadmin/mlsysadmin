@@ -219,7 +219,7 @@ const OpenApplicationMasterlist = () => {
     },
     {
       text: "Pre-Approved Request",
-      to: "/pre-approved",
+      to: "/ML-Brokerage/Support/pre-approved",
     },
     { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
   ];
@@ -277,16 +277,7 @@ const OpenApplicationMasterlist = () => {
           </table>
         </div>
         <div className="btns">
-          {activeTab !== "disapproved" && (
-            <div className="actions">
-              <button id="approve" onClick={handleApprove}>
-                Approve
-              </button>
-              <button id="disapprove" onClick={handleDisapprove}>
-                Disapprove
-              </button>
-            </div>
-          )}
+          <div></div>
           <Pagination
             totalItems={filteredListings.length}
             itemsPerPage={entriesPerPage}
@@ -300,15 +291,6 @@ const OpenApplicationMasterlist = () => {
         </div>
       </div>
       <FooterComponent />
-      <Modal
-        show={modalVisible}
-        onClose={handleModalClose}
-        onConfirm={handleModalConfirm}
-        question={`Are you sure you want to ${actionType} the selected listings?`}
-        remarks={remarks}
-        setRemarks={setRemarks}
-        actionType={actionType}
-      />
     </>
   );
 };

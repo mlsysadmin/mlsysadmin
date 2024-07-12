@@ -166,7 +166,7 @@ const DisapprovedListingMasterlist = () => {
     },
     {
       text: "Pre-Approved Request",
-      to: "/pre-approved",
+      to: "/ML-Brokerage/Support/pre-approved",
     },
     { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
   ];

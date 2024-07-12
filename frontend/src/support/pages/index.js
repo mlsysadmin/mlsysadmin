@@ -14,6 +14,8 @@ import ApplicationDetailspage from "./ApplicationDetails.page";
 import Signinpage from "./signin.page";
 import CancelledApplicationpage from "./CancelledApplication.page";
 import ClosedApplicationpage from "./ClosedApplication.page";
+import PreApprovalRequestsPage from "./Pre-ApprovalRequests.Page";
+import PreApprovalRequestsListingPage from "./PreApprovalRequestsListing.Page";
 
 export {
   MainOutlet,
@@ -32,4 +34,6 @@ export {
   Signinpage,
   CancelledApplicationpage,
   ClosedApplicationpage,
+  PreApprovalRequestsPage,
+  PreApprovalRequestsListingPage,
 };

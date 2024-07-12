@@ -7,8 +7,8 @@ import Modal from "./Modal";
 import FooterComponent from "../layout/FooterComponent";
 import SupportNavigation from "./custom.NavigationComponent";
 
-const ClosedListingMasterlist = () => {
-  const [activeTab, setActiveTab] = useState("closed");
+const PreApprovalRequests = () => {
+  const [activeTab, setActiveTab] = useState("pending");
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredListings, setFilteredListings] = useState([]);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
@@ -78,12 +78,9 @@ const ClosedListingMasterlist = () => {
   };
 
   const handleShowDetails = (listing) => {
-    navigate(
-      `/ML-Brokerage/Support/Application-details/${listing.listing_id}`,
-      {
-        state: { listing, activeTab },
-      }
-    );
+    navigate(`/ML-Brokerage/Support/pre-approved/${listing.listing_id}`, {
+      state: { listing, activeTab },
+    });
   };
 
   const handleApprove = () => {
@@ -152,13 +149,13 @@ const ClosedListingMasterlist = () => {
         <td>{listing.floor_area} sqm</td>
         <td>{listing.price}</td>
         <td>{listing.location}</td>
-        <td>{listing.status}</td>
+        <td>Status</td>
       </tr>
     ));
   };
 
   const tabHeadings = {
-    pending: "Manage Pending Applications",
+    pending: "Manage Pre-Approval Requests",
     disapproved: "Manage Denied Applications",
     open: "Manage Approved Applications",
     active: " Manage Active Applications",
@@ -273,7 +270,16 @@ const ClosedListingMasterlist = () => {
           </table>
         </div>
         <div className="btns">
-          <div></div>
+          {activeTab !== "disapproved" && (
+            <div className="actions">
+              <button id="approve" onClick={handleApprove}>
+                Approve
+              </button>
+              <button id="disapprove" onClick={handleDisapprove}>
+                Disapprove
+              </button>
+            </div>
+          )}
           <Pagination
             totalItems={filteredListings.length}
             itemsPerPage={entriesPerPage}
@@ -290,7 +296,7 @@ const ClosedListingMasterlist = () => {
           show={modalVisible}
           onClose={handleModalClose}
           onConfirm={handleModalConfirm}
-          question={`Are you sure you want to ${actionType} the selected listings?`}
+          question={`Are you sure you want to ${actionType} the selected Requests?`}
           remarks={remarks}
           setRemarks={setRemarks}
           actionType={actionType}
@@ -300,4 +306,4 @@ const ClosedListingMasterlist = () => {
   );
 };
 
-export default ClosedListingMasterlist;
+export default PreApprovalRequests;
