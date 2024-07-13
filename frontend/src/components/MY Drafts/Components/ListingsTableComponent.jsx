@@ -61,17 +61,8 @@ const ListingsTable = () => {
       status: "Draft",
       action: ["Edit"],
     },
-    {
-      date: "03-11-2024",
-      propertyId: "11X8NBSADAFO",
-      propertyType: "Condominium",
-      type: "For Sale",
-      floorArea: "30 sqm",
-      price: "5,000,000",
-      location: "Mandaue City, Cebu",
-      status: "Draft",
-      action: ["Edit"],
-    },
+    
+
     // Add more listings as needed
   ]);
 
@@ -107,7 +98,8 @@ const ListingsTable = () => {
             </div>
           </div>
         </div>
-        <table className="table">
+        <div className="listings-whole-table">
+        <table className="listings-table">
           <thead>
             <tr>
               <th>Select</th>
@@ -125,7 +117,7 @@ const ListingsTable = () => {
             {listings.map((listing, index) => (
               <tr key={index} className={index % 2 === 0 ? "even" : "odd"}>
                 <td>
-                  <button className="show-details-button">Show Details</button>
+                  <button className="listings-show-details-button">Show Details</button>
                 </td>
                 <td>{listing.date}</td>
                 <td>{listing.propertyId}</td>
@@ -140,6 +132,7 @@ const ListingsTable = () => {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
       <div className="d-flex justify-content-end" style={{ marginLeft: "85%", marginTop: "10%" }}>
         <nav aria-label="Page navigation example" className="pagination-container">

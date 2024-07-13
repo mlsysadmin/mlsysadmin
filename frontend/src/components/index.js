@@ -33,7 +33,7 @@ import SubmitApplicationCustom from "./custom/application/submitapplication.cust
 import DiscoverHomeComponent from "./DiscoverHomeComponent";
 import BuyAHomeComponent from "./BuyAHomeComponent";
 import HouseForRentComponent from "./HouseForRentComponent";
-import NewPageComponent  from "./NewPageComponent";
+import NewPageComponent from "./NewPageComponent";
 import RefinanceComponent from "./RefinanceComponent";
 import InsuranceGuideComponent from "./InsuranceGuideComponent";
 import ContactUsComponent from "./ContactUsComponent";
@@ -41,43 +41,52 @@ import LoanCalculatorComponent from "./LoanCalculatorComponent";
 import MortgageComponent from "./MortgageComponent";
 import RentComponent from "./RentComponent";
 import SellComponent from "./SellComponent";
+import { ShowDetailsProcessing } from "./ShowDetailsProcessing";
+import { ShowDetailsDenied } from "./ShowDetailsDenied";
+import { SoldPropertyDetails } from "./MY Drafts/SoldPropertyDetails";
+import { ActiveListingDetails } from "./MY Drafts/ActiveListingDetails";
 
 
 
-export{
-    ListingSearchLoggedin,
-    LoginModal,
-    RegistrationModal,
-    ModalComponents,
-    PreviewListing,
-    DraftSidebar,
-    ListingsTable,
-    SoldProperties,
-    ListingSummaryLists,
-    ClientManagement,
-    ActiveSummaryLists,
-    Drafts,
-    NewPageComponent,
-    PropertiesForRent,
-    FooterComponent,
-    CustomMlFooter,
-    HeaderContainer,
-    SideBar,
-    MainLayout,
-    HouseForRentComponent,
-    DiscoverHomeComponent,
-    BuyAHomeComponent,
-    RefinanceComponent,
-    InsuranceGuideComponent,
-    WrapUpDetails,
-    SubmitApplicationCustom,
-    CustomAdvanceSearch,
-    AllComponent,
-    FeaturedComponent,
-    ListingSearch,
-    ContactUsComponent,
-    LoanCalculatorComponent,
-    MortgageComponent,
-    RentComponent,
-    SellComponent
-}
+
+export {
+  ActiveListingDetails,
+  ShowDetailsProcessing,
+  ShowDetailsDenied,
+  ListingSearchLoggedin,
+  LoginModal,
+  RegistrationModal,
+  ModalComponents,
+  PreviewListing,
+  DraftSidebar,
+  ListingsTable,
+  SoldProperties,
+  ListingSummaryLists,
+  ClientManagement,
+  ActiveSummaryLists,
+  Drafts,
+  NewPageComponent,
+  PropertiesForRent,
+  FooterComponent,
+  CustomMlFooter,
+  HeaderContainer,
+  SideBar,
+  MainLayout,
+  HouseForRentComponent,
+  DiscoverHomeComponent,
+  BuyAHomeComponent,
+  RefinanceComponent,
+  InsuranceGuideComponent,
+  WrapUpDetails,
+  SubmitApplicationCustom,
+  CustomAdvanceSearch,
+  AllComponent,
+  FeaturedComponent,
+  ListingSearch,
+  ContactUsComponent,
+  LoanCalculatorComponent,
+  MortgageComponent,
+  RentComponent,
+  SellComponent,
+  SoldPropertyDetails,
+};

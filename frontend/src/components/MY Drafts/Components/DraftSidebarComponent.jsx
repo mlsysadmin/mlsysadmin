@@ -11,8 +11,7 @@ const SidebarContainer = (props) => {
       className={`sidebar-container ${props.isOpen ? "open" : ""}`}
       onClick={props.onClose}
     >
-      {" "}
-      {props.children}{" "}
+      {props.children}
     </div>
   );
 };
@@ -32,29 +31,40 @@ const SidebarMenuItem = (props) => {
 const CreateListingButton = (props) => {
   return <button className="create-listing-button">{props.children}</button>;
 };
+function openSidebar() {
+  document.querySelector('.sidebar-container').classList.add('open');
+  document.getElementById('overlay').style.display = 'block';
+}
 
-const HamburgerButton = ({ onClick }) => {
+function closeSidebar() {
+  document.querySelector('.sidebar-container').classList.remove('open');
+  document.getElementById('overlay').style.display = 'none';
+}
+
+
+const HamburgerButton = ({ isOpen, onClick }) => {
   return (
-    <div className="hamburger" onClick={onClick}>
+    <div className={`hamburger ${isOpen ? "open" : ""}`} onClick={onClick}>
       <div className="line"></div>
       <div className="line"></div>
       <div className="line"></div>
+      <div className="close"></div>
     </div>
   );
 };
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isClose, setIsClose] = useState(true);
+
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
-    setIsClose(!isClose);
   };
 
   return (
+  <div className="whole-sidebar">
     <Container>
-      <HamburgerButton onClick={toggleSidebar} />
-      <SidebarContainer isOpen={isOpen} isClose={isClose}>
+      <HamburgerButton isOpen={isOpen} onClick={toggleSidebar} />
+      <SidebarContainer isOpen={isOpen} onClose={toggleSidebar}>
         <SidebarHeader>Marie Rodriguez</SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -77,10 +87,13 @@ const Sidebar = () => {
               Sold Properties
             </a>
           </SidebarMenuItem>
+          <CreateListingButton>Create Listing</CreateListingButton>
         </SidebarMenu>
+        
       </SidebarContainer>
-      <CreateListingButton>Create Listing</CreateListingButton>
+     
     </Container>
+    </div>
   );
 };
 

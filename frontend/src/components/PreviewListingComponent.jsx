@@ -44,20 +44,37 @@ import { Slider, Carousel } from "antd";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
 const PreviewListing = () => {
-  const [stepsGap, setStepsGap] = React.useState(0);
-  const [homePrice, setHomePrice] = React.useState(100000); // Default home price value
-  const [downPayment, setDownPayment] = React.useState(10000); // Default down payment value
   const [amountInPesos, setPesos] = React.useState(500);
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [smallImages, setSmallImages] = React.useState([livingroom, bathroom]); // Initial small images
   const [photoCount, setPhotoCount] = React.useState(); // Initial photo count
+  const [stepsGap, setStepsGap] = React.useState(20); // Interest rate in percent
+  const [homePrice, setHomePrice] = React.useState(1000000); // Initial home price
+  const [downPayment, setDownPayment] = React.useState(100000); // Initial down payment
 
+  const term = 30; // Fixed term in years
+  const termInMonths = term * 12; // Convert term to months
+
+  // Calculate total home price with interest
+  const totalHomePrice = homePrice + homePrice * (stepsGap / 100);
+
+  // Calculate monthly payment
+  const monthlyPayment = (totalHomePrice - downPayment) / termInMonths;
   const handlePesosChange = (newPesos) => {
     setPesos(newPesos);
   };
 
   //sa Kadtu nig pag next sa mga photo
-  const images = [bedroom,livingroom, bathroom ,image701, image702, image703, image704, image705];
+  const images = [
+    bedroom,
+    livingroom,
+    bathroom,
+    image701,
+    image702,
+    image703,
+    image704,
+    image705,
+  ];
 
   const previousImage = () => {
     const newIndex = (currentIndex + 1) % images.length;
@@ -120,84 +137,89 @@ const PreviewListing = () => {
       >
         <div className="real-estate-listing-card">
           <div className="galleryComponent">
-          <div className="gallery">
-            <div className="image-container-large">
-              <img
-                src={images[currentIndex]}
-                alt="Preview"
-                className="all-images"
-              />
+            <div className="gallery">
+              <div className="image-container-large">
+                <img
+                  src={images[currentIndex]}
+                  alt="Preview"
+                  className="all-images"
+                />
 
-              <div className="centered">PHP 120,000,000</div>
+                <div className="centered">PHP 120,000,000</div>
 
-              <div className="icns">
-                <div className="bottom-right">
-                  <div className="icon-circle" onClick={toggleFavorite}>
-                    <div
-                      className={`heart-icon ${isFavorite ? "favorite" : ""}`}
-                    >
-                      <span className="material-symbols-outlined">
-                        {isFavorite ? "favorite" : "favorite_border"}
-                      </span>
+                <div className="icns">
+                  <div className="bottom-right">
+                    <div className="icon-circle" onClick={toggleFavorite}>
+                      <div
+                        className={`heart-icon ${isFavorite ? "favorite" : ""}`}
+                      >
+                        <span className="material-symbols-outlined">
+                          {isFavorite ? "favorite" : "favorite_border"}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="right">
+                    <div className="icon-circle">
+                      <img
+                        src={filter_alt}
+                        className="fas fa-filter"
+                        alt="Filter"
+                      />
+                    </div>
+                  </div>
+                  <div className="Printer">
+                    <div className="icon-circle">
+                      <img src={printer} alt="Printer" />
+                    </div>
+                  </div>
+                  <div className="share">
+                    <div className="icon-circle">
+                      <img src={share} alt="Share" />
                     </div>
                   </div>
                 </div>
-                <div className="right">
-                  <div className="icon-circle">
+                <div className="prev-next">
+                  <div className="backward" onClick={previousImage}>
                     <img
-                      src={filter_alt}
-                      className="fas fa-filter"
-                      alt="Filter"
+                      src={fabackward}
+                      width="40"
+                      height="40"
+                      alt="Previous"
                     />
                   </div>
-                </div>
-                <div className="Printer">
-                  <div className="icon-circle">
-                    <img src={printer} alt="Printer" />
+
+                  <div className="fanext" onClick={nextImage}>
+                    <FontAwesomeIcon icon={faPlay} />
                   </div>
                 </div>
-                <div className="share">
-                  <div className="icon-circle">
-                    <img src={share} alt="Share" />
+
+                <div className="preview-list-property-details">
+                  <div className="pl-for-sale">For Sale</div>
+                  <h2>5 Bedroom House for Rent in Maria Luisa Park</h2>
+                  <div className="location">
+                    <img src={location} alt="Location" /> Maria Luisa Estate
+                    Park, Banilad, Cebu City
                   </div>
                 </div>
               </div>
-              <div className="prev-next">
-                <div className="backward" onClick={previousImage}>
-                  <img src={fabackward} width="40" height="40" alt="Previous" />
-                </div>
-
-                <div className="fanext" onClick={nextImage}>
-                  <FontAwesomeIcon icon={faPlay} />
-                </div>
-              </div>
-
-              <div className="preview-list-property-details">
-                <div className="pl-for-sale">For Sale</div>
-                <h2>5 Bedroom House for Rent in Maria Luisa Park</h2>
-                <div className="location">
-                  <img src={location} alt="Location" /> Maria Luisa Estate Park,
-                  Banilad, Cebu City
+              <div className="small-images">
+                {smallImages.map((src, idx) => (
+                  <div key={idx} className="small-image">
+                    <img
+                      src={src}
+                      alt={`Small ${idx + 1}`}
+                      className="small-img"
+                    />
+                  </div>
+                ))}
+                <div className="camera-info">
+                  <img src={camera} alt="Camera Icon" className="camera" />
+                  <h2>{currentIndex + 1} </h2>
+                  <p className="photos">{photoCount} Photos</p>
                 </div>
               </div>
             </div>
-            <div className="small-images">
-              {smallImages.map((src, idx) => (
-                <div key={idx} className="small-image">
-                  <img
-                    src={src}
-                    alt={`Small ${idx + 1}`}
-                    className="small-img"
-                  />
-                </div>
-              ))}
-              <div className="camera-info">
-                <img src={camera} alt="Camera Icon" className="camera" />
-                <h2>{currentIndex + 1} </h2>
-                <p className="photos">{photoCount} Photos</p>
-              </div>
-            </div>
-          </div>
           </div>
           <div className="previewlist-overview">
             <span>OVERVIEW</span>
@@ -424,12 +446,11 @@ const PreviewListing = () => {
             <div className="right-side-container">
               <div className="calculator">
                 <h2>Calculator</h2>
-
                 <div className="calc">
                   <div className="calculatorLeft">
                     <div className="calculator-input">
                       <label>Term</label>
-                      <div className="calculator-field">
+                      <div className="calculator-field-term">
                         <img
                           src={iconcalcu}
                           alt="Iconcalcu"
@@ -439,11 +460,9 @@ const PreviewListing = () => {
                             margin: "10px",
                           }}
                         />
-
                         <span>30 Years Fixed</span>
                       </div>
                     </div>
-
                     <div className="calculator-input">
                       <label>Interest</label>
                       <div className="calculator-field">
@@ -457,7 +476,6 @@ const PreviewListing = () => {
                             marginBottom: "30px",
                           }}
                         />
-
                         <div className="slider-container">
                           <div className="slider-value">{stepsGap}%</div>
                           <Slider
@@ -475,7 +493,6 @@ const PreviewListing = () => {
                         </div>
                       </div>
                     </div>
-
                     <div className="calculator-input">
                       <label>Home Price</label>
                       <div className="calculator-field">
@@ -489,7 +506,6 @@ const PreviewListing = () => {
                             marginBottom: "30px",
                           }}
                         />
-
                         <div className="slider-container">
                           <div className="slider-value">
                             PHP {homePrice.toLocaleString()}
@@ -509,7 +525,6 @@ const PreviewListing = () => {
                         </div>
                       </div>
                     </div>
-
                     <div className="calculator-input">
                       <label>Down Payment</label>
                       <div className="calculator-field">
@@ -545,30 +560,37 @@ const PreviewListing = () => {
                   </div>
                   <div className="calculatorRight">
                     <div className="int">
-                      <b>30</b>
+                      <b>{term}</b>
                       <p>Years Fixed</p>
                     </div>
                     <div className="exp">
-                      <b>0%</b>
+                      <b>{stepsGap}%</b>
                       <p>Interest</p>
                     </div>
                     <Flex gap="small" wrap>
                       <Progress
                         type="circle"
                         percent={100}
-                        format={(percent) => `${percent} PHP `}
+                        format={() => (
+                          <div>
+                            <div className="pesos">
+                              PHP {monthlyPayment.toFixed(2)}
+                            </div>
+                            <div className="per-month">per month</div>
+                          </div>
+                        )}
+                        strokeColor="#D90000"
                       />
                     </Flex>
                     <div className="calculator-result">
                       <p className="pi">Principle and Interest</p>
                       <div className="result-amount">
                         <span className="red-bar"></span>
-                        PHP 200
+                        PHP {monthlyPayment.toFixed(2)}
                       </div>
                     </div>
                   </div>
                 </div>
-
                 <button className="apply-button">APPLY NOW</button>
               </div>
 
