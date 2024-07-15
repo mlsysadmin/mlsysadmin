@@ -1,20 +1,18 @@
 import { Layout } from 'antd';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { MainLayout } from '../components';
 import { Content } from 'antd/es/layout/layout';
+import { MainLayout } from '../components';
 
 
 const MainOutlet = () => {
   return (
-    <>
-      <Layout>
-        <MainLayout />
+    <Layout>
+        <MainLayout/>
         <Content>
-          <Outlet />
+            <Outlet/>
         </Content>
-      </Layout>
-    </>
+    </Layout>
   )
 }
 

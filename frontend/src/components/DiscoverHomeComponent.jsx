@@ -11,8 +11,9 @@ import "../styles/discoverhome.css";
 
 const DiscoverHomeComponent = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const [monthlyPayment, setMonthlyPayment] = useState(0);
   const [HomepriceRange, setHomePriceRange] = useState([100000]);
-  const [DppriceRange, setDpHomePriceRange] = useState([100000]);
+  const [DppriceRange, setDpHomePriceRange] = useState([10000]);
   const [interestRate, setInterestRate] = useState(0);
 
   const handleHomePriceRangeChange = (values) => {
@@ -27,6 +28,23 @@ const DiscoverHomeComponent = () => {
   const toggleAccordion = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
   };
+
+  const computeMortgage = () =>{
+    const dpPriceRange = DppriceRange[0];
+    const homePriceRange = HomepriceRange[0];
+    const interestRateDecimal = interestRate / 100;
+
+
+
+    const monthlyInterestRate = interestRateDecimal / 12;
+    const loanAmount = homePriceRange - dpPriceRange;
+    const numberOfPayments = 30 * 12;
+    const totalMonthlyPayment = loanAmount *
+    ((monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) /
+      (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1));
+
+    setMonthlyPayment(totalMonthlyPayment.toFixed(2));
+  } 
   const accordionData = [
     {
       label: "How much do you need to put down on a house?",
@@ -68,17 +86,18 @@ const DiscoverHomeComponent = () => {
                 </span>
               </div>
               <div className="discover-upper-btn">
-                <div className="refinance-a-home">
-                  <div className="refinance-btn">
-                    <a href="/refinance">
-                      <span>Refinance a Home</span>
-                    </a>
-                  </div>
-                </div>
+                
                 <div className="buy-a-home">
                   <div className="buy-home-text">
                     <a href="/buy-a-home">
                       <span>Buy a Home</span>
+                    </a>
+                  </div>
+                </div>
+                <div className="refinance-a-home">
+                  <div className="refinance-btn">
+                    <a href="/refinance">
+                      <span>Refinance a Home</span>
                     </a>
                   </div>
                 </div>
@@ -135,7 +154,7 @@ const DiscoverHomeComponent = () => {
                     <Slider
                       range
                       min={100000}
-                      max={1000000}
+                      max={5000000}
                       step={100}
                       value={HomepriceRange}
                       onChange={handleHomePriceRangeChange}
@@ -167,7 +186,7 @@ const DiscoverHomeComponent = () => {
                       <span className="downpayment-amount">{DppriceRange}</span>
                       <Slider
                         range
-                        min={100000}
+                        min={10000}
                         max={1000000}
                         step={100}
                         value={DppriceRange}
@@ -193,14 +212,14 @@ const DiscoverHomeComponent = () => {
               </div>
             </div>
             <div className="mortgage-btn-group">
-              <div className="compute-mortgage">
+              <div className="compute-mortgage" onClick={computeMortgage}>
                 <span>Compute Mortgage</span>
               </div>
               <div className="getpre-approvedbtn">
                 <span className="text-wrapper">
                   <a
                     href="/mortgage"
-                    style={{ textDecoration: "none", color: "#ff2800" }}
+                    style={{ textDecoration: "none", color: "#D90000" }}
                   >
                     Get pre-approved
                   </a>
@@ -221,14 +240,14 @@ const DiscoverHomeComponent = () => {
                     percent={85}
                     width={200}
                     strokeWidth={10}
-                    strokeColor="#ff2800"
+                    strokeColor="#D90000"
                     trailColor="#d900002b"
                     format={(percent) => (
                       <div
                         style={{ fontSize: "16px", fontWeight: "bold" }}
                         className="montly-pay-cal"
                       >
-                        PHP 200 <br />
+                        PHP {monthlyPayment} <br />
                         per month
                       </div>
                     )}
@@ -275,7 +294,7 @@ const DiscoverHomeComponent = () => {
                         alt="Line"
                         src="https://cdn.animaapp.com/projects/64e41d552340cba66b90f01a/releases/6667bfedd77ca3da5aa489ba/img/line-31.svg"
                       />
-                      <div className="monthly-amount">PHP200</div>
+                      <div className="monthly-amount">PHP {monthlyPayment}</div>
                     </div>
                   </div>
                 </div>
@@ -291,19 +310,25 @@ const DiscoverHomeComponent = () => {
             Home financing to make your goals a reality.
           </span>
         </div>
+      
         <div className="content-4">
-          <div className="purchase">
-            <div className="overlap-group">
-              <img src={homeicon} alt="home" />
-              <span className="span">I want to purchase a home.</span>
+          <a href="/buy-a-home">
+            <div className="purchase">
+              <div className="overlap-group">
+                <img src={homeicon} alt="home" />
+                <span className="span" style={{color:"black"}}>I want to purchase a home.</span>
+              </div>
             </div>
-          </div>
-          <div className="refinance">
-            <div className="overlap-group">
-              <img src={dollaricon} alt="dollar" />
-              <span className="span">I want to refinance my home </span>
+          </a>  
+          <a  href="/refinance" >
+            <div className="refinance">
+              <div className="overlap-group">
+                <img src={dollaricon} alt="dollar" />
+                  <span className="span" style={{color:"black"}}>I want to refinance my home </span>
+              </div>
             </div>
-          </div>
+          </a>
+          
         </div>
       </div>
       <div className="faqs-container">
@@ -325,7 +350,7 @@ const DiscoverHomeComponent = () => {
                   {item.label}
                   <DownOutlined
                     style={{
-                      color: "#ff2800",
+                      color: "#D90000",
                       transform:
                         activeIndex === index ? "rotate(180deg)" : "none",
                     }}

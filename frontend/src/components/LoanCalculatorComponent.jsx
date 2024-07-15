@@ -5,6 +5,7 @@ import Ellipse1 from "../asset/icons/Ellipse 148.png";
 import Ellipse2 from "../asset/icons/Ellipse 149.png";
 import Ellipse3 from "../asset/icons/Ellipse 151.png";
 import { Slider, Button } from "antd";
+import MultiRangeSlider from "multi-range-slider-react";
 import {
   FooterComponent,
   CustomMlFooter,
@@ -13,28 +14,81 @@ import {
 } from "../components";
 
 const LoanCalculatorComponent = () => {
-  const [price1, setPrice1] = useState(100); // Initial price1 state set to the lowest value
-  const [percentage2, setPercentage2] = useState(15); // Initial percentage2 state
-  const [price2, setPrice2] = useState(800000); // Initial price2 state
-  const minPrice = 100; // Minimum price
-  const maxPrice = 1000; // Maximum price
-  const maxPercentage = 100; // Maximum percentage
+  const [values, setValues] = useState([0, 0, 0]);
+  const [price1, setPrice1] = useState(100);
+  const [percentage2, setPercentage2] = useState(15);
+  const [price2, setPrice2] = useState(800000);
+  const minPrice = 100;
+  const maxPrice = 1000;
+  const maxPercentage = 100;
 
+  // const handleSliderChange = (newValues) => {
+  //   const adjustedValues = adjustPercentages(newValues);
+  //   setValues(adjustedValues);
+  // };
+
+  // const adjustPercentages = (values) => {
+  //   const totalPercentage =
+  //     values[0] + (values[1] - values[0]) + (100 - values[2]);
+  //   if (totalPercentage !== 100) {
+  //     values[2] = 100 - (values[0] + values[1] - values[0]);
+  //   }
+  //   return values;
+  // };
+
+  // const handleMinValueChange = (e) => {
+  //   const newMinValue = parseFloat(e.target.value);
+  //   const adjustedValues = [...values];
+  //   adjustedValues[0] = newMinValue;
+  //   handleSliderChange(adjustedValues);
+  // };
+
+  // const handleMaxValueChange = (e) => {
+  //   const newMaxValue = parseFloat(e.target.value);
+  //   const adjustedValues = [...values];
+  //   adjustedValues[1] = newMaxValue;
+  //   handleSliderChange(adjustedValues);
+  // };
+
+  // const handleMaxValue2Change = (e) => {
+  //   const newMaxValue2 = parseFloat(e.target.value);
+  //   const adjustedValues = [...values];
+  //   adjustedValues[2] = newMaxValue2;
+  //   handleSliderChange(adjustedValues);
+  // };
+  const handleSliderChange = (newValues) => {
+    const adjustedValues = adjustPercentages(newValues);
+    setValues(adjustedValues);
+  };
+
+  const adjustPercentages = (values) => {
+    const totalPercentage =
+      values[0] + (values[1] - values[0]) + (100 - values[2]);
+    if (totalPercentage !== 100) {
+      values[2] = 100 - (values[0] + values[1] - values[0]);
+    }
+    return values;
+  };
+
+  const handleValuesChange = (newValues) => {
+    const adjustedValues = adjustPercentages(newValues);
+    setValues(adjustedValues);
+  };
   const onPriceChange1 = (value) => {
-    setPrice1(value); // Update price1 state when Slider value changes
+    setPrice1(value);
   };
 
   const onPercentageChange2 = (value) => {
-    setPercentage2(value); // Update percentage2 state when Slider value changes
-    setPrice2((value / 100) * maxPrice); // Update price2 based on the new percentage value
+    setPercentage2(value);
+    setPrice2((value / 100) * maxPrice);
   };
 
   const onPriceChange2 = (value) => {
-    setPrice2(value); // Update price2 state when Slider value changes
+    setPrice2(value);
   };
 
   const onChangeComplete = (value) => {
-    console.log("onChangeComplete: ", value); // You can perform additional actions here if needed
+    console.log("onChangeComplete: ", value);
   };
 
   return (
@@ -121,7 +175,33 @@ const LoanCalculatorComponent = () => {
                       <h2>PHP11,154.89 per month</h2>
                       <p className="year-percentage">30-year fixed, 7.123 %</p>
                     </div>
-                    <SliderComponent />
+                    <MultiRangeSlider
+                      min={0}
+                      max={100}
+                      step={1}
+                      label={false}
+                      ruler={false}
+                      style={{
+                        border: "none",
+                        boxShadow: "none",
+                        padding: "15px 10px",
+                      }}
+                      barLeftColor="rgb(217, 0, 0, 26%)"
+                      barInnerColor="rgb(70, 10, 10, 81%)"
+                      barRightColor="#D90000"
+                      thumbLeftColor="#d90000"
+                      thumbRightColor="#d90000"
+                      onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+                      // values={values}
+                      // values={values}
+                      // onValuesChange={handleValuesChange}
+                      // minValue={values[0]}
+                      // maxValue={values[1]}
+                      // maxValue2={values[2]}
+                      // onMinValueChange={handleMinValueChange}
+                      // onMaxValueChange={handleMaxValueChange}
+                      // onMaxValue2Change={handleMaxValue2Change}
+                    />
                     <div className="interest-values">
                       <div className="interest-description">
                         <div className="interest">
@@ -142,13 +222,25 @@ const LoanCalculatorComponent = () => {
                       </div>
                       <div className="value-percentage">
                         <div className="interest">
-                          <p>PHP8,256.10 (80%)</p>
+                          <p>
+                            PHP{((values[0] * 8256.1) / 100).toFixed(2)} (
+                            {values[0]}%)
+                          </p>
                         </div>
                         <div className="interest">
-                          <p>PHP2,548.79 (14%)</p>
+                          <p>
+                            PHP
+                            {(((values[1] - values[0]) * 8256.1) / 100).toFixed(
+                              2
+                            )}{" "}
+                            ({values[1] - values[0]}%)
+                          </p>
                         </div>
                         <div className="interest">
-                          <p>PHP350 (5%)</p>
+                          <p>
+                            PHP{(((100 - values[2]) * 8256.1) / 100).toFixed(2)}{" "}
+                            ({100 - values[2]}%)
+                          </p>
                         </div>
                       </div>
                     </div>

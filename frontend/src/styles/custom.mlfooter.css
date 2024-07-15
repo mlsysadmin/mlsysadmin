@@ -89,7 +89,7 @@
     padding: 10px;
     height: auto;
   }
-.third-cont :where(.css-dev-only-do-not-override-3rel02).ant-row {
+.third-cont .ant-row  {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -141,7 +141,7 @@ flex-direction: row;
     padding: 10px;
     height: auto;
   }
-.third-cont :where(.css-dev-only-do-not-override-3rel02).ant-row {
+.third-cont .ant-row  {
   display: flex;
   flex-direction: column;
   gap: 10px;
