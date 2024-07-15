@@ -573,9 +573,23 @@ module.exports = {
                     }
                 ],
                 transaction,
-            })
+            });
 
-            return get_listing_by_id;
+            if (!get_listing_by_id) {
+                throw DataResponseHandler(
+                    get_listing_by_id,
+                    "LISTING_NOT_FOUND",
+                    404,
+                    false,
+                    "Listing not found"
+                );
+            }else{
+
+                console.log("PROPERTY: ", get_listing_by_id);
+                return get_listing_by_id;
+            }
+
+
 
         } catch (error) {
             throw error

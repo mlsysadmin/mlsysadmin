@@ -380,20 +380,36 @@ module.exports = {
 
                 const prefix_name = process.env.LISTING_PREFIX_NAME;
 
-                if (!isEdit) {
+                if (!isEdit && !listing_id) {
                     listing_id = await ListingIdGeneratorHelper(prefix_name);
                 }
 
                 const { listing_type_id } = await FindListingType(listing_type, transaction);
 
                 console.log(listing_type_id);
-
-                const property_listing_fields = {
-                    listing_id, seller, property_id, listing_status,
-                    ...description,
-                    property_type: {
-                        ...property_details
+                const property_type = {
+                    ...property_details
+                }
+                const amenities = {
+                    indoor_features: JSON.stringify(indoor_features),
+                    outdoor_features: JSON.stringify(outdoor_features),
+                    custom_amenities: {
+                        feature_name: JSON.stringify(feature_name)
                     },
+                    custom_inclusion: {
+                        inclusion_name: JSON.stringify(inclusion_name)
+                    }
+                }
+                const photos = {
+                    photo: JSON.stringify(upload_photos),
+                    upload_date
+                }
+
+                const update_listing_fields = {
+                    listing_id,
+                    property_id, listing_status,
+                    ...description,
+                    property_type,
                     listing_type_id,
                     unit_details: {
                         ...unit_details
@@ -401,20 +417,25 @@ module.exports = {
                     location: {
                         ...location
                     },
-                    amenities: {
-                        indoor_features: JSON.stringify(indoor_features),
-                        outdoor_features: JSON.stringify(outdoor_features),
-                        custom_amenities: {
-                            feature_name: JSON.stringify(feature_name)
-                        },
-                        custom_inclusion: {
-                            inclusion_name: JSON.stringify(inclusion_name)
-                        }
+                    amenities,
+                    photos
+                }
+
+                const property_listing_fields = {
+                    listing_id, 
+                    seller, 
+                    property_id, listing_status,
+                    ...description,
+                    property_type,
+                    listing_type_id,
+                    unit_details: {
+                        ...unit_details
                     },
-                    photos: {
-                        photo: JSON.stringify(upload_photos),
-                        upload_date
-                    }
+                    location: {
+                        ...location
+                    },
+                    amenities,
+                    photos
 
                 };
 
@@ -433,7 +454,7 @@ module.exports = {
 
                 if (!created) {
 
-                    await ModifyListing(property_listing_fields, ids, transaction);
+                    await ModifyListing(update_listing_fields, ids, transaction);
 
                     const updated_property_listing = await FindListingByListingId(listing_id, transaction);
                     property_listing = updated_property_listing;
