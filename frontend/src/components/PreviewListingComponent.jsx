@@ -11,11 +11,9 @@ import image702 from "../assets/images/image702.png";
 import image703 from "../assets/images/image703.png";
 import image704 from "../assets/images/image704.png";
 import image705 from "../assets/images/image705.png";
-
 import carousel2 from "../assets/images/carousel2.png";
 import carousel3 from "../assets/images/carousel3.png";
 import carousel4 from "../assets/images/carousel4.png";
-
 import filter_alt from "../assets/icons/previewlisting/filter_alt.png";
 import share from "../assets/icons/previewlisting/share.png";
 import printer from "../assets/icons/previewlisting/printer.png";
@@ -25,7 +23,6 @@ import garage from "../assets/icons/previewlisting/garage.png";
 import sqm from "../assets/icons/previewlisting/sqm.png";
 import next from "../assets/icons/previewlisting/next.png";
 import previous from "../assets/icons/previewlisting/previous.png";
-
 import iconheart from "../assets/icons/previewlisting/iconheart.png";
 import iconfilter from "../assets/icons/previewlisting/iconfilter.png";
 import map from "../assets/images/map.png";
@@ -42,6 +39,8 @@ import cpr from "../assets/images/cpr.png";
 import { Flex, Progress } from "antd";
 import { Slider, Carousel } from "antd";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
+
+
 
 const PreviewListing = () => {
   const [amountInPesos, setPesos] = React.useState(500);

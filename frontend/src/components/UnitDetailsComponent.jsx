@@ -5,9 +5,6 @@ import BathroomInputSlider from "./Slider/BathroomsSlider";
 import NoOfFloorsInputSlider from "./Slider/NoOfFloors";
 import "../styles/listing-form.css";
 import floorlogo from "../assets/images/floorlogo.png";
-// import prop_id from "../assets/images/prop_id.png"
-
-
 
 const UnitDetailsComponent = ({
   onComplete,
@@ -21,44 +18,53 @@ const UnitDetailsComponent = ({
   setPricePerSqmInputError,
   discPriceInputError,
   setDiscPriceInputError,
- 
   lotAreaInputError,
   setLotAreaInputError,
   propIdInputError,
   setPropIdInputError,
-
-  
 }) => {
- 
-  const [selectedUnitTab, setSelectedUnitTab] = useState ('');
-  const [selectedListingTab, setSelectedListingTab] = useState ('');
+  const [selectedUnitTab, setSelectedUnitTab] = useState('');
+  const [selectedListingTab, setSelectedListingTab] = useState('');
+  const [selectedClassification, setSelectedClassification] = useState(null);
 
-
-  useEffect (() => {
+  useEffect(() => {
     if (selectedUnitTab === 'unitDetails') {
-      setSelectedListingTab ('')
-      }
-  })
-
-
-
-  const [selectedClassification, setSelectedClassification] = React.useState(null);
+      setSelectedListingTab('');
+    }
+  }, [selectedUnitTab]);
 
   const handleClassificationClick = (tab) => {
     setSelectedClassification(tab);
   };
 
-  const validateNumberInput = (value) => {
-    // Your validation logic here
+  const validateNumberInput = (value, setError) => {
     if (isNaN(value)) {
-      Error('Please enter a valid number.');
+      setError('Please enter a valid number.');
     } else {
-      Error('');
+      setError('');
     }
-  }
-  
-  
-    
+  };
+
+  // Function to check if the form is complete
+  const isFormComplete = () => {
+    return (
+      !priceInputError &&
+      !floorAreaInputError &&
+      !pricePerSqmInputError &&
+      !discPriceInputError &&
+      !lotAreaInputError &&
+      !propIdInputError &&
+      selectedSellingPrice &&
+      selectedClassification
+    );
+  };
+
+  useEffect(() => {
+    if (isFormComplete()) {
+      onComplete();
+    }
+  }, [priceInputError, floorAreaInputError, pricePerSqmInputError, discPriceInputError, lotAreaInputError, propIdInputError, selectedSellingPrice, selectedClassification, onComplete]);
+
   return (
     <div className="listing-unit-details">
       <div className="listing-unit-details-label">Unit Details</div>
@@ -77,7 +83,7 @@ const UnitDetailsComponent = ({
                   id="price-input"
                   className={`price-input ${priceInputError ? 'error-input' : ''}`}
                   type="number"
-                 
+                  onChange={(e) => validateNumberInput(e.target.value, setPriceInputError)}
                 />
               </div>
               {priceInputError && <div className="error">{priceInputError}</div>}
@@ -160,7 +166,6 @@ const UnitDetailsComponent = ({
               <label className="text-wrapper-38" htmlFor="floor-area">
                 What is the floor area of the unit?
               </label>
-              
               <div className="floor-input-container">
                 <div className="floor-logo">
                   <img
@@ -170,18 +175,16 @@ const UnitDetailsComponent = ({
                   />
                 </div>
                 <input
-            id="floorarea-input"
-            className={`floorarea-input ${floorAreaInputError ? 'error-input' : ''}`}
-            type="number"
-            onChange={(e) => validateNumberInput(e.target.value)}
-          />
-          <div className="sqm-prefix">sqm</div>
-        </div>
-        {floorAreaInputError && (
-          <div className="error">{floorAreaInputError}</div>
-        )}
-      </div>
-    </div>
+                  id="floorarea-input"
+                  className={`floorarea-input ${floorAreaInputError ? 'error-input' : ''}`}
+                  type="number"
+                  onChange={(e) => validateNumberInput(e.target.value, setFloorAreaInputError)}
+                />
+                <div className="sqm-prefix">sqm</div>
+              </div>
+              {floorAreaInputError && <div className="error">{floorAreaInputError}</div>}
+            </div>
+          </div>
 
           {/* Price per sqm */}
           <div className="form-group">
@@ -196,14 +199,10 @@ const UnitDetailsComponent = ({
                   id="pricepersqm"
                   className={`pricepersqm-input ${pricePerSqmInputError ? 'error-input' : ''}`}
                   type="number"
-                  onChange={(e) =>
-                    validateNumberInput(e.target.value, setPricePerSqmInputError)
-                  }
+                  onChange={(e) => validateNumberInput(e.target.value, setPricePerSqmInputError)}
                 />
               </div>
-              {pricePerSqmInputError && (
-                <div className="error">{pricePerSqmInputError}</div>
-              )}
+              {pricePerSqmInputError && <div className="error">{pricePerSqmInputError}</div>}
             </div>
           </div>
         </div>
@@ -217,43 +216,43 @@ const UnitDetailsComponent = ({
                 What is the discounted selling price of the unit?
               </label>
               <div className="input-container">
-              <div className="currency-prefix">PHP</div>
-          <input
-            id="disc-price-input"
-            className={`disc-price-input ${discPriceInputError ? 'error-input' : ''}`}
-            type="number"
-            onChange={(e) => validateNumberInput(e.target.value, setDiscPriceInputError)}
-          />
-        </div>
-        {discPriceInputError && <div className="error">{discPriceInputError}</div>}
-            
+                <div className="currency-prefix">PHP</div>
+                <input
+                  id="disc-price-input"
+                  className={`disc-price-input ${discPriceInputError ? 'error-input' : ''}`}
+                  type="number"
+                  onChange={(e) => validateNumberInput(e.target.value, setDiscPriceInputError)}
+                />
+              </div>
+              {discPriceInputError && <div className="error">{discPriceInputError}</div>}
             </div>
           </div>
 
           {/* Classification */}
           <div className="form-group">
-      <div className="text-wrapper-37">Classification</div>
-      <div className="listing-unit-input-group">
-        <label className="text-wrapper-38" htmlFor="classification">
-          What is the classification of the unit?
-        </label>
-        <div className="tab-category">
-          <div className="tab-wrapper">
-            <div className="classification-tabs">
-              {["BrandNew", "Retail"].map((tab) => (
-                <div
-                  key={tab}
-                  className={`classification-tab ${selectedClassification === tab ? "selected" : ""}`}
-                  onClick={() => handleClassificationClick(tab)}
-                >
-                  {tab}
+            <div className="text-wrapper-37">Classification</div>
+            <div className="listing-unit-input-group">
+              <label className="text-wrapper-38" htmlFor="classification">
+                What is the classification of the unit?
+              </label>
+              <div className="tab-category">
+                <div className="tab-wrapper">
+                  <div className="classification-tabs">
+                    {["BrandNew", "Retail"].map((tab) => (
+                      <div
+                        key={tab}
+                        className={`classification-tab ${selectedClassification === tab ? "selected" : ""}`}
+                        onClick={() => handleClassificationClick(tab)}
+                      >
+                        {tab}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+
           {/* Bathrooms */}
           <div className="form-group">
             <div className="text-wrapper-37">Bathrooms</div>
@@ -317,15 +316,11 @@ const UnitDetailsComponent = ({
                   id="lot-area-input"
                   className={`lot-area-input ${lotAreaInputError ? 'error-input' : ''}`}
                   type="number"
-                  onChange={(e) =>
-                    validateNumberInput(e.target.value, setLotAreaInputError)
-                  }
+                  onChange={(e) => validateNumberInput(e.target.value, setLotAreaInputError)}
                 />
                 <div className="sqm-prefix">sqm</div>
               </div>
-              {lotAreaInputError && (
-                <div className="error">{lotAreaInputError}</div>
-              )}
+              {lotAreaInputError && <div className="error">{lotAreaInputError}</div>}
             </div>
           </div>
 
@@ -344,15 +339,10 @@ const UnitDetailsComponent = ({
                   id="propid-input"
                   className={`propid-input ${propIdInputError ? 'error-input' : ''}`}
                   type="number"
-                  onChange={(e) =>
-                    validateNumberInput(e.target.value, setPropIdInputError)
-                  }
-        
+                  onChange={(e) => validateNumberInput(e.target.value, setPropIdInputError)}
                 />
               </div>
-              {propIdInputError && (
-                <div className="error">{propIdInputError}</div>
-              )}
+              {propIdInputError && <div className="error">{propIdInputError}</div>}
             </div>
           </div>
         </div>

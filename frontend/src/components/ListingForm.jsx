@@ -18,6 +18,7 @@ import LocationDetailsComponent from "./LocationDetailsComponent";
 import DescriptionDetailsComponent from "./DecriptionDetailsComponent";
 import UploadPhotosComponent from "./UploadPhotosComponent";
 import FeaturedComponents from "./FeatureListComponents";
+
 export const ListingForm = () => {
   const [selectedPropertyTab, setSelectedPropertyTab] = useState(null);
   const [selectedListingTab, setSelectedListingTab] = useState(null);
@@ -51,6 +52,18 @@ export const ListingForm = () => {
     const [isFeaturesSelected, setIsFeaturesSelected] = useState(false);
     const [isFormComplete, setIsFormComplete] = useState(false);
   
+
+    const handleComplete = () => {
+      if (currentStep === 1) {
+        // I-set ang currentStep ngadto sa step nga angay lang i-check
+        setCurrentStep( 2);
+      } else {
+        setCurrentStep(currentStep + 1);
+      }
+    };
+  const handleSellingPriceClick = (price) => {
+    setSelectedSellingPrice(price);
+  };
     // Update these state variables in the corresponding form component callbacks
    const handlePropertyDetailsCompletion = (completed) => {
     setIsPropertyDetailsCompleted(completed);
@@ -58,20 +71,7 @@ export const ListingForm = () => {
       setCurrentStep(1);
     }
   };
-  const handleUnitDetailsCompletion = (completed) => {
-    setIsUnitDetailsComplete(completed);
-    if (completed && currentStep === 1) {
-      setCurrentStep(2);
-      }
-    };
 
-  const handleLocationDetailsCmpletion =(completed) =>{
-    setIsLocationDetailsComplete(completed);
-    if (completed && currentStep === 2) {
-      setCurrentStep(3);
-  }
-  };
-  
 
 
 
@@ -89,21 +89,11 @@ export const ListingForm = () => {
       setError("");
     }
   };
-  const handleSellingPriceClick = (price) => {
-    setSelectedSellingPrice(price);
-  };
+
 
   const handleClassificationClick = (classification) => {
     setSelectedClassification(classification);
   };
-
-  const handleNumberInputChange = (e) => {
-    const { value } = e.target;
-    if (validateNumberInput(value, setNumberInputError)) {
-      setSelectedSellingPrice(value); // Update state with the valid numeric input
-    }
-  };
-
 
 
 
@@ -179,10 +169,7 @@ export const ListingForm = () => {
     return true;
   };
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
-  const handlePropertyTabClick = (tab) => {
-    setSelectedPropertyTab(tab);
-  };
+
 
   const handleListingTabClick = (tab) => {
     setSelectedListingTab(tab);
@@ -206,12 +193,23 @@ export const ListingForm = () => {
           onComplete={handlePropertyDetailsCompletion}
           isComplete={isPropertyDetailsComplete}
         />
-              <UnitDetailsComponent
-          handleSellingPriceClick={handleSellingPriceClick}
-          selectedSellingPrice={selectedSellingPrice}
-          onComplete={handleUnitDetailsCompletion}
-        />
-
+               <UnitDetailsComponent
+        onComplete={handleComplete}
+        priceInputError={priceInputError}
+        setPriceInputError={setPriceInputError}
+        selectedSellingPrice={selectedSellingPrice}
+        handleSellingPriceClick={handleSellingPriceClick}
+        floorAreaInputError={floorAreaInputError}
+        setFloorAreaInputError={setFloorAreaInputError}
+        pricePerSqmInputError={pricePerSqmInputError}
+        setPricePerSqmInputError={setPricePerSqmInputError}
+        discPriceInputError={discPriceInputError}
+        setDiscPriceInputError={setDiscPriceInputError}
+        lotAreaInputError={lotAreaInputError}
+        setLotAreaInputError={setLotAreaInputError}
+        propIdInputError={propIdInputError}
+        setPropIdInputError={setPropIdInputError}
+      />
 <LocationDetailsComponent isComplete={isLocationDetailsComplete} />
 
 <DescriptionDetailsComponent isComplete={isDescriptionDetailsComplete} />

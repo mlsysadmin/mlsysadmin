@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import "../styles/listing-form.css";
 
 const LocationDetailsComponent = () => {
+  const [country, setCountry] = useState("");
+  const [province, setProvince] = useState("");
+  const [city, setCity] = useState("");
+  const [zipcode, setZipcode] = useState("");
+
   const [provinceOptions, setProvinceOptions] = useState([
     { value: "", label: "Select Province/State" },
   ]);
@@ -22,6 +27,7 @@ const LocationDetailsComponent = () => {
 
   const handleCountryChange = (event) => {
     const selectedCountry = event.target.value;
+    setCountry(selectedCountry);
 
     if (selectedCountry === "Philippines") {
       setProvinceOptions([
@@ -60,6 +66,26 @@ const LocationDetailsComponent = () => {
       setCityOptions([{ value: "", label: "Select City/Town" }]);
       setZipcodeOptions([{ value: "", label: "Select Zipcode" }]);
     }
+
+    // Reset other fields
+    setProvince("");
+    setCity("");
+    setZipcode("");
+  };
+
+  const handleProvinceChange = (event) => {
+    const selectedProvince = event.target.value;
+    setProvince(selectedProvince);
+  };
+
+  const handleCityChange = (event) => {
+    const selectedCity = event.target.value;
+    setCity(selectedCity);
+  };
+
+  const handleZipcodeChange = (event) => {
+    const selectedZipcode = event.target.value;
+    setZipcode(selectedZipcode);
   };
 
   return (
@@ -73,6 +99,7 @@ const LocationDetailsComponent = () => {
           <select
             id="country"
             className="location-form-inputs"
+            value={country}
             onChange={handleCountryChange}
           >
             {countryOptions.map((option) => (
@@ -86,7 +113,12 @@ const LocationDetailsComponent = () => {
           <label htmlFor="province" className="form-label">
             Province/State
           </label>
-          <select id="province" className="location-form-inputs">
+          <select
+            id="province"
+            className="location-form-inputs"
+            value={province}
+            onChange={handleProvinceChange}
+          >
             {provinceOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -98,7 +130,12 @@ const LocationDetailsComponent = () => {
           <label htmlFor="city" className="form-label">
             City/Town
           </label>
-          <select id="city" className="location-form-inputs">
+          <select
+            id="city"
+            className="location-form-inputs"
+            value={city}
+            onChange={handleCityChange}
+          >
             {cityOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -110,7 +147,12 @@ const LocationDetailsComponent = () => {
           <label htmlFor="zipcode" className="form-label">
             Zipcode
           </label>
-          <select id="zipcode" className="location-form-inputs">
+          <select
+            id="zipcode"
+            className="location-form-inputs"
+            value={zipcode}
+            onChange={handleZipcodeChange}
+          >
             {zipcodeOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
