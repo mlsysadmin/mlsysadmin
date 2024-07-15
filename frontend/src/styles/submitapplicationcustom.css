@@ -8,21 +8,21 @@
 }
 
 .divs-btn-group .submit-btn {
-    background-color: #ff2800;
+    background-color: var(--red);
     font-weight: bold;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
     width: 200px;
     height: 50px;
-    border: 1px solid #ff2800;
+    border: 1px solid var(--red);
     font-size: 16px;
     color: white;
 }
 
 .submit-btn:hover {
     background-color: #ffffff;
-    color: #ff2800;
+    color: var(--red);
     cursor: pointer;
 }
 

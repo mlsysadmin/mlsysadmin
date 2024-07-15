@@ -6,28 +6,20 @@ const {
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
 const PropertyTypes = Sequelize.define("property_types", {
-  id: {
+  property_type_id: {
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER.UNSIGNED
   },
   type: {
-      allowNull: false,
-      primaryKey: true,
+      allowNull: true,
+      // primaryKey: true,
       type: DataTypes.ENUM("Commercial", "Residential", "Industrial")
   },
   subtype: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.ENUM("Service Office", "Shop/Retail", "Commercial Land/Lot", "Condominium", "House & Lot", "Townhouse", "Warehouse", "Farm Lot", "Hotel/Resort")
-  },
-  createdAt: {
-    type: DataTypes.DATE,
-    allowNull: false
-  },
-  updatedAt: {
-    type: DataTypes.DATE,
-    allowNull: true
   }
 },{
   modelName: 'PropertyTypes',

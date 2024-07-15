@@ -1,15 +1,21 @@
 import React from "react";
 import "../styles/newpage.css";
 import { useState } from "react";
-import { FooterComponent, CustomMlFooter, ListingSearch , MainLayout} from "../components";
+import { useNavigate } from "react-router-dom";
+import { FooterComponent, CustomMlFooter, MainLayout} from "../components";
 import Card from "./custom/cards/Card";
 import Pagination from "./custom/pagination/Pagination";
 
 import { cardData } from "../utils/ListingMockData";
+import property from "../images/Guest/property.png";
+import ListingSearch from "./custom/customsearch/custom.listingsearch";
 
 export const NewPageComponent = () => {
-  
- 
+  const navigate = useNavigate();
+
+  const handleCardClick = (data) => {
+    navigate('/previewListing', { state: data });
+  };
 
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 9
@@ -29,7 +35,7 @@ export const NewPageComponent = () => {
             <h1 className="new-page-label">New Properties</h1>
             <div className="card-container">
               {currentCards.map((data, index) => (
-                <Card
+                <Card 
                   key={index}
                   title={data.title}
                   price={data.price}
@@ -40,6 +46,7 @@ export const NewPageComponent = () => {
                   likes={data.likes}
                   forsale={data.forsale}
                   subtitle={data.subtitle}
+                 
                 />
               ))}
             </div>

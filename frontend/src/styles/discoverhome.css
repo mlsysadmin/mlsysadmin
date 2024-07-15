@@ -627,11 +627,23 @@ h2 {
 
 .dropdown-label {
     font-size: 16px;
-    border-bottom: 1px solid #ff2800;
+    border-bottom: 1px solid var(--red);
     padding-bottom: 8px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
+}
+.discover-home-container :where(.css-dev-only-do-not-override-m4timi).ant-slider:hover .ant-slider-rail {
+    background-color: rgb(217, 0, 0,26%);
+}
+.discover-home-container :where(.css-dev-only-do-not-override-m4timi).ant-slider-horizontal .ant-slider-step{
+    background-color: rgb(217, 0, 0,26%);
+}
+.discover-home-container :where(.css-dev-only-do-not-override-m4timi).ant-slider .ant-slider-handle::after {
+    background-color: var(--red);
+}
+.discover-home-container .ant-slider-track{
+   
 }
 
 @media screen and (min-width: 320px) and (max-width: 359px) {

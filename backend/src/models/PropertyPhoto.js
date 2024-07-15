@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 const {
   DataTypes
 } = require('sequelize');
@@ -6,37 +6,27 @@ const {
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
 const PropertyPhoto = Sequelize.define("property_photos", {
-  photos_id: {
+  property_photos_id: {
     allowNull: false,
     primaryKey: true,
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER.UNSIGNED,
+    autoIncrement: true
   },
-  property_listing_id: {
-    allowNull: false,
-    // primaryKey: true,
-    type: DataTypes.INTEGER,
-  },
-  photos: {
-    allowNull: false,
+  // listing_id: {
+  //   allowNull: false,
+  //   type: DataTypes.STRING,
+  //   // unique: true
+  // },
+  photo: {
+    allowNull: true,
     primaryKey: true,
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
   },
   upload_date: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.DATE,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP()')
-  },
-  createdAt: {
-    type: DataTypes.DATE,
-    allowNull: false
-  },
-  updatedAt: {
-    type: DataTypes.DATE,
-    allowNull: true
-  },
-  deletedAt: {
-    type: DataTypes.DATE,
-    allowNull: true
+    onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
   }
 }, {
   modelName: 'PropertyPhoto',

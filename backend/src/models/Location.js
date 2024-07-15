@@ -6,40 +6,36 @@ const {
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
 const Location = Sequelize.define("locations", {
-  id: {
+  location_id: {
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
-    type: DataTypes.INTEGER
+    type: DataTypes.INTEGER.UNSIGNED
   },
   subdivision: {
-      allowNull: false,
-      type: DataTypes.STRING
+      allowNull: true,
+      type: DataTypes.STRING(60)
   },
   city: {
-    allowNull: false,
-    type: DataTypes.STRING(20)
+    allowNull: true,
+    type: DataTypes.STRING(30)
   },
   province: {
-    allowNull: false,
-    type: DataTypes.STRING(20)
+    allowNull: true,
+    type: DataTypes.STRING(30)
   },
-  postal_code: {
-    allowNull: false,
-    type: DataTypes.STRING(10)
+  zipcode: {
+    allowNull: true,
+    type: DataTypes.INTEGER(20)
+  },
+  other: {
+    allowNull: true,
+    type: DataTypes.STRING(100)
   },
   map_location: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.STRING
-  },
-  createdAt: {
-    type: DataTypes.DATE,
-    allowNull: false
-  },
-  updatedAt: {
-    type: DataTypes.DATE,
-    allowNull: true
-  },
+  }
 },{
   modelName: 'Location',
   timestamps: false,

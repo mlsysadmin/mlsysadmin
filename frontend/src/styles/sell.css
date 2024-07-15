@@ -116,7 +116,7 @@
     border-radius: 20px;
     font-size: 20px;
     padding: 25px;
-    border:1px solid #ff2800;
+    border:1px solid var(--red);
     width: 200px;
     height: 80px;
     cursor: pointer;
@@ -134,7 +134,7 @@
     padding: 25px;
     padding-left: 50px;
     padding-right: 50px;
-    border:1px solid #ff2800;
+    border:1px solid var(--red);
     width: 200px;
     height: 80px;
     cursor: pointer;
@@ -168,7 +168,7 @@
   
 
   .second-section .content #ListPropertybtn{
-    border:1px solid #ff2800;
+    border:1px solid var(--red);
     width: 300px;
     height: 80px;
     color: #FFFFFF;
@@ -244,7 +244,7 @@
   .section-cards {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     gap: 3rem;
   }
 
@@ -279,7 +279,17 @@
     height: 100%;    
     height: auto;
   } 
-
+  .sell .non-wallet-user-group{
+    display: flex;
+    flex-direction: column;
+  }
+.sell .non-wallet-user-group span{
+  font-size: 20px;
+}
+.sell .non-wallet-user-group li{
+  font-size: 20px;
+  margin: 20px 0px 0px 0px;
+}
   
  
  /*fourth*/
@@ -287,6 +297,7 @@
     background-color: #fff;
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding-bottom: 6%;
     gap: 2rem;
     margin-top: 5%;
@@ -307,7 +318,7 @@
   .fourth-section #contactUs{
     color: #D90000;
     font-weight: bold;
-    border-color: #ff2800;
+    border-color: var(--red);
     background-color: transparent;
     border-radius: 20px;
     font-size: 24px;
@@ -414,6 +425,13 @@
 display: flex;
 flex-direction: column;
 width: 80%;
+margin: 0px 0px 0px 30px;
+}
+.third-section .non-wallet-user-group{
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin: 0px 0px 0px 30px;
 }
 .cards .card1, .card2, .card3, .card4{
   width: 100%;
@@ -543,10 +561,17 @@ width: 80%;
   margin: 0px 0px 0px 20px;
 }
 .third-section .section-cards .cards{
-display: flex;
-flex-direction: column;
-width: 80%;
-}
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0px 0px 0px 30px;
+  }
+  .third-section .non-wallet-user-group{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin: 0px 0px 0px 30px;
+  }
 .cards .card1, .card2, .card3, .card4{
   width: 100%;
   display: flex;
@@ -679,6 +704,12 @@ width: 80%;
 display: flex;
 flex-direction: row;
 width: 100%;
+}
+.third-section .non-wallet-user-group{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin: 0px 0px 0px 30px;
 }
 .cards .card1, .card2, .card3, .card4{
   width: 150px;
@@ -950,6 +981,12 @@ display: flex;
 flex-direction: row;
 width: 100%;
 }
+.third-section .non-wallet-user-group{
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  margin: 0px 0px 0px 30px;
+}
 .cards .card1, .card2, .card3, .card4{
   width: 150px;
   display: flex;
@@ -1091,6 +1128,7 @@ display: flex;
 flex-direction: row;
 width: 100%;
 }
+
 .cards .card1, .card2, .card3, .card4{
   width: 180px;
   display: flex;

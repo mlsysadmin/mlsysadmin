@@ -10,32 +10,32 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
     await queryInterface.createTable('saves', { 
-      id: {
+      save_id: {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER.UNSIGNED
       },
       user_id: {
-          allowNull: false,
-          type: Sequelize.INTEGER,
-          references: {
-            model: {
-              model: "User",
-              tableName: 'users',
-            },
-            key: 'user_id',
+        allowNull: false,
+        type: Sequelize.INTEGER.UNSIGNED,
+        references: {
+          model: {
+            model: "User",
+            tableName: 'users',
           },
+          key: 'user_id',
+        },
       },
       master_property_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "MasterPropertyList",
             tableName: 'master_property_lists',
           },
-          key: 'id',
+          key: 'master_property_id',
         },
       },
       liked_at: {
@@ -46,7 +46,9 @@ module.exports = {
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: true,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       deletedAt: {
         type: Sequelize.DATE,
