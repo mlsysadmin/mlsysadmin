@@ -164,10 +164,10 @@
 .files-container .description-span {
     font-size: 10px;
 }
-
+ 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(4, 25%); /* 2 columns for better responsive design */
+    grid-template-columns: repeat(4, 25%); 
     gap: 1px;
 }
 

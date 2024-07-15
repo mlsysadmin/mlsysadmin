@@ -21,7 +21,6 @@ import SuccessfullySubmitted from '../components/SuccessfullySubmitted';
 import ApplicationModal from '../components/ApplicationModal';
 import OTPModal from '../components/OTPModal';
 import ApplicationHistory from '../components/ApplicationHistory';
-import CancelPage from '../components/CancelPage';
 
 const Routes = [
     {
@@ -104,10 +103,6 @@ const Routes = [
                 path: "/application-history",
                 element: <ApplicationHistory/>
             },
-            {
-                path: "/application-cancel",
-                element: <CancelPage/>
-            }
         ]
     }
 ]

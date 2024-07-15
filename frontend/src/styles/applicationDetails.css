@@ -1,0 +1,472 @@
+.application-details {
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .application-details .status {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: large;
+  }
+  
+  .processing {
+    color: blue;
+  }
+
+  .application-details h3{
+    color: #000;
+    margin-top: 20px;
+  }
+        
+  .app-id {
+    color: red;
+  }
+
+  .application-details hr{
+    border-top: 4px solid #d90000;
+  }
+  
+  .property-details-section {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .property-header {
+    margin-bottom: 20px;
+  }
+  
+  .property-header h2 {
+    margin: 0;
+  }
+  
+  .property-header p {
+    margin: 5px 0;
+  }
+  
+  .property-header .price {
+    font-weight: bold;
+  }
+  
+  .property-info {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .property-image img {
+    width: 200px;
+    height: 150px;
+    border-radius: 10px;
+  }
+  
+  .buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .applicant-details-section {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .applicant-details h3 {
+    margin-bottom: 10px;
+  }
+
+  
+  .applicant-details-section .fries{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .applicant-details-section .fries .form-group{
+    width: 23.5%;
+  }
+
+  .applicant-details-section .pizza{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .applicant-details-section .sundae{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .applicant-details-section .burger{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .applicant-details-section .burger .form-group #label{
+    width: 48%;
+    display: flex;
+  }
+  
+  .form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+  
+  .form-group {
+    flex: 1 1 45%;
+  }
+  
+  .form-group label {
+    color: #8C9094;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #8C9094;
+    font-size: small;
+  }
+  
+  .uploaded-documents {
+    margin-bottom: 20px;
+  }
+  
+  .uploaded-documents h3 {
+    margin-bottom: 10px;
+  }
+  
+  .documents {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .document {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .document img {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 30px;
+  }
+  
+  #cancel-btn {
+    background-color: #d90000;
+    color: white;
+    border: none;
+    padding:25px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  #go-back-btn {
+    background-color: transparent;
+    color: #d90000;
+    border: none;
+    padding: 24px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #d90000;
+    font-weight: bold;
+  }
+  
+  .cancel-btn:hover, .go-back-btn:hover {
+    opacity: 0.8;
+  }
+
+  .application-details .grid-container{
+    display: grid;
+    grid-template-columns: repeat(4, 25%); 
+    gap: 1px;
+  }
+
+  .application-details .grid-item{
+    border-radius: 20px;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    height: auto;
+  }
+
+  .application-details .grid-item input[type="file"] {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+  .application-details .files-container{
+    width: 50%;
+  }
+
+  @media only screen and (max-width: 1024px){
+    .application-details {
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .application-details .status {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: large;
+    }
+    
+    .processing {
+      color: blue;
+    }
+  
+    .application-details h3{
+      color: #000;
+      margin-top: 20px;
+    }
+          
+    .app-id {
+      color: red;
+    }
+  
+    .application-details hr{
+      border-top: 4px solid #d90000;
+    }
+    
+    .property-details-section {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    
+    .property-header {
+      margin-bottom: 20px;
+    }
+    
+    .property-header h2 {
+      margin: 0;
+    }
+    
+    .property-header p {
+      margin: 5px 0;
+    }
+    
+    .property-header .price {
+      font-weight: bold;
+    }
+    
+    .property-info {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .details {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    
+    .property-image img {
+      width: 200px;
+      height: 150px;
+      border-radius: 10px;
+    }
+    
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .applicant-details-section {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .applicant-details h3 {
+      margin-bottom: 10px;
+    }
+  
+    
+    .applicant-details-section .fries{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .applicant-details-section .fries .form-group{
+      width: 23.5%;
+    }
+  
+    .applicant-details-section .pizza{
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+    }
+  
+    .applicant-details-section .sundae{
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+    }
+  
+    .applicant-details-section .burger{
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+    }
+  
+    .applicant-details-section .burger .form-group #label{
+      width: 48%;
+      display: flex;
+    }
+    
+    .form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+    
+    .form-group {
+      flex: 1 1 45%;
+    }
+    
+    .form-group label {
+      color: #8C9094;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #8C9094;
+      font-size: small;
+    }
+    
+    .uploaded-documents {
+      margin-bottom: 20px;
+    }
+    
+    .uploaded-documents h3 {
+      margin-bottom: 10px;
+    }
+    
+    .documents {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .document {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      text-align: center;
+    }
+    
+    .document img {
+      width: 100px;
+      height: 100px;
+      border-radius: 5px;
+    }
+    
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-top: 30px;
+    }
+    
+    #cancel-btn {
+      background-color: #d90000;
+      color: white;
+      border: none;
+      padding:25px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    #go-back-btn {
+      background-color: transparent;
+      color: #d90000;
+      border: none;
+      padding: 24px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      border: 1px solid #d90000;
+      font-weight: bold;
+    }
+    
+    .cancel-btn:hover, .go-back-btn:hover {
+      opacity: 0.8;
+    }
+  
+    .application-details .grid-container{
+      display: grid;
+      grid-template-columns: repeat(4, 25%); 
+      gap: 1px;
+    }
+  
+    .application-details .grid-item{
+      border-radius: 20px;
+      padding: 15px;
+      text-align: center;
+      position: relative;
+      height: auto;
+    }
+  
+    .application-details .grid-item input[type="file"] {
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+      z-index: 1;
+  }
+  
+    .application-details .files-container{
+      width: 100%;
+    }
+  }
+  

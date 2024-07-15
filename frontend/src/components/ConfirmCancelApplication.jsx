@@ -1,5 +1,4 @@
 import React from 'react';
-// Ensure the CSS file exists at the specified path. If not, comment this line out or create the file.
 import "../styles/ConfirmationCancelApplication.css";
 
 const ConfirmCancelApplication = ({ isOpen, onConfirm, onCancel }) => {
