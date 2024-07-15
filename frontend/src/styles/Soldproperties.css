@@ -97,7 +97,7 @@
     text-align: left;
 }
 
-.header {
+.sold-properties-headerSection .header {
   display: flex;
   justify-content: space-between;
   padding: 10px;
