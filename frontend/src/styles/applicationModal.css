@@ -450,20 +450,14 @@
         font-size: 12px; 
     }
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 317c58e1f82202f0dc3cca8fa7a44e2488189467
 @media only screen and (max-width: 720px) {
     .application-modal-container {
         width: 100%;
         height: auto;
         padding: 1rem;
         box-sizing: border-box;
-<<<<<<< HEAD
-=======
         left: 50px;
->>>>>>> 317c58e1f82202f0dc3cca8fa7a44e2488189467
     }
 
     .application-second-row{
@@ -508,8 +502,6 @@
         height: 100px;
     }
 }
-<<<<<<< HEAD
-=======
 /* @media  screen and (min-width:1200px) and  (max-width:1400px){
     .application-modal-container {
         left: 300px;
@@ -521,4 +513,3 @@
         height:500px;
     }
 } */
->>>>>>> 317c58e1f82202f0dc3cca8fa7a44e2488189467

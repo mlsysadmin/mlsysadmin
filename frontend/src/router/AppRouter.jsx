@@ -98,7 +98,6 @@ const Routes = [
                 element: <MortagagePage/>
             },
             {
-<<<<<<< HEAD
                 path: "/modal",
                 element: <SuccessModal/>
             },
@@ -118,7 +117,7 @@ const Routes = [
                 path: "/application-history",
                 element: <ApplicationHistory/>
             },
-=======
+            {
                 path: "/listing",
                 element: <ListingPage />,
               },
@@ -170,7 +169,6 @@ const Routes = [
                 path: "/LoginModal",
                 element: <LoginModal />,
               },
->>>>>>> 317c58e1f82202f0dc3cca8fa7a44e2488189467
         ]
     }
 ]
