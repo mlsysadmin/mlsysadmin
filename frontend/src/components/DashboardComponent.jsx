@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {useNavigate} from "react-router-dom";
 import { Button, Card, Col, Image, Menu, Row, Space, Tag } from "antd";
 import { CaretDownOutlined, SearchOutlined } from "@ant-design/icons";
 import Carousel from "react-multi-carousel";
@@ -16,11 +17,14 @@ import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import { MockData } from "../utils/ListingMockData";
 import CardCategory from "../utils/CardCategoryDashboard.utils";
 import FuenteCircle from "../asset/banners/fuente-circle.png";
-import AdvanceSearch from "../asset/icons/advanceSearch.png";
+import AdvanceSearch from '../asset/icons/advanceSearch.png';
 import Search from "../asset/icons/Search.png";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
 import FooterComponent from "./layout/FooterComponent";
 import ListingSearchLoggedin from "./custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
+import ListingSearch from "./custom/customsearch/custom.listingsearch";
+import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
+import CertainFeatureMenu from "./custom/customsearch/certainfeature";
 
 const DashboardComponent = () => {
   const [loading, setLoading] = useState(false);
@@ -30,6 +34,23 @@ const DashboardComponent = () => {
   useEffect(() => {
     console.log(userLikes);
   });
+
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate('/previewListing');
+  };
+
+
+  const url_Redirect = process.env.REACT_APP_LOGIN_URL;
+  const handleUserProfileClick = () => {
+    if (url_Redirect) {
+      window.location.href = url_Redirect;
+    }
+  };
+
+
+
   const handleAdvancedSearchClick = () => {
     console.log("handleAdvancedSearchClick called");
     setAdvanceSearchOpen(!isAdvanceSearchOpen);
@@ -178,7 +199,7 @@ const DashboardComponent = () => {
                             style={{ fontWeight: "900" }}
                             width={27}
                           />
-                          {/* <SearchOutlined className='search-icon' style={{ fontWeight: '900' }} /> */}
+                          {/* <SearchOutlined className='search-icon' style={{ fontWeight: '900' }} /> 
                           {/* <PlusOutlined className='plus-icon' /> */}
                         </>
                       }
@@ -201,7 +222,7 @@ const DashboardComponent = () => {
                   </Row>
                 </Row>
                 {isAdvanceSearchOpen && (
-                    <ListingSearchLoggedin />
+                    <CertainFeatureMenu/>
                 )}
               </Card>
             </Col>
@@ -215,7 +236,7 @@ const DashboardComponent = () => {
             <p>Newest Properties Around You</p>
           </Col>
         </Row>
-        <div className="listing-carousel">
+        <div className="listing-carousel" onClick={() => handleCardClick()} style={{cursor:"pointer"}}>
           <Carousel
             additionalTransfrom={0}
             arrows
@@ -262,11 +283,14 @@ const DashboardComponent = () => {
           </Carousel>
         </div>
         <div className="see-more--container">
-          <SemiRoundBtn
-            label={"SEE MORE NEW LISTINGS"}
-            size="large"
-            className="see-more--btn"
-          />
+          <a href="/new">
+            <SemiRoundBtn
+              label={"SEE MORE NEW LISTINGS"}
+              size="large"
+              className="see-more--btn"
+            />
+          </a>
+          
         </div>
         <div className="discover--section-2">
           <h3>Helping you buy, rent and sell in Real Estate</h3>
@@ -298,17 +322,20 @@ const DashboardComponent = () => {
                   </p>
                 </div>
                 <div className="inquire--actions">
-                  <RoundBtn
-                    label={"Contact us"}
-                    type={"default"}
-                    className="contact-us--action action-btn"
-                    size={"large"}
-                  />
+                  <a href="/contact-us">
+                    <RoundBtn
+                      label={"Contact us"}
+                      type={"default"}
+                      className="contact-us--action action-btn"
+                      size={"large"}
+                    />
+                  </a>
                   <RoundBtn
                     label={"Sign in"}
                     type={"default"}
                     className="sign-in--action action-btn"
                     size={"large"}
+                    onClick={handleUserProfileClick}
                   />
                 </div>
               </div>

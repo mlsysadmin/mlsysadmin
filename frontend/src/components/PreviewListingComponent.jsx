@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import Navigation from "./layout/NavigationComponent";
 import Footer from "./MY Drafts/Components/FooterComponent";
 import "../styles/previewListing.css";
@@ -43,6 +43,8 @@ import { Flex, Progress } from "antd";
 import { Slider, Carousel } from "antd";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
+import ApplicationDetailModal from "./layout/ApplicationDetails/ApplicationDetailsModal";
+
 const PreviewListing = () => {
   const [stepsGap, setStepsGap] = React.useState(0);
   const [homePrice, setHomePrice] = React.useState(100000); // Default home price value
@@ -52,12 +54,31 @@ const PreviewListing = () => {
   const [smallImages, setSmallImages] = React.useState([livingroom, bathroom]); // Initial small images
   const [photoCount, setPhotoCount] = React.useState(); // Initial photo count
 
+  const [showApplicationModal, setShowApplicationModal] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowApplicationModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowApplicationModal(false);
+  };
+
   const handlePesosChange = (newPesos) => {
     setPesos(newPesos);
   };
 
   //sa Kadtu nig pag next sa mga photo
-  const images = [bedroom,livingroom, bathroom ,image701, image702, image703, image704, image705];
+  const images = [
+    bedroom,
+    livingroom,
+    bathroom,
+    image701,
+    image702,
+    image703,
+    image704,
+    image705,
+  ];
 
   const previousImage = () => {
     const newIndex = (currentIndex + 1) % images.length;
@@ -120,84 +141,89 @@ const PreviewListing = () => {
       >
         <div className="real-estate-listing-card">
           <div className="galleryComponent">
-          <div className="gallery">
-            <div className="image-container-large">
-              <img
-                src={images[currentIndex]}
-                alt="Preview"
-                className="all-images"
-              />
+            <div className="gallery">
+              <div className="image-container-large">
+                <img
+                  src={images[currentIndex]}
+                  alt="Preview"
+                  className="all-images"
+                />
 
-              <div className="centered">PHP 120,000,000</div>
+                <div className="centered">PHP 120,000,000</div>
 
-              <div className="icns">
-                <div className="bottom-right">
-                  <div className="icon-circle" onClick={toggleFavorite}>
-                    <div
-                      className={`heart-icon ${isFavorite ? "favorite" : ""}`}
-                    >
-                      <span className="material-symbols-outlined">
-                        {isFavorite ? "favorite" : "favorite_border"}
-                      </span>
+                <div className="icns">
+                  <div className="bottom-right">
+                    <div className="icon-circle" onClick={toggleFavorite}>
+                      <div
+                        className={`heart-icon ${isFavorite ? "favorite" : ""}`}
+                      >
+                        <span className="material-symbols-outlined">
+                          {isFavorite ? "favorite" : "favorite_border"}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="right">
+                    <div className="icon-circle">
+                      <img
+                        src={filter_alt}
+                        className="fas fa-filter"
+                        alt="Filter"
+                      />
+                    </div>
+                  </div>
+                  <div className="Printer">
+                    <div className="icon-circle">
+                      <img src={printer} alt="Printer" />
+                    </div>
+                  </div>
+                  <div className="share">
+                    <div className="icon-circle">
+                      <img src={share} alt="Share" />
                     </div>
                   </div>
                 </div>
-                <div className="right">
-                  <div className="icon-circle">
+                <div className="prev-next">
+                  <div className="backward" onClick={previousImage}>
                     <img
-                      src={filter_alt}
-                      className="fas fa-filter"
-                      alt="Filter"
+                      src={fabackward}
+                      width="40"
+                      height="40"
+                      alt="Previous"
                     />
                   </div>
-                </div>
-                <div className="Printer">
-                  <div className="icon-circle">
-                    <img src={printer} alt="Printer" />
+
+                  <div className="fanext" onClick={nextImage}>
+                    <FontAwesomeIcon icon={faPlay} />
                   </div>
                 </div>
-                <div className="share">
-                  <div className="icon-circle">
-                    <img src={share} alt="Share" />
+
+                <div className="preview-list-property-details">
+                  <div className="pl-for-sale">For Sale</div>
+                  <h2>5 Bedroom House for Rent in Maria Luisa Park</h2>
+                  <div className="location">
+                    <img src={location} alt="Location" /> Maria Luisa Estate
+                    Park, Banilad, Cebu City
                   </div>
                 </div>
               </div>
-              <div className="prev-next">
-                <div className="backward" onClick={previousImage}>
-                  <img src={fabackward} width="40" height="40" alt="Previous" />
-                </div>
-
-                <div className="fanext" onClick={nextImage}>
-                  <FontAwesomeIcon icon={faPlay} />
-                </div>
-              </div>
-
-              <div className="preview-list-property-details">
-                <div className="pl-for-sale">For Sale</div>
-                <h2>5 Bedroom House for Rent in Maria Luisa Park</h2>
-                <div className="location">
-                  <img src={location} alt="Location" /> Maria Luisa Estate Park,
-                  Banilad, Cebu City
+              <div className="small-images">
+                {smallImages.map((src, idx) => (
+                  <div key={idx} className="small-image">
+                    <img
+                      src={src}
+                      alt={`Small ${idx + 1}`}
+                      className="small-img"
+                    />
+                  </div>
+                ))}
+                <div className="camera-info">
+                  <img src={camera} alt="Camera Icon" className="camera" />
+                  <h2>{currentIndex + 1} </h2>
+                  <p className="photos">{photoCount} Photos</p>
                 </div>
               </div>
             </div>
-            <div className="small-images">
-              {smallImages.map((src, idx) => (
-                <div key={idx} className="small-image">
-                  <img
-                    src={src}
-                    alt={`Small ${idx + 1}`}
-                    className="small-img"
-                  />
-                </div>
-              ))}
-              <div className="camera-info">
-                <img src={camera} alt="Camera Icon" className="camera" />
-                <h2>{currentIndex + 1} </h2>
-                <p className="photos">{photoCount} Photos</p>
-              </div>
-            </div>
-          </div>
           </div>
           <div className="previewlist-overview">
             <span>OVERVIEW</span>
@@ -569,7 +595,10 @@ const PreviewListing = () => {
                   </div>
                 </div>
 
-                <button className="apply-button">APPLY NOW</button>
+                <button className="apply-button" onClick={handleButtonClick}>
+                  APPLY NOW
+                </button>
+                {showApplicationModal && <ApplicationDetailModal onClose={handleCloseModal} />}
               </div>
 
               <div className="contact-us">

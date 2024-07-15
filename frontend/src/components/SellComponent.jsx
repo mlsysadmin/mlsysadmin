@@ -8,6 +8,7 @@ import { FooterComponent, CustomMlFooter, MainLayout } from "../components";
 
 const SellComponent = () => {
   const [value, setValue] = useState(1);
+
   const onChange = (e) => {
     console.log("radio checked", e.target.value);
     setValue(e.target.value);
@@ -15,9 +16,10 @@ const SellComponent = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+
   const url_Redirect = process.env.REACT_APP_LOGIN_URL;
 
-  const handleListPropertyClick = () => {
+  const handleSignIn = () => {
     if (url_Redirect) {
       window.location.href = url_Redirect;
     }
@@ -43,7 +45,7 @@ const SellComponent = () => {
                     Contact Us
                   </button>{" "}
                 </a>
-                <a href="/contact-us">
+                <a  onClick={ handleSignIn}>
                   <button id="signIn" type="primary">
                     Sign In
                   </button>
@@ -65,7 +67,7 @@ const SellComponent = () => {
                 <button
                   id="ListPropertybtn"
                   type="primary"
-                  onClick={handleListPropertyClick}
+                  onClick={handleSignIn}
                   style={{ cursor: "pointer" }}
                 >
                   {" "}

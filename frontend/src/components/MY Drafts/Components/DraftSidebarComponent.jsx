@@ -30,7 +30,7 @@ const SidebarMenuItem = (props) => {
 };
 
 const CreateListingButton = (props) => {
-  return <button className="create-listing-button">{props.children}</button>;
+  return <a href="/listing-form"><button className="create-listing-button">{props.children}</button></a>;
 };
 
 const HamburgerButton = ({ onClick }) => {

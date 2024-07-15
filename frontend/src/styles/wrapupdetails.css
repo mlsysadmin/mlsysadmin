@@ -1,162 +1,172 @@
-.property-information-container .prop-info-wrap-up-input input {
-    border:1px solid #ff2800;
-    border-radius: 10px;
-    width: 30%;
-    height: 50px;
-    margin: 20px 0px 0px 0px;
-    font-size: 14px;
-    padding:0px 0px 0px 10px;
-    gap: 20px;
-    display: flex;
-    flex-direction: column;
-  }
-  .property-information-container .prop-info-wrap-up-input2 input {
-    border:1px solid #ff2800;
-    border-radius: 10px;
-    width: 14%;
-    height: 50px;
-    margin: 20px 0px 0px 0px;
-    font-size: 14px;
-    padding:0px 0px 0px 10px;
-  }
-  h3{
-    color: #ff2800;
-    font-size:24px;
-  }
-  .prop-quest{
-    font-size:18px;
-    font-weight: bold;
-  }
-  .prop-info-wrap-up-input2 {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    flex-wrap: wrap;
-} 
-.wrap-up-inf input{
-  width:300px;
+.wrap-up-inf{
+  width: 100%;
+}
+.wrap-up-inf h3{
+  color: var(--red);
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.wrap-up-inf .prop-content2-wrap-up{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+.wrap-up-inf .prop-content2-wrap-up .mobile-address-group,
+.wrap-up-inf .prop-content2-wrap-up .email-address-group,
+.wrap-up-inf .prop-content2-wrap-up .lastname-group,
+.wrap-up-inf .prop-content2-wrap-up .firstname-group,
+.wrap-up-inf .prop-content2-wrap-up .country-group,
+.wrap-up-inf .prop-content2-wrap-up .province-group,
+.wrap-up-inf .prop-content2-wrap-up .city-town-group,
+.wrap-up-inf .prop-content2-wrap-up .zipcode-group,
+.wrap-up-inf .prop-content2-wrap-up .housenumber-group,
+.wrap-up-inf .prop-content2-wrap-up .source-income-group{
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  margin:20px 0px 0px 0px;
+}
+.wrap-up-inf .prop-content2-wrap-up .label{
+  font-weight: bold;
+  font-size:15px;
+}
+.wrap-up-inf .prop-content2-wrap-up .wrap-up-input,
+.wrap-up-inf .prop-content2-wrap-up .wrap-up-dropdown-button{
+  border: 1px solid var(--red);
+  background-color: transparent;
+  border-radius: 8px;
   height: 50px;
-  font-size: 18px;
-  border-radius: 10px;
-  border: 1px solid #ff2800;
-  padding: 0px 0px 0px 20px;
+  flex: 1;
+  padding: 15px;
+}
+.wrap-up-inf .prop-content2-wrap-up .housenumber-group{
+  width: 43%;
+}
+.wrap-up-inf .prop-content2-wrap-up .input-lock, .secure-text{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  margin:38px 0px 0px 280px;
+}
+.wrap-up-inf .secure-text{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  margin:40px 0px 0px 300px;
+  color: #1A258A;
+}
+.wrap-up-inf .prop-content2-wrap-up .wrap-up-dropdown-button {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+  padding:5px;
+}
+.wrap-up-inf .prop-content2-wrap-up .wrap-up-dropdown-button .ant-dropdown-link {
+  color: #333;
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+}
+.wrap-up-inf .prop-content2-wrap-up .province-group .wrap-up-dropdown-button .ant-dropdown-link .anticon {
+  margin-left: 180px;
+}
+.wrap-up-inf .prop-content2-wrap-up  .wrap-up-dropdown-button .ant-dropdown-link .anticon {
+  margin-left: 230px;
 }
 
 @media screen and (min-width:320px) and (max-width:359px){
-  .wrap-up-inf h3{
-    font-size: 24px;
+  .wrap-up-inf{
+    width: 100%;
   }
-   .protect-tagline{
-    font-size: 12px;
-  }
-  .prop-info-wrap-up-input2 {
+  .wrap-up-inf .prop-content2-wrap-up{
     display: flex;
+    width: 100%;
     flex-direction: column;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap:0px;
   }
-  .prop-info-wrap-up-input input{
-    width: 220px;
-    height: 40px;
-    margin:10px 0px 0px 0px;
-    font-size: 16px;
-  }
+  .wrap-up-inf .prop-content2-wrap-up .mobile-address-group,
+.wrap-up-inf .prop-content2-wrap-up .email-address-group,
+.wrap-up-inf .prop-content2-wrap-up .lastname-group,
+.wrap-up-inf .prop-content2-wrap-up .firstname-group,
+.wrap-up-inf .prop-content2-wrap-up .country-group,
+.wrap-up-inf .prop-content2-wrap-up .province-group,
+.wrap-up-inf .prop-content2-wrap-up .city-town-group,
+.wrap-up-inf .prop-content2-wrap-up .zipcode-group,
+.wrap-up-inf .prop-content2-wrap-up .housenumber-group,
+.wrap-up-inf .prop-content2-wrap-up .source-income-group{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin:20px 0px 0px 0px;
+}
+.wrap-up-inf .prop-content2-wrap-up .housenumber-group{
+  width: 100%;
+}
+.wrap-up-inf .prop-content2-wrap-up .input-lock, .secure-text{
+  width: 15px;
+  height: 15px;
+  margin:40px 0px 0px 168px;
+}
+.wrap-up-inf .secure-text{
+  font-size: 12px;
+  margin:40px 0px 0px 183px;
+}
+.wrap-up-inf .prop-content2-wrap-up .wrap-up-dropdown-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:5px;
+}
+.wrap-up-inf .prop-content2-wrap-up .province-group .wrap-up-dropdown-button .ant-dropdown-link .anticon {
+  margin-left: 100px;
+}
+.wrap-up-inf .prop-content2-wrap-up  .wrap-up-dropdown-button .ant-dropdown-link .anticon {
+  margin-left: 150px;
+}
+.wrap-up-inf .prop-content2-wrap-up .wrap-up-input,
+.wrap-up-inf .prop-content2-wrap-up .wrap-up-dropdown-button{
+width: 80%;
+height: 50px;
+}
 }
 @media screen and (min-width:360px) and (max-width:480px){
-  .wrap-up-inf h3{
-    font-size: 24px;
+  .wrap-up-inf .prop-content2-wrap-up .input-lock, .secure-text{
+    width: 15px;
+    height: 15px;
+    margin:40px 0px 0px 185px;
   }
-   .protect-tagline{
+  .wrap-up-inf .secure-text{
     font-size: 12px;
-  }
-  .prop-info-wrap-up-input2 {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .prop-info-wrap-up-input input{
-    width: 220px;
-    height: 40px;
-    margin:10px 0px 0px 0px;
-    font-size: 16px;
+    margin:40px 0px 0px 210px;
   }
 }
-@media screen and (min-width:481px) and (max-width:768px){
-  .wrap-up-inf h3{
-    font-size: 30px;
+@media screen and (min-width:481px) and (max-width:768px) {
+  .wrap-up-inf{
+    width: 100%;
   }
-   .protect-tagline{
-    font-size: 18px;
-  }
-  .prop-info-wrap-up-input2 {
+  .wrap-up-inf .prop-content2-wrap-up{
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap:30px;
   }
-  .prop-info-wrap-up-input input{
-    width: 220px;
-    height: 40px;
-    margin:10px 0px 0px 0px;
-    font-size: 16px;
-  }
-  .prop-quest {
-    font-size: 24px;
-    font-weight: bold;
+  .wrap-up-inf .prop-content2-wrap-up .mobile-address-group,
+.wrap-up-inf .prop-content2-wrap-up .email-address-group,
+.wrap-up-inf .prop-content2-wrap-up .lastname-group,
+.wrap-up-inf .prop-content2-wrap-up .firstname-group,
+.wrap-up-inf .prop-content2-wrap-up .country-group,
+.wrap-up-inf .prop-content2-wrap-up .province-group,
+.wrap-up-inf .prop-content2-wrap-up .city-town-group,
+.wrap-up-inf .prop-content2-wrap-up .zipcode-group,
+.wrap-up-inf .prop-content2-wrap-up .housenumber-group,
+.wrap-up-inf .prop-content2-wrap-up .source-income-group{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin:20px 0px 0px 0px;
 }
-}
-@media screen and (min-width:769px) and (max-width:1024px){
-  .wrap-up-inf h3{
-    font-size: 24px;
-  }
-   .protect-tagline{
-    font-size: 12px;
-  }
-  .prop-info-wrap-up-input2 {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .prop-info-wrap-up-input input{
-    width: 220px;
-    height: 40px;
-    margin:10px 0px 0px 0px;
-    font-size: 16px;
-  }
-}
-@media screen and (min-width:1025px) and (max-width:1200px){
-  .wrap-up-inf h3{
-    font-size: 24px;
-  }
-   .protect-tagline{
-    font-size: 12px;
-  }
-  .prop-info-wrap-up-input2 {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .prop-info-wrap-up-input input{
-    width: 220px;
-    height: 40px;
-    margin:10px 0px 0px 0px;
-    font-size: 16px;
-  }
-}
-@media screen and (min-width:1201px) and (max-width:1400px){
-  .wrap-up-inf h3{
-    font-size: 24px;
-  }
-   .protect-tagline{
-    font-size: 12px;
-  }
-  .prop-info-wrap-up-input2 {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .prop-info-wrap-up-input input{
-    width: 220px;
-    height: 40px;
-    margin:10px 0px 0px 0px;
-    font-size: 16px;
-  }
 }

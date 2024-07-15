@@ -25,15 +25,18 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
   const PropertyGroupRef = useRef(null);
   const DetailsGroupRef = useRef(null);
   const WrapUpGroupRef = useRef(null);
+  
   //property handler
   const [selectedButton, setSelectedButton] = useState(null);
   const [selectedHomeButton, setSelectedHomeButton] = useState(null);
   const [selectedNewHomeButton, setSelectedNewHomeButton] = useState(null);
   const [buttonClick, setButtonClick] = useState(null);
+
   //timeline handler
   const [timelinequest1, setTimelinequest1] = useState(null);
   const [timelinequest2, setTimelinequest2] = useState(null);
   const [timelinequest3, setTimelinequest3] = useState(null);
+
   //details handler
   const [detailsquest1, setDetailsquest1] = useState(null);
   const [detailsquest2, setDetailsquest2] = useState(null);
@@ -54,6 +57,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
   const handleAgentClick = (option) => {
     setButtonClick(option);
   };
+
   //timelinehandler
   const handleTimelineButtonClick = (option) => {
     setTimelinequest1(option);
@@ -561,25 +565,7 @@ useEffect(() => {
           <br />
           {/* Wrap-up */}
           <div className="prop-content-wrap-up" ref={WrapUpGroupRef}>
-            <WrapUpDetails />
-            <div className="prop-content3">
-              <br />
-              <span className="prop-quest">What is your mobile number?</span>
-              <br />
-              <span>Your information is protected by SSL encryption.</span>
-              <div className="prop-info-wrap-up-input">
-                <input type="number" placeholder="Mobile Number"  onChange={handleMobileNumberChange}></input>
-              </div>
-            </div>
-            <div className="prop-content4">
-              <br />
-              <span className="prop-quest">What is your current ZIP code?</span>
-              <br />
-              <span>Your information is protected by SSL encryption.</span>
-              <div className="prop-info-wrap-up-input">
-                <input type="number" placeholder="Zip Code" onChange={handleZipCodeChange}></input>
-              </div>
-            </div>
+            <WrapUpDetails/>
           </div>
           <br />
           <br />

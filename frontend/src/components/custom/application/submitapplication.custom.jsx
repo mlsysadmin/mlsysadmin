@@ -30,7 +30,7 @@ const SubmitApplicationCustom = ({ successModalMessage ,isSubmitButtonDisabled,
         <button type="primary" className="submit-btn" onClick={handleSubmit} aria-label="Submit Application" 
             disabled={isSubmitButtonDisabled}
             style={{
-              backgroundColor: isSubmitButtonDisabled ? 'gray' : '#ff2800',
+              backgroundColor: isSubmitButtonDisabled ? 'gray' : '#D90000',
               color: 'white',
               border: 'none',
               padding: '8px 16px',

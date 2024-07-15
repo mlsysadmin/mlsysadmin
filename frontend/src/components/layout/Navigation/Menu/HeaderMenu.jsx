@@ -6,9 +6,12 @@ import { SubMenu } from "../../../../utils/MenuPopover.utils";
 import { useNavigate, useLocation } from "react-router-dom";
 import RoundBtn from "../../../custom/buttons/RoundBtn.custom";
 import userProfile from "../../../../assets/profile-user.png";
+import UserLogInProfileDropdownBtn from "../../../custom/buttons/BuyerLogInButtonDropdown";
+// import userProfileLogIn from "../../../../assets/userProfileLogIn.png"
+// import ProfileDropDown
 import TextBtn from "../../../custom/buttons/TextBtn.custom";
 import LoginModal from "../../../modals/loginmodal";
-
+import SellerLogInButtonDropdown from "../../../custom/buttons/SellerLogInButtonDropdown";
 
 const HeaderMenu = () => {
   const [currentMenu, setCurrent] = useState("");
@@ -22,14 +25,11 @@ const HeaderMenu = () => {
   const url_Redirect = process.env.REACT_APP_LOGIN_URL;
   const handleUserProfileClick = () => {
     if (url_Redirect) {
-      window.location.href = url_Redirect
+      window.location.href = url_Redirect;
     }
-
   };
 
-
   //modals
-
 
   useEffect(() => {
     const path = location.pathname.replace("/", "");
@@ -193,12 +193,17 @@ const HeaderMenu = () => {
           className="menu-buttons"
           style={{ background: "#D90000" }}
           label="List your Property"
+          onClick={handleUserProfileClick}
         />
-        <Row align={"middle"} className="menu-buttons">    
-          <img src={userProfile} style={{ margin:"0px 0px 0px 10px", cursor:"pointer"}} onClick={handleUserProfileClick}></img>
-         </Row>
+        <Row align={"middle"} className="menu-buttons">
+            {/* <img
+              src={userProfile}
+              style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
+              onClick={handleUserProfileClick}
+            />  */}
+            <SellerLogInButtonDropdown/>
+        </Row>
       </div>
-     
     </>
   );
 };

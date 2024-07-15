@@ -219,7 +219,7 @@ const DiscoverHomeComponent = () => {
                 <span className="text-wrapper">
                   <a
                     href="/mortgage"
-                    style={{ textDecoration: "none", color: "#ff2800" }}
+                    style={{ textDecoration: "none", color: "#D90000" }}
                   >
                     Get pre-approved
                   </a>
@@ -240,7 +240,7 @@ const DiscoverHomeComponent = () => {
                     percent={85}
                     width={200}
                     strokeWidth={10}
-                    strokeColor="#ff2800"
+                    strokeColor="#D90000"
                     trailColor="#d900002b"
                     format={(percent) => (
                       <div
@@ -350,7 +350,7 @@ const DiscoverHomeComponent = () => {
                   {item.label}
                   <DownOutlined
                     style={{
-                      color: "#ff2800",
+                      color: "#D90000",
                       transform:
                         activeIndex === index ? "rotate(180deg)" : "none",
                     }}

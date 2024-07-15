@@ -116,7 +116,7 @@
     border-radius: 20px;
     font-size: 20px;
     padding: 25px;
-    border:1px solid #ff2800;
+    border:1px solid var(--red);
     width: 200px;
     height: 80px;
     cursor: pointer;
@@ -134,7 +134,7 @@
     padding: 25px;
     padding-left: 50px;
     padding-right: 50px;
-    border:1px solid #ff2800;
+    border:1px solid var(--red);
     width: 200px;
     height: 80px;
     cursor: pointer;
@@ -168,7 +168,7 @@
   
 
   .second-section .content #ListPropertybtn{
-    border:1px solid #ff2800;
+    border:1px solid var(--red);
     width: 300px;
     height: 80px;
     color: #FFFFFF;
@@ -318,7 +318,7 @@
   .fourth-section #contactUs{
     color: #D90000;
     font-weight: bold;
-    border-color: #ff2800;
+    border-color: var(--red);
     background-color: transparent;
     border-radius: 20px;
     font-size: 24px;

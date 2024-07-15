@@ -3,6 +3,7 @@ import { useState } from "react";
 import CustomAdvanceSearch from "./custom.advancesearch";
 import { PlusOutlined, SearchOutlined, MinusCircleOutlined} from '@ant-design/icons';
 import { Button, Input, Select } from 'antd';
+import AdvanceSearch from "../../../asset/icons/advanceSearch.png"
 import "../../../styles/custom.css";
 import CertainFeatureMenu from "./certainfeature";
 
@@ -58,7 +59,7 @@ const ListingSearch = () => {
                     Looking for a certain features
                 </Button>
                 <div className="right-buttons">
-                    <Button className="right-button-advanced" onClick={handleAdvancedSearchClick}>Advanced Search</Button>
+                    <Button className="right-button-advanced" onClick={handleAdvancedSearchClick} ><img src={AdvanceSearch} style={{width:"22px", margin:"0px 0px 0px 0px"}}></img>Advanced Search</Button>
                     <Button className="right-button" icon={<SearchOutlined />}>Search</Button>
                 </div>
             </div>
