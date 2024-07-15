@@ -1,5 +1,12 @@
+/* .application-details-main-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+
 .application-details {
-    width: 95%;
+    width: 100%;
     justify-content: center;
     align-items: center;
   }

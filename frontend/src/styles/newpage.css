@@ -35,15 +35,15 @@
   /* font-size: 32px; */
   font-weight: bold;
 }
-
-.new-page-label {
+.second-content h1{
   font-size: 30px;
+  margin: 0px 0px 20px 0px;
+}
+.new-page-label {
   position: relative;
   margin: 0px 100px 0px 0px;
 }
-
-
-@media screen and (min-width: 368px) and (max-width: 480px) {
+@media screen and (min-width: 320px) and (max-width: 359px) {
 
   .newpage-container {
     justify-content: left;
@@ -53,56 +53,37 @@
     grid-gap: 20px;
     width: 100%;
   }
-
-  .first-content {
-    /* display: flex;
-      flex-wrap: wrap; */
-    width: 53%;
-    justify-content: left;
-    align-items: start;
-    margin: 0px 0px 0px 10px;
-  }
-
-  .sub-content1 {
-    /* display: flex;
-      flex-wrap: wrap; */
-    /* justify-content: left; */
-    width: 10%;
-    margin: 0px 10px 20px 20px;
-
-  }
-
-  .subcontent-inputs {
-    width: 20%;
-    /* flex-wrap: wrap; */
-    /* justify-content: space-between; */
-    flex-wrap: wrap;
-  }
-
-  .input-field,
-  .select-field {
-    color: black;
-    height: 30px;
-    width: 100%;
-    margin: 5px 0;
-  }
-
-  .left-button {
-    cursor: pointer;
-    align-items: center;
-    font-weight: bold;
-    width: 28px;
-  }
-
   .second-content {
-    width: 80%;
+    padding:5px;
+}
+  .second-content h1{
+    font-size: 20px;
+  }
+  .second-content .card-container{
+    margin: 0px;
+  }
+}
+
+@media screen and (min-width: 360px) and (max-width: 480px) {
+
+  .newpage-container {
+    justify-content: left;
   }
 
-  .second-content h1 {
-    font-size: 10px;
+  .newpage-contents {
+    grid-gap: 20px;
+    width: 100%;
   }
-
-
+  .second-content {
+    padding:10px;
+}
+  .second-content h1{
+    font-size: 22px;
+    margin: 0px 0px 20px 0px;
+  }
+  .second-content .card-container{
+    margin: 0px;
+  }
 }
 
 @media screen and (min-width: 481px) and (max-width: 768px) {}

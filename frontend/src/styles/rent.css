@@ -41,6 +41,7 @@
   flex-direction: column;
 }
 
+
 @media only screen and (max-width: 1028px ) {
   .cardContainer{
     padding: 1%;

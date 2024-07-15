@@ -33,7 +33,15 @@
     text-decoration: none;
     margin: 0 10px;
   }
+  @media screen and (min-width: 320px) and (max-width: 359px) {
+    .footer-content {
+      font-size: 10px;
+    }
   
+    .right-side {
+      flex: none;
+    }
+  }
   @media screen and (min-width: 360px) and (max-width: 480px) {
     .footer-content {
       font-size: 12px;

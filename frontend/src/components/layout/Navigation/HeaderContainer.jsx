@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Layout, Menu, Row } from 'antd';
+import BrokerageLogo from "../../../assets/BrokerageLogo.png";
 import { MenuOutlined } from "@ant-design/icons";
 
 import "../../../styles/header.css"
@@ -15,7 +16,6 @@ const { Header } = Layout;
 
 const HeaderContainer = ({ showDrawer, screenSize }) => {
 
-  console.log(screenSize);
   const _swidth = screenSize;
 
   return (
@@ -23,12 +23,15 @@ const HeaderContainer = ({ showDrawer, screenSize }) => {
       style={{ background: "white" }}
       className='header'
     >
-      <div className="ml-logo" style={{ display: "flex" }}>
+      <div className="ml-logo" style={{ display: "flex" , margin:"0px 0px 0px 20px"}}>
       <a href="/">
         <img
-          src="https://anima-uploads.s3.amazonaws.com/projects/64e41d552340cba66b90f01a/releases/64e41e67e1c2a81b98b3c871/img/logo@2x.png"
+          // src="https://anima-uploads.s3.amazonaws.com/projects/64e41d552340cba66b90f01a/releases/64e41e67e1c2a81b98b3c871/img/logo@2x.png"
+          src={BrokerageLogo}
           alt="logo"
-          width={200}
+          style={{ width: "150px", height: "60px" }}
+          // width={140}
+          // height={55}
         />
         </a>
       </div>

@@ -1,40 +1,39 @@
 require("dotenv").config();
-const crypto = require("node:crypto");
+const bcrypt = require("bcrypt");
 
-const iterations = 100000;
-const saltLength = 10;
-const keyLength = 64;
-const digest = 'sha512';
+const algo = 'sha256';
 const secret = process.env.SECRET_KEY;
+const saltRounds = 10; 
 
-const Hash = (body) => {
-        
-    try {
-        let hash;
-
-        const salt = crypto.randomBytes(saltLength).toString('hex');
+const Hash = async (body) => {
     
-        return crypto.pbkdf2(body, salt, iterations, keyLength, digest, (err, derivedKey) => {
-            let hash_res = null;
-            if (err) throw err;
+    try {
 
-            const hashed = `${derivedKey.toString('hex')}`;
+        const salt = await bcrypt.genSalt(saltRounds);
+        
+        const hash = await bcrypt.hash(body, salt);
 
-            return hashed;
-
-        })
+        return hash.toString()
 
     } catch (error) {
-        console.log(error);
         return error
     }
     
 }
 
-const VerifyHash = () => {
+const VerifyHash = async(password,signature) => {
+    try {
+        
+        const verify = await bcrypt.compare(password, signature);
 
+        return verify
+        
+    } catch (error) {
+        return error
+    }
 }
 
 module.exports = {
-    Hash
+    Hash,
+    VerifyHash
 }

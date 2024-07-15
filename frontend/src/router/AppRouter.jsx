@@ -1,26 +1,40 @@
-import React from 'react';
-import { createBrowserRouter } from 'react-router-dom';
-import MainOutlet from '../pages/MainOutlet';
-import NewPage from '../pages/New.page'
-import Dashboard from '../pages/Dashboard.page';
-import { 
-    HouseForRentPage, 
-    DiscoverHomePage, 
-    BuyAHomePage, 
-    RefinancePage, 
-    InsuranceGuidePage, 
-    ContactUsPage,
-    RentPage,
-    SellPage,
-    LoanCalculatorPage,
-    MortagagePage} from '../pages';
-import Allpage from '../pages/Buyer.All.page';
-import Featuredpage from '../pages/Buyer.Featured.page';
-import SuccessModal from '../components/SuccessModal';
-import SuccessfullySubmitted from '../components/SuccessfullySubmitted';
-import ApplicationModal from '../components/ApplicationModal';
-import OTPModal from '../components/OTPModal';
-import ApplicationHistory from '../components/ApplicationHistory';
+import React from "react";
+import { createBrowserRouter } from "react-router-dom";
+import MainOutlet from "../pages/MainOutlet";
+import NewPage from "../pages/New.page";
+import Dashboard from "../pages/Dashboard.page";
+import Allpage from "../pages/Buyer.All.page";
+import Featuredpage from "../pages/Buyer.Featured.page";
+
+import {
+  ShowDetailsProcessing,
+  ListingPage,
+  ListingFormPage,
+  LoginModal,
+  RegistrationModal,
+  ModalComponents,
+  Sidebar,
+  ListingsTable,
+  SoldPropertiesPage,
+  MyDraftsPage,
+  HouseForRentPage,
+  DiscoverHomePage,
+  BuyAHomePage,
+  RefinancePage,
+  InsuranceGuidePage,
+  ContactUsPage,
+  RentPage,
+  SellPage,
+  LoanCalculatorPage,
+  MortagagePage,
+  ActiveSummaryListsPage,
+  ClientManagementPage,
+  ListingSummaryListsPage,
+  PreviewListing,
+  ShowDetailsDenied,
+  ActiveListingDetails,
+  SoldPropertyDetailsPage,
+} from "../pages";
 
 const Routes = [
     {
@@ -32,27 +46,27 @@ const Routes = [
                 element: <Dashboard/>
             },
             {
-              path: "/new-page",
+              path: "/new", // removed page
               element: <NewPage/>
             },
             {
-                path: "/house-for-rent-page",
+                path: "/house-for-rent",
                 element: <HouseForRentPage/>
             },
             {
-                path: "/discover-home-page",
+                path: "/discover-home",
                 element: <DiscoverHomePage/>
             },
             {
-                path: "/buy-a-home-page",
+                path: "/buy-a-home",
                 element: <BuyAHomePage/>
             },
             {
-                path: "/refinance-page",
+                path: "/refinance",
                 element: <RefinancePage/>
             },
             {
-                path: "/insurance-guide-page",
+                path: "/insurance-guide",
                 element: <InsuranceGuidePage/>
             },
             {
@@ -68,11 +82,11 @@ const Routes = [
                 element: <ContactUsPage/>
             },
             {
-                path: "/rent-page",
+                path: "/rent",
                 element: <RentPage/>
             },
             {
-                path: "/sell-page",
+                path: "/sell",
                 element: <SellPage/>
             },
             {
@@ -80,10 +94,11 @@ const Routes = [
                 element: <LoanCalculatorPage/>
             },
             {
-                path: "/mortgage-page",
+                path: "/mortgage",
                 element: <MortagagePage/>
             },
             {
+<<<<<<< HEAD
                 path: "/modal",
                 element: <SuccessModal/>
             },
@@ -103,10 +118,63 @@ const Routes = [
                 path: "/application-history",
                 element: <ApplicationHistory/>
             },
+=======
+                path: "/listing",
+                element: <ListingPage />,
+              },
+              {
+                path: "/listing-form",
+                element: <ListingFormPage />,
+              },
+              {
+                path: "/drafts",
+                element: <MyDraftsPage />,
+              },
+              {
+                path: "/sold-properties",
+                element: <SoldPropertiesPage />,
+              },
+              {
+                path: "/active-summary-lists",
+                element: <ActiveSummaryListsPage />,
+              },
+              {
+                path: "/clientmanagement",
+                element: <ClientManagementPage />,
+              },
+              {
+                path: "/listing-summary-lists",
+                element: <ListingSummaryListsPage />,
+              },
+              {
+                path: "/listingsTable",
+                element: <ListingsTable />,
+              },
+              {
+                path: "/sidebar",
+                element: <Sidebar />,
+              },
+              {
+                path: "/previewListing",
+                element: <PreviewListing />,
+              },
+              {
+                path: "/Modalcomponents",
+                element: <ModalComponents />,
+              },
+              {
+                path: "/RegistrationModal",
+                element: <RegistrationModal />,
+              },
+              {
+                path: "/LoginModal",
+                element: <LoginModal />,
+              },
+>>>>>>> 317c58e1f82202f0dc3cca8fa7a44e2488189467
         ]
     }
 ]
 
 const AppRouter = createBrowserRouter(Routes);
 
-export default AppRouter
+export default AppRouter;
