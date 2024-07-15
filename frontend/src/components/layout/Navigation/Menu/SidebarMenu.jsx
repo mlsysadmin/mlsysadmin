@@ -2,7 +2,9 @@ import { Col, Divider, Menu } from 'antd';
 import React from 'react'
 import { SubMenu } from '../../../../utils/MenuPopover.utils';
 import RoundBtn from '../../../custom/buttons/RoundBtn.custom';
+import userProfile from "../../../../assets/profile-user.png";
 import TextBtn from '../../../custom/buttons/TextBtn.custom';
+import { linearProgressClasses } from '@mui/material';
 
 const SidebarMenu = () => {
 
@@ -65,11 +67,11 @@ const SidebarMenu = () => {
             children: SubMenuChild(SubMenu.rent)
 
         }, 
-        { label: "Buy", key: "Buy", children: SubMenuChild(SubMenu.buy) }, 
+        { label: "Buy", key: "Buy", children: SubMenuChild(SubMenu.buy) ,link: '/buy' }, 
         { label: "Home Loan", key: "Home Loan", children: SubMenuChild(SubMenu.homeLoan) }, 
         { label: "Home Insurance", key: "Home Insurance", children:SubMenuChild(SubMenu.homeInsurance)}, 
         { label: "Other Services", key: "Other Services", link: '/other-services' }, 
-        { label: "Contact", key: "Contact", link: '/contact' },
+        { label: "Contact", key: "Contact", link: '/contact-us' },
     ]
 
     const items = MenuItems.map((item, index) => ({
@@ -93,26 +95,17 @@ const SidebarMenu = () => {
             className='sidebar-menu'
             />
             <Divider />
-            <div>
-                <Col align="left" className='menu-buttons'>
-                        <TextBtn label="Login" style={{ 
-                            color:"#8C9094", 
-                            fontFamily: '"Poppins", sans-serif', 
-                            display: "block",
-                            margin: '10px 0'  }}/>
-                        {/* <div style={{ color:"#D90000" }}>/</div> */}
-                        <TextBtn label="Register" style={{ 
-                            color:"#8C9094", 
-                            fontFamily: '"Poppins", sans-serif', 
-                            display: "block",
-                            margin: '10px 0' }}/>
-                </Col>
+            <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
                 <RoundBtn 
                     type="primary"
                     className="menu-buttons"
-                    style={{ background: "#D90000", fontFamily: '"Poppins", sans-serif'  }}
+                    style={{ background: "#D90000", fontFamily: '"Poppins", sans-serif', }}
                     label="List your Property"
                 />
+                <Col align="left" className='menu-buttons'>
+                <img src={userProfile} style={{width:"30px", cursor:"pointer"}}></img>
+                </Col>
+                
             </div>
         </>
     )

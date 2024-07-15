@@ -10,10 +10,10 @@ import "../../styles/custom.mlfooter.css";
 
 const CustomMlFooter = () => {
     return (
-        <div className="third-content">
+        <div className="third-content-footer">
             <div className="third-cont">
                 <Row>
-                    <Col span={6}>
+                    <Col span={8}>
                         <img src={mllogo} alt="ML Logo" className="logo-ml" />
                         <div className="customer-care"><CustomerServiceFilled style={{ color: '#ff2800' }} /><span>customercare@mlhuillier.com</span></div>
                         <div className="firstcol-icons">
@@ -23,7 +23,7 @@ const CustomMlFooter = () => {
                             <YoutubeOutlined className="social-icon" />
                         </div>
                     </Col>
-                    <Col span={6}>
+                    <Col span={5}>
                         <div className="col-title">Quick Links</div>
                         <div className="col-cont">
                             <div>Online Services</div>
@@ -32,7 +32,7 @@ const CustomMlFooter = () => {
                             <div>Careers</div>
                         </div>
                     </Col>
-                    <Col span={6}>
+                    <Col span={5}>
                         <div className="col-title">Support</div>
                         <div className="col-cont">
                             <div>FAQs</div>
@@ -41,7 +41,7 @@ const CustomMlFooter = () => {
                             <div>Terms and Conditions</div>
                         </div>
                     </Col>
-                    <Col span={6}>
+                    <Col span={5}>
                         <div className="col-title">Downloads</div>
                         <div className="last-col-icons">
                             <div> <img src={applestore} alt="Apple App Store" /></div>

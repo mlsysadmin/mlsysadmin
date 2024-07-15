@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import Navigation from "./layout/NavigationComponent";
 import Footer from "./MY Drafts/Components/FooterComponent";
 import "../styles/previewListing.css";
@@ -40,7 +40,7 @@ import { Flex, Progress } from "antd";
 import { Slider, Carousel } from "antd";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
-
+import ApplicationDetailModal from "./layout/ApplicationDetails/ApplicationDetailsModal";
 
 const PreviewListing = () => {
   const [amountInPesos, setPesos] = React.useState(500);
@@ -50,6 +50,16 @@ const PreviewListing = () => {
   const [stepsGap, setStepsGap] = React.useState(20); // Interest rate in percent
   const [homePrice, setHomePrice] = React.useState(1000000); // Initial home price
   const [downPayment, setDownPayment] = React.useState(100000); // Initial down payment
+
+  const [showApplicationModal, setShowApplicationModal] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowApplicationModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowApplicationModal(false);
+  };
 
   const term = 30; // Fixed term in years
   const termInMonths = term * 12; // Convert term to months
@@ -590,7 +600,11 @@ const PreviewListing = () => {
                     </div>
                   </div>
                 </div>
-                <button className="apply-button">APPLY NOW</button>
+
+                <button className="apply-button" onClick={handleButtonClick}>
+                  APPLY NOW
+                </button>
+                {showApplicationModal && <ApplicationDetailModal onClose={handleCloseModal} />}
               </div>
 
               <div className="contact-us">

@@ -37,139 +37,121 @@ import {
 } from "../pages";
 
 const Routes = [
-  {
-    path: "/",
-    element: <MainOutlet />,
-    children: [
-      {
+    {
         path: "/",
-        element: <Dashboard />,
-      },
-      {
-        path: "/listing",
-        element: <ListingPage />,
-      },
-      {
-        path: "/new-page",
-        element: <NewPage />,
-      },
-      {
-        path: "/house-for-rent-page",
-        element: <HouseForRentPage />,
-      },
-      {
-        path: "/discover-home-page",
-        element: <DiscoverHomePage />,
-      },
-      {
-        path: "/buy-a-home-page",
-        element: <BuyAHomePage />,
-      },
-      {
-        path: "/refinance-page",
-        element: <RefinancePage />,
-      },
-      {
-        path: "/insurance-guide-page",
-        element: <InsuranceGuidePage />,
-      },
-      {
-        path: "/all",
-        element: <Allpage />,
-      },
-      {
-        path: "featured",
-        element: <Featuredpage />,
-      },
-      {
-        path: "/contact-us",
-        element: <ContactUsPage />,
-      },
-      {
-        path: "/rent-page",
-        element: <RentPage />,
-      },
-      {
-        path: "/sell-page",
-        element: <SellPage />,
-      },
-      {
-        path: "/loan-calculator",
-        element: <LoanCalculatorPage />,
-      },
-      {
-        path: "/mortgage-page",
-        element: <MortagagePage />,
-      },
-      {
-        path: "/listing",
-        element: <ListingPage />,
-      },
-
-      {
-        path: "/drafts",
-        element: <MyDraftsPage />,
-      },
-      {
-        path: "/sold-properties",
-        element: <SoldPropertiesPage />,
-      },
-      {
-        path: "/active-summary-lists",
-        element: <ActiveSummaryListsPage />,
-      },
-      {
-        path: "/clientmanagement",
-        element: <ClientManagementPage />,
-      },
-      {
-        path: "/listing-summary-lists",
-        element: <ListingSummaryListsPage />,
-      },
-      {
-        path: "/listingsTable",
-        element: <ListingsTable />,
-      },
-      {
-        path: "/sidebar",
-        element: <Sidebar />,
-      },
-      {
-        path: "/previewListing",
-        element: <PreviewListing />,
-      },
-      {
-        path: "/Modalcomponents",
-        element: <ModalComponents />,
-      },
-      {
-        path: "/RegistrationModal",
-        element: <RegistrationModal />,
-      },
-      {
-        path: "/LoginModal",
-        element: <LoginModal />,
-      },
-      ,
-      {
-        path: "/show-details-processing",
-        element: <ShowDetailsProcessing />,
-      },
-      {
-        path: "/show-details-denied",
-        element: <ShowDetailsDenied />,
-      },
-      {
-        path: "/active-listing-details",
-        element: <ActiveListingDetails />,
-      },
-      {
-        path: "/sold-property-details",
-        element: <SoldPropertyDetailsPage />,
-      },
-    ],
-  },
-];
+        element: <MainOutlet/>,
+        children: [
+            {
+                path: "/",
+                element: <Dashboard/>
+            },
+            {
+              path: "/new", // removed page
+              element: <NewPage/>
+            },
+            {
+                path: "/house-for-rent",
+                element: <HouseForRentPage/>
+            },
+            {
+                path: "/discover-home",
+                element: <DiscoverHomePage/>
+            },
+            {
+                path: "/buy-a-home",
+                element: <BuyAHomePage/>
+            },
+            {
+                path: "/refinance",
+                element: <RefinancePage/>
+            },
+            {
+                path: "/insurance-guide",
+                element: <InsuranceGuidePage/>
+            },
+            {
+                path: "/all",
+                element: <Allpage/>
+            },
+            {
+                path: "featured",
+                element: <Featuredpage/>
+            },
+            {
+                path: "/contact-us",
+                element: <ContactUsPage/>
+            },
+            {
+                path: "/rent",
+                element: <RentPage/>
+            },
+            {
+                path: "/sell",
+                element: <SellPage/>
+            },
+            {
+                path: "/loan-calculator",
+                element: <LoanCalculatorPage/>
+            },
+            {
+                path: "/mortgage",
+                element: <MortagagePage/>
+            },
+            {
+                path: "/listing",
+                element: <ListingPage />,
+              },
+              {
+                path: "/listing-form",
+                element: <ListingFormPage />,
+              },
+              {
+                path: "/drafts",
+                element: <MyDraftsPage />,
+              },
+              {
+                path: "/sold-properties",
+                element: <SoldPropertiesPage />,
+              },
+              {
+                path: "/active-summary-lists",
+                element: <ActiveSummaryListsPage />,
+              },
+              {
+                path: "/clientmanagement",
+                element: <ClientManagementPage />,
+              },
+              {
+                path: "/listing-summary-lists",
+                element: <ListingSummaryListsPage />,
+              },
+              {
+                path: "/listingsTable",
+                element: <ListingsTable />,
+              },
+              {
+                path: "/sidebar",
+                element: <Sidebar />,
+              },
+              {
+                path: "/previewListing",
+                element: <PreviewListing />,
+              },
+              {
+                path: "/Modalcomponents",
+                element: <ModalComponents />,
+              },
+              {
+                path: "/RegistrationModal",
+                element: <RegistrationModal />,
+              },
+              {
+                path: "/LoginModal",
+                element: <LoginModal />,
+              },
+        ]
+    }
+]
 
 const AppRouter = createBrowserRouter(Routes);
 

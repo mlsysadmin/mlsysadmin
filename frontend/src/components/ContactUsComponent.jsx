@@ -2,12 +2,41 @@ import React from "react";
 import "../styles/contactUs.css";
 import map from "../asset/icons/map.png";
 import logo from "../asset/icons/logo.png";
+import { useState } from "react";
 import { Button } from "antd";
-import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout } from "../components";
+import {
+  FooterComponent,
+  CustomMlFooter,
+  ListingSearch,
+  MainLayout,
+} from "../components";
 
 // import ContactUsComponent from "../components/custom/ContactUsComponent.jsx"
 
 const ContactUsComponent = () => {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const toggleAccordion = (index) => {
+    setActiveIndex(index === activeIndex ? null : index);
+  };
+
+  const accordionData = [
+    {
+      label: "How do I begin the process of buying a home?",
+      answer:
+        "To begin the process of buying a home, you should first get pre-approved for a mortgage. This will give you an idea of how much home you can afford. You can then start looking at homes and working with a real estate agent to find the right property for you.",
+    },
+    {
+      label: "What is a Mortgage, and how does it work?",
+      answer:
+        "A mortgage is a loan that you use to finance the purchase of a home. The lender provides the funds to buy the home, and you agree to repay the loan over a set period of time (typically 15 or 30 years) with interest. The home itself serves as collateral for the loan, meaning that if you fail to make your payments, the lender can foreclose on the property.",
+    },
+    {
+      label: "What is a Mortgage, and how does it work?",
+      answer:
+        "A mortgage is a loan that you use to finance the purchase of a home. The lender provides the funds to buy the home, and you agree to repay the loan over a set period of time (typically 15 or 30 years) with interest. The home itself serves as collateral for the loan, meaning that if you fail to make your payments, the lender can foreclose on the property.",
+    },
+  ];
   return (
     <div>
       <div className="contactUsContainer">
@@ -18,7 +47,7 @@ const ContactUsComponent = () => {
             24 hours.
           </p>
         </div>
-        <div className="contactField">
+        <div className="contact-field">
           <div className="field-container">
             <div className="inputFields">
               <div id="inputField">
@@ -84,10 +113,10 @@ const ContactUsComponent = () => {
         </div>
         <div className="contactUsContent">
           <div className="location">
-            <p style={{ fontSize: "2rem" }}>Our Location</p>
-            <div style={{ fontSize: "1.7rem" }}>
-              <h3>Connecting Near and Far</h3>
-              <p style={{ fontSize: "1.5rem" }}>
+            <p className="location-header">Our Location</p>
+            <div className="location-container">
+              <h3 id="location">Connecting Near and Far</h3>
+              <p className="pinned-location">
                 M Lhuillier Financial Services Inc. <br /> B. Benedicto St, Cebu
                 City,
                 <br />
@@ -109,12 +138,31 @@ const ContactUsComponent = () => {
         </div>
         <div className="FAQs-container">
           <div className="questions">
-            <p>How do I begin the process of buying a home? </p>
-            <hr />
-            <p>What is a Mortgage, and how does it work?</p>
-            <hr />
-            <p>What is a Mortgage, and how does it work?</p>
-            <hr />
+            {accordionData.map((item, index) => (
+              <div key={index}>
+                <div
+                  className="dropdown-label"
+                  onClick={() => toggleAccordion(index)}
+                  style={{
+                    backgroundColor:
+                      activeIndex === index ? "white" : "white",
+                    display: activeIndex === index ? "flex" : "flex",
+                    flexDirection: activeIndex === index ? "column" : "row",
+                    padding: "16px",
+                  }}
+                >
+                  {item.label}
+                  {activeIndex === index && (
+                    <div
+                      className="dropdown-content"
+                      style={{ height: "auto", fontWeight:'lighter' }}
+                    >
+                      {item.answer}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
           <div className="FAQs">
             <div id="FAQs">
@@ -144,11 +192,11 @@ const ContactUsComponent = () => {
             </div>
           </div>
         </div>
-        <CustomMlFooter/>
-        <FooterComponent/>
+        <CustomMlFooter />
+        <FooterComponent />
       </div>
     </div>
   );
-}
+};
 
 export default ContactUsComponent;

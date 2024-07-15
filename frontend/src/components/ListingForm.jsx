@@ -235,9 +235,12 @@ export const ListingForm = () => {
                 Waiting for Approval. Your listing has been submitted
                 and will undergo screening.
               </p>
-              <button className="buttonkyc" onClick={handlePreviewListing}>
+              <a href="/previewListing">
+              <button className="buttonkyc" onClick={handleModalClose}>
                 Preview Listing
               </button>
+              </a>
+              
             </div>
           </div>
         </div>

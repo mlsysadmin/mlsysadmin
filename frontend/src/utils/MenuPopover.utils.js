@@ -102,7 +102,7 @@ const SubMenu =
             {
                 header: "Home Loan Guide",
                 submenu: [
-                    {sub: "Discover Home Loan", link: '/discover-home-page'}, 
+                    {sub: "Discover Home Loan", link: '/discover-home'}, 
                     { sub: "Loan Calculator", link: '/loan-calculator' }
                 ]
             },
@@ -145,7 +145,7 @@ const SubMenu =
             {
                 header: "Home Insurance Guide",
                 submenu: [
-                    {sub: "Insurance Guide", link: '/insurance-guide-page'}, 
+                    {sub: "Insurance Guide", link: '/insurance-guide'}, 
                 ]
             },
             {

@@ -1,92 +1,29 @@
 import React from "react";
 import "../styles/newpage.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FooterComponent, CustomMlFooter, MainLayout} from "../components";
 import Card from "./custom/cards/Card";
 import Pagination from "./custom/pagination/Pagination";
+
+import { cardData } from "../utils/ListingMockData";
 import property from "../images/Guest/property.png";
-import ListingSearch from "./custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
+import ListingSearch from "./custom/customsearch/custom.listingsearch";
 
 export const NewPageComponent = () => {
-  const prop = property;
-  const cardData =[
-    {
-      title: "3 Bedroom House for Rent in North Town Residences",
-      price: "PHP120,000/month",
-      imgSrc: prop,
-      beds: 3,
-      baths: 3,
-      size: 250,
-      likes: 15,
-      forsale: "New",
-      subtitle: "House and Lot for Rent",
-    },
-    {
-      title: "3 Bedroom House for Rent in North Town Residences",
-      price: "PHP80,000/month",
-      imgSrc: prop,
-      beds: 3,
-      baths: 3,
-      size: 250,
-      likes: 15,
-      forsale: "New",
-      subtitle: "House and Lot for Rent",
-    },
-    {
-      title: "3 Bedroom House for Rent in North Town Residences",
-      price: "PHP120,000/month",
-      imgSrc: prop,
-      beds: 3,
-      baths: 3,
-      size: 250,
-      likes: 15,
-      forsale: "New",
-      subtitle: "House and Lot for Rent",
-    },
-    {
-      title: "3 Bedroom House for Rent in North Town Residences",
-      price: "PHP120,000/month",
-      imgSrc: prop,
-      beds: 3,
-      baths: 3,
-      size: 250,
-      likes: 15,
-      forsale: "New",
-      subtitle: "House and Lot for Rent",
-    },
-    {
-      title: "3 Bedroom House for Rent in North Town Residences",
-      price: "PHP80,000/month",
-      imgSrc: prop,
-      beds: 3,
-      baths: 3,
-      size: 250,
-      likes: 15,
-      forsale: "New",
-      subtitle: "House and Lot for Rent",
-    },
-    {
-      title: "3 Bedroom House for Rent in North Town Residences",
-      price: "PHP120,000/month",
-      imgSrc: prop,
-      beds: 3,
-      baths: 3,
-      size: 250,
-      likes: 15,
-      forsale: "New",
-      subtitle: "House and Lot for Rent",
-    },
-  ]
+  const navigate = useNavigate();
+
+  const handleCardClick = (data) => {
+    navigate('/previewListing', { state: data });
+  };
 
   const [currentPage, setCurrentPage] = useState(1);
-  const cardsPerPage = 9;
-
+  const cardsPerPage = 9
 
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCards = cardData.slice(indexOfFirstCard, indexOfLastCard);
 
- 
 
   const totalPages = Math.ceil(cardData.length / cardsPerPage);
   return (
@@ -98,7 +35,7 @@ export const NewPageComponent = () => {
             <h1 className="new-page-label">New Properties</h1>
             <div className="card-container">
               {currentCards.map((data, index) => (
-                <Card
+                <Card 
                   key={index}
                   title={data.title}
                   price={data.price}
@@ -109,6 +46,7 @@ export const NewPageComponent = () => {
                   likes={data.likes}
                   forsale={data.forsale}
                   subtitle={data.subtitle}
+                 
                 />
               ))}
             </div>

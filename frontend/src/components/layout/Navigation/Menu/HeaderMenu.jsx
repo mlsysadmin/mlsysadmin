@@ -1,13 +1,17 @@
-import { Button, Menu, Dropdown } from "antd";
+import { Button, Menu, Row } from "antd";
 import React, { useEffect, useState } from "react";
 import MenuPopup from "./MenuPopup";
 import MenuPopupContent from "./MenuPopupContent";
 import { SubMenu } from "../../../../utils/MenuPopover.utils";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import RoundBtn from "../../../custom/buttons/RoundBtn.custom";
+import userProfile from "../../../../assets/profile-user.png";
+import UserLogInProfileDropdownBtn from "../../../custom/buttons/BuyerLogInButtonDropdown";
+// import userProfileLogIn from "../../../../assets/userProfileLogIn.png"
+// import ProfileDropDown
 import TextBtn from "../../../custom/buttons/TextBtn.custom";
-
-import { CaretDownOutlined, UserOutlined } from "@ant-design/icons";
+import LoginModal from "../../../modals/loginmodal";
+import SellerLogInButtonDropdown from "../../../custom/buttons/SellerLogInButtonDropdown";
 
 const HeaderMenu = () => {
   const [currentMenu, setCurrent] = useState("");
@@ -16,58 +20,56 @@ const HeaderMenu = () => {
   const [homeLoanPopUpOpen, sethomeLoanPopUpOpen] = useState(false);
   const [homeInsurancePopUpOpen, sethomeInsurancePopUpOpen] = useState(false);
   const [otherServicesPopUpOpen, setotherServicesPopUpOpen] = useState(false);
-
   const navigate = useNavigate();
+  const location = useLocation();
+  const url_Redirect = process.env.REACT_APP_LOGIN_URL;
+  const handleUserProfileClick = () => {
+    if (url_Redirect) {
+      window.location.href = url_Redirect;
+    }
+  };
 
-  // useEffect(() => {
-  //     const setTogglePopoverOutside = (event) => {
-  //     //   if (modal) {
-  //         const classNameBtn = event.target.className === "ant-popover-open";
+  //modals
 
-  //         setrentPopUpOpen(!classNameBtn);
-  //     //   }
-  //     };
+  useEffect(() => {
+    const path = location.pathname.replace("/", "");
 
-  //     window.addEventListener("click", setTogglePopoverOutside);
-
-  //     return () => {
-  //       window.removeEventListener("click", setTogglePopoverOutside);
-  //     };
-  //   }, []);
+    setCurrent(path);
+  }, [setCurrent]);
 
   const handleMenuOnClick = (menu) => {
-    console.log(menu);
-    if (menu.key === "Rent") {
+    if (menu.key === "rent") {
       setbuyPopUpOpen(false);
       sethomeLoanPopUpOpen(false);
       sethomeInsurancePopUpOpen(false);
       setotherServicesPopUpOpen(false);
       setrentPopUpOpen(true);
-    } else if (menu.key === "Buy") {
+    } else if (menu.key === "buy") {
       setrentPopUpOpen(false);
       sethomeLoanPopUpOpen(false);
       sethomeInsurancePopUpOpen(false);
       setotherServicesPopUpOpen(false);
       setbuyPopUpOpen(true);
-    } else if (menu.key === "Home Loan") {
+    } else if (menu.key === "home-loan") {
       setrentPopUpOpen(false);
       setbuyPopUpOpen(false);
       sethomeInsurancePopUpOpen(false);
       setotherServicesPopUpOpen(false);
       sethomeLoanPopUpOpen(true);
-    } else if (menu.key === "Home Insurance") {
+    } else if (menu.key === "home-insurance") {
       setrentPopUpOpen(false);
       setbuyPopUpOpen(false);
       sethomeLoanPopUpOpen(false);
       setotherServicesPopUpOpen(false);
       sethomeInsurancePopUpOpen(true);
-    } else if (menu.key === "Other Services") {
+    } else if (menu.key === "other-services") {
       setrentPopUpOpen(false);
       setbuyPopUpOpen(false);
       sethomeLoanPopUpOpen(false);
       sethomeInsurancePopUpOpen(false);
       setotherServicesPopUpOpen(true);
     } else {
+      console.log("menu", menu);
       setCurrent(menu.key);
       navigate({
         pathname: menu.item.props.link,
@@ -142,22 +144,22 @@ const HeaderMenu = () => {
   );
 
   const MenuItems = [
-    { label: "Sell", key: "Sell", link: "/sell-page" },
-    { label: "New", key: "New", link: "/new-page" },
-    { label: <RentMenu />, key: "Rent" },
-    { label: <BuyMenu />, key: "Buy" },
-    { label: <HomeLoanMenu />, key: "Home Loan" },
+    { label: "Sell", key: "sell", link: "/sell" },
+    { label: "New", key: "new", link: "/new" },
+    { label: <RentMenu />, key: "rent" },
+    { label: <BuyMenu />, key: "buy" },
+    { label: <HomeLoanMenu />, key: "home-loan" },
     {
       label: <HomeInsuranceMenu />,
-      key: "Home Insurance",
+      key: "home-insurance",
       link: "/home-insurance",
     },
     {
       label: <OtherServicesMenu />,
-      key: "Other Services",
+      key: "other-services",
       link: "/other-services",
     },
-    { label: "Contact", key: "Contact", link: "/contact-us" },
+    { label: "Contact", key: "contact", link: "/contact-us" },
   ];
 
   const items = MenuItems.map((item, index) => ({
@@ -165,52 +167,6 @@ const HeaderMenu = () => {
     label: item.label,
     link: item.link,
   }));
-
-
-  // user dropdown
-  const userMenuDropdown = [
-    {
-      key: "1",
-      label: "Marie R. Rodriguez",
-    },
-    {
-      key: "2",
-      label: "test@ml.com",
-    },
-    {
-      type: "divider", // Add a divider
-    },
-    {
-      key: "3",
-      label: "Profile Settings",
-    },
-    {
-      key: "4",
-      label: "Listings",
-    },
-    {
-      key: "5",
-      label: "Client Management",
-    },
-    {
-      key: "6",
-      label: "Sign out",
-    },
-  ];
-
-  const userMenuItems = userMenuDropdown.map((loginItem) => {
-    if (loginItem.type === "divider") {
-      return { type: "divider" };
-    } else {
-      return {
-        key: loginItem.key,
-        label: loginItem.label,
-        disabled: loginItem.disabled,
-      };
-    }
-  });
-
-  const loginMenu = <Menu items={userMenuItems} />;
 
   return (
     <>
@@ -232,44 +188,23 @@ const HeaderMenu = () => {
           onClick={handleMenuOnClick}
           className="header--menu"
         ></Menu>
-        {/* <Row align={"middle"} className='menu-buttons'>
-                <TextBtn label="Login" style={{ color:"#D90000" }}/>
-                <div style={{ color:"#D90000" }}>/</div>
-                <TextBtn label="Register" style={{ color:"#D90000" }}/>
-            </Row> */}
-
         <RoundBtn
           type="primary"
           className="menu-buttons"
           style={{ background: "#D90000" }}
           label="List your Property"
+          onClick={handleUserProfileClick}
         />
-
-        {/* <Dropdown menu={userMenu} placement="bottomRight">
-          <RoundBtn
-            type="primary"
-            className="menu-buttons"
-            style={{ background: "#D90000", marginLeft:"12px" }}
-            label="Marie R." 
-            beforeIcon={<UserOutlined />}
-            afterIcon={<CaretDownOutlined/>}
-          />
-        </Dropdown> */}
-
-        <Dropdown overlay={loginMenu} placement="bottomRight">
-          <Button
-            type="primary"
-            shape="round"
-            style={{ background: "#D90000", marginLeft: "12px" }}
-          >
-            <UserOutlined style={{ marginRight: "8px" }} />
-            Marie R.
-            <CaretDownOutlined style={{ marginLeft: "8px" }} />
-          </Button>
-        </Dropdown>
+        <Row align={"middle"} className="menu-buttons">
+            <img
+              src={userProfile}
+              style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
+              onClick={handleUserProfileClick}
+            /> 
+            {/* <SellerLogInButtonDropdown/> */}
+        </Row>
       </div>
     </>
   );
 };
-
 export default HeaderMenu;

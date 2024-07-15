@@ -9,7 +9,7 @@ import {
 import Card from "./custom/cards/Card";
 import property from "../images/Guest/property.png";
 import Pagination from "./custom/pagination/Pagination";
-import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout, ListingSearchLoggedin } from "../components";
+import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout } from "../components";
 
 const RentComponent = () => {
   const prop = property;
@@ -160,8 +160,9 @@ const RentComponent = () => {
   const totalPages = Math.ceil(cardData.length / cardsPerPage);
   return (
     <div className="rent">
+      
      <div className="topbar">
-     <ListingSearchLoggedin/>
+     <ListingSearch/>
      </div>
       <div className="rentContainer">
         <div className="rentContent">

@@ -8,23 +8,26 @@ import "../styles/mortgage.css";
 
 const MortgageComponent = () => {
   return (
-    <div>
-      <MainLayout/>
+    
       <div className="mortgageContent"> 
         <div className="mortgage-title">
           <span className="mortgage-h1">Get pre-approved </span>
-          <p className="SubTitle">
+          <p className="mortgage-subheader">
             Home financing to make your goals a reality.
           </p>
         </div>
         <div className="mortBtn">
           <div className="purchasebtn">
-            <HomeFilled style={{ fontSize: "4rem" }} />
-            <p>I want to <span style={{fontWeight:"bold"}}>purchase</span> a home</p>
+              <HomeFilled id="home-icon"/>
+              <a style={{textDecoration:"none"}} href="/buy-a-home">
+              <p style={{ color:"white"}}>I want to <span style={{fontWeight:"bold", color:"white"}}>purchase</span> a home</p>
+              </a>
           </div>
           <div className="refinancebtn">
-            <DollarOutlined style={{ fontSize: "4rem" }} />
-            <p>I want to <span style={{fontWeight:"bold"}}>refinance</span> my home</p>
+            <DollarOutlined id="dollar-icon"/>
+            <a style={{textDecoration:"none"}} href="/refinance">
+              <p style={{ color:"white"}}>I want to <span style={{fontWeight:"bold", color:"white"}}>refinance</span> my home</p>
+            </a>
           </div>
         </div><br/><br/><br/><br/><br/>
         <div>
@@ -33,7 +36,7 @@ const MortgageComponent = () => {
         </div>
         
       </div>
-    </div>
+    
   );
 }
 

@@ -1,13 +1,20 @@
 import { Button } from "antd";
 import React from "react";
 
-const RoundBtn = ({ label, style, className, type, beforeIcon, afterIcon }) => {
+const RoundBtn = ({ label, style, className, type, beforeIcon, afterIcon , onClick}) => {
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+  };
+
   return (
     <Button
       type={type}
       shape="round"
       className={className}
       style={style}
+      onClick={handleClick}
     >
       {beforeIcon}
       {label}

@@ -10,40 +10,36 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
     await queryInterface.createTable('locations', { 
-      id: {
+      location_id: {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER.UNSIGNED
       },
       subdivision: {
-          allowNull: false,
-          type: Sequelize.STRING
+          allowNull: true,
+          type: Sequelize.STRING(60)
       },
       city: {
-        allowNull: false,
-        type: Sequelize.STRING(20)
+        allowNull: true,
+        type: Sequelize.STRING(30)
       },
       province: {
-        allowNull: false,
-        type: Sequelize.STRING(20)
+        allowNull: true,
+        type: Sequelize.STRING(30)
       },
-      postal_code: {
-        allowNull: false,
-        type: Sequelize.STRING(10)
+      other: {
+        allowNull: true,
+        type: Sequelize.STRING(30)
+      },
+      zipcode: {
+        allowNull: true,
+        type: Sequelize.INTEGER(20)
       },
       map_location: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
-      },
-      createdAt: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
-      updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: true
-      },
+      }
      });
   },
 

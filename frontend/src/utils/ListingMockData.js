@@ -1,4 +1,5 @@
 import { Filter, ImageTag } from "./IconTags.utils";
+import property from "../images/Guest/property.png";
 import Featured_1 from '../asset/newproperties-rent-sale/img1.png';
 import Featured_2 from '../asset/newproperties-rent-sale/img2.png';
 import Featured_3 from '../asset/newproperties-rent-sale/img3.png';
@@ -229,9 +230,78 @@ const Ratings = [
         rate: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
     }
 ]
-
+const prop = property;
+const cardData =[
+    {
+      title: "3 Bedroom House for Rent in North Town Residences",
+      price: "PHP120,000/month",
+      imgSrc: prop,
+      beds: 3,
+      baths: 3,
+      size: 250,
+      likes: 15,
+      forsale: "New",
+      subtitle: "House and Lot for Rent",
+    },
+    {
+      title: "3 Bedroom House for Rent in North Town Residences",
+      price: "PHP80,000/month",
+      imgSrc: prop,
+      beds: 3,
+      baths: 3,
+      size: 250,
+      likes: 15,
+      forsale: "New",
+      subtitle: "House and Lot for Rent",
+    },
+    {
+      title: "3 Bedroom House for Rent in North Town Residences",
+      price: "PHP120,000/month",
+      imgSrc: prop,
+      beds: 3,
+      baths: 3,
+      size: 250,
+      likes: 15,
+      forsale: "New",
+      subtitle: "House and Lot for Rent",
+    },
+    {
+      title: "3 Bedroom House for Rent in North Town Residences",
+      price: "PHP120,000/month",
+      imgSrc: prop,
+      beds: 3,
+      baths: 3,
+      size: 250,
+      likes: 15,
+      forsale: "New",
+      subtitle: "House and Lot for Rent",
+    },
+    {
+      title: "3 Bedroom House for Rent in North Town Residences",
+      price: "PHP80,000/month",
+      imgSrc: prop,
+      beds: 3,
+      baths: 3,
+      size: 250,
+      likes: 15,
+      forsale: "New",
+      subtitle: "House and Lot for Rent",
+    },
+    {
+      title: "3 Bedroom House for Rent in North Town Residences",
+      price: "PHP120,000/month",
+      imgSrc: prop,
+      beds: 3,
+      baths: 3,
+      size: 250,
+      likes: 15,
+      forsale: "New",
+      subtitle: "House and Lot for Rent",
+    },
+  ]
 export {
     MockData,
     FeaturedProperties,
-    Ratings
+    Ratings,
+    cardData
 };
