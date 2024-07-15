@@ -50,12 +50,17 @@
 
 .ant-steps-item-finish .ant-steps-item-icon {
   background-color: #ff0000!important;
-  
+  width: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 26px!important;
 }
 
 .ant-steps-item-finish .ant-steps-icon {
   color: #ffffff !important;
   font-size: 16px;
+  padding-left: 20%;
 }
 
 .ant-steps-icon {
@@ -68,4 +73,178 @@
 
 .ant-steps-item-wait .ant-steps-item-icon .ant-steps-icon {
   display: none;
+}
+
+
+
+/* listing steps process */
+
+.listing-steps-process {
+
+  border-radius: 30px;
+  padding: 10%;
+  text-align: left;
+  background-color: #fceaea;
+  max-width: 90%;
+ 
+}
+
+.process-listing-info p {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+
+}
+
+.process-listing-info p strong {
+  color: red;
+}
+
+.process-listing-status {
+  margin-top: 10px;
+}
+
+.custom-radio {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  position: relative;
+  padding-left: 35px; /* Space for the custom radio */
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+
+.custom-radio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.custom-radio-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  border: 2px solid red;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 18px;
+  color: red;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-radio input:checked ~ .custom-radio-checkmark {
+  background-color: white;
+}
+
+.custom-radio input:checked ~ .custom-radio-checkmark:after {
+  display: block;
+}
+
+.process-preview-button {
+  border: 1px solid red;
+  border-radius: 15px;
+  padding: 8px 15px;
+  background-color: white;
+  color: red;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 65%;
+}
+
+
+
+
+/* Listing Denied */
+
+
+.listing-steps-denied {
+
+  border-radius: 30px;
+  padding: 10%;
+  text-align: left;
+  background-color: #fceaea;
+  max-width: 90%;
+ 
+}
+
+.denied-listing-info p {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+
+}
+
+.denied-listing-info p strong {
+  color: red;
+}
+
+.denied-listing-status {
+  margin-top: 10px;
+}
+
+.custom-radio {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  position: relative;
+  padding-left: 35px; /* Space for the custom radio */
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+
+.custom-radio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.custom-radio-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: white;
+  border: 2px solid red;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 18px;
+  color: red;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-radio input:checked ~ .custom-radio-checkmark {
+  background-color: white;
+}
+
+.custom-radio input:checked ~ .custom-radio-checkmark:after {
+  display: block;
+}
+
+.denied-preview-button {
+  border: 1px solid red;
+  border-radius: 15px;
+  padding: 8px 15px;
+  background-color: white;
+  color: red;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 65%;
 }

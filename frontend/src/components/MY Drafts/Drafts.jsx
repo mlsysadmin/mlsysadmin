@@ -5,6 +5,7 @@ import SidebarComponent from "./Components/DraftSidebarComponent";
 import ListingsTableComponent from "./Components/ListingsTableComponent";
 import FooterComponent from "./Components/FooterComponent";
 // import MainLayout from "../layout/layout.component";
+import "../../styles/drafts.css";
 
 const Drafts = () => {
   return (
@@ -13,12 +14,10 @@ const Drafts = () => {
       {/* <MainLayout/> */}
       <div
         className="contentContainer"
-        style={{ display: "flex", width: "100%", gap:'1rem' }}
+        style={{ display: "flex", width: "100%", gap: "1rem" }}
       >
-        <div className="sidebar" style={{width:'15%',padding:'none'}}>
-          <SidebarComponent />
-        </div>
-        <div className="table" style={{width:'80%'}}>
+        <SidebarComponent />
+        <div className="table" style={{ width: "100%" }}>
           <ListingsTableComponent />
         </div>
       </div>

@@ -12,92 +12,92 @@ const ClientManagement = () => {
     <div>
       <div>
         {/* <NavigationHeader /> */}
-        <div className="contentContainer" style={{ display: "flex", width: "100%", gap: "1rem" }}>
+        <div className="client-contentContainer" style={{ display: "flex", width: "100%", gap: "1rem"}}>
           <div className="sidebar" style={{ width: "15%", padding: "none" }}>
             <Sidebar />
           </div>
           <div className="list" style={{ display: "flex", flexDirection: "column", width: "80%", gap: "0.5rem" }}>
             {/* <div className="listingsTableWrapper"> */}
               <div className="client-management-container">
-                <div className="headerSection">
-                  <div className="tabs">
+                <div className="client-management-headerSection">
+                  <div className="client-management-tabs">
                     <Link to="/listing-summary-lists">
-                      <div className="newButton">Listings</div>
+                      <div className="manage-new-Button">Listings</div>
                     </Link>
                     <Link to="/clientmanagement">
-                      <div className="newButton">Client Management</div>
+                      <div className="manage-new-Button">Client Management</div>
                     </Link>
                   </div>
-                  <div className="searchSection">
-                    <select className="dropdown">
+                  <div className="client-searchSection">
+                    <select className="client-dropdown">
                       <option>Show entries</option>
                       <option>10</option>
                       <option>25</option>
                       <option>50</option>
                       <option>100</option>
                     </select>
-                    <div className="srchIntContnr">
-                      <div className="srchwrapps">
-                      <FontAwesomeIcon icon={faSearch} className="srchIcony" />
-                      <input type="text" placeholder="Search Property" className="searchsInput" />
+                    <div className="client-srchIntContnr">
+                      <div className="client-srchwrapps">
+                      <FontAwesomeIcon icon={faSearch} className="client-srchIcony" />
+                      <input type="text" placeholder="Search Property" className="client-searchsInput" />
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             {/* </div> */}
-            <section className="overviewSection">
-              <h2 className="overviewTitle">OVERVIEW</h2>
+            <section className="client-overviewSection">
+              <h2 className="client-overviewTitle">OVERVIEW</h2>
               <p>Listing Count & Highlight</p>
-              <div className="overviewStats">
-                <div className="statBox">
-                  <div className="statIcon">
+              <div className="client-overviewStats">
+                <div className="client-statBox">
+                  <div className="client-statIcon">
                     <FontAwesomeIcon icon={faHome} />
                   </div>
-                  <div className="statNumber">0</div>
-                  <div className="statLabel">Property Sold</div>
+                  <div className="client-statNumber">0</div>
+                  <div className="client-statLabel">Property Sold</div>
                 </div>
-                <div className="statBox">
-                  <div className="statIcon">
+                <div className="client-statBox">
+                  <div className="client-statIcon">
                     <FontAwesomeIcon icon={faStar} />
                   </div>
-                  <div className="statNumber">0</div>
-                  <div className="statLabel">Highlighted</div>
+                  <div className="client-statNumber">0</div>
+                  <div className="client-statLabel">Highlighted</div>
                 </div>
-                <div className="statBox">
-                  <div className="statIcon">
+                <div className="client-statBox">
+                  <div className="client-statIcon">
                     <FontAwesomeIcon icon={faHeart} />
                   </div>
-                  <div className="statNumber">0</div>
-                  <div className="statLabel">Listing Saves</div>
+                  <div className="client-statNumber">0</div>
+                  <div className="client-statLabel">Listing Saves</div>
                 </div>
-                <div className="statBox">
-                  <div className="statIcon">
+                <div className="client-statBox">
+                  <div className="client-statIcon">
                     <FontAwesomeIcon icon={faList} />
                   </div>
-                  <div className="statNumber">0</div>
-                  <div className="statLabel">Active Listing</div>
+                  <div className="client-statNumber">0</div>
+                  <div className="client-statLabel">Active Listing</div>
                 </div>
-                <div className="statBox">
-                  <div className="statIcon">
+                <div className="client-statBox">
+                  <div className="client-statIcon">
                     <FontAwesomeIcon icon={faEye} />
                   </div>
-                  <div className="statNumber">0</div>
-                  <div className="statLabel">Total Views</div>
+                  <div className="client-statNumber">0</div>
+                  <div className="client-statLabel">Total Views</div>
                 </div>
               </div>
             </section>
-            <div className="performanceSection">
-              <h2 className="performanceTitle">PERFORMANCE</h2>
-              <div className="performanceStats">
-                <div className="performanceBox">
-                  <div className="performanceLabel">Potential Sales Opportunities</div>
-                  <div className="performanceNumber">₱ 0</div>
+            <div className="client-performanceSection">
+              <h2 className="client-performanceTitle">PERFORMANCE</h2>
+              <div className="client-performanceStats">
+                <div className="client-performanceBox">
+                  <div className="client-performanceLabel">Potential Sales Opportunities</div>
+                  <div className="client-performanceNumber">₱ 0</div>
                   <p>Potential Sales Opportunities is derived from the sum of the prices of the properties your clients are interested at.</p>
                 </div>
-                <div className="performanceBox">
-                  <div className="performanceLabel">Potential Commission</div>
-                  <div className="performanceNumber">₱ 0</div>
+                <div className="client-performanceBox">
+                  <div className="client-performanceLabel">Potential Commission</div>
+                  <div className="client-performanceNumber">₱ 0</div>
                   <p>Potential Commission is the potential profit you'll make when you close the deals with your clients.</p>
                 </div>
               </div>

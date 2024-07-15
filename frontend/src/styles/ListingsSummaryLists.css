@@ -3,7 +3,12 @@
   width: 100%;
   border-radius: 10px;
 }
-
+.summary-contentContainer{
+  
+  display: flex;
+   width: auto;
+    gap: "1rem" ;
+}
 /* Header Section */
 .listings-summary-header-section {
   display: flex;
@@ -12,13 +17,13 @@
   border-radius: 30px;
   background-color: rgba(140, 144, 148, 0.18);
 }
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .listings-summary-container .listings-table-header-section {
     flex-direction: column;
     align-items: flex-start;
     padding: 10px;
   }
-}
+} */
 .listings-summary-container{
   margin: 0px 10px;
 }
@@ -96,7 +101,7 @@ background-color: #ffffff;
 }
 
 /* Search Input */
-.search-input {
+.search-Inputss {
   width: 100%;
   padding: 8px 16px 8px 40px; /* Increase the left padding to make space for the icon */
   font-size: 14px;
@@ -122,13 +127,13 @@ background-color: #ffffff;
 }
 
 /* Table */
-.table {
+.listing-summary-table {
   width: 100%;
   border-collapse: collapse;
 }
 
 /* Header */
-.table th {
+.listing-summary-table th {
   background-color: #f8f9fa;
   padding: 10px;
   font-weight: bold;
@@ -138,26 +143,26 @@ background-color: #ffffff;
 }
 
 /* Row */
-.table tr:nth-child(even) {
+.listing-summary-table tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-.table tr:nth-child(odd) {
+.listing-summary-tabletr:nth-child(odd) {
   background-color: #fff;
 }
 
-.table td {
+.listing-summary-table td {
   padding: 10px;
   text-align: center;
  
 }
 
 /* Status Cell */
-.status-cell.open {
+.status-cell.processing {
   color: green;
 }
 
-.status-cell.disapproved {
+.status-cell.denied {
   color: red;
 }
 
@@ -166,7 +171,7 @@ background-color: #ffffff;
 }
 
 /* Show Details Button */
-.show-details-button {
+.listings-summary-show-details-button {
   padding: 5px 10px;
   border: none;
   background-color: #8c9094;
@@ -175,7 +180,7 @@ background-color: #ffffff;
   cursor: pointer;
 }
 
-.show-details-button:hover {
+.listings-summary-show-details-button:hover {
   background-color: #5a6268;
 }
 
@@ -249,7 +254,7 @@ background-color: #ffffff;
   .listings-table-container {
     border-radius: 30px;
    
-    border-radius: 4px;
+    border-radius: 4px; 
   }
   
   .headerSection {
@@ -258,66 +263,89 @@ background-color: #ffffff;
     align-items: center;
     margin-bottom: 20px;
   }
+ 
 
-  @media (max-width: 768px) {
-    .table,
-    .table thead,
-    .table tbody,
-    .table th,
-    .table td,
-    .table tr {
-      display: flex;
-      flex-direction: column;
+
+
+
+
+
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+ 
+   .summary-contentContainer{
+  
+    display: flex;
+  
+      gap: "1rem" ;
+  }
+    .listings-summary-container {
+    margin: 0px 20px;
+    }
+    
+    .listings-summary-header-section {
+      width: 95%;
+    }
+    
+    .listings-summary-tabs {
+    gap: 5px;
+    }
+    
+    .tab {
+    padding: 8px 16px;
+    }
+    
+    .search-inp-container {
+    width: 150px;
+    height: 32px;
+    }
+    
+    .search-Inputss {
+    padding: 6px 12px 6px 35px;
+    font-size: 13px;
+    }
+    
+    .search-icon {
+    left: 10px;
+    }
+    
+    .listing-summary-table {
+      width:auto;
+
+
     }
   
-    .table th {
-      position: absolute;
-      top: -9999px;
-      left: -9999px;
+    .listing-summary-table th, 
+    .listing-summary-table td {
+      background-color: #f8f9fa;
+      padding: 0.5rem; /* Use em units for more flexibility */
+      margin: 0.5em;
+      font-size: 1em; /* Relative units */
+      text-align: left;
+      box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
     }
   
-    .table td {
-      border: none;
-      position: relative;
+    .listing-summary-table th {
+ 
       
     }
   
-    .table td:before {
-      position: absolute;
-      left: 6px;
-      width: 45%;
-      padding-right: 10px;
-      white-space: nowrap;
-      text-align: left;
-      font-weight: bold;
+    .listing-summary-table td {
+      font-size: 13px; /* 13px equivalent */
+    
     }
-  }
-  @media (max-width: 768px) {
-    .pagination-list {
-      flex-wrap: wrap;
+    .listings-summary-show-details-button {
+    padding: 2px 4px;
+    font-size: 11px;
+    margin-bottom: 10px;
+    }
+    
+    .new-button {
+    padding: 20px 25px;
+    font-size: 15px;
+    }
+    
+    .pagination-list .pageLink {
+    padding: 8px 12px;
+    }
     }
   
-    .page-item {
-      margin: 5px;
-    }
-  
-    .page-link {
-      width: 30px;
-      height: 30px;
-      line-height: 30px;
-      font-size: 14px;
-    }
-  }
-  @media (max-width: 768px) {
-    .show-details-button,
-    .action-button {
-      /* padding: 3px 8px; */
-      font-size: 14px;
-    }
-  }
-  @media (max-width: 768px) {
-    .listings-table-wrapper {
-      width: 90%;
-      padding: 10px;
-    }
-  }

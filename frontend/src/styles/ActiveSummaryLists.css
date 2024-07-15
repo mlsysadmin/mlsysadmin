@@ -10,7 +10,7 @@
     padding: 0;
   }
   
-  .active-container {
+  .active-summary-container {
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -55,13 +55,13 @@
     font-size: 20px;
     margin: 10px;
   }
-  .tag-sold-Button{
+  .active-summary-tag-sold-button{
     border-radius: 30px;
     border: 1px solid black;
-    padding: 5px;
+    padding: 3px;
     align-items: center;
   }
-  .tag-sold-Button:hover{
+  .active-summary-tag-sold-button:hover{
     background-color: #B4BBC1;
   }
   .tagsold-confirm-buttons{ 
@@ -120,39 +120,11 @@
     color: #256E2C;
     
   }
-  
-
-
-  /* para responsive sa modal */
-  /* Responsive Styles */
-@media (min-width: 320px) {
-  .custom-modal {
-      width: 400px;
-      padding: 40px;
-  }
-
-  .sold-success-modal {
-      width: 400px;
-      padding: 40px;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-  .custom-modal {
-      width: 500px;
-  }
-
-  .sold-success-modal {
-      width: 500px;
-  }
-}
-
 
   .active-header-section {
     display: flex;
   justify-content: space-between;
   align-items: center;
-
   border-radius: 30px;
   background-color: rgba(140, 144, 148, 0.18);
   /* height: 100%; */
@@ -169,9 +141,7 @@
   height: 34px;
   position: relative;
   }
- .active-container{
-
- }
+  
   
   .active-search-section {
     display: flex;
@@ -214,19 +184,19 @@
   color: black;
   }
   
-  .listingsTable {
+  .active-summary-table {
     width: 100%;
     border-collapse: collapse;
   }
   
-  .listingsTable th,
-  .listingsTable td {
-    border: 1px solid #ddd;
+  .active-summary-table th,
+  .active-summary-table td {
+    border:  #ddd;
     padding: 8px;
     text-align: left;
   }
   
-  .listingsTable th {
+  .active-summary-table th {
     background-color: #f4f4f4;
   }
   
@@ -238,7 +208,7 @@
     background-color: #fff;
   }
   
-  .showDetailsButton {
+  .active-summary-show-details-button {
     background-color: #8C9094;
     color: white;
     border: none;
@@ -313,10 +283,10 @@
     transform: scale(1.1);
     background-color: #ffffff;
   }
-  .pagination-container {
+  .pagination-parent .pagination-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
   }
   
   .pagination-list {
@@ -355,3 +325,57 @@
       justify-content: flex-end;
       margin: 10px 0;
     }
+
+    
+  /* para responsive sa modal */
+  /* Responsive Styles */
+@media (min-width: 320px) {
+  .custom-modal {
+      width: 400px;
+      padding: 40px;
+  }
+
+  .sold-success-modal {
+      width: 400px;
+      padding: 40px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .active-summary-container{
+    width: 100%;
+  }
+  .active-summary-table{
+    display: flex;
+    flex-direction: column;
+    height: 120%;
+  }
+  .active-summary-table td,
+  .active-summary-table th{
+  position:static;
+  font-size: 15px;
+  padding: 8px;
+
+  }
+  .custom-modal {
+      width: 500px;
+  }
+
+  .sold-success-modal {
+      width: 500px;
+  }
+  .active-summary-container {
+    font-size: 10px;
+    margin-right: 50px;
+    gap: 0.5rem;
+  }
+  .active-header-section {
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-radius: 30px;
+  background-color: rgba(140, 144, 148, 0.18);
+  /* height: 100%; */
+  }
+}

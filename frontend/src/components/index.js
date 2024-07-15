@@ -38,7 +38,7 @@ import CertainFeatureMenu from "./custom/customsearch/certainfeature";
 import DiscoverHomeComponent from "./DiscoverHomeComponent";
 import BuyAHomeComponent from "./BuyAHomeComponent";
 import HouseForRentComponent from "./HouseForRentComponent";
-import NewPageComponent  from "./NewPageComponent";
+import NewPageComponent from "./NewPageComponent";
 import RefinanceComponent from "./RefinanceComponent";
 import InsuranceGuideComponent from "./InsuranceGuideComponent";
 import ContactUsComponent from "./ContactUsComponent";
@@ -48,6 +48,10 @@ import RentComponent from "./RentComponent";
 import SellComponent from "./SellComponent";
 import CardListingComponent from "./CardListingComponent";
 import AllPropertiesComponent from "./AllPropertiesComponent";
+import { ShowDetailsProcessing } from "./ShowDetailsProcessing";
+import { ShowDetailsDenied } from "./ShowDetailsDenied";
+import { SoldPropertyDetails } from "./MY Drafts/SoldPropertyDetails";
+import { ActiveListingDetails } from "./MY Drafts/ActiveListingDetails";
 
 // modals
 
@@ -55,44 +59,45 @@ import SuccessModal from "./modals/SuccessModal";
 import ApplicationDetailModal from "./layout/ApplicationDetails/ApplicationDetailsModal";
 
 
-export{
-    ListingSearchLoggedin,
-    LoginModal,
-    RegistrationModal,
-    ModalComponents,
-    PreviewListing,
-    DraftSidebar,
-    ListingsTable,
-    SoldProperties,
-    ListingSummaryLists,
-    ClientManagement,
-    ActiveSummaryLists,
-    Drafts,
-    NewPageComponent,
-    PropertiesForRent,
-    FooterComponent,
-    CustomMlFooter,
-    HeaderContainer,
-    SideBar,
-    MainLayout,
-    HouseForRentComponent,
-    DiscoverHomeComponent,
-    BuyAHomeComponent,
-    RefinanceComponent,
-    InsuranceGuideComponent,
-    WrapUpDetails,
-    SubmitApplicationCustom,
-    CustomAdvanceSearch,
-    AllComponent,
-    FeaturedComponent,
-    ListingSearch,
-    ContactUsComponent,
-    LoanCalculatorComponent,
-    MortgageComponent,
-    RentComponent,
-    SellComponent,
-    CardListingComponent,
-    ApplicationDetailModal,
-    BuyerLogInProfileDropdownBtn,
-    SellerLogInButtonDropdown
-}
+
+export {
+  ActiveListingDetails,
+  ShowDetailsProcessing,
+  ShowDetailsDenied,
+  ListingSearchLoggedin,
+  LoginModal,
+  RegistrationModal,
+  ModalComponents,
+  PreviewListing,
+  DraftSidebar,
+  ListingsTable,
+  SoldProperties,
+  ListingSummaryLists,
+  ClientManagement,
+  ActiveSummaryLists,
+  Drafts,
+  NewPageComponent,
+  PropertiesForRent,
+  FooterComponent,
+  CustomMlFooter,
+  HeaderContainer,
+  SideBar,
+  MainLayout,
+  HouseForRentComponent,
+  DiscoverHomeComponent,
+  BuyAHomeComponent,
+  RefinanceComponent,
+  InsuranceGuideComponent,
+  WrapUpDetails,
+  SubmitApplicationCustom,
+  CustomAdvanceSearch,
+  AllComponent,
+  FeaturedComponent,
+  ListingSearch,
+  ContactUsComponent,
+  LoanCalculatorComponent,
+  MortgageComponent,
+  RentComponent,
+  SellComponent,
+  SoldPropertyDetails,
+};

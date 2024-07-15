@@ -7,6 +7,7 @@ import Allpage from "../pages/Buyer.All.page";
 import Featuredpage from "../pages/Buyer.Featured.page";
 
 import {
+  ShowDetailsProcessing,
   ListingPage,
   ListingFormPage,
   LoginModal,
@@ -29,7 +30,10 @@ import {
   ActiveSummaryListsPage,
   ClientManagementPage,
   ListingSummaryListsPage,
-  PreviewListing
+  PreviewListing,
+  ShowDetailsDenied,
+  ActiveListingDetails,
+  SoldPropertyDetailsPage,
 } from "../pages";
 
 const Routes = [

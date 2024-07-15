@@ -5,26 +5,26 @@ import { MinusCircleOutlined } from '@ant-design/icons';
 const AddFeature = () => {
   const initialFeatures = [
     "Landscaped Parks with picnic grounds",
-    "Jogging Trails",
-    "The Highland Park and Clubhouse",
-    "The Emerald Lake Valley",
-    "Basketball and Tennis Court",
-    "Children Playground",
-    "Water and Electric facilities",
-    "State of the art communications facilities",
-    "5 Bedroom House for Rent in Maria Luisa Park",
+    // "Jogging Trails",
+    // "The Highland Park and Clubhouse",
+    // "The Emerald Lake Valley",
+    // "Basketball and Tennis Court",
+    // "Children Playground",
+    // "Water and Electric facilities",
+    // "State of the art communications facilities",
+    // "5 Bedroom House for Rent in Maria Luisa Park",
   ];
 
   const initialIncludes = [
     "Living Room with Dining Area",
-    "Kitchen Area",
-    "Master Bedroom with walk-in closet, toilet",
-    "Four (4) Bedrooms each with toilet and bath",
-    "Lanai",
-    "Landscaped Garden",
-    "Maid's Room",
-    "Service Kitchen",
-    "Service Area",
+    // "Kitchen Area",
+    // "Master Bedroom with walk-in closet, toilet",
+    // "Four (4) Bedrooms each with toilet and bath",
+    // "Lanai",
+    // "Landscaped Garden",
+    // "Maid's Room",
+    // "Service Kitchen",
+    // "Service Area",
   ];
 
   const [features, setFeatures] = useState(initialFeatures);
@@ -35,9 +35,7 @@ const AddFeature = () => {
   const [newInclude, setNewInclude] = useState("");
   const [addingFeature, setAddingFeature] = useState(false);
   const [addingInclude, setAddingInclude] = useState(false);
-
-
-
+  const [addingItem, setAddingItem] = useState(false);
 
   const addNewItem = (item, setItems, setNewItem, setAdding) => {
     if (item.trim()) {
@@ -81,6 +79,7 @@ const AddFeature = () => {
         }
         removeItem={(index) => removeItem(index, setIncludes)}
       />
+      
     </div>
   );
 };
@@ -99,8 +98,8 @@ const FeatureList = ({
   <div className="addFeatureList">
     <div className="top">
       <div className="titles">
-      <h2>{title}</h2>
-      <p>Enter text that is not found in the options above</p>
+        <h2>{title}</h2>
+        <p>Enter text that is not found in the options above</p>
       </div>
       {!addingItem && (
         <button className="add-button" onClick={() => setAddingItem(true)}>

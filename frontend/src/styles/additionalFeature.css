@@ -5,7 +5,9 @@
     display: flex;
     flex-direction: column;
 }
-
+.addFeatureList .features{
+    width: 100%;
+}
 .feature-item-container {
     display: flex;
     align-items: center;
@@ -69,9 +71,9 @@
 .add-new-item input {
     padding: 10px;
     margin-right: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    flex-grow: 1;
+    border: 1px solid #d90000;
+    border-radius: 20px;
+    flex-grow: 0.9;
 }
 @media only screen and (max-width:320px){
     .AddFeature .top{

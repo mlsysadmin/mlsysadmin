@@ -46,13 +46,13 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import ApplicationDetailModal from "./layout/ApplicationDetails/ApplicationDetailsModal";
 
 const PreviewListing = () => {
-  const [stepsGap, setStepsGap] = React.useState(0);
-  const [homePrice, setHomePrice] = React.useState(100000); // Default home price value
-  const [downPayment, setDownPayment] = React.useState(10000); // Default down payment value
   const [amountInPesos, setPesos] = React.useState(500);
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [smallImages, setSmallImages] = React.useState([livingroom, bathroom]); // Initial small images
   const [photoCount, setPhotoCount] = React.useState(); // Initial photo count
+  const [stepsGap, setStepsGap] = React.useState(20); // Interest rate in percent
+  const [homePrice, setHomePrice] = React.useState(1000000); // Initial home price
+  const [downPayment, setDownPayment] = React.useState(100000); // Initial down payment
 
   const [showApplicationModal, setShowApplicationModal] = useState(false);
 
@@ -64,6 +64,14 @@ const PreviewListing = () => {
     setShowApplicationModal(false);
   };
 
+  const term = 30; // Fixed term in years
+  const termInMonths = term * 12; // Convert term to months
+
+  // Calculate total home price with interest
+  const totalHomePrice = homePrice + homePrice * (stepsGap / 100);
+
+  // Calculate monthly payment
+  const monthlyPayment = (totalHomePrice - downPayment) / termInMonths;
   const handlePesosChange = (newPesos) => {
     setPesos(newPesos);
   };
@@ -450,12 +458,11 @@ const PreviewListing = () => {
             <div className="right-side-container">
               <div className="calculator">
                 <h2>Calculator</h2>
-
                 <div className="calc">
                   <div className="calculatorLeft">
                     <div className="calculator-input">
                       <label>Term</label>
-                      <div className="calculator-field">
+                      <div className="calculator-field-term">
                         <img
                           src={iconcalcu}
                           alt="Iconcalcu"
@@ -465,11 +472,9 @@ const PreviewListing = () => {
                             margin: "10px",
                           }}
                         />
-
                         <span>30 Years Fixed</span>
                       </div>
                     </div>
-
                     <div className="calculator-input">
                       <label>Interest</label>
                       <div className="calculator-field">
@@ -483,7 +488,6 @@ const PreviewListing = () => {
                             marginBottom: "30px",
                           }}
                         />
-
                         <div className="slider-container">
                           <div className="slider-value">{stepsGap}%</div>
                           <Slider
@@ -501,7 +505,6 @@ const PreviewListing = () => {
                         </div>
                       </div>
                     </div>
-
                     <div className="calculator-input">
                       <label>Home Price</label>
                       <div className="calculator-field">
@@ -515,7 +518,6 @@ const PreviewListing = () => {
                             marginBottom: "30px",
                           }}
                         />
-
                         <div className="slider-container">
                           <div className="slider-value">
                             PHP {homePrice.toLocaleString()}
@@ -535,7 +537,6 @@ const PreviewListing = () => {
                         </div>
                       </div>
                     </div>
-
                     <div className="calculator-input">
                       <label>Down Payment</label>
                       <div className="calculator-field">
@@ -571,25 +572,33 @@ const PreviewListing = () => {
                   </div>
                   <div className="calculatorRight">
                     <div className="int">
-                      <b>30</b>
+                      <b>{term}</b>
                       <p>Years Fixed</p>
                     </div>
                     <div className="exp">
-                      <b>0%</b>
+                      <b>{stepsGap}%</b>
                       <p>Interest</p>
                     </div>
                     <Flex gap="small" wrap>
                       <Progress
                         type="circle"
                         percent={100}
-                        format={(percent) => `${percent} PHP `}
+                        format={() => (
+                          <div>
+                            <div className="pesos">
+                              PHP {monthlyPayment.toFixed(2)}
+                            </div>
+                            <div className="per-month">per month</div>
+                          </div>
+                        )}
+                        strokeColor="#D90000"
                       />
                     </Flex>
                     <div className="calculator-result">
                       <p className="pi">Principle and Interest</p>
                       <div className="result-amount">
                         <span className="red-bar"></span>
-                        PHP 200
+                        PHP {monthlyPayment.toFixed(2)}
                       </div>
                     </div>
                   </div>

@@ -1,36 +1,26 @@
-/* Container */
-.listings-table-container {
+/* ListingsTableComponent.css */
+
+/* Base styles */
+
+.listings-table-container{
+ width: 100%;
+}
+.listings-table-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: rgba(140, 144, 148, 0.18);
   width: 100%;
-  border-radius: 10px;
+  height: 100%;
+  padding: 5px;
+  border-radius: 30px;
 }
 
-/* Header Section */
-.listings-table-container .listings-table-header-section {
- /* padding: 9px; */
-  margin-bottom: 10px;
-  border-radius: 30px;
-  background-color: rgba(140, 144, 148, 0.18);
-  display: flex;
-  width: 100%;
-  /* gap:1rem; */
-}
-@media (max-width: 730px) {
-  .listings-table-container .listings-table-header-section {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 8px;
-  }
-}
-.listings-table-container{
-  margin: 0 ;
-}
-/* Tabs */
 .tabs-listings-table {
   display: flex;
-  gap: 20px;
 }
 
-/* Tab */
 .table-header-button {
   border: none;
   color: black;
@@ -39,158 +29,80 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
+
   cursor: pointer;
   border-radius: 20px;
   transition: transform 0.3s ease;
 }
-
 .table-header-button:hover {
   transform: scale(1.1);
   background-color: #ffffff;
 }
 
-/* Search Section */
 .listsum-search-section {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-left: 54%;
 }
 
-@media (max-width: 768px) {
-  .listsum-search-section {
-    margin-left: 0;
-    justify-content: center;
-  }
+.dropdown {
+  margin-right: 20px;
+  padding: 5px;
+  border-radius: 4px;
 }
 
-@media (max-width: 480px) {
-  .listsum-search-section {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.search-input-container {
+  position: relative;
 }
-/* Search Input Container */
-.SearchInputContainer {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  /* border: 1px solid #ccc; */
-  border-radius: 30px;
-  padding: 3px 8px;
 
-}
 .search-input-wrapper {
-  display: flex;
-  align-items: center;
-  width: 161px;
-  height: 34px;
-  position: relative; /* Add this to make the .search-icon position relative to the wrapper */
- 
+  position: relative;
 }
 
-/* Search Icon */
-.icon {
+.search-input {
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.search-icon {
   position: absolute;
-  left: 12px; /* Adjust the position of the icon */
   top: 50%;
-  transform: translateY(-50%); /* Center the icon vertically */
-  color: black;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #999;
 }
 
-/* Search Input */
-.search-Inputss {
+.listings-whole-table {
+  overflow-x: auto;
+}
+
+.listings-table {
   width: 100%;
-  padding: 8px 16px 8px 40px; /*Increase the left padding to make space for the icon */
-  /* font-size: 13px; */
-  border-radius: 30px;
-  outline: none;
-  border: none;
+  border-collapse: collapse;
+}
+
+.listings-table th,
+.listings-table td {
+  padding: 10px;
+  text-align: left;
   
 }
 
-.Search-input::placeholder {
-  color: black;
-}
-
-.search-input:focus {
-  outline: none;
-}
-
-/* Dropdown */
-.dropdown {
-  padding: 5px;
-  border: 1px solid #ccc;
-
-  border-radius: 5px;
-}
-
-/* Table */
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 0;
-}
-
-/* Table Header */
-.table th {
-  background-color: #f8f9fa;
-  padding: 10px;
+.listings-table th {
+  background-color: #f5f5f5;
   font-weight: bold;
-  text-align: center;
 }
 
-/* Table Row */
-.table tr:nth-child(even) {
+.even {
   background-color: #f9f9f9;
 }
 
-.table tr:nth-child(odd) {
-  background-color: #fff;
-}
-
-.table td {
-  padding: 10px;
-  text-align: center;
-}
-
-  
-
-/* Show Details Button */
-.show-details-button {
+.listings-show-details-button {
   padding: 5px 10px;
+  background-color: #8C9094;
+  border-radius: 20px;
   border: none;
-  background-color: #8C9094;
-  color: black;
-  border-radius: 10px;
   cursor: pointer;
-}
-
-.show-details-button:hover {
-  background-color: #5a6268;
-}
-
-
-.action-button {
-  padding: 5px 10px;
-  /* border:1px solid  black; */
-  /* background-color: #007bff; */
-  color: rgb(24, 23, 23);
-  border-radius: 30px;
-  cursor: pointer;
-  align-items: center;
-}
-
-.action-button:hover {
-  background-color: #8C9094;
-}
-
-/* Listings Table Wrapper */
-.listings-table-wrapper {
-  background-color: #e9ecef;
-  border-radius: 10px;
-  width: 100%;
 }
 
 /* Pagination */
@@ -235,52 +147,81 @@
   background-color: #ff0000;
   color: black;
 }
+
+
 @media (min-width: 768px) and (max-width: 1024px) {
-  .table,
-  .table thead,
-  .table tbody,
-  .table th,
-  .table td,
-  .table tr {
-   font-size: 12px;
-   max-width:86px;
+  .sidebar{
+    width:5%;
   }
-
-  .table th {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
+  .listings-table-header-section {
+    flex-direction: column;
+    align-items: flex-start;
   }
-
-  .table td {
-    border: none;
-    position: relative;
-    padding-left: 50%;
-  }
-
-  .table td:before {
-    position: absolute;
-    left: 6px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-    text-align: left;
-    font-weight: bold;
-  }
+.listings-table,
+.listings-table thead,
+.listings-table td{
+  width: 100%;
+  font-size: 13.1px;
+  padding: 5px;
 }
-@media (max-width: 768px) {
-  .pagination-list {
-    flex-wrap: wrap;
-  }
+.listings-table th{
+  font-size: 14px;
+  padding: 5px;
+}
 
-  .page-item {
-    margin: 5px;
-  }
-
-  .page-link {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
+  .listings-whole-table {
+    overflow-x: auto;
     font-size: 14px;
+  }
+
+  .listings-table-header-section {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .listsum-search-section {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  .dropdown,
+  .search-input-container {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .pagination-container {
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .search-input{
+    padding: 5px 10px;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+  }
+  .listings-table-container{
+    /* margin-right: 30px; */
+  }
+
+}
+
+@media (max-width: 320px) {
+  .table-header-button,
+  .listings-show-details-button,
+  .search-input,
+  .dropdown {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .listings-table th,
+  .listings-table td {
+    padding: 5px;
+  }
+
+  .pagination-container {
+    justify-content: center;
+    margin-top: 10px;
   }
 }

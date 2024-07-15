@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
@@ -38,6 +39,18 @@ const SoldProperties = () => {
     },
   ]);
 
+
+  const navigate = useNavigate(); // Get the navigate function from react-router-dom
+
+  const handleShowDetailsClick = (status) => {
+    if (status === 'Processing') {
+      navigate('/sold-property-details');
+    } else if (status === 'Denied') {
+      navigate('/sold-property-details');
+    } else {
+      navigate('/sold-property-details'); // Fallback route
+    }
+  };
   return (
     
     <div>
@@ -47,10 +60,10 @@ const SoldProperties = () => {
           <div className="sidebar" style={{ width: "15%", padding: "none" }}>
             <SidebarComponent />
           </div>
-          <div className="list" style={{ display: "flex", flexDirection: "column", width: "80%", gap: "0.5rem" }}>
+          <div className="list" style={{ display: "flex", flexDirection: "column", width: "100%", gap: "0.5rem" }}>
             {/* <div className="listingsTableWrapper"> */}
               <div className="sold-properties-container">
-                <div className="headerSection">
+                <div className="sold-properties-headerSection">
                   <div className="sold-properties-tabs">
                     <Link to="/listing-summary-lists">
                       <div className="newButton">
@@ -63,7 +76,7 @@ const SoldProperties = () => {
                       </div>
                     </Link>
                   </div>
-                  <div className="searchSection">
+                  <div className="sold-properties-searchSection">
                     <select className="dropdown">
                       <option>Show entries</option>
                       <option>10</option>
@@ -71,15 +84,15 @@ const SoldProperties = () => {
                       <option>50</option>
                       <option>100</option>
                     </select>
-                    <div className="srchInputContainer">
+                    <div className="sold-properties-srchInputContainer">
                       <div className="wrappsearch">
-                      <FontAwesomeIcon icon={faSearch} className="searchIcons" />
+                      <FontAwesomeIcon icon={faSearch} className="sold-properties-searchIcons" />
                       <input type="text" placeholder="Search Property" className="searchInpt" />
                       </div>
                     </div>
                   </div>
                   </div>
-                <table className="table">
+                <table className="sold-properties-table">
                   <thead>
                     <tr>
                       <th>Select</th>
@@ -101,7 +114,8 @@ const SoldProperties = () => {
                     {listings.map((listing, index) => (
                       <tr key={index} className={index % 2 === 0 ? 'even' : ''}>
                         <td>
-                          <button className="showDetailsButton">Show Details</button>
+                          <button className="sold-properties-showDetailsButton"
+                          onClick={() => handleShowDetailsClick(listing.status)}>Show Details</button>
                         </td>
                         <td>{listing.date}</td>
                         <td>{listing.propertyId}</td>
