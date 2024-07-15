@@ -1,19 +1,19 @@
+import { Layout } from 'antd';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { MainLayout } from '../components';
-import { Layout } from 'antd';
+import { Content } from 'antd/es/layout/layout';
 
-const { Content } = Layout
 
 const MainOutlet = () => {
   return (
     <>
-    <Layout>
-        <MainLayout/>
+      <Layout>
+        <MainLayout />
         <Content>
-            <Outlet/>
+          <Outlet />
         </Content>
-    </Layout>
+      </Layout>
     </>
   )
 }
