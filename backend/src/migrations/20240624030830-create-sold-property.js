@@ -2,34 +2,34 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     /**
      * Add altering commands here.
      *
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable('sold_properties', { 
-      id: {
+    await queryInterface.createTable('sold_properties', {
+      sold_property_id: {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        type: Sequelize.INTEGER
-    },
-    property_id: {
+        type: Sequelize.INTEGER.UNSIGNED
+      },
+      master_property_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "MasterPropertyList",
             tableName: 'master_property_lists',
           },
-          key: 'id',
+          key: 'master_property_id',
         },
-    },
-    buyer_id: {
+      },
+      buyer_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "User",
@@ -37,29 +37,32 @@ module.exports = {
           },
           key: 'user_id',
         },
-    },
-    sale_price: {
+      },
+      sale_price: {
         allowNull: false,
         type: Sequelize.DECIMAL(10, 2),
-    },
-    sale_date: {
-      allowNull: false,
-      type: Sequelize.DATE,
-  },
-    createdAt: {
+        defaultValue: 0
+      },
+      sale_date: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-    },
-    updatedAt: {
+      },
+      updatedAt: {
         type: Sequelize.DATE,
         allowNull: true,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
-    },
-     });
+        // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
+    });
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     /**
      * Add reverting commands here.
      *

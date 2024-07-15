@@ -6,26 +6,26 @@ const {
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
 const SoldProperties = Sequelize.define("sold_properties", {
-    id: {
+    sold_property_id: {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER.UNSIGNED
     },
-    property_id: {
+    master_property_id: {
         allowNull: false,
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         references: {
             model: {
               model: "MasterPropertyList",
               tableName: 'master_property_lists',
             },
-            key: 'id',
+            key: 'master_property_id',
           },
     },
     buyer_id: {
         allowNull: false,
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         references: {
             model: {
               model: "User",
@@ -37,6 +37,7 @@ const SoldProperties = Sequelize.define("sold_properties", {
     sale_price: {
         allowNull: false,
         type: DataTypes.DECIMAL(10, 2),
+        defaultValue: 0
     },
     sale_date: {
         allowNull: false,
@@ -45,12 +46,14 @@ const SoldProperties = Sequelize.define("sold_properties", {
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
     },
     updatedAt: {
         type: DataTypes.DATE,
         allowNull: true,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)')
+        // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
     },
 }, {
     modelName: 'SoldProperties',

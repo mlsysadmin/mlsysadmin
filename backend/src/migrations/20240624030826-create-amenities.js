@@ -2,22 +2,22 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     /**
      * Add altering commands here.
      *
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable('property_features_and_amenities', { 
-      id: {
+    await queryInterface.createTable('amenities', {
+      amenity_id: {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER.UNSIGNED
     },
     indoor_features: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING,
         get() {
             return JSON.parse(this.getDataValue('indoor_features'));
@@ -27,7 +27,7 @@ module.exports = {
         }
     },
     outdoor_features: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING,
         get() {
             return JSON.parse(this.getDataValue('outdoor_features'));
@@ -36,16 +36,27 @@ module.exports = {
             this.setDataValue('outdoor_features', JSON.stringify(indoor));
         }
     },
-    property_custom_features_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
+    custom_amenity_id: {
+        allowNull: true,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
             model: {
-              model: "CustomFeaturesAndAmenities",
-              tableName: 'custom_features_and_amenities',
+              model: "CustomAmenities",
+              tableName: 'custom_amenities',
             },
-            key: 'id',
-          },
+            key: 'custom_amenity_id',
+        },
+    },
+    custom_inclusion_id: {
+        allowNull: true,
+        type: Sequelize.INTEGER.UNSIGNED,
+        references: {
+            model: {
+              model: "CustomInclusions",
+              tableName: 'custom_inclusions',
+            },
+            key: 'custom_inclusion_id',
+        },
     },
     createdAt: {
         type: Sequelize.DATE,
@@ -55,18 +66,20 @@ module.exports = {
     updatedAt: {
         type: Sequelize.DATE,
         allowNull: true,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
+        // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
     }
     });
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     /**
      * Add reverting commands here.
      *
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable('property_features_and_amenities');
+    await queryInterface.dropTable('amenities');
   }
 };

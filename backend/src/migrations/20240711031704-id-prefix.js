@@ -9,33 +9,22 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable('descriptions', {
-      id: {
+    await queryInterface.createTable('id_prefixes', { 
+      prefix_id: {
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER.UNSIGNED
       },
-      title: {
-          allowNull: false,
-          type: Sequelize.STRING
-      },
-      description: {
+      prefix: {
         allowNull: false,
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(3)
       },
-      createdAt: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
-      updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: true
-      },
-      deletedAt: {
-        type: Sequelize.DATE,
-        allowNull: true
+      prefix_type_name: {
+        allowNull: false,
+        type: Sequelize.ENUM('Listing', 'Loan Application', 'Financing')
       }
-    })
+    });
   },
 
   async down (queryInterface, Sequelize) {
@@ -45,7 +34,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-
-    await queryInterface.dropTable('descriptions');
+    await queryInterface.dropTable('id_prefix');
   }
 };

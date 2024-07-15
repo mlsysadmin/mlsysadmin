@@ -6,119 +6,125 @@ const {
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
 const PropertyListing = Sequelize.define("property_listings", {
-  id: {
+  property_listing_id: {
     allowNull: false,
     primaryKey: true,
-    type: DataTypes.STRING
+    type: DataTypes.INTEGER.UNSIGNED,
+    autoIncrement: true
   },
-  property_id: {
+  listing_id: {
     allowNull: false,
     type: DataTypes.STRING,
-    unique: true,
+    unique: true
   },
-  seller_id: {
+  property_id: {
+    allowNull: true,
+    type: DataTypes.STRING(15),
+    unique: true
+  },
+  seller: {
     allowNull: false,
-    type: DataTypes.INTEGER,
-    references: {
-      model: {
-        model: "User",
-        tableName: 'users',
-      },
-      key: 'user_id',
-    },
+    type: DataTypes.STRING(100)
   },
+  // seller_id: {
+  //   allowNull: false,
+  //   type: DataTypes.INTEGER.UNSIGNED,
+  //   references: {
+  //     model: {
+  //       model: "User",
+  //       tableName: 'users',
+  //     },
+  //     key: 'user_id',
+  //   },
+  // },
   property_type_id: {
-    allowNull: false,
-    type: DataTypes.INTEGER,
+    allowNull: true,
+    type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
         model: "PropertyTypes",
         tableName: 'property_types',
       },
-      key: 'id',
+      key: 'property_type_id',
     },
   },
-  listing_type: {
-    allowNull: false,
-    type: DataTypes.INTEGER,
+  listing_type_id: {
+    allowNull: true,
+    type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
         model: "ListingTypes",
         tableName: 'listing_types',
       },
-      key: 'id',
+      key: 'listing_type_id',
     },
   },
-  unit_details_id: {
-    allowNull: false,
-    type: DataTypes.INTEGER,
+  unit_detail_id: {
+    allowNull: true,
+    type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
         model: "UnitDetails",
         tableName: 'unit_details',
       },
-      key: 'id',
+      key: 'unit_detail_id',
     },
   },
   location_id: {
-    allowNull: false,
-    type: DataTypes.INTEGER,
+    allowNull: true,
+    type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
         model: "Location",
         tableName: 'locations',
       },
-      key: 'id',
+      key: 'location_id',
     },
   },
-  description_id: {
-    allowNull: false,
-    type: DataTypes.INTEGER,
+  amenity_id: {
+    allowNull: true,
+    type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
-        model: "Description",
-        tableName: 'descriptions',
+        model: "Amenities",
+        tableName: 'amenities',
       },
-      key: 'id',
+      key: 'amenity_id',
     },
   },
-  features_id: {
-    allowNull: false,
-    type: DataTypes.INTEGER,
-    references: {
-      model: {
-        model: "PropertyFeaturesAndAmenities",
-        tableName: 'property_features_and_amenities',
-      },
-      key: 'id',
-    },
-  },
-  photos_id: {
-    allowNull: false,
-    type: DataTypes.INTEGER,
+  property_photos_id: {
+    allowNull: true,
+    type: DataTypes.INTEGER.UNSIGNED,
     references: {
       model: {
         model: "PropertyPhoto",
         tableName: 'property_photos',
       },
-      key: 'photos_id',
+      key: 'property_photos_id',
     },
+  },
+  title: {
+    allowNull: true,
+    type: DataTypes.STRING(100),
+  },
+  description: {
+    allowNull: true,
+    type: DataTypes.TEXT
   },
   listing_status: {
     allowNull: false,
-    type: DataTypes.ENUM('OPEN', 'APPROVED', 'DISAPPROVED')
+    type: DataTypes.ENUM('DRAFT', 'PENDING', 'APPROVED', 'DENIED')
   },
   createdAt: {
     type: DataTypes.DATE,
-    allowNull: false
+    allowNull: false,
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
   },
   updatedAt: {
     type: DataTypes.DATE,
-    allowNull: true
-  },
-  deletedAt: {
-    type: DataTypes.DATE,
-    allowNull: true
+    allowNull: true,
+    // onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
   }
 }, {
   modelName: 'PropertyListing',

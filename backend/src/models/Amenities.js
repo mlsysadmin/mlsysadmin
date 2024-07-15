@@ -5,15 +5,15 @@ const {
 
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
-const PropertyFeaturesAndAmenities = Sequelize.define("property_features_and_amenities", {
-    id: {
+const Amenities = Sequelize.define("amenities", {
+    amenity_id: {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER.UNSIGNED
     },
     indoor_features: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.STRING,
         get() {
             return JSON.parse(this.getDataValue('indoor_features'));
@@ -23,7 +23,7 @@ const PropertyFeaturesAndAmenities = Sequelize.define("property_features_and_ame
         }
     },
     outdoor_features: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.STRING,
         get() {
             return JSON.parse(this.getDataValue('outdoor_features'));
@@ -32,30 +32,43 @@ const PropertyFeaturesAndAmenities = Sequelize.define("property_features_and_ame
             this.setDataValue('outdoor_features', JSON.stringify(indoor));
         }
     },
-    property_custom_features_id: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
+    custom_amenity_id: {
+        allowNull: true,
+        type: DataTypes.INTEGER.UNSIGNED,
         references: {
             model: {
-              model: "CustomFeaturesAndAmenities",
-              tableName: 'custom_features_and_amenities',
+              model: "CustomAmenities",
+              tableName: 'custom_amenities',
             },
-            key: 'id',
+            key: 'custom_amenity_id',
+        },
+    },
+    custom_inclusion_id: {
+        allowNull: true,
+        type: DataTypes.INTEGER.UNSIGNED,
+        references: {
+            model: {
+              model: "CustomInclusions",
+              tableName: 'custom_inclusions',
+            },
+            key: 'custom_inclusion_id',
         },
     },
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
     },
     updatedAt: {
         type: DataTypes.DATE,
         allowNull: true,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)')
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
+        // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
     }
 }, {
-    modelName: 'PropertyFeaturesAndAmenities',
+    modelName: 'Amenities',
     timestamps: false,
 })
 
-module.exports = PropertyFeaturesAndAmenities;
+module.exports = Amenities;

@@ -1,4 +1,5 @@
 'use strict';
+const DayJS = require("dayjs");
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -16,20 +17,20 @@ module.exports = {
       {
         role_id: 0,
         user_role: "support",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+        updatedAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
         role_id: 1,
         user_role: "seller",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+        updatedAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
         role_id: 2,
         user_role: "buyer",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+        updatedAt: DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss'),
       }
     ])
   },

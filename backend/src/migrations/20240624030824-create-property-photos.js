@@ -10,37 +10,39 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
     await queryInterface.createTable('property_photos', { 
-      photos_id: {
+      property_photos_id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER.UNSIGNED,
+        autoIncrement: true
       },
       property_listing_id: {
-          allowNull: false,
-          // primaryKey: true,
-          type: Sequelize.INTEGER
-      },
-      photos: {
         allowNull: false,
+        primaryKey: true,
+        type: Sequelize.INTEGER.UNSIGNED,
+        references: {
+          model: {
+            model: "PropertyListing",
+            tableName: 'property_listings',
+          },
+          key: 'property_listing_id',
+        },
+      },
+      listing_id: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        // unique: true
+      },
+      photo: {
+        allowNull: true,
         primaryKey: true,
         type: Sequelize.STRING,
       },
       upload_date: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP()')
-      },
-      createdAt: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
-      updatedAt: {
-        type: Sequelize.DATE,
-        allowNull: true
-      },
-      deletedAt: {
-        type: Sequelize.DATE,
-        allowNull: true
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
      });
   },

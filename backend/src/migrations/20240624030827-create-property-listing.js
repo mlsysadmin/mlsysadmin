@@ -10,19 +10,25 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
     await queryInterface.createTable('property_listings', {
-      id: {
+      property_listing_id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER.UNSIGNED,
+        autoIncrement: true
+      },
+      listing_id: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        unique: true
       },
       property_id: {
         allowNull: false,
-        type: Sequelize.STRING,
-        unique: true,
+        type: Sequelize.STRING(15),
+        unique: true
       },
       seller_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "User",
@@ -32,97 +38,93 @@ module.exports = {
         },
       },
       property_type_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
+        allowNull: true,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "PropertyTypes",
             tableName: 'property_types',
           },
-          key: 'id',
+          key: 'property_type_id',
         },
       },
-      listing_type: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
+      listing_type_id: {
+        allowNull: true,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "ListingTypes",
             tableName: 'listing_types',
           },
-          key: 'id',
+          key: 'listing_type_id',
         },
       },
-      unit_details_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
+      unit_detail_id: {
+        allowNull: true,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "UnitDetails",
             tableName: 'unit_details',
           },
-          key: 'id',
+          key: 'unit_detail_id',
         },
       },
       location_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
+        allowNull: true,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "Location",
             tableName: 'locations',
           },
-          key: 'id',
+          key: 'location_id',
         },
       },
-      description_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
+      amenity_id: {
+        allowNull: true,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
-            model: "Description",
-            tableName: 'descriptions',
+            model: "Amenities",
+            tableName: 'amenities',
           },
-          key: 'id',
+          key: 'amenity_id',
         },
       },
-      features_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            model: "PropertyFeaturesAndAmenities",
-            tableName: 'property_features_and_amenities',
-          },
-          key: 'id',
-        },
-      },
-      photos_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
+      property_photos_id: {
+        allowNull: true,
+        type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
             model: "PropertyPhoto",
             tableName: 'property_photos',
           },
-          key: 'photos_id',
+          key: 'property_photos_id',
         },
+      },
+      title: {
+        allowNull: true,
+        type: Sequelize.STRING(100),
+      },
+      description: {
+        allowNull: true,
+        type: Sequelize.TEXT
       },
       listing_status: {
         allowNull: false,
-        type: Sequelize.ENUM('OPEN', 'APPROVED', 'DISAPPROVED')
+        type: Sequelize.ENUM('DRAFT', 'OPEN', 'PENDING', 'APPROVED', 'DISAPPROVED')
       },
       createdAt: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       updatedAt: {
         type: Sequelize.DATE,
-        allowNull: true
-      },
-      deletedAt: {
-        type: Sequelize.DATE,
-        allowNull: true
+        allowNull: true,
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       }
     })
   },

@@ -6,7 +6,7 @@ const {
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
 const FeaturesList = Sequelize.define("features_lists", {
-    id: {
+    feature_list_id: {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
@@ -18,8 +18,25 @@ const FeaturesList = Sequelize.define("features_lists", {
     },
     feature_type:{
         allowNull: false,
-        type: DataTypes.ENUM("Indoor", "Outdoor"),
+        type: DataTypes.ENUM("indoor", "outdoor"),
     },
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
+        onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+        defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
+        // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+      },
+      deletedAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      }
     // indoor_features: {
     //     allowNull: false,
     //     type: DataTypes.ENUM("Air Condition", "Alarm System", "Attic", "Balcony", "Bar", 
@@ -42,21 +59,6 @@ const FeaturesList = Sequelize.define("features_lists", {
     //         "Sports Facilities", "Swimming Pool", "Tennis Court", "24/7 Security"
     //     ),
     // },
-    createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-      },
-      updatedAt: {
-        type: DataTypes.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
-        allowNull: true
-      },
-    //   deletedAt: {
-    //     type: DataTypes.DATE,
-    //     allowNull: true,
-    //     defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-    //   },
 }, {
     modelName: 'FeaturesList',
     timestamps: false,
