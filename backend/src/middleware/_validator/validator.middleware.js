@@ -10,7 +10,6 @@ module.exports = {
         try {
             return async (req, res, next) => {
                 try {
-                    console.log(req[property][property_name]);
                     const isValidSchema = Joi.isSchema(schemaName);
                     const parsedData = req[property][property_name];
                     // const parsedData = JSON.parse(req[property].payload);

@@ -5,48 +5,43 @@ const {
 
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
-const Approvers = Sequelize.define("approvers", {
-    approver_id: {
+const Application = Sequelize.define("applications", {
+    id: {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
         type: DataTypes.INTEGER.UNSIGNED
     },
-    mobile_number: {
+    application_id: {
         allowNull: false,
-        type: DataTypes.STRING(15),
-    },
-    first_name: {
-        allowNull: false,
-        type: DataTypes.STRING(60)
-    },
-    middle_name: {
-        allowNull: true,
-        type: DataTypes.STRING(60)
-    },
-    last_name: {
-        allowNull: false,
-        type: DataTypes.STRING(60)
-    },
-    email: {
-        allowNull: false,
-        type: DataTypes.STRING(100),
+        type: DataTypes.STRING(11),
         unique: true
     },
-    level: {
-        allowNull: false,
-        type: DataTypes.INTEGER.UNSIGNED
-    },
-    role_id: {
+    master_property_id: {
         allowNull: false,
         type: DataTypes.INTEGER.UNSIGNED,
         references: {
-          model: {
-            model: "Role",
-            tableName: 'roles',
-          },
-          key: 'role_id',
+            model: {
+                model: "MasterPropertyList",
+                tableName: 'master_property_lists',
+            },
+            key: 'master_property_id',
         },
+    },
+    user_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER.UNSIGNED,
+        references: {
+            model: {
+                model: "User",
+                tableName: 'users',
+            },
+            key: 'user_id',
+        },
+    },
+    status: {
+        allowNull: false,
+        type: DataTypes.ENUM('Processing', 'Approved', 'Closed', 'Cancelled')
     },
     createdAt: {
         type: DataTypes.DATE,
@@ -66,8 +61,8 @@ const Approvers = Sequelize.define("approvers", {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
     }
 }, {
-    modelName: 'Approvers',
+    modelName: 'Application',
     timestamps: false,
 })
 
-module.exports = Approvers;
+module.exports = Application;

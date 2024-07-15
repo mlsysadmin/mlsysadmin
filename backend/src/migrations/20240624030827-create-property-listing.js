@@ -92,17 +92,17 @@ module.exports = {
           key: 'amenity_id',
         },
       },
-      // property_photos_id: {
-      //   allowNull: true,
-      //   type: Sequelize.INTEGER.UNSIGNED,
-      //   references: {
-      //     model: {
-      //       model: "PropertyPhoto",
-      //       tableName: 'property_photos',
-      //     },
-      //     key: 'property_photos_id',
-      //   },
-      // },
+      property_photos_id: {
+        allowNull: true,
+        type: Sequelize.INTEGER.UNSIGNED,
+        references: {
+          model: {
+            model: "PropertyPhoto",
+            tableName: 'property_photos',
+          },
+          key: 'property_photos_id',
+        },
+      },
       title: {
         allowNull: true,
         type: Sequelize.STRING(100),

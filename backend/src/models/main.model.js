@@ -18,8 +18,9 @@ const Highlight = require('./HighLight');
 const Approvals = require('./Approvals');
 const Approvers = require('./Approvers');
 const FeaturesLists = require('./FeaturesList');
-const CustomInclusions = require('./CustomInclusions'); 
-const Escalations = require('./Escalations');
+const CustomInclusions = require('./CustomInclusions');
+const Applications = require('./Applications');
+const ApplicationCancellation = require('./ApplicationCancellation');
 
 /** User Association **/ 
 User.hasOne(Role, {
@@ -42,39 +43,36 @@ Save.belongsTo(MasterPropertyList, { foreignKey: 'master_property_id' }); // don
 /* ------------------------------------------------------------------------------- */
 
 /** Property Listing Association **/ 
-User.hasMany(PropertyListing, { foreignKey: 'seller_id' }); // done
-PropertyListing.belongsTo(User, { foreignKey: 'seller_id' }) // done
+// User.hasMany(PropertyListing, { foreignKey: 'seller_id' }); // done
+// PropertyListing.belongsTo(User, { foreignKey: 'seller_id' }) // done
 
 PropertyTypes.hasOne(PropertyListing, { foreignKey: 'property_type_id' }); // done
-PropertyListing.belongsTo(PropertyTypes, { foreignKey: 'property_type_id' }) // done
+PropertyListing.belongsTo(PropertyTypes, { foreignKey: 'property_type_id', as: 'property_type' }) // done
 
 ListingTypes.hasOne(PropertyListing, { foreignKey: 'listing_type_id' }); // done
 PropertyListing.belongsTo(ListingTypes, { foreignKey: 'listing_type_id' }) // done
 
 UnitDetails.hasOne(PropertyListing, { foreignKey: 'unit_detail_id' }); // done
-PropertyListing.belongsTo(UnitDetails, { foreignKey: 'unit_detail_id' }); //done
+PropertyListing.belongsTo(UnitDetails, { foreignKey: 'unit_detail_id', as: 'unit_details' }); //done
 
 Location.hasOne(PropertyListing, { foreignKey: 'location_id' }); // done
-PropertyListing.belongsTo(Location, { foreignKey: 'location_id' }); //done
+PropertyListing.belongsTo(Location, { foreignKey: 'location_id', as: 'location' }); //done
 
 Amenities.hasOne(PropertyListing, { foreignKey: 'amenity_id' }); // done
-PropertyListing.belongsTo(Amenities, { foreignKey: 'amenity_id' }); //done
+PropertyListing.belongsTo(Amenities, { foreignKey: 'amenity_id', as: 'amenities' }); //done
+
+PropertyPhoto.hasOne(PropertyListing, { foreignKey: 'property_photos_id' }); // done
+PropertyListing.belongsTo(PropertyPhoto, { foreignKey: 'property_photos_id', as: 'photos' }); //done
 
 /* ------------------------------------------------------------------------------- */
 
-/** Master Property Listing Association **/ 
-PropertyListing.hasOne(PropertyPhoto, { foreignKey: 'property_listing_id' }); // done
-PropertyPhoto.belongsTo(PropertyListing, { foreignKey: 'property_listing_id' }); //done
-
-/* ------------------------------------------------------------------------------- */
-
-/** Master Property Listing Association **/ 
+/** Master Property Listing Association **/
 
 PropertyListing.hasOne(MasterPropertyList, { foreignKey: 'property_listing_id' }); // done
 MasterPropertyList.belongsTo(PropertyListing, { foreignKey: 'property_listing_id' }); //done
 
-User.hasMany(MasterPropertyList, { foreignKey: 'seller_id' });// done
-MasterPropertyList.belongsTo(User, { foreignKey: 'seller_id' }); // done
+// User.hasMany(MasterPropertyList, { foreignKey: 'seller_id' });// done
+// MasterPropertyList.belongsTo(User, { foreignKey: 'seller_id' }); // done
 
 /* ------------------------------------------------------------------------------- */
 
@@ -108,29 +106,32 @@ SoldProperties.belongsTo(User, { foreignKey: 'user_id' }); // done
 
 /** Property Amenities Association **/ 
 CustomAmenities.hasOne(Amenities, { foreignKey: 'custom_amenity_id' });
-Amenities.belongsTo(CustomAmenities, { foreignKey: 'custom_amenity_id' });
+Amenities.belongsTo(CustomAmenities, { foreignKey: 'custom_amenity_id', as: 'custom_amenities' });
 
 CustomInclusions.hasOne(Amenities, { foreignKey: 'custom_inclusion_id' });
-Amenities.belongsTo(CustomInclusions, { foreignKey: 'custom_inclusion_id' });
+Amenities.belongsTo(CustomInclusions, { foreignKey: 'custom_inclusion_id', as: 'custom_inclusion' });
 
 /* ------------------------------------------------------------------------------- */
 
 
 /** Property Approvals Association **/ 
-// Approvals.hasOne(Approvers, { foreignKey: 'approver_id' });
-// Approvers.belongsTo(Approvals, { foreignKey: 'approver_id' });
+Approvers.hasMany(Approvals, { foreignKey: 'approver_id' });
+Approvals.belongsTo(Approvers, { foreignKey: 'approver_id', as: 'approver' });
 
-Approvals.hasOne(MasterPropertyList, { foreignKey: 'master_property_id' });
-MasterPropertyList.belongsTo(Approvals, { foreignKey: 'master_property_id' });
+PropertyListing.hasMany(Approvals, { foreignKey: 'property_listing_id' });
+Approvals.belongsTo(PropertyListing, { foreignKey: 'property_listing_id', as: 'listing' });
+
+Applications.hasMany(Approvals, { foreignKey: 'application_id' });
+Approvals.belongsTo(Applications, { foreignKey: 'application_id', as: 'application' });
+
+// Approvals.hasOne(MasterPropertyList, { foreignKey: 'master_property_id' });
+// MasterPropertyList.belongsTo(Approvals, { foreignKey: 'master_property_id' });
 
 /* ------------------------------------------------------------------------------- */
 
-/** Property Escalations Association **/ 
-Escalations.hasMany(Approvals, { foreignKey: 'approval_id' });
-Approvals.belongsTo(Escalations, { foreignKey: 'approval_id' });
-
-Escalations.hasMany(Approvers, { foreignKey: 'approver_id' });
-Approvers.belongsTo(Escalations, { foreignKey: 'approver_id' });
+/** Property Approvals Association **/ 
+Applications.hasMany(ApplicationCancellation, { foreignKey: 'application_id' });
+ApplicationCancellation.belongsTo(Applications, { foreignKey: 'application_id', as: 'application' });
 
 /* ------------------------------------------------------------------------------- */
 
@@ -153,6 +154,5 @@ module.exports = {
     FeaturesLists,
     Approvals,
     Approvers,
-    CustomInclusions,
-    Escalations
+    CustomInclusions
 }

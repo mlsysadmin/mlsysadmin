@@ -12,45 +12,70 @@ const Approvals = Sequelize.define("approvals", {
         autoIncrement: true,
         type: DataTypes.INTEGER.UNSIGNED
     },
-    master_property_id: {
+    approval_type: {
         allowNull: false,
+        type: DataTypes.ENUM('Listing', 'Application', 'Financing')
+    },
+    property_listing_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER.UNSIGNED,
+        // unique: true,
+        references: {
+            model: {
+                model: "PropertyListing",
+                tableName: 'property_listings',
+            },
+            key: 'property_listing_id',
+        },
+    },
+    application_id: {
+        allowNull: true,
         type: DataTypes.INTEGER.UNSIGNED,
         unique: true,
         references: {
             model: {
-                model: "MasterPropertyList",
-                tableName: 'master_property_lists',
+                model: "Application",
+                tableName: 'applications',
             },
-            key: 'master_property_id',
+            key: 'id',
         },
     },
-    // approver_id: {
-    //     allowNull: false,
-    //     type: DataTypes.INTEGER.UNSIGNED,
-    //     references: {
-    //         model: {
-    //             model: "Approvers",
-    //             tableName: 'approvers',
-    //         },
-    //         key: 'approver_id',
-    //     },
-    // },
+    approver_id: {
+        allowNull: false,
+        type: DataTypes.INTEGER.UNSIGNED,
+        references: {
+            model: {
+                model: "Approvers",
+                tableName: 'approvers',
+            },
+            key: 'approver_id',
+        },
+    },
     approval_status: {
         allowNull: false,
-        type: DataTypes.ENUM('PENDING', 'APPROVED', 'DISAPPROVED'),
+        type: DataTypes.ENUM('PENDING', 'APPROVED', 'DENIED'),
         set(status) {
             this.setDataValue('approval_status', status.toUpperCase());
         }
     },
-    levels: {
+    // level: {
+    //     allowNull: false,
+    //     type: DataTypes.ENUM("1", "2", "3"),
+    //     get() {
+    //         return Number(this.getDataValue("levels"))
+    //     },
+    //     set(level) {
+    //         this.setDataValue('levels', level.toString())
+    //     }
+    // },
+    approval_date: {
         allowNull: false,
-        type: DataTypes.ENUM("1", "2"),
-        get() {
-            return Number(this.getDataValue("levels"))
-        },
-        set(level){
-            this.setDataValue('levels', level.toString())
-        }
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+    },
+    remarks: {
+        allowNull: false,
+        type: DataTypes.STRING,
     },
     createdAt: {
         type: DataTypes.DATE,

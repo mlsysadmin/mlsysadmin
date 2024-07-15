@@ -23,17 +23,21 @@ const MasterPropertyList = Sequelize.define("master_property_lists", {
             key: 'property_listing_id',
         },
     },
-    seller_id: {
+    seller: {
         allowNull: false,
-        type: DataTypes.INTEGER.UNSIGNED,
-        references: {
-            model: {
-              model: "User",
-              tableName: 'users',
-            },
-            key: 'user_id',
-        },
+        type: DataTypes.STRING(100)
     },
+    // seller_id: {
+    //     allowNull: false,
+    //     type: DataTypes.INTEGER.UNSIGNED,
+    //     references: {
+    //         model: {
+    //           model: "User",
+    //           tableName: 'users',
+    //         },
+    //         key: 'user_id',
+    //     },
+    // },
     property_id: {
         allowNull: false,
         type: DataTypes.STRING(15),
@@ -41,7 +45,7 @@ const MasterPropertyList = Sequelize.define("master_property_lists", {
     },
     listing_status: {
         allowNull: false,
-        type: DataTypes.ENUM('OPEN', 'PENDING', 'APPROVED', 'DISAPPROVED')
+        type: DataTypes.ENUM('PENDING', 'APPROVED', 'DENIED')
     },
     property_status: {
         allowNull: false,

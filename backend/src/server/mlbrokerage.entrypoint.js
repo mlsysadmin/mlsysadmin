@@ -7,7 +7,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 
-const { USER_ROUTER, LISTING_ROUTER, SELLER_ROUTER } = require('../routers/router.main');
+const { USER_ROUTER, LISTING_ROUTER, SELLER_ROUTER, SUPPORT_ROUTER } = require('../routers/router.main');
 const Logger = require('../config/_log/mlbrokerage.logger');
 const ErrorHandler = require('../utils/_helper/ErrorHandler.helper');
 const DataResponseHandler = require('../utils/_helper/DataResponseHandler.helper');
@@ -41,6 +41,7 @@ app.use(cookieParser(process.env.SECRET_KEY))
 app.use('/api/user', USER_ROUTER);
 app.use('/api/listing', LISTING_ROUTER);
 app.use('/api/seller', SELLER_ROUTER);
+app.use('/api/support', SUPPORT_ROUTER);
 
 // If accessing non-existing route - 404 --------------------------------------------------
 app.get("*", (req, res, next) => {

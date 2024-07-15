@@ -20,10 +20,6 @@ module.exports = {
           allowNull: true,
           type: Sequelize.STRING(60)
       },
-      barangay: {
-        allowNull: true,
-        type: Sequelize.STRING(30)
-      },
       city: {
         allowNull: true,
         type: Sequelize.STRING(30)
@@ -31,6 +27,14 @@ module.exports = {
       province: {
         allowNull: true,
         type: Sequelize.STRING(30)
+      },
+      other: {
+        allowNull: true,
+        type: Sequelize.STRING(30)
+      },
+      zipcode: {
+        allowNull: true,
+        type: Sequelize.INTEGER(20)
       },
       map_location: {
         allowNull: true,

@@ -29,34 +29,34 @@ const User = Sequelize.define("users", {
       allowNull: false,
       type: DataTypes.STRING(25)
   },
-  mobile_number: {
-      allowNull: false,
-      type: DataTypes.STRING(15),
-  },
-  first_name: {
-      allowNull: false,
-      type: DataTypes.STRING(60)
-  },
-  middle_name: {
-      allowNull: true,
-      type: DataTypes.STRING(60)
-  },
-  last_name: {
-      allowNull: false,
-      type: DataTypes.STRING(60)
-  },
-  suffix: {
-      allowNull: true,
-      type: DataTypes.STRING(5)
-  },
-  birth_date: {
-      allowNull:false,
-      type: DataTypes.DATEONLY
-  },
-  email: {
-      allowNull: false,
-      type: DataTypes.STRING(100)
-  },
+  // mobile_number: {
+  //     allowNull: false,
+  //     type: DataTypes.STRING(15),
+  // },
+  // first_name: {
+  //     allowNull: false,
+  //     type: DataTypes.STRING(60)
+  // },
+  // middle_name: {
+  //     allowNull: true,
+  //     type: DataTypes.STRING(60)
+  // },
+  // last_name: {
+  //     allowNull: false,
+  //     type: DataTypes.STRING(60)
+  // },
+  // suffix: {
+  //     allowNull: true,
+  //     type: DataTypes.STRING(5)
+  // },
+  // birth_date: {
+  //     allowNull:false,
+  //     type: DataTypes.DATEONLY
+  // },
+  // email: {
+  //     allowNull: false,
+  //     type: DataTypes.STRING(100)
+  // },
   // password: {
   //     allowNull: false,
   //     type: DataTypes.STRING(100),
@@ -68,17 +68,17 @@ const User = Sequelize.define("users", {
   //     allowNull: false,
   //     type: DataTypes.ENUM("I'm a licensed real estate broker", "I'm a real estate agent", "I'm looking for my nexthome Buy/Rent", "I'm looking to Sell/Rent")
   // },
-  role_id: {
-      allowNull: false,
-      type: DataTypes.INTEGER.UNSIGNED,
-      references: {
-        model: {
-          model: "Role",
-          tableName: 'roles',
-        },
-        key: 'role_id',
-      },
-  },
+  // role_id: {
+  //     allowNull: false,
+  //     type: DataTypes.INTEGER.UNSIGNED,
+  //     references: {
+  //       model: {
+  //         model: "Role",
+  //         tableName: 'roles',
+  //       },
+  //       key: 'role_id',
+  //     },
+  // },
   // license: {
   //   allowNull: true,
   //   validate: {

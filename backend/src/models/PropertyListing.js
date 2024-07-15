@@ -18,21 +18,25 @@ const PropertyListing = Sequelize.define("property_listings", {
     unique: true
   },
   property_id: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.STRING(15),
     unique: true
   },
-  seller_id: {
+  seller: {
     allowNull: false,
-    type: DataTypes.INTEGER.UNSIGNED,
-    references: {
-      model: {
-        model: "User",
-        tableName: 'users',
-      },
-      key: 'user_id',
-    },
+    type: DataTypes.STRING(100)
   },
+  // seller_id: {
+  //   allowNull: false,
+  //   type: DataTypes.INTEGER.UNSIGNED,
+  //   references: {
+  //     model: {
+  //       model: "User",
+  //       tableName: 'users',
+  //     },
+  //     key: 'user_id',
+  //   },
+  // },
   property_type_id: {
     allowNull: true,
     type: DataTypes.INTEGER.UNSIGNED,
@@ -88,6 +92,17 @@ const PropertyListing = Sequelize.define("property_listings", {
       key: 'amenity_id',
     },
   },
+  property_photos_id: {
+    allowNull: true,
+    type: DataTypes.INTEGER.UNSIGNED,
+    references: {
+      model: {
+        model: "PropertyPhoto",
+        tableName: 'property_photos',
+      },
+      key: 'property_photos_id',
+    },
+  },
   title: {
     allowNull: true,
     type: DataTypes.STRING(100),
@@ -98,7 +113,7 @@ const PropertyListing = Sequelize.define("property_listings", {
   },
   listing_status: {
     allowNull: false,
-    type: DataTypes.ENUM('DRAFT', 'OPEN', 'PENDING', 'APPROVED', 'DISAPPROVED')
+    type: DataTypes.ENUM('DRAFT', 'PENDING', 'APPROVED', 'DENIED')
   },
   createdAt: {
     type: DataTypes.DATE,
@@ -108,7 +123,7 @@ const PropertyListing = Sequelize.define("property_listings", {
   updatedAt: {
     type: DataTypes.DATE,
     allowNull: true,
-    onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+    // onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
     defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
   }
 }, {

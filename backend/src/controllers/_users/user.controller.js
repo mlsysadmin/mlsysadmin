@@ -17,59 +17,88 @@ module.exports = {
     Login: async (req, res, next) => {
         try {
 
-            const { email, password } = req.body.payload
+            const { email } = req.body.payload
             const findUser = await FindUserOne({ email });
 
             if (findUser) {
-                const verifyPassword = await VerifyHash(password, findUser.password);
+                // const verifyPassword = await VerifyHash(findUser.password);
 
-                if (verifyPassword) {
-                    const user = DataResponseHandler(
-                        findUser,
-                        "VERIFY_SUCCESS",
-                        200,
-                        true,
-                        "SUCCESS"
-                    )
+                // if (verifyPassword) {
+                //     const user = DataResponseHandler(
+                //         findUser,
+                //         "VERIFY_SUCCESS",
+                //         200,
+                //         true,
+                //         "SUCCESS"
+                //     )
 
-                    const token = JwtSign();
-                    const domain = process.env.COOKIE_DOMAIN;
+                //     const token = JwtSign();
+                //     const domain = process.env.COOKIE_DOMAIN;
 
-                    const cookieOptions = {
-                        // expires: new Date(Date.now() + 300000),
-                        maxAge: 300000, // 5 min
-                        path: '/',
-                        httOnly: true,
-                        secure: true,
-                        sameSite: true,
-                        domain,
-                        signed:true
-                        // expires: new Date(Date.now() + 900000)
-                    }
+                //     const cookieOptions = {
+                //         // expires: new Date(Date.now() + 300000),
+                //         maxAge: 300000, // 5 min
+                //         path: '/',
+                //         httOnly: true,
+                //         secure: true,
+                //         sameSite: true,
+                //         domain,
+                //         signed:true
+                //         // expires: new Date(Date.now() + 900000)
+                //     }
 
-                    res.cookie('access_token', token, cookieOptions)
-                    res.cookie('account_details', JSON.stringify(user), cookieOptions)
+                //     res.cookie('access_token', token, cookieOptions)
+                //     res.cookie('account_details', JSON.stringify(user), cookieOptions)
 
-                    // res.append('Set-Cookie',`access_token=${token};MaxAge=${Math.floor(Date.now() / 1000) + (5 * 60)};Path=/;HttOnly=true;Secure=true;SameSite=true;Domain=localhost`)
-                    // res.append('Set-Cookie',`account_details=${JSON.stringify(user.data)};MaxAge=${Math.floor(Date.now() / 1000) + (5 * 60)};Path=/;HttOnly=true;Secure=true;SameSite=true;Domain=localhost`)
-                    const success = SuccessFormatter(user, 200, "Logged In Successfully");
+                //     // res.append('Set-Cookie',`access_token=${token};MaxAge=${Math.floor(Date.now() / 1000) + (5 * 60)};Path=/;HttOnly=true;Secure=true;SameSite=true;Domain=localhost`)
+                //     // res.append('Set-Cookie',`account_details=${JSON.stringify(user.data)};MaxAge=${Math.floor(Date.now() / 1000) + (5 * 60)};Path=/;HttOnly=true;Secure=true;SameSite=true;Domain=localhost`)
+                //     const success = SuccessFormatter(user, 200, "Logged In Successfully");
 
-                    SuccessLoggerHelper(req, user);
+                //     SuccessLoggerHelper(req, user);
 
-                    res.status(200).send(success);
-                }else{
+                //     res.status(200).send(success);
+                // }else{
 
-                    throw DataResponseHandler(
-                        null,
-                        "AUTHENTICATION_ERROR",
-                        401,
-                        false,
-                        "It looks like the email address or password you entered is incorrect."
-                    );
+                //     throw DataResponseHandler(
+                //         null,
+                //         "AUTHENTICATION_ERROR",
+                //         401,
+                //         false,
+                //         "It looks like the email address or password you entered is incorrect."
+                //     );
+                // }
+                const token = JwtSign();
+                const domain = process.env.COOKIE_DOMAIN;
+
+                const cookieOptions = {
+                    // expires: new Date(Date.now() + 300000),
+                    maxAge: 300000, // 5 min
+                    path: '/',
+                    httOnly: true,
+                    secure: true,
+                    sameSite: true,
+                    domain,
+                    signed: true
+                    // expires: new Date(Date.now() + 900000)
                 }
 
+                res.cookie('access_token', token, cookieOptions);
+                
+                const user = DataResponseHandler(
+                    findUser,
+                    "VERIFY_SUCCESS",
+                    200,
+                    true,
+                    "SUCCESS"
+                )
+                const success = SuccessFormatter(user, 200, "Logged In Successfully");
+
+                SuccessLoggerHelper(req, user);
+
+                res.status(200).send(success);
+
             }
-            else{
+            else {
                 throw DataResponseHandler(
                     null,
                     "AUTHENTICATION_ERROR",
@@ -97,7 +126,10 @@ module.exports = {
         try {
 
             const params = req.body.payload;
+
             const getToken = await GenerateToken();
+
+            console.log(params);
 
             if ((getToken) && params) {
                 console.log(getToken);
@@ -107,7 +139,7 @@ module.exports = {
 
                 const kyc = DataResponseHandler(
                     searchkyc.data.data,
-                    "ACCOUNT_ALREADY_EXIST",
+                    "RETRIEVED_SUCCESSFULLY",
                     200,
                     true,
                     "SUCCESS"
@@ -118,7 +150,16 @@ module.exports = {
 
                 res.status(200).send(success)
 
+            }else{
+                throw DataResponseHandler(
+                    {params, getToken},
+                    "SERVER_ERROR",
+                    500,
+                    false,
+                    "We're sorry, something went wrong on our end. Please try again later or contact our support team."
+                );
             }
+
         } catch (error) {
             if (Object.keys(error).includes('response')) {
 
@@ -166,7 +207,7 @@ module.exports = {
                 SuccessLoggerHelper(req, user);
 
                 res.status(200).send(success);
-            }else{
+            } else {
                 const user = DataResponseHandler(
                     null,
                     "ACCOUNT_DOES_NOT_EXIST",

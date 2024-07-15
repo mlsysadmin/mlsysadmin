@@ -41,8 +41,8 @@ const verifyApiKey = (req, res, next) => {
 
             throw DataResponseHandler(
                 JSON.stringify(error),
-                "FORBIDDEN",
-                403,
+                "UNAUTHORIZED",
+                401,
                 false,
                 "You are not authorized to access the resource"
             )

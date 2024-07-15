@@ -2,71 +2,78 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     /**
      * Add altering commands here.
      *
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable('escalations', { 
-      escalation_id: {
+    await queryInterface.createTable('applications', {
+      id: {
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER.UNSIGNED
       },
-      approver_id: {
+      application_id: {
+        allowNull: false,
+        type: Sequelize.STRING(11),
+        unique: true
+      },
+      master_property_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
-            model: "Approvers",
-            tableName: 'approvers',
+            model: "MasterPropertyList",
+            tableName: 'master_property_lists',
           },
-          key: 'approver_id',
+          key: 'master_property_id',
         },
       },
-      approval_id: {
+      user_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
         references: {
           model: {
-            model: "Approvals",
-            tableName: 'approvals',
+            model: "User",
+            tableName: 'users',
           },
-          key: 'approval_id',
+          key: 'user_id',
         },
       },
-      approval_status: {
+      status: {
         allowNull: false,
-        type: Sequelize.ENUM("PENDING", "APPROVED", "DISAPPROVED"),
+        type: Sequelize.ENUM('Processing', 'Approved', 'Closed', 'Cancelled')
       },
-      approved_at: {
-        allowNull: true,
+      createdAt: {
         type: Sequelize.DATE,
-      },
-      remarks: {
-        allowNull: true,
-        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: true,
-        // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
         onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+      },
+      deletedAt: {
+        type: Sequelize.DATE,
+        allowNull: true,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-     });
+    })
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     /**
      * Add reverting commands here.
      *
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.dropTable('escalations');
+    await queryInterface.dropTable('applications');
   }
 };

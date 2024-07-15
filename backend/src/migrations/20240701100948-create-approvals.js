@@ -15,62 +15,89 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER.UNSIGNED
-      },
-      master_property_id: {
+    },
+    approval_type: {
+        allowNull: false,
+        type: Sequelize.ENUM('Listing', 'Application', 'Financing')
+    },
+    property_listing_id: {
         allowNull: false,
         type: Sequelize.INTEGER.UNSIGNED,
         unique: true,
         references: {
-          model: {
-            model: "MasterPropertyList",
-            tableName: 'master_property_lists',
-          },
-          key: 'master_property_id',
+            model: {
+                model: "PropertyListing",
+                tableName: 'property_listings',
+            },
+            key: 'property_listing_id',
         },
-      },
-      // approver_id: {
-      //   allowNull: false,
-      //   type: Sequelize.INTEGER.UNSIGNED,
-      //   references: {
-      //     model: {
-      //       model: "Approvers",
-      //       tableName: 'approvers',
-      //     },
-      //     key: 'approver_id',
-      //   },
-      // },
-      approval_status: {
+    },
+    application_id: {
+        allowNull: true,
+        type: Sequelize.INTEGER.UNSIGNED,
+        unique: true,
+        references: {
+            model: {
+                model: "Application",
+                tableName: 'applications',
+            },
+            key: 'id',
+        },
+    },
+    approver_id: {
         allowNull: false,
-        type: Sequelize.ENUM('PENDING', 'APPROVED', 'DISAPPROVED'),
+        type: Sequelize.INTEGER.UNSIGNED,
+        references: {
+            model: {
+                model: "Approvers",
+                tableName: 'approvers',
+            },
+            key: 'approver_id',
+        },
+    },
+    approval_status: {
+        allowNull: false,
+        type: Sequelize.ENUM('PENDING', 'APPROVED', 'DENIED'),
         set(status) {
-          this.setDataValue('approval_status', status.toUpperCase());
+            this.setDataValue('approval_status', status.toUpperCase());
         }
-      },
-      levels: {
+    },
+    // level: {
+    //     allowNull: false,
+    //     type: Sequelize.ENUM("1", "2", "3"),
+    //     get() {
+    //         return Number(this.getDataValue("levels"))
+    //     },
+    //     set(level) {
+    //         this.setDataValue('levels', level.toString())
+    //     }
+    // },
+    approval_date: {
         allowNull: false,
-        type: Sequelize.ENUM("1", "2"),
-        defaultValue: "1",
-        get(){
-          return Number(this.getDataValue("level"))
-        }
-      },
-      createdAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+    },
+    remarks: {
+        allowNull: false,
+        type: Sequelize.STRING,
+    },
+    createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-      },
-      updatedAt: {
+    },
+    updatedAt: {
         type: Sequelize.DATE,
         allowNull: true,
         onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         // defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
-      },
-      deletedAt: {
+    },
+    deletedAt: {
         type: Sequelize.DATE,
         allowNull: true,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-      }
+    }
     });
   },
 

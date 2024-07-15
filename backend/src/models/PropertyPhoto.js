@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 const {
   DataTypes
 } = require('sequelize');
@@ -12,27 +12,15 @@ const PropertyPhoto = Sequelize.define("property_photos", {
     type: DataTypes.INTEGER.UNSIGNED,
     autoIncrement: true
   },
-  property_listing_id: {
-    allowNull: false,
-    primaryKey: true,
-    type: DataTypes.INTEGER.UNSIGNED,
-    references: {
-      model: {
-        model: "PropertyListing",
-        tableName: 'property_listings',
-      },
-      key: 'property_listing_id',
-    },
-  },
-  listing_id: {
-    allowNull: false,
-    type: DataTypes.STRING,
-    // unique: true
-  },
+  // listing_id: {
+  //   allowNull: false,
+  //   type: DataTypes.STRING,
+  //   // unique: true
+  // },
   photo: {
     allowNull: true,
     primaryKey: true,
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
   },
   upload_date: {
     allowNull: true,

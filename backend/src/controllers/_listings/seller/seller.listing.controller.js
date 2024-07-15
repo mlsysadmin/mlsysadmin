@@ -2,42 +2,36 @@
 const DayJS = require('dayjs');
 
 const Sequelize = require('../../../config/_db/mlbrokerage.db');
-const { 
-    CreatePropertyType, 
-    FindListingType, 
-    CreateUnitDetails, 
-    CreateLocation, 
-    CreateAmenities, 
-    CreateCustomAmenities, 
-    CreateCustomInclusions, 
-    CreatePhotos,
-    CreateApproval, 
-    FindApprover, 
-    AddEscalations, 
-    FindApprovalsByMasterId, 
-    FindAllListingBySeller, 
-    CreatePropertyListing,
-    CreateMasterPropertyList,
-    CreateEscalations
+const {
+    FindListingType,
+    CreateApproval,
+    FindApprover,
+    FindApprovalsByMasterId,
+    FindAllListingBySeller,
+    FindAllListingByStatusAndUser,
+    CreateListing,
+    FindListingByListingId
 } = require('../../../streamline/listing.datastream');
 const ListingIdGeneratorHelper = require("../../../utils/_helper/ListingIdGenerator.helper");
 const SuccessFormatter = require('../../../utils/_helper/SuccessFormatter.helper');
 const SuccessLoggerHelper = require('../../../utils/_helper/SuccessLogger.helper');
 const DataResponseHandler = require('../../../utils/_helper/DataResponseHandler.helper');
 const { Op } = require('sequelize');
+const { ModifyListing } = require('../../helper/listing.helper');
 
 const domain = process.env.COOKIE_DOMAIN;
 
 module.exports = {
+    // DONE
     GetAllSellerListings: async (req, res, next) => {
         try {
 
-            const seller_id = req.params.seller_id;
+            const seller = req.params.seller;
             let master_ids = [];
 
             const GetListings = await Sequelize.transaction(async (transaction) => {
 
-                const getAllListing = await FindAllListingBySeller(seller_id, transaction);
+                const getAllListing = await FindAllListingBySeller(seller, transaction);
 
                 const get_master_id = getAllListing.map((listing, i) => {
 
@@ -46,7 +40,7 @@ module.exports = {
                     return {
                         master_property_id: master_id
                     }
-                    
+
                 });
 
                 const approvals_field = {
@@ -54,9 +48,9 @@ module.exports = {
                 }
 
                 const approvals = await FindApprovalsByMasterId(approvals_field, transaction);
-                
+
                 const listings = [];
-                
+
                 getAllListing.forEach((g) => {
                     let approval = [];
                     approvals.forEach((a) => {
@@ -76,26 +70,48 @@ module.exports = {
                 return listings
 
             })
+            let listings;
+            let listings_log;
+            let message;
 
-            const listings = DataResponseHandler(
-                GetListings,
-                "LISTING_RETRIEVED",
-                200,
-                true,
-                "SUCCESS"
-            )
+            if (GetListings.length === 0) {
+                listings = DataResponseHandler(
+                    GetListings,
+                    "NO_LISTING_FOUND",
+                    200,
+                    true,
+                    "SUCCESS"
+                );
+                listings_log = DataResponseHandler(
+                    { master_ids, seller },
+                    "NO_LISTING_FOUND",
+                    200,
+                    true,
+                    "SUCCESS"
+                );
+                message = "No listing found";
+            } else {
+
+                listings = DataResponseHandler(
+                    GetListings,
+                    "LISTING_RETRIEVED",
+                    200,
+                    true,
+                    "SUCCESS"
+                );
+
+                listings_log = DataResponseHandler(
+                    { master_ids, seller },
+                    "LISTING_RETRIEVED",
+                    200,
+                    true,
+                    "SUCCESS"
+                );
+                message = "Retrieved Successfully";
+            }
 
 
-
-            const listings_log = DataResponseHandler(
-                {master_ids, seller_id},
-                "LISTING_RETRIEVED",
-                200,
-                true,
-                "SUCCESS"
-            )
-
-            const success = SuccessFormatter(listings, 200, "Retrieved Successfully");
+            const success = SuccessFormatter(listings, 200, message);
 
             SuccessLoggerHelper(req, listings_log);
 
@@ -119,11 +135,11 @@ module.exports = {
             next(error);
         }
     },
+    // DONE
     AddPropertyListing: async (req, res, next) => {
         try {
 
             const upload_date = DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss');
-            const approval_levels = 2;
 
             const {
                 property_details,
@@ -132,7 +148,7 @@ module.exports = {
                 description,
                 upload_photos,
                 amenities,
-                seller_id,
+                seller,
                 property_id,
                 listing_type,
             } = req.body.payload;
@@ -143,79 +159,91 @@ module.exports = {
 
             const AddListing = await Sequelize.transaction(async (transaction) => {
 
-                const listing_id = ListingIdGeneratorHelper();
-                const listing_status = "OPEN";
-                const property_status = "ACTIVE";
+                const prefix_name = process.env.LISTING_PREFIX_NAME;
 
-                const { property_type_id } = await CreatePropertyType(property_details, transaction);
-                const listing_type_id = await FindListingType(listing_type, transaction);
-                const { unit_detail_id } = await CreateUnitDetails(unit_details, transaction);
-                const { location_id } = await CreateLocation(location, transaction);
-                const { custom_amenity_id } = await CreateCustomAmenities(amenities, transaction);
-                const { custom_inclusion_id } = await CreateCustomInclusions(amenities, transaction);
+                const { listing_id, approval_type } = await ListingIdGeneratorHelper(prefix_name);
 
-                const add_amenities = {
-                    indoor_features, outdoor_features,
-                    custom_amenity_id, custom_inclusion_id
-                };
+                const listing_status = "PENDING";
 
-                const { amenity_id } = await CreateAmenities(add_amenities, transaction);
+                const type = await FindListingType(listing_type, transaction);
 
                 const property_listing_fields = {
-                    listing_id, seller_id, property_id,property_type_id,
-                    listing_type_id, unit_detail_id, location_id,
-                    amenity_id, 
+                    listing_id, seller, property_id, listing_status,
                     ...description,
-                    listing_status
-                };
-
-                const { property_listing_id } = await CreatePropertyListing(property_listing_fields, transaction);
-
-                const add_master_property_list = await CreateMasterPropertyList({
-                    property_listing_id, seller_id, property_id, listing_status, property_status
-                }, transaction);
-
-                const add_photos = upload_photos.photos.map((photos, i) => {
-                    return {
-                        listing_id, photo: photos.photo, upload_date, property_listing_id
-                    }
-                })
-
-                await CreatePhotos(add_photos, transaction);
-
-                const approval_fields = {
-                    master_property_id: add_master_property_list.master_property_id,
-                    approval_status: "PENDING",
-                    levels: approval_levels
-                };
-
-                const level = {
-                    [Op.or]: [
-                        {
-                            level: 1
+                    property_type: {
+                        ...property_details
+                    },
+                    listing_type_id: type.listing_type_id,
+                    unit_details: {
+                        ...unit_details
+                    },
+                    location: {
+                        ...location
+                    },
+                    amenities: {
+                        indoor_features: JSON.stringify(indoor_features),
+                        outdoor_features: JSON.stringify(outdoor_features),
+                        custom_amenities: {
+                            feature_name: JSON.stringify(feature_name)
                         },
-                        {
-                            level: 2
+                        custom_inclusion: {
+                            inclusion_name: JSON.stringify(inclusion_name)
                         }
-                    ]
-                }
-                const { approval_id } = await CreateApproval(approval_fields, transaction);
-
-                const get_approvers = await FindApprover(level, transaction);
-
-                const escalations = get_approvers.map((approver, i) => {
-                    return {
-                        approver_id: approver.approver_id,
-                        approval_id,
-                        approval_status: "PENDING",
-                        approved_at: null,
-                        remarks: null
+                    },
+                    photos: {
+                        photo: JSON.stringify(upload_photos),
+                        upload_date
                     }
-                })
 
-                await CreateEscalations(escalations, transaction);
+                };
 
-                return add_master_property_list;
+                const [property_listing, created] = await CreateListing(property_listing_fields, transaction);
+
+                const property_listing_id = property_listing.property_listing_id;
+
+                if (created) {
+
+                    const level = {
+                        [Op.or]: [
+                            {
+                                level: 1
+                            },
+                            {
+                                level: 2
+                            },
+                            {
+                                level: 3
+                            }
+                        ]
+                    }
+
+                    const get_approvers = await FindApprover(level, transaction);
+
+                    const escalations = get_approvers.map((approver, i) => {
+                        return {
+                            approval_type,
+                            approver_id: approver.approver_id,
+                            property_listing_id,
+                            approval_status: "PENDING",
+                            approval_date: null,
+                            remarks: null
+                        }
+                    })
+
+                    await CreateApproval(escalations, transaction);
+
+                    return property_listing;
+                } else {
+
+                    throw DataResponseHandler(
+                        { property_listing_id, property_id },
+                        "DUPLICATE_LISTING",
+                        400,
+                        false,
+                        "Seems like your creating an existing listing, make sure Property ID is unique."
+                    );
+                }
+
             })
 
             const listing = DataResponseHandler(
@@ -236,80 +264,196 @@ module.exports = {
             next(error);
         }
     },
+    // DONE
+    GetAllDraftListing: async (req, res, next) => {
+        try {
+
+            const seller = req.params.seller;
+            const listing_status = "DRAFT";
+
+            const params_field = {
+                listing_status,
+                seller
+            }
+
+            const GetDraftListings = await Sequelize.transaction(async (transaction) => {
+
+                const getAllListing = await FindAllListingByStatusAndUser(params_field, transaction);
+
+                return getAllListing
+
+            })
+
+            let listings;
+            let listings_log;
+            let message;
+
+            if (GetDraftListings.length === 0) {
+                listings = DataResponseHandler(
+                    GetDraftListings,
+                    "NO_LISTING_FOUND",
+                    200,
+                    true,
+                    "SUCCESS"
+                );
+                listings_log = DataResponseHandler(
+                    GetDraftListings,
+                    "NO_LISTING_FOUND",
+                    200,
+                    true,
+                    "SUCCESS"
+                );
+                message = "No listing found";
+            } else {
+
+                listings = DataResponseHandler(
+                    GetDraftListings,
+                    "LISTING_RETRIEVED",
+                    200,
+                    true,
+                    "SUCCESS"
+                );
+
+                listings_log = DataResponseHandler(
+                    { seller },
+                    "LISTING_RETRIEVED",
+                    200,
+                    true,
+                    "SUCCESS"
+                );
+                message = "Retrieved Successfully";
+            }
+
+
+            const success = SuccessFormatter(listings, 200, message);
+
+            SuccessLoggerHelper(req, listings_log);
+
+            // const cookieOptions = {
+            //     expires: new Date(Date.now() + 300000),
+            //     maxAge: 300000, // 5 min
+            //     path: '/',
+            //     httOnly: true,
+            //     secure: true,
+            //     sameSite: true,
+            //     domain,
+            //     signed:true
+            //     // expires: new Date(Date.now() + 900000)
+            // }
+
+            // res.cookie('listings', GetDraftListings, cookieOptions)
+
+            res.status(200).send(success);
+
+        } catch (error) {
+            next(error);
+        }
+    },
+
+    // DONE
     DraftPropertyListing: async (req, res, next) => {
         try {
 
             const upload_date = DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss');
-            const approval_levels = 2;
 
-            const {
+            let {
                 property_details,
                 unit_details,
                 location,
                 description,
                 upload_photos,
                 amenities,
-                seller_id,
+                seller,
                 property_id,
                 listing_type,
+                listing_id,
+                isEdit
             } = req.body.payload;
 
             const {
                 indoor_features, outdoor_features, feature_name, inclusion_name
             } = amenities
 
-            const AddListing = await Sequelize.transaction(async (transaction) => {
+            const SaveDraft = await Sequelize.transaction(async (transaction) => {
 
-                const listing_id = ListingIdGeneratorHelper();
                 const listing_status = "DRAFT";
 
-                const { property_type_id } = await CreatePropertyType(property_details, transaction);
-                console.log(listing_type);
-                const listing_type_id = await FindListingType(listing_type, transaction);
-                const { unit_detail_id } = await CreateUnitDetails(unit_details, transaction);
-                const { location_id } = await CreateLocation(location, transaction);
-                const { custom_amenity_id } = await CreateCustomAmenities(amenities, transaction);
-                const { custom_inclusion_id } = await CreateCustomInclusions(amenities, transaction);
+                const prefix_name = process.env.LISTING_PREFIX_NAME;
 
-                const add_amenities = {
-                    indoor_features, outdoor_features,
-                    custom_amenity_id, custom_inclusion_id
-                };
+                if (!isEdit) {
+                    listing_id = await ListingIdGeneratorHelper(prefix_name);
+                }
 
-                const { amenity_id } = await CreateAmenities(add_amenities, transaction);
+                const { listing_type_id } = await FindListingType(listing_type, transaction);
+
+                console.log(listing_type_id);
 
                 const property_listing_fields = {
-                    listing_id, seller_id, property_id, property_type_id,
-                    listing_type_id, unit_detail_id, location_id,
-                    amenity_id, 
+                    listing_id, seller, property_id, listing_status,
                     ...description,
-                    listing_status
+                    property_type: {
+                        ...property_details
+                    },
+                    listing_type_id,
+                    unit_details: {
+                        ...unit_details
+                    },
+                    location: {
+                        ...location
+                    },
+                    amenities: {
+                        indoor_features: JSON.stringify(indoor_features),
+                        outdoor_features: JSON.stringify(outdoor_features),
+                        custom_amenities: {
+                            feature_name: JSON.stringify(feature_name)
+                        },
+                        custom_inclusion: {
+                            inclusion_name: JSON.stringify(inclusion_name)
+                        }
+                    },
+                    photos: {
+                        photo: JSON.stringify(upload_photos),
+                        upload_date
+                    }
+
                 };
 
-                const property_listing = await CreatePropertyListing(property_listing_fields, transaction);
+                let [property_listing, created] = await CreateListing(property_listing_fields, transaction);
 
-                const property_listing_id = property_listing.property_listing_id
+                const ids = {
+                    listing_id,
+                    property_type_id: property_listing.property_type_id,
+                    unit_detail_id: property_listing.unit_detail_id,
+                    location_id: property_listing.location_id,
+                    custom_amenity_id: property_listing.amenities.custom_amenity_id,
+                    custom_inclusion_id: property_listing.amenities.custom_inclusion_id,
+                    amenity_id: property_listing.amenity_id,
+                    property_photos_id: property_listing.property_photos_id,
+                }
 
-                const add_photos = upload_photos.photos.map((photos, i) => {
-                    return {
-                        listing_id, photo: photos.photo, upload_date, property_listing_id
-                    }
-                })
+                if (!created) {
 
-                await CreatePhotos(add_photos, transaction);
+                    await ModifyListing(property_listing_fields, ids, transaction);
+
+                    const updated_property_listing = await FindListingByListingId(listing_id, transaction);
+                    property_listing = updated_property_listing;
+
+                }
 
                 return property_listing;
+
             })
 
+
             const listing = DataResponseHandler(
-                AddListing,
-                "LISTING_CREATED",
+                SaveDraft,
+                "SAVE_DRAFT",
                 201,
                 true,
                 "SUCCESS"
             );
 
-            const success = SuccessFormatter(listing, 201, "New listing was added");
+            const success = SuccessFormatter(listing, 201, "Draft saved");
 
             SuccessLoggerHelper(req, listing);
 
@@ -319,5 +463,6 @@ module.exports = {
             next(error);
         }
     },
-    
+
+
 }
