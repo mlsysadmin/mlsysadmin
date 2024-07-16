@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/listing-form.css";
 
-const LocationDetailsComponent = () => {
+const LocationDetailsComponent = ({ onComplete }) => {
   const [country, setCountry] = useState("");
   const [province, setProvince] = useState("");
   const [city, setCity] = useState("");
   const [zipcode, setZipcode] = useState("");
+  const [address, setAddress] = useState("");
+  const [mapLocation, setMapLocation] = useState("");
 
   const [provinceOptions, setProvinceOptions] = useState([
     { value: "", label: "Select Province/State" },
@@ -87,6 +89,19 @@ const LocationDetailsComponent = () => {
     const selectedZipcode = event.target.value;
     setZipcode(selectedZipcode);
   };
+
+  const handleAddressChange = (event) => {
+    setAddress(event.target.value);
+  };
+
+  const handleMapLocationChange = (event) => {
+    setMapLocation(event.target.value);
+  };
+
+  useEffect(() => {
+    const isComplete = country && province && city && zipcode && address && mapLocation;
+    onComplete(isComplete);
+  }, [country, province, city, zipcode, address, mapLocation, onComplete]);
 
   return (
     <div className="location-details">
@@ -171,6 +186,8 @@ const LocationDetailsComponent = () => {
             id="address"
             className="form-input"
             placeholder="Enter House No/Unit/Building Name/Street"
+            value={address}
+            onChange={handleAddressChange}
           />
         </div>
         <div className="end-form-group">
@@ -182,15 +199,18 @@ const LocationDetailsComponent = () => {
             id="map-location"
             className="form-input"
             placeholder="Enter Map Location"
+            value={mapLocation}
+            onChange={handleMapLocationChange}
           />
         </div>
-        <div>
+        <div className="embedd-map">
           <iframe
+            className="google-map"
             title="Google Map"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15699.578540820406!2d123.89732826117896!3d10.350309394999337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a998dc979e57b3%3A0xac2f6149d71913f5!2sBanilad%2C%20Cebu%20City%2C%206000%20Cebu!5e0!3m2!1sen!2sph!4v1720766750192!5m2!1sen!2sph"
             width="400"
             height="300"
-            style={{ border: 0 ,borderRadius:"30px", marginLeft:"50px"}}
+            style={{ border: 0, borderRadius: "30px", marginLeft: "50px" }}
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

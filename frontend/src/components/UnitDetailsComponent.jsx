@@ -23,19 +23,7 @@ const UnitDetailsComponent = ({
   propIdInputError,
   setPropIdInputError,
 }) => {
-  const [selectedUnitTab, setSelectedUnitTab] = useState('');
-  const [selectedListingTab, setSelectedListingTab] = useState('');
   const [selectedClassification, setSelectedClassification] = useState(null);
-
-  useEffect(() => {
-    if (selectedUnitTab === 'unitDetails') {
-      setSelectedListingTab('');
-    }
-  }, [selectedUnitTab]);
-
-  const handleClassificationClick = (tab) => {
-    setSelectedClassification(tab);
-  };
 
   const validateNumberInput = (value, setError) => {
     if (isNaN(value)) {
@@ -45,7 +33,10 @@ const UnitDetailsComponent = ({
     }
   };
 
-  // Function to check if the form is complete
+  const handleClassificationClick = (tab) => {
+    setSelectedClassification(tab);
+  };
+
   const isFormComplete = () => {
     return (
       !priceInputError &&
@@ -61,9 +52,21 @@ const UnitDetailsComponent = ({
 
   useEffect(() => {
     if (isFormComplete()) {
-      onComplete();
+      onComplete(true); // Form is complete
+    } else {
+      onComplete(false); // Form is incomplete
     }
-  }, [priceInputError, floorAreaInputError, pricePerSqmInputError, discPriceInputError, lotAreaInputError, propIdInputError, selectedSellingPrice, selectedClassification, onComplete]);
+  }, [
+    priceInputError,
+    floorAreaInputError,
+    pricePerSqmInputError,
+    discPriceInputError,
+    lotAreaInputError,
+    propIdInputError,
+    selectedSellingPrice,
+    selectedClassification,
+    onComplete,
+  ]);
 
   return (
     <div className="listing-unit-details">

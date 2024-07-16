@@ -34,7 +34,9 @@ import {
   ShowDetailsDenied,
   ActiveListingDetails,
   SoldPropertyDetailsPage,
+  
 } from "../pages";
+  
 
 const Routes = [
     {
@@ -148,6 +150,22 @@ const Routes = [
               {
                 path: "/LoginModal",
                 element: <LoginModal />,
+              },
+              {
+                path: "/show-details-processing",
+                element: <ShowDetailsProcessing />,
+              },
+              {
+                path: "/show-details-denied",
+                element: <ShowDetailsDenied />,
+              },
+              {
+                path: "/active-listing-details",
+                element: <ActiveListingDetails />,
+              },
+              {
+                path: "/sold-property-details",
+                element: <SoldPropertyDetailsPage />,
               },
         ]
     }

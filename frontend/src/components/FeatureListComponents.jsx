@@ -1,29 +1,29 @@
-import React, { useState } from "react";
-import FeatureList from "./custom/custom.featureLists"; // Adjust the import path accordingly
+import React, { useState, useEffect } from "react";
 import AddFeature from "./custom/custom.featureLists";
 import "../styles/listing-form.css";
 
-const FeaturedComponents = () => {
+const FeatureList = ({ title, features, selectedFeatures, toggleFeature }) => (
+  <div className="featureCards">
+    <h2>{title}</h2>
+    <div className="features">
+      {features.map((feature) => (
+        <span
+          key={feature}
+          className={`feature-item ${
+            selectedFeatures.includes(feature) ? "selected" : ""
+          }`}
+          onClick={() => toggleFeature(feature)}
+        >
+          {feature}
+        </span>
+      ))}
+    </div>
+  </div>
+);
+
+const FeaturedComponents = ({ onComplete }) => {
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
-  const FeatureList = ({ title, features }) => (
-    <div className="featureCards">
-      <h2>{title}</h2>
-      <div className="features">
-        {features.map((feature) => (
-          <span
-            key={feature}
-            className={`feature-item ${
-              selectedFeatures.includes(feature) ? "selected" : ""
-            }`}
-            onClick={() => toggleFeature(feature)}
-          >
-            {feature}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
   const indoorFeatures = [
     "Alarm System",
     "Air Conditioning",
@@ -90,13 +90,24 @@ const FeaturedComponents = () => {
     "Tennis Court",
     "24/7 Security",
   ];
+
   const toggleFeature = (feature) => {
-    if (selectedFeatures.includes(feature)) {
-      setSelectedFeatures(selectedFeatures.filter((item) => item !== feature));
-    } else {
-      setSelectedFeatures([...selectedFeatures, feature]);
-    }
+    setSelectedFeatures((prevSelectedFeatures) =>
+      prevSelectedFeatures.includes(feature)
+        ? prevSelectedFeatures.filter((item) => item !== feature)
+        : [...prevSelectedFeatures, feature]
+    );
   };
+
+  useEffect(() => {
+    // Assuming form is completed when features are selected
+    if (selectedFeatures.length > 0) {
+      onComplete(true);  // Indicating completion
+    } else {
+      onComplete(false); // Indicating not completed
+    }
+  }, [selectedFeatures, onComplete]);
+
   return (
     <div className="featureList">
       <h2>Features</h2>
@@ -105,8 +116,18 @@ const FeaturedComponents = () => {
         property seekers can learn even more about your offer.
       </p>
       <div className="features">
-        <FeatureList title="Indoor Features" features={indoorFeatures} />
-        <FeatureList title="Outdoor Features" features={outdoorFeatures} />
+        <FeatureList
+          title="Indoor Features"
+          features={indoorFeatures}
+          selectedFeatures={selectedFeatures}
+          toggleFeature={toggleFeature}
+        />
+        <FeatureList
+          title="Outdoor Features"
+          features={outdoorFeatures}
+          selectedFeatures={selectedFeatures}
+          toggleFeature={toggleFeature}
+        />
       </div>
       <AddFeature />
     </div>

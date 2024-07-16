@@ -3,15 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { faPlay, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faPlay } from '@fortawesome/react-fontawesome';
 import "../../styles/ActiveSummaryLists.css";
 
 // Components
-// import Navigation from "../layout/NavigationComponent";
 import Sidebar from "./Components/DraftSidebarComponent";
 import Footer from "./Components/FooterComponent";
-
-// Sample data for listings
 
 const ActiveInactive = () => {
   const [listings] = useState([
@@ -39,7 +35,12 @@ const ActiveInactive = () => {
     },
     // Add more listings as needed
   ]);
-  const navigate = useNavigate(); // Get the navigate function from react-router-dom
+
+  const navigate = useNavigate();
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [entriesPerPage, setEntriesPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handleShowDetailsClick = (status) => {
     if (status === 'Active') {
@@ -50,6 +51,27 @@ const ActiveInactive = () => {
       navigate('/active-listing-details'); // Fallback route
     }
   };
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleEntriesChange = (event) => {
+    setEntriesPerPage(Number(event.target.value));
+    setCurrentPage(1);
+  };
+
+  const filteredListings = listings.filter((listing) =>
+    listing.propertyType.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    listing.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    listing.location.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const totalPages = Math.ceil(filteredListings.length / entriesPerPage);
+  const startIndex = (currentPage - 1) * entriesPerPage;
+  const endIndex = startIndex + entriesPerPage;
+  const paginatedListings = filteredListings.slice(startIndex, endIndex);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedListing, setSelectedListing] = useState(null);
@@ -77,7 +99,6 @@ const ActiveInactive = () => {
 
   return (
     <div>
-      {/* <Navigation /> */}
       <div
         className="active-contentContainer"
         style={{ display: "flex", width: "100%", gap: "1rem" }}
@@ -85,7 +106,6 @@ const ActiveInactive = () => {
         <div className="side-bar">
           <Sidebar />
         </div>
-        {/* <div className="listing-table-wrapper"> */}
         <div className="active-summary-container">
           <div className="active-header-section">
             <div className="active-tabs">
@@ -97,13 +117,16 @@ const ActiveInactive = () => {
               </Link>
             </div>
             <div className="active-search-section">
-              <select className="dropdown">
-                <option>Show entries</option>
-                <option>10</option>
-                <option>25</option>
-                <option>50</option>
-                <option>100</option>
-              </select>
+              <label htmlFor="">Show
+                <select className="dropdown" value={entriesPerPage} onChange={handleEntriesChange}>
+                  <option value="10">entries</option>
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+           
+              </label>
               <div className="searchInputCont">
                 <div className="srchwrapp">
                   <FontAwesomeIcon className="searchico" icon={faSearch} />
@@ -111,6 +134,8 @@ const ActiveInactive = () => {
                     type="text"
                     className="searchinT"
                     placeholder="Search Property"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
                   />
                 </div>
               </div>
@@ -132,14 +157,14 @@ const ActiveInactive = () => {
               </tr>
             </thead>
             <tbody>
-              {listings.map((listing, index) => (
+              {paginatedListings.map((listing, index) => (
                 <tr key={index} className={index % 2 === 0 ? "even" : "odd"}>
                   <td>
-                  <button 
-                        className="listings-summary-show-details-button" 
-                        onClick={() => handleShowDetailsClick(listing.status)}>
-                        Show Details
-                      </button>
+                    <button 
+                      className="listings-summary-show-details-button" 
+                      onClick={() => handleShowDetailsClick(listing.status)}>
+                      Show Details
+                    </button>
                   </td>
                   <td>{listing.date}</td>
                   <td>{listing.propertyId}</td>
@@ -161,9 +186,8 @@ const ActiveInactive = () => {
               ))}
             </tbody>
           </table>
+          
         </div>
-        {/* </div> */}
-        <div />
       </div>
       <div className="pagination-parent">
         <nav
@@ -194,44 +218,17 @@ const ActiveInactive = () => {
           </ul>
         </nav>
       </div>
+      <div className="active-entries-count">
+            {filteredListings.length > 0 ? (
+              <>Showing {startIndex + 1} to {Math.min(endIndex, filteredListings.length)} of {filteredListings.length} entries</>
+            ) : (
+              <>Showing 0 to 0 of 0 entries</>
+            )}
+          </div>
       <Footer />
       <div>
-        {/* Example button to open the modal */}
-        <button onClick={() => openModal("Listing 1")}>
-          Open Modal for Listing 1
-        </button>
-
-        {modalIsOpen && (
-          <div className="custom-modal-overlay">
-            <div className="custom-modal">
-              <h2>Confirmation Message</h2>
-              <p>Are you sure you want to tag this property as sold?</p>
-              <div className="tagsold-confirm-buttons">
-                <button className="confirm-button" onClick={closeModal}>
-                  Cancel
-                </button>
-                <button className="confirm-button-tag" onClick={handleTagSold}>
-                  Tag Sold
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {successModalIsOpen && (
-          <div className="custom-modal-overlay">
-            <div className="sold-success-modal">
-              <h2 className="sold-message">Successful Message</h2>
-              <p>Property sold successfully.</p>
-              <button
-                className="sold-success-button"
-                onClick={closeSuccessModal}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        )}
+        
+       
       </div>
     </div>
   );

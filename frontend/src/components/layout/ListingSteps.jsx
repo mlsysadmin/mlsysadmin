@@ -5,17 +5,15 @@ import "../../styles/listing-steps.css";
 
 const { Step } = Steps;
 
-const ListingSteps = ({ current, setCurrent }) => {
-
-  
+const ListingSteps = ({ current, setCurrent, completedSteps }) => {
   const steps = [
-    { title: "Property Details", completed: current > 0 },
-    { title: "Unit Details", completed: current > 1 },
-    { title: "Location", completed: current < 2 },
-    { title: "Description", completed: current > 3 },
-    { title: "Upload Photos", completed: current > 4 },
-    { title: "Features", completed: current > 5 },
-    { title: "Contact", completed: current > 6 },
+    { title: "Property Details", index: 0 },
+    { title: "Unit Details", index: 1 },
+    { title: "Location ", index: 2 },
+    { title: "Description ", index: 3 },
+    { title: "Upload Photos", index: 4 },
+    { title: "Feature ", index: 5 },
+   
   ];
 
   const onChange = (value) => {
@@ -24,7 +22,6 @@ const ListingSteps = ({ current, setCurrent }) => {
 
   return (
     <div className="listing-steps-container">
-      
       <div className="step-intro">
         <p className="p">Steps to complete your listing</p>
       </div>
@@ -34,12 +31,12 @@ const ListingSteps = ({ current, setCurrent }) => {
         onChange={onChange}
         direction="vertical"
       >
-        {steps.map((step, index ) => (
+        {steps.map((step) => (
           <Step
-            key={index}
+            key={step.index}
             title={step.title}
-            icon={step.completed ? <CheckOutlined className="check" /> : null}
-            status={step.completed ? "finish" : "wait"}
+            icon={completedSteps[step.index] ? <CheckOutlined className="check" /> : null}
+            status={completedSteps[step.index] ? "finish" : "wait"}
           />
         ))}
       </Steps>
