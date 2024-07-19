@@ -10,10 +10,11 @@ const {
     listing_id,
     EditListingBody,
     UpdateApprovalBody,
-    approver_email,
-    ListingByApprover
+    ListingByApprover,
+    property_status,
+    GetMasterDetailsParams
 } = require('../../../utils/_helper/validationSchema.helper');
-const { EditPropertyListing, ListingApprovalEscalation, GetForApprovalListingByApprover } = require("../../../controllers/_listings/support/support.listing.controller");
+const { EditPropertyListing, ListingApprovalEscalation, GetForApprovalListingByApprover, GetAllMasterListing, GetMasterListingDetails } = require("../../../controllers/_listings/support/support.listing.controller");
 
 // POST
 SUPPORT_ROUTER.post('/update-listing',
@@ -28,5 +29,7 @@ SUPPORT_ROUTER.post('/update-approval',
 
 // GET
 SUPPORT_ROUTER.get('/get/listing/for-approval', Validation(ListingByApprover, 'query', 'payload'), GetForApprovalListingByApprover)
+SUPPORT_ROUTER.get('/get/listing/master/all', Validation(property_status, 'query', 'property_status'), GetAllMasterListing)
+SUPPORT_ROUTER.get('/get/listing/master/one', Validation(GetMasterDetailsParams, 'query', 'payload'), GetMasterListingDetails)
 
 module.exports = SUPPORT_ROUTER;
