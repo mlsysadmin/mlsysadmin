@@ -27,48 +27,57 @@ module.exports = {
     GetAllSellerListings: async (req, res, next) => {
         try {
 
-            const seller = req.params.seller;
-            let master_ids = [];
+            const seller = req.query.seller;
+            const status = {
+                [Op.or]: [
+                    {
+                        listing_status: 'PENDING',
+                    },
+                    {
+                        listing_status: 'DENIED',
+                    }
+                ]
+            }
 
             const GetListings = await Sequelize.transaction(async (transaction) => {
 
                 const getAllListing = await FindAllListingBySeller(seller, transaction);
 
-                const get_master_id = getAllListing.map((listing, i) => {
+                // const get_master_id = getAllListing.map((listing, i) => {
 
-                    const master_id = listing.master_property_id;
+                //     const master_id = listing.master_property_id;
 
-                    return {
-                        master_property_id: master_id
-                    }
+                //     return {
+                //         master_property_id: master_id
+                //     }
 
-                });
+                // });
 
-                const approvals_field = {
-                    [Op.or]: get_master_id
-                }
+                // const approvals_field = {
+                //     [Op.or]: get_master_id
+                // }
 
-                const approvals = await FindApprovalsByMasterId(approvals_field, transaction);
+                // const approvals = await FindApprovalsByMasterId(approvals_field, transaction);
 
-                const listings = [];
+                // const listings = [];
 
-                getAllListing.forEach((g) => {
-                    let approval = [];
-                    approvals.forEach((a) => {
-                        if (a.master_property_id === g.master_property_id) {
-                            return approval.push(a)
-                        }
-                        return;
-                    })
+                // getAllListing.forEach((g) => {
+                //     let approval = [];
+                //     approvals.forEach((a) => {
+                //         if (a.master_property_id === g.master_property_id) {
+                //             return approval.push(a)
+                //         }
+                //         return;
+                //     })
 
-                    return listings.push({
-                        listing: g, approval
-                    })
-                })
+                //     return listings.push({
+                //         listing: g, approval
+                //     })
+                // })
 
-                master_ids = get_master_id;
+                // master_ids = get_master_id;
 
-                return listings
+                return getAllListing;
 
             })
             let listings;
@@ -84,7 +93,7 @@ module.exports = {
                     "SUCCESS"
                 );
                 listings_log = DataResponseHandler(
-                    { master_ids, seller },
+                    { seller },
                     "NO_LISTING_FOUND",
                     200,
                     true,
@@ -102,7 +111,7 @@ module.exports = {
                 );
 
                 listings_log = DataResponseHandler(
-                    { master_ids, seller },
+                    { seller },
                     "LISTING_RETRIEVED",
                     200,
                     true,
@@ -282,7 +291,7 @@ module.exports = {
     GetAllDraftListing: async (req, res, next) => {
         try {
 
-            const seller = req.params.seller;
+            const seller = req.query.seller;
             const listing_status = "DRAFT";
 
             const params_field = {

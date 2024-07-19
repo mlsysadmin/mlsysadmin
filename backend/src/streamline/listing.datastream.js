@@ -257,71 +257,55 @@ module.exports = {
     FindAllListingBySeller: async (seller, transaction) => {
         try {
 
-            const get_all_listing_byseller = await MasterPropertyList.findAll({
+            const get_all_listing_byseller = await PropertyListing.findAll({
                 where: { seller },
                 attributes: { exclude: ['updatedAt', 'deletedAt'] },
                 include: [
                     {
-                        model: PropertyListing, attributes:
+                        model: PropertyTypes, attributes: {
+                            exclude: ["property_type_id"]
+                        },
+                        as: 'property_type'
+                    },
+                    {
+                        model: ListingTypes, attributes: ['listing_type']
+                    },
+                    {
+                        model: UnitDetails, attributes:
                         {
-                            exclude: ['createdAt', 'updatedAt', 'property_listing_id'],
+                            exclude: ['createdAt', 'updatedAt', 'unit_detail_id']
+                        },
+                        as: 'unit_details'
+                    },
+                    {
+                        model: Location, attributes: {
+                            exclude: ["location_id"]
+                        },
+                        as: 'location'
+                    },
+                    {
+                        model: Amenities, attributes:
+                        {
+                            exclude: ['createdAt', 'updatedAt', 'amenity_id', "custom_amenity_id", "custom_inclusion_id"]
                         },
                         include: [
                             {
-                                model: PropertyTypes, attributes: {
-                                    exclude: ["property_type_id"]
-                                }
-                            },
-                            {
-                                model: ListingTypes, attributes: ['listing_type']
-                            },
-                            {
-                                model: UnitDetails, attributes:
+                                model: CustomAmenities, attributes:
                                 {
-                                    exclude: ['createdAt', 'updatedAt', 'unit_detail_id']
+                                    exclude: ['createdAt', 'updatedAt', "deletedAt", "custom_amenity_id"]
                                 },
+                                as: 'custom_amenities'
                             },
                             {
-                                model: Location, attributes: {
-                                    exclude: ["location_id"]
-                                }
-                            },
-                            {
-                                model: Amenities, attributes:
+                                model: CustomInclusions, attributes:
                                 {
-                                    exclude: ['createdAt', 'updatedAt', 'amenity_id', "custom_amenity_id", "custom_inclusion_id"]
+                                    exclude: ['createdAt', 'updatedAt', "deletedAt", "custom_inclusion_id"]
                                 },
-                                include: [
-                                    {
-                                        model: CustomAmenities, attributes:
-                                        {
-                                            exclude: ['createdAt', 'updatedAt', "deletedAt", "custom_amenity_id"]
-                                        },
-                                    },
-                                    {
-                                        model: CustomInclusions, attributes:
-                                        {
-                                            exclude: ['createdAt', 'updatedAt', "deletedAt", "custom_inclusion_id"]
-                                        },
-                                    }
-                                ]
+                                as: 'custom_inclusion'
                             }
-                        ]
-                    },
-                    // {
-                    //     model: User, attributes:
-                    //     {
-                    //         exclude: ['createdAt', 'updatedAt', 'user_id']
-                    //     },
-                    //     include: [
-                    //         {
-                    //             model: Role, attributes:
-                    //             {
-                    //                 exclude: ['createdAt', 'updatedAt', 'role_id']
-                    //             },
-                    //         }
-                    //     ]
-                    // }
+                        ],
+                        as: 'amenities'
+                    }
                 ],
                 transaction,
             })
@@ -622,7 +606,8 @@ module.exports = {
                     {
                         model: PropertyTypes, attributes: {
                             exclude: ["property_type_id"]
-                        }
+                        },
+                        as: 'property_type'
                     },
                     {
                         model: ListingTypes, attributes: ['listing_type']
@@ -632,11 +617,13 @@ module.exports = {
                         {
                             exclude: ['createdAt', 'updatedAt', 'unit_detail_id']
                         },
+                        as: 'unit_details'
                     },
                     {
                         model: Location, attributes: {
                             exclude: ["location_id"]
-                        }
+                        },
+                        as: 'location'
                     },
                     {
                         model: Amenities, attributes:
@@ -649,14 +636,17 @@ module.exports = {
                                 {
                                     exclude: ['createdAt', 'updatedAt', "deletedAt", "custom_amenity_id"]
                                 },
+                                as: 'custom_amenities'
                             },
                             {
                                 model: CustomInclusions, attributes:
                                 {
                                     exclude: ['createdAt', 'updatedAt', "deletedAt", "custom_inclusion_id"]
                                 },
+                                as: 'custom_inclusion'
                             }
-                        ]
+                        ],
+                        as: 'amenities'
                     }
                 ],
                 transaction,
@@ -675,8 +665,8 @@ module.exports = {
             const get_all_listing = await Approvals.findAll({
                 attributes: {
                     exclude: [
-                        'createdAt', 
-                        'updatedAt', 
+                        'createdAt',
+                        'updatedAt',
                         'deletedAt',
                         'application_id',
                         'approval_date',
@@ -690,7 +680,7 @@ module.exports = {
                         where: {
                             email: fields.approver_email
                         },
-                        attributes:[]
+                        attributes: []
                     },
                     {
                         model: PropertyListing,
@@ -715,7 +705,7 @@ module.exports = {
                                 model: ListingTypes, attributes: ['listing_type'],
                             },
                             {
-                                model: UnitDetails, attributes:[
+                                model: UnitDetails, attributes: [
                                     'floor_area',
                                     'price'
                                 ],
@@ -727,11 +717,11 @@ module.exports = {
                                 },
                                 as: 'location'
                             },
-                            
+
                         ],
                     }
                 ],
-                where:{
+                where: {
                     approval_status: fields.approval_status
                 },
                 transaction
