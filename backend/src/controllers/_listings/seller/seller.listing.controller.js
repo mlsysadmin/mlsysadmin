@@ -93,7 +93,7 @@ module.exports = {
                     "SUCCESS"
                 );
                 listings_log = DataResponseHandler(
-                    { seller },
+                    { seller, listing_count: GetListings.length },
                     "NO_LISTING_FOUND",
                     200,
                     true,
@@ -111,15 +111,15 @@ module.exports = {
                 );
 
                 listings_log = DataResponseHandler(
-                    { seller },
+                    { seller, listing_count: GetListings.length },
                     "LISTING_RETRIEVED",
                     200,
                     true,
                     "SUCCESS"
                 );
                 message = "Retrieved Successfully";
-            }
 
+            }
 
             const success = SuccessFormatter(listings, 200, message);
 
@@ -320,7 +320,7 @@ module.exports = {
                     "SUCCESS"
                 );
                 listings_log = DataResponseHandler(
-                    GetDraftListings,
+                    { seller, listing_count: GetDraftListings.length },
                     "NO_LISTING_FOUND",
                     200,
                     true,
@@ -338,7 +338,7 @@ module.exports = {
                 );
 
                 listings_log = DataResponseHandler(
-                    { seller },
+                    { seller, listing_count: GetDraftListings.length },
                     "LISTING_RETRIEVED",
                     200,
                     true,
