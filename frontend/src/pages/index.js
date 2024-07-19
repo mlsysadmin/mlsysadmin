@@ -27,6 +27,11 @@ import RegistrationModal from "./RegistrationModal.page";
 import LoginModal from "./LoginModal.page";
 // import ListingSearchLoggedin from "../components/custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
 
+import { ShowDetailsProcessing } from "../components";
+import { ShowDetailsDenied } from "../components";
+import ActiveListingDetails from "./ActiveListingDetails.page";
+import SoldPropertyDetailsPage from "./SoldPropertyDetails.page";
+
 export {
     LoginModal,
     RegistrationModal,
@@ -52,6 +57,10 @@ export {
     LoanCalculatorPage,
     ContactUsPage,
     MyDraftsPage,
+    SoldPropertyDetailsPage,
+    ActiveListingDetails,
+    ShowDetailsProcessing,
+    ShowDetailsDenied,
     // ListingSearchLoggedin,
     ListingFormPage
 }
