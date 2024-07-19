@@ -9,6 +9,11 @@
   font-family: "Poppins", Helvetica;
 }
 
+/* listing-form.css */
+/* .no-scroll {
+  overflow: hidden;
+} */
+
 .listing-steps {
   flex: 1;
   /* border-style: solid; */
@@ -634,7 +639,7 @@ span.selected {
   outline: none;
   padding: 0px 20px 0px 15px;
   margin: 10px 0px 15px 0px;
-  background-color: #ffffff;
+  background-color: transparent;
   font-weight: 500;
   z-index: 2;
   width: 5px;
@@ -646,7 +651,7 @@ span.selected {
   outline: none;
   padding: 0px 20px 0px 15px;
   margin: 10px ;
-  background-color: #ffffff;
+  background-color: transparent;
 
 
 

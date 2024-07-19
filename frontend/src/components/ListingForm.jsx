@@ -22,29 +22,32 @@ export const ListingForm = () => {
   const [pricePerSqmInputError, setPricePerSqmInputError] = useState("");
   const [discPriceInputError, setDiscPriceInputError] = useState("");
   const [lotAreaInputError, setLotAreaInputError] = useState("");
-  const [propIdInputError, setPropIdInputError] = useState("");
+  const [propIdInput, setPropIdInput] = useState("");
 
   const [showSuccessfulMsgModal, setShowSuccessfulMsgModal] = useState(false);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+ 
 
   const handleStepComplete = (stepIndex, isComplete) => {
-    setCompletedSteps((prev) => ({
-      ...prev,
-      [stepIndex]: isComplete,
-    }));
+    if (isComplete) {
+      setCompletedSteps((prev) => ({
+        ...prev,
+        [stepIndex]: true,
+      }));
 
-    if (isComplete && stepIndex === currentStep) {
-      const nextStep = currentStep + 1;
-      setCurrentStep(nextStep);
+      if (stepIndex === currentStep) {
+        const nextStep = currentStep + 1;
+        setCurrentStep(nextStep);
 
-      if (stepIndex === 5) {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else if (stepRefs.current[nextStep]) {
-        stepRefs.current[nextStep].scrollIntoView({ behavior: "smooth" });
+         if (stepRefs.current[nextStep]) {
+          stepRefs.current[nextStep].scrollIntoView({ behavior: "smooth" });
+        }
       }
+    } else {
+      setCompletedSteps((prev) => ({
+        ...prev,
+        [stepIndex]: false,
+      }));
     }
   };
 
@@ -96,8 +99,8 @@ export const ListingForm = () => {
                   setDiscPriceInputError={setDiscPriceInputError}
                   lotAreaInputError={lotAreaInputError}
                   setLotAreaInputError={setLotAreaInputError}
-                  propIdInputError={propIdInputError}
-                  setPropIdInputError={setPropIdInputError}
+                  propIdInputError={propIdInput}
+                  setPropIdInput={setPropIdInput}
                 />
               </div>
               <div ref={(el) => (stepRefs.current[2] = el)}>

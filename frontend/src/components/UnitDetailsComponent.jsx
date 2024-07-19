@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState , useRef } from 'react';
 import BedsInputSlider from "./Slider/BedSlider";
 import ParkingInputSlider from "./Slider/ParkingSlider";
 import BathroomInputSlider from "./Slider/BathroomsSlider";
@@ -6,6 +6,8 @@ import NoOfFloorsInputSlider from "./Slider/NoOfFloors";
 import "../styles/listing-form.css";
 import floorlogo from "../assets/images/floorlogo.png";
 import property from "../assets/property.png";
+
+
 
 
 const UnitDetailsComponent = ({
@@ -26,17 +28,41 @@ const UnitDetailsComponent = ({
   setPropIdInputError,
 }) => {
   const [selectedClassification, setSelectedClassification] = useState(null);
+  const [propertyId, setPropertyId] = useState('');
+  const formSectionRef = useRef(null); // Create a ref for the section to scroll to
 
   const validateNumberInput = (value, setError) => {
-    if (isNaN(value)) {
+    if (isNaN(value) || value === '') {
       setError('Please enter a valid number.');
-    } else {
-      setError('');
-    }
+    }   
   };
 
   const handleClassificationClick = (tab) => {
     setSelectedClassification(tab);
+    checkFormCompletion();
+  };
+
+  const handleSellingPriceClickWrapper = (tab) => {
+    handleSellingPriceClick(tab);
+    checkFormCompletion();
+  };
+
+  const handlePropertyIdChange = (e) => {
+    const value = e.target.value;
+    setPropertyId(value);
+    validateNumberInput(value, setPropIdInputError);
+  };
+
+  const scrollToFormSection = () => {
+    if (formSectionRef.current) {
+      formSectionRef.current.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to the target element
+    }
+  };
+
+  const checkFormCompletion = () => {
+    const complete = isFormComplete();
+    onComplete(complete); // Notify if form is complete or not
+    return complete;
   };
 
   const isFormComplete = () => {
@@ -48,15 +74,14 @@ const UnitDetailsComponent = ({
       !lotAreaInputError &&
       !propIdInputError &&
       selectedSellingPrice &&
-      selectedClassification
+      selectedClassification &&
+      propertyId.trim() !== '' // Ensure Property ID is not empty
     );
   };
 
   useEffect(() => {
-    if (isFormComplete()) {
-      onComplete(true); // Form is complete
-    } else {
-      onComplete(false); // Form is incomplete
+    if (checkFormCompletion()) {
+      scrollToFormSection(); // Scroll to the form section when complete
     }
   }, [
     priceInputError,
@@ -67,6 +92,7 @@ const UnitDetailsComponent = ({
     propIdInputError,
     selectedSellingPrice,
     selectedClassification,
+    propertyId,
     onComplete,
   ]);
 
@@ -109,7 +135,7 @@ const UnitDetailsComponent = ({
                       <div
                         key={tab}
                         className={`furnish-tab ${selectedSellingPrice === tab ? "selected" : ""}`}
-                        onClick={() => handleSellingPriceClick(tab)}
+                        onClick={() => handleSellingPriceClickWrapper(tab)}
                       >
                         {tab}
                       </div>
@@ -340,7 +366,7 @@ const UnitDetailsComponent = ({
               </label>
               <div className="propid-input-container">
                 <div className="propid-logo">
-                <img
+                  <img
                     className="propid-logo-img"
                     alt="prop-id-logo"
                     src={property}
@@ -350,14 +376,7 @@ const UnitDetailsComponent = ({
                   id="propid-input"
                   className={`propid-input ${propIdInputError ? 'error-input' : ''}`}
                   type="number"
-                 onChange={(e) => {
-                  const value = e.target.value.trim();
-                  if (!value) {
-                    setPropIdInputError('Property ID is required.');
-                  } else {
-                    setPropIdInputError('');
-                  }
-                }}
+                  onChange={handlePropertyIdChange}
                 />
               </div>
               {propIdInputError && <div className="error">{propIdInputError}</div>}
