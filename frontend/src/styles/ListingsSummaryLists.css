@@ -71,6 +71,7 @@ background-color: #ffffff;
   display: flex;
   align-items: center;
   /* gap: 10px; */
+ 
 
 }
 
@@ -125,7 +126,10 @@ background-color: #ffffff;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-
+.summary-entries-count{
+  color: black;
+  margin-left: 17%;
+}
 /* Table */
 .listing-summary-table {
   width: 100%;

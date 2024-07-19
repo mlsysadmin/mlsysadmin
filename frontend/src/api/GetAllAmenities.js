@@ -22,8 +22,10 @@ const GetAllOutdoorAmenities = async () =>{
       console.log("error");
       throw error
     }
-  }
-module.exports = {
+}
+
+export{
   GetAllIndoorAmenities,
   GetAllOutdoorAmenities
 }
+ 

@@ -264,6 +264,9 @@
   .pageItem {
     margin: 0 5px;
   }
+  .active-entries-count{
+    margin-left: 16%;
+  }
   /* New Button */
 .new-button {
     border: none;

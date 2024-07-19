@@ -1,88 +1,22 @@
 import React, { useEffect, useState } from "react";
 import FeatureList from "./custom/custom.featureLists"; // Adjust the import path accordingly
 import AddFeature from "./custom/custom.featureLists";
-import GetAllIndoorAmenities from "../api/GetAllAmenities";
-import GetAllOutdoorAmenities from "../api/GetAllAmenities";
+import { GetAllIndoorAmenities, GetAllOutdoorAmenities } from '../api/GetAllAmenities';
 import "../styles/listing-form.css";
 import axios from "axios";
 
-const FeaturedComponents = () => {
+
+const FeaturedComponents = ({ onComplete }) => {
   const [selectedFeatures, setSelectedFeatures] = useState([]);
   const [indooramenities, setIndoorAmenities] = useState([]);
   const [outdooramenities, setOutdoorAmenities] = useState([]);
 
-  // const indoorFeatures = [
-  //   "Alarm System",
-  //   "Air Conditioning",
-  //   "Attic",
-  //   "Balcony",
-  //   "Bar",
-  //   "Basement",
-  //   "Broadband Internet Available",
-  //   "Built-in Wardrobes",
-  //   "CCTV",
-  //   "Central Air Conditioning",
-  //   "Ducted Cooling",
-  //   "Ducted Vacuum System",
-  //   "Driver Room",
-  //   "Ensuite",
-  //   "Entertainment Room",
-  //   "Fire Alarm",
-  //   "Fireplace",
-  //   "Floorboards",
-  //   "Gym",
-  //   "Jacuzzi",
-  //   "Laundry Room",
-  //   "Lawn",
-  //   "Library",
-  //   "Lounge",
-  //   "Maid Room",
-  //   "Pay TV Access",
-  //   "Powder Room",
-  //   "Sauna",
-  //   "Service Area",
-  //   "Service Kitchen",
-  //   "Smoke Detector",
-  //   "Split System Heating",
-  //   "Storage Room",
-  //   "Study Room",
-  //   "Terrace",
-  //   "Wifi",
-  // ];
-
-  // const outdoorFeatures = [
-  //   "Badminton Court",
-  //   "Basketball Court",
-  //   "Carport",
-  //   "Clubhouse",
-  //   "Courtyard",
-  //   "Fully Fenced",
-  //   "Function Area",
-  //   "Garage",
-  //   "Garden",
-  //   "Gazebos",
-  //   "Jogging Path",
-  //   "Lanai",
-  //   "Landscaped Garden",
-  //   "Multi-purpose Lawn",
-  //   "Open Car Spaces",
-  //   "Parks",
-  //   "Parking Lot",
-  //   "Playground",
-  //   "Remote Garage",
-  //   "Secure Parking",
-  //   "Shower Rooms",
-  //   "Sports Facilities",
-  //   "Swimming Pool",
-  //   "Tennis Court",
-  //   "24/7 Security",
-  // ];
   const toggleFeature = (feature) => {
-    if (selectedFeatures.includes(feature)) {
-      setSelectedFeatures(selectedFeatures.filter((item) => item !== feature));
-    } else {
-      setSelectedFeatures([...selectedFeatures, feature]);
-    }
+    setSelectedFeatures((prevSelectedFeatures) =>
+      prevSelectedFeatures.includes(feature)
+        ? prevSelectedFeatures.filter((item) => item !== feature)
+        : [...prevSelectedFeatures, feature]
+    );
   };
   const indoorAmenities = async () => {
     const response = await GetAllIndoorAmenities();
@@ -99,12 +33,11 @@ const FeaturedComponents = () => {
     setOutdoorAmenities(response);
     console.log("response", response);
   }
-
-  const FeatureList = ({ title, features }) => (
+  const FeatureList = ({ title, features, selectedFeatures, toggleFeature }) => (
     <div className="featureCards">
       <h2>{title}</h2>
       <div className="features">
-        {Object.values(features)?.map((feature, index) => (
+      {Object.values(features)?.map((feature, index) => (
           <div key={index}>
             <span
               className={`feature-item ${
@@ -122,6 +55,15 @@ const FeaturedComponents = () => {
     </div>
   );
 
+  useEffect(() => {
+    // Assuming form is completed when features are selected
+    if (selectedFeatures.length > 0) {
+      onComplete(true);  // Indicating completion
+    } else {
+      onComplete(false); // Indicating not completed
+    }
+  }, [selectedFeatures, onComplete]);
+
   return (
     <div className="featureList">
       <h2>Features</h2>
@@ -130,8 +72,18 @@ const FeaturedComponents = () => {
         property seekers can learn even more about your offer.
       </p>
       <div className="features">
-        <FeatureList title="Indoor Features" features={indooramenities} />
-        <FeatureList title="Outdoor Features" features={outdoorFeatures} />
+        <FeatureList
+          title="Indoor Features"
+          features={indooramenities}
+          selectedFeatures={selectedFeatures}
+          toggleFeature={toggleFeature}
+        />
+        <FeatureList
+          title="Outdoor Features"
+          features={outdooramenities}
+          selectedFeatures={selectedFeatures}
+          toggleFeature={toggleFeature}
+        />
       </div>
       <AddFeature />
     </div>

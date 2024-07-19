@@ -1,0 +1,266 @@
+import React, { useState } from 'react';
+import { Flex, Progress, Slider } from "antd";
+import ApplicationDetailModal from "./layout/ApplicationDetails/ApplicationDetailsModal";
+import iconcalcu from "../assets/icons/previewlisting/calculatorsign.png";
+import icondollar from "../assets/icons/previewlisting/dollarcoin.png";
+import mail from "../assets/icons/previewlisting/mailenvelope.png";
+import user from "../assets/icons/previewlisting/usercircle.png";
+import chat from "../assets/icons/previewlisting/chatmessages.png";
+import call from "../assets/icons/previewlisting/callphone.png";
+import next from "../assets/icons/previewlisting/next.png";
+import previous from "../assets/icons/previewlisting/previous.png";
+import iconheart from "../assets/icons/previewlisting/iconheart.png";
+import iconfilter from "../assets/icons/previewlisting/iconfilter.png";
+import "../styles/previewListing.css";
+import cpr from "../assets/images/cpr.png";
+import carousel2 from "../assets/images/carousel2.png";
+import carousel3 from "../assets/images/carousel3.png";
+import carousel4 from "../assets/images/carousel4.png";
+
+const PreviewListRightSideContent = () => {
+  const [stepsGap, setStepsGap] = useState(5);  // Set default value
+  const [homePrice, setHomePrice] = useState(500000);  // Set default value
+  const [downPayment, setDownPayment] = useState(100000);  // Set default value
+  const term = 30;  // Fixed term in years
+  const termInMonths = term * 12;  // Convert term to months
+
+  // Calculate total home price with interest
+  const totalHomePrice = homePrice + homePrice * (stepsGap / 100);
+
+  // Calculate monthly payment
+  const monthlyPayment = (totalHomePrice - downPayment) / termInMonths;
+
+  const [showApplicationModal, setShowApplicationModal] = useState(false);
+
+  const handleButtonClick = () => {
+    setShowApplicationModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowApplicationModal(false);
+  };
+
+  // Commercial Property for Rent part
+  const all = [cpr, carousel2, carousel3, carousel4];
+  const [index, setIndex] = useState(0);
+
+  const secImage = () => {
+    setIndex((prevIndex) => (prevIndex + 1) % all.length);
+  };
+
+  const firstImage = () => {
+    setIndex((prevIndex) =>
+      prevIndex - 1 < 0 ? all.length - 1 : prevIndex - 1
+    );
+  };
+
+  return (
+    <div className="right-side-container">
+      <div className="calculator">
+        <h2>Calculator</h2>
+        <div className="calc">
+          <div className="calculatorLeft">
+            <div className="calculator-input">
+              <label>Term</label>
+              <div className="calculator-field-term">
+                <img
+                  src={iconcalcu}
+                  alt="Iconcalcu"
+                  style={{
+                    height: "15px",
+                    width: "15px",
+                    margin: "10px",
+                  }}
+                />
+                <span>30 Years Fixed</span>
+              </div>
+            </div>
+            <div className="calculator-input">
+              <label>Interest</label>
+              <div className="calculator-field">
+                <img
+                  src={icondollar}
+                  alt="Icondollar"
+                  style={{
+                    height: "15px",
+                    width: "15px",
+                    margin: "10px",
+                    marginBottom: "30px",
+                  }}
+                />
+                <div className="slider-container">
+                  <div className="slider-value">{stepsGap}%</div>
+                  <Slider
+                    step={1}
+                    min={1}
+                    max={100}
+                    value={stepsGap}
+                    onChange={setStepsGap}
+                    trackStyle={{ backgroundColor: "red" }}
+                    handleStyle={{
+                      borderColor: "red",
+                      backgroundColor: "red",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="calculator-input">
+              <label>Home Price</label>
+              <div className="calculator-field">
+                <img
+                  src={icondollar}
+                  alt="Icondollar"
+                  style={{
+                    height: "15px",
+                    width: "15px",
+                    margin: "10px",
+                    marginBottom: "30px",
+                  }}
+                />
+                <div className="slider-container">
+                  <div className="slider-value">
+                    PHP {homePrice.toLocaleString()}
+                  </div>
+                  <Slider
+                    step={10000}
+                    min={500000}
+                    max={10000000}
+                    value={homePrice}
+                    onChange={setHomePrice}
+                    trackStyle={{ backgroundColor: "red" }}
+                    handleStyle={{
+                      borderColor: "red",
+                      backgroundColor: "red",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="calculator-input">
+              <label>Down Payment</label>
+              <div className="calculator-field">
+                <img
+                  src={icondollar}
+                  alt="Icondollar"
+                  style={{
+                    height: "15px",
+                    width: "15px",
+                    margin: "10px",
+                    marginBottom: "30px",
+                  }}
+                />
+                <div className="slider-container">
+                  <div className="slider-value">
+                    PHP {downPayment.toLocaleString()}
+                  </div>
+                  <Slider
+                    step={5000}
+                    min={100000}
+                    max={homePrice}
+                    value={downPayment}
+                    onChange={setDownPayment}
+                    trackStyle={{ backgroundColor: "red" }}
+                    handleStyle={{
+                      borderColor: "red",
+                      backgroundColor: "red",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="calculatorRight">
+            <div className="int">
+              <b>{term}</b>
+              <p>Years Fixed</p>
+            </div>
+            <div className="exp">
+              <b>{stepsGap}%</b>
+              <p>Interest</p>
+            </div>
+            <Flex gap="small" wrap>
+              <Progress
+                type="circle"
+                percent={100}
+                format={() => (
+                  <div>
+                    <div className="pesos">
+                      PHP {monthlyPayment.toFixed(2)}
+                    </div>
+                    <div className="per-month">per month</div>
+                  </div>
+                )}
+                strokeColor="#D90000"
+              />
+            </Flex>
+            <div className="calculator-result">
+              <p className="pi">Principle and Interest</p>
+              <div className="result-amount">
+                <span className="red-bar"></span>
+                PHP {monthlyPayment.toFixed(2)}
+              </div>
+            </div>
+          </div>
+        </div>
+        <button className="apply-button" onClick={handleButtonClick}>
+          APPLY NOW
+        </button>
+        {showApplicationModal && (
+          <ApplicationDetailModal onClose={handleCloseModal} />
+        )}
+      </div>
+
+      <div className="contact-us">
+        <h2>Contact Us</h2>
+        <div className="contact-input">
+          <img src={user} alt="User" />
+          <input type="text" placeholder="Name" />
+        </div>
+        <div className="contact-input">
+          <img src={mail} alt="Mail" />
+          <input type="email" placeholder="Email" />
+        </div>
+        <div className="contact-input">
+          <img src={call} alt="Call" />
+          <input type="tel" placeholder="Phone Number" />
+        </div>
+        <div className="contact-textarea">
+          <img src={chat} alt="Chat" />
+          <textarea placeholder="I am interested in 5 Bedroom House for Rent in Maria Luisa Park"></textarea>
+        </div>
+        <button className="send-message-button">Send Message</button>
+      </div>
+
+      <h3>Featured Properties</h3>
+
+      <div className="commercial-property-rent">
+        <h2>Commercial Property for Rent</h2>
+        <div className="commercial-property-details">
+          <div className="commercial-property-image">
+            <img src={all[index]} className="all" alt="Property" />
+            <div className="property-labels">
+              <span className="property-label-for-sale">For Sale</span>
+              <span className="property-label-featured">Featured</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="small-image-container">
+        <div className="previous-img" onClick={firstImage}>
+          <img src={previous} width="50" height="50" alt="Previous" />
+        </div>
+        <img className="small-image-container" alt="" />
+        <div className="next-img" onClick={secImage}>
+          <img src={next} width="55" height="55" alt="Next" />
+          <div className="small-image-icons">
+            <img src={iconheart} alt="Heart" />
+            <img src={iconfilter} alt="Filter" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PreviewListRightSideContent;

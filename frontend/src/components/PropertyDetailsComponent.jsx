@@ -9,9 +9,7 @@ const PropertyDetailsComponent = ({ onComplete }) => {
   useEffect(() => {
     const isCompleted = selectedPropertyTab !== '' && selectedListingTab !== '';
     onComplete(isCompleted);
-  }, [selectedPropertyTab, selectedListingTab, onComplete]);
-
-
+  }, [selectedPropertyTab, selectedListingTab]); // Removed onComplete from dependency array
 
   const handlePropertyTabClick = (tab) => {
     setSelectedPropertyTab(tab);
@@ -117,7 +115,7 @@ const PropertyDetailsComponent = ({ onComplete }) => {
                 </li>
                 <li>
                   If you are posting more than one (1) unit, please create one listing per unit. DO NOT advertise all your
-                  units in one (1) post.
+                  units in one post.
                 </li>
                 <p className="more">
                   For more assistance, you refer to our photo guide or watch our video guide.

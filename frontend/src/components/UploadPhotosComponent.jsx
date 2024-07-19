@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Resizer from 'react-image-file-resizer';
 import "../styles/listing-form.css";
 
-
-const UploadPhotosComponent = () => {
+const UploadPhotosComponent = ({ onComplete }) => {
   const [uploadedPhotos, setUploadedPhotos] = useState([]);
-  const [selectedPropertyTab, setSelectedPropertyTab] = useState(null);
+  const [uploadError, setUploadError] = useState(null);
 
-  
   const onDrop = (acceptedFiles) => {
     acceptedFiles.forEach((file) => {
       if (validateFile(file)) {
@@ -24,6 +22,7 @@ const UploadPhotosComponent = () => {
           },
           "base64"
         );
+        setUploadError(null);
       }
     });
   };
@@ -33,12 +32,12 @@ const UploadPhotosComponent = () => {
     const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
 
     if (!allowedTypes.includes(file.type)) {
-      alert("Only JPEG, PNG, and GIF files are allowed.");
+      setUploadError("Only JPEG, PNG, and GIF files are allowed.");
       return false;
     }
 
     if (file.size > maxFileSize) {
-      alert("File size should not exceed 15 MB.");
+      setUploadError("File size should not exceed 15 MB.");
       return false;
     }
 
@@ -46,10 +45,14 @@ const UploadPhotosComponent = () => {
   };
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
-  const handlePropertyTabClick = (tab) => {
-    setSelectedPropertyTab(tab);
-  };
 
+  useEffect(() => {
+    if (uploadedPhotos.length >= 1) {
+      onComplete(true); // All necessary photos are uploaded
+    } else {
+      onComplete(false); // Photos are missing
+    }
+  }, [uploadedPhotos, onComplete]);
 
   return (
     <div className="uploadPhotos">
@@ -68,7 +71,7 @@ const UploadPhotosComponent = () => {
               provided.
             </li>
             <li>
-              We require a minimum of two (1) distinct photos that pertain to
+              We require a minimum of one distinct photo that pertains to
               the actual property being posted. The higher the quality of the
               photos, the better it is for your listing{' '}
               {'(maximum file size of 15 MB per photo)'}. DO NOT duplicate
@@ -85,6 +88,7 @@ const UploadPhotosComponent = () => {
             <input {...getInputProps()} />
             <p>Drag & drop photos here, or click to select photos</p>
           </div>
+          {uploadError && <p className="error">{uploadError}</p>}
           <div className="DisplayUploadedPhotoHere">
             {uploadedPhotos.map((photo, index) => (
               <div key={index} className="image">

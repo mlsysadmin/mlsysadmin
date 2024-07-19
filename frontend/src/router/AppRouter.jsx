@@ -34,7 +34,9 @@ import {
   ShowDetailsDenied,
   ActiveListingDetails,
   SoldPropertyDetailsPage,
+  
 } from "../pages";
+  
 
 const Routes = [
     {
@@ -100,10 +102,6 @@ const Routes = [
             {
                 path: "/listing",
                 element: <ListingPage />,
-              },
-              {
-                path: "/listing-form",
-                element: <ListingFormPage />,
               },
               {
                 path: "/drafts",
