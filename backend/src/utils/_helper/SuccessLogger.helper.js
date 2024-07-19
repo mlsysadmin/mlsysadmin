@@ -12,6 +12,7 @@ module.exports = (request, response) => {
             query: request.query,
             params: request.params,
             body: JSON.stringify(request.body),
+            headers: JSON.stringify(request.headers)
         },
         RES: {
             data: JSON.stringify(response.data),
