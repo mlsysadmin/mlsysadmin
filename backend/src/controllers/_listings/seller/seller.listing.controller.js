@@ -18,6 +18,7 @@ const SuccessLoggerHelper = require('../../../utils/_helper/SuccessLogger.helper
 const DataResponseHandler = require('../../../utils/_helper/DataResponseHandler.helper');
 const { Op } = require('sequelize');
 const { ModifyListing } = require('../../helper/listing.helper');
+const { PutObject } = require('../../../services/bucket.service');
 
 const domain = process.env.COOKIE_DOMAIN;
 
@@ -139,14 +140,15 @@ module.exports = {
     AddPropertyListing: async (req, res, next) => {
         try {
 
-            const upload_date = DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss');
+            const upload_date_time = DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss');
+            const upload_date = DayJS(new Date()).format('YYYYMMDD');
 
             const {
                 property_details,
                 unit_details,
                 location,
                 description,
-                upload_photos,
+                // upload_photos,
                 amenities,
                 seller,
                 property_id,
@@ -156,6 +158,8 @@ module.exports = {
             const {
                 indoor_features, outdoor_features, feature_name, inclusion_name
             } = amenities
+
+            const upload_photos = req.files;
 
             const AddListing = await Sequelize.transaction(async (transaction) => {
 
@@ -167,8 +171,18 @@ module.exports = {
 
                 const type = await FindListingType(listing_type, transaction);
 
+                const UploadPhotos = await PutObject(upload_photos, listing_id, upload_date);
+
+                const level = process.env.LISTING_APPROVAL_LEVEL;
+                const current_level = 1;
+
                 const property_listing_fields = {
-                    listing_id, seller, property_id, listing_status,
+                    listing_id, 
+                    seller, 
+                    property_id, 
+                    listing_status,
+                    current_level,
+                    level,
                     ...description,
                     property_type: {
                         ...property_details
@@ -191,8 +205,8 @@ module.exports = {
                         }
                     },
                     photos: {
-                        photo: JSON.stringify(upload_photos),
-                        upload_date
+                        photo: JSON.stringify(UploadPhotos),
+                        upload_date_time
                     }
 
                 };
@@ -380,6 +394,9 @@ module.exports = {
 
                 const prefix_name = process.env.LISTING_PREFIX_NAME;
 
+                const level = Number(process.env.LISTING_APPROVAL_LEVEL);
+                const current_level = 0;
+
                 if (!isEdit && !listing_id) {
                     listing_id = await ListingIdGeneratorHelper(prefix_name);
                 }
@@ -407,7 +424,10 @@ module.exports = {
 
                 const update_listing_fields = {
                     listing_id,
-                    property_id, listing_status,
+                    property_id, 
+                    listing_status,
+                    current_level,
+                    level,
                     ...description,
                     property_type,
                     listing_type_id,
@@ -425,6 +445,8 @@ module.exports = {
                     listing_id, 
                     seller, 
                     property_id, listing_status,
+                    current_level,
+                    level,
                     ...description,
                     property_type,
                     listing_type_id,

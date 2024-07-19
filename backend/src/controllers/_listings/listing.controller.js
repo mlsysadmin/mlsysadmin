@@ -24,6 +24,7 @@ const SuccessFormatter = require('../../utils/_helper/SuccessFormatter.helper');
 const SuccessLoggerHelper = require('../../utils/_helper/SuccessLogger.helper');
 const DataResponseHandler = require('../../utils/_helper/DataResponseHandler.helper');
 const { Op } = require('sequelize');
+const { PutObject, GetObject, DeleteObject } = require('../../services/bucket.service');
 
 module.exports = {
     // AddPropertyListing: async (req, res, next) => {
@@ -248,6 +249,39 @@ module.exports = {
 
         } catch (error) {
             throw error;
+        }
+    },
+
+    UploadPhotos: async (req, res, next) => {
+        try {
+
+            // const files = req.files;
+
+            // console.log("files", files);
+            // console.log("files", req);
+
+            // const prefix = `BLTDOZVWJSI`;
+
+            // const upload_date = DayJS(new Date()).format('YYYYMMDD');
+            const filenames = req.query.delete_photos;
+            console.log("filenames", filenames);
+            const upload = await DeleteObject(filenames);
+            
+            res.send(upload);
+            
+        } catch (error) {
+            next(error)
+        }
+    },
+    GetUploadPhotos: async (req, res, next) => {
+        try {
+            
+            const get_upload = await GetObject();
+
+            res.send(get_upload.data)
+            
+        } catch (error) {
+            throw error
         }
     }
 }

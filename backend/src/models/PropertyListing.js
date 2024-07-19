@@ -5,6 +5,8 @@ const {
 
 const Sequelize = require('../config/_db/mlbrokerage.db');
 
+const level = process.env.LISTING_APPROVAL_LEVEL;
+
 const PropertyListing = Sequelize.define("property_listings", {
   property_listing_id: {
     allowNull: false,
@@ -114,6 +116,15 @@ const PropertyListing = Sequelize.define("property_listings", {
   listing_status: {
     allowNull: false,
     type: DataTypes.ENUM('DRAFT', 'PENDING', 'APPROVED', 'DENIED')
+  },
+  level: {
+    allowNull: false,
+    type: DataTypes.INTEGER.UNSIGNED,
+    defaultValue: level
+  },
+  current_level: {
+    allowNull: false,
+    type: DataTypes.INTEGER.UNSIGNED,
   },
   createdAt: {
     type: DataTypes.DATE,
