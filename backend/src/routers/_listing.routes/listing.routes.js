@@ -16,7 +16,7 @@ const {
 } = require('../../utils/_helper/validationSchema.helper');
 
 // GET
-LISTING_ROUTER.get('/get/all-amenities', auth, GetAllAmenities);
+LISTING_ROUTER.get('/get/all-amenities', GetAllAmenities);
 LISTING_ROUTER.get('/get/approver', GetApproverByLevel);
 LISTING_ROUTER.get('/get/one-listing', auth, Validation(listing_id, "query", "listing_id"), GetListingByMasterId);
 
