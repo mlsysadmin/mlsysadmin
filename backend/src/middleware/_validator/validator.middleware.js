@@ -11,8 +11,9 @@ module.exports = {
             return async (req, res, next) => {
                 try {
                     const isValidSchema = Joi.isSchema(schemaName);
-                    const parsedData = req[property][property_name];
+                    
                     // const parsedData = JSON.parse(req[property].payload);
+                    const parsedData = req[property][property_name];
         
                     if (isValidSchema) {
                         
