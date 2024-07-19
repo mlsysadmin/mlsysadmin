@@ -22,7 +22,7 @@
   flex-direction: row;
   gap: 11rem;
   align-items: center;
-      gap: 2rem;
+
       padding: 0 20px;
 }
 .footer-section {
@@ -259,7 +259,9 @@ align-items: center;
 .footer-section {
 padding: 0 20px;
 }
-
+.MapContainer{
+  width: 300px;
+}
 
 } 
 

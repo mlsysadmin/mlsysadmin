@@ -5,6 +5,8 @@ import BathroomInputSlider from "./Slider/BathroomsSlider";
 import NoOfFloorsInputSlider from "./Slider/NoOfFloors";
 import "../styles/listing-form.css";
 import floorlogo from "../assets/images/floorlogo.png";
+import property from "../assets/property.png";
+
 
 const UnitDetailsComponent = ({
   onComplete,
@@ -213,7 +215,9 @@ const UnitDetailsComponent = ({
         <div className="listing-unit-details-right">
           {/* Discounted Selling Price */}
           <div className="form-group">
-            <div className="text-wrapper-37">Discounted Selling Price</div>
+            <div className="text-wrapper-37">Discounted 
+              <p>Selling Price</p>
+            </div>
             <div className="listing-unit-input-group">
               <label className="text-wrapper-38" htmlFor="disc-selling-price">
                 What is the discounted selling price of the unit?
@@ -336,13 +340,24 @@ const UnitDetailsComponent = ({
               </label>
               <div className="propid-input-container">
                 <div className="propid-logo">
-                  {/* <PropIdLogo className="propid-logo-img" /> */}
+                <img
+                    className="propid-logo-img"
+                    alt="prop-id-logo"
+                    src={property}
+                  />
                 </div>
                 <input
                   id="propid-input"
                   className={`propid-input ${propIdInputError ? 'error-input' : ''}`}
                   type="number"
-                  onChange={(e) => validateNumberInput(e.target.value, setPropIdInputError)}
+                 onChange={(e) => {
+                  const value = e.target.value.trim();
+                  if (!value) {
+                    setPropIdInputError('Property ID is required.');
+                  } else {
+                    setPropIdInputError('');
+                  }
+                }}
                 />
               </div>
               {propIdInputError && <div className="error">{propIdInputError}</div>}

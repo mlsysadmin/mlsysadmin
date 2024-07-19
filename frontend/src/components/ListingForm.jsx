@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ListingBanner from "./layout/ListingBanner";
 import ListingSteps from "./layout/ListingSteps";
@@ -26,6 +26,10 @@ export const ListingForm = () => {
 
   const [showSuccessfulMsgModal, setShowSuccessfulMsgModal] = useState(false);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleStepComplete = (stepIndex, isComplete) => {
     setCompletedSteps((prev) => ({
       ...prev,
@@ -36,7 +40,9 @@ export const ListingForm = () => {
       const nextStep = currentStep + 1;
       setCurrentStep(nextStep);
 
-      if (stepRefs.current[nextStep]) {
+      if (stepIndex === 5) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else if (stepRefs.current[nextStep]) {
         stepRefs.current[nextStep].scrollIntoView({ behavior: "smooth" });
       }
     }
@@ -158,3 +164,4 @@ export const ListingForm = () => {
     </>
   );
 };
+export default ListingForm;

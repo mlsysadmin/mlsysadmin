@@ -43,7 +43,7 @@ const DescriptionDetailsComponent = ({ onComplete }) => {
           <h2 className="title">Title</h2>
           <input
             type="text"
-            placeholder="Input title"
+            placeholder="Enter title"
             value={title}
             onChange={(e) => {
               setTitle(e.target.value);
@@ -62,7 +62,7 @@ const DescriptionDetailsComponent = ({ onComplete }) => {
           <textarea
             name=""
             id=""
-            placeholder="Description of the place..."
+            placeholder="Enter Description"
             value={description}
             onChange={(e) => {
               setDescription(e.target.value);

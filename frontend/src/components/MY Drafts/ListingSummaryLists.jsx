@@ -170,19 +170,19 @@ const ListingsSummaryLists = () => {
       <div className="d-flex justify-content-end" style={{ marginLeft: '85%', marginTop: '10%' }}>
         <nav className="pagination-container" aria-label="Page navigation example">
           <ul className="pagination-list">
-            <li className="page-item"><a className="page-link active" href="/drafts">1</a></li>
-            <li className="page-item"><a className="page-link" href="/listing-summary-lists">2</a></li>
-            <li className="page-item">
-              <a className="page-link" href="/active-summary-lists">
-                <FontAwesomeIcon icon={faPlay} />
-              </a>
-            </li>
+            {[...Array(totalPages)].map((_, pageIndex) => (
+              <li className={`page-item ${pageIndex + 1 === currentPage ? 'active' : ''}`} key={pageIndex}>
+                <a className="page-link" onClick={() => setCurrentPage(pageIndex + 1)}>
+                  {pageIndex + 1}
+                </a>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>
       <div className="summary-entries-count">
-              Showing {filteredListings.length > 0 ? `${startIndex + 1}  ${Math.min(endIndex, filteredListings.length)} to ${filteredListings.length}` : "0"} entries
-            </div>
+        Showing {filteredListings.length > 0 ? `${startIndex + 1} to ${Math.min(endIndex, filteredListings.length)} of ${filteredListings.length}` : "0"} entries
+      </div>
       <Footer />
     </div>
   );

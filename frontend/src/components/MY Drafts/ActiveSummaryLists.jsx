@@ -20,7 +20,7 @@ const ActiveInactive = () => {
       price: "$300,000",
       location: "New York",
       status: "Active",
-      action: ["Tag Sold"],
+     
     },
     {
       date: "2024-06-17",
@@ -31,7 +31,7 @@ const ActiveInactive = () => {
       price: "$900,000",
       location: "Los Angeles",
       status: "Inactive",
-      action: ["Tag Sold"],
+     
     },
     // Add more listings as needed
   ]);
@@ -153,7 +153,7 @@ const ActiveInactive = () => {
                 <th>Price</th>
                 <th>Location</th>
                 <th>Status</th>
-                <th>Action</th>
+               
               </tr>
             </thead>
             <tbody>
@@ -175,12 +175,7 @@ const ActiveInactive = () => {
                   <td>{listing.location}</td>
                   <td>{listing.status}</td>
                   <td>
-                    <button
-                      className="active-summary-tag-sold-button"
-                      onClick={() => openModal(listing)}
-                    >
-                      Tag Sold
-                    </button>
+                   
                   </td>
                 </tr>
               ))}

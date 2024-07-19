@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { MapContainer, TileLayer, Circle } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 import "../styles/listing-form.css";
 
 const LocationDetailsComponent = ({ onComplete }) => {
@@ -8,6 +10,7 @@ const LocationDetailsComponent = ({ onComplete }) => {
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
   const [mapLocation, setMapLocation] = useState("");
+  const [position, setPosition] = useState([10.3414, 123.9125]); // Default position for Banilad
 
   const [provinceOptions, setProvinceOptions] = useState([
     { value: "", label: "Select Province/State" },
@@ -94,8 +97,18 @@ const LocationDetailsComponent = ({ onComplete }) => {
     setAddress(event.target.value);
   };
 
-  const handleMapLocationChange = (event) => {
-    setMapLocation(event.target.value);
+  const handleMapLocationChange = async (event) => {
+    const location = event.target.value;
+    setMapLocation(location);
+
+    // Geocode the address to get coordinates
+    const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${location}`);
+    const data = await response.json();
+
+    if (data && data.length > 0) {
+      const { lat, lon } = data[0];
+      setPosition([parseFloat(lat), parseFloat(lon)]);
+    }
   };
 
   useEffect(() => {
@@ -204,17 +217,13 @@ const LocationDetailsComponent = ({ onComplete }) => {
           />
         </div>
         <div className="embedd-map">
-          <iframe
-            className="google-map"
-            title="Google Map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15699.578540820406!2d123.89732826117896!3d10.350309394999337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a998dc979e57b3%3A0xac2f6149d71913f5!2sBanilad%2C%20Cebu%20City%2C%206000%20Cebu!5e0!3m2!1sen!2sph!4v1720766750192!5m2!1sen!2sph"
-            width="400"
-            height="300"
-            style={{ border: 0, borderRadius: "30px", marginLeft: "50px" }}
-            allowFullScreen=""
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
+          <MapContainer center={position} zoom={13} style={{ height: "300px", width: "400px", borderRadius: "30px", marginLeft: "50px" }}>
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+            <Circle center={position} radius={500} />
+          </MapContainer>
         </div>
       </div>
     </div>

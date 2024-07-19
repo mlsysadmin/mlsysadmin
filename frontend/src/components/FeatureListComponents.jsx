@@ -9,7 +9,7 @@ const FeatureList = ({ title, features, selectedFeatures, toggleFeature }) => (
       {features.map((feature) => (
         <span
           key={feature}
-          className={`feature-item ${
+          className={`feature-list-item ${
             selectedFeatures.includes(feature) ? "selected" : ""
           }`}
           onClick={() => toggleFeature(feature)}
@@ -20,7 +20,6 @@ const FeatureList = ({ title, features, selectedFeatures, toggleFeature }) => (
     </div>
   </div>
 );
-
 const FeaturedComponents = ({ onComplete }) => {
   const [selectedFeatures, setSelectedFeatures] = useState([]);
 
@@ -90,6 +89,7 @@ const FeaturedComponents = ({ onComplete }) => {
     "Tennis Court",
     "24/7 Security",
   ];
+
 
   const toggleFeature = (feature) => {
     setSelectedFeatures((prevSelectedFeatures) =>
