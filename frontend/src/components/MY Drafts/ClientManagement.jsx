@@ -29,13 +29,16 @@ const ClientManagement = () => {
                     </Link>
                   </div>
                   <div className="client-searchSection">
+                  <label >Show
                     <select className="client-dropdown">
-                      <option>Show entries</option>
+                     
+                      <option> entries</option>
                       <option>10</option>
                       <option>25</option>
                       <option>50</option>
                       <option>100</option>
                     </select>
+                    </label>
                     <div className="client-srchIntContnr">
                       <div className="client-srchwrapps">
                       <FontAwesomeIcon icon={faSearch} className="client-srchIcony" />

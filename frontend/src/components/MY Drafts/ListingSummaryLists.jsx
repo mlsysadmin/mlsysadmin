@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-
 import Sidebar from "./Components/DraftSidebarComponent";
 import Footer from "./Components/FooterComponent";
 import { Link } from 'react-router-dom'; 
-// import Navigation from "../layout/NavigationComponent";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faSearch } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/ListingsSummaryLists.css';  // Import the CSS file
@@ -41,8 +39,12 @@ const ListingsSummaryLists = () => {
       location: "Cebu City, Cebu",
       status: "Denied",
     },
+    // Add more listings as needed
   ]);
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [entriesPerPage, setEntriesPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate(); // Get the navigate function from react-router-dom
 
   const handleShowDetailsClick = (status) => {
@@ -54,6 +56,27 @@ const ListingsSummaryLists = () => {
       navigate('/show-details-default'); // Fallback route
     }
   };
+
+  const filteredListings = listings.filter((listing) =>
+    listing.propertyType.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    listing.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    listing.location.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleEntriesChange = (event) => {
+    setEntriesPerPage(Number(event.target.value));
+    setCurrentPage(1);
+  };
+
+  const totalPages = Math.ceil(filteredListings.length / entriesPerPage);
+  const startIndex = (currentPage - 1) * entriesPerPage;
+  const endIndex = startIndex + entriesPerPage;
+  const paginatedListings = filteredListings.slice(startIndex, endIndex);
 
   return (
     <div>
@@ -77,20 +100,29 @@ const ListingsSummaryLists = () => {
                 </Link>
               </div>
               <div className="search-section">
-                <select className="dropdown">
-                  <option>Show entries</option>
-                  <option>10</option>
-                  <option>25</option>
-                  <option>50</option>
-                  <option>100</option>
-                </select>
+                <label htmlFor="entries">Show
+                  <select className="dropdown" value={entriesPerPage} onChange={handleEntriesChange}>
+                    <option value="10">entries</option>
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+               
+                </label>
                 <div className="search-inp-container">
-                <div className="searchwrapper">
-                  <FontAwesomeIcon icon={faSearch} className="search-icon" />
-                  <input type="text" className="search-Inputss" placeholder="Search Property" />
+                  <div className="searchwrapper">
+                    <FontAwesomeIcon icon={faSearch} className="search-icon" />
+                    <input 
+                      type="text" 
+                      className="search-Inputss" 
+                      placeholder="Search Property" 
+                      value={searchQuery}
+                      onChange={handleSearchChange}
+                    />
                   </div>
                 </div>
-              </div>                  
+              </div>
             </div>
             <table className="listing-summary-table">
               <thead>
@@ -107,7 +139,7 @@ const ListingsSummaryLists = () => {
                 </tr>
               </thead>
               <tbody>
-                {listings.map((listing, index) => (
+                {paginatedListings.map((listing, index) => (
                   <tr key={index}>
                     <td>
                       <button 
@@ -130,21 +162,26 @@ const ListingsSummaryLists = () => {
                 ))}
               </tbody>
             </table>
+            
           </div>
         </div>
       </div>
+      
       <div className="d-flex justify-content-end" style={{ marginLeft: '85%', marginTop: '10%' }}>
         <nav className="pagination-container" aria-label="Page navigation example">
           <ul className="pagination-list">
-            <li className="page-item"><a className="page-link active" href="/drafts">1</a></li>
-            <li className="page-item"><a className="page-link" href="/listing-summary-lists">2</a></li>
-            <li className="page-item">
-              <a className="page-link" href="/active-summary-lists">
-                <FontAwesomeIcon icon={faPlay} />
-              </a>
-            </li>
+            {[...Array(totalPages)].map((_, pageIndex) => (
+              <li className={`page-item ${pageIndex + 1 === currentPage ? 'active' : ''}`} key={pageIndex}>
+                <a className="page-link" onClick={() => setCurrentPage(pageIndex + 1)}>
+                  {pageIndex + 1}
+                </a>
+              </li>
+            ))}
           </ul>
         </nav>
+      </div>
+      <div className="summary-entries-count">
+        Showing {filteredListings.length > 0 ? `${startIndex + 1} to ${Math.min(endIndex, filteredListings.length)} of ${filteredListings.length}` : "0"} entries
       </div>
       <Footer />
     </div>
@@ -152,4 +189,3 @@ const ListingsSummaryLists = () => {
 };
 
 export default ListingsSummaryLists;
-

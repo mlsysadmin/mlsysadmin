@@ -164,6 +164,7 @@
   .small-image img {
     width: 100%;
     height: auto;
+    border-radius: 23  0px;
   }
   .livingroom,
   .bathroom {
@@ -547,6 +548,7 @@
     display: flex;
     flex-direction: row;
     padding: 2%;
+    height: 100%;
     /* margin: 50px; */
   }
    .right-side-container {
@@ -821,6 +823,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+
   }
   .small-image-icons{
     position: absolute;
@@ -1090,6 +1093,7 @@
 
 .leftContent {
   width: 100%;
+  height: 100%;
   justify-content: flex-start;
   margin: 20px;
 }

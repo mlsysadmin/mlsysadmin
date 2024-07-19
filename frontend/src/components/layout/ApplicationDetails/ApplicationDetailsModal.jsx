@@ -79,6 +79,10 @@ const FileUploadGrid = ({ validateFiles }) => {
 }
 
 const ApplicationDetailModal = () => {
+  const [userDetails, setUserDetails] = useState()
+
+  const searchKYC = process.env.REACT_APP_SEARCH_KYC
+
   const [formValues, setFormValues] = useState({
     mobileNumber: "",
     lastName: "",
@@ -92,112 +96,23 @@ const ApplicationDetailModal = () => {
   });
   const [files, setFiles] = useState([null, null, null, null]);
 
-  const staticUserData = [
-    {
-    number: '123456789',
-    firstName: 'John',
-    lastName: 'Doe',
-    firstname: 'John',
-    emailAddress: 'john.doe@example.com',
-    addresses: {
-      country: 'USA',
-      state: 'Anytown',
-      city: 'Anytown',
-      streetAddress1: '123 Main St',
-      streetAddress2: '',
-      zipCode: '',
-    },
-    tier: 'Gold',
-    },
-    {
-    number: '09246162321',
-    firstName: 'Jane',
-    lastName: 'Doe',
-    firstname: 'Jane',
-    emailAddress: 'jane.doe@example.com',
-    addresses: {
-      country: 'USA',
-      state: 'California',
-      city: 'Somewhere City',
-      streetAddress1: '456 Oak Rd',
-      streetAddress2: '',
-      zipCode: '12345',
-    },
-    tier: 'Platinum',
-    },
-    ];
-    
-    const [userNumber, setUserNumber] = useState('');
-    const [userFirstName, setUserFirstName] = useState('');
-    const [userLastName, setUserLastName] = useState('');
-    const [userDetails, setUserDetails] = useState({
-    number: '',
-    lastName: '',
-    firstname: '',
-    emailAddress: '',
-    addresses: {
-      country: '',
-      state: '',
-      city: '',
-      zipCode: '',
-    },
-    tier: '',
-    });
-
-  // const [userNumber, setUserNumber] = useState('');
-  // const [userDetails, setUserDetails] = useState({
-  //   firstName: '',
-  //   lastName: '',
-  //   firstname: '',
-  //   emailAddress: '',
-  //   addresses:'',
-  //   tier:''
-  // });
-
-
-  // const handleNumberChange = (e) =>{
-  //   setUserNumber(e.target.value);
-  //   fetchUserDetails(e.target.value);
-  // };
   const handleNumberChange = (e) => {
     setFormValues({ ...formValues, mobileNumber: e.target.value });
-    setUserNumber(e.target.value);
+    // setUserNumber(e.target.value);
     if (e.target.value.length === 11) {
       fetchUserDetails(e.target.value);
     }
   };
-  const fetchUserDetails= async (inputtedNumber) => {
-    // try{
-    // const response = await axios.get(api/user/searchKYC/${inputtedNumber});
-    // setUserDetails(response.data);
-    
-    // }catch(error){
-    //   console.error('Error fetching user info:', error);
-    // }
-    const userFromStaticData = staticUserData.find(
-      (user) => user.number === inputtedNumber
-    );
-    if (userFromStaticData) {
-      setUserDetails(userFromStaticData);
-    } else {
-      try {
-        const response = await axios.get(`api/user/searchKYC/${inputtedNumber}`);
-        setUserDetails(response.data);
-      } catch (error) {
-        console.error('Error fetching user info:', error);
-      }
+
+  const fetchUserDetails = async (inputtedNumber) => {
+    try{
+      const response = await axios.get(`${searchKYC}/user/searchKYC/${inputtedNumber}`);
+      setUserDetails(response.data);
+
+    }catch(error){
+      console.error('Error fetching user info:', error);
     }
   }
-
-  // const fetchUserDetails= async (inputtedNumber) => {
-  //   try{
-  //     const response = await axios.get(`api/user/searchKYC/${inputtedNumber}`);
-  //     setUserDetails(response.data);
-
-  //   }catch(error){
-  //     console.error('Error fetching user info:', error);
-  //   }
-  // }
 
   console.log(userDetails);
   const handleInputChange = (e) => {
