@@ -37,7 +37,7 @@ const FeaturedComponents = ({ onComplete }) => {
     <div className="featureCards">
       <h2>{title}</h2>
       <div className="features">
-      {Object.values(features)?.map((feature, index) => (
+      {features?.map((feature, index) => (
           <div key={index}>
             <span
               className={`feature-item ${
