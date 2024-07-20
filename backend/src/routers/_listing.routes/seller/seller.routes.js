@@ -14,8 +14,7 @@ const {
 } = require('../../../utils/_helper/validationSchema.helper');
 const { GetAllSellerListings, AddPropertyListing, DraftPropertyListing, GetAllDraftListing } = require("../../../controllers/_listings/seller/seller.listing.controller");
 
-// GET
-SELLER_ROUTER.get('/get/all-listings', api_auth, Validation(seller, "query", "seller"), GetAllSellerListings);
+SELLER_ROUTER.get('/get/all-listings', /*api_auth,*/ Validation(seller, "query", "seller"), GetAllSellerListings);
 SELLER_ROUTER.get('/get/all-listings/draft', /*auth,*/ Validation(seller, "query", "seller"), GetAllDraftListing);
 
 // POST

@@ -1,69 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faSearch } from "@fortawesome/free-solid-svg-icons";
 import "../../../styles/ListingsTableComponent.css";
+import {DateFormatter, LocationFormatter} from "../../../utils/LocationDateFormatter";
+import {GetAllListingDrafts} from "../../../api/ListingDraftsSeller";
 
 const ListingsTable = () => {
-  const [listings] = useState([
-    {
-      date: "03-11-2024",
-      propertyId: "11X8NBSADAFO",
-      propertyType: "Condominium",
-      type: "For Sale",
-      floorArea: "30 sqm",
-      price: "5,000,000",
-      location: "Mandaue City, Cebu",
-      status: "Draft",
-      action: ["Edit"],
-    },
-    {
-      date: "03-14-2024",
-      propertyId: "121HJCHVJC3",
-      propertyType: "Condo",
-      type: "For Sale",
-      floorArea: "30 sqm",
-      price: "5,000,000",
-      location: "Banilad City, Cebu",
-      status: "Draft",
-      action: ["Edit"],
-    },
-    {
-      date: "03-14-2024",
-      propertyId: "121HJCHVJC3",
-      propertyType: "Condo",
-      type: "For Sale",
-      floorArea: "30 sqm",
-      price: "5,000,000",
-      location: "Banilad City, Cebu",
-      status: "Draft",
-      action: ["Edit"],
-    },
-    {
-      date: "03-14-2024",
-      propertyId: "121HJCHVJC3",
-      propertyType: "Condo",
-      type: "For Sale",
-      floorArea: "30 sqm",
-      price: "5,000,000",
-      location: "Banilad City, Cebu",
-      status: "Draft",
-      action: ["Edit"],
-    },
+  
+const [listingDrafts, setListingDrafts] = useState([])
+const [propertyType, setPropertyType] = useState();
 
-    // Add more listings as needed
-  ]);
+// const resp = await GetAllListingDrafts();
+// const response = resp.data;
 
+const sellerListingDrafts = async () => {
+  try {
+    const resp = await GetAllListingDrafts();
+    const response = resp.data;
+    // setPropertyType(response[0].property_type.type);
+    setListingDrafts(response);
+    // console.log("property type:", propertyType)
+    // console.log("r", listingDrafts);
+    console.log("resp", resp);
+  } catch (error) {
+    console.error("Error fetching listing drafts:", error);
+  }
+};
+useEffect (() =>{
+  sellerListingDrafts();
+
+}, [])
   const [searchQuery, setSearchQuery] = useState("");
   const [entriesPerPage, setEntriesPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const filteredListings = listings.filter(
-    (listing) =>
-      listing.propertyType.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      listing.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      listing.location.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // const filteredListings = listingDrafts.filter(
+  //   (listing) =>
+  //     listing.propertyType.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //     listing.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //     listing.location.toLowerCase().includes(searchQuery.toLowerCase())
+  // );
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -74,11 +51,10 @@ const ListingsTable = () => {
     setEntriesPerPage(Number(event.target.value));
     setCurrentPage(1);
   };
-
-  const totalPages = Math.ceil(filteredListings.length / entriesPerPage);
+  const totalPages = Math.ceil(listingDrafts.length / entriesPerPage);
   const startIndex = (currentPage - 1) * entriesPerPage;
   const endIndex = startIndex + entriesPerPage;
-  const paginatedListings = filteredListings.slice(startIndex, endIndex);
+  const paginatedListings = listingDrafts.slice(startIndex, endIndex);
 
   return (
     <div>
@@ -138,27 +114,30 @@ const ListingsTable = () => {
               </tr>
             </thead>
             <tbody>
-              {paginatedListings.map((listing, index) => (
+              {paginatedListings?.map((listing, index) => (
                 <tr key={index} className={index % 2 === 0 ? "even" : "odd"}>
                   <td>
                     <button className="listings-show-details-button">
                       Show Details
                     </button>
+                    
                   </td>
-                  <td>{listing.date}</td>
-                  <td>{listing.propertyId}</td>
-                  <td>{listing.propertyType}</td>
-                  <td>{listing.type}</td>
-                  <td>{listing.floorArea}</td>
-                  <td>{listing.price}</td>
-                  <td>{listing.location}</td>
-                  <td>{listing.status}</td>
-                  <td></td>
+                  <td>{DateFormatter(listing.createdAt)}</td>
+                  <td>{listing.property_id}</td>
+                  <td>{listing.property_type.type}</td>
+                  <td>{listing.listing_type.listing_type}</td>
+                  <td>{listing.unit_details.floor_area}</td>
+                  <td>{listing.unit_details.price}</td>
+                  <td>{LocationFormatter(listing.location)}</td>
+                  <td>{listing.listing_status}</td>
+              
                 </tr>
               ))}
             </tbody>
           </table>
+      
         </div>
+      
       </div>
       <div
         className="d-flex justify-content-end"
@@ -184,11 +163,11 @@ const ListingsTable = () => {
       </div>
       <div className="entries-count">
         Showing{" "}
-        {filteredListings.length > 0
+        {listingDrafts.length > 0
           ? `${startIndex + 1} to ${Math.min(
               endIndex,
-              filteredListings.length
-            )} of ${filteredListings.length}`
+              listingDrafts.length
+            )} of ${listingDrafts.length}`
           : "0"}{" "}
         entries
       </div>
