@@ -10,7 +10,7 @@ const { User, Role } = require("../../models/main.model");
 const SuccessLoggerHelper = require('../../utils/_helper/SuccessLogger.helper');
 const DataResponseHandler = require('../../utils/_helper/DataResponseHandler.helper');
 const { VerifyHash, Hash } = require('../../utils/_helper/hash.helper');
-const GenerateToken = require('../../utils/_api/token.api');
+const GenerateToken = require('../../utils/_api/Token.api');
 const { SearchUserKyc } = require('../../utils/_api/kyc.api');
 
 module.exports = {
@@ -83,7 +83,7 @@ module.exports = {
                 }
 
                 res.cookie('access_token', token, cookieOptions);
-                
+
                 const user = DataResponseHandler(
                     findUser,
                     "VERIFY_SUCCESS",
@@ -118,7 +118,6 @@ module.exports = {
 
 
         } catch (error) {
-            console.log(error);
             next(error)
         }
     },
@@ -129,30 +128,27 @@ module.exports = {
 
             const getToken = await GenerateToken();
 
-            console.log(params);
-
             if ((getToken) && params) {
-                console.log(getToken);
                 const token = getToken.data.token;
 
                 const searchkyc = await SearchUserKyc(token, params);
 
                 const kyc = DataResponseHandler(
-                    searchkyc.data.data,
-                    "RETRIEVED_SUCCESSFULLY",
+                    searchkyc.search_ckyc.data.data,
+                    searchkyc.code,
                     200,
                     true,
-                    "SUCCESS"
+                    searchkyc.message
                 )
 
-                const success = SuccessFormatter(kyc, 200, "SUCCESS");
+                const success = SuccessFormatter(kyc, 200, searchkyc.message);
                 SuccessLoggerHelper(req, kyc);
 
                 res.status(200).send(success)
 
-            }else{
+            } else {
                 throw DataResponseHandler(
-                    {params, getToken},
+                    { params, getToken },
                     "SERVER_ERROR",
                     500,
                     false,
@@ -161,18 +157,7 @@ module.exports = {
             }
 
         } catch (error) {
-            if (Object.keys(error).includes('response')) {
-
-                let response = DataResponseHandler(
-                    error.response.data,
-                    "SERVER_ERROR",
-                    500,
-                    false,
-                    "We're sorry, something went wrong on our end. Please try again later or contact our support team."
-                );
-                next(response)
-            }
-            next(error)
+            next(error);
         }
     },
     SearchUser: async (req, res, next) => {
