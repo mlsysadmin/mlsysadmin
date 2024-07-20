@@ -17,6 +17,8 @@ const {
     FindOneApprover,
     FindAllListingForApprovalByApprover,
     CreateMasterPropertyList,
+    FindAllMasterListing,
+    FindMasterListingDetailsById,
 } = require('../../../streamline/listing.datastream');
 const SuccessFormatter = require('../../../utils/_helper/SuccessFormatter.helper');
 const SuccessLoggerHelper = require('../../../utils/_helper/SuccessLogger.helper');
@@ -281,7 +283,7 @@ module.exports = {
                     GetAllListing,
                     "NO_LISTING_FOUND_FOR_APPROVER",
                     200,
-                    false,
+                    true,
                     "No for approval listing available."
                 );
                 message = "No for approval listing available.";
@@ -292,7 +294,7 @@ module.exports = {
                     GetAllListing,
                     "PENDING_LISTINGS_FOUND",
                     200,
-                    false,
+                    true,
                     "For approval listing retrieved."
                 );
 
@@ -303,6 +305,117 @@ module.exports = {
             const success = SuccessFormatter(data, 200, message);
     
             SuccessLoggerHelper(success, data);
+
+            res.send(success);
+
+        } catch (error) {
+            next(error)
+        }
+    },
+
+    GetAllMasterListing: async (req, res, next) => {
+        try {
+
+            const property_status = req.query.property_status;
+
+            const params_fields = {
+                property_status
+            }
+
+            const GetAllListing = await Sequelize.transaction(async (transaction) => {
+
+                const get_all_listing = await FindAllMasterListing(params_fields, transaction);
+
+                return get_all_listing;
+
+            });
+            let data;
+            let message;
+
+            if (GetAllListing.length === 0) {
+
+                data = DataResponseHandler(
+                    GetAllListing,
+                    `NO_${property_status}_LISTING_FOUND`,
+                    200,
+                    true,
+                    `No ${property_status} listing available.`
+                );
+                message = `No ${property_status} listing available.`;
+
+            } else {
+
+                data = DataResponseHandler(
+                    GetAllListing,
+                    `${property_status}_LISTING_FOUND`,
+                    200,
+                    true,
+                    `${property_status} listing retrieved`
+                );
+
+                message = `${property_status} listing retrieved`;
+
+            }
+
+            const success = SuccessFormatter(data, 200, message);
+    
+            SuccessLoggerHelper(success, data);
+
+            res.send(success);
+
+        } catch (error) {
+            console.log("sfs", error);
+            next(error)
+        }
+    },
+
+    // BY PROPERTY STATUS AND PROPERTY LISTING ID
+    GetMasterListingDetails: async (req, res, next) => {
+        try {
+
+            const payload = req.query.payload;
+
+            const params_fields = {
+                property_status: payload.property_status,
+                listing_id: payload.listing_id
+            }
+
+            const GetListing = await Sequelize.transaction(async (transaction) => {
+
+                const get_listing = await FindMasterListingDetailsById(params_fields, transaction);
+
+                const get_approvals = await FindApprovalsPropertyListingId(get_listing.property_listing_id, transaction);
+
+                const approvals = get_approvals.filter((approval) => approval.approval_status === "APPROVED")
+                
+                return {
+                    listing: { ...get_listing.dataValues },
+                    approvals
+                };
+
+            });
+
+            let data = DataResponseHandler(
+                GetListing,
+                `${payload.property_status}_LISTING_FOUND`,
+                200,
+                true,
+                `${payload.property_status} listing retrieved`
+            );
+
+            let logger = DataResponseHandler(
+                { listing_id: payload.listing_id },
+                `${payload.property_status}_LISTING_FOUND`,
+                200,
+                true,
+                `${payload.property_status} listing retrieved`
+            );
+
+            let message = `${payload.property_status} listing retrieved`;
+
+            const success = SuccessFormatter(data, 200, message);
+    
+            SuccessLoggerHelper(req, logger);
 
             res.send(success);
 

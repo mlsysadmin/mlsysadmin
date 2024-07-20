@@ -9,7 +9,6 @@ const FatalLogger = Logger.Get_logger("fatal");
 
 const ErrorHandler = async (error, request, response, next) => {
     try {
-        console.log("HANDLE EEROR: ", error);
     
         const ServerErrors = [ RangeError, TypeError, SyntaxError, Error, EvalError, ReferenceError, URIError ]
         
@@ -45,7 +44,6 @@ const ErrorHandler = async (error, request, response, next) => {
         response.status(error.status).send(err);
 
     } catch (error) {
-        console.log("EEROR: ", error);
 
         FatalLogger.addContext('context', `Logging.. | ML BROKERAGE`);
         FatalLogger.fatal(error.toString());

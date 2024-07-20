@@ -69,7 +69,7 @@ PropertyListing.belongsTo(PropertyPhoto, { foreignKey: 'property_photos_id', as:
 /** Master Property Listing Association **/
 
 PropertyListing.hasOne(MasterPropertyList, { foreignKey: 'property_listing_id' }); // done
-MasterPropertyList.belongsTo(PropertyListing, { foreignKey: 'property_listing_id' }); //done
+MasterPropertyList.belongsTo(PropertyListing, { foreignKey: 'property_listing_id', as: 'listings' }); //done
 
 // User.hasMany(MasterPropertyList, { foreignKey: 'seller_id' });// done
 // MasterPropertyList.belongsTo(User, { foreignKey: 'seller_id' }); // done

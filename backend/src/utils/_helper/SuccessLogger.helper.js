@@ -9,9 +9,10 @@ module.exports = (request, response) => {
         REQ: {
             url: request.url,
             method: request.method,
-            query: request.query,
-            params: request.params,
+            query: JSON.stringify(request.query),
+            params: JSON.stringify(request.params),
             body: JSON.stringify(request.body),
+            headers: JSON.stringify(request.headers)
         },
         RES: {
             data: JSON.stringify(response.data),

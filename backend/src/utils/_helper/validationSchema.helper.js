@@ -31,6 +31,29 @@ const ValidationSchema = {
     }),
     listing_id: Joi.string().required(),
     seller: Joi.string().required(),
+    property_status: Joi.string()
+        .custom((value, helpers) => {
+            const status = ['ACTIVE', 'INACTIVE'];
+
+            if (!status.includes(value)) {
+                return helpers.message(`Invalid approval status`);
+            }
+
+            return value;
+        }).required(),
+    GetMasterDetailsParams: Joi.object().keys({
+        listing_id: Joi.string().required(),
+        property_status: Joi.string()
+        .custom((value, helpers) => {
+            const status = ['ACTIVE', 'INACTIVE'];
+
+            if (!status.includes(value)) {
+                return helpers.message(`Invalid approval status`);
+            }
+
+            return value;
+        }).required(),
+    }),
     searchKyc: Joi.object().keys({
         cellphoneNumber: Joi.string().required()
     }),
