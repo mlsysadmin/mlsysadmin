@@ -693,7 +693,7 @@ module.exports = {
             throw error;
         }
     },
-    FindMasterListingDetailsById: async ({ listing_id, property_status }, transaction) => {
+    FindMasterListingDetailsById: async (fields_params, transaction) => {
         try {
 
             const get_listing_by_id = await MasterPropertyList.findOne({
@@ -703,15 +703,15 @@ module.exports = {
                     ]
                 },
                 where: {
-                    property_status,
-                    listing_status: "APPROVED"
+                    property_status: fields_params.property_status,
+                    listing_status: fields_params.listing_status
                 },
                 include: [
                     {
                         model: PropertyListing,
                         as: 'listings',
                         where: {
-                            listing_id,
+                            listing_id: fields_params.listing_id,
                         },
                         attributes:
                         {
