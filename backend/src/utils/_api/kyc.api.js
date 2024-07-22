@@ -25,6 +25,14 @@ module.exports = {
 
             };
 
+
+    
+            const response = await axios.get(url, config);
+            console.log(response);
+            return response
+           
+
+
             const search_ckyc = await CKYC_API.get(url, config);
 
             let data;
@@ -63,6 +71,7 @@ module.exports = {
             SuccessLoggerHelper(request, response);
 
             return {search_ckyc, message, code}
+
 
         } catch (error) {
             console.log(error);

@@ -254,27 +254,33 @@ module.exports = {
             throw error
         }
     },
-    FindAllListingBySeller: async (seller, transaction) => {
+
+    // PROPERTY LISTINGS BY SELLER - (DENIED, PENDING, DRAFTS)
+    FindAllListingBySeller: async (field_params, transaction) => {
         try {
 
             const get_all_listing_byseller = await PropertyListing.findAll({
-                where: { seller },
-                attributes: { exclude: ['updatedAt', 'deletedAt'] },
+                where: { ...field_params },
+                attributes: [
+                    'createdAt',
+                    'listing_id',
+                    'title',
+                    'property_id',
+                    'listing_status'
+                ],
                 include: [
                     {
-                        model: PropertyTypes, attributes: {
-                            exclude: ["property_type_id"]
-                        },
+                        model: PropertyTypes, attributes: ["type"],
                         as: 'property_type'
                     },
                     {
-                        model: ListingTypes, attributes: ['listing_type']
+                        model: ListingTypes, attributes: ['listing_type'],
                     },
                     {
-                        model: UnitDetails, attributes:
-                        {
-                            exclude: ['createdAt', 'updatedAt', 'unit_detail_id']
-                        },
+                        model: UnitDetails, attributes: [
+                            'floor_area',
+                            'price'
+                        ],
                         as: 'unit_details'
                     },
                     {
@@ -283,29 +289,7 @@ module.exports = {
                         },
                         as: 'location'
                     },
-                    {
-                        model: Amenities, attributes:
-                        {
-                            exclude: ['createdAt', 'updatedAt', 'amenity_id', "custom_amenity_id", "custom_inclusion_id"]
-                        },
-                        include: [
-                            {
-                                model: CustomAmenities, attributes:
-                                {
-                                    exclude: ['createdAt', 'updatedAt', "deletedAt", "custom_amenity_id"]
-                                },
-                                as: 'custom_amenities'
-                            },
-                            {
-                                model: CustomInclusions, attributes:
-                                {
-                                    exclude: ['createdAt', 'updatedAt', "deletedAt", "custom_inclusion_id"]
-                                },
-                                as: 'custom_inclusion'
-                            }
-                        ],
-                        as: 'amenities'
-                    }
+
                 ],
                 transaction,
             })
@@ -397,6 +381,7 @@ module.exports = {
             throw error
         }
     },
+    // PROPERTY LISTINGS
     FindListingByListingId: async (listing_id, transaction) => {
         try {
 
@@ -505,10 +490,11 @@ module.exports = {
         }
     },
 
-    FindAllListingByStatusAndUser: async (params_field, transaction) => {
+    // PROPERTY LISTINGS DETAILS W/O APPROVER
+    FindListingDetailsByStatus: async (params_field, transaction) => {
         try {
 
-            const get_all_listing_byseller = await PropertyListing.findAll({
+            const get_listing_details_bystatus = await PropertyListing.findOne({
                 where: { ...params_field },
                 attributes: { exclude: ['updatedAt', 'deletedAt'] },
                 include: [
@@ -561,7 +547,18 @@ module.exports = {
                 transaction,
             })
 
-            return get_all_listing_byseller
+            if (!get_listing_details_bystatus) {
+                throw DataResponseHandler(
+                    get_listing_details_bystatus,
+                    "LISTING_NOT_FOUND",
+                    404,
+                    false,
+                    "Listing not found"
+                );
+            } else {
+
+                return get_listing_details_bystatus
+            }
 
         } catch (error) {
             throw error
@@ -644,7 +641,7 @@ module.exports = {
     },
 
     // MASTER LISTS
-    FindAllMasterListing: async (fields, transaction) => {
+    FindAllMasterListing: async (fields_params, transaction) => {
         try {
 
             const get_all_listing = await MasterPropertyList.findAll({
@@ -685,7 +682,7 @@ module.exports = {
                     },
                 ],
                 where: {
-                    ...fields
+                    ...fields_params
                 },
                 transaction
             });
@@ -696,7 +693,7 @@ module.exports = {
             throw error;
         }
     },
-    FindMasterListingDetailsById: async ({ listing_id, property_status }, transaction) => {
+    FindMasterListingDetailsById: async (fields_params, transaction) => {
         try {
 
             const get_listing_by_id = await MasterPropertyList.findOne({
@@ -706,15 +703,15 @@ module.exports = {
                     ]
                 },
                 where: {
-                    property_status,
-                    listing_status: "APPROVED"
+                    property_status: fields_params.property_status,
+                    listing_status: fields_params.listing_status
                 },
                 include: [
                     {
                         model: PropertyListing,
                         as: 'listings',
                         where: {
-                            listing_id,
+                            listing_id: fields_params.listing_id,
                         },
                         attributes:
                         {
@@ -802,6 +799,72 @@ module.exports = {
 
         } catch (error) {
             throw error
+        }
+    },
+
+    // PUBLIC
+    FindAllMasterListingPublic: async (transaction) => {
+        try {
+
+            const get_all_listing = await MasterPropertyList.findAll({
+                attributes: ['property_status', 'isFeatured'],
+                where: {
+                    property_status: 'ACTIVE'
+                },
+                include: [
+                    {
+                        model: PropertyListing,
+                        as: 'listings',
+                        attributes: [
+                            'listing_id',
+                            'title',
+                        ],
+                        include: [
+                            {
+                                model: PropertyTypes, attributes: ["subtype"],
+                                as: 'property_type'
+                            },
+                            {
+                                model: ListingTypes, attributes: ['listing_type'],
+                                // where: {
+                                //     [Op.or] : [
+                                //         {
+                                //             listing_type: "For Rent"
+                                //         },
+                                //         {
+                                //             listing_type: "For Sale"
+                                //         }
+                                //     ] 
+                                // }
+                            },
+                            {
+                                model: UnitDetails, attributes: [
+                                    'price',
+                                    'no_of_beds',
+                                    'lot_area',
+                                    'no_of_bathrooms'
+                                ],
+                                as: 'unit_details'
+                            },
+                            {
+                                model: PropertyPhoto,
+                                as: 'photos',
+                                attributes:
+                                {
+                                    exclude: ['upload_date', 'property_photos_id']
+                                },
+                            },
+                        ],
+                    },
+                ],
+                transaction
+            });
+
+            return get_all_listing;
+
+        } catch (error) {
+            console.log("safdgfdhg");
+            throw error;
         }
     },
 
