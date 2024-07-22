@@ -10,7 +10,9 @@ const {
     FindAllListingBySeller,
     FindAllListingByStatusAndUser,
     CreateListing,
-    FindListingByListingId
+    FindListingByListingId,
+    FindAllMasterListing,
+    FindListingDetailsByStatus
 } = require('../../../streamline/listing.datastream');
 const ListingIdGeneratorHelper = require("../../../utils/_helper/ListingIdGenerator.helper");
 const SuccessFormatter = require('../../../utils/_helper/SuccessFormatter.helper');
@@ -23,12 +25,12 @@ const { PutObject } = require('../../../services/bucket.service');
 const domain = process.env.COOKIE_DOMAIN;
 
 module.exports = {
-    // DONE
+    // DONE - LIST OF PENDING AND DENIED LISTING
     GetAllSellerListings: async (req, res, next) => {
         try {
 
             const seller = req.query.seller;
-            const status = {
+            const params = {
                 [Op.or]: [
                     {
                         listing_status: 'PENDING',
@@ -36,46 +38,13 @@ module.exports = {
                     {
                         listing_status: 'DENIED',
                     }
-                ]
+                ],
+                seller
             }
 
             const GetListings = await Sequelize.transaction(async (transaction) => {
 
-                const getAllListing = await FindAllListingBySeller(seller, transaction);
-
-                // const get_master_id = getAllListing.map((listing, i) => {
-
-                //     const master_id = listing.master_property_id;
-
-                //     return {
-                //         master_property_id: master_id
-                //     }
-
-                // });
-
-                // const approvals_field = {
-                //     [Op.or]: get_master_id
-                // }
-
-                // const approvals = await FindApprovalsByMasterId(approvals_field, transaction);
-
-                // const listings = [];
-
-                // getAllListing.forEach((g) => {
-                //     let approval = [];
-                //     approvals.forEach((a) => {
-                //         if (a.master_property_id === g.master_property_id) {
-                //             return approval.push(a)
-                //         }
-                //         return;
-                //     })
-
-                //     return listings.push({
-                //         listing: g, approval
-                //     })
-                // })
-
-                // master_ids = get_master_id;
+                const getAllListing = await FindAllListingBySeller(params, transaction);
 
                 return getAllListing;
 
@@ -301,7 +270,7 @@ module.exports = {
 
             const GetDraftListings = await Sequelize.transaction(async (transaction) => {
 
-                const getAllListing = await FindAllListingByStatusAndUser(params_field, transaction);
+                const getAllListing = await FindAllListingBySeller(params_field, transaction);
 
                 return getAllListing
 
@@ -516,5 +485,116 @@ module.exports = {
         }
     },
 
+    // DONE
+    GetAllMasterListingBySeller: async (req, res, next) => {
+        try {
 
+            const {property_status, seller} = req.query.payload;
+
+            const params_fields = {
+                property_status,
+                seller
+            }
+
+            const GetAllListing = await Sequelize.transaction(async (transaction) => {
+
+                const get_all_listing = await FindAllMasterListing(params_fields, transaction);
+
+                return get_all_listing;
+
+            });
+            let data;
+            let message;
+
+            if (GetAllListing.length === 0) {
+
+                data = DataResponseHandler(
+                    GetAllListing,
+                    `NO_${property_status}_LISTING_FOUND`,
+                    200,
+                    true,
+                    `No ${property_status} listing available.`
+                );
+                message = `No ${property_status} listing available.`;
+
+            } else {
+
+                data = DataResponseHandler(
+                    GetAllListing,
+                    `${property_status}_LISTING_FOUND`,
+                    200,
+                    true,
+                    `${property_status} listing retrieved`
+                );
+
+                message = `${property_status} listing retrieved`;
+
+            }
+
+            const success = SuccessFormatter(data, 200, message);
+    
+            SuccessLoggerHelper(success, data);
+
+            res.send(success);
+
+        } catch (error) {
+            console.log("sfs", error);
+            next(error)
+        }
+    },
+
+    // DONE - PENDING AND DENIED
+    GetSellerListingDetailsByStatus: async (req, res, next) => {
+        try {
+
+            const {seller, listing_status} = req.query.payload;
+
+            const GetListingDetails = await Sequelize.transaction(async (transaction) => {
+
+                const get_listing_details = await FindListingDetailsByStatus({ seller, listing_status}, transaction);
+
+                return get_listing_details;
+
+            })
+        
+            const listings = DataResponseHandler(
+                GetListingDetails,
+                "LISTING_RETRIEVED",
+                200,
+                true,
+                "SUCCESS"
+            );
+
+            const listings_log = DataResponseHandler(
+                { seller, listing_status },
+                "LISTING_RETRIEVED",
+                200,
+                true,
+                "SUCCESS"
+            );
+
+            const success = SuccessFormatter(listings, 200, message);
+
+            SuccessLoggerHelper(req, listings_log);
+
+            // const cookieOptions = {
+            //     expires: new Date(Date.now() + 300000),
+            //     maxAge: 300000, // 5 min
+            //     path: '/',
+            //     httOnly: true,
+            //     secure: true,
+            //     sameSite: true,
+            //     domain,
+            //     signed:true
+            //     // expires: new Date(Date.now() + 900000)
+            // }
+
+            // res.cookie('listings', GetListings, cookieOptions)
+
+            res.status(200).send(success);
+
+        } catch (error) {
+            next(error);
+        }
+    },
 }
