@@ -24,13 +24,6 @@ module.exports = {
                 params: { ...queryParams }
 
             };
-<<<<<<< HEAD
-    
-            const response = await axios.get(url, config);
-            console.log(response);
-            return response
-           
-=======
 
             const search_ckyc = await CKYC_API.get(url, config);
 
@@ -71,7 +64,6 @@ module.exports = {
 
             return {search_ckyc, message, code}
 
->>>>>>> 6c3686c86dbe4761296b63d312f2125cb598d12b
         } catch (error) {
             console.log(error);
 
