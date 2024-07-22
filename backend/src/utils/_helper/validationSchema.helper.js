@@ -45,7 +45,20 @@ const ValidationSchema = {
         listing_id: Joi.string().required(),
         property_status: Joi.string()
         .custom((value, helpers) => {
-            const status = ['ACTIVE', 'INACTIVE'];
+            const status = ['ACTIVE', 'INACTIVE', 'SOLD'];
+
+            if (!status.includes(value)) {
+                return helpers.message(`Invalid approval status`);
+            }
+
+            return value;
+        }).required(),
+    }),
+    GetSellerMasterListingParams: Joi.object().keys({
+        seller: Joi.string().required(),
+        property_status: Joi.string()
+        .custom((value, helpers) => {
+            const status = ['ACTIVE', 'INACTIVE', 'SOLD'];
 
             if (!status.includes(value)) {
                 return helpers.message(`Invalid approval status`);
