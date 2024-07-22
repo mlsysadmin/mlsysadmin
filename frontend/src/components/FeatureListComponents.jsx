@@ -56,11 +56,11 @@ const FeaturedComponents = ({ onComplete }) => {
   );
 
   useEffect(() => {
-    // Assuming form is completed when features are selected
+ 
     if (selectedFeatures.length > 0) {
-      onComplete(true);  // Indicating completion
+      onComplete(true);  
     } else {
-      onComplete(false); // Indicating not completed
+      onComplete(false); 
     }
   }, [selectedFeatures, onComplete]);
 

@@ -23,9 +23,19 @@ const GetAllOutdoorAmenities = async () =>{
       throw error
     }
 }
+const GetAllAmenities = async () =>{
+  try {
+    const response = await MLBROKERAGEAxiosInstance.get(`api/listing/get/all-amenities`);
+    const allAmenities = response.data.data.data.amenities;
+    return allAmenities;
+  } catch (error) {
+    console.log(error)
+}
+}
 
 export{
   GetAllIndoorAmenities,
-  GetAllOutdoorAmenities
+  GetAllOutdoorAmenities,
+  GetAllAmenities
 }
  
