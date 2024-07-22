@@ -24,7 +24,7 @@
     border: 1px solid #d90000;
     cursor: pointer;
     border-radius: 20px;
-    margin-right: 5px;
+    margin: 5px;
     display: flex;
     align-items: center;
 }

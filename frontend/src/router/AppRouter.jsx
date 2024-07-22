@@ -104,10 +104,6 @@ const Routes = [
                 element: <ListingPage />,
               },
               {
-                path: "/listing-form",
-                element: <ListingFormPage />,
-              },
-              {
                 path: "/drafts",
                 element: <MyDraftsPage />,
               },

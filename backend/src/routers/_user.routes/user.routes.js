@@ -13,6 +13,6 @@ USER_ROUTER.post('/login', Validation(LoginBody, "body"), Login);
 // USER_ROUTER.post('/register', Validation(ValidationSchema.RegisterBody, "body"), Register);
 USER_ROUTER.post('/register', Register);
 USER_ROUTER.post('/search-user', verifyApiKey, SearchUser);
-USER_ROUTER.post('/search-kyc', auth, Validation(searchKyc, 'body', 'payload'), SearchKyc);
+USER_ROUTER.post('/search-kyc', verifyApiKey, Validation(searchKyc, 'body', 'payload'), SearchKyc);
 
 module.exports = USER_ROUTER;

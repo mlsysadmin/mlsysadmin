@@ -1,68 +1,87 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import Sidebar from "./Components/DraftSidebarComponent";
 import Footer from "./Components/FooterComponent";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay, faSearch } from "@fortawesome/free-solid-svg-icons";
-import "../../styles/ListingsSummaryLists.css"; // Import the CSS file
+import { Link } from 'react-router-dom'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay, faSearch } from '@fortawesome/free-solid-svg-icons';
+import '../../styles/ListingsSummaryLists.css';  // Import the CSS file
+import { LocationFormatter, DateFormatter } from "../../utils/LocationDateFormatter";
+import { GetAllDeniedandProcessing } from "../../api/ListingDraftsSeller";
 
 const ListingsSummaryLists = () => {
-  const [listings] = useState([
-    {
-      date: "03-11-2024",
-      propertyId: "11X8NBSADAFO",
-      propertyType: "Condominium",
-      type: "For Sale",
-      floorArea: "30 sqm",
-      price: "5,000,000",
-      location: "Mandaue City, Cebu",
-      status: "Processing",
-    },
-    {
-      date: "04-15-2024",
-      propertyId: "LKJHGFDSAREW",
-      propertyType: "House",
-      type: "For Sale",
-      floorArea: "200 sqm",
-      price: "12,000,000",
-      location: "Cebu City, Cebu",
-      status: "Processing",
-    },
-    {
-      date: "05-01-2024",
-      propertyId: "QWERTYUIOP",
-      propertyType: "Apartment",
-      type: "For Rent",
-      floorArea: "60 sqm",
-      price: "20,000",
-      location: "Cebu City, Cebu",
-      status: "Denied",
-    },
-    // Add more listings as needed
-  ]);
+  // const [listings] = useState([
+  //   {
+  //     date: "03-11-2024",
+  //     propertyId: "11X8NBSADAFO",
+  //     propertyType: "Condominium",
+  //     type: "For Sale",
+  //     floorArea: "30 sqm",
+  //     price: "5,000,000",
+  //     location: "Mandaue City, Cebu",
+  //     status: "Processing",
+  //   },
+  //   {
+  //     date: "04-15-2024",
+  //     propertyId: "LKJHGFDSAREW",
+  //     propertyType: "House",
+  //     type: "For Sale",
+  //     floorArea: "200 sqm",
+  //     price: "12,000,000",
+  //     location: "Cebu City, Cebu",
+  //     status: "Processing",
+  //   },
+  //   {
+  //     date: "05-01-2024",
+  //     propertyId: "QWERTYUIOP",
+  //     propertyType: "Apartment",
+  //     type: "For Rent",
+  //     floorArea: "60 sqm",
+  //     price: "20,000",
+  //     location: "Cebu City, Cebu",
+  //     status: "Denied",
+  //   },
+    
+  // ]);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [entriesPerPage, setEntriesPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate(); // Get the navigate function from react-router-dom
 
+const [deniedProcessingListings, setDeniedProcessingListings] =  useState([])
+
+
+  const sellerDeniedProcessing = async () =>{
+    try{
+      const response = await GetAllDeniedandProcessing();
+      const rs = response.data;
+      setDeniedProcessingListings(rs);
+      console.log("response:", response);
+    }catch (error){
+      console.log(error);
+    }
+  };
+
+useEffect( () =>{
+  sellerDeniedProcessing();
+}, []);
+
   const handleShowDetailsClick = (status) => {
-    if (status === "Processing") {
-      navigate("/show-details-processing");
-    } else if (status === "Denied") {
-      navigate("/show-details-denied");
+    if (status === 'PROCESSING') {
+      navigate('/show-details-processing');
+    } else if (status === 'DENIED') {
+      navigate('/show-details-denied');
     } else {
       navigate("/show-details-default"); // Fallback route
     }
   };
 
-  const filteredListings = listings.filter(
-    (listing) =>
-      listing.propertyType.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      listing.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      listing.location.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // const filteredListings = deniedProcessingListings.filter((listing) =>
+  //   listing.propertyType.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //   listing.type.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //   listing.location.toLowerCase().includes(searchQuery.toLowerCase())
+  // );
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -74,10 +93,10 @@ const ListingsSummaryLists = () => {
     setCurrentPage(1);
   };
 
-  const totalPages = Math.ceil(filteredListings.length / entriesPerPage);
+  const totalPages = Math.ceil(deniedProcessingListings.length / entriesPerPage);
   const startIndex = (currentPage - 1) * entriesPerPage;
   const endIndex = startIndex + entriesPerPage;
-  const paginatedListings = filteredListings.slice(startIndex, endIndex);
+  const paginatedListings = deniedProcessingListings.slice(startIndex, endIndex);
 
   return (
     <div>
@@ -166,17 +185,16 @@ const ListingsSummaryLists = () => {
                         Show Details
                       </button>
                     </td>
-                    <td>{listing.date}</td>
-                    <td>{listing.propertyId}</td>
-                    <td>{listing.propertyType}</td>
-                    <td>{listing.type}</td>
-                    <td>{listing.floorArea}</td>
-                    <td>{listing.price}</td>
-                    <td>{listing.location}</td>
-                    <td
-                      className={`status-cell ${listing.status.toLowerCase()}`}
-                    >
-                      {listing.status}
+                    <td>{DateFormatter(listing.createdAt)}</td>
+                    <td>{listing.property_id}</td>
+                    <td>{listing.property_type.type}</td>
+                    <td>{listing.listing_type.listing_type}</td>
+                    <td>{listing.unit_details.floor_area}</td>
+                    <td>{listing.unit_details.price}</td>
+                    <td>{LocationFormatter(listing.location)}</td>
+                    <td >
+                    {console.log('Listing status:', listing.listing_status)}
+                    {listing.listing_status === 'PENDING' ? 'PROCESSING' : listing.listing_status}
                     </td>
                   </tr>
                 ))}
@@ -239,14 +257,7 @@ const ListingsSummaryLists = () => {
         </nav>
       </div>
       <div className="summary-entries-count">
-        Showing{" "}
-        {filteredListings.length > 0
-          ? `${startIndex + 1} to ${Math.min(
-              endIndex,
-              filteredListings.length
-            )} of ${filteredListings.length}`
-          : "0"}{" "}
-        entries
+        Showing {deniedProcessingListings.length > 0 ? `${startIndex + 1} to ${Math.min(endIndex, deniedProcessingListings.length)} of ${deniedProcessingListings.length}` : "0"} entries
       </div>
       <Footer />
     </div>

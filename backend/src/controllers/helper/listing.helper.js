@@ -60,6 +60,18 @@ module.exports = {
             throw error;
         }
     },
+    DeniedListing: async () => {
+        try {
+
+
+            
+        } catch (error) {
+            throw error;
+        }
+    },
+
+
+
     AddPhotos: async (upload_photos, transaction) => {
         try {
     

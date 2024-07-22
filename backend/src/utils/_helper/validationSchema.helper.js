@@ -3,7 +3,7 @@ require('dotenv').config();
 const Joi = require("joi");
 
 const ValidationSchema = {
-    
+
     LoginBody: Joi.object().keys({
         email: Joi.string().required().email(),
         password: Joi.string().required(),
@@ -31,6 +31,29 @@ const ValidationSchema = {
     }),
     listing_id: Joi.string().required(),
     seller: Joi.string().required(),
+    property_status: Joi.string()
+        .custom((value, helpers) => {
+            const status = ['ACTIVE', 'INACTIVE'];
+
+            if (!status.includes(value)) {
+                return helpers.message(`Invalid approval status`);
+            }
+
+            return value;
+        }).required(),
+    GetMasterDetailsParams: Joi.object().keys({
+        listing_id: Joi.string().required(),
+        property_status: Joi.string()
+        .custom((value, helpers) => {
+            const status = ['ACTIVE', 'INACTIVE'];
+
+            if (!status.includes(value)) {
+                return helpers.message(`Invalid approval status`);
+            }
+
+            return value;
+        }).required(),
+    }),
     searchKyc: Joi.object().keys({
         cellphoneNumber: Joi.string().required()
     }),
@@ -67,7 +90,7 @@ const ValidationSchema = {
             title: Joi.string().required(),
             description: Joi.string().required(),
         }),
-        upload_photos: Joi.array().required(),
+        // upload_photos: Joi.array().required(),
         amenities: Joi.object().keys({
             indoor_features: Joi.array().required(),
             outdoor_features: Joi.array().required(),
@@ -112,7 +135,7 @@ const ValidationSchema = {
             description: Joi.string().allow(...[null, ""]).optional(),
         }),
         upload_photos: Joi.array().optional(),
-            // upload_date: Joi.date().optional()
+        // upload_date: Joi.date().optional()
         amenities: Joi.object().keys({
             indoor_features: Joi.array().optional(),
             outdoor_features: Joi.array().optional(),
@@ -160,6 +183,39 @@ const ValidationSchema = {
             inclusion_name: Joi.array().required()
         }),
     }),
+    UpdateApprovalBody: Joi.array().items({
+        listing_id: Joi.string().required(),
+        approval_status: Joi.string().required(),
+        approver_email: Joi.string().required(),
+        remarks: Joi.string().required()
+    }),
+    ListingByApprover: Joi.object().keys({
+        approver_email: Joi.string()
+            .email({
+                minDomainSegments: 2,
+                tlds: {
+                    allow: ['com']
+                },
+            })
+            .custom((value, helpers) => {
+                const domain = ['mlhuillier.com', 'gmail.com'];
+
+                let getIndex = value.indexOf('@');
+                getIndex += 1;
+
+                let sliceEmail = value.slice(getIndex);
+
+                console.log(getIndex, sliceEmail);
+                if (!domain.includes(sliceEmail)) {
+                    return helpers.message(`Email must be from [ ${domain} ] domains`);
+                }
+
+                return value;
+            })
+            .required(),
+        listing_status: Joi.string().allow(...["PENDING", "APPROVED", "DENIED"]).required()
+    })
+
 }
 
 module.exports = ValidationSchema;

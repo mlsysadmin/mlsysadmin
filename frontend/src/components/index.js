@@ -54,9 +54,8 @@ import { SoldPropertyDetails } from "./MY Drafts/SoldPropertyDetails";
 import { ActiveListingDetails } from "./MY Drafts/ActiveListingDetails";
 
 // modals
+//Application
 
-import SuccessModal from "./modals/SuccessModal";
-import ApplicationDetailModal from "./layout/ApplicationDetails/ApplicationDetailsModal";
 
 
 

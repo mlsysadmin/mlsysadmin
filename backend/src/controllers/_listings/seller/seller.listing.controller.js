@@ -18,6 +18,7 @@ const SuccessLoggerHelper = require('../../../utils/_helper/SuccessLogger.helper
 const DataResponseHandler = require('../../../utils/_helper/DataResponseHandler.helper');
 const { Op } = require('sequelize');
 const { ModifyListing } = require('../../helper/listing.helper');
+const { PutObject } = require('../../../services/bucket.service');
 
 const domain = process.env.COOKIE_DOMAIN;
 
@@ -26,48 +27,57 @@ module.exports = {
     GetAllSellerListings: async (req, res, next) => {
         try {
 
-            const seller = req.params.seller;
-            let master_ids = [];
+            const seller = req.query.seller;
+            const status = {
+                [Op.or]: [
+                    {
+                        listing_status: 'PENDING',
+                    },
+                    {
+                        listing_status: 'DENIED',
+                    }
+                ]
+            }
 
             const GetListings = await Sequelize.transaction(async (transaction) => {
 
                 const getAllListing = await FindAllListingBySeller(seller, transaction);
 
-                const get_master_id = getAllListing.map((listing, i) => {
+                // const get_master_id = getAllListing.map((listing, i) => {
 
-                    const master_id = listing.master_property_id;
+                //     const master_id = listing.master_property_id;
 
-                    return {
-                        master_property_id: master_id
-                    }
+                //     return {
+                //         master_property_id: master_id
+                //     }
 
-                });
+                // });
 
-                const approvals_field = {
-                    [Op.or]: get_master_id
-                }
+                // const approvals_field = {
+                //     [Op.or]: get_master_id
+                // }
 
-                const approvals = await FindApprovalsByMasterId(approvals_field, transaction);
+                // const approvals = await FindApprovalsByMasterId(approvals_field, transaction);
 
-                const listings = [];
+                // const listings = [];
 
-                getAllListing.forEach((g) => {
-                    let approval = [];
-                    approvals.forEach((a) => {
-                        if (a.master_property_id === g.master_property_id) {
-                            return approval.push(a)
-                        }
-                        return;
-                    })
+                // getAllListing.forEach((g) => {
+                //     let approval = [];
+                //     approvals.forEach((a) => {
+                //         if (a.master_property_id === g.master_property_id) {
+                //             return approval.push(a)
+                //         }
+                //         return;
+                //     })
 
-                    return listings.push({
-                        listing: g, approval
-                    })
-                })
+                //     return listings.push({
+                //         listing: g, approval
+                //     })
+                // })
 
-                master_ids = get_master_id;
+                // master_ids = get_master_id;
 
-                return listings
+                return getAllListing;
 
             })
             let listings;
@@ -83,7 +93,7 @@ module.exports = {
                     "SUCCESS"
                 );
                 listings_log = DataResponseHandler(
-                    { master_ids, seller },
+                    { seller, listing_count: GetListings.length },
                     "NO_LISTING_FOUND",
                     200,
                     true,
@@ -101,15 +111,15 @@ module.exports = {
                 );
 
                 listings_log = DataResponseHandler(
-                    { master_ids, seller },
+                    { seller, listing_count: GetListings.length },
                     "LISTING_RETRIEVED",
                     200,
                     true,
                     "SUCCESS"
                 );
                 message = "Retrieved Successfully";
-            }
 
+            }
 
             const success = SuccessFormatter(listings, 200, message);
 
@@ -139,14 +149,15 @@ module.exports = {
     AddPropertyListing: async (req, res, next) => {
         try {
 
-            const upload_date = DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss');
+            const upload_date_time = DayJS(new Date()).format('YYYY-MM-DD HH:mm:ss');
+            const upload_date = DayJS(new Date()).format('YYYYMMDD');
 
             const {
                 property_details,
                 unit_details,
                 location,
                 description,
-                upload_photos,
+                // upload_photos,
                 amenities,
                 seller,
                 property_id,
@@ -156,6 +167,8 @@ module.exports = {
             const {
                 indoor_features, outdoor_features, feature_name, inclusion_name
             } = amenities
+
+            const upload_photos = req.files;
 
             const AddListing = await Sequelize.transaction(async (transaction) => {
 
@@ -167,8 +180,18 @@ module.exports = {
 
                 const type = await FindListingType(listing_type, transaction);
 
+                const UploadPhotos = await PutObject(upload_photos, listing_id, upload_date);
+
+                const level = process.env.LISTING_APPROVAL_LEVEL;
+                const current_level = 1;
+
                 const property_listing_fields = {
-                    listing_id, seller, property_id, listing_status,
+                    listing_id, 
+                    seller, 
+                    property_id, 
+                    listing_status,
+                    current_level,
+                    level,
                     ...description,
                     property_type: {
                         ...property_details
@@ -191,8 +214,8 @@ module.exports = {
                         }
                     },
                     photos: {
-                        photo: JSON.stringify(upload_photos),
-                        upload_date
+                        photo: JSON.stringify(UploadPhotos),
+                        upload_date_time
                     }
 
                 };
@@ -268,7 +291,7 @@ module.exports = {
     GetAllDraftListing: async (req, res, next) => {
         try {
 
-            const seller = req.params.seller;
+            const seller = req.query.seller;
             const listing_status = "DRAFT";
 
             const params_field = {
@@ -297,7 +320,7 @@ module.exports = {
                     "SUCCESS"
                 );
                 listings_log = DataResponseHandler(
-                    GetDraftListings,
+                    { seller, listing_count: GetDraftListings.length },
                     "NO_LISTING_FOUND",
                     200,
                     true,
@@ -315,7 +338,7 @@ module.exports = {
                 );
 
                 listings_log = DataResponseHandler(
-                    { seller },
+                    { seller, listing_count: GetDraftListings.length },
                     "LISTING_RETRIEVED",
                     200,
                     true,
@@ -380,6 +403,9 @@ module.exports = {
 
                 const prefix_name = process.env.LISTING_PREFIX_NAME;
 
+                const level = Number(process.env.LISTING_APPROVAL_LEVEL);
+                const current_level = 0;
+
                 if (!isEdit && !listing_id) {
                     listing_id = await ListingIdGeneratorHelper(prefix_name);
                 }
@@ -407,7 +433,10 @@ module.exports = {
 
                 const update_listing_fields = {
                     listing_id,
-                    property_id, listing_status,
+                    property_id, 
+                    listing_status,
+                    current_level,
+                    level,
                     ...description,
                     property_type,
                     listing_type_id,
@@ -425,6 +454,8 @@ module.exports = {
                     listing_id, 
                     seller, 
                     property_id, listing_status,
+                    current_level,
+                    level,
                     ...description,
                     property_type,
                     listing_type_id,

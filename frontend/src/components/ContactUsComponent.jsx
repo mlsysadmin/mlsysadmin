@@ -10,9 +10,6 @@ import {
   ListingSearch,
   MainLayout,
 } from "../components";
-
-// import ContactUsComponent from "../components/custom/ContactUsComponent.jsx"
-
 const ContactUsComponent = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 

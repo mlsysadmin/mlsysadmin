@@ -57,9 +57,10 @@ export {
     LoanCalculatorPage,
     ContactUsPage,
     MyDraftsPage,
-    ListingFormPage,
     SoldPropertyDetailsPage,
     ActiveListingDetails,
     ShowDetailsProcessing,
-    ShowDetailsDenied
+    ShowDetailsDenied,
+    // ListingSearchLoggedin,
+    ListingFormPage
 }
