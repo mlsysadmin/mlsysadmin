@@ -5,7 +5,7 @@ const Sequelize = require('../../config/_db/mlbrokerage.db');
 const SuccessFormatter = require('../../utils/_helper/SuccessFormatter.helper');
 const SuccessLoggerHelper = require('../../utils/_helper/SuccessLogger.helper');
 const DataResponseHandler = require('../../utils/_helper/DataResponseHandler.helper');
-const { FindAllMasterListingPublic } = require('../../streamline/listing.datastream');
+const { FindAllMasterListingPublic, FindMasterListingDetailsById } = require('../../streamline/listing.datastream');
 
 const domain = process.env.COOKIE_DOMAIN;
 
@@ -87,4 +87,52 @@ module.exports = {
             next(error);
         }
     },
+    // BY PROPERTY STATUS AND PROPERTY LISTING ID
+    GetMasterListingDetails: async (req, res, next) => {
+        try {
+
+            const payload = req.query.payload;
+
+            const params_fields = {
+                property_status: payload.property_status,
+                listing_id: payload.listing_id,
+                listing_status: "APPROVED"
+            }
+
+            const GetListing = await Sequelize.transaction(async (transaction) => {
+
+                const get_listing = await FindMasterListingDetailsById(params_fields, transaction);
+
+                return get_listing;
+
+            });
+
+            let data = DataResponseHandler(
+                GetListing,
+                `LISTING_FOUND`,
+                200,
+                true,
+                `Listing retrieved`
+            );
+
+            let logger = DataResponseHandler(
+                { listing_id: payload.listing_id },
+                `LISTING_FOUND`,
+                200,
+                true,
+                `Listing retrieved`
+            );
+
+            let message = `Listing retrieved`;
+
+            const success = SuccessFormatter(data, 200, message);
+    
+            SuccessLoggerHelper(req, logger);
+
+            res.send(success);
+
+        } catch (error) {
+            next(error)
+        }
+    }
 }
