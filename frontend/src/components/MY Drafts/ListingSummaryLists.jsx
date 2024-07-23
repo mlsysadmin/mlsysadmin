@@ -10,39 +10,6 @@ import { LocationFormatter, DateFormatter } from "../../utils/LocationDateFormat
 import { GetAllDeniedandProcessing } from "../../api/ListingDraftsSeller";
 
 const ListingsSummaryLists = () => {
-  // const [listings] = useState([
-  //   {
-  //     date: "03-11-2024",
-  //     propertyId: "11X8NBSADAFO",
-  //     propertyType: "Condominium",
-  //     type: "For Sale",
-  //     floorArea: "30 sqm",
-  //     price: "5,000,000",
-  //     location: "Mandaue City, Cebu",
-  //     status: "Processing",
-  //   },
-  //   {
-  //     date: "04-15-2024",
-  //     propertyId: "LKJHGFDSAREW",
-  //     propertyType: "House",
-  //     type: "For Sale",
-  //     floorArea: "200 sqm",
-  //     price: "12,000,000",
-  //     location: "Cebu City, Cebu",
-  //     status: "Processing",
-  //   },
-  //   {
-  //     date: "05-01-2024",
-  //     propertyId: "QWERTYUIOP",
-  //     propertyType: "Apartment",
-  //     type: "For Rent",
-  //     floorArea: "60 sqm",
-  //     price: "20,000",
-  //     location: "Cebu City, Cebu",
-  //     status: "Denied",
-  //   },
-    
-  // ]);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [entriesPerPage, setEntriesPerPage] = useState(10);

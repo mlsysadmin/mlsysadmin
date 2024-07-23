@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/newpage.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,13 +9,25 @@ import Pagination from "./custom/pagination/Pagination";
 import { cardData } from "../utils/ListingMockData";
 import property from "../images/Guest/property.png";
 import ListingSearch from "./custom/customsearch/custom.listingsearch";
+import GetAllPublicListing from "../api/GetAllPublicListings";
 
 export const NewPageComponent = () => {
   const navigate = useNavigate();
-
+const [publiclisting, setPublicListing] = useState([])
   const handleCardClick = (data) => {
     navigate('/previewListing', { state: data });
   };
+
+  const allPublicListing = async () =>{
+    const res = await GetAllPublicListing();
+    setPublicListing(res);
+    console.log("public listing:", publiclisting)
+
+  }
+
+  useEffect (() => {
+    allPublicListing();
+  }, [])
 
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 9
