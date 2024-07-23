@@ -25,12 +25,27 @@ import PreviewListing from "./PreviewListing.page";
 import ModalComponents from "./ModalComponents.page";
 import RegistrationModal from "./RegistrationModal.page";
 import LoginModal from "./LoginModal.page";
-import { ShowDetailsProcessing } from "../components";
+import { ShowDetailsProcessing, SupportCreateListingComponent } from "../components";
 import { ShowDetailsDenied } from "../components";
 import ActiveListingDetails from "./ActiveListingDetails.page";
 import SoldPropertyDetailsPage from "./SoldPropertyDetails.page";
 // import ListingSearchLoggedin from "../components/custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
 
+// SUPPORT
+import SupportOutlet from "./support/SupportOutlet.page";
+import SignIn from './support/signin.page';
+import SupportDashboardPage from "./support/SupportPage";
+import OpenApplication from './support/OpenApplication.page';
+import PendingApplication from './support/PendingApplication.page';
+import DisapprovedApplication from './support/DisapprovedApplication.page';
+import ListingDetails from './support/ListingDetails.page';
+import ApplicationDetails from './support/ApplicationDetails.page';
+import CancelledApplication from './support/CancelledApplication.page';
+import PreApprovalRequest from './support/Pre-ApprovalRequests.Page';
+import PreApprovalRequestListing from './support/PreApprovalRequestsListing.Page';
+import PendingApplicationpage from "./support/PendingApplication.page";
+import CancelledApplicationpage from "./support/CancelledApplication.page";
+import CloseApplication from './support/ClosedApplication.page';
 export {
 
     LoginModal,
@@ -62,5 +77,20 @@ export {
     ShowDetailsProcessing,
     ShowDetailsDenied,
     // ListingSearchLoggedin,
-    ListingFormPage
+    ListingFormPage,
+    SupportOutlet,
+    SignIn,
+    SupportDashboardPage,
+    OpenApplication,
+    PendingApplication,
+    DisapprovedApplication,
+    ListingDetails,
+    ApplicationDetails,
+    CancelledApplication,
+    PreApprovalRequest,
+    PreApprovalRequestListing,
+    PendingApplicationpage,
+    CancelledApplicationpage,
+    CloseApplication,
+    SupportCreateListingComponent
 }

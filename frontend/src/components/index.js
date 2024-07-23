@@ -53,12 +53,19 @@ import { ShowDetailsDenied } from "./ShowDetailsDenied";
 import { SoldPropertyDetails } from "./MY Drafts/SoldPropertyDetails";
 import { ActiveListingDetails } from "./MY Drafts/ActiveListingDetails";
 
-// modals
-//Application
-
-
-
-
+//  SUPPORT
+import ApplicationDetails from "./support/ApplicationDetails";
+import CancelledApplication from './custom/support/custom.CancelledApplication';
+import DisapprovedApplication from './custom/support/custom.DisapprovedApplicationMasterlist';
+import ListingDetails from './support/ListingDetails';
+import OpenApplication from './custom/support/custom.OpenApplicationMasterlist';
+import PendingApplication from './custom/support/custom.PendingApplicationMasterlist';
+import PreApprovalRequest from './custom/support/PreApprovalRequests';
+import PreApprovalRequestListing from './support/PreApprovalRequestsListing';
+import SupportComponent from './support/SupportDashboardComponent';
+import SignIn from './support/SignIn.component';
+import CloseApplicationModal from "./custom/support/CloseApplicationModal";
+import SupportCreateListingComponent from "./support/SupportCreateListingComponent";
 export {
   ActiveListingDetails,
   ShowDetailsProcessing,
@@ -99,4 +106,16 @@ export {
   RentComponent,
   SellComponent,
   SoldPropertyDetails,
+  ApplicationDetails,
+  CancelledApplication,
+  DisapprovedApplication,
+  ListingDetails,
+  OpenApplication,
+  PendingApplication,
+  PreApprovalRequest,
+  SupportComponent,
+  SignIn,
+  PreApprovalRequestListing,
+  CloseApplicationModal,
+  SupportCreateListingComponent
 };

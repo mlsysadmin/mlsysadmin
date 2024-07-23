@@ -1,0 +1,500 @@
+@import "./root.css";
+
+.ListingDetails {
+  display: grid;
+  grid-template-columns: 49% 49%;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.ListingDetails .propertyDetailsText,
+.descriptionText,
+.unitDetailsText,
+.locationText,
+.featureText {
+  padding: 20px 0px 5px 0px;
+  color: #000000bd;
+  font-family: var(--font-family);
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: normal;
+}
+.descriptionFields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.caption {
+  border-radius: 10px;
+  height: 100vh;
+  resize: none;
+  width: 100%;
+}
+.submit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 97%;
+  padding: 1%;
+}
+#caption {
+  height: 60vh;
+}
+/* Modals.css */
+
+.fmodal,
+.smodal {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 350px;
+  text-align: center;
+  height: auto;
+  max-height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.fmodal h2 {
+  margin-bottom: 20px;
+  color: #d90000;
+}
+.smodal h2 {
+  color: green;
+}
+.fmodal p {
+  font-size: 1.1rem;
+}
+.button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.fmodal .button-primary {
+  background-color: #d90000;
+  color: white;
+}
+.smodal .button-primary {
+  background: green;
+  color: #fff;
+}
+.button-secondary {
+  background-color: #fff;
+  border: 1px solid #d90000;
+  color: black;
+}
+
+.submit button {
+  background: #d90000;
+  border: none;
+  padding: 10px 20px;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+}
+.ListingDetails .leftSide {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-left: 5%;
+  gap: 15px;
+}
+.ListingDetails .leftSide .propertyDetailsFields,
+.unitDetailsFields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+.ListingDetails .leftSide .select-field {
+  margin: 10px 0px 0px 0px;
+}
+
+.fieldClassName {
+  border: 1px solid;
+  border-color: var(--gray-border-color);
+  border-radius: 10px;
+  height: 50px;
+  width: 100%;
+  padding: 0px 10px 0px 10px;
+}
+.select-field .labelClassName {
+  color: var(--gray-border-color);
+  font-family: var(--font-family);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  min-width: 120px;
+  display: inline-block;
+}
+.select-field .fieldClassName option {
+  color: var(--font-color);
+  font-family: var(--font-family);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+  padding: 10px;
+  line-height: normal;
+}
+
+/* Description */
+.ListingDetails .rightSide {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  gap: 15px;
+}
+
+.text-field {
+  margin: 15px 0px 0px 0px;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.text-field .textLabel {
+  color: #8c9094;
+  font-family: "Poppins", Helvetica;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+}
+.googleMapDisplay {
+  margin: 100px 0px 0px 0px;
+  border-radius: 10px;
+  border: 1px #8c9094 solid;
+  width: 93%;
+  height: 47%;
+}
+.ListingDetails .features {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100%;
+  width: 99%;
+  padding: 1%;
+  grid-column: 1 / span 2;
+}
+
+.ListingDetails .features .IndoorFeatures,
+.OutdoorFeatures,
+.featuresAndAmmenities,
+.includes {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  width: 100%;
+  height: 30px;
+}
+
+.indoorFeaturesText,
+.outdoorFeaturesText,
+.featuresAndAmenitiesText,
+.includesText,
+.uploadPhotosText {
+  display: grid;
+  align-items: end;
+  color: #8c9094;
+  font-family: "Poppins", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.ListingDetails .features .featuresButton {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-self: end;
+  gap: 10px;
+}
+.ListingDetails .features .addButton {
+  color: white;
+  border: 1px red solid;
+  background-color: red;
+  font-family: "Poppins", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+.ListingDetails .features .subtractButton {
+  font-family: "Poppins", Helvetica;
+  border: 1px red solid;
+  font-size: 20px;
+  font-weight: 400;
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  letter-spacing: 0;
+  line-height: normal;
+  color: red;
+}
+.ListingDetails .features .inputFieldss {
+  display: grid;
+  width: 100%;
+  height: 50%;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  padding: 5px;
+}
+
+.ListingDetails .features .FeaturesFields .fieldFeatures {
+  border: 1px solid;
+  border-radius: 10px;
+  height: 50px;
+  width: 100%;
+  padding: 0px 10px 0px 10px;
+}
+
+.ListingDetails .features .ammenitiesFields,
+.includesFields {
+  display: grid;
+  width: 100%;
+  height: 50%;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 5px;
+}
+.ListingDetails .features .FeaturesFields .ammenitiesInputField,
+.includesInputField {
+  border: 1px solid;
+  border-radius: 10px;
+  height: 50px;
+  width: 98%;
+  padding: 0px 10px 0px 10px;
+}
+@media only screen and (max-width: 330px) {
+  .IndoorFeatures,
+  .OutdoorFeatures,
+  .featuresAndAmmenities,
+  .includes {
+    padding-bottom: 5%;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .ListingDetails .leftSide {
+    padding-left: 0;
+    width: 80%;
+  }
+  .uploadPhotos {
+    width: 85%;
+  }
+  .leftSide {
+    padding-left: 0px;
+  }
+  .ListingDetails {
+    display: flex;
+    flex-direction: column;
+  }
+  .ListingDetails .leftSide .propertyDetailsFields,
+  .unitDetailsFields {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+  }
+  .features {
+    padding-top: 60%;
+  }
+  .ListingDetails .features .IndoorFeatures,
+  .OutdoorFeatures,
+  .featuresAndAmmenities,
+  .includes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 100%;
+  }
+  .featuresButton {
+    display: flex;
+    flex-direction: column;
+  }
+  .featuresButton {
+    display: flex;
+    flex-direction: column;
+  }
+  .featuresAndAmmenities {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ListingDetails .features .inputFieldss {
+    padding-top: 8%;
+    grid-template-columns: 1fr;
+    display: grid;
+    width: 80%;
+  }
+
+  .ListingDetails .features .featuresButton {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+  }
+  .ListingDetails .features .featuresButton .addButton {
+    width: 100%;
+  }
+  .ListingDetails .features .featuresButton .subtractButton {
+    width: 100%;
+  }
+  .googleMapDisplay {
+    margin: 100px 0px 0px 0px;
+    border-radius: 10px;
+    border: 1px #8c9094 solid;
+    width: 100%;
+    height: 30%;
+  }
+  .ListingDetails .features .ammenitiesFields {
+    padding-top: 8%;
+    display: flex;
+    flex-direction: column;
+    width: 76%;
+  }
+  .ListingDetails .features .includesFields {
+    padding-top: 8%;
+    display: flex;
+    flex-direction: column;
+    width: 76%;
+  }
+  .uploadPhotos {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 860px) and (min-width: 770px) {
+  .featureText {
+    width: 50%;
+  }
+  .indoorFeaturesText {
+    width: 60%;
+  }
+  .ListingDetails {
+    display: flex;
+    flex-direction: column;
+  }
+  .ListingDetails .leftSide .propertyDetailsFields,
+  .unitDetailsFields {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .features {
+    width: 90%;
+    padding-top: 60%;
+  }
+  .ListingDetails .features .IndoorFeatures,
+  .OutdoorFeatures,
+  .featuresAndAmmenities,
+  .includes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 100%;
+  }
+  .featuresButton {
+    display: flex;
+    flex-direction: column;
+  }
+  .featuresButton {
+    display: flex;
+    flex-direction: column;
+  }
+  .featuresAndAmmenities {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ListingDetails .features .inputFieldss {
+    padding-top: 8%;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+  }
+
+  .ListingDetails .features .featuresButton {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  .ListingDetails .features .featuresButton .addButton {
+    width: 30%;
+  }
+  .ListingDetails .features .featuresButton .subtractButton {
+    width: 30%;
+  }
+  .googleMapDisplay {
+    margin: 100px 0px 0px 0px;
+    border-radius: 10px;
+    border: 1px #8c9094 solid;
+    width: 100%;
+    height: 30%;
+  }
+  .ListingDetails .features .ammenitiesFields {
+    padding-top: 8%;
+    display: flex;
+    flex-direction: column;
+    width: 76%;
+  }
+  .ListingDetails .features .includesFields {
+    padding-top: 8%;
+    display: flex;
+    flex-direction: column;
+    width: 76%;
+  }
+  .location {
+    display: flex;
+    gap: 1rem;
+  }
+}
+@media only screen and (min-width: 900px) and (max-width: 1200px) {
+  .ListingDetails {
+    display: flex;
+    flex-direction: column;
+  }
+  .ListingDetails .leftSide {
+    width: 100vw;
+  }
+  .ListingDetails .features {
+    padding-top: 6%;
+  }
+  .ListingDetails .features .inputFieldss {
+    width: 90vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .ListingDetails .features .IndoorFeatures,
+  .ListingDetails .features .OutdoorFeatures,
+  .ListingDetails .features .featuresAndAmmenities,
+  .ListingDetails .features .includes {
+    width: 90vw;
+  }
+  .ListingDetails .features .ammenitiesFields,
+  .ListingDetails .features .includesFields {
+    grid-template-columns: 1fr 1fr;
+    width: 89vw;
+  }
+  .googleMapDisplay {
+    margin: 100px 0px 0px 0px;
+    border-radius: 10px;
+    border: 1px #8c9094 solid;
+    width: 100%;
+    height: 20%;
+  }
+  .unitDetailsFields {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
