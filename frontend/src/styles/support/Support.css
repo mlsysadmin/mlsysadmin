@@ -2,16 +2,15 @@
 
 .ListingDetails {
   display: grid;
-  grid-template-columns: 49% 49%;
-  gap: 1rem;
-  align-items: baseline;
+  /* grid-template-columns: 49% 49%; */
+  gap: 50px;
 }
 
 .ListingDetails .propertyDetailsText,
 .descriptionText,
 .unitDetailsText,
 .locationText,
-.featureText {
+.featureText, .uploadPhotosText {
   padding: 20px 0px 5px 0px;
   color: #000000bd;
   font-family: var(--font-family);
@@ -20,27 +19,27 @@
   letter-spacing: 0;
   line-height: normal;
 }
+
 .descriptionFields {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.caption {
-  border-radius: 10px;
-  height: 100vh;
-  resize: none;
-  width: 100%;
+
+.description-caption {
+  padding: 10px;
 }
-.submit {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 97%;
-  padding: 1%;
+
+.description-caption:hover,
+.description-caption:focus {
+  border-color: var(--red) !important;
+  box-shadow: 0 0 0 2px #f778783f !important;
 }
+
 #caption {
   height: 60vh;
 }
+
 /* Modals.css */
 
 .fmodal,
@@ -68,77 +67,100 @@
   margin-bottom: 20px;
   color: #d90000;
 }
+
 .smodal h2 {
   color: green;
 }
+
 .fmodal p {
   font-size: 1.1rem;
 }
-.button {
-  padding: 10px 20px;
-  margin: 5px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
+
+.support--submit-btn{
+  display: flex;
+  justify-content: end;
+}
+
+.support--submit-btn .submit-btn, 
+.support--submit-btn .submit-btn.ant-btn:hover {
+  padding: 28px 33px;
   font-size: 16px;
+  background: var(--red);
 }
 
 .fmodal .button-primary {
   background-color: #d90000;
   color: white;
 }
+
 .smodal .button-primary {
   background: green;
   color: #fff;
 }
+
 .button-secondary {
   background-color: #fff;
   border: 1px solid #d90000;
   color: black;
 }
 
-.submit button {
-  background: #d90000;
-  border: none;
-  padding: 10px 20px;
-  color: #fff;
-  font-weight: bold;
-  border-radius: 10px;
-}
 .ListingDetails .leftSide {
   display: grid;
   grid-template-columns: 1fr;
-  margin-left: 5%;
+  /* margin-left: 5%; */
   gap: 15px;
 }
+
 .ListingDetails .leftSide .propertyDetailsFields,
-.unitDetailsFields {
+.unitDetailsFields,
+.ListingDetails .support-location {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
+  gap: 1rem;
 }
+
 .ListingDetails .leftSide .select-field {
   margin: 10px 0px 0px 0px;
 }
 
-.fieldClassName {
-  border: 1px solid;
-  border-color: var(--gray-border-color);
-  border-radius: 10px;
-  height: 50px;
-  width: 100%;
-  padding: 0px 10px 0px 10px;
+.ListingDetails .fieldClassName.ant-select-outlined .ant-select-selector:hover,
+.ListingDetails .fieldClassName.ant-select-focused .ant-select-selector,
+.ListingDetails .features .FeaturesFields .fieldFeatures.ant-select-outlined .ant-select-selector:hover,
+.ListingDetails .features .FeaturesFields .fieldFeatures.ant-select-focused .ant-select-selector,
+.ListingDetails .features .FeaturesFields .ammenitiesInputField.ant-input:hover,
+.ListingDetails .features .FeaturesFields .ammenitiesInputField.ant-input:focus,
+.ListingDetails .features .FeaturesFields .includesInputField.ant-input:hover,
+.ListingDetails .features .FeaturesFields .includesInputField.ant-input:focus  {
+  border-color: var(--red) !important;
+  box-shadow: 0 0 0 2px #f778783f !important;
+
 }
+
+.fieldClassName .ant-select-arrow {
+  color: var(--mute-gray) !important;
+}
+
+.fieldClassName,
+.ListingDetails .features .FeaturesFields .fieldFeatures {
+  /* border: 1px solid;
+  border-color: var(--red); */
+  border-radius: 10px;
+  height: 40px;
+  width: 100%;
+  /* padding: 0px 10px 0px 10px; */
+}
+
 .select-field .labelClassName {
   color: var(--gray-border-color);
   font-family: var(--font-family);
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 400;
   letter-spacing: 0;
   line-height: normal;
   min-width: 120px;
   display: inline-block;
 }
+
 .select-field .fieldClassName option {
   color: var(--font-color);
   font-family: var(--font-family);
@@ -162,32 +184,33 @@
   display: grid;
   grid-template-columns: 1fr;
 }
-.text-field .textLabel {
+
+.text-field .textLabel,
+.caption-textLabel {
   color: #8c9094;
   font-family: "Poppins", Helvetica;
-  font-size: 22px;
+  font-size: 17px;
   font-weight: 400;
   letter-spacing: 0;
   line-height: normal;
 }
+
 .googleMapDisplay {
   margin: 100px 0px 0px 0px;
   border-radius: 10px;
-  border: 1px #8c9094 solid;
-  width: 93%;
+  border: 1px #8c9094 dashed;
+  /* width: 93%; */
   height: 47%;
 }
+
 .ListingDetails .features {
   display: grid;
   grid-template-columns: 1fr;
-  height: 100%;
   width: 99%;
-  padding: 1%;
+  /* padding: 1%; */
   grid-column: 1 / span 2;
 }
 
-.ListingDetails .features .IndoorFeatures,
-.OutdoorFeatures,
 .featuresAndAmmenities,
 .includes {
   display: grid;
@@ -199,10 +222,7 @@
 .indoorFeaturesText,
 .outdoorFeaturesText,
 .featuresAndAmenitiesText,
-.includesText,
-.uploadPhotosText {
-  display: grid;
-  align-items: end;
+.includesText{
   color: #8c9094;
   font-family: "Poppins", Helvetica;
   font-size: 20px;
@@ -212,51 +232,38 @@
 }
 
 .ListingDetails .features .featuresButton {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-self: end;
-  gap: 10px;
+  display: flex;
+  gap: 0.8rem;
+  justify-content: end;
+
 }
-.ListingDetails .features .addButton {
+
+.ListingDetails .features .support--add-btn:hover,
+.ListingDetails .features .support--subtract-btn:hover {
+  border-color: var(--red) !important;
+  box-shadow: 0 0 0 2px #f778783f !important;
+}
+
+.ListingDetails .features .support--add-btn,
+.ListingDetails .features .support--add-btn:hover {
+  background: var(--red);
   color: white;
-  border: 1px red solid;
-  background-color: red;
-  font-family: "Poppins", Helvetica;
-  font-size: 20px;
-  font-weight: 400;
-  width: 100%;
-  height: 40px;
-  border-radius: 10px;
-  letter-spacing: 0;
-  line-height: normal;
 }
-.ListingDetails .features .subtractButton {
-  font-family: "Poppins", Helvetica;
-  border: 1px red solid;
-  font-size: 20px;
-  font-weight: 400;
-  width: 100%;
-  height: 40px;
-  border-radius: 10px;
-  letter-spacing: 0;
-  line-height: normal;
-  color: red;
+
+.ListingDetails .features .support--subtract-btn,
+.ListingDetails .features .support--subtract-btn:hover {
+  background: transparent;
+  color: var(--red);
+  border: 1px solid var(--red);
 }
+
 .ListingDetails .features .inputFieldss {
   display: grid;
   width: 100%;
   height: 50%;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 10px;
-  padding: 5px;
-}
-
-.ListingDetails .features .FeaturesFields .fieldFeatures {
-  border: 1px solid;
-  border-radius: 10px;
-  height: 50px;
-  width: 100%;
-  padding: 0px 10px 0px 10px;
+  /* padding: 5px; */
 }
 
 .ListingDetails .features .ammenitiesFields,
@@ -266,17 +273,62 @@
   height: 50%;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-  padding: 5px;
+  margin: 5px 0;
 }
-.ListingDetails .features .FeaturesFields .ammenitiesInputField,
-.includesInputField {
-  border: 1px solid;
+
+.IndoorFeatures,
+.OutdoorFeatures,
+.featuresAndAmmenities,
+.includes {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.features .support--features{
+  margin: 8px 0;
+}
+
+.support--upload-photos{
+  margin: 35px 0 20px 0;
+}
+
+.support--upload-photos .drag-upload.ant-upload-wrapper{
+  display: block;
+}
+.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload{
+  padding: 30px;
+}
+.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload:hover{
+  border-color: var(--red);
+  
+}
+
+.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload-list .ant-upload-list{
+  width: 150px;
+  height: 150px;
+}
+
+.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload-list .ant-upload-list-item{
+  padding: 0;
   border-radius: 10px;
-  height: 50px;
-  width: 98%;
-  padding: 0px 10px 0px 10px;
 }
+.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload-list .ant-upload-list-item::before{
+  width: 0;
+  height: 0;
+}
+.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload-list.ant-upload-list-picture-card{
+  gap: 25px;
+  margin: 30px 0;
+}
+
+.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload-list .ant-upload-list-item-thumbnail img{
+  object-fit: cover;
+  border-radius: 10px;
+}
+
 @media only screen and (max-width: 330px) {
+
   .IndoorFeatures,
   .OutdoorFeatures,
   .featuresAndAmmenities,
@@ -290,25 +342,31 @@
     padding-left: 0;
     width: 80%;
   }
+
   .uploadPhotos {
     width: 85%;
   }
+
   .leftSide {
     padding-left: 0px;
   }
+
   .ListingDetails {
     display: flex;
     flex-direction: column;
   }
+
   .ListingDetails .leftSide .propertyDetailsFields,
   .unitDetailsFields {
     display: flex;
     flex-direction: column;
     width: 70%;
   }
+
   .features {
     padding-top: 60%;
   }
+
   .ListingDetails .features .IndoorFeatures,
   .OutdoorFeatures,
   .featuresAndAmmenities,
@@ -318,14 +376,17 @@
     width: 100%;
     max-height: 100%;
   }
+
   .featuresButton {
     display: flex;
     flex-direction: column;
   }
+
   .featuresButton {
     display: flex;
     flex-direction: column;
   }
+
   .featuresAndAmmenities {
     display: flex;
     flex-direction: column;
@@ -343,12 +404,15 @@
     flex-direction: row;
     width: 50%;
   }
+
   .ListingDetails .features .featuresButton .addButton {
     width: 100%;
   }
+
   .ListingDetails .features .featuresButton .subtractButton {
     width: 100%;
   }
+
   .googleMapDisplay {
     margin: 100px 0px 0px 0px;
     border-radius: 10px;
@@ -356,18 +420,21 @@
     width: 100%;
     height: 30%;
   }
+
   .ListingDetails .features .ammenitiesFields {
     padding-top: 8%;
     display: flex;
     flex-direction: column;
     width: 76%;
   }
+
   .ListingDetails .features .includesFields {
     padding-top: 8%;
     display: flex;
     flex-direction: column;
     width: 76%;
   }
+
   .uploadPhotos {
     width: 75%;
   }
@@ -377,23 +444,28 @@
   .featureText {
     width: 50%;
   }
+
   .indoorFeaturesText {
     width: 60%;
   }
+
   .ListingDetails {
     display: flex;
     flex-direction: column;
   }
+
   .ListingDetails .leftSide .propertyDetailsFields,
   .unitDetailsFields {
     display: flex;
     flex-direction: column;
     width: 100%;
   }
+
   .features {
     width: 90%;
     padding-top: 60%;
   }
+
   .ListingDetails .features .IndoorFeatures,
   .OutdoorFeatures,
   .featuresAndAmmenities,
@@ -403,14 +475,17 @@
     width: 100%;
     max-height: 100%;
   }
+
   .featuresButton {
     display: flex;
     flex-direction: column;
   }
+
   .featuresButton {
     display: flex;
     flex-direction: column;
   }
+
   .featuresAndAmmenities {
     display: flex;
     flex-direction: column;
@@ -428,12 +503,15 @@
     flex-direction: row;
     width: 100%;
   }
+
   .ListingDetails .features .featuresButton .addButton {
     width: 30%;
   }
+
   .ListingDetails .features .featuresButton .subtractButton {
     width: 30%;
   }
+
   .googleMapDisplay {
     margin: 100px 0px 0px 0px;
     border-radius: 10px;
@@ -441,50 +519,60 @@
     width: 100%;
     height: 30%;
   }
+
   .ListingDetails .features .ammenitiesFields {
     padding-top: 8%;
     display: flex;
     flex-direction: column;
     width: 76%;
   }
+
   .ListingDetails .features .includesFields {
     padding-top: 8%;
     display: flex;
     flex-direction: column;
     width: 76%;
   }
+
   .location {
     display: flex;
     gap: 1rem;
   }
 }
+
 @media only screen and (min-width: 900px) and (max-width: 1200px) {
   .ListingDetails {
     display: flex;
     flex-direction: column;
   }
+
   .ListingDetails .leftSide {
     width: 100vw;
   }
+
   .ListingDetails .features {
     padding-top: 6%;
   }
+
   .ListingDetails .features .inputFieldss {
     width: 90vw;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
   }
+
   .ListingDetails .features .IndoorFeatures,
   .ListingDetails .features .OutdoorFeatures,
   .ListingDetails .features .featuresAndAmmenities,
   .ListingDetails .features .includes {
     width: 90vw;
   }
+
   .ListingDetails .features .ammenitiesFields,
   .ListingDetails .features .includesFields {
     grid-template-columns: 1fr 1fr;
     width: 89vw;
   }
+
   .googleMapDisplay {
     margin: 100px 0px 0px 0px;
     border-radius: 10px;
@@ -492,6 +580,7 @@
     width: 100%;
     height: 20%;
   }
+
   .unitDetailsFields {
     display: flex;
     flex-direction: column;

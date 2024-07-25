@@ -6,96 +6,70 @@ import "../../styles/support/SupportDashboard.css";
 import Order from "../layout/support/OrderLayout";
 import Footer from "../layout/support/FooterComponent";
 import SecondNavigationComponent from "../layout/support/SecondNavigationComponent";
+import SupportSubMenu from "./SupportSubMenu";
+
+import Approval from '../../asset/icons/approval.png';
+import Bookmark from '../../asset/icons/bookmark.png';
+import Heart from '../../asset/icons/heart.png';
+import House from '../../asset/icons/house.png';
+import Star from '../../asset/icons/star.png';
 
 const SupportDashboardComponent = () => {
-  const [propertySold, setPropertySold] = useState("1000000");
-  const [highlighted, setHighlighted] = useState("20000");
-  const [activeListing, setActiveListing] = useState("300");
-  const [newListing, setNewListing] = useState("40000000");
-  const [listingSaves, setListingSaves] = useState("50000000");
-  const [forApproval, setForApproval] = useState("60000000000");
+
   const [totalSales, setTotalSales] = useState("10,000");
   const [totalCommission, setTotalCommission] = useState("20,000");
-  const navLinks = [
+
+  const summary = [
     {
-      text: "Create listing",
-      to: "/ML-Brokerage/Support/SupportCreateListingPage",
+      total: "1000000",
+      name: "Property Sold",
+      pic: House
     },
     {
-      text: "Listing Masterlist",
-      dropdown: true,
-      options: [
-        { text: "Pending Listings", to: "/ML-Brokerage/Support/pending" },
-        { text: "Active Listings", to: "/ML-Brokerage/Support/active" },
-        {
-          text: "Denied Listings",
-          to: "/ML-Brokerage/Support/disapproved",
-        },
-      ],
+      total: "1000000",
+      name: "Highlighted",
+      pic: Star
     },
     {
-      text: "Application Review",
-      dropdown: true,
-      options: [
-        {
-          text: "Pending Applications",
-          to: "/ML-Brokerage/Support/pendingApplication",
-        },
-        {
-          text: "Approved Applications",
-          to: "/ML-Brokerage/Support/openApplication",
-        },
-        {
-          text: "Denied Applications",
-          to: "/dashboard/Support/disapprovedApplication",
-        },
-        {
-          text: "Canceled Applications",
-          to: "/dashboard/Support/CanceledApplications",
-        },
-        {
-          text: "Closed Applications ",
-          to: "/dashboard/Support/ClosedApplications",
-        },
-      ],
+      total: "1000000",
+      name: "Active Listing",
+      pic: Bookmark
     },
     {
-      text: "Pre-Approved Request",
-      to: "/ML-Brokerage/Support/pre-approved",
+      total: "1000000",
+      name: "Listing Saves",
+      pic: Heart
     },
-    { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
-  ];
+    {
+      total: "1000000",
+      name: "For Approval",
+      pic: Approval
+    },
+    {
+      total: "1000000",
+      name: "New Listing",
+      pic: "https://c.animaapp.com/eS0o2HKP/img/new-bookmark-1.svg"
+    }
+  ]
+  
   return (
     <>
-      <SupportNavigation navLinkProps={navLinks} />
       <div className="SupportDashboard">
-        <SecondNavigationComponent
-          title="Dashboard"
-          text="These is Dashboard!"
-        />
-        <center>
-          {" "}
-          <hr style={{ border: "#D90000 solid 1px", width: "95%" }} />
-        </center>
+        <SupportSubMenu title={'Dashboard'} isShowDetails={false}/>
         <div className="SupportDashboard__container"></div>
         <div className="supportingDashboard">
           <div className="overview">OVERVIEW</div>
           <div className="listing-count">Listing Count &amp; Highlight</div>
         </div>
         <SupportDashboardCard
-          propertySold={propertySold}
-          highlighted={highlighted}
-          activeListing={activeListing}
-          newListing={newListing}
-          listingSaves={listingSaves}
-          forApproval={forApproval}
+          summary={summary}
         />
         <div className="performanceDiv">
           <div className="performance-title">PERFORMANCE</div>
           <div className="totalDiv">
             <div className="totalCard">
               <div className="totalSales">Total Sales</div>
-              <div className="amountOfTotalSales">₱{totalSales}</div>
+              <div className="amountOfTotalSales"><span>₱ </span>{totalSales}</div>
               <p className="salesParagraph">
                 Potential Sales Opportunities is derived from the sum of the
                 prices of the properties your clients are interested at.
@@ -103,7 +77,7 @@ const SupportDashboardComponent = () => {
             </div>
             <div className="totalCard">
               <div className="totalSales">Total Commission</div>
-              <div className="amountOfTotalSales">₱{totalCommission}</div>
+              <div className="amountOfTotalSales"><span>₱ </span>{totalCommission}</div>
               <p className="salesParagraph">
                 Potential Commission is the potential profit you{"'"}ll make
                 when you close the deals with your clients.
@@ -111,7 +85,6 @@ const SupportDashboardComponent = () => {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     </>
   );

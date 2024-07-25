@@ -1,18 +1,33 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import CustomTextField from "../../custom/support/custom.TextField";
 import SupportFeatureLayout from "./SupportFeatureLayout";
 import Modal from "react-modal";
 import "../../../styles/support/Support.css";
 import CustomSelectTypeField from "../../custom/support/custom.SelectTypeField";
+import TextArea from "antd/es/input/TextArea";
+import SemiRoundBtn from "../../custom/buttons/SemiRoundBtn.custom";
 
 Modal.setAppElement("#root"); // Set this to your app root element
 
-const ListingDetailsLayout = () => {
+const ListingDetailsLayout = (props) => {
+  const countries = props.countries;
+  const provinces = props.provinces;
+  const cities = props.cities;
+
   const [subdivision, setSubdivision] = useState("");
   const [completeAddress, setCompleteAddress] = useState("");
   const [mapLocation, setMapLocation] = useState("");
   const [isFirstModalOpen, setIsFirstModalOpen] = useState(false);
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
+
+  const [fileList, setFileList] = useState([{
+    uid: '-1',
+    name: 'image.png',
+    status: 'done',
+    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+  },]);
+  const [previewImage, setPreviewImage] = useState('');
+  const [previewOpen, setPreviewOpen] = useState(false);
 
   const openFirstModal = () => setIsFirstModalOpen(true);
   const closeFirstModal = () => setIsFirstModalOpen(false);
@@ -25,6 +40,38 @@ const ListingDetailsLayout = () => {
   const handleCompleteAddressChange = (e) => setCompleteAddress(e.target.value);
   const handleMapLocationChange = (e) => setMapLocation(e.target.value);
 
+  const getBase64 = async (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
+  const handleOnBeforeUpload = async (file) => {
+    if (!file.url && !file.preview) {
+      file.url = await getBase64(file);
+      setFileList([...fileList, file])
+      return false
+    }
+  };
+
+  const handleOnRemoveUpload = (file) => {
+    const index = fileList.indexOf(file);
+    const newFileList = fileList.slice();
+    newFileList.splice(index, 1);
+    setFileList(newFileList);
+  };
+
+  const handlePreview = async (file) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file);
+    }
+    setPreviewImage(file.url || file.preview);
+    setPreviewOpen(true);
+  };
+
+  const ref = useRef(null)
   // const generateMapSrc = () => {
   //   const query = `${subdivision} ${completeAddress} ${mapLocation}`;
   //   return `https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${encodeURIComponent(query)}`;
@@ -57,19 +104,30 @@ const ListingDetailsLayout = () => {
             <CustomTextField inputType="input" labelName="Price per sqm" />
             <CustomTextField inputType="input" labelName="Property ID" />
           </div>
-          <div className="location">
-            <div className="locationText">Location</div>
+          <div className="locationText">Location</div>
+          <div className="support-location">
+            <CustomSelectTypeField
+              labelName="Country"
+              countries={countries} />
+            <CustomSelectTypeField
+              labelName="Province/State"
+              provinces={provinces} />
+            <CustomSelectTypeField
+              labelName="City/Town"
+              cities={cities} />
             <CustomTextField
-              inputType="textarea"
-              labelName="Subdivision"
+              inputType="input"
+              labelName="Zipcode"
               value={subdivision}
               onChange={handleSubdivisionChange}
             />
+          </div>
+          <div>
             <CustomTextField
-              inputType="textarea"
-              labelName="Complete Address"
-              value={completeAddress}
-              onChange={handleCompleteAddressChange}
+              inputType="input"
+              labelName="House No/Unit/Building Name/Street"
+              value={subdivision}
+              onChange={handleSubdivisionChange}
             />
             <CustomTextField
               inputType="input"
@@ -83,7 +141,11 @@ const ListingDetailsLayout = () => {
           <div className="descriptionText">Description</div>
           <div className="descriptionFields">
             <CustomTextField inputType="input" labelName="Title" />
-            <textarea className="caption" name="" id=""></textarea>
+            <br />
+            <label htmlFor={'Caption'} className="caption-textLabel">
+              Caption
+            </label>
+            <TextArea className="description-caption" name="" id="" rows={40} placeholder="Enter Caption"></TextArea>
             <div className="googleMapDisplay">
               {/* <iframe
                 width="600"
@@ -96,7 +158,17 @@ const ListingDetailsLayout = () => {
             </div>
           </div>
         </div>
-        <SupportFeatureLayout />
+        <SupportFeatureLayout
+          beforeUpload={handleOnBeforeUpload}
+          onRemoved={handleOnRemoveUpload}
+          fileList={fileList}
+          onPreview={handlePreview}
+          previewImage={previewImage}
+          previewOpen={previewOpen}
+          setPreviewImage={setPreviewImage}
+          setPreviewOpen={setPreviewOpen}
+          ref={ref}
+        />
         <Modal
           isOpen={isFirstModalOpen}
           onRequestClose={closeFirstModal}
@@ -131,11 +203,15 @@ const ListingDetailsLayout = () => {
           <button className="button button-primary">Preview Listing</button>
         </Modal>
       </div>
-      <div className="submit">
+      <div className="support--submit-btn">
         <div></div>
-        <button className="button button-primary" onClick={openFirstModal}>
-          Create
-        </button>
+        <SemiRoundBtn
+          className="submit-btn"
+          onClick={openFirstModal}
+          type={'primary'}
+          label={'Create'}
+          size={'large'}
+        />
       </div>
     </>
   );

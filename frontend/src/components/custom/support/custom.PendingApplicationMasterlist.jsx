@@ -6,6 +6,7 @@ import FooterComponent from "../../layout/support/FooterComponent";
 import SupportNavigation from "./custom.NavigationComponent";
 import Pagination from "./custom.pagination";
 import Modal from "./Modal";
+import SupportSubMenu from "../../support/SupportSubMenu";
 
 const PendingApplicationMasterlist = () => {
   const [activeTab, setActiveTab] = useState("pending");
@@ -171,59 +172,11 @@ const PendingApplicationMasterlist = () => {
     startIndex + entriesPerPage - 1,
     filteredListings.length
   );
-  const navLinks = [
-    {
-      text: "Create listing",
-      to: "/ML-Brokerage/Support/SupportCreateListingPage",
-    },
-    {
-      text: "Listing Masterlist",
-      dropdown: true,
-      options: [
-        { text: "Pending Listings", to: "/ML-Brokerage/Support/pending" },
-        { text: "Active Listings", to: "/ML-Brokerage/Support/active" },
-        {
-          text: "Denied Listings",
-          to: "/ML-Brokerage/Support/disapproved",
-        },
-      ],
-    },
-    {
-      text: "Application Review",
-      dropdown: true,
-      options: [
-        {
-          text: "Pending Applications",
-          to: "/ML-Brokerage/Support/pendingApplication",
-        },
-        {
-          text: "Approved Applications",
-          to: "/ML-Brokerage/Support/openApplication",
-        },
-        {
-          text: "Denied Applications",
-          to: "/ML-Brokerage/Support/disapprovedApplication",
-        },
-        {
-          text: "Canceled Applications",
-          to: "/ML-Brokerage/Support/CanceledApplications",
-        },
-        {
-          text: "Closed Applications ",
-          to: "/ML-Brokerage/Support/ClosedApplications",
-        },
-      ],
-    },
-    {
-      text: "Pre-Approved Request",
-      to: "/ML-Brokerage/Support/pre-approved",
-    },
-    { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
-  ];
+
   return (
     <>
-      <SupportNavigation navLinkProps={navLinks} />
       <div className="listings-container">
+        <SupportSubMenu title={'Manage Pending Applications'} isShowDetails={false}/>
         <h1>{tabHeadings[activeTab]}</h1>
         <hr style={{ border: "#D90000 solid 1px", width: "100%" }} />
         <br />

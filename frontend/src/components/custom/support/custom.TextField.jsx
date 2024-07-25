@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../../../styles/support/CustomTextField.css";
+import { Input, Te } from "antd";
+
+const { TextArea } = Input;
+
 const CustomTextField = (props) => {
   const { labelName, inputStyle, inputType, disabled } = props;
   return (
@@ -8,15 +12,16 @@ const CustomTextField = (props) => {
         {labelName}
       </label>
       {inputType === "input" ? (
-        <input
+        <Input
           type="text"
           name={labelName}
           placeholder={`Enter ${labelName}`}
           className="textField"
           disabled={disabled}
+          size="large"
         />
       ) : (
-        <textarea
+        <TextArea
           disabled={disabled}
           name={labelName}
           placeholder={

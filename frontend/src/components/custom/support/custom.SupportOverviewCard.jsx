@@ -7,7 +7,7 @@ const CustomSupportOverviewCard = (props) => {
     <div className="overview-card">
       <div className="top-card">
         <div className="icon-background">
-          <img className="icon" alt="Iconic" src={imgSrc} />
+          <img className="overview-icon" alt="Iconic" src={imgSrc} />
         </div>
         <div className="total-head">{formattedPrice}</div>
       </div>

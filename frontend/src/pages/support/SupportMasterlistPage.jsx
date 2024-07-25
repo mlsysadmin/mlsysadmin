@@ -1,10 +1,10 @@
 import React from "react";
-import { SupportListingMasterlistComponent } from "../../components/support/components";
+import { SupportListingMasterListComponent } from "../../components/index";
 
 const SupportListingMasterlistPage = () => {
   return (
     <div>
-      <SupportListingMasterlistComponent />
+      <SupportListingMasterListComponent />
     </div>
   );
 };

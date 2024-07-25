@@ -1,75 +1,107 @@
+import { CaretDownFilled } from "@ant-design/icons";
+import { Select } from "antd";
 import React, { useState, useEffect } from "react";
+import { GetCountry } from "../../../api/Public/Location.api";
 
 const CustomSelectTypeField = (props) => {
   const labelName = props.labelName;
   const disabled = props.disabled;
+
   const [selectedOption, setSelectedOption] = useState("");
   const [options, setOptions] = useState([]);
   const [listingInformation, setListingInformation] = useState([]);
   const handleSelectChange = (e) => {
-    setSelectedOption(e.target.value);
+    console.log("Selected: ", e);
+    setSelectedOption(e);
   };
+
   const [errors, setErrors] = useState([]);
   useEffect(() => {
     if (labelName === "Property Type") {
       setOptions([
-        { value: "serviceOffice", label: "Service Office" },
-        { value: "shopRetail", label: "Shop/Retail" },
-        { value: "commercialLandLot", label: "Commercial Land/ Lot" },
-        { value: "condominium", label: "Condominium" },
-        { value: "houseLot", label: "House & Lot" },
-        { value: "townhouse", label: "Townhouse" },
-        { value: "warehouse", label: "Warehouse" },
-        { value: "farmLot", label: "Farm Lot" },
-        { value: "hotelResort", label: "Hotel/Resort" },
+        { value: "Service Office", label: "Service Office" },
+        { value: "Shop/Retail", label: "Shop/Retail" },
+        { value: "Commercial Land/Lot", label: "Commercial Land/Lot" },
+        { value: "Condominium", label: "Condominium" },
+        { value: "House & Lot", label: "House & Lot" },
+        { value: "Townhouse", label: "Townhouse" },
+        { value: "Warehouse", label: "Warehouse" },
+        { value: "Farm Lot", label: "Farm Lot" },
+        { value: "Hotel/Resort", label: "Hotel/Resort" },
       ]);
     } else if (labelName === "Listing Type") {
       setOptions([
-        { value: "forRent", label: "For Rent" },
-        { value: "forSale", label: "For Sale" },
-        { value: "pre-selling", label: "Pre-selling" },
+        { value: "For Rent", label: "For Rent" },
+        { value: "For Sale", label: "For Sale" },
+        { value: "Pre-selling", label: "Pre-selling" },
       ]);
     } else if (labelName === "Furnishing") {
       setOptions([
-        { value: "yes", label: "Yes" },
-        { value: "no", label: "No" },
-        { value: "semi", label: "Semi" },
+        { value: "YES", label: "Yes" },
+        { value: "NO", label: "No" },
+        { value: "SEMI", label: "Semi" },
       ]);
-    } else if (labelName === "Classification") {
+    } 
+    else if (labelName === "Classification") {
       setOptions([
-        { value: "brandNew", label: "Brand New" },
-        { value: "resale", label: "Resale" },
+        { value: "New", label: "Brand New" },
+        { value: "Resale", label: "Resale" },
       ]);
-    } else if (
+    } 
+    else if (labelName === "Country") {
+      const countriesData = props.countries;
+
+      const countries = countriesData.map((country) => {
+        return {
+          value: country.name,
+          label: country.name
+        }
+      });
+      setOptions(countries);
+
+    }
+    else if (labelName === "Province/State") {
+      const provincesData = props.provinces;
+
+      const provinces = provincesData.map((province) => {
+        return {
+          value: province.name,
+          label: province.name
+        }
+      });
+      setOptions(provinces);
+    } 
+    else if (labelName === "City/Town") {
+      const citiesData = props.cities;
+
+      const cities = citiesData.map((city) => {
+        return {
+          value: city.name,
+          label: city.name,
+          key: city.addressL2Id
+        }
+      });
+      setOptions(cities);
+    }
+    else if (
       labelName === "Beds" ||
       labelName === "Bathrooms" ||
       labelName === "Parking" ||
       labelName === "No of Floors"
     ) {
-      setOptions([
-        { value: `${labelName}Is1`, label: "1" },
-        { value: `${labelName}Is2`, label: "2" },
-        { value: `${labelName}Is3`, label: "3" },
-        { value: `${labelName}Is4`, label: "4" },
-        { value: `${labelName}Is5`, label: "5" },
-        { value: `${labelName}Is6`, label: "6" },
-        { value: `${labelName}Is7`, label: "7" },
-        { value: `${labelName}Is8`, label: "8" },
-        { value: `${labelName}Is9`, label: "9" },
-        { value: `${labelName}Is10`, label: "10" },
-        { value: `${labelName}Is11`, label: "11" },
-        { value: `${labelName}Is12`, label: "12" },
-        { value: `${labelName}Is13`, label: "13" },
-        { value: `${labelName}Is14`, label: "14" },
-        { value: `${labelName}Is15`, label: "15" },
-        { value: `${labelName}Is16`, label: "16" },
-        { value: `${labelName}Is17`, label: "17" },
-        { value: `${labelName}Is18`, label: "18" },
-        { value: `${labelName}Is19`, label: "19" },
-        { value: `${labelName}Is20`, label: "20" },
-      ]);
+
+      let num = new Array(20);
+      let arrayValue = [];
+
+      for (let index = 1; index <= num.length; index++) {
+        arrayValue.push({
+          value: index,
+          label: index,
+        })
+      }
+      setOptions(arrayValue);
     }
-  }, [labelName]);
+  }, [labelName, props.cities ,props.provinces, props.countries]);
 
   return (
     <div className="select-field">
@@ -77,31 +109,15 @@ const CustomSelectTypeField = (props) => {
         {labelName}
       </label>
       <br />
-      <select
+      <Select
         name={labelName}
         className="fieldClassName"
-        defaultValue=""
         onChange={handleSelectChange}
-        disabled={disabled}
+        placeholder={`Select ${labelName}`}
+        options={options}
+        suffixIcon={<CaretDownFilled/>}
       >
-        <option value="" disabled hidden className="optionsClassName">
-          {labelName === "Listing Type"
-            ? `Select ${labelName}`
-            : labelName === "Beds" ||
-              labelName === "Bathrooms" ||
-              labelName === "Parking" ||
-              labelName === "No of Floors"
-            ? "Select number"
-            : labelName === "Furnishing" || labelName === "Classification"
-            ? "Select Type"
-            : `Select ${labelName}`}
-        </option>
-        {options.map((option, index) => (
-          <option key={index} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
+      </Select>
     </div>
   );
 };

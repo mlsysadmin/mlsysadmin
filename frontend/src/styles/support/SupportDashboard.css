@@ -3,66 +3,69 @@
 }
 
 .SupportDashboard {
-  background-color: #ffff;
+  /* background-color: #ffff; */
   height: 1000px;
-  width: 100%;
+  width: 90%;
   height: auto;
+  margin: auto;
 }
 
 .SupportDashboard .supportingDashboard {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 20px;
-  padding: 10px;
+  /* padding: 10px; */
+  padding: 10px 0;
   justify-content: flex-start;
 }
 
-.SupportDashboard .supportingDashboard .overview {
+.SupportDashboard .supportingDashboard .overview,
+.SupportDashboard .supportingDashboard .listing-count,
+.SupportDashboard .performance-title {
   display: grid;
-  color: #d90000;
   font-family: "Poppins", Helvetica;
-  font-size: 2rem;
   font-weight: 700;
   letter-spacing: 0;
   line-height: normal;
-  margin-left: 2%;
+  /* margin-left: 2%; */
+}
+.SupportDashboard .supportingDashboard .overview,
+.SupportDashboard .performance-title{
+  color: var(--red);
+  font-size: 1.8rem;
 }
 
 .SupportDashboard .supportingDashboard .listing-count {
-  display: grid;
   color: #000000;
-  font-family: "Poppins", Helvetica;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0;
-  margin-left: 2%;
-  line-height: normal;
+  font-size: 1.5rem;
 }
 
-.SupportDashboard .card {
+.SupportDashboard .dashboard--card {
   display: grid;
   grid-template-columns: 25% 25% 25%;
-  margin-left: 2%;
+  /* margin-left: 2%; */
+  grid-gap: 25px 30px;
   justify-items: stretch;
+  margin-top: 18px;
 }
 
-.SupportDashboard .card .overview-card {
+.SupportDashboard .dashboard--card .overview-card {
   border: 1px solid #8c9094;
   border-radius: 20px;
   padding: 20px;
-  margin: 0 10px 10px 10px;
 }
 
-.SupportDashboard .card .overview-card .top-card {
+.SupportDashboard .dashboard--card .overview-card .top-card {
   display: grid;
   grid-template-columns: min-content 1fr;
   gap: 1rem;
+  align-items: center;
 }
 
-.SupportDashboard .card .overview-card .title {
+.SupportDashboard .dashboard--card .overview-card .title {
   color: #000000;
   font-family: "Poppins", Helvetica;
-  font-size: 15px;
+  font-size: 1.2rem;
   font-weight: 800;
   margin-left: 15px;
   margin-top: 15px;
@@ -70,57 +73,45 @@
   line-height: normal;
 }
 
-.SupportDashboard .card .overview-card .total-head {
+.SupportDashboard .dashboard--card .overview-card .total-head {
   color: #000000;
   font-family: "Poppins", Helvetica;
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 0;
   line-height: normal;
-  margin-top: 19px;
+  /* margin-top: 19px; */
 }
 
-.SupportDashboard .card .overview-card .top-card .icon-background {
+.SupportDashboard .dashboard--card .overview-card .top-card .icon-background {
   background-color: #d90000;
   border-radius: 50%;
-  height: 50px;
-  margin-left: 5px;
-  width: 50px;
+  /* height: 50px; */
+  /* width: 50px; */
+  display: flex;
+  align-items: center;
+  padding: 10px;
 }
 
-.SupportDashboard .card .overview-card .top-card .icon {
-  height: 35px;
-  margin-top: 7px;
-  margin-left: 8px;
-  width: 35px;
+.SupportDashboard .dashboard--card .overview-card .top-card .overview-icon {
+  height: 35px !important;
+  width: 35px !important;
+  /* margin-top: 7px !important;
+  margin-left: 8px !important; */
 }
 
 .SupportDashboard .performanceDiv {
-  margin-left: 2%;
-  display: grid;
-  grid-template-columns: 2fr;
-  grid-template-rows: 1fr;
-  gap: 1rem;
-  border-radius: 20px;
-  padding: 20px;
-  justify-items: start;
+  margin-top: 50px;
 }
 
-.SupportDashboard .performanceDiv .performance-title {
-  display: grid;
-  color: #d90000;
-  font-family: "Poppins", Helvetica;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: normal;
-}
 
 .SupportDashboard .performanceDiv .totalDiv {
   display: grid;
   gap: 1rem;
   grid-template-columns: 400px 400px;
   justify-content: start;
+  margin-top: 20px;
+  
 }
 
 .SupportDashboard .performanceDiv .totalDiv .totalCard {
@@ -133,45 +124,50 @@
 .SecondNavigationDiv {
   width: 100%;
 }
+.SecondNavigationDiv hr.support-hr{
+  border: var(--red) solid 2px;
+  width: 100%
+}
 .SecondDiv {
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   justify-content: space-between;
   align-items: center;
-  width: 95%;
-  padding: 0 2%;
+  /* width: 95%; */
+  /* padding: 0 2%; */
 }
 .SecondDiv .id {
   display: flex;
   flex-direction: row;
-  width: 15%;
+  /* width: 15%; */
   flex-wrap: wrap;
   gap: 0.5rem;
   font-weight: bold;
+  font-size: 1.5rem;
 }
 .SecondDiv .id .listingID {
   color: #d90000;
   text-transform: uppercase;
 }
 .SecondDiv .SecondDivTitle {
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: bold;
 }
-.SupportDashboard .performanceDiv .totalDiv .totalCard .totalSales {
-  font-family: "Poppins", Helvetica;
-  font-size: 15px;
+.SupportDashboard .performanceDiv .totalDiv .totalCard .totalSales,
+.SupportDashboard .performanceDiv .totalDiv .totalCard .amountOfTotalSales {
+  color: #000000;
+  font-family: "Poppins";
+  font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: 0;
   line-height: normal;
+}
+.SupportDashboard .performanceDiv .totalDiv .totalCard .totalSales span,
+.SupportDashboard .performanceDiv .totalDiv .totalCard .amountOfTotalSales span{
+  font-size: 1.9rem;
 }
 
-.SupportDashboard .performanceDiv .totalDiv .totalCard .amountOfTotalSales {
-  font-family: "Poppins", Helvetica;
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0;
-  line-height: normal;
-}
+
 @media only screen and (max-width: 768px) {
   .SecondDiv .SecondDivTitle {
     font-size: 1.5rem;
@@ -188,7 +184,7 @@
     display: flex;
     flex-direction: row;
   }
-  .SupportDashboard .card {
+  .SupportDashboard .dashboard--card {
     display: flex;
     flex-direction: column;
   }
@@ -231,7 +227,7 @@
     display: flex;
     flex-direction: row;
   }
-  .SupportDashboard .card {
+  .SupportDashboard .dashboard--card {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }

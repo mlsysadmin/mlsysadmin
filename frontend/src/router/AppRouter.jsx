@@ -48,7 +48,12 @@ import {
   CloseApplication,
   PendingApplicationpage,
   CancelledApplicationpage,
-  SupportCreateListingComponent
+  SupportCreateListingComponent,
+  SupportDashboard,
+  SupportApplicationOutlet,
+  SupportListingOutlet,
+  PendingMasterList,
+  ActiveMasterList
 } from "../pages";
 
 
@@ -180,6 +185,10 @@ const Routes = [
     ]
   },
   {
+    path: "support/signin",
+    element: <SignIn />,
+  },
+  {
     path: "support",
     element: <SupportOutlet />,
     children: [
@@ -188,40 +197,66 @@ const Routes = [
         element: <div />,
       },
       {
-        path: "signin",
-        element: <SignIn />,
+        path: "client-management",
+        // element: <SupportDashboardPage />,
+        element: <SupportDashboard />,
       },
       {
-        path: "support-dashboard",
-        element: <SupportDashboardPage />,
+        path: "applications",
+        element: <SupportApplicationOutlet/>,
+        children: [
+          {
+            path: "open-application",
+            element: <OpenApplication />,
+          },
+          // {
+          //   path: "pending",
+          //   element: <PendingApplicationpage />,
+          // },
+          {
+            path: "denied",
+            element: <DisapprovedApplication />,
+          },
+    
+          {
+            path: "pending",
+            element: <PendingApplication />,
+          },
+          {
+            path: "canceled",
+            element: <CancelledApplication />,
+          },
+          {
+            path: "closed",
+            element: <CloseApplication />,
+          },
+        ]
       },
       {
-        path: "open-application",
-        element: <OpenApplication />,
+        path: 'master-list',
+        element: <SupportListingOutlet/>,
+        children: [
+          {
+            path: "active",
+            element: <ActiveMasterList />,
+          },
+          {
+            path: "pending",
+            element: <PendingMasterList/>,
+          },
+          {
+            path: "denied",
+            element: <ActiveListingDetails />,
+          },
+        ]
       },
-      {
-        path: "pending-application",
-        element: <PendingApplicationpage />,
-      },
-      {
-        path: "disapproved-applicaion",
-        element: <DisapprovedApplication />,
-      },
-
-      {
-        path: "pending",
-        element: <PendingApplication />,
-      },
-      {
-        path: "active",
-        element: <ActiveListingDetails />,
-      },
+      
       {
         path: "disapproved",
         element: <DisapprovedApplication />,
       },
       {
-        path: "SupportCreateListingPage",
+        path: "create-listing",
         element: <SupportCreateListingComponent />,
       },
       {
@@ -231,14 +266,6 @@ const Routes = [
       {
         path: "Application-details/:listingId",
         element: <ApplicationDetails />,
-      },
-      {
-        path: "CanceledApplications",
-        element: <CancelledApplication />,
-      },
-      {
-        path: "ClosedApplications",
-        element: <CloseApplication />,
       },
       {
         path: "Something/Similar",

@@ -1,10 +1,10 @@
 import React from 'react'
-import { PendingApplication } from '../../components/index';
+import { PendingApplication, SupportPendingListingComponent } from '../../components/index';
 
-const ActiveMasterlist = () => {
+const PendingMasterlist = () => {
   return (
-    <PendingApplication/>
+    <SupportPendingListingComponent/>
   )
 }
 
-export default ActiveMasterlist
+export default PendingMasterlist;

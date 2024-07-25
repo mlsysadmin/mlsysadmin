@@ -1,69 +1,58 @@
-import SupportNavigation from "../custom/support/custom.NavigationComponent";
-import Footer from "../layout/support/FooterComponent";
-import SecondNavigationComponent from "../layout/support/SecondNavigationComponent";
+import { useEffect, useState } from "react";
+import { GetCities, GetCountry, GetProvince } from "../../api/Public/Location.api";
 import ListingDetailsLayout from "../layout/support/ListingDetailsLayout";
+import SupportSubMenu from "./SupportSubMenu";
 const SupportCreateListingComponent = () => {
-  const navLinks = [
-    {
-      text: "Create listing",
-      to: "/ML-Brokerage/Support/SupportCreateListingPage",
-    },
-    {
-      text: "Listing Masterlist",
-      dropdown: true,
-      options: [
-        { text: "Pending Listings", to: "/ML-Brokerage/Support/pending" },
-        { text: "Active Listings", to: "/ML-Brokerage/Support/active" },
-        {
-          text: "Denied Listings",
-          to: "/ML-Brokerage/Support/disapproved",
-        },
-      ],
-    },
-    {
-      text: "Application Review",
-      dropdown: true,
-      options: [
-        {
-          text: "Pending Applications",
-          to: "/ML-Brokerage/Support/pendingApplication",
-        },
-        {
-          text: "Approved Applications",
-          to: "/ML-Brokerage/Support/openApplication",
-        },
-        {
-          text: "Denied Applications",
-          to: "/dashboard/Support/disapprovedApplication",
-        },
-        {
-          text: "Canceled Applications",
-          to: "/dashboard/Support/CanceledApplications",
-        },
-        {
-          text: "Closed Applications ",
-          to: "/dashboard/Support/ClosedApplications",
-        },
-      ],
-    },
-    {
-      text: "Pre-Approved Request",
-      to: "/ML-Brokerage/Support/pre-approved",
-    },
-    { text: "Client Management", to: "/ML-Brokerage/Support/SupportDashboard" },
-  ];
+  const [countries, setCountries] = useState([]);
+  const [provinces, setProvinces] = useState([]);
+  const [cities, setCities] = useState([]);
 
+  const Countries = async () => {
+    try {
+      const countries = await GetCountry();
+      setCountries(countries);
+
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+
+  const Provinces = async () => {
+    try {
+      const provinces = await GetProvince();
+
+      setProvinces(provinces)
+
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+  const Cities = async () => {
+    try {
+      const cities = await GetCities();
+
+      setCities(cities)
+
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+
+  useEffect(() => {
+    Countries();
+    Provinces();
+    Cities();
+   }, [])
   return (
-    <div className="SupportCreateListingDiv">
-      <SupportNavigation navLinkProps={navLinks} />
-
-      <SecondNavigationComponent
-        title="Create Listing"
-        text="These is Create Listing Page!"
-        isCreateListing={true}
-      />
-      <ListingDetailsLayout />
-      <Footer />
+    <div className="SupportCreateListingDiv" style={{ width: "85%", margin: 'auto' }}>
+      <SupportSubMenu title={'Create Listing'} isShowDetails={false}/>
+      <ListingDetailsLayout 
+        countries={countries}
+        provinces={provinces}
+        cities={cities}/>
     </div>
   );
 };

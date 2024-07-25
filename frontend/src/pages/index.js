@@ -46,6 +46,13 @@ import PreApprovalRequestListing from './support/PreApprovalRequestsListing.Page
 import PendingApplicationpage from "./support/PendingApplication.page";
 import CancelledApplicationpage from "./support/CancelledApplication.page";
 import CloseApplication from './support/ClosedApplication.page';
+import PendingMasterList from './support/PendingMasterlist.page';
+import ActiveMasterList from './support/SupportMasterlistPage'
+
+import SupportApplicationOutlet from './support/SupportApplicationOutlet';
+import SupportListingOutlet from './support/SupportListingOutlet';
+
+import SupportDashboard from "./support/SupportDashboard";
 export {
 
     LoginModal,
@@ -92,5 +99,10 @@ export {
     PendingApplicationpage,
     CancelledApplicationpage,
     CloseApplication,
-    SupportCreateListingComponent
+    SupportCreateListingComponent,
+    SupportDashboard,
+    SupportApplicationOutlet,
+    SupportListingOutlet,
+    PendingMasterList,
+    ActiveMasterList
 }
