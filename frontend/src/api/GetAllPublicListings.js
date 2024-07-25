@@ -16,4 +16,5 @@ const GetAllPublicListing = async () =>{
         console.log(error);
     }
 }
+
 export default GetAllPublicListing

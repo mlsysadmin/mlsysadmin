@@ -7,11 +7,13 @@ import Card from "./custom/cards/Card";
 import Pagination from "./custom/pagination/Pagination";
 
 import { cardData } from "../utils/ListingMockData";
+
 import property from "../images/Guest/property.png";
 import ListingSearch from "./custom/customsearch/custom.listingsearch";
 import GetAllPublicListing from "../api/GetAllPublicListings";
+import {GetPhotoFromDB, GetPhotoLength} from "../utils/GetPhoto";
 
-export const NewPageComponent = () => {
+const NewPageComponent = () => {
   const navigate = useNavigate();
 const [publiclisting, setPublicListing] = useState([])
   const handleCardClick = (data) => {
@@ -20,13 +22,16 @@ const [publiclisting, setPublicListing] = useState([])
 
   const allPublicListing = async () =>{
     const res = await GetAllPublicListing();
-    setPublicListing(res);
-    console.log("public listing:", publiclisting)
+    const dataresp = res.data
+    setPublicListing(dataresp);
+    console.log("public listing:", dataresp)
 
   }
+// console.log( GetPhotoFromDB())
+console.log( "getlength", GetPhotoLength())
 
   useEffect (() => {
-    allPublicListing();
+    allPublicListing()
   }, [])
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -46,18 +51,18 @@ const [publiclisting, setPublicListing] = useState([])
           <div className="second-content">
             <h1 className="new-page-label">New Properties</h1>
             <div className="card-container">
-              {currentCards.map((data, index) => (
+              {publiclisting.map((data, index) => (
                 <Card 
                   key={index}
-                  title={data.title}
-                  price={data.price}
-                  imgSrc={data.imgSrc}
-                  beds={data.beds}
-                  baths={data.baths}
-                  size={data.size}
-                  likes={data.likes}
-                  forsale={data.forsale}
-                  subtitle={data.subtitle}
+                  title={data.listings.title}
+                  price={`PHP${data.listings.unit_details.price}`}
+                  imgSrc={GetPhotoFromDB(data.listings.photos.photo)}
+                  beds={data.listings.unit_details.no_of_beds}
+                  baths={data.listings.unit_details.no_of_bathrooms}
+                  size={data.listings.unit_details.lot_area}
+                  likes={GetPhotoLength(data.listings.photos.photo)}
+                  forsale={data.listings.listing_type.listing_type}
+                  subtitle={`${data.listings.property_type.subtype} ${data.listings.listing_type.listing_type}`}
                  
                 />
               ))}
