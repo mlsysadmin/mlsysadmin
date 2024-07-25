@@ -25,10 +25,13 @@ import ListingSearchLoggedin from "./custom/customAdvanceSearchLoggedin/ListingS
 import ListingSearch from "./custom/customsearch/custom.listingsearch";
 import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
 import CertainFeatureMenu from "./custom/customsearch/certainfeature";
+import {GetAllPublicListing} from "../api/GetAllPublicListings";
+import {GetPhotoFromDB, GetPhotoLength} from "../utils/GetPhoto";
 
 const DashboardComponent = () => {
   const [loading, setLoading] = useState(false);
   const [userLikes, setUserLikes] = useState([]);
+  const [publiclisting, setPublicListing] = useState([])
   const [isAdvanceSearchOpen, setAdvanceSearchOpen] = useState(false);
 
   useEffect(() => {
@@ -36,10 +39,26 @@ const DashboardComponent = () => {
   });
 
   const navigate = useNavigate();
-
-  const handleCardClick = () => {
-    navigate('/previewListing');
+  const handleCardClick = (id) => {
+    console.log("id",id);
+    // window.location.href = `/previewListing/${id}`;
+    navigate(`/previewListing/${id}`, { state: id });
   };
+  // const handleCardClick = () => {
+  //   navigate('/previewListing');
+  // };
+
+  
+  const allPublicListing = async () =>{
+    const res = await GetAllPublicListing();
+    const dataresp = res.data
+    setPublicListing(dataresp);
+    console.log("public listing:", dataresp)
+
+  }
+  useEffect (() => {
+    allPublicListing()
+  }, [])
 
 
   const url_Redirect = process.env.REACT_APP_LOGIN_URL;
@@ -236,7 +255,7 @@ const DashboardComponent = () => {
             <p>Newest Properties Around You</p>
           </Col>
         </Row>
-        <div className="listing-carousel" onClick={() => handleCardClick()} style={{cursor:"pointer"}}>
+        <div className="listing-carousel"  style={{cursor:"pointer"}}>
           <Carousel
             additionalTransfrom={0}
             arrows
@@ -266,17 +285,21 @@ const DashboardComponent = () => {
             transitionDuration={300}
             sliderClass="carousel-slider-ul"
           >
-            {MockData.map((item, i) => {
+            {publiclisting.map((item, i) => {
               return (
                 <CardListingComponent
-                  title={item.title}
-                  price={item.price}
-                  status={item.status}
-                  pics={item.pics}
+                  title={item.listings.title}
+                  price={`PHP ${item.listings.unit_details.price}`}
+                  status={item.listings.listing_type.listing_type}
+                  pics={GetPhotoLength(item.listings.photos.photo)}
                   features={item.features}
+                  img= {GetPhotoFromDB(item.listings.photos.photo)}
+                  no_of_bathrooms={item.listings.unit_details.no_of_bathrooms}
+                  lot = {item.listings.unit_details.lot_area}
                   key={i}
-                  listingId={item.listing_id}
+                  listingId={item.listings.listing_id}
                   loading={loading}
+                  handleClick= {() => handleCardClick(item.listings.listing_id)}
                 />
               );
             })}

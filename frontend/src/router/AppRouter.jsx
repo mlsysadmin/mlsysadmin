@@ -132,7 +132,7 @@ const Routes = [
                 element: <Sidebar />,
               },
               {
-                path: "/previewListing",
+                path: "/previewListing/:new_id",
                 element: <PreviewListing />,
               },
               {
