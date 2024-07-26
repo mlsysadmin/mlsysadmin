@@ -108,10 +108,10 @@ const GetAllForApproval = async () => {
                     title: listing.title,
                     property_type: listing.property_type.type,
                     listing_type: listing.listing_type.listing_type,
-                    floor_area: listing.unit_details.floor_area,
+                    floor_area: `${listing.unit_details.floor_area} sqm`,
                     price: listing.unit_details.price,
                     location: `${location.city} CITY, ${location.province}`,
-                    status: <Tag bordered={true} color="success" style={{ fontWeight: 500 }}>{list.property_status}</Tag>
+                    status: <Tag bordered={true} color="success" style={{ fontWeight: 500, fontSize: '14px' }}>{list.property_status}</Tag>
                 }
             });
 

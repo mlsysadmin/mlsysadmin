@@ -5,19 +5,21 @@ import SemiRoundBtn from "../../custom/buttons/SemiRoundBtn.custom";
 
 import '../../../styles/support/supportMaster.css';
 import { Input, Select, Tag, message } from "antd";
+import Pagination from "../../custom/pagination/Pagination";
 import TablePagination from "../../custom/pagination/TablePagination";
 
+import DummyData from '../../../utils/supportDummyData/openListingDummy.json';
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { CaretDownFilled } from "@ant-design/icons";
+import { CaretDownFilled, CarFilled } from "@ant-design/icons";
 
 import DayJS from "dayjs";
 
 // API
-import { GetAllActiveMasterList } from '../../../api/Support/Listing.api';
+import { GetAllActiveMasterList, GetAllDeniedList, GetAllPendingMasterList } from '../../../api/Support/Listing.api';
 
 const { Search } = Input;
 
-const SupportApprovedApplicationComponent = () => {
+const SupportDeniedApplicationComponent = () => {
   useEffect(() => {
     GetAllForApproval()
 }, []);
@@ -90,42 +92,41 @@ const GetAllForApproval = async () => {
         setIndex(-1);
         openMessage('loading', 'Retrieving data...', 1);
 
-        const getAllActive = await GetAllActiveMasterList(payload);
+        const getAllDenied = await GetAllDeniedList(payload);
 
-        const data = getAllActive.data;
+        const data = getAllDenied.data;
         console.log("data", data);
 
         if (data.length !== 0) {
 
             const listingData = data.map((list, i) => {
-                const listing = list.listings;
-                const location = listing.location
+                const location = list.location
                 return {
                     key: i,
                     select: <SemiRoundBtn label={'Show Details'} className={'support--show-details-btn'} />,
-                    date: Format_Date(listing.createdAt),
-                    listing_id: listing.listing_id,
-                    title: listing.title,
-                    property_type: listing.property_type.type,
-                    listing_type: listing.listing_type.listing_type,
-                    floor_area: `${listing.unit_details.floor_area} sqm`,
-                    price: listing.unit_details.price,
+                    date: Format_Date(list.createdAt),
+                    listing_id: list.listing_id,
+                    title: list.title,
+                    property_type: list.property_type.type,
+                    listing_type: list.listing_type.listing_type,
+                    floor_area: `${list.unit_details.floor_area} sqm`,
+                    price: list.unit_details.price,
                     location: `${location.city} CITY, ${location.province}`,
-                    status: <Tag bordered={true} color="green" style={{ fontWeight: 500, fontSize: '14px' }}>APPROVED</Tag>
+                    status: <Tag bordered={false} color="orange" style={{ fontWeight: 500, fontSize: '14px' }}>CANCELLED</Tag>
                 }
             });
 
             setTotal(listingData.length);
             setOriginalData(listingData);
 
-            openMessage('success', getAllActive.message, 2);
+            openMessage('success', getAllDenied.message, 2);
             setTimeout(() => {
                 setIsMessageLoadingOpen(false);
                 setIndex(100);
             }, 2500);
 
         } else {
-            openMessage('success', getAllActive.message, 1.5);
+            openMessage('success', getAllDenied.message, 1.5);
             setTimeout(() => {
                 setIsMessageLoadingOpen(false);
                 setIndex(100);
@@ -214,7 +215,7 @@ const openMessage = (type, content, duration) => {
       {contextHolder}
       <div className={`support--pending-master-listing`}
         style={{ width: "85%", margin: 'auto' }}>
-        <SupportSubMenu title={'Manage Active Listing'}
+        <SupportSubMenu title={'Manage Denied Listing'}
           isShowDetails={false} />
         <div className="support--top-controls">
           <div className="support--show-entries">
@@ -258,4 +259,4 @@ const openMessage = (type, content, duration) => {
     </div>
   );
 };
-export default SupportApprovedApplicationComponent;
+export default SupportDeniedApplicationComponent;

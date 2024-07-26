@@ -1,8 +1,8 @@
 import React from "react";
-import { CloseApplicationModal } from "../../components/index";
+import { SupportClosedApplicationComponent } from "../../components/index";
 
 const ClosedApplicationpage = () => {
-  return <CloseApplicationModal />;
+  return <SupportClosedApplicationComponent />;
 };
 
 export default ClosedApplicationpage;

@@ -1,8 +1,8 @@
 import React from "react";
-import { CancelledApplication } from "../../components/index";
+import { SupportCancelledApplicationComponent } from "../../components/index";
 
 const CancelledApplicationpage = () => {
-  return <CancelledApplication />;
+  return <SupportCancelledApplicationComponent />;
 };
 
 export default CancelledApplicationpage;

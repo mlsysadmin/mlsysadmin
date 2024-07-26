@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { SignIn } from '../../components/index'
 
 const Signinpage = () => {
+
   return (
-    <div>
         <SignIn/>
-    </div>
   )
 }
 

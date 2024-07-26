@@ -111,7 +111,7 @@ const GetAllForApproval = async () => {
                     floor_area: `${listing.unit_details.floor_area} sqm`,
                     price: listing.unit_details.price,
                     location: `${location.city} CITY, ${location.province}`,
-                    status: <Tag bordered={true} color="green" style={{ fontWeight: 500, fontSize: '14px' }}>APPROVED</Tag>
+                    status: <Tag bordered={true} color="#32a700" style={{ fontWeight: 500, fontSize: '14px'}}>CLOSED</Tag>
                 }
             });
 

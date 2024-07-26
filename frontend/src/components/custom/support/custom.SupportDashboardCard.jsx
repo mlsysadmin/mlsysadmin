@@ -11,6 +11,7 @@ const CustomSupportDashboardCard = ({ summary }) => {
           imgSrc={sum.pic}
           totalHead={sum.total}
           valueTitle={sum.name}
+          key={i}
         />
       )
     })

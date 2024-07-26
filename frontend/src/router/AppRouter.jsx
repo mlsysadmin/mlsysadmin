@@ -57,6 +57,7 @@ import {
   DeniedMasterList,
   ApprovedApplication
 } from "../pages";
+import ProtectedRoute from "./ProtectedRoute";
 
 
 const Routes = [
@@ -153,10 +154,6 @@ const Routes = [
         element: <Sidebar />,
       },
       {
-        path: "/previewListing",
-        element: <PreviewListing />,
-      },
-      {
         path: "/Modalcomponents",
         element: <ModalComponents />,
       },
@@ -184,6 +181,10 @@ const Routes = [
         path: "/sold-property-details",
         element: <SoldPropertyDetailsPage />,
       },
+      {
+        path: "/previewListing/:new_id",
+        element: <PreviewListing />,
+      },
     ]
   },
   {
@@ -192,7 +193,11 @@ const Routes = [
   },
   {
     path: "support",
-    element: <SupportOutlet />,
+    element: (
+      <ProtectedRoute>
+        <SupportOutlet />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,
@@ -205,7 +210,7 @@ const Routes = [
       },
       {
         path: "applications",
-        element: <SupportApplicationOutlet/>,
+        element: <SupportApplicationOutlet />,
         children: [
           {
             path: "open-application",
@@ -215,7 +220,7 @@ const Routes = [
             path: "denied",
             element: <DisapprovedApplication />,
           },
-    
+
           {
             path: "pending",
             element: <PendingApplication />,
@@ -236,7 +241,7 @@ const Routes = [
       },
       {
         path: 'master-list',
-        element: <SupportListingOutlet/>,
+        element: <SupportListingOutlet />,
         children: [
           {
             path: "active",
@@ -244,18 +249,13 @@ const Routes = [
           },
           {
             path: "pending",
-            element: <PendingMasterList/>,
+            element: <PendingMasterList />,
           },
           {
             path: "denied",
             element: <DeniedMasterList />,
           },
         ]
-      },
-      
-      {
-        path: "disapproved",
-        element: <DisapprovedApplication />,
       },
       {
         path: "create-listing",
@@ -274,7 +274,7 @@ const Routes = [
         element: <h1>Simlar to Me</h1>,
       },
       {
-        path: "pre-approved",
+        path: "pre-approval-request",
         element: <PreApprovalRequest />,
       },
       {

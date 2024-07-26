@@ -61,7 +61,7 @@ import ListingDetails from './support/ListingDetails';
 import OpenApplication from './custom/support/custom.OpenApplicationMasterlist';
 import PendingApplication from './custom/support/custom.PendingApplicationMasterlist';
 import PreApprovalRequest from './custom/support/PreApprovalRequests';
-import PreApprovalRequestListing from './support/PreApprovalRequestsListing';
+import PreApprovalRequestListing from './support/PreApprovalDetailsListing';
 import SupportComponent from './support/SupportDashboardComponent';
 import SignIn from './support/SignIn.component';
 import CloseApplicationModal from "./custom/support/CloseApplicationModal";
@@ -78,6 +78,10 @@ import SupportDeniedMasterlistComponent from './support/master/SupportDeniedMast
 import SupportPendingApplicationComponent from './support/application/SupportPendingApplicationComponent';
 import SupportApprovedApplicationComponent from './support/application/SupportApprovedApplicationComponent';
 import SupportDeniedApplicationComponent from './support/application/SupportDeniedApplicationComponent';
+import SupportCancelledApplicationComponent from './support/application/SupportCancelledApplicationComponent';
+import SupportClosedApplicationComponent from './support/application/SupportClosedApplicationComponent';
+
+import SupportPreApprovalListComponent from "./support/SupportPreApprovalListComponent";
 
 export {
   ActiveListingDetails,
@@ -137,5 +141,8 @@ export {
   SupportDeniedMasterlistComponent,
   SupportPendingApplicationComponent,
   SupportDeniedApplicationComponent,
-  SupportApprovedApplicationComponent
+  SupportApprovedApplicationComponent,
+  SupportCancelledApplicationComponent,
+  SupportClosedApplicationComponent,
+  SupportPreApprovalListComponent
 };

@@ -1,25 +1,23 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
-import SupportTable from "../../custom/support/SupportTable";
-import SupportSubMenu from "../SupportSubMenu";
-import SemiRoundBtn from "../../custom/buttons/SemiRoundBtn.custom";
+import SupportTable from "../custom/support/SupportTable";
+import SupportSubMenu from "./SupportSubMenu";
+import SemiRoundBtn from "../custom/buttons/SemiRoundBtn.custom";
 
-import '../../../styles/support/supportMaster.css';
+import '../../styles/support/supportMaster.css';
 import { Input, Select, message, Table, Tag } from "antd";
-import Pagination from "../../custom/pagination/Pagination";
-import TablePagination from "../../custom/pagination/TablePagination";
+import TablePagination from "../custom/pagination/TablePagination";
 
-import DummyData from '../../../utils/supportDummyData/openListingDummy.json';
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { CaretDownFilled, CarFilled } from "@ant-design/icons";
 
 import DayJS from "dayjs";
 
 // API
-import { GetAllPendingMasterList } from '../../../api/Support/Listing.api';
+import { GetAllPendingMasterList } from '../../api/Support/Listing.api';
 
 const { Search } = Input;
 
-const SupportPendingApplicationComponent = forwardRef((props, ref) => {
+const SupportPreApprovalListComponent = forwardRef((props, ref) => {
     useEffect(() => {
         GetAllForApproval()
     }, []);
@@ -41,24 +39,24 @@ const SupportPendingApplicationComponent = forwardRef((props, ref) => {
             dataIndex: 'select',
         },
         {
-            title: 'Date Created',
+            title: 'Date Applied',
             dataIndex: 'date',
         },
         {
-            title: 'Listing ID',
-            dataIndex: 'listing_id',
+            title: 'Pre-approval ID',
+            dataIndex: 'preapproval_id',
         },
         {
-            title: 'Title',
-            dataIndex: 'title',
+            title: 'Applicant',
+            dataIndex: 'applicant',
         },
         {
-            title: 'Property Type',
-            dataIndex: 'property_type',
+            title: 'Mortgage Type',
+            dataIndex: 'mortgage_type',
         },
         {
-            title: 'Listing Type',
-            dataIndex: 'listing_type',
+            title: 'Property ID',
+            dataIndex: 'property_id',
         },
         {
             title: 'Floor Area',
@@ -107,14 +105,14 @@ const SupportPendingApplicationComponent = forwardRef((props, ref) => {
                         key: i,
                         select: <SemiRoundBtn label={'Show Details'} className={'support--show-details-btn'} />,
                         date: Format_Date(listing.createdAt),
-                        listing_id: listing.listing_id,
-                        title: listing.title,
-                        property_type: listing.property_type.type,
-                        listing_type: listing.listing_type.listing_type,
+                        preapproval_id: listing.listing_id,
+                        applicant: 'Wang Yibo',
+                        mortgage_type: "Buy a Home",
+                        property_id: 123456,
                         floor_area: `${listing.unit_details.floor_area} sqm`,
                         price: listing.unit_details.price,
                         location: `${location.city} CITY, ${location.province}`,
-                        status: <Tag bordered={true} color="gold" style={{ fontWeight: 500, fontSize: '14px' }}>{listing.listing_status}</Tag>
+                        status: <Tag bordered={true} color="cyan" style={{ fontWeight: 500, fontSize: '14px' }}>CLOSED</Tag>
                     }
                 });
 
@@ -278,7 +276,7 @@ const SupportPendingApplicationComponent = forwardRef((props, ref) => {
             {contextHolder}
             <div className={`support--pending-master-listing`}
                 style={{ width: "85%", margin: 'auto' }}>
-                <SupportSubMenu title={'Manage Pending Application'}
+                <SupportSubMenu title={'Manage Pending Listing'}
                     isShowDetails={false} />
                 <div className="support--top-controls">
                     <div className="support--show-entries">
@@ -327,4 +325,4 @@ const SupportPendingApplicationComponent = forwardRef((props, ref) => {
     )
 });
 
-export default SupportPendingApplicationComponent;
+export default SupportPreApprovalListComponent;

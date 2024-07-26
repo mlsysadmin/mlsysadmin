@@ -6,6 +6,9 @@ const GetAllPendingMasterList = async (payload) => {
         const config = {
             params: {
                 payload
+            },
+            headers:{
+                'x-api-key': process.env.REACT_APP_API_KEY
             }
         }
 
@@ -24,6 +27,9 @@ const GetAllActiveMasterList = async (payload) => {
         const config = {
             params: {
                 ...payload
+            },
+            headers:{
+                'x-api-key': process.env.REACT_APP_API_KEY
             }
         }
 
@@ -40,7 +46,12 @@ const GetAllActiveMasterList = async (payload) => {
 const GetAllDeniedList = async () => {
     try {
 
-        const response = await MLBROKERAGEAxiosInstance.get(`/api/support/get/listing/denied/all`);
+        const config = {
+            headers:{
+                'x-api-key': process.env.REACT_APP_API_KEY
+            }
+        }
+        const response = await MLBROKERAGEAxiosInstance.get(`/api/support/get/listing/denied/all`, config);
 
         return response.data.data;
         

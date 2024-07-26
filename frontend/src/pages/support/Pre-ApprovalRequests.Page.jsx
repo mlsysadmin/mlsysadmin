@@ -1,8 +1,8 @@
 import React from "react";
-import { PreApprovalRequest } from "../../components/index";
+import { SupportPreApprovalListComponent } from "../../components/index";
 
 const PreApprovalRequestsPage = () => {
-  return <PreApprovalRequest />;
+  return <SupportPreApprovalListComponent />;
 };
 
 export default PreApprovalRequestsPage;
