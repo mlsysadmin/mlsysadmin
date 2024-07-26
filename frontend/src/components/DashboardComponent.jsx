@@ -1,6 +1,18 @@
 import React, { useEffect, useState } from "react";
-import {useNavigate} from "react-router-dom";
-import { Button, Card, Col, Image, Menu, Row, Space, Tag } from "antd";
+import { useNavigate } from "react-router-dom";
+import {
+  Button,
+  Card,
+  Col,
+  Image,
+  Menu,
+  Row,
+  Space,
+  Tag,
+  Input,
+  Select,
+} from "antd";
+import advSearch from "../assets/advSearch.png";
 import { CaretDownOutlined, SearchOutlined } from "@ant-design/icons";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -17,19 +29,32 @@ import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import { MockData } from "../utils/ListingMockData";
 import CardCategory from "../utils/CardCategoryDashboard.utils";
 import FuenteCircle from "../asset/banners/fuente-circle.png";
-import AdvanceSearch from '../asset/icons/advanceSearch.png';
+import AdvanceSearch from "../asset/icons/advanceSearch.png";
 import Search from "../asset/icons/Search.png";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
 import FooterComponent from "./layout/FooterComponent";
 import ListingSearchLoggedin from "./custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
 import ListingSearch from "./custom/customsearch/custom.listingsearch";
-import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
-import CertainFeatureMenu from "./custom/customsearch/certainfeature";
+
+import DashboardAdvanceSearch from "./custom/customsearch/dashboardAdvanceSearch";
+// import CertainFeatureMenu from "./custom/customsearch/certainfeature";
 
 const DashboardComponent = () => {
   const [loading, setLoading] = useState(false);
   const [userLikes, setUserLikes] = useState([]);
   const [isAdvanceSearchOpen, setAdvanceSearchOpen] = useState(false);
+
+  const { Option } = Select;
+  const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
+  const [isAdvancedSearchOpenLoggedin, setAdvancedSearchOpenLoggedin] =
+    useState(false);
+
+  const handleAdvancedSearchClick = () => {
+    setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
+  };
+  const handleAdvancedSearchCertainClick = () => {
+    setAdvancedSearchOpenLoggedin(!isAdvancedSearchOpenLoggedin);
+  };
 
   useEffect(() => {
     console.log(userLikes);
@@ -38,23 +63,14 @@ const DashboardComponent = () => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    navigate('/previewListing');
+    navigate("/previewListing");
   };
-
 
   const url_Redirect = process.env.REACT_APP_LOGIN_URL;
   const handleUserProfileClick = () => {
     if (url_Redirect) {
       window.location.href = url_Redirect;
     }
-  };
-
-
-
-  const handleAdvancedSearchClick = () => {
-    console.log("handleAdvancedSearchClick called");
-    setAdvanceSearchOpen(!isAdvanceSearchOpen);
-    console.log("isAdvanceSearchOpen:", isAdvanceSearchOpen);
   };
 
   const tags = [
@@ -160,72 +176,75 @@ const DashboardComponent = () => {
             <Col className="banner-tags">
               <Tags />
             </Col>
-            <Col className="banner-search">
-              <Card>
-                <Row className="search-container">
-                  <RoundInput
+
+            <div className="dashboard-first-content">
+              <div className="dashboard-sub-content1">
+                <div className="dashboard-subcontent-inputs">
+                  <Input
+                    className="dashboard-input-field"
                     placeholder="Enter keyword"
-                    size="middle"
-                    classname="card-item field"
+                    style={{
+                      padding: "5px",
+                      borderBottom: "1px solid rgba(140, 144, 148, 0.52)",
+                      outline: "none",
+                    }}
                   />
-                  <RoundSelect
+                  <Input
+                    className="dashboard-input-field"
                     placeholder="Location"
-                    size="middle"
-                    classname="card-item field"
-                    suffixIcon={<CaretDownOutlined />}
+                    style={{
+                      padding: "5px",
+                      borderBottom: "1px solid rgba(140, 144, 148, 0.52)",
+                      outline: "none",
+                    }}
                   />
-                  <RoundSelect
+                  <Select
+                    className="dashboard-select-fields custom-select"
                     placeholder="Property Type"
-                    size="middle"
-                    classname="card-item field"
-                    suffixIcon={<CaretDownOutlined />}
-                  />
-                  <RoundSelect
+                    dropdownClassName="ant-select-dropdown custom-dropdown"
+                    getPopupContainer={(triggerNode) => triggerNode.parentNode}
+                    suffixIcon={
+                      <CaretDownOutlined style={{ color: "#808080" }} />
+                    } // Custom icon
+                  >
+                    <Option value="residential">Residential</Option>
+                    <Option value="commercial">Commercial</Option>
+                    <Option value="land">Land</Option>
+                  </Select>
+                  <Select
+                    className="dashboard-select-fields custom-select"
                     placeholder="Listing Type"
-                    size="middle"
-                    classname="card-item field"
-                    suffixIcon={<CaretDownOutlined />}
-                  />
-                  <Row className="search-buttons">
-                    <RoundBtn
-                      label={"Advanced"}
-                      className="advanced round-btn"
-                      icon={
-                        <>
-                          <img
-                            src={AdvanceSearch}
-                            onClick={handleAdvancedSearchClick}
-                            className="search-icon"
-                            style={{ fontWeight: "900" }}
-                            width={27}
-                          />
-                          {/* <SearchOutlined className='search-icon' style={{ fontWeight: '900' }} /> 
-                          {/* <PlusOutlined className='plus-icon' /> */}
-                        </>
-                      }
-                      classname="card-item"
-                      onClick={handleAdvancedSearchClick}
+                    dropdownClassName="ant-select-dropdown custom-dropdown"
+                    getPopupContainer={(triggerNode) => triggerNode.parentNode}
+                    suffixIcon={
+                      <CaretDownOutlined style={{ color: "#808080" }} />
+                    } // Custom icon
+                  >
+                    <Option value="for-sale">For Sale</Option>
+                    <Option value="for-rent">For Rent</Option>
+                  </Select>
+
+                  <Button
+                    className="dashboard-right-button-advanced"
+                    onClick={handleAdvancedSearchClick}
+                  >
+                    <img
+                      src={advSearch}
+                      alt="Advanced Search"
+                      style={{ width: "30px" }}
                     />
-                    <RoundBtn
-                      label={"Search"}
-                      className="search round-btn"
-                      icon={
-                        <img
-                          src={Search}
-                          className="search-icon"
-                          style={{ fontWeight: "900" }}
-                          width={14}
-                        />
-                      }
-                      classname="card-item"
-                    />
-                  </Row>
-                </Row>
-                {isAdvanceSearchOpen && (
-                    <CertainFeatureMenu/>
-                )}
-              </Card>
-            </Col>
+                    <span>Advanced Search</span>
+                  </Button>
+                  <Button
+                    className="dashboard-right-button"
+                    icon={<SearchOutlined />}
+                  >
+                    <span>Search</span>
+                  </Button>
+                </div>
+                {isAdvancedSearchOpen && <DashboardAdvanceSearch />}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -236,7 +255,11 @@ const DashboardComponent = () => {
             <p>Newest Properties Around You</p>
           </Col>
         </Row>
-        <div className="listing-carousel" onClick={() => handleCardClick()} style={{cursor:"pointer"}}>
+        <div
+          className="listing-carousel"
+          onClick={() => handleCardClick()}
+          style={{ cursor: "pointer" }}
+        >
           <Carousel
             additionalTransfrom={0}
             arrows
@@ -290,7 +313,6 @@ const DashboardComponent = () => {
               className="see-more--btn"
             />
           </a>
-          
         </div>
         <div className="discover--section-2">
           <h3>Helping you buy, rent and sell in Real Estate</h3>

@@ -1,16 +1,27 @@
-.feature-container{
+/* .buyer-feature-container{
     background: #fff;
     padding: 1% 5%;
     display: flex;
     align-items: center;
     justify-content: center;
-}
+} */
+ .buyer-feature-container .feature-h1{
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-left: 6%;
+ }
+ .buyer-feature-container .Properties-for{
+  margin-top: 3%;
+ }
 .card-container {
+  /* margin-top: 5%; */
+  margin: 3%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin: 10px 100px 10px 100px;
+    /* margin: 10px 100px 10px 100px; */
   }
   
   .card {

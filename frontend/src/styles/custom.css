@@ -38,8 +38,25 @@
   background-color: rgb(217,0,0, 40%);
   border-radius: 10px;
 }
+.advance-searchdropdown :where(.css-dev-only-do-not-override-m4timi).ant-slider .ant-slider-handle:hover::after, :where(.css-dev-only-do-not-override-m4timi).ant-slider .ant-slider-handle:active::after, :where(.css-dev-only-do-not-override-m4timi).ant-slider .ant-slider-handle:focus::after {
+  box-shadow: 0 0 0 4px #ff4d4f;
+  width: 12px;
+  height: 12px;
+  inset-inline-start: -1px;
+  inset-block-start: -1px;
+} 
 .search-custom-slider {
   display: inline-block;
+}
+.advance-searchdropdown .slider-container{
+  display: flex;
+  align-items: center;
+}
+.advance-searchdropdown .slider-labels{
+  display: flex;
+  gap: 20px;
+  width: 200px;
+  margin-left: 10px;
 }
 .garage-group {
   display: flex;
@@ -91,138 +108,82 @@
 }
 /* 
 listing search */
-
 .first-content {
   background-color: #ffe9e9;
   color: white;
-  height: auto;
   width: 95%;
-  margin: 50px 0px 0px 50px;
   border-radius: 20px;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
+  margin: 20px auto; /* Center align and add top margin */
+  padding: 20px; /* Add padding around the content */
 }
 
 .sub-content1 {
-  width: 95%;
+  width: 100%;
   background-color: white;
-  height: auto;
   border-radius: 30px;
-  margin: 10px 30px 20px 50px;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   padding: 20px;
 }
 
 .subcontent-inputs {
   display: flex;
-  width: 90%;
-  flex-wrap: wrap;
-  padding: 20px;
-}
-.searh-custom-slider {
   width: 100%;
+  flex-wrap: wrap;
+  gap: 10px; /* Adds spacing between input fields */
+  padding: 20px;
+  align-items: center; /* Vertically centers the items */
 }
-.input-field,
-.select-field {
+
+.input-field, .select-field {
   flex: 1;
-  margin: 0 10px;
-  color: black;
+  margin-right: 10px; /* Adds spacing between input fields */
 }
 
-.input-field::placeholder {
-  color: black;
-}
-
-.select-field::placeholder {
-  color: black;
-}
-
-.select-field .ant-select-arrow {
-  color: red !important;
-}
-
-.select-field .ant-select-dropdown {
-  background-color: red !important;
-  color: white !important;
-}
-
-.subcontent-buttons {
-  display: flex;
-  justify-content: space-between;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.right-button {
-  background-color: var(--red);
+ .right-button-advanced {
+  background-color: red;
   color: white;
+  border: none;
   border-radius: 20px;
-  padding: 10px 15px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-weight: bold;
+  margin-left: 10px;
 }
-
 .right-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.right-button-advanced {
+  background-color: red;
+  color: white;
+  border: none;
   border-radius: 20px;
-  padding: 10px 15px;
+  padding: 10px 20px;
   cursor: pointer;
-  background-color: white;
-  border: 2px solid var(--red);
-  color: var(--red);
-  margin: 0px 10px 0px 0px;
-  font-weight: bold;
+  margin-left: 10px;
+  
 }
-
-.right-button .anticon {
-  margin-right: 5px;
-}
-
-.right-buttons {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .left-button {
-  background-color: var(--red);
+ margin-right: 63% ;
+  background-color: red;
   color: white;
+  border: none;
   border-radius: 20px;
-  padding: 10px 15px;
+  padding: 10px 20px;
   cursor: pointer;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  font-weight: bold;
+  
+}
+.right-button-advanced {
+  background-color: white;
+  color: red;
+  border: 2px solid red;
 }
 
 .button-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  /* background-color: white; */
-  color: white;
-  margin-right: 10px;
-  border: 1px solid white;
+  margin-right: 5px; /* Adds space between icon and text */
+  border: 2px solid white;
+  border-radius: 100%;
 }
-
-.left-button:hover {
-  background-color: var(--red);
-}
-
-.left-button:hover .button-icon {
-  background-color: var(--red);
+.subcontent-buttons{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
 }
 
 /* //certainfeatures css */

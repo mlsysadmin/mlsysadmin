@@ -593,9 +593,10 @@ const FeaturedComponent = () => {
   // Logic for page numbers
   const totalPages = Math.ceil(cardData.length / cardsPerPage);
   return (
-    <div className="feature-container">
-    <ListingSearch/>
-    <span className="feature-h1">Featured Properties</span>
+    <div className="buyer-feature-container">
+      <div><ListingSearch/> </div>
+    
+    <div className="Properties-for" ><span className="feature-h1">Properties for Sale/Rent</span></div>
     <div className="card-container">
       {currentCards.map((data, index) => (
         <Card

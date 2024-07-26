@@ -31,6 +31,8 @@
     font-size: 35px;
     text-align: center;
     color: white;
+    position: absolute;
+    top: 35%;
 }
 
 #dashboard .banner .banner-tags .menu-tags {
@@ -48,7 +50,10 @@
     line-height: 30px;
     padding-inline: 13px;
 }
-
+#dashboard .banner-tags{
+    position: absolute;
+    top: 45%;
+}
 #dashboard .banner .banner-tags .menu-tags li::after {
     color: black;
     border-bottom: none;
@@ -373,10 +378,118 @@
     margin: 30px auto;
 }
 
+
+.dashboard-first-content {
+    background-color: rgba(187, 188, 193, 0.62);
+    color: white;
+    width: 75%;
+    margin: 30px auto; /* Centers the element horizontally */
+    border-radius: 30px;
+    position: absolute;
+    display: flex;
+    top: 50%;
+    z-index: 2000;
+    flex-direction: column;
+    align-items: center; /* Centers the child elements */
+  }
+  
+  .dashboard-sub-content1 {
+    width: 95%;
+    background-color: white;
+    border-radius: 30px;
+    margin: 20px auto; /* Centers the element within the parent */
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  
+  .dashboard-subcontent-inputs {
+    display: flex;
+    width: 90%;
+    flex-wrap: wrap;
+   padding: 5px;
+   margin-left: 35px;
+  }
+  .dashboard-searh-custom-slider {
+    width: 100%;
+  }
+  .dashboard-input-field,
+  .dashboard-select-fields {
+    flex: 1;
+    margin: 0 10px;
+    color: black;
+    border-radius: 30px;
+
+  }
+  .custom-select .ant-select-selector {
+    border: 1px solid #d3d3d3;
+    border-radius: 20px; /* Adjust based on your preference */
+    color: #808080; /* Set text color to gray */
+    padding: 8px 16px; /* Adjust padding based on your preference */
+  }
+  
+  .custom-dropdown .ant-select-item {
+    color: #808080; /* Set dropdown item text color to gray */
+  }
+  
+  .custom-dropdown .ant-select-item:hover {
+    background-color: #f0f0f0; /* Optional: Set hover background color */
+  }
+  
+  .custom-dropdown .ant-select-item-option-selected {
+    background-color: #e6e6e6; /* Optional: Set selected item background color */
+  }
+  
+  
+  :where(.css-dev-only-do-not-override-m4timi).ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+    border: 1px solid #d9d9d9;
+    background: #ffffff;
+    border-radius: 30px;
+}
+:where(.css-dev-only-do-not-override-m4timi).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+    color: #d90000;
+    border-color: #d90000;
+    background: #ffffff;
+}
+:where(.css-dev-only-do-not-override-m4timi).ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover .ant-select-selector {
+    border-color: #ff0000;
+}
+  .dashboard-input-fields::placeholder {
+    color: black;
+  }
+  
+  .dashboard-select-fields::placeholder {
+    color: black;
+  }
+  .dashboard-right-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #d90000;
+    border-radius: 30px;
+  }
+  .dashboard-right-button  span{
+  font-size: 14px;
+  margin-right: 10px;
+  }
+  
+  .dashboard-right-button-advanced {
+    border-radius: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    background-color: #FFDBDB;
+    /* border: 2px solid var(--red); */
+    color: var(--red);
+    margin: 0px 10px 0px 0px;
+    font-weight: bold;
+  }
+
 @media screen and (min-width: 315px) and (max-width: 480px) {
-    #dashboard .banner{
+    /* #dashboard .banner{
         height: auto;
-    }
+    } */
     #dashboard .banner .banner-content .banner-search .card-item.field,
     #dashboard .banner .banner-content .banner-search .round-btn,
     #dashboard .banner .banner-content .banner-search .search-buttons {
@@ -386,9 +499,18 @@
     #dashboard .banner .banner-content {
         padding: 20px 10px;
     }
+    
+
+
+#dashboard .banner .banner-content .ant-col {
+    margin: 10px auto;
+}
 
     #dashboard .banner .banner-content .banner-title {
-        font-size: 26px;
+        font-weight: bold;
+        font-size: 18px;
+        letter-spacing: 0.95px;
+        margin-bottom: 50%;
     }
 
     .dashboard .discover .discover-content{
@@ -474,6 +596,60 @@
     .dashboard .discover .discover--section-4{
         padding-bottom: 80px;
     }
+    .dashboard .discover .discover-content .discover-section--title h2 {
+        font-size: 20px;
+    }
+    #dashboard .banner .banner-tags .menu-tags {
+        background-color: transparent;
+        border-bottom: none;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+    }
+    
+    #dashboard .banner .banner-tags .menu-tags li {
+        background: white;
+        margin: 6px;
+        border-radius: 30px;
+        line-height: 30px;
+        padding-inline: 13px;
+    }
+    #dashboard .banner-tags{
+        position: absolute;
+        top: 45%;
+    }
+    #dashboard .banner .banner-tags .menu-tags li::after {
+        color: black;
+        border-bottom: none;
+    }
+    
+    #dashboard .banner .banner-tags .menu-tags li.ant-menu-item-selected {
+        color: white;
+        background: var(--red);
+    }
+    .dashboard-first-content {
+        
+        top: 60%;
+        z-index: 2000;
+        flex-direction: column;
+    }
+    .dashboard-subcontent-inputs {
+        width: 100%; 
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      margin-left: 0%;
+        
+    }
+   
+      .dashboard-right-button {
+        display: flex;
+        flex-direction: row;
+        font-weight: bold;
+      }
+    
+
 }
 
 @media screen and (min-width: 481px) and (max-width: 800px) {
@@ -522,9 +698,43 @@
     .dashboard .discover .card--brokerage-featured{
         width: 85%;
     }
+    .dashboard-sub-content1 {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .dashboard-subcontent-inputs {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dashboard-input-field,
+    .dashboard-select-fields {
+        width: 48%;
+        margin: 5px 1%;
+    }
+    .dashboard-first-content {
+        background-color: rgba(187, 188, 193, 0.62);
+        color: white;
+        width: 75%;
+       
+        top: 70%;
+        z-index: 2000;
+       
+      }
+      .dashboard-sub-content1 {
+        width: 95%;
+        background-color: white;
+        border-radius: 30px;
+        margin: 20px auto; /* Centers the element within the parent */
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+      }
 }
 
-@media screen and (min-width: 801px) and (max-width: 1024px) {
+    @media screen and (min-width: 801px) and (max-width: 1024px) {
     /* .dashboard .discover .discover--section-3 .card--brokerage-inquire{
         flex-direction: column;
     } */
@@ -540,6 +750,33 @@
     }
     .dashboard .ratings{
         width: 80%;
+    }
+    .dashboard-first-content {
+        width: 85%;
+        top: 50%;
+    }
+
+    .dashboard-sub-content1 {
+            width: 95%;
+            background-color: white;
+            border-radius: 30px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        
+    }
+
+    .dashboard-subcontent-inputs {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .dashboard-input-field,
+    .dashboard-select-fields {
+        width: 45%;
+        margin: 10px 2.5%;
     }
 
 }

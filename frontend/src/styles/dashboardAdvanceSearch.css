@@ -1,0 +1,276 @@
+.dashboard-advance-searchdropdown {
+    width: 100%;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-advance-search-group1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.dashboard-advance-search-group1  :where(.css-dev-only-do-not-override-m4timi).ant-slider .ant-slider-handle::after {
+    width: 15px;
+    height: 15px;
+    background-color: var(--red);
+    border: 1px solid var(--red);
+}
+.dashboard-advance-search-group1 :where(.css-dev-only-do-not-override-m4timi).ant-slider .ant-slider-handle:hover::after, :where(.css-dev-only-do-not-override-m4timi).ant-slider .ant-slider-handle:active::after, :where(.css-dev-only-do-not-override-m4timi).ant-slider .ant-slider-handle:focus::after {
+    box-shadow: 0 0 0 4px #ff4d4f;
+    width: 12px;
+    height: 12px;
+    inset-inline-start: -1px;
+    inset-block-start: -1px;
+  }
+.dashboard-advance-search-group1 span {
+    
+    color: black;
+    margin-bottom: 10px;
+}
+
+.dashboard-search-custom-slider {
+    width: 900px;
+    margin-bottom: 10px;
+}
+
+.dashboard-sub-options-search {
+    display: flex;
+    gap: 60px;
+}
+
+.dashboard-sub-options-search-beds {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.dashboard-num-of-beds-search,
+.dashboard-bath-num {
+    /* display: flex; */
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dashboard-num-of-beds-search span,
+.dashboard-bath-num span {
+    font-size: 13px;
+    margin-right: 10px;
+    color: #8C9094;
+}
+
+.dashboard-bed-select,
+.dashboard-garage-group select {
+    width: 200px;
+    height: 30px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    border-bottom: 1px solid rgba(140, 144, 148, 0.52);
+    outline: none;
+    font-size: 13px;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z' fill='%23ff0000'/%3E%3C/svg%3E") no-repeat right center;
+    padding-right: 30px;
+}
+
+.dashboard-garage-group {
+    align-items: center;
+}
+
+.dashboard-garage-group span {
+    font-size: 13px;
+    color: #8C9094;
+    margin-right: 10px;
+}
+
+.dashboard-sub-options-search-bath {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+}
+
+.dashboard-sub-options-search-bath input {
+    border: none;
+    border-bottom: 1px solid rgba(140, 144, 148, 0.52);
+    outline: none;
+    font-size: 13px;
+    padding: 10px;
+    width: 100%;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+}
+
+.dashboard-left-button {
+    margin-left: 20px;
+    background-color: #f8f8f8;
+    color: #8C9094;
+    border: none;
+    border-radius: 30px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.dashboard-searh-custom-slider {
+    height: 10px;
+    font-size: 12px;
+    color: #8C9094;
+}
+
+.slider-numbers {
+    display: flex;
+    flex-direction: row;
+    color: black;
+    font-size: 16px;
+}
+
+.from-slider {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Responsive styles */
+@media screen and (min-width: 315px) and (max-width: 480px) {
+    .dashboard-search-custom-slider {
+        width: 100%;
+    }
+
+    .dashboard-sub-options-search {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .dashboard-bed-select,
+    .dashboard-garage-group select {
+        width: 100%;
+    }
+
+    .dashboard-sub-options-search-bath input {
+        border: none;
+        border-bottom: 1px solid rgba(140, 144, 148, 0.52);
+        /* outline: none; */
+        /* font-size: 13px; */
+        padding: 10px;
+        width: 70%;
+        margin-right: 50px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 0;
+    }
+
+    .dashboard-left-button {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .dashboard-advance-search-group1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+        margin: 10px;
+    }
+    .slider-numbers {
+        display: flex;
+        flex-direction: row;
+        color: black;
+        font-size: 12px;
+    }
+    .from-slider {
+        display: flex;
+        flex-direction: row;
+        font-size: 12px;
+    }
+    .dashboard-sub-options-search-beds {
+        display: flex;
+        flex-direction: column;
+        margin: 20px;
+    }
+    .dashboard-bed-select
+     {
+        width: 100%;
+        
+    }
+    .dashboard-garage-group select {
+        width: 65%;
+        margin-left: 20px;
+    }
+    .dashboard-garage-group span {
+        font-size: 13px;
+        color: #8C9094;
+        margin-left: 20px;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 800px) {
+    .dashboard-search-custom-slider {
+        width: 100%;
+    }
+
+    .dashboard-sub-options-search {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .dashboard-bed-select,
+    .dashboard-garage-group select {
+        width: 100%;
+    }
+
+    .dashboard-sub-options-search-bath input {
+        width: 100%;
+    }
+
+    .buttons {
+        flex-direction: row;
+        align-items: center;
+        margin-left: 0;
+    }
+
+    .dashboard-left-button {
+        margin-left: 10px;
+    }
+}
+
+@media screen and (min-width: 801px) and (max-width: 1024px) {
+    .dashboard-search-custom-slider {
+        width: 100%;
+    }
+
+    .dashboard-sub-options-search {
+        flex-direction: row;
+        gap: 40px;
+    }
+
+    .dashboard-bed-select,
+    .dashboard-garage-group select {
+        width: 200px;
+    }
+
+    .dashboard-sub-options-search-bath input {
+        width: 100%;
+    }
+
+    .buttons {
+        flex-direction: row;
+        align-items: center;
+        margin-left: 40px;
+    }
+
+    .dashboard-left-button {
+        margin-left: 20px;
+        color: #8C9094;
+        font-weight: bold;
+    }
+
+}
