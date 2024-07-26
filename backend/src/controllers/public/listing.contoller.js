@@ -92,6 +92,7 @@ module.exports = {
         try {
 
             const payload = req.query.payload;
+            console.log("payload:", req);
 
             const params_fields = {
                 property_status: payload.property_status,

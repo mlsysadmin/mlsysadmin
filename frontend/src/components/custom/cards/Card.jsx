@@ -11,6 +11,7 @@ import ShortcutOutlinedIcon from '@mui/icons-material/ShortcutOutlined';
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 
 const Card = ({
+  id,
   title,
   subtitle,
   price,
@@ -20,6 +21,7 @@ const Card = ({
   size,
   likes,
   forsale,
+  handleClick
 }) => {
   const isFeatured = forsale.toLowerCase() === "featured";
   const [isHeartFilled, setIsHeartFilled] = useState(false);
@@ -27,14 +29,14 @@ const Card = ({
   const handleHeartClick = () => {
     setIsHeartFilled(!isHeartFilled);
   }
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleCardClick = () => {
-    navigate('/previewListing');
-  };
+  // const handleCardClick = () => {
+  //   onClick(id);;
+  // };
 
   return (
-    <div className="card" style={{cursor:"pointer"}}  onClick={() => handleCardClick()}>
+    <div className="card" style={{cursor:"pointer"}}  onClick={handleClick}>
       <div className="cardImage">
         <img src={imgSrc} alt={title} className="card-img" />
         <p
