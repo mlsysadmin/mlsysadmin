@@ -565,6 +565,52 @@ module.exports = {
         }
     },
 
+    // ALL PROPERTY LISTINGS BY STATUS
+    FindAllPropertyListingByStatus: async (params_field, transaction) => {
+        try {
+
+            const get_listing_bystatus = await PropertyListing.findAll({
+                where: { ...params_field },
+                attributes: [
+                    'createdAt',
+                    'listing_id',
+                    'title',
+                    'property_id',
+                    'listing_status'
+                ],
+                include: [
+                    {
+                        model: PropertyTypes, attributes: ["type"],
+                        as: 'property_type'
+                    },
+                    {
+                        model: ListingTypes, attributes: ['listing_type'],
+                    },
+                    {
+                        model: UnitDetails, attributes: [
+                            'floor_area',
+                            'price'
+                        ],
+                        as: 'unit_details'
+                    },
+                    {
+                        model: Location, attributes: {
+                            exclude: ["location_id"]
+                        },
+                        as: 'location'
+                    },
+
+                ],
+                transaction,
+            })
+
+            return get_listing_bystatus
+
+        } catch (error) {
+            throw error
+        }
+    },
+
     FindAllListingForApprovalByApprover: async (fields, transaction) => {
         try {
             console.log(fields);

@@ -1,9 +1,9 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useOutletContext } from "react-router-dom";
 
 const SupportApplicationOutlet = () => {
   return (
-    <Outlet />
+    <Outlet context={useOutletContext()}/>
   );
 };
 export default SupportApplicationOutlet;

@@ -1,9 +1,9 @@
 import React from 'react'
-import { PendingApplication } from '../../components/index';
+import { SupportPendingApplicationComponent } from '../../components/index';
 
 const PendingApplicationpage = () => {
   return (
-    <PendingApplication/>
+    <SupportPendingApplicationComponent/>
   )
 }
 

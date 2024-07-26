@@ -1,9 +1,9 @@
 import React from 'react'
-import { DisapprovedApplication } from '../../components/index'
+import { SupportDeniedApplicationComponent } from '../../components/index'
 
 const DisapprovedApplicationpage = () => {
   return (
-    <DisapprovedApplication/>
+    <SupportDeniedApplicationComponent/>
   )
 }
 

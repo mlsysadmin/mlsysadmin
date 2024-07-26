@@ -53,7 +53,9 @@ import {
   SupportApplicationOutlet,
   SupportListingOutlet,
   PendingMasterList,
-  ActiveMasterList
+  ActiveMasterList,
+  DeniedMasterList,
+  ApprovedApplication
 } from "../pages";
 
 
@@ -209,10 +211,6 @@ const Routes = [
             path: "open-application",
             element: <OpenApplication />,
           },
-          // {
-          //   path: "pending",
-          //   element: <PendingApplicationpage />,
-          // },
           {
             path: "denied",
             element: <DisapprovedApplication />,
@@ -230,6 +228,10 @@ const Routes = [
             path: "closed",
             element: <CloseApplication />,
           },
+          {
+            path: "approved",
+            element: <ApprovedApplication />,
+          },
         ]
       },
       {
@@ -246,7 +248,7 @@ const Routes = [
           },
           {
             path: "denied",
-            element: <ActiveListingDetails />,
+            element: <DeniedMasterList />,
           },
         ]
       },

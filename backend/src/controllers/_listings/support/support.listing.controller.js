@@ -19,6 +19,7 @@ const {
     CreateMasterPropertyList,
     FindAllMasterListing,
     FindMasterListingDetailsById,
+    FindAllPropertyListingByStatus,
 } = require('../../../streamline/listing.datastream');
 const SuccessFormatter = require('../../../utils/_helper/SuccessFormatter.helper');
 const SuccessLoggerHelper = require('../../../utils/_helper/SuccessLogger.helper');
@@ -313,6 +314,7 @@ module.exports = {
         }
     },
 
+    // ACTIVE, INACTIVE, SOLD
     GetAllMasterListing: async (req, res, next) => {
         try {
 
@@ -359,7 +361,7 @@ module.exports = {
 
             const success = SuccessFormatter(data, 200, message);
     
-            SuccessLoggerHelper(success, data);
+            SuccessLoggerHelper(req, data);
 
             res.send(success);
 
@@ -369,7 +371,7 @@ module.exports = {
         }
     },
 
-    // BY PROPERTY STATUS AND PROPERTY LISTING ID
+    // DETAILS BY PROPERTY STATUS AND PROPERTY LISTING ID
     GetMasterListingDetails: async (req, res, next) => {
         try {
 
@@ -413,6 +415,72 @@ module.exports = {
             );
 
             let message = `${payload.property_status} listing retrieved`;
+
+            const success = SuccessFormatter(data, 200, message);
+    
+            SuccessLoggerHelper(req, logger);
+
+            res.send(success);
+
+        } catch (error) {
+            next(error)
+        }
+    },
+
+    // ALL DENIED PROPERTY LISTINGS
+    GetAllDeniedListings: async (req, res, next) => {
+        try {
+            const listing_status = "DENIED";
+
+            const params_fields = {
+                listing_status
+            }
+
+            const GetListingByStatus = await Sequelize.transaction(async (transaction) => {
+
+                const get_listing = await FindAllPropertyListingByStatus(params_fields, transaction);
+                
+                return get_listing;
+
+            });
+
+            let data;
+            let message;
+            let code;
+
+            if (GetListingByStatus.length === 0) {
+
+                data = DataResponseHandler(
+                    GetListingByStatus,
+                    `NO_${listing_status}_LISTING_FOUND`,
+                    200,
+                    true,
+                    `No ${listing_status} listing available.`
+                );
+                code = `NO_${listing_status}_LISTING_FOUND`;
+                message = `No ${listing_status} listing available.`;
+
+            } else {
+
+                data = DataResponseHandler(
+                    GetListingByStatus,
+                    `${listing_status}_LISTING_FOUND`,
+                    200,
+                    true,
+                    `${listing_status} listing retrieved`
+                );
+                code = `${listing_status}_LISTING_FOUND`;
+                message = `${listing_status} listing retrieved`;
+
+            }
+
+            let logger = DataResponseHandler(
+                { listing_status: listing_status },
+                `${listing_status}_LISTING_FOUND`,
+                200,
+                true,
+                message
+            );
 
             const success = SuccessFormatter(data, 200, message);
     

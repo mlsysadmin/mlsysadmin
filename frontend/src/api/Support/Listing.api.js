@@ -37,7 +37,21 @@ const GetAllActiveMasterList = async (payload) => {
     }
 }
 
+const GetAllDeniedList = async () => {
+    try {
+
+        const response = await MLBROKERAGEAxiosInstance.get(`/api/support/get/listing/denied/all`);
+
+        return response.data.data;
+        
+    } catch (error) {
+        console.log(error);
+        throw error.response.data;
+    }
+}
+
 export {
     GetAllPendingMasterList,
-    GetAllActiveMasterList
+    GetAllActiveMasterList,
+    GetAllDeniedList
 }

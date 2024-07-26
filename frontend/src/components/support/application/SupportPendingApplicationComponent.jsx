@@ -1,29 +1,28 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
-import SupportTable from "../custom/support/SupportTable";
-import SupportSubMenu from "./SupportSubMenu";
-import SemiRoundBtn from "../custom/buttons/SemiRoundBtn.custom";
+import SupportTable from "../../custom/support/SupportTable";
+import SupportSubMenu from "../SupportSubMenu";
+import SemiRoundBtn from "../../custom/buttons/SemiRoundBtn.custom";
 
-import '../../styles/support/supportPendingMaster.css';
-import { Input, Select, message } from "antd";
-import Pagination from "../custom/pagination/Pagination";
-import TablePagination from "../custom/pagination/TablePagination";
+import '../../../styles/support/supportMaster.css';
+import { Input, Select, message, Table, Tag } from "antd";
+import Pagination from "../../custom/pagination/Pagination";
+import TablePagination from "../../custom/pagination/TablePagination";
 
-import DummyData from '../../utils/supportDummyData/openListingDummy.json';
+import DummyData from '../../../utils/supportDummyData/openListingDummy.json';
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { CaretDownFilled, CarFilled } from "@ant-design/icons";
 
 import DayJS from "dayjs";
 
 // API
-import { GetAllPendingMasterList } from '../../api/Support/Listing.api';
+import { GetAllPendingMasterList } from '../../../api/Support/Listing.api';
 
 const { Search } = Input;
 
-const SupportPendingListingComponent = forwardRef((props, ref) => {
+const SupportPendingApplicationComponent = forwardRef((props, ref) => {
     useEffect(() => {
         GetAllForApproval()
     }, []);
-    // const loadingRef = useRef(null)
     const { setIsMessageLoadingOpen, setIndex } = useOutletContext();
 
     const [current, setCurrent] = useState(1);
@@ -79,24 +78,6 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
         },
     ];
 
-    const dummyData = () => {
-        return DummyData.pending_listings.map((dummy, i) => {
-            return {
-                key: i,
-                select: <SemiRoundBtn label={'Show Details'} className={'support--show-details-btn'} />,
-                date: dummy.date_created,
-                listing_id: dummy.listing_id,
-                title: dummy.title,
-                property_type: dummy.property_type,
-                listing_type: dummy.listing_type,
-                floor_area: dummy.floor_area,
-                price: dummy.price,
-                location: dummy.location,
-                status: dummy.status
-            }
-        })
-    }
-
     const Format_Date = (date) => {
         return DayJS(date).format('DD-MM-YYYY').toString();
     }
@@ -133,7 +114,7 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
                         floor_area: listing.unit_details.floor_area,
                         price: listing.unit_details.price,
                         location: `${location.city} CITY, ${location.province}`,
-                        status: listing.listing_status
+                        status: <Tag bordered={true} color="gold" style={{ fontWeight: 500 }}>{listing.listing_status}</Tag>
                     }
                 });
 
@@ -248,12 +229,56 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
         ) : <></>
     }
 
+    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+    const onSelectChange = (newSelectedRowKeys) => {
+        console.log('selectedRowKeys changed: ', newSelectedRowKeys);
+        setSelectedRowKeys(newSelectedRowKeys);
+    };
+
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: onSelectChange,
+        selections: [
+            Table.SELECTION_ALL,
+            Table.SELECTION_INVERT,
+            Table.SELECTION_NONE,
+            {
+                key: 'odd',
+                text: 'Select Odd Row',
+                onSelect: (changeableRowKeys) => {
+                    let newSelectedRowKeys = [];
+                    newSelectedRowKeys = changeableRowKeys.filter((_, index) => {
+                        if (index % 2 !== 0) {
+                            return false;
+                        }
+                        return true;
+                    });
+                    setSelectedRowKeys(newSelectedRowKeys);
+                },
+            },
+            {
+                key: 'even',
+                text: 'Select Even Row',
+                onSelect: (changeableRowKeys) => {
+                    let newSelectedRowKeys = [];
+                    newSelectedRowKeys = changeableRowKeys.filter((_, index) => {
+                        if (index % 2 !== 0) {
+                            return true;
+                        }
+                        return false;
+                    });
+                    setSelectedRowKeys(newSelectedRowKeys);
+                },
+            },
+        ],
+    };
+
     return (
         <div>
             {contextHolder}
             <div className={`support--pending-master-listing`}
                 style={{ width: "85%", margin: 'auto' }}>
-                <SupportSubMenu title={'Manage Pending Listing'}
+                <SupportSubMenu title={'Manage Pending Application'}
                     isShowDetails={false} />
                 <div className="support--top-controls">
                     <div className="support--show-entries">
@@ -280,6 +305,7 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
                 <SupportTable
                     columns={columns}
                     dataSource={filteredListings}
+                    rowSelection={rowSelection}
                 // dataSource={listings}
                 />
                 <div className="support--table-footer">
@@ -301,4 +327,4 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
     )
 });
 
-export default SupportPendingListingComponent;
+export default SupportPendingApplicationComponent;

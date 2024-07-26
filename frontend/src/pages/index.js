@@ -32,27 +32,32 @@ import SoldPropertyDetailsPage from "./SoldPropertyDetails.page";
 // import ListingSearchLoggedin from "../components/custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
 
 // SUPPORT
-import SupportOutlet from "./support/SupportOutlet.page";
 import SignIn from './support/signin.page';
 import SupportDashboardPage from "./support/SupportPage";
 import OpenApplication from './support/OpenApplication.page';
-import PendingApplication from './support/PendingApplication.page';
-import DisapprovedApplication from './support/DisapprovedApplication.page';
 import ListingDetails from './support/ListingDetails.page';
 import ApplicationDetails from './support/ApplicationDetails.page';
-import CancelledApplication from './support/CancelledApplication.page';
 import PreApprovalRequest from './support/Pre-ApprovalRequests.Page';
 import PreApprovalRequestListing from './support/PreApprovalRequestsListing.Page';
-import PendingApplicationpage from "./support/PendingApplication.page";
-import CancelledApplicationpage from "./support/CancelledApplication.page";
-import CloseApplication from './support/ClosedApplication.page';
+
+//SUPPORT MASTER LIST
 import PendingMasterList from './support/PendingMasterlist.page';
 import ActiveMasterList from './support/SupportMasterlistPage'
+import SupportDashboard from "./support/SupportDashboard";
+import DeniedMasterList from "./support/SupportDeniedMasterList";
 
+// APPLICATION
+import ApprovedApplication from "./support/ApprovedApplication";
+import CancelledApplication from './support/CancelledApplication.page';
+import PendingApplication from './support/PendingApplication.page';
+import DisapprovedApplication from './support/DisapprovedApplication.page';
+import CloseApplication from './support/ClosedApplication.page';
+
+//SUPPORT OUTLETS
 import SupportApplicationOutlet from './support/SupportApplicationOutlet';
 import SupportListingOutlet from './support/SupportListingOutlet';
+import SupportOutlet from "./support/SupportOutlet.page";
 
-import SupportDashboard from "./support/SupportDashboard";
 export {
 
     LoginModal,
@@ -96,13 +101,13 @@ export {
     CancelledApplication,
     PreApprovalRequest,
     PreApprovalRequestListing,
-    PendingApplicationpage,
-    CancelledApplicationpage,
     CloseApplication,
     SupportCreateListingComponent,
     SupportDashboard,
     SupportApplicationOutlet,
     SupportListingOutlet,
     PendingMasterList,
-    ActiveMasterList
+    ActiveMasterList,
+    DeniedMasterList,
+    ApprovedApplication
 }
