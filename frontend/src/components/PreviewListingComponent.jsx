@@ -158,9 +158,7 @@ const PreviewListing = () => {
                     className="all-images"
                   />
 
-                  <div className="centered">
-                    PHP {oneListing.listings.unit_details.price}
-                  </div>
+                
 
                   <div className="icns">
                     <div className="bottom-right">

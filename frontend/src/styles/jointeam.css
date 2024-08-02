@@ -1,0 +1,77 @@
+.join-team-columns{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+.join-team-column-group{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+.join-team-group{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+
+}
+.join-team-group input, .join-team-group select{
+ width: 200px;
+ height: 40px;
+ border: 1px solid #8C9094;
+ padding:10px;
+ border-radius: 5px;
+ color: #8C9094;
+}
+.broker-questions-jointeam{
+    margin: 30px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.radio-button-broker-question{
+    display: flex;
+    gap: 20px;
+}
+.radio-button-broker-question input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 2px solid #D9D9D9;
+  background-color: #D9D9D9;
+  outline: none;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.radio-button-broker-question input[type="radio"]:checked {
+  background-color: #000000;
+  border-color: #D9D9D9;
+  /* width: 10px;
+  height: 10px; */
+}
+
+.radio-button-broker-question label {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 20px;
+  font-size: 14px;
+}
+.broker-questions-jointeam .broker-number-of-years{
+    display: flex;
+    flex-direction: column;
+}
+.broker-questions-jointeam .broker-number-of-years input{
+ width: 200px;
+ height: 40px;
+ border: 1px solid #8C9094;
+ padding:10px;
+ border-radius: 5px;
+ color: #8C9094;
+}
+.broker-questions-review span{
+    color: #000000;
+}

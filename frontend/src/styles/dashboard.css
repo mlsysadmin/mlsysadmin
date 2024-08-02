@@ -1,7 +1,9 @@
-#dashboard {
+.dashboard {
     /* flex-direction: column; */
     width: 100%;
+    background-color: #ffffff;
 }
+
 
 #dashboard .banner {
     /* background: linear-gradient(rgba(0, 0, 0, 0.7)), url('../asset/banners/dashboard-banner.png') !important; */
@@ -76,11 +78,17 @@
 
 #dashboard .banner .banner-content .banner-search .card-item.field {
     width: 140px;
+   
+}
+#dashboard .banner .banner-content .banner-search .card-item.field  .ant-select-selection-placeholder{
+    color: #000000;
 }
 
 #dashboard .banner .banner-content .banner-search .card-item.field .ant-select-selector,
 #dashboard .banner .banner-content .banner-search .card-item.field.ant-input {
-    border-radius: 32px !important;
+    border-radius: 5px !important;
+    border:1px solid #000000;
+    color:  #000000;
 }
 
 #dashboard .banner .banner-content .banner-search .card-item.field .ant-select-selector:focus,
@@ -94,6 +102,7 @@
     font-size: 12px;
     font-weight: 600;
     margin: 5px;
+    
 }
 
 #dashboard .banner .banner-content .banner-search .advanced.round-btn {
@@ -123,17 +132,40 @@
 /* Section 2 Discover*/
 .dashboard .discover {
     text-align: center;
+    background-color: #ffffff;
+    margin-top: 150px;
 }
 
 .dashboard .discover .discover-content {
-    text-align: center;
-    justify-content: center;
+    justify-content:left;
+    align-items: left;
+    /* display: flex; */
     /* flex-direction: column; */
-    margin: 90px auto 50px auto;
+    margin: 5   0px 0px 50px 100px;
+    /* width: 100%; */
+
 }
+.dashboard .discover .discover-content .discover-section--title {
+    width: 100%;
+    align-items: left;
+    justify-content: left;
+}
+.dashboard .discover .discover-content .discover-section--title .section-2-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding:0px 250px 20px 250px ;
+}
+.dashboard .discover .discover-content .discover-section--title .section-2-title .see-all-new-listing-dashboard{
+    text-decoration: underline;
+    color: #8C9094;
+} 
 
 .dashboard .discover .discover-content .discover-section--title h2 {
     font-size: 32px;
+    text-align: left;
+    margin-left: 250px;
 }
 
 .dashboard .discover .discover-content .discover-section--title p {
@@ -150,7 +182,7 @@
 }
 
 .discover .listing-carousel {
-    width: 80%;
+    width: 100%;
     margin: auto;
 }
 
@@ -194,7 +226,10 @@
 
 .dashboard .discover .discover--section-2 {
     margin: 130px auto 50px auto;
-    width: 80%;
+    width: 100%;
+    height: auto;
+    padding: 20px 20px;
+    background-color: #F7F7F7;
 }
 
 .dashboard .discover .discover--section-2 h3 {
@@ -214,16 +249,21 @@
     background-size: cover;
     background-repeat: no-repeat;
     width: 330px;
+    border-radius: 10px;
+    box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2);
     /* width: 100%; */
 }
 
 .dashboard .discover .discover--section-2 .card--brokerage-category .overlay-content {
-    background-color: rgba(0, 0, 0, 0.373);
+    /* background-color: rgba(0, 0, 0, 0.373); */
     height: 34vh;
-    color: white;
+    color: #333333;
     text-align: center;
     padding: 10px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
     /* width: 210px; */
 }
 
@@ -256,23 +296,30 @@
     font-weight: 300;
     font-size: 14px;
     margin: 10px auto;
+    height: 120px;
 }
 
 .dashboard .discover .discover--section-3 {
     /* background-color: #d9d9d9a1; */
-    background-color: #d9d9d945;
+    background-color: #D9D9D9;
     margin: 180px auto 0px auto;
+    width: 90%;
+    border-radius: 10px;
 }
 
-.dashboard .discover .discover--section-3 .card--brokerage-inquire {
+.discover--section-3 .card--brokerage-inquire {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    justify-content: left;
+    align-items: flex-start;
+    margin: 0px;
+    /* align-items: center; */
+    /* justify-content: space-between;
+    flex-wrap: wrap; */
 }
 
-.dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--content {
+ .discover--section-3 .card--brokerage-inquire .inquire--content {
     margin: 50px;
+    width: 100%;
 }
 
 .dashboard .discover .discover--section-3 h3,.dashboard .discover .discover--section-4 h3 {
@@ -280,7 +327,7 @@
     color: black;
 }
 
-.dashboard .discover .discover--section-3 .card--brokerage-inquire .ant-col {
+ .discover--section-3 .card--brokerage-inquire .ant-col {
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
@@ -297,8 +344,9 @@
     height: 70vh;
 }
 
-.dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-container {
-    width: 50%;
+.dashboard  .discover--section-3 .card--brokerage-inquire .inquire-container {
+    width: 100%;
+    text-align:left;
 }
 
 .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--description,
@@ -310,18 +358,20 @@
 }
 
 .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--sub-desc {
-    width: 87%;
-    margin: 30px auto;
+    margin: 50px 0px 0px 0px;
+    text-align: left;
+    font-weight: 500;
 }
 
 .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--description {
-    width: 73%;
-    margin: 40px auto;
+    margin: 50px 0px 0px 0px;
+    text-align: left;
+    font-weight: 500;
 }
 
 .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--content .inquire--actions {
-    text-align: center;
-    margin: 60px 10px 10px 10px;
+    /* text-align: center; */
+    margin: 60px 10px 10px 0px;
 }
 
 .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--actions .action-btn {
@@ -336,12 +386,21 @@
 .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--actions .contact-us--action.action-btn,
 .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--actions .contact-us--action.action-btn:hover {
     background-color: transparent;
-    color: black
+    color: black;
+   
 }
 
 .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--actions .sign-in--action.action-btn {
-    background-color: var(--red);
-    color: white;
+    background-color: #000000;
+    color: #ffffff;
+    width: 350px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000000;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 /* FEATURED PROPERTIES */
@@ -371,6 +430,16 @@
 
 .dashboard .rating--content{
     margin: 30px auto;
+}
+.dashboard .button-card-class{
+    width: 200px;
+    height: 50px;
+    border: 1px solid #333333 ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:20px 0px 0px 30px;
+    border-radius: 5px;
 }
 
 @media screen and (min-width: 315px) and (max-width: 480px) {

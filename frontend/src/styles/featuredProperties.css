@@ -64,7 +64,7 @@
     display: flex;
     align-items:end;
     justify-content: center;
-
+    padding: 5px;
  }
 
  #featured-properties .featured-property--content .featured-features .ant-divider-vertical{
@@ -73,7 +73,7 @@
  }
 
  #featured-properties .featured-property--content .featured-features .feature{
-    margin: auto 10px;
+    /* margin: auto 10px; */
  }
 
  .featured-divider {

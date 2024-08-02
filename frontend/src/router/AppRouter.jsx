@@ -76,7 +76,7 @@ const Routes = [
                 element: <Allpage/>
             },
             {
-                path: "featured",
+                path: "/featured",
                 element: <Featuredpage/>
             },
             {
