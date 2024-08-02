@@ -29,24 +29,22 @@ import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import { MockData } from "../utils/ListingMockData";
 import CardCategory from "../utils/CardCategoryDashboard.utils";
 import FuenteCircle from "../asset/banners/fuente-circle.png";
-import AdvanceSearch from "../asset/icons/advanceSearch.png";
+// import AdvanceSearch from "../asset/icons/advanceSearch.png";
 import Search from "../asset/icons/Search.png";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
 import FooterComponent from "./layout/FooterComponent";
 import ListingSearchLoggedin from "./custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
 import ListingSearch from "./custom/customsearch/custom.listingsearch";
-import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
+// import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
 import CertainFeatureMenu from "./custom/customsearch/certainfeature";
-import {GetAllPublicListing} from "../api/GetAllPublicListings";
-import {GetPhotoFromDB, GetPhotoLength} from "../utils/GetPhoto";
-
-import DashboardAdvanceSearch from "./custom/customsearch/dashboardAdvanceSearch";
-// import CertainFeatureMenu from "./custom/customsearch/certainfeature";
+import { GetAllPublicListing } from "../api/GetAllPublicListings";
+import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
+// import DashboardAdvanceSearch from
 
 const DashboardComponent = () => {
   const [loading, setLoading] = useState(false);
   const [userLikes, setUserLikes] = useState([]);
-  const [publiclisting, setPublicListing] = useState([])
+  const [publiclisting, setPublicListing] = useState([]);
   const [isAdvanceSearchOpen, setAdvanceSearchOpen] = useState(false);
 
   const { Option } = Select;
@@ -67,7 +65,7 @@ const DashboardComponent = () => {
 
   const navigate = useNavigate();
   const handleCardClick = (id) => {
-    console.log("id",id);
+    console.log("id", id);
     // window.location.href = `/previewListing/${id}`;
     navigate(`/previewListing/${id}`, { state: id });
   };
@@ -75,18 +73,15 @@ const DashboardComponent = () => {
   //   navigate('/previewListing');
   // };
 
-  
-  const allPublicListing = async () =>{
+  const allPublicListing = async () => {
     const res = await GetAllPublicListing();
-    const dataresp = res.data
+    const dataresp = res.data;
     setPublicListing(dataresp);
-    console.log("public listing:", dataresp)
-
-  }
-  useEffect (() => {
-    allPublicListing()
-  }, [])
-
+    console.log("public listing:", dataresp);
+  };
+  useEffect(() => {
+    allPublicListing();
+  }, []);
 
   const url_Redirect = process.env.REACT_APP_LOGIN_URL;
   const handleUserProfileClick = () => {
@@ -211,15 +206,19 @@ const DashboardComponent = () => {
                       outline: "none",
                     }}
                   />
-                  <Input
-                    className="dashboard-input-field"
+                  <Select
+                    className="dashboard-select-fields custom-select"
                     placeholder="Location"
-                    style={{
-                      padding: "5px",
-                      borderBottom: "1px solid rgba(140, 144, 148, 0.52)",
-                      outline: "none",
-                    }}
-                  />
+                    dropdownClassName="ant-select-dropdown custom-dropdown"
+                    getPopupContainer={(triggerNode) => triggerNode.parentNode}
+                    suffixIcon={
+                      <CaretDownOutlined style={{ color: "#808080" }} />
+                    } // Custom icon
+                  >
+                    <Option value="all-locations">All Locations</Option>
+                    <Option value="Cebu City">Cebu City</Option>
+                    <Option value="Manila">Manila</Option>
+                  </Select>
                   <Select
                     className="dashboard-select-fields custom-select"
                     placeholder="Property Type"
@@ -229,9 +228,32 @@ const DashboardComponent = () => {
                       <CaretDownOutlined style={{ color: "#808080" }} />
                     } // Custom icon
                   >
-                    <Option value="residential">Residential</Option>
-                    <Option value="commercial">Commercial</Option>
-                    <Option value="land">Land</Option>
+                    <Option value="">All Types</Option>
+
+                    <Option value="commercial" style={{ color: "red" }}>
+                      COMMERCIAL
+                    </Option>
+                    <Option value="service-office">Service Office</Option>
+                    <Option value="shop-retail-commercial">Shop/Retail</Option>
+                    <Option value="commercial-land-lot">
+                      Commercial Land/Lot
+                    </Option>
+
+                    <Option value="residential" style={{ color: "red" }}>
+                      RESIDENTIAL
+                    </Option>
+                    <Option value="condominium">Condominium</Option>
+                    <Option value="shop-retail-residential">Shop/Retail</Option>
+                    <Option value="residential-land-lot">
+                      Residential Land/Lot
+                    </Option>
+
+                    <Option value="industrial" style={{ color: "red" }}>
+                      INDUSTRIAL/ETC
+                    </Option>
+                    <Option value="warehouse">Warehouse</Option>
+                    <Option value="farm-lot">Farm Lot</Option>
+                    <Option value="hotel-resort">Hotel/Resort</Option>
                   </Select>
                   <Select
                     className="dashboard-select-fields custom-select"
@@ -242,11 +264,21 @@ const DashboardComponent = () => {
                       <CaretDownOutlined style={{ color: "#808080" }} />
                     } // Custom icon
                   >
+                      <Option >All Types</Option>
                     <Option value="for-sale">For Sale</Option>
                     <Option value="for-rent">For Rent</Option>
+                    <Option >Pre-Selling</Option>
                   </Select>
-
-                  <Button
+                  <Select
+                    className="dashboard-select-fields custom-select"
+                    placeholder="Features"
+                    dropdownClassName="ant-select-dropdown custom-dropdown"
+                    getPopupContainer={(triggerNode) => triggerNode.parentNode}
+                    suffixIcon={
+                      <CaretDownOutlined style={{ color: "#808080" }} />
+                    }
+                  ></Select>
+                  {/* <Button
                     className="dashboard-right-button-advanced"
                     onClick={handleAdvancedSearchClick}
                   >
@@ -256,7 +288,7 @@ const DashboardComponent = () => {
                       style={{ width: "30px" }}
                     />
                     <span>Advanced Search</span>
-                  </Button>
+                  </Button> */}
                   <Button
                     className="dashboard-right-button"
                     icon={<SearchOutlined />}
@@ -264,7 +296,7 @@ const DashboardComponent = () => {
                     <span>Search</span>
                   </Button>
                 </div>
-                {isAdvancedSearchOpen && <DashboardAdvanceSearch />}
+                {/* {isAdvancedSearchOpen && <DashboardAdvanceSearch />} */}
               </div>
             </div>
           </div>
@@ -277,7 +309,7 @@ const DashboardComponent = () => {
             <p>Newest Properties Around You</p>
           </Col>
         </Row>
-        <div className="listing-carousel"  style={{cursor:"pointer"}}>
+        <div className="listing-carousel" style={{ cursor: "pointer" }}>
           <Carousel
             additionalTransfrom={0}
             arrows
@@ -315,13 +347,13 @@ const DashboardComponent = () => {
                   status={item.listings.listing_type.listing_type}
                   pics={GetPhotoLength(item.listings.photos.photo)}
                   features={item.features}
-                  img= {GetPhotoFromDB(item.listings.photos.photo)}
+                  img={GetPhotoFromDB(item.listings.photos.photo)}
                   no_of_bathrooms={item.listings.unit_details.no_of_bathrooms}
-                  lot = {item.listings.unit_details.lot_area}
+                  lot={item.listings.unit_details.lot_area}
                   key={i}
                   listingId={item.listings.listing_id}
                   loading={loading}
-                  handleClick= {() => handleCardClick(item.listings.listing_id)}
+                  handleClick={() => handleCardClick(item.listings.listing_id)}
                 />
               );
             })}

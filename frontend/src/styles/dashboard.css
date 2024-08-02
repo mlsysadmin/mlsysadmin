@@ -422,11 +422,17 @@
     border-radius: 10px;
 
   }
+  .dashboard :where(.css-dev-only-do-not-override-m4timi).ant-input-outlined:hover {
+    border-color: #ff0000;
+    background-color: #ffffff;
+}
+  
   .custom-select .ant-select-selector {
     border: 1px solid #d3d3d3;
     border-radius: 20px; /* Adjust based on your preference */
-    color: #808080; /* Set text color to gray */
+    color: #a01818; /* Set text color to gray */
     padding: 8px 16px; /* Adjust padding based on your preference */
+    width: 50%;
   }
   
   .custom-dropdown .ant-select-item {
@@ -434,11 +440,13 @@
   }
   
   .custom-dropdown .ant-select-item:hover {
-    background-color: #f0f0f0; /* Optional: Set hover background color */
+    background-color: #A6A6A6; /* Optional: Set hover background color */
+    color: black;
   }
   
   .custom-dropdown .ant-select-item-option-selected {
-    background-color: #e6e6e6; /* Optional: Set selected item background color */
+    background-color: #fff; /* Optional: Set selected item background color */
+   
   }
   
   
