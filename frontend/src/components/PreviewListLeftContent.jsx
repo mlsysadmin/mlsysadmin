@@ -1,245 +1,92 @@
-import React, { useState } from "react";
-import bedrooms from "../assets/icons/previewlisting/bedrooms.png";
-import bathrooms from "../assets/icons/previewlisting/bathroom.png";
-import garage from "../assets/icons/previewlisting/garage.png";
-import sqm from "../assets/icons/previewlisting/sqm.png";
-import map from "../assets/images/map.png";
+import React from "react";
 import "../styles/previewListing.css";
+import styles from '../styles/VListingHouseDetails.module.css';
+import VLFeatureCard from './VLFeatureCard';
 import MapComponent from "./mapComponent";
 
-const handleLocationClick = () => {
-  window.location.href = '/locationdetailscomponent'; // Redirect to location details component
-};
+const PreviewListLeftContent = ({ label, value }) => {
+  const features = [
+    { title: 'Bedrooms', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/ffa0b4ae5294fab32f04e2df5bccc9e215b962c4a23b87baa3b3a4f9d11a3bf0?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5', value: '5' },
+    { title: 'Bathrooms', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/372723378f9151c6cced3d234ccf4d85735cb0c5bd16df4ca6bac2adaf6189fb?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5', value: '5' },
+    { title: 'Garage', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/a17243275d0fedc1a93dbce25cd9571671d11f482871f3219644e3e5fe1afa72?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5', value: '3' },
+    { title: 'Area', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/c279a46ede99c04710deb1142ac34bf9008c0ed800284e2cdc230b0e6a25fc86?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5', value: '300 SqM' },
+    { title: 'Price per SqM', iconSrc: '', value: 'PHP400,000' }
+  ];
 
-const handlePropertyTypeClick = () => {
-  window.location.href = '/listing'; // Redirect to listing component for property type
-};
+  const specifications = {
+    propertyId: '123456789',
+    listingType: 'House for Sale',
+    furnishing: 'Furnished',
+    bedroom: '5 Beds',
+    bathroom: '5 Bath',
+    floorArea: '300 SqM',
+    lotArea: '300 SqM',
+    pricePerSqM: 'PHP400,000',
+    noOfFloors: '3 Floors',
+    carParking: '3 Cars'
+  };
 
-const handleListingTypeClick = () => {
-  window.location.href = '/listing'; // Redirect to listing component for listing type
-};
-
-
-
-
-const PreviewListLeftContent = () => {
   return (
     <div className="leftContent">
-      <div className="previewlist-property-info">
-        <div className="property-info-item">
-          <span>Bedrooms:</span>
-          <span>5</span>
-          <img src={bedrooms} alt="" />
-        </div>
-        <div className="property-info-item">
-          <span>Bathrooms:</span>
-          <span>5</span>
-          <img src={bathrooms} alt="" />
-        </div>
-        <div className="property-info-item">
-          <span>Garage:</span>
-          <span>300 SqM</span>
-          <img src={garage} alt="" />
-        </div>
-        <div className="property-info-item">
-          <span>Area:</span>
-          <span>300 SqM</span>
-          <img src={sqm} alt="" className="sqm" />
-        </div>
-        <div className="property-info-item">
-          <span>Price per SqM:</span>
-          <span style={{ color: "red", fontSize: "15px" }}>
-            PHP 400,000
-          </span>
-        </div>
-      </div>
-      <div className="Description">
-        <h3>Description</h3>
-        <p>
-          Maria Luisa Estate Park, Cebu’s most prestigious and most
-          sought after residential development both by locals and
-          foreigners alike, is set proudly atop the Banilad and Busay
-          Hills of Cebu. It encompasses 200 hectares of prime
-          residential property with the excellent reputation of being
-          the most desirable and exclusive neighborhood to live in Cebu.
-          Homes there catches the cool breeze while enjoying a
-          magnificent view of the city and the Visayan sea. It has been
-          known to provide comfort, security and safety to its
-          residents.
+      <main className={styles.leftcontainer}>
+        <h1 className={styles.lefttitle}>5 Bedroom House for Rent in Maria Luisa Park</h1>
+        <p className={styles.leftlocation}>Maria Luisa Estate Park, Banilad, Cebu City</p>
+        <button className={styles.leftctaButton}>Get Pre-Approved</button>
+        <h2 className={styles.leftsectionTitle}>About this home</h2>
+        <section className={styles.leftfeatureGrid}>
+          {features.map((feature, index) => (
+            <VLFeatureCard key={index} {...feature} />
+          ))}
+        </section>
+        <h2 className={styles.leftdescriptionTitle}>Description</h2>
+        <p className={styles.leftdescriptionText}>
+          Maria Luisa Estate Park, Cebu's most prestigious and most sought after residential development both by locals and foreigners alike, is set proudly atop the Banilad and Busay Hills of Cebu. It encompasses 200 hectares of prime residential property with the excellent reputation of being the most desirable and exclusive neighborhood to live in Cebu. Homes there catches the cool breeze while enjoying a magnificent view of the city and the Visayan sea. It has been known to provide comfort, security and safety to its residents.
         </p>
-      </div>
-      <div className="preview-table">
-        <table className="Listing-property-details">
-          <tbody>
-            <tr>
-              <th>Property ID</th>
-              <td className="view-top-border">1234567893</td>
-            </tr>
-            <tr>
-              <th>Listing Type</th>
-              <td>House for Sale</td>
-            </tr>
-            <tr>
-              <th>Location</th>
-              <td>Maria Luisa Estate Park, Banilad, Cebu City</td>
-            </tr>
-            <tr>
-              <th>Bedroom</th>
-              <td>5 Beds</td>
-            </tr>
-            <tr>
-              <th>Bathroom</th>
-              <td>5 Bath</td>
-            </tr>
-            <tr>
-              <th>Floor Area</th>
-              <td>300 SqM</td>
-            </tr>
-            <tr>
-              <th>Lot Area</th>
-              <td>300 SqM</td>
-            </tr>
-            <tr>
-              <th>Price per SqM</th>
-              <td>PHP400,000</td>
-            </tr>
-            <tr>
-              <th>No of Floors</th>
-              <td>3 Floors</td>
-            </tr>
-            <tr>
-              <th>Car Parking</th>
-              <td>3 Cars</td>
-            </tr>
-            <tr>
-              <th>Furnishing</th>
-              <td>Furnished</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div className="featuresamenites">
-        <h3>Features & Amenities</h3>
-        <ul>
-          <li>Landscaped Parks with picnic grounds</li>
-          <li>Jogging trails</li>
-          <li>The Highland Park and Clubhouse</li>
-          <li>The Emerald Lake valley</li>
-          <li>Basketball and Tennis court</li>
-          <li>Children Playground</li>
-          <li>Water and Electric facilities</li>
-          <li>State of the art communications facilities</li>
-          <li>5 Bedroom House for Rent in Maria Luisa Park</li>
-        </ul>
-      </div>
-      <div className="includes">
-        <h3>Includes:</h3>
-        <ul>
-          <li>Living Room with Dining Area</li>
-          <li>Kitchen Area</li>
-          <li>Master Bedroom with walk-in closet, toilet and bath</li>
-          <li>Four (4) Bedrooms each with toilet and bath</li>
-          <li>Lanai</li>
-          <li>Landscaped Garden</li>
-          <li>Maid’s Room</li>
-          <li>Service Kitchen</li>
-          <li>Service Area</li>
-        </ul>
-      </div>
-      <div className="view-features">
-        <h3>Features:</h3>
-        <div className="feature-grid">
-          <div className="feature-items">
-            <input
-              type="checkbox"
-              id="air-conditioning"
-              checked
-              readOnly
-            />
-            <label>Air Conditioning</label>
-          </div>
-          <div className="feature-items">
-            <input type="checkbox" id="laundry-room" checked readOnly />
-            <label>Laundry Room</label>
-          </div>
-          <div className="feature-items">
-            <input
-              type="checkbox"
-              id="open-car-spaces"
-              checked
-              readOnly
-            />
-            <label>Open Car Spaces</label>
-          </div>
-          <div className="feature-items">
-            <input type="checkbox" id="balcony" checked readOnly />
-            <label>Balcony</label>
-          </div>
-          <div className="feature-items">
-            <input type="checkbox" id="cctv" checked readOnly />
-            <label>CCTV</label>
-          </div>
-          <div className="feature-items">
-            <input type="checkbox" id="driver-room" checked readOnly />
-            <label>Driver Room</label>
-          </div>
-          <div className="feature-items">
-            <input type="checkbox" id="maid-room" checked readOnly />
-            <label>Maid Room</label>
-          </div>
-          <div className="feature-items">
-            <input type="checkbox" id="powder-room" checked readOnly />
-            <label>Powder Room</label>
-          </div>
-          <div className="feature-items">
-            <input
-              type="checkbox"
-              id="landscape-garden"
-              checked
-              readOnly
-            />
-            <label>Landscape Garden</label>
-          </div>
-          <div className="feature-items">
-            <input
-              type="checkbox"
-              id="sports-facilities"
-              checked
-              readOnly
-            />
-            <label>Sports Facilities</label>
-          </div>
-          <div className="feature-items">
-            <input
-              type="checkbox"
-              id="swimming-pool"
-              checked
-              readOnly
-            />
-            <label>Swimming Pool</label>
-          </div>
-          <div className="feature-items">
-            <input type="checkbox" id="security" checked readOnly />
-            <label>24/7 Security</label>
-          </div>
-        </div>
-      </div>
-      
+      </main>
       <div className="property-on-map">
-        <h3>Property on Map</h3>
-        
+        <h3>Location</h3>
       </div>
-      <MapComponent/>
+      <MapComponent />
       <div className="view-similar-properties">
-            <h3>Similar Properties</h3>
-            <div className="view-listi-buttons">
-                <button className="recommendedactive">Recommended</button>
-                <button className="locationbutt" onClick={handleLocationClick}>Location</button>
-                <button className="property-type" onClick={handlePropertyTypeClick}>Property Type</button>
-                <button className="listing-type" onClick={handleListingTypeClick}>Listing Type</button>
-            </div>
+        <h3>Home Details</h3>
+        <div className={styles.specificationContainer}>
+          <h4 className={styles.specificationHeader}>Specification</h4>
+          <table className={styles.specificationTable}>
+            <tbody>
+              <tr>
+                <th>Property ID</th>
+                <td>{specifications.propertyId}</td>
+                <th>Floor Area</th>
+                <td>{specifications.floorArea}</td>
+              </tr>
+              <tr>
+                <th>Listing Type</th>
+                <td>{specifications.listingType}</td>
+                <th>Lot Area</th>
+                <td>{specifications.lotArea}</td>
+              </tr>
+              <tr>
+                <th>Furnishing</th>
+                <td>{specifications.furnishing}</td>
+                <th>Price per SqM</th>
+                <td>{specifications.pricePerSqM}</td>
+              </tr>
+              <tr>
+                <th>Bedroom</th>
+                <td>{specifications.bedroom}</td>
+                <th>No of Floors</th>
+                <td>{specifications.noOfFloors}</td>
+              </tr>
+              <tr>
+                <th>Bathroom</th>
+                <td>{specifications.bathroom}</td>
+                <th>Car Parking</th>
+                <td>{specifications.carParking}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
   );
 };

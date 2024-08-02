@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import { Flex, Progress, Slider } from "antd";
 import ApplicationDetailModal from "./layout/ApplicationDetails/ApplicationDetailsModal";
 import iconcalcu from "../assets/icons/previewlisting/calculatorsign.png";
@@ -7,22 +7,16 @@ import mail from "../assets/icons/previewlisting/mailenvelope.png";
 import user from "../assets/icons/previewlisting/usercircle.png";
 import chat from "../assets/icons/previewlisting/chatmessages.png";
 import call from "../assets/icons/previewlisting/callphone.png";
-import next from "../assets/icons/previewlisting/next.png";
-import previous from "../assets/icons/previewlisting/previous.png";
-import iconheart from "../assets/icons/previewlisting/iconheart.png";
-import iconfilter from "../assets/icons/previewlisting/iconfilter.png";
 import "../styles/previewListing.css";
-import cpr from "../assets/images/cpr.png";
-import carousel2 from "../assets/images/carousel2.png";
-import carousel3 from "../assets/images/carousel3.png";
-import carousel4 from "../assets/images/carousel4.png";
+import { GetAllPublicListing } from "../api/GetAllPublicListings";
+import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
 
 const PreviewListRightSideContent = () => {
-  const [stepsGap, setStepsGap] = useState(5);  // Set default value
-  const [homePrice, setHomePrice] = useState(500000);  // Set default value
-  const [downPayment, setDownPayment] = useState(100000);  // Set default value
-  const term = 30;  // Fixed term in years
-  const termInMonths = term * 12;  // Convert term to months
+  const [stepsGap, setStepsGap] = useState(5); // Set default value
+  const [homePrice, setHomePrice] = useState(500000); // Set default value
+  const [downPayment, setDownPayment] = useState(100000); // Set default value
+  const term = 30; // Fixed term in years
+  const termInMonths = term * 12; // Convert term to months
 
   // Calculate total home price with interest
   const totalHomePrice = homePrice + homePrice * (stepsGap / 100);
@@ -40,17 +34,33 @@ const PreviewListRightSideContent = () => {
     setShowApplicationModal(false);
   };
 
-  // Commercial Property for Rent part
-  const all = [cpr, carousel2, carousel3, carousel4];
+  const [publiclisting, setPublicListing] = useState([]);
+
+  const allPublicListing = async () => {
+    const res = await GetAllPublicListing();
+    const dataresp = res.data;
+    setPublicListing(dataresp);
+    console.log("public listing:", dataresp);
+  };
+  useEffect (() => {
+    allPublicListing()
+  }, [])
+  
+  
+  const all = publiclisting.map((data) =>
+    GetPhotoFromDB(data.listings.photos.photo)
+  );
+
+  console.log("this is all",all);
   const [index, setIndex] = useState(0);
 
   const secImage = () => {
-    setIndex((prevIndex) => (prevIndex + 1) % all.length);
+    setIndex((prevIndex) => (prevIndex + 1) % publiclisting.length);
   };
 
   const firstImage = () => {
     setIndex((prevIndex) =>
-      prevIndex - 1 < 0 ? all.length - 1 : prevIndex - 1
+      prevIndex - 1 < 0 ? publiclisting.length - 1 : prevIndex - 1
     );
   };
 
@@ -70,6 +80,7 @@ const PreviewListRightSideContent = () => {
                     height: "15px",
                     width: "15px",
                     margin: "10px",
+                    color: "black"
                   }}
                 />
                 <span>30 Years Fixed</span>
@@ -96,10 +107,10 @@ const PreviewListRightSideContent = () => {
                     max={100}
                     value={stepsGap}
                     onChange={setStepsGap}
-                    trackStyle={{ backgroundColor: "red" }}
+                    trackStyle={{ backgroundColor: "black" }}
                     handleStyle={{
-                      borderColor: "red",
-                      backgroundColor: "red",
+                      borderColor: "black",
+                      backgroundColor: "black",
                     }}
                   />
                 </div>
@@ -128,7 +139,7 @@ const PreviewListRightSideContent = () => {
                     max={10000000}
                     value={homePrice}
                     onChange={setHomePrice}
-                    trackStyle={{ backgroundColor: "red" }}
+                    trackStyle={{ backgroundColor: "black" }}
                     handleStyle={{
                       borderColor: "red",
                       backgroundColor: "red",
@@ -160,10 +171,10 @@ const PreviewListRightSideContent = () => {
                     max={homePrice}
                     value={downPayment}
                     onChange={setDownPayment}
-                    trackStyle={{ backgroundColor: "red" }}
+                    trackStyle={{ backgroundColor: "black" }}
                     handleStyle={{
-                      borderColor: "red",
-                      backgroundColor: "red",
+                      borderColor: "black",
+                      backgroundColor: "black",
                     }}
                   />
                 </div>
@@ -185,9 +196,7 @@ const PreviewListRightSideContent = () => {
                 percent={100}
                 format={() => (
                   <div>
-                    <div className="pesos">
-                      PHP {monthlyPayment.toFixed(2)}
-                    </div>
+                    <div className="pesos">PHP {monthlyPayment.toFixed(2)}</div>
                     <div className="per-month">per month</div>
                   </div>
                 )}
@@ -232,33 +241,7 @@ const PreviewListRightSideContent = () => {
         <button className="send-message-button">Send Message</button>
       </div>
 
-      <h3>Featured Properties</h3>
-
-      <div className="commercial-property-rent">
-        <h2>Commercial Property for Rent</h2>
-        <div className="commercial-property-details">
-          <div className="commercial-property-image">
-            <img src={all[index]} className="all" alt="Property" />
-            <div className="property-labels">
-              <span className="property-label-for-sale">For Sale</span>
-              <span className="property-label-featured">Featured</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="small-image-container">
-        <div className="previous-img" onClick={firstImage}>
-          <img src={previous} width="50" height="50" alt="Previous" />
-        </div>
-        <img className="small-image-container" alt="" />
-        <div className="next-img" onClick={secImage}>
-          <img src={next} width="55" height="55" alt="Next" />
-          <div className="small-image-icons">
-            <img src={iconheart} alt="Heart" />
-            <img src={iconfilter} alt="Filter" />
-          </div>
-        </div>
-      </div>
+  
     </div>
   );
 };

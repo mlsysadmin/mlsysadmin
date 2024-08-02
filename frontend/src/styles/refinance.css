@@ -89,7 +89,7 @@ refinance-property-group .ref-prop-btn:hover{
     border: 1px solid var(--red);
     padding: 0px 0px 0px 20px;
 }
-.ant-slider-track {
+.refinance-content.ant-slider-track {
     background-color: var(--red) !important;
   }
   

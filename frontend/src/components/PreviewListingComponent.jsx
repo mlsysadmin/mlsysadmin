@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 // import Navigation from "./layout/NavigationComponent";
 import Footer from "./MY Drafts/Components/FooterComponent";
 import "../styles/previewListing.css";
@@ -14,35 +16,49 @@ import image705 from "../assets/images/image705.png";
 import filter_alt from "../assets/icons/previewlisting/filter_alt.png";
 import share from "../assets/icons/previewlisting/share.png";
 import printer from "../assets/icons/previewlisting/printer.png";
-import location from "../assets/icons/previewlisting/location.png";
+import locationimg from "../assets/icons/previewlisting/location.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import camera from "../assets/icons/previewlisting/camera.png";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 // import ApplicationDetailModal from "./layout/ApplicationDetails/ApplicationDetailsModal";
 import PreviewListLeftContent from "./PreviewListLeftContent";
 import PreviewListRightSideContent from "./PreviewListRightSideContent";
-
-
-
+import MLBROKERAGEAxiosInstance from "../helper/axios";
+import GetAllPublicListing, {
+  GetPublicListingByID,
+} from "../api/GetAllPublicListings";
+import { LocationFormatter } from "../utils/LocationDateFormatter";
+import { GetPhotoFromDB, GetPhotoLength, GetAllPhoto } from "../utils/GetPhoto";
+import PropertyListing from "./PropertyListing";
+import HomeHighlights from "./HomeHighlights";
 
 const PreviewListing = () => {
   const [amountInPesos, setPesos] = React.useState(500);
-  const [currentIndex, setCurrentIndex] = React.useState(0);
-  const [smallImages, setSmallImages] = React.useState([livingroom, bathroom]); // Initial small images
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [smallImages, setSmallImages] = useState([]);
   const [photoCount, setPhotoCount] = React.useState(); // Initial photo count
   const [stepsGap, setStepsGap] = React.useState(20); // Interest rate in percent
   const [homePrice, setHomePrice] = React.useState(1000000); // Initial home price
   const [downPayment, setDownPayment] = React.useState(100000); // Initial down payment
-
   const [showApplicationModal, setShowApplicationModal] = useState(false);
 
-  const handleButtonClick = () => {
-    setShowApplicationModal(true);
-  };
 
-  const handleCloseModal = () => {
-    setShowApplicationModal(false);
-  };
+
+  const features = [
+    { title: 'Bedrooms', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/ffa0b4ae5294fab32f04e2df5bccc9e215b962c4a23b87baa3b3a4f9d11a3bf0?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5', value: '5' },
+    { title: 'Bathrooms', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/372723378f9151c6cced3d234ccf4d85735cb0c5bd16df4ca6bac2adaf6189fb?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5', value: '5' },
+    { title: 'Garage', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/a17243275d0fedc1a93dbce25cd9571671d11f482871f3219644e3e5fe1afa72?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5', value: '3' },
+    { title: 'Area', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/c279a46ede99c04710deb1142ac34bf9008c0ed800284e2cdc230b0e6a25fc86?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5', value: '300 SqM' },
+    { title: 'Price per SqM', iconSrc: '', value: 'PHP400,000' }
+  ];
+  
+  // const handleButtonClick = () => {
+  //   setShowApplicationModal(true);
+  // };
+
+  // const handleCloseModal = () => {
+  //   setShowApplicationModal(false);
+  // };
 
   const term = 30; // Fixed term in years
   const termInMonths = term * 12; // Convert term to months
@@ -57,16 +73,50 @@ const PreviewListing = () => {
   };
 
   //sa Kadtu nig pag next sa mga photo
-  const images = [
-    bedroom,
-    livingroom,
-    bathroom,
-    image701,
-    image702,
-    image703,
-    image704,
-    image705,
-  ];
+
+
+  // const {state} = useLocation();
+  // const {id} = state;
+  // const { new_id } = useParams();
+  const url = process.env.REACT_APP_STORAGE_BUCKET_URL;
+  const objectname = process.env.REACT_APP_OBJECT_NAME;
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [oneListing, setOneListing] = useState(null);
+
+  useEffect(() => {
+    const getlistingByID = async () => {
+      try {
+        const params = {
+          listing_id: location.state,
+          property_status: "ACTIVE",
+        };
+
+        console.log(params.listing_id);
+        const onelistingdata = await GetPublicListingByID(params);
+        const dataresp = onelistingdata.data;
+
+        setOneListing(dataresp);
+        // console.log(onelistingdata);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getlistingByID();
+  }, [location.state]);
+  
+  console.log("photos", GetAllPhoto());
+
+  // if (oneListing) {
+  //   console.log("Title:", oneListing.title);
+  //   console.log("Photos:", JSON.parse(oneListing.listings.photos.photo))
+  //   console.log("Photos:", images);
+  //   ;
+  // } else {
+  //   console.log("oneListing is undefined");
+  // }
+  
+  let images = (oneListing?.listings?.photos?.photo || []);
 
   const previousImage = () => {
     const newIndex = (currentIndex - 1 + images.length) % images.length;
@@ -74,39 +124,32 @@ const PreviewListing = () => {
     updateSmallImages(newIndex);
   };
   
-
   const nextImage = () => {
     const newIndex = (currentIndex + 1) % images.length;
     setCurrentIndex(newIndex);
     updateSmallImages(newIndex);
   };
-
+  
   const updateSmallImages = (newIndex) => {
-    // Get the next 2 main images after the current index
     const nextIndex1 = (newIndex + 1) % images.length;
     const nextIndex2 = (newIndex + 2) % images.length;
-
+  
     const newSmallImages = [images[nextIndex1], images[nextIndex2]];
     setSmallImages(newSmallImages);
-
-    // Update photo count based on new index
+  
     const newPhotoCount = getPhotoCountForMainImage(newIndex);
     setPhotoCount(newPhotoCount);
   };
-
+  
   const getPhotoCountForMainImage = (index) => {
-    // Add logic to get the photo count for each main image
-    // For example, you can have an object that maps image index to photo count
   };
 
-  //pag add sa paborito
+
   const [isFavorite, setIsFavorite] = React.useState(false);
 
   const toggleFavorite = () => {
     setIsFavorite(!isFavorite);
   };
-
-
 
   return (
     <div className="previewlist">
@@ -116,96 +159,21 @@ const PreviewListing = () => {
         className="contentContainer"
         style={{ display: "flex", width: "100%", gap: "1rem" }}
       >
-        <div className="real-estate-listing-card">
-          <div className="galleryComponent">
-            <div className="gallery">
-              <div className="image-container-large">
-                <img
-                  src={images[currentIndex]}
-                  alt="Preview"
-                  className="all-images"
-                />
-
-                <div className="centered">PHP 120,000,000</div>
-
-                <div className="icns">
-  <div className="bottom-right">
-    <div className="icon-circle" onClick={toggleFavorite}>
-      <div className={`heart-icon ${isFavorite ? "favorite" : ""}`}>
-        <span className="material-symbols-outlined">
-          {isFavorite ? "favorite" : "favorite_border"}
-        </span>
-      </div>
-    </div>
-  </div>
-  <div className="right">
-    <div className="icon-circle">
-      <img src={filter_alt} className="fas fa-filter" alt="Filter" />
-    </div>
-  </div>
-  <div className="Printer">
-    <div className="icon-circle">
-      <img src={printer} alt="Printer" />
-    </div>
-  </div>
-  <div className="share">
-    <div className="icon-circle">
-      <img src={share} alt="Share" />
-    </div>
-  </div>
-</div>
-
-                <div className="prev-next">
-                  <div className="backward" onClick={previousImage}>
-                    <img
-                      src={fabackward}
-                      width="40"
-                      height="40"
-                      alt="Previous"
-                    />
-                  </div>
-
-                  <div className="fanext" onClick={nextImage}>
-                    <FontAwesomeIcon icon={faPlay} />
-                  </div>
-                </div>
-
-                <div className="preview-list-property-details">
-                  <div className="pl-for-sale">For Sale</div>
-                  <h2>5 Bedroom House for Rent in Maria Luisa Park</h2>
-                  <div className="location">
-                    <img src={location} alt="Location" /> Maria Luisa Estate
-                    Park, Banilad, Cebu City
-                  </div>
-                </div>
-              </div>
-              <div className="small-images">
-                {smallImages.map((src, idx) => (
-                  <div key={idx} className="small-image">
-                    <img
-                      src={src}
-                      alt={`Small ${idx + 1}`}
-                      className="small-img"
-                    />
-                  </div>
-                ))}
-                <div className="camera-info">
-                  <img src={camera} alt="Camera Icon" className="camera" />
-                  <h2>{currentIndex + 1} </h2>
-                  <p className="photos">{photoCount} Photos</p>
-                </div>
-              </div>
+        {oneListing && (
+          <div className="real-estate-listing-card">
+           <PropertyListing/>
+            {/* <div className="previewlist-overview">
+              <span>OVERVIEW</span>
+              <p>Property ID: {oneListing.listings.property_id}</p>
+            </div> */}
+            <div className="midContent">
+              <PreviewListLeftContent oneListing={oneListing} />
+              <PreviewListRightSideContent />
+             
             </div>
+            <HomeHighlights/>
           </div>
-          <div className="previewlist-overview">
-            <span>OVERVIEW</span>
-            <p>Property ID: 123456789</p>
-          </div>
-          <div className="midContent">
-           < PreviewListLeftContent/>
-           < PreviewListRightSideContent/>
-          </div>
-        </div>
+        )}
       </div>
       <Footer />
     </div>

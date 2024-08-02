@@ -34,6 +34,7 @@ import {
   ShowDetailsDenied,
   ActiveListingDetails,
   SoldPropertyDetailsPage,
+  ViewListingComponent,
   
 } from "../pages";
   
@@ -132,8 +133,12 @@ const Routes = [
                 element: <Sidebar />,
               },
               {
-                path: "/previewListing",
+                path: "/previewListing/:new_id",
                 element: <PreviewListing />,
+              },
+              {
+                path: "/view-listing",
+                element:<ViewListingComponent/>,
               },
               {
                 path: "/Modalcomponents",

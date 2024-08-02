@@ -377,7 +377,8 @@ module.exports = {
 
             const params_fields = {
                 property_status: payload.property_status,
-                listing_id: payload.listing_id
+                listing_id: payload.listing_id,
+                listing_status: "APPROVED"
             }
 
             const GetListing = await Sequelize.transaction(async (transaction) => {

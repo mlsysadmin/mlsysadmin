@@ -384,7 +384,7 @@
     color: white;
     width: 75%;
     margin: 30px auto; /* Centers the element horizontally */
-    border-radius: 30px;
+    border-radius: 10px;
     position: absolute;
     display: flex;
     top: 50%;
@@ -396,7 +396,7 @@
   .dashboard-sub-content1 {
     width: 95%;
     background-color: white;
-    border-radius: 30px;
+    border-radius: 10px;
     margin: 20px auto; /* Centers the element within the parent */
     display: flex;
     flex-direction: column;
@@ -419,7 +419,7 @@
     flex: 1;
     margin: 0 10px;
     color: black;
-    border-radius: 30px;
+    border-radius: 10px;
 
   }
   .custom-select .ant-select-selector {
@@ -445,7 +445,7 @@
   :where(.css-dev-only-do-not-override-m4timi).ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
     border: 1px solid #d9d9d9;
     background: #ffffff;
-    border-radius: 30px;
+    border-radius: 10px;
 }
 :where(.css-dev-only-do-not-override-m4timi).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
     color: #d90000;

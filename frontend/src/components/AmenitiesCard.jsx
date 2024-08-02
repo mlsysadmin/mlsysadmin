@@ -1,0 +1,25 @@
+import React from "react";
+import styles from '../styles/HomeHighlights.module.css';
+
+function AmenitiesCard({ amenities }) {
+  return (
+    <article className={styles.card}>
+      <h2 className={styles.cardHeader}>Amenities</h2>
+      <div className={styles.amenitiesContainer}>
+        <div className={styles.amenitiesGrid}>
+          {amenities.map((columnItems, columnIndex) => (
+            <div key={columnIndex} className={styles.amenitiesColumn}>
+              <ul className={styles.amenitiesList}>
+                {columnItems.map((item, itemIndex) => (
+                  <li key={itemIndex} className={styles.amenityItem}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export default AmenitiesCard;

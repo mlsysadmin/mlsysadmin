@@ -189,7 +189,8 @@ listing search */
 /* //certainfeatures css */
 .search-certain-features {
   display: flex;
-  margin: 10px 0px 20px 150px;
+  margin: 10px 0px 20px 80px;
+  /* margin: 10px 0px 20px 150px; */
   align-items: center;
 }
 .certain-feature-label {
