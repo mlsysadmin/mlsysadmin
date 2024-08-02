@@ -242,10 +242,10 @@ const DashboardComponent = () => {
                     <Option value="residential" style={{ color: "red" }}>
                       RESIDENTIAL
                     </Option>
-                    <Option value="condominium">Condominium</Option>
-                    <Option value="shop-retail-residential">Shop/Retail</Option>
+                    <Option value="condominium">Condominiumss</Option>
+                    <Option value="shop-retail-residential">Shop/Retailss</Option>
                     <Option value="residential-land-lot">
-                      Residential Land/Lot
+                      Residential Land/Lotsssssss
                     </Option>
 
                     <Option value="industrial" style={{ color: "red" }}>
