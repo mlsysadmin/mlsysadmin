@@ -7,6 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import RoundBtn from "../../../custom/buttons/RoundBtn.custom";
 import userProfile from "../../../../assets/profile-user.png";
 import "../../../../styles/jointeam.css";
+import GetAllCountry from "../../../../api/GetLocation";
 // import JoinTeam from "../../../modals/JoinTeamModal";
 import UserLogInProfileDropdownBtn from "../../../custom/buttons/BuyerLogInButtonDropdown";
 // import userProfileLogIn from "../../../../assets/userProfileLogIn.png"
@@ -17,6 +18,7 @@ import SellerLogInButtonDropdown from "../../../custom/buttons/SellerLogInButton
 import { colors } from "@mui/material";
 
 const HeaderMenu = () => {
+ 
 	const [currentMenu, setCurrent] = useState("");
 	const [rentPopUpOpen, setrentPopUpOpen] = useState(false);
 	const [buyPopUpOpen, setbuyPopUpOpen] = useState(false);
@@ -31,6 +33,18 @@ const HeaderMenu = () => {
 			window.location.href = url_Redirect;
 		}
 	};
+     const [getCountry, setGetCountry] = useState([]);
+
+			const allCountries = async () => {
+				const datares = await GetAllCountry();
+				setGetCountry(datares);
+				console.log("these are countries:", getCountry);
+			};
+
+			useEffect(() => {
+				allCountries();
+        console.log(GetAllCountry());
+			});
 
 	//modals
 	const [showModal, setShowModal] = useState(false);
@@ -237,6 +251,9 @@ const HeaderMenu = () => {
 		</>
 	);
 };
+
+
+
 
 const JoinTeam = ({ toggleModal }) => {
 	return (

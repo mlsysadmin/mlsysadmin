@@ -9,6 +9,7 @@
   font-family: "Poppins", Helvetica;
 }
 
+
 .listing-steps {
   flex: 1;
   /* border-style: solid; */
@@ -234,8 +235,22 @@ span.selected {
   min-width: 150px;
   font-weight: 500;
 }
-
-
+.featureCards .features .feature-item{
+   flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #d90000;
+    cursor: pointer;
+    border-radius: 20px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+  
+}
+.featureCards .features .feature-item.selected {
+    background-color: var(--red);
+    color: white;
+  }
 
 
 .tab-container {
