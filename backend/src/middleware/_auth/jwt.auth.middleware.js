@@ -3,6 +3,7 @@ require('cookie-parser');
 const { JsonWebTokenError, TokenExpiredError, verify, NotBeforeError } = require("jsonwebtoken");
 const DayJS = require('dayjs');
 const DataResponseHandler = require("../../utils/_helper/DataResponseHandler.helper");
+const { GetTokenVersion } = require("../../utils/_helper/Jwt.helper");
 
 const verifyToken = (req, res, next) => {
     const token =
@@ -16,12 +17,13 @@ const verifyToken = (req, res, next) => {
                 "TOKEN_NOT_FOUND",
                 403,
                 false,
-                "You are not authorized to access the resource"
+                "You are not authorized to access the resource. Please refresh the page to login again."
             )
         }
 
         const decoded = verify(token, process.env.SECRET_KEY, {
-            maxAge: '5m'
+            maxAge: '10m'
+            // maxAge: '5m'
         });
         
         console.log("decoded: ", decoded);
@@ -30,8 +32,13 @@ const verifyToken = (req, res, next) => {
         const dateNow = DayJS(new Date).format('DD-MM-YYYY');
 
         const api_key = process.env.API_KEY;
+        const userId = payload.sub;
+        const payLoadVersion = payload.version;
 
-        if (payload.api_key === api_key && payload.date === dateNow) {
+        const currentTokenVersion = GetTokenVersion(userId)
+
+        if (payload.api_key === api_key && payload.date === dateNow && payLoadVersion === currentTokenVersion) {
+            req.access_token = payload;
             next(); 
         }else{
             let error = {
@@ -45,7 +52,7 @@ const verifyToken = (req, res, next) => {
                 "AUTHENTICATION_FAILED",
                 401,
                 false,
-                "You are not authorized to access the resource"
+                "You are not authorized to access the resource. Please refresh the page to login again."
             )
         }
     } catch (err) {
@@ -62,7 +69,7 @@ const verifyToken = (req, res, next) => {
                         "AUTHENTICATION_FAILED",
                         401,
                         false,
-                        "You are not authorized to access the resource"
+                        "You are not authorized to access the resource. Please refresh the page to login again."
                     )
                 )
             }

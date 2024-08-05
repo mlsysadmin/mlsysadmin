@@ -53,14 +53,46 @@ import { ShowDetailsDenied } from "./ShowDetailsDenied";
 import { SoldPropertyDetails } from "./MY Drafts/SoldPropertyDetails";
 import { ActiveListingDetails } from "./MY Drafts/ActiveListingDetails";
 
+<<<<<<< HEAD
 // modals
 import JoinTeam from "./modals/JoinTeamModal";
 //Application
+=======
+//  SUPPORT
+import ApplicationDetails from "./support/ApplicationDetails";
+import CancelledApplication from './custom/support/custom.CancelledApplication';
+import DisapprovedApplication from './custom/support/custom.DisapprovedApplicationMasterlist';
+import ListingDetails from './support/ListingDetails';
+import OpenApplication from './custom/support/custom.OpenApplicationMasterlist';
+import PendingApplication from './custom/support/custom.PendingApplicationMasterlist';
+import PreApprovalRequest from './custom/support/PreApprovalRequests';
+import PreApprovalRequestListing from './support/PreApprovalDetailsListing';
+import SupportComponent from './support/SupportDashboardComponent';
+import SignIn from './support/SignIn.component';
+import CloseApplicationModal from "./custom/support/CloseApplicationModal";
+import SupportListingComponent from "./support/SupportListingComponent";
+>>>>>>> daad3b60c3822771504f1ed20d872d98d0e41659
 
+import SupportHeaderContainer from "./layout/Navigation/support/SupportHeaderContainer";
 
+// MASTER
+import SupportPendingListingComponent from "./support/master/SupportPendingListingComponent";
+import SupportListingMasterListComponent from './support/master/SupportListingMasterlistComponent';
+import SupportDeniedMasterlistComponent from './support/master/SupportDeniedMasterlistComponent';
+import SupportListingDetails from "./support/SupportListingDetails";
 
+// APPLICATION
+import SupportPendingApplicationComponent from './support/application/SupportPendingApplicationComponent';
+import SupportApprovedApplicationComponent from './support/application/SupportApprovedApplicationComponent';
+import SupportDeniedApplicationComponent from './support/application/SupportDeniedApplicationComponent';
+import SupportCancelledApplicationComponent from './support/application/SupportCancelledApplicationComponent';
+import SupportClosedApplicationComponent from './support/application/SupportClosedApplicationComponent';
+
+import SupportPreApprovalListComponent from "./support/SupportPreApprovalListComponent";
+import ApprovalSectionComponent from "./support/ApprovalSectionComponent";
 
 export {
+<<<<<<< HEAD
 	ActiveListingDetails,
 	ShowDetailsProcessing,
 	ShowDetailsDenied,
@@ -101,4 +133,69 @@ export {
 	SellComponent,
 	SoldPropertyDetails,
 	JoinTeam,
+=======
+  ActiveListingDetails,
+  ShowDetailsProcessing,
+  ShowDetailsDenied,
+  ListingSearchLoggedin,
+  LoginModal,
+  RegistrationModal,
+  ModalComponents,
+  PreviewListing,
+  DraftSidebar,
+  ListingsTable,
+  SoldProperties,
+  ListingSummaryLists,
+  ClientManagement,
+  ActiveSummaryLists,
+  Drafts,
+  NewPageComponent,
+  PropertiesForRent,
+  FooterComponent,
+  CustomMlFooter,
+  HeaderContainer,
+  SideBar,
+  MainLayout,
+  HouseForRentComponent,
+  DiscoverHomeComponent,
+  BuyAHomeComponent,
+  RefinanceComponent,
+  InsuranceGuideComponent,
+  WrapUpDetails,
+  SubmitApplicationCustom,
+  CustomAdvanceSearch,
+  AllComponent,
+  FeaturedComponent,
+  ListingSearch,
+  ContactUsComponent,
+  LoanCalculatorComponent,
+  MortgageComponent,
+  RentComponent,
+  SellComponent,
+  SoldPropertyDetails,
+  ApplicationDetails,
+  CancelledApplication,
+  DisapprovedApplication,
+  ListingDetails,
+  OpenApplication,
+  PendingApplication,
+  PreApprovalRequest,
+  SupportComponent,
+  SignIn,
+  PreApprovalRequestListing,
+  CloseApplicationModal,
+  SupportListingComponent,
+  SupportHeaderContainer,
+  SupportPendingListingComponent,
+  SupportListingMasterListComponent,
+  SupportDeniedMasterlistComponent,
+  SupportPendingApplicationComponent,
+  SupportDeniedApplicationComponent,
+  SupportApprovedApplicationComponent,
+  SupportCancelledApplicationComponent,
+  SupportClosedApplicationComponent,
+  SupportPreApprovalListComponent,
+  SupportListingDetails,
+  ApprovalSectionComponent
+>>>>>>> daad3b60c3822771504f1ed20d872d98d0e41659
 };
