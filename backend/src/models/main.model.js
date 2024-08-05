@@ -111,6 +111,10 @@ Amenities.belongsTo(CustomAmenities, { foreignKey: 'custom_amenity_id', as: 'cus
 CustomInclusions.hasOne(Amenities, { foreignKey: 'custom_inclusion_id' });
 Amenities.belongsTo(CustomInclusions, { foreignKey: 'custom_inclusion_id', as: 'custom_inclusion' });
 
+/** APPROVER Association **/ 
+Role.hasMany(Approvers, { foreignKey: 'role_id' });
+Approvers.belongsTo(Role, { foreignKey: 'role_id', as: 'role' });
+
 /* ------------------------------------------------------------------------------- */
 
 

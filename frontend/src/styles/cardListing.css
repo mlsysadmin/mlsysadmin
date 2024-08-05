@@ -70,7 +70,8 @@
 
 #card-listing .ant-card-body .card-content{
     text-align: left;
-    padding: 15px 0 !important;
+    padding: 15px !important;
+    /* padding: 15px 0 !important; */
     font-family: var(--font-family);
 }
 

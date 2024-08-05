@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const { Op } = require('sequelize');
 const { JwtSign } = require("../../services/jwt.auth.service");
-const { FindUserOne } = require("../../streamline/user.datastream");
+const { FindUserOne, FindOneSupportByEmail } = require("../../streamline/user.datastream");
 const SuccessFormatter = require("../../utils/_helper/SuccessFormatter.helper");
 const { User, Role } = require("../../models/main.model");
 const SuccessLoggerHelper = require('../../utils/_helper/SuccessLogger.helper');
@@ -12,6 +12,10 @@ const DataResponseHandler = require('../../utils/_helper/DataResponseHandler.hel
 const { VerifyHash, Hash } = require('../../utils/_helper/hash.helper');
 const GenerateToken = require('../../utils/_api/Token.api');
 const { SearchUserKyc } = require('../../utils/_api/kyc.api');
+const { GenerateURL, GoogleAuth } = require('../../services/google.auth.service');
+
+const { google } = require('googleapis');
+const { UpdateTokenVersion } = require('../../utils/_helper/Jwt.helper');
 
 module.exports = {
     Login: async (req, res, next) => {
@@ -211,5 +215,121 @@ module.exports = {
         } catch (error) {
             next(error)
         }
-    }
+    },
+
+    // SUPPORT
+    GoogleSignIn: async (req, res, next) => {
+        try {
+
+            const URL = await GenerateURL();
+
+            const data = DataResponseHandler(
+                { url: URL },
+                "GENERATE_GOOGLE_AUTH_URL",
+                200,
+                true,
+                "SUCCESS"
+            )
+            const success = SuccessFormatter(data, 200, "URL Generated");
+
+            SuccessLoggerHelper(req, data);
+
+            res.status(200).send(success);
+
+        } catch (error) {
+            next(error)
+        }
+    },
+
+    GoogleSignInCallback: async (req, res, next) => {
+        try {
+
+            const code = req.query.code;
+
+            const OAuth2Client = await GoogleAuth();
+
+            const getToken = await OAuth2Client.getToken(code);
+
+            OAuth2Client.setCredentials(getToken.tokens);
+
+            let OAuthClient = google.oauth2({
+                auth: OAuth2Client,
+                version: 'v2'
+            })
+            const userInfo = await OAuthClient.userinfo.get();
+            const email = userInfo.data.email;
+
+            const verifyUser = await FindOneSupportByEmail({email});
+
+            if (!verifyUser) {
+                throw DataResponseHandler(
+                    verifyUser,
+                    "USER_NOT_FOUND",
+                    404,
+                    false,
+                    "Login Failed."
+                );
+            } else {
+
+                const generateSessionToken = JwtSign(verifyUser.approver_id);
+
+                const tokenCookieOptions = {
+                    expires: new Date(Date.now() + 300000),
+                    maxAge: 300000, // 5 min
+                    // path: '/',
+                    // httOnly: true,
+                    // secure: true,
+                    // sameSite: true,
+                    // domain: process.env.CLIENT_APP_URL,
+                    signed: true
+                    // expires: new Date(Date.now() + 900000)
+                }
+
+                const useCookieOptions = {
+                    expires: new Date(Date.now() + 300000),
+                    maxAge: 300000, // 5 min
+                    // path: '/',
+                    // httOnly: true,
+                    // secure: true,
+                    // sameSite: true,
+                    // domain: process.env.CLIENT_APP_URL,
+                    // expires: new Date(Date.now() + 900000)
+                }
+
+                const login = DataResponseHandler(
+                    verifyUser.dataValues,
+                    "LOGIN_SUCCESSFULLY",
+                    200,
+                    true,
+                    "SUCCESS"
+                );
+    
+                SuccessLoggerHelper(req, login);
+
+                res.cookie('access_token', generateSessionToken, tokenCookieOptions);
+                res.cookie('user_details', JSON.stringify(verifyUser), useCookieOptions);
+
+                res.redirect(`${process.env.CLIENT_APP_URL}/support/client-management`);
+            }
+
+        } catch (error) {
+            next(error)
+        }
+    },
+
+    UserLogout: async (req, res, next) => {
+        try {
+
+            console.log(req.access_token);
+            const user_id = req.access_token.sub;
+
+            const updatokenTokenVersion = UpdateTokenVersion(user_id);
+
+            res.send(updatokenTokenVersion);
+
+        } catch (error) {
+            next(error);
+        }
+    },
+
 }
