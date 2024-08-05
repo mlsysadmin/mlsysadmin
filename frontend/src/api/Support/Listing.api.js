@@ -60,9 +60,53 @@ const GetAllDeniedList = async () => {
         throw error.response.data;
     }
 }
+const GetSummary = async (payload) => {
+    try {
+        console.log(payload);
+        
+        const config = {
+            headers:{
+                'x-api-key': process.env.REACT_APP_API_KEY
+            },
+            params: {
+                payload
+            }
+        }
+        const response = await MLBROKERAGEAxiosInstance.get(`/api/support/get/listing/total-summary`, config);
+
+        return response.data.data;
+        
+    } catch (error) {
+        console.log(error);
+        throw error.response.data;
+    }
+}
+
+const GetListingDetailsByIdandStatus = async (listing_id) => {
+    try {
+
+        const config = {
+            headers:{
+                'x-api-key': process.env.REACT_APP_API_KEY
+            },
+            params: {
+                listing_id
+            }
+        }
+        const response = await MLBROKERAGEAxiosInstance.get(`/api/support/get/listing/details/one`, config);
+
+        return response.data.data;
+        
+    } catch (error) {
+        console.log(error);
+        throw error.response.data;
+    }
+}
 
 export {
     GetAllPendingMasterList,
     GetAllActiveMasterList,
-    GetAllDeniedList
+    GetAllDeniedList,
+    GetSummary,
+    GetListingDetailsByIdandStatus
 }

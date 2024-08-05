@@ -65,7 +65,7 @@ import PreApprovalRequestListing from './support/PreApprovalDetailsListing';
 import SupportComponent from './support/SupportDashboardComponent';
 import SignIn from './support/SignIn.component';
 import CloseApplicationModal from "./custom/support/CloseApplicationModal";
-import SupportCreateListingComponent from "./support/SupportCreateListingComponent";
+import SupportListingComponent from "./support/SupportListingComponent";
 
 import SupportHeaderContainer from "./layout/Navigation/support/SupportHeaderContainer";
 
@@ -73,6 +73,7 @@ import SupportHeaderContainer from "./layout/Navigation/support/SupportHeaderCon
 import SupportPendingListingComponent from "./support/master/SupportPendingListingComponent";
 import SupportListingMasterListComponent from './support/master/SupportListingMasterlistComponent';
 import SupportDeniedMasterlistComponent from './support/master/SupportDeniedMasterlistComponent';
+import SupportListingDetails from "./support/SupportListingDetails";
 
 // APPLICATION
 import SupportPendingApplicationComponent from './support/application/SupportPendingApplicationComponent';
@@ -82,6 +83,7 @@ import SupportCancelledApplicationComponent from './support/application/SupportC
 import SupportClosedApplicationComponent from './support/application/SupportClosedApplicationComponent';
 
 import SupportPreApprovalListComponent from "./support/SupportPreApprovalListComponent";
+import ApprovalSectionComponent from "./support/ApprovalSectionComponent";
 
 export {
   ActiveListingDetails,
@@ -134,7 +136,7 @@ export {
   SignIn,
   PreApprovalRequestListing,
   CloseApplicationModal,
-  SupportCreateListingComponent,
+  SupportListingComponent,
   SupportHeaderContainer,
   SupportPendingListingComponent,
   SupportListingMasterListComponent,
@@ -144,5 +146,7 @@ export {
   SupportApprovedApplicationComponent,
   SupportCancelledApplicationComponent,
   SupportClosedApplicationComponent,
-  SupportPreApprovalListComponent
+  SupportPreApprovalListComponent,
+  SupportListingDetails,
+  ApprovalSectionComponent
 };

@@ -55,7 +55,8 @@ import {
   PendingMasterList,
   ActiveMasterList,
   DeniedMasterList,
-  ApprovedApplication
+  ApprovedApplication,
+  SupportCreateListing
 } from "../pages";
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -193,11 +194,7 @@ const Routes = [
   },
   {
     path: "support",
-    element: (
-      <ProtectedRoute>
-        <SupportOutlet />
-      </ProtectedRoute>
-    ),
+    element: <ProtectedRoute element={<SupportOutlet/>}/>,
     children: [
       {
         index: true,
@@ -206,7 +203,7 @@ const Routes = [
       {
         path: "client-management",
         // element: <SupportDashboardPage />,
-        element: <SupportDashboard />,
+        element:  <SupportDashboard />
       },
       {
         path: "applications",
@@ -237,6 +234,10 @@ const Routes = [
             path: "approved",
             element: <ApprovedApplication />,
           },
+          {
+            path: "listing-details",
+            element: <ListingDetails />,
+          }
         ]
       },
       {
@@ -255,11 +256,15 @@ const Routes = [
             path: "denied",
             element: <DeniedMasterList />,
           },
+          {
+            path: "listing-details",
+            element: <ListingDetails />,
+          }
         ]
       },
       {
         path: "create-listing",
-        element: <SupportCreateListingComponent />,
+        element: <SupportCreateListing />,
       },
       {
         path: "listing-details/:listingId",

@@ -1,27 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
-import CustomTextField from "../../custom/support/custom.TextField";
-import SupportFeatureLayout from "./SupportFeatureLayout";
+import React, { useRef, useState } from "react";
+import CustomTextField from "../custom/support/custom.TextField";
+import SupportFeatureLayout from "../layout/support/SupportFeatureLayout";
 import Modal from "react-modal";
-import "../../../styles/support/Support.css";
-import CustomSelectTypeField from "../../custom/support/custom.SelectTypeField";
+import "../../styles/support/Support.css";
 import TextArea from "antd/es/input/TextArea";
-import SemiRoundBtn from "../../custom/buttons/SemiRoundBtn.custom";
+import SemiRoundBtn from "../custom/buttons/SemiRoundBtn.custom";
 
 Modal.setAppElement("#root"); // Set this to your app root element
 
-const ListingDetailsLayout = (props) => {
-  const countries = props.countries;
-  const provinces = props.provinces;
-  const cities = props.cities;
-  const isShowDetails = props.isShowDetails;
-  const listingDetails = props.listingDetails;
+const SupportListingDetails = (props) => {
 
   const [subdivision, setSubdivision] = useState("");
   const [completeAddress, setCompleteAddress] = useState("");
   const [mapLocation, setMapLocation] = useState("");
   const [isFirstModalOpen, setIsFirstModalOpen] = useState(false);
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
-  const [listing, setListing] = useState(false);
 
   const [fileList, setFileList] = useState([{
     uid: '-1',
@@ -29,7 +22,6 @@ const ListingDetailsLayout = (props) => {
     status: 'done',
     url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
   },]);
-
   const [previewImage, setPreviewImage] = useState('');
   const [previewOpen, setPreviewOpen] = useState(false);
 
@@ -43,8 +35,6 @@ const ListingDetailsLayout = (props) => {
   const handleSubdivisionChange = (e) => setSubdivision(e.target.value);
   const handleCompleteAddressChange = (e) => setCompleteAddress(e.target.value);
   const handleMapLocationChange = (e) => setMapLocation(e.target.value);
-
-  const [selectedOption, setSelectedOption] = useState("");
 
   const getBase64 = async (file) =>
     new Promise((resolve, reject) => {
@@ -83,52 +73,14 @@ const ListingDetailsLayout = (props) => {
   //   return `https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${encodeURIComponent(query)}`;
   // };
 
-  useEffect(() => {
-    console.log(listingDetails);
-
-    setListing((prevState) => ({
-      ...prevState,
-      property_type: listingDetails.property_type.subtype,
-      listing_type: listingDetails.listing_type.listing_type,
-      price: listingDetails.unit_details.price,
-      discounted_price: listingDetails.unit_details.discounted_price,
-      furnishing: listingDetails.unit_details.furnishing,
-      classification: listingDetails.unit_details.classification,
-      no_of_beds: listingDetails.unit_details.no_of_beds,
-      no_of_bathrooms: listingDetails.unit_details.no_of_bathrooms,
-      parking: listingDetails.unit_details.parking,
-      no_of_floors: listingDetails.unit_details.no_of_floors,
-      floor_area: listingDetails.unit_details.floor_area,
-      lot_area: listingDetails.unit_details.lot_area,
-      price_per_sqm: listingDetails.unit_details.price_per_sqm,
-      property_id: listingDetails.property_id,
-      country: listingDetails.location.country,
-      province: listingDetails.location.province,
-      city: listingDetails.location.city,
-      zipcode: listingDetails.location.zipcode,
-      other: listingDetails.location.other,
-      map_location: listingDetails.location.map_location,
-      title: listingDetails.title,
-      description: listingDetails.description,
-
-    })
-    )
-
-  }, [listingDetails]);
-
   return (
     <>
       <div className="ListingDetails">
         <div className="leftSide">
           <div className="propertyDetailsText">Property Details</div>
           <div className="propertyDetailsFields">
-            <CustomSelectTypeField
-              labelName="Property Type"
-              readOnly={isShowDetails}
-              value={listingDetails.property_type.subtype}
-              disabled={isShowDetails}
-            />
-            <CustomSelectTypeField labelName="Listing Type" />
+            <CustomTextField labelName="Property Type" />
+            <CustomTextField labelName="Listing Type" />
           </div>
           <div className="unitDetailsText">Unit Details</div>
           <div className="unitDetailsFields">
@@ -137,12 +89,12 @@ const ListingDetailsLayout = (props) => {
               inputType="input"
               labelName="Discounted Selling Price"
             />
-            <CustomSelectTypeField labelName="Furnishing" />
-            <CustomSelectTypeField labelName="Classification" />
-            <CustomSelectTypeField labelName="Beds" />
-            <CustomSelectTypeField labelName="Bathrooms" />
-            <CustomSelectTypeField labelName="Parking" />
-            <CustomSelectTypeField labelName="No of Floors" />
+            <CustomTextField labelName="Furnishing" />
+            <CustomTextField labelName="Classification" />
+            <CustomTextField labelName="Beds" />
+            <CustomTextField labelName="Bathrooms" />
+            <CustomTextField labelName="Parking" />
+            <CustomTextField labelName="No of Floors" />
             <CustomTextField inputType="input" labelName="Floor Area (sqm)" />
             <CustomTextField inputType="input" labelName="Lot Area (sqm)" />
             <CustomTextField inputType="input" labelName="Price per sqm" />
@@ -150,20 +102,15 @@ const ListingDetailsLayout = (props) => {
           </div>
           <div className="locationText">Location</div>
           <div className="support-location">
-            <CustomSelectTypeField
-              labelName="Country"
-              countries={countries} />
-            <CustomSelectTypeField
-              labelName="Province/State"
-              provinces={provinces} />
-            <CustomSelectTypeField
-              labelName="City/Town"
-              cities={cities} />
+            <CustomTextField
+              labelName="Country" />
+            <CustomTextField
+              labelName="Province/State" />
+            <CustomTextField
+              labelName="City/Town" />
             <CustomTextField
               inputType="input"
               labelName="Zipcode"
-              value={subdivision}
-              onChange={handleSubdivisionChange}
             />
           </div>
           <div>
@@ -171,13 +118,11 @@ const ListingDetailsLayout = (props) => {
               inputType="input"
               labelName="House No/Unit/Building Name/Street"
               value={subdivision}
-              onChange={handleSubdivisionChange}
             />
             <CustomTextField
               inputType="input"
               labelName="Map Location"
               value={mapLocation}
-              onChange={handleMapLocationChange}
             />
           </div>
         </div>
@@ -247,22 +192,18 @@ const ListingDetailsLayout = (props) => {
           <button className="button button-primary">Preview Listing</button>
         </Modal>
       </div>
-      {
-        !isShowDetails && (
-          <div className="support--submit-btn">
-            <div></div>
-            <SemiRoundBtn
-              className="submit-btn"
-              onClick={openFirstModal}
-              type={'primary'}
-              label={'Create'}
-              size={'large'}
-            />
-          </div>
-        )
-      }
+      <div className="support--submit-btn">
+        <div></div>
+        <SemiRoundBtn
+          className="submit-btn"
+          onClick={openFirstModal}
+          type={'primary'}
+          label={'Create'}
+          size={'large'}
+        />
+      </div>
     </>
   );
 };
 
-export default ListingDetailsLayout;
+export default SupportListingDetails;

@@ -20,6 +20,8 @@ const {
     FindAllMasterListing,
     FindMasterListingDetailsById,
     FindAllPropertyListingByStatus,
+    FindAllHighlighted,
+    FindAllSaved,
 } = require('../../../streamline/listing.datastream');
 const SuccessFormatter = require('../../../utils/_helper/SuccessFormatter.helper');
 const SuccessLoggerHelper = require('../../../utils/_helper/SuccessLogger.helper');
@@ -176,13 +178,13 @@ module.exports = {
                                 if (update.approval_status === "APPROVED") {
 
                                     const master_fields = {
-                                        property_listing_id: get_listing.property_listing_id, 
-                                        seller: get_listing.seller, 
+                                        property_listing_id: get_listing.property_listing_id,
+                                        seller: get_listing.seller,
                                         property_id: get_listing.property_id,
-                                        listing_status: update.approval_status, 
+                                        listing_status: update.approval_status,
                                         property_status: 'ACTIVE'
                                     }
-                                    
+
                                     await CreateMasterPropertyList(master_fields, transaction);
                                 }
 
@@ -250,7 +252,7 @@ module.exports = {
             );
 
             const success = SuccessFormatter(response, 200, `Successful Approval`);
-    
+
             SuccessLoggerHelper(success, response);
 
             res.send(success);
@@ -275,8 +277,6 @@ module.exports = {
             });
             let data;
             let message;
-
-            console.log(GetAllListing);
 
             if (GetAllListing.length === 0) {
 
@@ -304,8 +304,8 @@ module.exports = {
             }
 
             const success = SuccessFormatter(data, 200, message);
-    
-            SuccessLoggerHelper(success, data);
+
+            SuccessLoggerHelper(req, data);
 
             res.send(success);
 
@@ -360,18 +360,17 @@ module.exports = {
             }
 
             const success = SuccessFormatter(data, 200, message);
-    
+
             SuccessLoggerHelper(req, data);
 
             res.send(success);
 
         } catch (error) {
-            console.log("sfs", error);
             next(error)
         }
     },
 
-    // DETAILS BY PROPERTY STATUS AND PROPERTY LISTING ID
+    // DETAILS BY PROPERTY STATUS AND PROPERTY LISTING ID - ACTIVE, INACTIVE, SOLD
     GetMasterListingDetails: async (req, res, next) => {
         try {
 
@@ -390,7 +389,7 @@ module.exports = {
                 const get_approvals = await FindApprovalsPropertyListingId(get_listing.property_listing_id, transaction);
 
                 const approvals = get_approvals.filter((approval) => approval.approval_status === "APPROVED")
-                
+
                 return {
                     listing: { ...get_listing.dataValues },
                     approvals
@@ -417,7 +416,7 @@ module.exports = {
             let message = `${payload.property_status} listing retrieved`;
 
             const success = SuccessFormatter(data, 200, message);
-    
+
             SuccessLoggerHelper(req, logger);
 
             res.send(success);
@@ -439,7 +438,7 @@ module.exports = {
             const GetListingByStatus = await Sequelize.transaction(async (transaction) => {
 
                 const get_listing = await FindAllPropertyListingByStatus(params_fields, transaction);
-                
+
                 return get_listing;
 
             });
@@ -483,7 +482,7 @@ module.exports = {
             );
 
             const success = SuccessFormatter(data, 200, message);
-    
+
             SuccessLoggerHelper(req, logger);
 
             res.send(success);
@@ -491,5 +490,103 @@ module.exports = {
         } catch (error) {
             next(error)
         }
-    }
+    },
+
+    AllSoldListingsCount: async (req, res, next) => {
+        try {
+            console.log('here', req.query);
+
+            const payload = req.query.payload;
+            const approval_status = "PENDING";
+
+            const SoldProperties = await Sequelize.transaction(async (transaction) => {
+
+                const property_listing = await FindAllMasterListing({}, transaction);
+
+                const get_all_listing = await FindAllListingForApprovalByApprover({ ...payload, approval_status }, transaction);
+
+                const sold = property_listing.filter((property) => property.property_status === "SOLD");
+                const active = property_listing.filter((property) => property.property_status === "ACTIVE");
+
+                const get_all_highlighted = await FindAllHighlighted({}, transaction);
+                const get_all_saved = await FindAllSaved({}, transaction);
+
+                return {
+                    sold: sold.length,
+                    active: active.length,
+                    for_approval: get_all_listing.length,
+                    new: active.length,
+                    save: get_all_saved.length,
+                    highlighted: get_all_highlighted.length,
+                };
+
+            });
+
+
+            const response = DataResponseHandler(
+                SoldProperties,
+                "DASHBOARD_DATA_RETRIEVED",
+                200,
+                true,
+                "Dashboard data retrieved."
+            );
+
+            const success = SuccessFormatter(response, 200, `Dashboard data retrieved`);
+
+            SuccessLoggerHelper(req, response);
+
+            res.send(success);
+
+        } catch (error) {
+            next(error);
+        }
+    },
+
+     // DETAILS BY LISTING STATUS AND PROPERTY LISTING ID - PENDING, APPROVED, DENIED
+    GetListingDetails: async (req, res, next) => {
+        try {
+
+            const listing_id = req.query.listing_id;
+
+            const GetListing = await Sequelize.transaction(async (transaction) => {
+
+                const get_listing = await FindListingByListingId(listing_id, transaction);
+
+                const get_approvals = await FindApprovalsPropertyListingId(get_listing.property_listing_id, transaction);
+
+                return {
+                    listing: { ...get_listing.dataValues },
+                    approvals: get_approvals
+                };
+
+            });
+
+            let data = DataResponseHandler(
+                GetListing,
+                `LISTING_FOUND`,
+                200,
+                true,
+                `Listing retrieved`
+            );
+
+            let logger = DataResponseHandler(
+                { listing_id },
+                `LISTING_FOUND`,
+                200,
+                true,
+                `Listing retrieved`
+            );
+
+            let message = `Listing retrieved`;
+
+            const success = SuccessFormatter(data, 200, message);
+
+            SuccessLoggerHelper(req, logger);
+
+            res.send(success);
+
+        } catch (error) {
+            next(error)
+        }
+    },
 }

@@ -22,13 +22,12 @@ const SignIncomponent = () => {
   const [zIndex, setZIndex] = useState(100);
 
   useEffect(() => {
-    const prevPath = sessionStorage.getItem('previous_path');
+    const prevPath = sessionStorage.getItem('previous_path') ? sessionStorage.getItem('previous_path') : null;
     if (isAuthenticated && prevPath) {
-
+      console.log("dsfsdfd");
       Navigate({
         pathname: prevPath
       })
-
     }
   }, [isAuthenticated])
 
@@ -55,7 +54,6 @@ const SignIncomponent = () => {
 
     } catch (error) {
       let errResponse = error.data.data
-      console.log("ERROR: ", error);
       openMessage('error', errResponse.error.message, 3);
       setIsMessageLoadingOpen(false);
       setZIndex(100);

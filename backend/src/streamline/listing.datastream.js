@@ -2,7 +2,7 @@
 
 const { Op } = require('sequelize');
 const Sequelize = require('../config/_db/mlbrokerage.db');
-const { FeaturesLists, PropertyTypes, ListingTypes, UnitDetails, Location, CustomAmenities, CustomInclusions, Amenities, PropertyPhoto, PropertyListing, MasterPropertyList, Approvals, Approvers, User, Role } = require('../models/main.model');
+const { FeaturesLists, PropertyTypes, ListingTypes, UnitDetails, Location, CustomAmenities, CustomInclusions, Amenities, PropertyPhoto, PropertyListing, MasterPropertyList, Approvals, Approvers, User, Role, Highlight, Save } = require('../models/main.model');
 const DataResponseHandler = require('../utils/_helper/DataResponseHandler.helper');
 const Prefix = require('../models/Prefix');
 
@@ -431,7 +431,11 @@ module.exports = {
                             }
                         ],
                         as: 'amenities'
-                    }
+                    },
+                    {
+                        model: PropertyPhoto,
+                        as: 'photos'
+                    },
                 ],
                 transaction,
             });
@@ -691,7 +695,7 @@ module.exports = {
         try {
 
             const get_all_listing = await MasterPropertyList.findAll({
-                attributes: ['property_status'],
+                attributes: ['property_status', 'master_property_id'],
                 include: [
                     {
                         model: PropertyListing,
@@ -847,6 +851,52 @@ module.exports = {
             throw error
         }
     },
+    FindAllHighlighted: async (fields_params, transaction) => {
+        try {
+
+            const get_all_highlighted = await Highlight.findAll({
+                attributes: {
+                    exclude: [
+                        'updatedAt',
+                    ]
+                },
+                where: {
+                    ...fields_params
+                },
+                
+                transaction,
+            })
+
+            return get_all_highlighted;
+
+        } catch (error) {
+            throw error
+        }
+    },
+    FindAllSaved: async (fields_params, transaction) => {
+        try {
+
+            const get_all_saves = await Save.findAll({
+                attributes: {
+                    exclude: [
+                        'updatedAt', 'deletedAt'
+                    ]
+                },
+                where: {
+                    ...fields_params
+                },
+                
+                transaction,
+            })
+
+            return get_all_saves;
+
+        } catch (error) {
+            throw error
+        }
+    },
+    
+
 
     // PUBLIC
     FindAllMasterListingPublic: async (transaction) => {

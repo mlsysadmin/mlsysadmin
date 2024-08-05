@@ -6,14 +6,11 @@ import { GetCountry } from "../../../api/Public/Location.api";
 const CustomSelectTypeField = (props) => {
   const labelName = props.labelName;
   const disabled = props.disabled;
+  const readOnly = props.readOnly;
+  const value = props.value;
 
-  const [selectedOption, setSelectedOption] = useState("");
   const [options, setOptions] = useState([]);
   const [listingInformation, setListingInformation] = useState([]);
-  const handleSelectChange = (e) => {
-    console.log("Selected: ", e);
-    setSelectedOption(e);
-  };
 
   const [errors, setErrors] = useState([]);
   useEffect(() => {
@@ -103,6 +100,10 @@ const CustomSelectTypeField = (props) => {
     }
   }, [labelName, props.cities ,props.provinces, props.countries]);
 
+  const handleSelectChange = (e) => {
+    console.log("Selected: ", e);
+    setSelectedOption(e);
+  };
   return (
     <div className="select-field">
       <label htmlFor={labelName} className="labelClassName">
@@ -116,6 +117,9 @@ const CustomSelectTypeField = (props) => {
         placeholder={`Select ${labelName}`}
         options={options}
         suffixIcon={<CaretDownFilled/>}
+        value={value}
+        aria-readonly={readOnly}
+        disabled={disabled}
       >
       </Select>
     </div>

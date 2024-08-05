@@ -23,7 +23,9 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
     useEffect(() => {
         GetAllForApproval()
     }, []);
-    const { setIsMessageLoadingOpen, setIndex } = useOutletContext();
+    const { setIsMessageLoadingOpen, setIndex, openMessage } = useOutletContext();
+
+    const navigate = useNavigate();
 
     const [current, setCurrent] = useState(1);
     const [pageSize, setPageSize] = useState(2);
@@ -105,7 +107,11 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
                     const location = listing.location
                     return {
                         key: i,
-                        select: <SemiRoundBtn label={'Show Details'} className={'support--show-details-btn'} />,
+                        select: <SemiRoundBtn
+                            label={'Show Details'}
+                            className={'support--show-details-btn'}
+                            handleClick={() => handleShowDetails(listing.listing_id)}
+                        />,
                         date: Format_Date(listing.createdAt),
                         listing_id: listing.listing_id,
                         title: listing.title,
@@ -144,6 +150,8 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
             setIsMessageLoadingOpen(false);
             setIndex(100);
             setShowButtons(false);
+            setTotal(0);
+            setOriginalData([]);
         }
     }
 
@@ -199,21 +207,21 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
 
         return options;
     }
-    const key = 'updatable';
-    const openMessage = (type, content, duration) => {
+    // const key = 'updatable';
+    // const openMessage = (type, content, duration) => {
 
-        messageApi.open({
-            key,
-            type: type,
-            content: content,
-            duration: duration,
-            style: {
-                marginTop: '10vh',
-                fontSize: '17px'
-            },
-            className: 'support--alert-message',
-        });
-    };
+    //     messageApi.open({
+    //         key,
+    //         type: type,
+    //         content: content,
+    //         duration: duration,
+    //         style: {
+    //             marginTop: '10vh',
+    //             fontSize: '17px'
+    //         },
+    //         className: 'support--alert-message',
+    //     });
+    // };
     const ApprovalBtns = () => {
         return showButtons ? (
             <>
@@ -273,58 +281,74 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
         ],
     };
 
-    return (
-        <div>
-            {contextHolder}
-            <div className={`support--pending-master-listing`}
-                style={{ width: "85%", margin: 'auto' }}>
-                <SupportSubMenu title={'Manage Pending Listing'}
-                    isShowDetails={false} />
-                <div className="support--top-controls">
-                    <div className="support--show-entries">
-                        <p style={{ fontWeight: 500 }}>Show entries</p>
-                        {' '}
-                        <Select
-                            options={showEntries()}
-                            size="large"
-                            defaultValue={10}
-                            suffixIcon={<CaretDownFilled />}
-                            className="support--select-entries" />
-                    </div>
-                    <div className="support--search-wrapper">
-                        <Input
-                            placeholder="Search"
-                            // onSearch={onSearch}
-                            style={{
-                                width: 300,
-                            }}
-                            size="large"
-                        />
-                    </div>
+    const handleShowDetails = (e) => {
+        console.log('Show Details', e);
+        const props = {
+            listing_id: e,
+            isEditListing: false,
+            tabTitle: 'Manage Pending Listings',
+            isShowDetails: true,
+        }
+        navigate(
+            {
+                pathname: '/support/master-list/listing-details',
+            },
+        );
+        sessionStorage.setItem('props', JSON.stringify(props));
+    }
+
+return (
+    <div>
+        {/* {contextHolder} */}
+        <div className={`support--pending-master-listing`}
+            style={{ width: "85%", margin: 'auto' }}>
+            <SupportSubMenu title={'Manage Pending Listing'}
+                isShowDetails={false} />
+            <div className="support--top-controls">
+                <div className="support--show-entries">
+                    <p style={{ fontWeight: 500 }}>Show entries</p>
+                    {' '}
+                    <Select
+                        options={showEntries()}
+                        size="large"
+                        defaultValue={10}
+                        suffixIcon={<CaretDownFilled />}
+                        className="support--select-entries" />
                 </div>
-                <SupportTable
-                    columns={columns}
-                    dataSource={filteredListings}
-                    rowSelection={rowSelection}
-                // dataSource={listings}
-                />
-                <div className="support--table-footer">
-                    <div className="support--approval-btns">
-                        <ApprovalBtns />
-                    </div>
-                    <TablePagination
-                        className={'support--table-pagination'}
-                        total={total}
-                        onPageChange={onPageChange}
-                        currentPage={current}
-                        pageSize={pageSize}
-                        onPrevClick={onPrev}
-                        onNextClick={onNext}
+                <div className="support--search-wrapper">
+                    <Input
+                        placeholder="Search"
+                        // onSearch={onSearch}
+                        style={{
+                            width: 300,
+                        }}
+                        size="large"
                     />
                 </div>
             </div>
+            <SupportTable
+                columns={columns}
+                dataSource={filteredListings}
+                rowSelection={rowSelection}
+            // dataSource={listings}
+            />
+            <div className="support--table-footer">
+                <div className="support--approval-btns">
+                    <ApprovalBtns />
+                </div>
+                <TablePagination
+                    className={'support--table-pagination'}
+                    total={total}
+                    onPageChange={onPageChange}
+                    currentPage={current}
+                    pageSize={pageSize}
+                    onPrevClick={onPrev}
+                    onNextClick={onNext}
+                />
+            </div>
         </div>
-    )
+    </div>
+)
 });
 
 export default SupportPendingListingComponent;

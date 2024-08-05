@@ -1,21 +1,40 @@
-import React from 'react';
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { 
+  useLocation, 
+  useNavigate 
+} from 'react-router-dom';
+
 import { useAuth } from '../Context/AuthContext';
+import { SupportOutlet } from '../pages';
 
-const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
+const ProtectedRoute = ({ element }) => {
+  const { isAuthenticated, logout } = useAuth();
 
-  const Location = useLocation();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  if (!isAuthenticated) {
-    // Redirect to the login page if the user is not authenticated
-    return <Navigate to="/support/signin" />;
-  }
+  useEffect(() => {
 
-  sessionStorage.setItem('previous_path', Location.pathname);
+    console.log("ProtectedRoute: isAuthenticated: ", isAuthenticated);
+
+    if (!isAuthenticated) {
+
+      // Redirect to the login page if the user is not authenticated
+      sessionStorage.removeItem('previous_path');
+      navigate( '/support/signin', { 
+        replace: true
+      })
+      console.log("Redirecting to login page");
+      
+    }
+    console.log("Herrrree");
+
+    sessionStorage.setItem('previous_path', location.pathname);
+
+  }, [isAuthenticated])
 
   // Render the children components if the user is authenticated
-  return children;
+  return  element;
 };
 
 export default ProtectedRoute;

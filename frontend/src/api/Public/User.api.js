@@ -47,6 +47,26 @@ const GoogleSignIn = async () => {
     }
 }
 
+const Logout = async () => {
+    try {
+
+        const endpoint = `api/user/support/logout`
+
+        const headers = {
+            'x-api-key': process.env.REACT_APP_API_KEY
+        }
+        const config = Config({}, headers);
+
+        const getUrl = await CallGetApi(endpoint, config);
+
+        return getUrl;
+        
+    } catch (error) {
+        throw error.response;
+    }
+}
+
 export {
-    GoogleSignIn
+    GoogleSignIn,
+    Logout
 }

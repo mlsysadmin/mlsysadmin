@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 
 // Create a context for authentication
@@ -9,22 +9,58 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [userDetails, setUserDetails] = useState(null);
 
-    // const login = () => setIsAuthenticated(true);
-    // const logout = () => setIsAuthenticated(false);
+    const [isMessageLoadingOpen, setIsMessageLoadingOpen] = useState(false);
+    const [zIndex, setIndex] = useState(100);
+
+    console.log('isMessageLoadingOpen', isMessageLoadingOpen);
+
+    // const login = useCallback(user => {
+    //     setIsAuthenticated(true);
+    //     setUserDetails(user);
+    // }, []);
+
+    // const logout = useCallback(() => {
+    //     setIsAuthenticated(false);
+    //     setUserDetails(null);
+    //     // sessionStorage.removeItem('previous_path');
+    //     Cookies.remove('access_token');
+    //     Cookies.remove('user_details');
+    // }, []);
+
+    const logout = () => {
+        setIsAuthenticated(false);
+        setUserDetails(null);
+        // sessionStorage.removeItem('previous_path');
+        Cookies.remove('access_token');
+        Cookies.remove('user_details');
+    };
 
     useEffect(() => {
+
         const access_token = Cookies.get('access_token');
         const user = Cookies.get('user_details');
 
-        if (access_token) {
-            setIsAuthenticated(true);
-            setUserDetails(user);
+        console.log('access_token', access_token);
+
+        const checkAuth = () => {
+
+            if (access_token) {
+                const userParse = JSON.parse(user)
+                console.log('userParse', userParse);
+                // login(userParse);
+                setIsAuthenticated(true);
+                setUserDetails(userParse);
+            } else {
+                logout();
+            }
         }
 
-    }, [isAuthenticated, userDetails])
+        checkAuth();
+
+    }, []);
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, userDetails }}>
+        <AuthContext.Provider value={{ isAuthenticated, userDetails, logout, setIsMessageLoadingOpen, setIndex, zIndex }}>
             {children}
         </AuthContext.Provider>
     );

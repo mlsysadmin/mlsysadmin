@@ -25,7 +25,7 @@ import PreviewListing from "./PreviewListing.page";
 import ModalComponents from "./ModalComponents.page";
 import RegistrationModal from "./RegistrationModal.page";
 import LoginModal from "./LoginModal.page";
-import { ShowDetailsProcessing, SupportCreateListingComponent } from "../components";
+import { ShowDetailsProcessing } from "../components";
 import { ShowDetailsDenied } from "../components";
 import ActiveListingDetails from "./ActiveListingDetails.page";
 import SoldPropertyDetailsPage from "./SoldPropertyDetails.page";
@@ -39,6 +39,7 @@ import ListingDetails from './support/ListingDetails.page';
 import ApplicationDetails from './support/ApplicationDetails.page';
 import PreApprovalRequest from './support/Pre-ApprovalRequests.Page';
 import PreApprovalRequestListing from './support/PreApprovalRequestsListing.Page';
+import SupportCreateListing from "./support/SupportCreateListingPage";
 
 //SUPPORT MASTER LIST
 import PendingMasterList from './support/PendingMasterlist.page';
@@ -59,7 +60,6 @@ import SupportListingOutlet from './support/SupportListingOutlet';
 import SupportOutlet from "./support/SupportOutlet.page";
 
 export {
-
     LoginModal,
     RegistrationModal,
     ModalComponents,
@@ -102,12 +102,12 @@ export {
     PreApprovalRequest,
     PreApprovalRequestListing,
     CloseApplication,
-    SupportCreateListingComponent,
     SupportDashboard,
     SupportApplicationOutlet,
     SupportListingOutlet,
     PendingMasterList,
     ActiveMasterList,
     DeniedMasterList,
-    ApprovedApplication
+    ApprovedApplication,
+    SupportCreateListing
 }
