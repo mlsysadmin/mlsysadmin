@@ -205,25 +205,14 @@ listing search */
 }
 
 .button-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  /* height: 20px; */
-  border-radius: 50%;
-  /* background-color: white; */
-  color: white;
-  margin-right: 10px;
-  border: 1px solid white;
+  margin-right: 5px; /* Adds space between icon and text */
+  border: 2px solid white;
+  border-radius: 100%;
 }
-
-
-.left-button:hover {
-  background-color: var(--red);
-}
-
-.left-button:hover .button-icon {
-  background-color: var(--red);
+.subcontent-buttons{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
 }
 
 /* //certainfeatures css */

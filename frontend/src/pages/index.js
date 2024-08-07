@@ -29,6 +29,7 @@ import { ShowDetailsProcessing } from "../components";
 import { ShowDetailsDenied } from "../components";
 import ActiveListingDetails from "./ActiveListingDetails.page";
 import SoldPropertyDetailsPage from "./SoldPropertyDetails.page";
+import ViewListingComponent from "./ViewListingComponent.page";
 // import ListingSearchLoggedin from "../components/custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
 
 // SUPPORT
@@ -60,6 +61,7 @@ import SupportListingOutlet from './support/SupportListingOutlet';
 import SupportOutlet from "./support/SupportOutlet.page";
 
 export {
+    ViewListingComponent,
     LoginModal,
     RegistrationModal,
     ModalComponents,

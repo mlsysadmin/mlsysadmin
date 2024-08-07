@@ -15,6 +15,7 @@ import SoldProperties from "./MY Drafts/Soldproperties";
 import ListingsTable from "./MY Drafts/Components/ListingsTableComponent";
 import DraftSidebar from "./MY Drafts/Components/DraftSidebarComponent";
 import PreviewListing from "./PreviewListingComponent";
+import ViewListingComponent from "./ViewListingComponent";
 import ModalComponents from "./ModalComponents";
 import RegistrationModal from "./RegistrationModal";
 import LoginModal from "./modals/loginmodal";
@@ -153,4 +154,5 @@ export {
 	SupportListingDetails,
 	ApprovalSectionComponent,
 	JoinTeam,
+  ViewListingComponent,
 };

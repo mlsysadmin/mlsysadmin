@@ -31,7 +31,7 @@ import {GetPhotoFromDB, GetPhotoLength} from "../utils/GetPhoto";
 const DashboardComponent = () => {
   const [loading, setLoading] = useState(false);
   const [userLikes, setUserLikes] = useState([]);
-  const [publiclisting, setPublicListing] = useState([])
+  const [publiclisting, setPublicListing] = useState([]);
   const [isAdvanceSearchOpen, setAdvanceSearchOpen] = useState(false);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const DashboardComponent = () => {
 
   const navigate = useNavigate();
   const handleCardClick = (id) => {
-    console.log("id",id);
+    console.log("id", id);
     // window.location.href = `/previewListing/${id}`;
     navigate(`/previewListing/${id}`, { state: id });
   };
@@ -48,17 +48,15 @@ const DashboardComponent = () => {
   //   navigate('/previewListing');
   // };
 
-  
-  const allPublicListing = async () =>{
+  const allPublicListing = async () => {
     const res = await GetAllPublicListing();
-    const dataresp = res.data
+    const dataresp = res.data;
     setPublicListing(dataresp);
-    console.log("public listing:", dataresp)
-
-  }
-  useEffect (() => {
-    allPublicListing()
-  }, [])
+    console.log("public listing:", dataresp);
+  };
+  useEffect(() => {
+    allPublicListing();
+  }, []);
 
 const newListings = publiclisting.filter(
 	(item) => item.listings.listing_type.listing_type === "For Sale"

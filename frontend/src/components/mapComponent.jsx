@@ -6,7 +6,7 @@ const MapComponent = () => {
   const center = [10.3157, 123.8854]; // Coordinates for Banilad
 
   return (
-    <MapContainer  center={center} zoom={13} className="MapContainer" style={{ height: "300px", width: "50%",borderRadius:"20px" }}>
+    <MapContainer  center={center} zoom={13} className="MapContainer" style={{ height: "400px", width: "98%",borderRadius:"20px" }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

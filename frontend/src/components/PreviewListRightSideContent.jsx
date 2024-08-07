@@ -7,15 +7,7 @@ import mail from "../assets/icons/previewlisting/mailenvelope.png";
 import user from "../assets/icons/previewlisting/usercircle.png";
 import chat from "../assets/icons/previewlisting/chatmessages.png";
 import call from "../assets/icons/previewlisting/callphone.png";
-import next from "../assets/icons/previewlisting/next.png";
-import previous from "../assets/icons/previewlisting/previous.png";
-import iconheart from "../assets/icons/previewlisting/iconheart.png";
-import iconfilter from "../assets/icons/previewlisting/iconfilter.png";
 import "../styles/previewListing.css";
-import cpr from "../assets/images/cpr.png";
-import carousel2 from "../assets/images/carousel2.png";
-import carousel3 from "../assets/images/carousel3.png";
-import carousel4 from "../assets/images/carousel4.png";
 import { GetAllPublicListing } from "../api/GetAllPublicListings";
 import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
 
@@ -88,6 +80,7 @@ const PreviewListRightSideContent = () => {
                     height: "15px",
                     width: "15px",
                     margin: "10px",
+                    color: "black"
                   }}
                 />
                 <span>30 Years Fixed</span>
@@ -114,10 +107,10 @@ const PreviewListRightSideContent = () => {
                     max={100}
                     value={stepsGap}
                     onChange={setStepsGap}
-                    trackStyle={{ backgroundColor: "red" }}
+                    trackStyle={{ backgroundColor: "black" }}
                     handleStyle={{
-                      borderColor: "red",
-                      backgroundColor: "red",
+                      borderColor: "black",
+                      backgroundColor: "black",
                     }}
                   />
                 </div>
@@ -146,7 +139,7 @@ const PreviewListRightSideContent = () => {
                     max={10000000}
                     value={homePrice}
                     onChange={setHomePrice}
-                    trackStyle={{ backgroundColor: "red" }}
+                    trackStyle={{ backgroundColor: "black" }}
                     handleStyle={{
                       borderColor: "red",
                       backgroundColor: "red",
@@ -178,10 +171,10 @@ const PreviewListRightSideContent = () => {
                     max={homePrice}
                     value={downPayment}
                     onChange={setDownPayment}
-                    trackStyle={{ backgroundColor: "red" }}
+                    trackStyle={{ backgroundColor: "black" }}
                     handleStyle={{
-                      borderColor: "red",
-                      backgroundColor: "red",
+                      borderColor: "black",
+                      backgroundColor: "black",
                     }}
                   />
                 </div>
@@ -248,52 +241,7 @@ const PreviewListRightSideContent = () => {
         <button className="send-message-button">Send Message</button>
       </div>
 
-      <h3>Featured Properties</h3>
-
-      <div className="commercial-property-rent">
-        <h2>Commercial Property for Rent</h2>
-        <div className="commercial-property-details">
-          <div className="commercial-property-image">
-            <img src={all[index]} className="all" alt="Property" />
-            <div className="property-labels">
-              <span className="property-label-for-sale">For Sale</span>
-              <span className="property-label-featured">Featured</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* <div className="commercial-property-rent">
-        <h2>Commercial Property for Rent</h2>
-        <div className="commercial-property-details">
-          {publiclisting.map((data, index) => (
-            <div className="commercial-property-image" key={index}>
-              <img
-                src={GetPhotoFromDB(data.lisitings.photos.photo)}
-                className="all"
-                alt="Property"
-              />
-              <img src={all[index]} className="all" alt="Property" />
-              <div className="property-labels">
-                <span className="property-label-for-sale">For Sale</span>
-                <span className="property-label-featured">Featured</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div> */}
-      <div className="small-image-container">
-        <div className="previous-img" onClick={firstImage}>
-          <img src={previous} width="50" height="50" alt="Previous" />
-        </div>
-        <img className="small-image-container" alt="" />
-        <div className="next-img" onClick={secImage}>
-          <img src={next} width="55" height="55" alt="Next" />
-          <div className="small-image-icons">
-            <img src={iconheart} alt="Heart" />
-            <img src={iconfilter} alt="Filter" />
-          </div>
-        </div>
-      </div>
+  
     </div>
   );
 };
