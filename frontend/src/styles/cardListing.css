@@ -73,12 +73,9 @@
 
 #card-listing .ant-card-body .card-content{
     text-align: left;
-<<<<<<< HEAD
-    padding: 10px 0 !important;
-=======
+    /* padding: 10px 0 !important; */
     padding: 15px !important;
     /* padding: 15px 0 !important; */
->>>>>>> daad3b60c3822771504f1ed20d872d98d0e41659
     font-family: var(--font-family);
     background-color: #ffffff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);

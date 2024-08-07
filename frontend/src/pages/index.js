@@ -32,7 +32,7 @@ import SoldPropertyDetailsPage from "./SoldPropertyDetails.page";
 // import ListingSearchLoggedin from "../components/custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
 
 // SUPPORT
-import SignIn from './support/Signin.page';
+import SignIn from './support/signin.page';
 import SupportDashboardPage from "./support/SupportPage";
 import OpenApplication from './support/OpenApplication.page';
 import ListingDetails from './support/ListingDetails.page';
