@@ -639,7 +639,7 @@
     .dashboard-first-content {
         
         top: 60%;
-        z-index: 2000;
+        /* z-index: 2000; */
         flex-direction: column;
     }
     .dashboard-subcontent-inputs {

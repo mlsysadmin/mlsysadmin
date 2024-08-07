@@ -160,39 +160,7 @@
     }
   }
   
-  /* @media only screen and (max-width: 720px) and (min-width: 320px) {
-    .propertyCard {
-      padding: 20px 30px;
-      font-size: 25px;
-    }
   
-    .cameraIcon {
-      width: 20px;
-      height: 20px;
-    }
-  
-    .logoImage {
-      width: 60px;
-    }
-  
-    .infoContainer {
-      margin-top: 450px;
-      flex-direction: column;
-      gap: 10px;
-    }
-  
-    .priceTag {
-      padding: 10px 14px;
-    }
-  
-    .saveIcon {
-      width: 35px;
-    }
-  
-    .saveText {
-      display: none; Hide text for smaller screens
-    }
-  } */
   
   @media only screen and (max-width: 320px) {
     /* .propertyCard {
@@ -357,3 +325,4 @@
     
   }
   
+ 
