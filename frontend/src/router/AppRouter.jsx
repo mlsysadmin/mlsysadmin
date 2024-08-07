@@ -6,6 +6,7 @@ import Dashboard from "../pages/Dashboard.page";
 import Allpage from "../pages/Buyer.All.page";
 import Featuredpage from "../pages/Buyer.Featured.page";
 
+
 import {
   ShowDetailsProcessing,
   ListingPage,
@@ -26,7 +27,7 @@ import {
   RentPage,
   SellPage,
   LoanCalculatorPage,
-  MortagagePage,
+  MortgagePage,
   ActiveSummaryListsPage,
   ClientManagementPage,
   ListingSummaryListsPage,
@@ -34,7 +35,9 @@ import {
   ShowDetailsDenied,
   ActiveListingDetails,
   SoldPropertyDetailsPage,
+  ApplicationHistoryPage,
 } from "../pages";
+
 
 const Routes = [
     {
@@ -95,27 +98,7 @@ const Routes = [
             },
             {
                 path: "/mortgage",
-                element: <MortagagePage/>
-            },
-            {
-                path: "/modal",
-                element: <SuccessModal/>
-            },
-            {
-                path: "/modal2",
-                element: <SuccessfullySubmitted/>
-            },
-            {
-                path: "/modal3",
-                element: <ApplicationModal/>
-            },
-            {
-                path: "/modal4",
-                element: <OTPModal/>
-            },
-            {
-                path: "/application-history",
-                element: <ApplicationHistory/>
+                element: <MortgagePage/>
             },
             {
                 path: "/listing",
@@ -169,10 +152,32 @@ const Routes = [
                 path: "/LoginModal",
                 element: <LoginModal />,
               },
+              {
+                path: "/show-details-processing",
+                element: <ShowDetailsProcessing />,
+              },
+              {
+                path: "/show-details-denied",
+                element: <ShowDetailsDenied />,
+              },
+              {
+                path: "/active-listing-details",
+                element: <ActiveListingDetails />,
+              },
+              {
+                path: "/sold-property-details",
+                element: <SoldPropertyDetailsPage />,
+              },
+              {
+                path: "/buyer-history-page",
+                element: <ApplicationHistoryPage/>
+              },
         ]
     }
 ]
 
+
 const AppRouter = createBrowserRouter(Routes);
+
 
 export default AppRouter;

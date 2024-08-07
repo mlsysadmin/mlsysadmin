@@ -56,6 +56,9 @@ import { ActiveListingDetails } from "./MY Drafts/ActiveListingDetails";
 // modals
 
 import SuccessModal from "./modals/SuccessModal";
+
+//Application
+import ApplicationHistory from "./ApplicationHistory";
 import ApplicationDetailModal from "./layout/ApplicationDetails/ApplicationDetailsModal";
 
 
@@ -100,4 +103,5 @@ export {
   RentComponent,
   SellComponent,
   SoldPropertyDetails,
+  ApplicationHistory
 };

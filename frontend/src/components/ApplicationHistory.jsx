@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "../styles/applicationHistory.css";
-import { SearchOutlined, MenuOutlined, } from "@ant-design/icons";
+import { SearchOutlined, MenuOutlined } from "@ant-design/icons";
 import ApplicationDetails from "../components/ApplicationDetails.jsx";
+import { Pagination } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const ApplicationHistory = () => {
   const [applications, setApplications] = useState([
@@ -56,15 +59,16 @@ const ApplicationHistory = () => {
   const [sidebarVisible, setSidebarVisible] = useState(false);
   const [selectedApplication, setSelectedApplication] = useState(null);
   const sidebar = document.getElementsByClassName("sidebar-container");
- const btn = document.getElementsByClassName('icon-button');
+  const btn = document.getElementsByClassName("icon-button");
   const handleShowDetails = (applicationId) => {
-    const application = applications.find(app => app.applicationId === applicationId);
+    const application = applications.find(
+      (app) => app.applicationId === applicationId
+    );
     sidebar[0].style.display = "none";
     btn[0].style.display = "none";
     setSidebarVisible(false);
 
     setSelectedApplication(application);
-
   };
 
   const handleSearchChange = (event) => {
@@ -82,9 +86,6 @@ const ApplicationHistory = () => {
   const handleGoBack = () => {
     setSelectedApplication(null);
     sidebar[0].style.display = "block";
-    btn[0].style.display = "block";
-
-
   };
 
   const filteredApplications = applications.filter((app) =>
@@ -99,7 +100,9 @@ const ApplicationHistory = () => {
       <div className={`sidebar-container ${sidebarVisible ? "visible" : ""}`}>
         <div className="sidebar">
           <div className="user-info">
-            <p id="cancel" onClick={handleCloseSidebar}>x</p>
+            <p id="cancel" onClick={handleCloseSidebar}>
+              x
+            </p>
             <p>Marie Rodriguez</p>
             <button className="application-history-btn">
               Application History
@@ -109,7 +112,10 @@ const ApplicationHistory = () => {
       </div>
 
       {selectedApplication ? (
-        <ApplicationDetails application={selectedApplication} onGoBack={handleGoBack} />
+        <ApplicationDetails
+          application={selectedApplication}
+          onGoBack={handleGoBack}
+        />
       ) : (
         <div className="history">
           <div className="history-header">
@@ -139,7 +145,7 @@ const ApplicationHistory = () => {
           <table>
             <thead>
               <tr>
-                <th className="select">Select</th>
+                <th id="select">Select</th>
                 <th>Date</th>
                 <th>Application ID</th>
                 <th>Name</th>
@@ -153,7 +159,9 @@ const ApplicationHistory = () => {
               {filteredApplications.map((app) => (
                 <tr key={app.applicationId}>
                   <td>
-                    <button onClick={() => handleShowDetails(app.applicationId)}>
+                    <button
+                      onClick={() => handleShowDetails(app.applicationId)}
+                    >
                       Show Details
                     </button>
                   </td>
@@ -168,12 +176,41 @@ const ApplicationHistory = () => {
               ))}
             </tbody>
           </table>
-          <div className="pagination">
+          {/* <div className="pagination">
             <p>
               Showing {filteredApplications.length} of {applications.length}{" "}
               entries
             </p>
-            <button>1</button>
+            <Pagination/>
+          </div> */}
+          <div
+            className="d-flex justify-content-end"
+          >
+            <div>
+              <p>
+                Showing {filteredApplications.length} of {applications.length}{" "}
+                entries
+              </p>
+            </div>
+            <div>
+              <nav
+                aria-label="Page navigation example"
+                className="pagination-container"
+              >
+                <ul className="pagination-list">
+                  <li className="page-item">
+                    <a className="page-link active" href="/buyer-history-page">
+                      1
+                    </a>
+                  </li>
+                  <li className="page-item">
+                    <a className="page-link" href="/buyer-history-page">
+                      <FontAwesomeIcon icon={faPlay} />
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
         </div>
       )}
@@ -182,4 +219,3 @@ const ApplicationHistory = () => {
 };
 
 export default ApplicationHistory;
-

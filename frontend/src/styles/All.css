@@ -16,7 +16,7 @@
 .all-page-container .card-container {
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
+    /* width: 100%; */
     /* justify-content: space-around; */
   }
   .all-h1{
@@ -37,7 +37,6 @@
   .card img {
     width: 100%;
     border-bottom: 1px solid #ddd;
-    border-radius: 20px;
   }
   
   .card-content {

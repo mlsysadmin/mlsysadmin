@@ -54,15 +54,17 @@ const PreviewListing = () => {
   const [homePrice, setHomePrice] = React.useState(1000000); // Initial home price
   const [downPayment, setDownPayment] = React.useState(100000); // Initial down payment
 
-  const [showApplicationModal, setShowApplicationModal] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const handleButtonClick = () => {
-    setShowApplicationModal(true);
+  const openModal = () => {
+    setIsModalVisible(true);
   };
 
-  const handleCloseModal = () => {
-    setShowApplicationModal(false);
+  const closeModal = () => {
+    setIsModalVisible(false);
   };
+
+
 
   const term = 30; // Fixed term in years
   const termInMonths = term * 12; // Convert term to months
@@ -604,11 +606,10 @@ const PreviewListing = () => {
                   </div>
                 </div>
 
-                <button className="apply-button" onClick={handleButtonClick}>
-                  APPLY NOW
-                </button>
-                {showApplicationModal && <ApplicationDetailModal onClose={handleCloseModal} />}
-              </div>
+                <button className="apply-button" onClick={openModal}>APPLY NOW</button>
+
+                <ApplicationDetailModal visible={isModalVisible} onClose={closeModal} />
+                </div>
 
               <div className="contact-us">
                 <h2>Contact Us</h2>

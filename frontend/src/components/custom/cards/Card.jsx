@@ -62,9 +62,6 @@ const Card = ({
           <div className="icon" onClick={handleHeartClick}>
             {isHeartFilled ? <HeartFilled /> : <HeartOutlined />}
           </div>
-          <div className="icon">
-            <TuneIcon />
-          </div>
         </div>
       </div>
       <div className="card-content">
@@ -72,7 +69,7 @@ const Card = ({
         <h4>{subtitle}</h4>
         <div className="bot">
           <div className="card-price-detail">
-            <p>{price}</p>
+            <p style={{color:"#d90000"}}>{price}</p>
           </div>
           <div className="card-icons">
             <p>

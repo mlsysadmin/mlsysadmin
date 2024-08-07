@@ -60,7 +60,7 @@ const BuyerLogInProfileDropdownBtn = () => {
             <li> charebel@example.com</li>
             <li>Buyer Tier</li>
             <li>───────────────────</li>
-            <li>Application History</li>
+            <li><a  href="/buyer-history-page"style={{color:"#ffffff"}}>Application History</a></li>
             <li>Logout</li>
             <li>
             </li>

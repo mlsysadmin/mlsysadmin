@@ -37,8 +37,8 @@ const PropertyCard = ({ property }) => {
           </div>
         </div>
         <div className="buttons">
-          <Button><FontAwesomeIcon icon={faLocationDot} /> Show Property on Map</Button>
-          <Button><FontAwesomeIcon icon={faEarthAmericas} /> View Listing Details</Button>
+          <Button id='btn'><FontAwesomeIcon icon={faLocationDot} /> Show Property on Map</Button>
+          <Button id='btn'><FontAwesomeIcon icon={faEarthAmericas} /> View Listing Details</Button>
         </div>
       </div>
       <div className="property-image">

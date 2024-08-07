@@ -88,7 +88,7 @@
     color: #8C9094;
   }
 
-  .year-loans{
+  .mort-container .year-loans{
     display: flex;
     flex-direction: row;
     border-color: #d90000;
@@ -101,10 +101,10 @@
     justify-content: space-between;
     width: 100%;
   }
-  .year-loans .dropdown{
+  .mort-container .year-loans #dropdown{
     width: 100%;
   }
-  .year-loans .dropdown select{
+  .year-loans #dropdown select{
     width: 100%;
     border: none;
     outline: none;
@@ -183,7 +183,7 @@
   margin-top: 3%;
   padding: 2%;
   border-radius: 15px;
-  height: 60%;
+  height: 420px;
 }
 .resetbtn{
   width: 100%;

@@ -48,7 +48,7 @@
 
 }
 
-.ant-steps-item-finish .ant-steps-item-icon {
+.listing-steps-container .ant-steps-item-finish .ant-steps-item-icon {
   background-color: #ff0000!important;
   width: 26px;
   display: flex;

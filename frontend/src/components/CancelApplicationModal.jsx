@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/CancelApplicationModal.css';
 
 const CancelApplicationModal = ({ isOpen, onClose, onReasonSelect }) => {
   const [selectedReason, setSelectedReason] = useState('');
+
+  useEffect(() => {
+    if (isOpen) {
+      setSelectedReason('');
+    }
+  }, [isOpen]);
 
   const handleReasonChange = (event) => {
     setSelectedReason(event.target.value);
@@ -82,8 +88,12 @@ const CancelApplicationModal = ({ isOpen, onClose, onReasonSelect }) => {
             </label>
           </div>
         </form>
-        <div className='confirm-btn-container'>
-          <button className="confirm-btn" onClick={handleConfirmCancellation}>
+        <div className="confirm-btn-container">
+          <button
+            className="confirm-btn"
+            onClick={handleConfirmCancellation}
+            disabled={!selectedReason}
+          >
             Confirm Cancellation
           </button>
         </div>

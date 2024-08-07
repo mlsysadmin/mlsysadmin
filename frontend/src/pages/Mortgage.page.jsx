@@ -2,10 +2,10 @@ import React from "react";
 import { MortgageComponent } from "../components";
 
 
-const MortagagePage = () =>{
+const MortgagePage = () =>{
     return(
         <MortgageComponent/>
     );
 }
 
-export default MortagagePage
+export default MortgagePage

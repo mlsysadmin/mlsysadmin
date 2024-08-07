@@ -65,7 +65,7 @@ left: 0;
 top: 0;
 bottom: 0;
 width: 14px;
-background-color: #7f8c8d; /* Grey color on the left */
+background-color: #7f8c8d; 
 }
 
 
@@ -147,7 +147,7 @@ background-color: #7f8c8d; /* Grey color on the left */
   background-color: #E9E9E9;
 }
 
-.application-history-container .select{
+.application-history-container #select{
   border-bottom-left-radius: 20px;
 }
 
@@ -186,25 +186,22 @@ background-color: #7f8c8d; /* Grey color on the left */
 }
 
 /* Pagination Styling */
-.application-history-container .pagination {
+
+.application-history-container .pagination{
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+}
+
+.application-history-container .d-flex{
   display: flex;
   justify-content: center;
   margin-top: 150px;
   justify-content: space-between;
 }
 
-.application-history-container .pagination p{
+.application-history-container .d-flex p{
   color: #8C9094;
-}
-
-.application-history-container .pagination button {
-  background-color: #d90000;
-  border: none;
-  color: black;
-  padding: 10px 20px;
-  margin: 0 5px;
-  border-radius: 30px;
-  cursor: pointer;
 }
 
 .application-history-container .pagination button:hover {
@@ -222,9 +219,7 @@ background-color: #7f8c8d; /* Grey color on the left */
   display: none;
 }
 
-.application-history-container .icon-button:hover {
-  color: #1890ff; /* Change color on hover */
-}
+
 
 
 @media only screen and (max-width: 1024px){
@@ -412,7 +407,7 @@ background-color: #7f8c8d; /* Grey color on the left */
   background-color: #E9E9E9;
 }
 
-.application-history-container .select{
+.application-history-container #select{
   border-bottom-left-radius: 20px;
 }
 
@@ -425,6 +420,7 @@ background-color: #7f8c8d; /* Grey color on the left */
 .application-history-container th, td {
   padding: 6px;
   text-align: left;
+  font-size: small;
 }
 
 .application-history-container th {

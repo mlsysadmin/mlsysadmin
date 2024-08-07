@@ -196,12 +196,13 @@ const HeaderMenu = () => {
           onClick={handleUserProfileClick}
         />
         <Row align={"middle"} className="menu-buttons">
-            <img
+            {/* <img
               src={userProfile}
               style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
               onClick={handleUserProfileClick}
-            /> 
+            />  */}
             {/* <SellerLogInButtonDropdown/> */}
+            <UserLogInProfileDropdownBtn/>
         </Row>
       </div>
     </>
