@@ -41,7 +41,7 @@
 {
     background: var(--red);
     color: white;
-    border-radius: 30px;
+    border-radius: 10px;
     font-family: var(--font-family);
 }
 
