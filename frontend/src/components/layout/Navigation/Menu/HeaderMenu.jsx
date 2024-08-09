@@ -156,47 +156,6 @@ const HeaderMenu = () => {
 		/>
 	);
 
-<<<<<<< HEAD
-  return (
-    <>
-      <div
-        style={{
-          display: "flex",
-          borderBottom: "none",
-          alignItems: "center",
-          alignContent: "center",
-          flexFlow: "wrap",
-          flexWrap: "wrap",
-        }}
-        id="menu-wrapper"
-      >
-        <Menu
-          mode="horizontal"
-          items={items}
-          selectedKeys={[currentMenu]}
-          onClick={handleMenuOnClick}
-          className="header--menu"
-        ></Menu>
-        <RoundBtn
-          type="primary"
-          className="menu-buttons"
-          style={{ background: "#D90000" }}
-          label="List your Property"
-          onClick={handleUserProfileClick}
-        />
-        <Row align={"middle"} className="menu-buttons">
-            {/* <img
-              src={userProfile}
-              style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
-              onClick={handleUserProfileClick}
-            />  */}
-            {/* <SellerLogInButtonDropdown/> */}
-            <UserLogInProfileDropdownBtn/>
-        </Row>
-      </div>
-    </>
-  );
-=======
 	const MenuItems = [
 		{ label: "Sell", key: "sell", link: "/sell" },
 		{ label: "New", key: "new", link: "/new" },
@@ -279,7 +238,6 @@ const HeaderMenu = () => {
 			</div>
 		</>
 	);
->>>>>>> c9b3a0ccf32c1ab78f241c3e6cac282d7328b41e
 };
 
 
