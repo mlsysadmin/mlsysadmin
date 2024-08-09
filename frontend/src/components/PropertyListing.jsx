@@ -1,5 +1,6 @@
 import React from "react";
 import styles from '../styles/ViewListing.module.css';
+import redcamera from "../assets/icons/previewlisting/redcamera.png";
 
 function PropertyListing() {
   return (
@@ -10,12 +11,10 @@ function PropertyListing() {
         className={styles.backgroundImage} 
         alt="Property background"
       />
-      <img 
-        loading="lazy" 
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/e2d040d204b4e3ae24b9dd3bfd07900d7f78f724080c4bde1b68b7494505ca80?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5" 
-        className={styles.logoImage} 
-        alt="Company logo"
-      />
+      <div className={styles.logoImage}>
+        <img src={redcamera} className={styles.cameraImage} alt="Camera Icon" />
+        <span className={styles.number}>15</span>
+      </div>
       <div className={styles.infoContainer}>
         <div className={styles.statusPriceContainer}>
           <div className={styles.statusBadge}>For Sale</div>
@@ -27,7 +26,7 @@ function PropertyListing() {
               loading="lazy" 
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/0092cbb7221afbe64a740a834468c2dbcd416871a92c3642d9091fd0ade42c36?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5" 
               className={styles.saveIcon} 
-              alt=""
+              alt="Save Icon"
             />
             <span className={styles.saveText}>Save</span>
           </button>
