@@ -45,7 +45,7 @@ const BuyerLogInProfileDropdownBtn = () => {
             right: '0',
             backgroundColor: 'rgba(0, 0, 0, 0.8)',
             color: 'white',
-            padding: '10px',
+            padding: '6px 10px',
             borderRadius: '5px',
             minWidth: '200px',
             zIndex: '10',
@@ -60,7 +60,7 @@ const BuyerLogInProfileDropdownBtn = () => {
             <li> charebel@example.com</li>
             <li>Buyer Tier</li>
             <li>───────────────────</li>
-            <li>Application History</li>
+            <li><a  href="/buyer-history-page"style={{color:"#ffffff"}}>Application History</a></li>
             <li>Logout</li>
             <li>
             </li>

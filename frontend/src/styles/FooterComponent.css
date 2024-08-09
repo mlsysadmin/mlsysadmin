@@ -33,7 +33,7 @@
 
 @media (max-width: 768px) {
   .footer-section {
-      flex-basis: 50%;
+      flex-basis: 50%; 
       margin-bottom: 30px;
   }
 }

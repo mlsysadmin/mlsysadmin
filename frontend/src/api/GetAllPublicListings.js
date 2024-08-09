@@ -43,4 +43,4 @@ const GetPublicListingByID = async (params) =>{
         
     }
 }
-export {GetAllPublicListing, GetPublicListingByID} 
+export {GetAllPublicListing, GetPublicListingByID} ;

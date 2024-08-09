@@ -13,9 +13,11 @@ import {
 const ContactUsComponent = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
+
   const toggleAccordion = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
   };
+
 
   const accordionData = [
     {
@@ -196,4 +198,8 @@ const ContactUsComponent = () => {
   );
 };
 
+
 export default ContactUsComponent;
+
+
+

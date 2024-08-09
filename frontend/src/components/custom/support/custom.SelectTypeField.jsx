@@ -102,7 +102,7 @@ const CustomSelectTypeField = (props) => {
 
   const handleSelectChange = (e) => {
     console.log("Selected: ", e);
-    setSelectedOption(e);
+    setOptions(e);
   };
   return (
     <div className="select-field">
