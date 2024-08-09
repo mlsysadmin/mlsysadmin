@@ -103,7 +103,7 @@ h2 {
   justify-content: flex-end;
   gap: 0.5rem;
 }
-.features {
+.listing-details-container .features {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -139,7 +139,7 @@ h2 {
   border-radius: 10px;
   border: 1px black solid;
 }
-.features {
+.bodySection .features {
   display: flex;
   flex-direction: column;
 }

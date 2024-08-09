@@ -160,8 +160,8 @@ const ApplicationDetailModal = () => {
                   name="mobileNumber"
                   className="application-input"
                   placeholder="09"
-                  value={formValues.mobileNumber}
-                  onChange={handleNumberChange}
+                  // value={formValues.mobileNumber}
+                  // onChange={handleNumberChange}
                   required
                   pattern="\d{10,11}"
                   maxLength="11"
@@ -177,7 +177,7 @@ const ApplicationDetailModal = () => {
                   name="lastName"
                   className="application-input"
                   placeholder="Lastname"
-                  value={userDetails.lastName}
+                  // value={userDetails.lastName}
                   onChange={handleInputChange}
                   required
                 />
@@ -189,7 +189,7 @@ const ApplicationDetailModal = () => {
                   name="firstName"
                   className="application-input"
                   placeholder="First Name"
-                  value={userDetails.firstname}
+                  // value={userDetails.firstname}
                   onChange={handleInputChange}
                   required
                 />
@@ -201,7 +201,7 @@ const ApplicationDetailModal = () => {
                   name="email"
                   className="application-input"
                   placeholder="Email Address"
-                  value={userDetails.emailAddress}
+                  // value={userDetails.emailAddress}
                   onChange={handleInputChange}
                   required
                 />
@@ -213,7 +213,7 @@ const ApplicationDetailModal = () => {
                 <select
                   name="addresses.country"
                   className="application-select"
-                  value={userDetails.addresses.country}
+                  // value={userDetails.addresses.country}
                   onChange={handleInputChange}
                   required
                 >
@@ -229,7 +229,7 @@ const ApplicationDetailModal = () => {
                 <select
                   name="addresses.state"
                   className="application-select"
-                  value={userDetails.addresses.province}
+                  // value={userDetails.addresses.province}
                   onChange={handleInputChange}
                   required
                 >
@@ -246,7 +246,7 @@ const ApplicationDetailModal = () => {
                 <select
                   name="addresses.city"
                   className="application-select"
-                  value={userDetails.addresses.city}
+                  // value={userDetails.addresses.city}
                   onChange={handleInputChange}
                   required
                 >
@@ -265,7 +265,7 @@ const ApplicationDetailModal = () => {
                 <select
                   name="zipcode"
                   className="application-select"
-                  value={userDetails.addresses.zipCode}
+                  // value={userDetails.addresses.zipCode}
                   onChange={handleInputChange}
                   required
                 >
@@ -284,7 +284,7 @@ const ApplicationDetailModal = () => {
                   name="address"
                   className="application-input"
                   placeholder="Enter House No/Unit/Building Name/Street"
-                  value={formValues.address}
+                  // value={formValues.address}
                   onChange={handleInputChange}
                   required
                 />
