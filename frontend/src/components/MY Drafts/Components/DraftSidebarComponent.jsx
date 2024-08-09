@@ -43,7 +43,7 @@ function closeSidebar() {
 
 
 const HamburgerButton = ({ isOpen, onClick }) => {
-  return (
+  return (    
     <div className={`hamburger ${isOpen ? "open" : ""}`} onClick={onClick}>
       <div className="line"></div>
       <div className="line"></div>

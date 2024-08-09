@@ -8,6 +8,10 @@ const ActiveListSteps = () => {
   const markReviewApproved = () => setReviewApproved(true);
   const markPropertySold = () => setPropertySold(true);
 
+
+  const handlePreviewClick = () => {
+    window.location.href = '/previewlisting'; // Redirect to the preview listing page
+}
   return (
       <div>
           <div className="active-steps-listing-status-container">
@@ -33,7 +37,7 @@ const ActiveListSteps = () => {
               </div>
           </div>
           <div className="active-steps-preview-button-container">
-              <button className="active-steps-preview-button">
+              <button className="active-steps-preview-button" onClick={handlePreviewClick}>
                   Preview Listing
               </button>
           </div>

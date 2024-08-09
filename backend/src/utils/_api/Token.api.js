@@ -7,6 +7,7 @@ const DigestGeneratorHelper = require('../_helper/DigestGenerator.helper');
 const SuccessFormatter = require('../_helper/SuccessFormatter.helper');
 const DataResponseHandler = require('../_helper/DataResponseHandler.helper');
 const SuccessLoggerHelper = require('../_helper/SuccessLogger.helper');
+const { AUTH_SERVICE } = require('./axios.util');
 
 // KYC GET ACCESS TOKEN API
 const GenerateToken = async () => {
@@ -21,21 +22,22 @@ const GenerateToken = async () => {
 
         const digest = DigestGeneratorHelper(signature);
 
-        const URL = process.env.AUTH_SERVICE_SYMPH_URL;
-
         const reqBody = {
             apiKey: process.env.SYMPH_API_KEY,
             signature: digest,
         };
-
-        const response = await axios.post(URL, reqBody);
+        
+        const response = await AUTH_SERVICE.post('/api/v1/external-user', reqBody);
+        
+        const URL = response.config.baseURL + response.config.url;
 
         const request = {
-            url:URL,
+            url: URL,
             method: 'POST',
             query:{},
             params: {},
-            body: {reqBody, signature}
+            body: {reqBody, signature},
+            headers: {}
         }
         const res = {
             data: response.data,

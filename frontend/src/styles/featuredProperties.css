@@ -20,6 +20,8 @@
 #featured-properties .featured-property .featured-img img{
     max-width: 400px;
     width: 100%;
+    height: 300px;
+    border-radius: 20px;
 }
 
 #featured-properties .featured-property .featured-img .ant-image{
@@ -62,17 +64,30 @@
     display: flex;
     align-items:end;
     justify-content: center;
-
+    padding: 5px;
  }
 
  #featured-properties .featured-property--content .featured-features .ant-divider-vertical{
     height: 4em;
 
  }
+ /* #featured-properties .featured .feature .feature-items .feature-item{
+    display: flex;
+  flex-direction: column;
+  margin-right: 0px;
+  padding: 0px 10px 0px 5px; 
+  border-right: 1px solid var(--red);
+  height: 70px;
 
- #featured-properties .featured-property--content .featured-features .feature{
-    margin: auto 10px;
  }
+ .feature-table {
+  width: 100%;
+  border-collapse: collapse;
+} */
+
+ /* #featured-properties .featured-property--content .featured-features .feature{
+    margin: auto 10px;
+ } */
 
  .featured-divider {
     border-inline-start: 0.5px solid #f15959a8;

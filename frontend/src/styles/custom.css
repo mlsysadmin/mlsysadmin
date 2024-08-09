@@ -243,6 +243,34 @@ listing search */
 }
 
 .left-button {
+  background-color: var(--red);
+  color: white;
+  border-radius: 20px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.button-icon {
+  margin-right: 5px; /* Adds space between icon and text */
+  border: 2px solid white;
+  border-radius: 100%;
+}
+.subcontent-buttons{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+/* //certainfeatures css */
+.search-certain-features {
+  display: flex;
+  margin: 10px 0px 20px 80px;
+  /* margin: 10px 0px 20px 150px; */
+  align-items: center;
 	background-color: var(--red);
 	color: white;
 	border-radius: 20px;
@@ -495,7 +523,6 @@ listing search */
     font-size: 15px;
     border-radius: 3px;
 	width: 100%;
-	gap: 9rem;
 }
 
 .searh-custom-slider {

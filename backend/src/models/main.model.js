@@ -69,7 +69,7 @@ PropertyListing.belongsTo(PropertyPhoto, { foreignKey: 'property_photos_id', as:
 /** Master Property Listing Association **/
 
 PropertyListing.hasOne(MasterPropertyList, { foreignKey: 'property_listing_id' }); // done
-MasterPropertyList.belongsTo(PropertyListing, { foreignKey: 'property_listing_id' }); //done
+MasterPropertyList.belongsTo(PropertyListing, { foreignKey: 'property_listing_id', as: 'listings' }); //done
 
 // User.hasMany(MasterPropertyList, { foreignKey: 'seller_id' });// done
 // MasterPropertyList.belongsTo(User, { foreignKey: 'seller_id' }); // done
@@ -110,6 +110,10 @@ Amenities.belongsTo(CustomAmenities, { foreignKey: 'custom_amenity_id', as: 'cus
 
 CustomInclusions.hasOne(Amenities, { foreignKey: 'custom_inclusion_id' });
 Amenities.belongsTo(CustomInclusions, { foreignKey: 'custom_inclusion_id', as: 'custom_inclusion' });
+
+/** APPROVER Association **/ 
+Role.hasMany(Approvers, { foreignKey: 'role_id' });
+Approvers.belongsTo(Role, { foreignKey: 'role_id', as: 'role' });
 
 /* ------------------------------------------------------------------------------- */
 

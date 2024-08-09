@@ -82,6 +82,14 @@ const FileUploadGrid = ({ validateFiles }) => {
 const ApplicationDetailModal = ({ visible, onClose }) => {
   const [showOTPModal, setShowOTPModal] = useState(false);
 
+<<<<<<< HEAD
+=======
+const ApplicationDetailModal = () => {
+  const [userDetails, setUserDetails] = useState()
+
+  const searchKYC = process.env.REACT_APP_SEARCH_KYC
+
+>>>>>>> c9b3a0ccf32c1ab78f241c3e6cac282d7328b41e
   const [formValues, setFormValues] = useState({
     mobileNumber: "",
     lastName: "",
@@ -96,6 +104,7 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
 
   const [files, setFiles] = useState([null, null, null, null]);
 
+<<<<<<< HEAD
   const staticUserData = [
     {
       number: '123456789',
@@ -131,12 +140,18 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
 
   const handleNumberChange = (e) => {
     setFormValues({ ...formValues, mobileNumber: e.target.value });
+=======
+  const handleNumberChange = (e) => {
+    setFormValues({ ...formValues, mobileNumber: e.target.value });
+    // setUserNumber(e.target.value);
+>>>>>>> c9b3a0ccf32c1ab78f241c3e6cac282d7328b41e
     if (e.target.value.length === 11) {
       fetchUserDetails(e.target.value);
     }
   };
 
   const fetchUserDetails = async (inputtedNumber) => {
+<<<<<<< HEAD
     const userFromStaticData = staticUserData.find(
       (user) => user.number === inputtedNumber
     );
@@ -173,6 +188,18 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
     }
   };
 
+=======
+    try{
+      const response = await axios.get(`${searchKYC}/user/searchKYC/${inputtedNumber}`);
+      setUserDetails(response.data);
+
+    }catch(error){
+      console.error('Error fetching user info:', error);
+    }
+  };
+
+  console.log(userDetails);
+>>>>>>> c9b3a0ccf32c1ab78f241c3e6cac282d7328b41e
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
@@ -208,6 +235,7 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
   };
 
   return (
+<<<<<<< HEAD
     <>
       {visible && (
         <div className="modal-main-container">
@@ -355,6 +383,154 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
                 </div>
               </div>
               <div className="files-container">
+=======
+    <div className="modal-main-container">
+      <div className="overlay"></div>
+      <div className="application-modal-container">
+        <h3 className="application-header">Application Details</h3>
+        <form onSubmit={handleSubmit} className="application-modal-content">
+          <div className="application-row">
+            <div className="application-first-row">
+              <div className="application-content">
+                <p>Mobile Number</p>
+                <input
+                  type="text"
+                  name="mobileNumber"
+                  className="application-input"
+                  placeholder="09"
+                  // value={formValues.mobileNumber}
+                  // onChange={handleNumberChange}
+                  required
+                  pattern="\d{10,11}"
+                  maxLength="11"
+                  title="Mobile number should be 10-11 digits"
+                />
+              </div>
+            </div>
+            <div className="application-second-row">
+              <div className="application-content">
+                <p>Lastname</p>
+                <input
+                  type="text"
+                  name="lastName"
+                  className="application-input"
+                  placeholder="Lastname"
+                  // value={userDetails.lastName}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="application-content">
+                <p>First Name</p>
+                <input
+                  type="text"
+                  name="firstName"
+                  className="application-input"
+                  placeholder="First Name"
+                  // value={userDetails.firstname}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="application-content">
+                <p>Email Address</p>
+                <input
+                  type="email"
+                  name="email"
+                  className="application-input"
+                  placeholder="Email Address"
+                  // value={userDetails.emailAddress}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            </div>
+            <div className="application-third-row">
+              <div className="application-content">
+                <p>Country</p>
+                <select
+                  name="addresses.country"
+                  className="application-select"
+                  // value={userDetails.addresses.country}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="">Select Country</option>
+                  <option value="US">United States</option>
+                  <option value="CA">Canada</option>
+                  <option value="UK">United Kingdom</option>
+                  <option value="AU">Australia</option>
+                </select>
+              </div>
+              <div className="application-content">
+                <p>Province/State</p>
+                <select
+                  name="addresses.state"
+                  className="application-select"
+                  // value={userDetails.addresses.province}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="">Select Province</option>
+                  <option value="CA-ON">Ontario</option>
+                  <option value="CA-BC">British Columbia</option>
+                  <option value="US-NY">New York</option>
+                  <option value="US-CA">California</option>
+                  {/* Add more options as needed */}
+                </select>
+              </div>
+              <div className="application-content">
+                <p>City/Town</p>
+                <select
+                  name="addresses.city"
+                  className="application-select"
+                  // value={userDetails.addresses.city}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="">Select City</option>
+                  <option value="Toronto">Toronto</option>
+                  <option value="Vancouver">Vancouver</option>
+                  <option value="New York">New York</option>
+                  <option value="Los Angeles">Los Angeles</option>
+        
+                </select>
+              </div>
+            </div>
+            <div className="application-fourth-row">
+              <div className="application-content">
+                <p>Zipcode</p>
+                <select
+                  name="zipcode"
+                  className="application-select"
+                  // value={userDetails.addresses.zipCode}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="">Zipcode</option>
+                  <option value="10001">10001</option>
+                  <option value="90001">90001</option>
+                  <option value="M5H">M5H</option>
+                  <option value="V5K">V5K</option>
+                  {/* Add more options as needed */}
+                </select>
+              </div>
+              <div className="address-input">
+                <p>House No/Unit/Building Name/Street</p>
+                <input
+                  type="text"
+                  name="address"
+                  className="application-input"
+                  placeholder="Enter House No/Unit/Building Name/Street"
+                  // value={formValues.address}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div className="files-container">
+>>>>>>> c9b3a0ccf32c1ab78f241c3e6cac282d7328b41e
             <h5>Upload Documents</h5>
             <div>
               <p style={{ color: "#8C9094" }}>
@@ -374,9 +550,12 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
         </div>
       )}
                   {showOTPModal && <OTPModal visible={showOTPModal} onClose={() => setShowOTPModal(false)} />}
+<<<<<<< HEAD
 
     </>
   );
+=======
+>>>>>>> c9b3a0ccf32c1ab78f241c3e6cac282d7328b41e
 };
 
 export default ApplicationDetailModal;

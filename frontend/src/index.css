@@ -13,6 +13,7 @@ body {
   --mute-gray: #8C9094;
   --font-family: "Poppins", sans-serif;
   --mute-red: #FFDBDB;
+  --bg-shadow: rgba(0, 0, 0, 0.4);
 }
 
 .poppins-thin {
@@ -123,3 +124,16 @@ body {
   font-style: italic;
 }
 
+
+.loading--message-background{
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--bg-shadow);
+  z-index: 100;
+}
+
+.layout--background{
+  background: white;
+}
