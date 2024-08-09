@@ -72,6 +72,11 @@ import CloseApplicationModal from "./custom/support/CloseApplicationModal";
 import SupportListingComponent from "./support/SupportListingComponent";
 
 import SupportHeaderContainer from "./layout/Navigation/support/SupportHeaderContainer";
+import SuccessModal from "./modals/SuccessModal";
+
+//Application
+import ApplicationHistory from "./ApplicationHistory";
+import ApplicationDetailModal from "./layout/ApplicationDetails/ApplicationDetailsModal";
 
 // MASTER
 import SupportPendingListingComponent from "./support/master/SupportPendingListingComponent";
@@ -155,4 +160,5 @@ export {
 	ApprovalSectionComponent,
 	JoinTeam,
   ViewListingComponent,
+  ApplicationHistory
 };

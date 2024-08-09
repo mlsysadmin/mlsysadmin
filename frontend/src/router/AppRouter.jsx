@@ -6,6 +6,7 @@ import Dashboard from "../pages/Dashboard.page";
 import Allpage from "../pages/Buyer.All.page";
 import Featuredpage from "../pages/Buyer.Featured.page";
 
+
 import {
 	ShowDetailsProcessing,
 	ListingPage,
@@ -26,7 +27,7 @@ import {
 	RentPage,
 	SellPage,
 	LoanCalculatorPage,
-	MortagagePage,
+	MortgagePage,
 	ActiveSummaryListsPage,
 	ClientManagementPage,
 	ListingSummaryListsPage,
@@ -59,6 +60,7 @@ import {
 	SupportCreateListing,
 } from "../pages";
 import ProtectedRoute from "./ProtectedRoute";
+
 
 const Routes = [
 	{
@@ -119,7 +121,7 @@ const Routes = [
 			},
 			{
 				path: "/mortgage",
-				element: <MortagagePage />,
+				element: <MortgagePage />,
 			},
 			{
 				path: "/listing",
@@ -289,6 +291,8 @@ const Routes = [
 	},
 ];
 
+
 const AppRouter = createBrowserRouter(Routes);
+
 
 export default AppRouter;

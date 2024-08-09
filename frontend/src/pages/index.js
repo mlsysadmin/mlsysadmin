@@ -5,7 +5,7 @@ import DiscoverHomePage from "./DiscoverHome.page";
 import BuyAHomePage from "./BuyAHome.page";
 import RefinancePage from "./Refinance.page";
 import InsuranceGuidePage from "./InsuranceGuide.page";
-import MortagagePage from "./Mortgage.page";
+import MortgagePage from "./Mortgage.page";
 import SellPage from "./Sell.page";
 import LoanCalculatorPage from "./LoanCalculator.page";
 import RentPage from "./Rent.page";
@@ -30,6 +30,10 @@ import { ShowDetailsDenied } from "../components";
 import ActiveListingDetails from "./ActiveListingDetails.page";
 import SoldPropertyDetailsPage from "./SoldPropertyDetails.page";
 import ViewListingComponent from "./ViewListingComponent.page";
+
+
+//Application Pages
+import ApplicationHistoryPage from "./ApplicationHistory.page";
 // import ListingSearchLoggedin from "../components/custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
 
 // SUPPORT
@@ -80,7 +84,7 @@ export {
     BuyAHomePage,
     RefinancePage,
     InsuranceGuidePage,
-    MortagagePage,
+    MortgagePage,
     RentPage,
     SellPage,
     LoanCalculatorPage,
