@@ -9,7 +9,7 @@ const PropertyDetailsComponent = ({ onComplete }) => {
   useEffect(() => {
     const isCompleted = selectedPropertyTab !== '' && selectedListingTab !== '';
     onComplete(isCompleted);
-  }, [selectedPropertyTab, selectedListingTab]);
+  }, [selectedPropertyTab, selectedListingTab]); // Removed onComplete from dependency array
 
   const handlePropertyTabClick = (tab) => {
     setSelectedPropertyTab(tab);

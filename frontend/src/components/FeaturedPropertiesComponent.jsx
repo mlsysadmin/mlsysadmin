@@ -101,38 +101,38 @@ const FeaturedPropertiesComponent = ({}) => {
             feature.listings.unit_details;
 
           return (
-            <div className="feature" key={i}>
-              <div className="feature-items">
-                {lot_area > 0 && (
-                  <div className="feature-item">
-                    <div className="feature-icon">
-                      <img src={sqm} alt="area-icon" width={27} />
-                    </div>
-                    <p>{lot_area}</p>
-                  </div>
-                )}
-                {no_of_bathrooms > 0 && (
-                  <div className="feature-item">
-                    <div className="feature-icon">
-                      <img src={shower} alt="bathroom-icon" width={27} />
-                    </div>
-                    <p>{no_of_bathrooms}</p>
-                  </div>
-                )}
-                {no_of_beds > 0 && (
-                  <div className="feature-item">
-                    <div className="feature-icon">
-                      <img src={bed} alt="bed-icon" width={27} />
-                    </div>
-                    <p>{no_of_beds}</p>
-                  </div>
-                )}
-              </div>
-              {features.length > 1 && i < features.length - 1 && (
-                <Divider type="vertical" className="featured-divider" />
-              )}
-            </div>
-          );
+						<div className="feature" key={i}>
+							<div className="feature-items">
+								{lot_area > 0 && (
+									<div className="feature-item">
+										<p>{lot_area}</p>
+										<div className="feature-icon">
+											<img src={sqm} alt="area-icon" width={27} />
+										</div>
+									</div>
+								)}
+								{no_of_bathrooms > 0 && (
+									<div className="feature-item">
+										<p>{no_of_bathrooms}</p>
+										<div className="feature-icon">
+											<img src={shower} alt="bathroom-icon" width={27} />
+										</div>
+									</div>
+								)}
+								{no_of_beds > 0 && (
+									<div className="feature-item">
+										<p>{no_of_beds}</p>
+										<div className="feature-icon">
+											<img src={bed} alt="bed-icon" width={27} />
+										</div>
+									</div>
+								)}
+							</div>
+							{features.length > 1 && i < features.length - 1 && (
+								<Divider type="vertical" className="featured-divider" />
+							)}
+						</div>
+					);
         })}
       </div>
     );
@@ -143,7 +143,7 @@ const FeaturedPropertiesComponent = ({}) => {
       id="featured-properties"
       gutter={[16, { xs: 8, sm: 16, md: 32, lg: 48 }]}
     >
-      {featuredList.every((featured) => !featured.isFeatured) ? (
+      {featuredList.every((featured) => featured.isFeatured) ? (
         <div
           className="no-featured-item"
           style={{ fontSize: "18px", color: "var(--red)" }}
@@ -152,7 +152,7 @@ const FeaturedPropertiesComponent = ({}) => {
         </div>
       ) : (
         featuredList.map((featured, i) => {
-          if (featured.isFeatured) {
+          if (!featured.isFeatured) {
             return (
               <Col className="featured-property" key={i}>
                 <div className="featured-img">

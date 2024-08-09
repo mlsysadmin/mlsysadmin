@@ -1,7 +1,14 @@
 .main-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    z-index: 999;
 }
 
 .modal-container{
@@ -18,7 +25,7 @@
     height: 20%;
     border-radius: 30px;
     z-index: 1000;
-    top: 10%;
+    top: 30%;
 }
 
 .modal-container h4{
@@ -47,9 +54,17 @@
 
 @media only screen and (max-width: 1024px ){
     .main-container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
+        z-index: 999;
+
     }
     
     .modal-container{
@@ -66,7 +81,7 @@
         height: 200px;
         border-radius: 25px;
         z-index: 1000;
-        top: 10%;
+        top: 30%;
     }
     
     .modal-container h4{
@@ -97,9 +112,16 @@
 
 @media only screen and (max-width: 720px ){
     .main-container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
+        z-index: 999;
     }
     
     .modal-container{
@@ -116,7 +138,7 @@
         height: 130px;
         border-radius: 25px;
         z-index: 1000;
-        top: 15%;
+        top: 30%;
     }
     
     .modal-container h4{

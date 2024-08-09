@@ -43,15 +43,25 @@ const includes = [
   ]
 ];
 
-function HomeHighlights() {
+const HomeHighlights = ({ oneListing }) => {
+  const indoorFeatures =
+		JSON.parse(oneListing.listings.amenities.indoor_features).map((featurename) => featurename);
+	const outdoorFeatures = 
+		JSON.parse(oneListing.listings.amenities.outdoor_features).map((featurename)=> featurename);
+
+	const allFeatures = [...indoorFeatures, ...outdoorFeatures];
+
+  const amenities =  oneListing.listings.amenities.custom_amenities.feature_name;
+  const includes = oneListing.listings.amenities.custom_inclusion.inclusion_name;
+
   return (
-    <section className={styles.container}>
-      <h1 className={styles.title}>Home Highlights</h1>
-      <FeatureCard features={features} />
-      <AmenitiesCard amenities={amenities} />
-      <IncludesCard includes={includes} />
-    </section>
-  );
-}
+		<section className={styles.container}>
+			<h1 className={styles.title}>Home Highlights</h1>
+			<FeatureCard features={allFeatures} />
+			<AmenitiesCard amenities={amenities} />
+			<IncludesCard includes={includes} />
+		</section>
+	);
+};
 
 export default HomeHighlights;

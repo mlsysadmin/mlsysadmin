@@ -34,35 +34,20 @@ const PreviewListing = () => {
     { title: 'Bathrooms', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/372723378f9151c6cced3d234ccf4d85735cb0c5bd16df4ca6bac2adaf6189fb?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5', value: '5' },
     { title: 'Garage', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/a17243275d0fedc1a93dbce25cd9571671d11f482871f3219644e3e5fe1afa72?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5', value: '3' },
     { title: 'Area', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/c279a46ede99c04710deb1142ac34bf9008c0ed800284e2cdc230b0e6a25fc86?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5', value: '300 SqM' },
-    { title: 'Price per SqM', iconSrc: '', value: 'PHP400,000' }
+    { title: 'Price per SqM', iconSrc: '', value: '' }
   ];
   
-  // const handleButtonClick = () => {
-  //   setShowApplicationModal(true);
-  // };
+  const term = 30; 
+  const termInMonths = term * 12; 
 
-  // const handleCloseModal = () => {
-  //   setShowApplicationModal(false);
-  // };
-
-  const term = 30; // Fixed term in years
-  const termInMonths = term * 12; // Convert term to months
-
-  // Calculate total home price with interest
   const totalHomePrice = homePrice + homePrice * (stepsGap / 100);
 
-  // Calculate monthly payment
   const monthlyPayment = (totalHomePrice - downPayment) / termInMonths;
   const handlePesosChange = (newPesos) => {
     setPesos(newPesos);
   };
 
-  //sa Kadtu nig pag next sa mga photo
 
-
-  // const {state} = useLocation();
-  // const {id} = state;
-  // const { new_id } = useParams();
   const url = process.env.REACT_APP_STORAGE_BUCKET_URL;
   const objectname = process.env.REACT_APP_OBJECT_NAME;
   const location = useLocation();
@@ -101,33 +86,33 @@ const PreviewListing = () => {
   //   console.log("oneListing is undefined");
   // }
   
-  let images = (oneListing?.listings?.photos?.photo || []);
+  // let images = (oneListing?.listings?.photos?.photo || []);
 
-  const previousImage = () => {
-    const newIndex = (currentIndex - 1 + images.length) % images.length;
-    setCurrentIndex(newIndex);
-    updateSmallImages(newIndex);
-  };
+  // const previousImage = () => {
+  //   const newIndex = (currentIndex - 1 + images.length) % images.length;
+  //   setCurrentIndex(newIndex);
+  //   updateSmallImages(newIndex);
+  // };
   
-  const nextImage = () => {
-    const newIndex = (currentIndex + 1) % images.length;
-    setCurrentIndex(newIndex);
-    updateSmallImages(newIndex);
-  };
+  // const nextImage = () => {
+  //   const newIndex = (currentIndex + 1) % images.length;
+  //   setCurrentIndex(newIndex);
+  //   updateSmallImages(newIndex);
+  // };
   
-  const updateSmallImages = (newIndex) => {
-    const nextIndex1 = (newIndex + 1) % images.length;
-    const nextIndex2 = (newIndex + 2) % images.length;
+  // const updateSmallImages = (newIndex) => {
+  //   const nextIndex1 = (newIndex + 1) % images.length;
+  //   const nextIndex2 = (newIndex + 2) % images.length;
   
-    const newSmallImages = [images[nextIndex1], images[nextIndex2]];
-    setSmallImages(newSmallImages);
+  //   const newSmallImages = [images[nextIndex1], images[nextIndex2]];
+  //   setSmallImages(newSmallImages);
   
-    const newPhotoCount = getPhotoCountForMainImage(newIndex);
-    setPhotoCount(newPhotoCount);
-  };
+  //   const newPhotoCount = getPhotoCountForMainImage(newIndex);
+  //   setPhotoCount(newPhotoCount);
+  // };
   
-  const getPhotoCountForMainImage = (index) => {
-  };
+  // const getPhotoCountForMainImage = (index) => {
+  // };
 
 
   const [isFavorite, setIsFavorite] = React.useState(false);
@@ -137,32 +122,31 @@ const PreviewListing = () => {
   };
 
   return (
-    <div className="previewlist">
-      {/* <Navigation /> */}
+		<div className="previewlist">
+			{/* <Navigation /> */}
 
-      <div
-        className="contentContainer"
-        style={{ display: "flex", width: "100%", gap: "1rem" }}
-      >
-        {oneListing && (
-          <div className="real-estate-listing-card">
-           <PropertyListing/>
-            {/* <div className="previewlist-overview">
+			<div
+				className="contentContainer"
+				style={{ display: "flex", width: "100%", gap: "1rem" }}
+			>
+				{oneListing && (
+					<div className="real-estate-listing-card">
+						<PropertyListing oneListing={oneListing} />
+						{/* <div className="previewlist-overview">
               <span>OVERVIEW</span>
               <p>Property ID: {oneListing.listings.property_id}</p>
             </div> */}
-            <div className="midContent">
-              <PreviewListLeftContent oneListing={oneListing} />
-              <PreviewListRightSideContent />
-             
-            </div>
-            <HomeHighlights/>
-          </div>
-        )}
-      </div>
-      <Footer />
-    </div>
-  );
+						<div className="midContent">
+							<PreviewListLeftContent oneListing={oneListing} />
+							<PreviewListRightSideContent />
+						</div>
+						<HomeHighlights oneListing={oneListing} />
+					</div>
+				)}
+			</div>
+			<Footer />
+		</div>
+	);
 };
 
 export default PreviewListing;

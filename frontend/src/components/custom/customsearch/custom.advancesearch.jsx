@@ -4,7 +4,7 @@ import "../../../styles/custom.css";
 
 const CustomAdvanceSearch = () => {
     const [bedValue, setBedValue] = useState(0);
-    const [sliderValue, setSliderValue] = useState([500, 1000000]);
+    const [priceRange, setPriceRange] = useState([500, 1000000]);
 
     const bedoptions = [
         { label: 0, value: 0 },
@@ -19,40 +19,37 @@ const CustomAdvanceSearch = () => {
         { label: 9, value: 9 },
     ];
 
-    const handlebedchange = (event) => {
-        setBedValue(event.target.value);
+    const handleSliderChange = (value) => {
+        setPriceRange(value);
     };
 
-    const handleSliderChange = (value) => {
-        setSliderValue(value);
+    const handlebedchange = (event) => {
+        setBedValue(Number(event.target.value));
     };
 
     return (
         <div className="advance-searchdropdown">
-            <div className="slider-container" >
-                <span style={{ marginRight: '10px' ,fontWeight:'bold'}}>Price Range</span>
+            <div className="advance-search-group1">
+                <span>Price Range</span>
                 <Slider
+                    className="searh-custom-slider"
                     range
                     min={500}
                     max={1000000}
-                    defaultValue={[500, 1000000]}
-                    value={sliderValue}
+                    step={100}
+                    value={priceRange}
                     onChange={handleSliderChange}
-                    style={{ flex: 1 }}
+                    // Ensure the slider starts at both ends
+                    defaultValue={[500, 1000000]}
                 />
-                <div className="slider-labels" >
-                    <p style={{color:'black'}}>From
-                    <span style={{ color: 'red' }}> {sliderValue[0]}</span></p>
-                    <p style={{color:'black'}}>To
-                    <span style={{ color: 'red' }}> {sliderValue[1]}</span></p>
-                </div>
+                <p>From <b>PHP{priceRange[0].toLocaleString()}</b> To <b>PHP{priceRange[1].toLocaleString()}</b></p>
             </div>
 
             <div className="sub-options-search">
                 <div className="sub-options-search-beds">
                     <div className="num-of-beds-search">
                         <span>Number of Beds </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <select className="bed-select" id="" style={{
+                        <select className="bed-select" style={{
                             width: '200px',
                             height: '30px',
                             appearance: 'none',
@@ -64,12 +61,13 @@ const CustomAdvanceSearch = () => {
                             fontSize: '13px',
                             background: `url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z' fill='%23ff0000'/%3E%3C/svg%3E") no-repeat right center`,
                             paddingRight: '30px',
-                        }}>
-                            {
-                                bedoptions.map(option => (
-                                    <option key={option.value} value={option.value} style={{ margin: '20px' }}>{option.label}</option>
-                                ))
-                            }
+                        }}
+                            onChange={handlebedchange}
+                            value={bedValue}
+                        >
+                            {bedoptions.map(option => (
+                                <option key={option.value} value={option.value} style={{ margin: '20px' }}>{option.label}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="garage-group">
@@ -81,7 +79,7 @@ const CustomAdvanceSearch = () => {
                 <div className="sub-options-search-bath">
                     <div className="bath-num">
                         <span>Number of Bath </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <select className="bed-select" id="" style={{
+                        <select className="bed-select" style={{
                             width: '200px',
                             height: '30px',
                             appearance: 'none',
@@ -93,12 +91,13 @@ const CustomAdvanceSearch = () => {
                             fontSize: '13px',
                             background: `url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z' fill='%23ff0000'/%3E%3C/svg%3E") no-repeat right center`,
                             paddingRight: '30px',
-                        }}>
-                            {
-                                bedoptions.map(option => (
-                                    <option key={option.value} value={option.value} style={{ margin: '20px' }}>{option.label}</option>
-                                ))
-                            }
+                        }}
+                            onChange={handlebedchange}
+                            value={bedValue}
+                        >
+                            {bedoptions.map(option => (
+                                <option key={option.value} value={option.value} style={{ margin: '20px' }}>{option.label}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="garage-group">

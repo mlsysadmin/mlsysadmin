@@ -2,8 +2,8 @@ import { Button, Card, Row, Tag } from 'antd';
 import React, { useEffect, useState } from 'react';
 import '../styles/cardListing.css';
 import CustomImage from './custom/images/Image.custom';
-import Sqm from '../asset/icons/sqm.png';
-import Shower from '../asset/icons/shower.png';
+import Sqm from '../asset/icons/meters.png';
+import Shower from '../asset/icons/showerhead.png';
 import FilterIcon from '../asset/icons/slider.png';
 import CustomTag from './custom/tags/Tags.custom';
 import {GetAllPublicListing} from "../api/GetAllPublicListings";
@@ -99,57 +99,58 @@ const CardListingComponent = ({ loading, status, pics, title, price, features, l
 
 
     return (
-        <div id='card-listing'>
-            <Card
-                // style={{
-                //     width: 350,
-                // }}
-                size='small'
-                bordered={false}
-                loading={loading}
-            >
-                <div className='listing-image'>
-                    <img src={img} className='image'></img>
-                    <div className="tags">
-                        <CustomTag tagLabel={status} />
-                        <CustomTag tagLabel={<ImageTag />} />
-                    </div>
-                    <div className="tags-right">
-                        <CustomTag
-                            tagLabel={checked ? <HeartFilled /> : <HeartOutlined />}
-                            style={{ fontSize: '23px', color: '#D90000' }}
-                            className="circle-tags heart"
-                            checkable={true}
-                            checked={checked}
-                            handleChange={handleChange}
-
-                        />
-                        {' '}
-                        <CustomTag tagLabel={<Filter />} className="circle-tags" />
-                    </div>
-                </div>
-                <div className='card-content' onClick={handleClick}>
-                    <div className="card-content--title">
-                        <h4>{title}</h4>
-                    </div>
-                    <Row className="card-content--subtitle">
-                        <p className='price'>{price}</p>
-                        <div className='features'>
-                            {/* <Features /> */}
-                            <div className="feature-content">
-                                <img src={Shower} alt="sqm" className='feature-icon' />
-                                <p className='feature-detail'>{no_of_bathrooms}</p>
-                            </div>
-                            <div className="feature-content">
-                                <img src={Sqm} alt="sqm" className='feature-icon' />
-                                <p className='feature-detail'>{lot} SqM</p>
-                            </div>
-                        </div>
-                    </Row>
-                </div>
-            </Card>
-        </div>
-    )
+			<div id="card-listing">
+				<Card
+					// style={{
+					//     width: 350,
+					// }}
+					size="small"
+					bordered={false}
+					loading={loading}
+				>
+					<div className="listing-image">
+						<img src={img} className="image"></img>
+						<div className="tags">
+							<CustomTag
+								tagLabel={status}
+								style={{backgroundColor:"#d90000", borderColor:"#d90000", color:"#ffffff" }}
+							/>
+							<CustomTag tagLabel={<ImageTag />} />
+						</div>
+						<div className="tags-right">
+							<CustomTag
+								tagLabel={checked ? <HeartFilled /> : <HeartOutlined />}
+								style={{ fontSize: "23px", color: "#333333" }}
+								className="circle-tags heart"
+								checkable={true}
+								checked={checked}
+								handleChange={handleChange}
+							/>{" "}
+							{/* <CustomTag tagLabel={<Filter />} className="circle-tags" /> */}
+						</div>
+					</div>
+					<div className="card-content" onClick={handleClick}>
+						<div className="card-content--title">
+							<h4>{title}</h4>
+						</div>
+						<Row className="card-content--subtitle">
+							<p className="price">{price}</p>
+							<div className="features">
+								{/* <Features /> */}
+								<div className="feature-content">
+									<img src={Shower} alt="sqm" className="feature-icon" style={{color:"#333333"}}/>
+									<p className="feature-detail">{no_of_bathrooms}</p>
+								</div>
+								<div className="feature-content">
+									<img src={Sqm} alt="sqm" className="feature-icon" />
+									<p className="feature-detail">{lot} SqM</p>
+								</div>
+							</div>
+						</Row>
+					</div>
+				</Card>
+			</div>
+		);
 }
 
 export default CardListingComponent

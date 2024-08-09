@@ -1,8 +1,9 @@
+// ApplicationDetailModal.js
 import React, { useState } from "react";
-import "../../../styles/applicationModal.css"
+import "../../../styles/applicationModal.css";
 import { Button, message } from "antd";
 import axios from 'axios';
-
+import OTPModal from "../../OTPModal";
 const FileUploadGrid = ({ validateFiles }) => {
   const [files, setFiles] = useState([null, null, null, null]);
 
@@ -17,6 +18,7 @@ const FileUploadGrid = ({ validateFiles }) => {
     setFiles(newFiles);
     validateFiles(newFiles);
   };
+
   const descriptions = [
     {
       label: "Valid ID",
@@ -48,7 +50,7 @@ const FileUploadGrid = ({ validateFiles }) => {
               id={`file-input-${index}`}
               onChange={(event) => handleFileChange(index, event)}
               accept="image/*"
-              required={index < 2} // Only the first two inputs are required
+              required
             />
             {!file && (
               <label htmlFor={`file-input-${index}`} className="file-label">
@@ -76,7 +78,9 @@ const FileUploadGrid = ({ validateFiles }) => {
       ))}
     </div>
   );
-}
+};
+const ApplicationDetailModal = ({ visible, onClose }) => {
+  const [showOTPModal, setShowOTPModal] = useState(false);
 
 const ApplicationDetailModal = () => {
   const [userDetails, setUserDetails] = useState()
@@ -94,6 +98,7 @@ const ApplicationDetailModal = () => {
     zipcode: "",
     address: "",
   });
+
   const [files, setFiles] = useState([null, null, null, null]);
 
   const handleNumberChange = (e) => {
@@ -112,7 +117,7 @@ const ApplicationDetailModal = () => {
     }catch(error){
       console.error('Error fetching user info:', error);
     }
-  }
+  };
 
   console.log(userDetails);
   const handleInputChange = (e) => {
@@ -134,15 +139,19 @@ const ApplicationDetailModal = () => {
       }
     }
 
-    const allFilesSelected = files.slice(0, 2).every((file) => file !== null);
+    const allFilesSelected = files.every((file) => file !== null);
     if (!allFilesSelected) {
-      message.error("First two files must be uploaded!");
+      message.error("All files must be uploaded!");
       return;
     }
 
-    // You can handle the form submission here
+    // Handle form submission here
     console.log("Form values:", formValues);
     console.log("Files selected:", files);
+
+    // Close the application modal and show OTP Modal
+    onClose();
+    setShowOTPModal(true);
   };
 
   return (
@@ -160,8 +169,8 @@ const ApplicationDetailModal = () => {
                   name="mobileNumber"
                   className="application-input"
                   placeholder="09"
-                  value={formValues.mobileNumber}
-                  onChange={handleNumberChange}
+                  // value={formValues.mobileNumber}
+                  // onChange={handleNumberChange}
                   required
                   pattern="\d{10,11}"
                   maxLength="11"
@@ -177,7 +186,7 @@ const ApplicationDetailModal = () => {
                   name="lastName"
                   className="application-input"
                   placeholder="Lastname"
-                  value={userDetails.lastName}
+                  // value={userDetails.lastName}
                   onChange={handleInputChange}
                   required
                 />
@@ -189,7 +198,7 @@ const ApplicationDetailModal = () => {
                   name="firstName"
                   className="application-input"
                   placeholder="First Name"
-                  value={userDetails.firstname}
+                  // value={userDetails.firstname}
                   onChange={handleInputChange}
                   required
                 />
@@ -201,7 +210,7 @@ const ApplicationDetailModal = () => {
                   name="email"
                   className="application-input"
                   placeholder="Email Address"
-                  value={userDetails.emailAddress}
+                  // value={userDetails.emailAddress}
                   onChange={handleInputChange}
                   required
                 />
@@ -213,7 +222,7 @@ const ApplicationDetailModal = () => {
                 <select
                   name="addresses.country"
                   className="application-select"
-                  value={userDetails.addresses.country}
+                  // value={userDetails.addresses.country}
                   onChange={handleInputChange}
                   required
                 >
@@ -229,7 +238,7 @@ const ApplicationDetailModal = () => {
                 <select
                   name="addresses.state"
                   className="application-select"
-                  value={userDetails.addresses.province}
+                  // value={userDetails.addresses.province}
                   onChange={handleInputChange}
                   required
                 >
@@ -246,7 +255,7 @@ const ApplicationDetailModal = () => {
                 <select
                   name="addresses.city"
                   className="application-select"
-                  value={userDetails.addresses.city}
+                  // value={userDetails.addresses.city}
                   onChange={handleInputChange}
                   required
                 >
@@ -265,7 +274,7 @@ const ApplicationDetailModal = () => {
                 <select
                   name="zipcode"
                   className="application-select"
-                  value={userDetails.addresses.zipCode}
+                  // value={userDetails.addresses.zipCode}
                   onChange={handleInputChange}
                   required
                 >
@@ -284,7 +293,7 @@ const ApplicationDetailModal = () => {
                   name="address"
                   className="application-input"
                   placeholder="Enter House No/Unit/Building Name/Street"
-                  value={formValues.address}
+                  // value={formValues.address}
                   onChange={handleInputChange}
                   required
                 />
@@ -298,24 +307,19 @@ const ApplicationDetailModal = () => {
                 All documents are required to be uploaded{" "}
                 <span style={{ color: "red" }}>**</span>
               </p>
-              <p>
-                <em>if Employed - upload all requirements</em>
-              </p>
-              <p>
-                <em>if Self-Employed - upload Valid ID & Latest ITR only</em>
-              </p>
             </div>
-            <FileUploadGrid validateFiles={validateFiles} />
+                <FileUploadGrid validateFiles={validateFiles} />
+              </div>
+              <div className="application-submitbtn">
+                <button type="submit" id="application-submitbtn">
+                  Submit
+                </button>
+              </div>
+            </form>
           </div>
-          <div className="application-submitbtn">
-            <Button id="application-submitbtn" type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
+        </div>
+      )}
+                  {showOTPModal && <OTPModal visible={showOTPModal} onClose={() => setShowOTPModal(false)} />}
 };
 
 export default ApplicationDetailModal;

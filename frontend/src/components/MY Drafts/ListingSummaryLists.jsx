@@ -40,7 +40,7 @@ useEffect( () =>{
     } else if (status === 'DENIED') {
       navigate('/show-details-denied');
     } else {
-      navigate("/show-details-default"); // Fallback route
+      navigate('/show-details-default'); // Fallback route
     }
   };
 
@@ -67,30 +67,18 @@ useEffect( () =>{
 
   return (
     <div>
-      <div
-        className="contentContainer"
-        style={{ display: "flex", width: "100%", gap: "1rem" }}
-      >
-        <div
-          className="summary-sidebar"
-          style={{ width: "15%", padding: "none" }}
-        >
+      <div className="contentContainer" style={{ display: "flex", width: "100%", gap: "1rem" }}>
+        <div className="summary-sidebar" style={{ width: "15%", padding: "none" }}>
           <Sidebar />
         </div>
-        <div
-          className="list"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            width: "100%",
-            gap: "0.5rem",
-          }}
-        >
+        <div className="list" style={{ display: "flex", flexDirection: 'column', width: "100%", gap: "0.5rem" }}>
           <div className="listings-summary-container">
             <div className="listings-summary-header-section">
               <div className="listings-summary-tabs">
                 <Link to="/listing-summary-lists">
-                  <div className="listings-summary-button">Listings</div>
+                  <div className="listings-summary-button">
+                    Listings
+                  </div>
                 </Link>
                 <Link to="/clientmanagement">
                   <div className="listings-summary-button">
@@ -99,27 +87,23 @@ useEffect( () =>{
                 </Link>
               </div>
               <div className="search-section">
-                <label htmlFor="entries">
-                  Show
-                  <select
-                    className="dropdown"
-                    value={entriesPerPage}
-                    onChange={handleEntriesChange}
-                  >
+                <label htmlFor="entries">Show
+                  <select className="dropdown" value={entriesPerPage} onChange={handleEntriesChange}>
                     <option value="10">entries</option>
                     <option value="10">10</option>
                     <option value="25">25</option>
                     <option value="50">50</option>
                     <option value="100">100</option>
                   </select>
+               
                 </label>
                 <div className="search-inp-container">
                   <div className="searchwrapper">
                     <FontAwesomeIcon icon={faSearch} className="search-icon" />
-                    <input
-                      type="text"
-                      className="search-Inputss"
-                      placeholder="Search Property"
+                    <input 
+                      type="text" 
+                      className="search-Inputss" 
+                      placeholder="Search Property" 
                       value={searchQuery}
                       onChange={handleSearchChange}
                     />
@@ -145,10 +129,9 @@ useEffect( () =>{
                 {paginatedListings.map((listing, index) => (
                   <tr key={index}>
                     <td>
-                      <button
-                        className="listings-summary-show-details-button"
-                        onClick={() => handleShowDetailsClick(listing.status)}
-                      >
+                      <button 
+                        className="listings-summary-show-details-button" 
+                        onClick={() => handleShowDetailsClick(listing.status)}>
                         Show Details
                       </button>
                     </td>
@@ -167,59 +150,21 @@ useEffect( () =>{
                 ))}
               </tbody>
             </table>
+            
           </div>
         </div>
       </div>
-{/* 
-      <div
-        className="d-flex justify-content-end"
-        style={{ marginLeft: "85%", marginTop: "10%" }}
-      >
-        <nav
-          className="pagination-container"
-          aria-label="Page navigation example"
-        >
+      
+      <div className="d-flex justify-content-end" style={{ marginLeft: '85%', marginTop: '10%' }}>
+        <nav className="pagination-container" aria-label="Page navigation example">
           <ul className="pagination-list">
             {[...Array(totalPages)].map((_, pageIndex) => (
-              <li
-                className={`page-item ${
-                  pageIndex + 1 === currentPage ? "active" : ""
-                }`}
-                key={pageIndex}
-              >
-                <a
-                  className="page-link"
-                  onClick={() => setCurrentPage(pageIndex + 1)}
-                >
+              <li className={`page-item ${pageIndex + 1 === currentPage ? 'active' : ''}`} key={pageIndex}>
+                <a className="page-link" onClick={() => setCurrentPage(pageIndex + 1)}>
                   {pageIndex + 1}
                 </a>
               </li>
             ))}
-          </ul>
-        </nav>
-      </div> */}
-      <div className="pagination-parent">
-        <nav
-          className="pagination-container"
-          aria-label="Page navigation example"
-        >
-          <ul className="pagination-list">
-            <li className="page-item">
-              <a className="page-link active" href="/drafts">
-                1
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="/listing-summary-lists">
-                2
-              </a>
-            </li>
-          
-            <li className="page-item">
-              <a className="page-link" href="/sold-properties">
-                <FontAwesomeIcon icon={faPlay} />
-              </a>
-            </li>
           </ul>
         </nav>
       </div>

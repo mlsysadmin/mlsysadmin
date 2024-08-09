@@ -12,12 +12,15 @@ const {
     LISTING_ROUTER, 
     SELLER_ROUTER, 
     SUPPORT_ROUTER, 
-    PUBLIC_ROUTER 
+    PUBLIC_ROUTER, 
+    GOOGLE_ROUTER
 } = require('../routers/router.main');
 const Logger = require('../config/_log/mlbrokerage.logger');
 const ErrorHandler = require('../utils/_helper/ErrorHandler.helper');
 const DataResponseHandler = require('../utils/_helper/DataResponseHandler.helper');
 const verifyApiKey = require('../middleware/_auth/api.auth.middleware');
+const { GoogleSignInCallback } = require('../controllers/_users/user.controller');
+const verifyToken = require('../middleware/_auth/jwt.auth.middleware');
 
 const app = express();
 
@@ -32,7 +35,7 @@ app.use(helmet({
 }))
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: process.env.CLIENT_APP_URL,
     credentials: true,
 }));
 
@@ -44,12 +47,13 @@ app.use(cookieParser(process.env.SECRET_KEY))
 //   res.sendFile(path.join(__dirname, "../../../frontend/public", "index.html"));
 // });
 
-
+app.use('/', GOOGLE_ROUTER);
 app.use('/api/user', USER_ROUTER);
 app.use('/api/listing', LISTING_ROUTER);
 app.use('/api/seller', SELLER_ROUTER);
-app.use('/api/support', SUPPORT_ROUTER);
+app.use('/api/support', verifyToken, verifyApiKey, SUPPORT_ROUTER);
 app.use('/api/public', verifyApiKey, PUBLIC_ROUTER);
+
 
 // If accessing non-existing route - 404 --------------------------------------------------
 app.get("*", (req, res, next) => {

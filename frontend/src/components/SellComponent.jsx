@@ -125,7 +125,7 @@ const SellComponent = () => {
                 listings.
               </span>
               <div className="non-wallet-user-step">
-                <ul style={{ listStyleType: "none", padding: 0}}>
+                <ul style={{ listStyleType: "none", padding: 0 }}>
                   <li>
                     <span style={{ fontWeight: "bold" }}>Step 1:</span> Bring
                     your listing documents to the ML Branch.
