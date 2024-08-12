@@ -53,7 +53,7 @@ const JoinTeam = ({ toggleModal }) => {
 					justifyContent: "center",
 					alignItems: "center",
 					zIndex: 100,
-					padding: "100px 0px 0px 0px",
+					padding: "0px 0px 0px 0px",
 				}}
 			>
 				<div
@@ -62,11 +62,11 @@ const JoinTeam = ({ toggleModal }) => {
 						backgroundColor: "white",
 						borderRadius: "20px",
 						width: "auto",
-						maxHeight: "95vh",
+						maxHeight: "90vh",
 						display: "flex",
-						padding: "40px 30px",
+						padding: "20px 30px",
 						flexDirection: "column",
-						margin: "0px 0px",
+						margin: "20px 0px",
 						overflowY: "auto",
 					}}
 				>

@@ -1,79 +1,65 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../../styles/custom.css";
+import { GetAllAmenities, GetAllIndoorAmenities, GetAllOutdoorAmenities } from "../../../api/GetAllAmenities";
 
 const CertainFeatureMenu = () => {
-	const indoorFeatures = [
-		"Alarm System",
-		"Air Condition",
-		"Attic",
-		"Balcony",
-		"Basement",
-		"Broadband Internet",
-		"Built-in wardrobes",
-		"CCTV",
-		"Central Air Conditioning",
-		"Deducted Coding",
-		"Deducted Vacuum",
-		"Driver Room",
-		"Ensuite",
-		"Entertainment Room",
-		"Fire Alarm",
-		"Fireplace",
-		"Floorboards",
-		"Gym",
-		"Jacuzzi",
-		"Laundry Room",
-		"Library",
-		"Lounge",
-		"Maid Room",
-		"Pay TV Access",
-		"Powder Room",
-		"Sauna",
-		"Service Area",
-		"Service Kitchen",
-		"Smoke Detector",
-		"Split System Heating",
-		"Storage Room",
-		"Study Room",
-		"Terrace",
-		"Wifi",
-	];
+	const[IndoorAm, setIndoorAm] = useState([]);
+	const [OutdoorAm, setOutdoorAm] = useState([]);
 
-	const outdoorFeatures = [
-		"Badminton Court",
-		"Balcony",
-		"Basketball Court",
-		"Carport",
-		"Clubhouse",
-		"Courtyard",
-		"Fully Fenced",
-		"Function Area",
-		"Garage",
-		"Garden",
-		"Gazebos",
-		"Jacuzzi",
-		"Jogging Path",
-		"Lanai",
-		"Landscaped Garden",
-		"Multi-purpose Lawn",
-		"Open Car Spaces",
-		"Parks",
-		"Parking Lot",
-		"Playground",
-		"Remote Garage",
-		"Secure Parking",
-		"Shower Rooms",
-		"Sports Facilities",
-		"Swimming Pool",
-		"Tennis Court",
-		"24/7 Security",
-	];
+	const indoorF = async () =>{
+		const resIndoor = await GetAllIndoorAmenities();
+		// const indoorDatas = resIndoor;
+		setIndoorAm(resIndoor)
+		console.log("all amenities", resIndoor);
+	}
+	useEffect (() =>{
+		indoorF();
+	},[]);
+
+		const outdoorF = async () => {
+			const resIndoor = await GetAllOutdoorAmenities();
+			// const indoorDatas = resIndoor;
+			 setOutdoorAm(resIndoor);
+			console.log("all amenities", resIndoor);
+		};
+		useEffect(() => {
+			outdoorF();
+		});
+
+	// 	"Badminton Court",
+	// 	"Balcony",
+	// 	"Basketball Court",
+	// 	"Carport",
+	// 	"Clubhouse",
+	// 	"Courtyard",
+	// 	"Fully Fenced",
+	// 	"Function Area",
+	// 	"Garage",
+	// 	"Garden",
+	// 	"Gazebos",
+	// 	"Jacuzzi",
+	// 	"Jogging Path",
+	// 	"Lanai",
+	// 	"Landscaped Garden",
+	// 	"Multi-purpose Lawn",
+	// 	"Open Car Spaces",
+	// 	"Parks",
+	// 	"Parking Lot",
+	// 	"Playground",
+	// 	"Remote Garage",
+	// 	"Secure Parking",
+	// 	"Shower Rooms",
+	// 	"Sports Facilities",
+	// 	"Swimming Pool",
+	// 	"Tennis Court",
+	// 	"24/7 Security",
+	// ];
 
 	const [indoorCheckedState, setIndoorCheckedState] = useState(
-		new Array(indoorFeatures.length).fill(false)
+		new Array(IndoorAm.length).fill(false)
 	);
 	const [outdoorCheckedState, setOutdoorCheckedState] = useState(
-		new Array(outdoorFeatures.length).fill(false)
+		new Array(OutdoorAm.length).fill(false)
 	);
 	const [isAllChecked, setIsAllChecked] = useState(false);
 
@@ -87,8 +73,8 @@ const CertainFeatureMenu = () => {
 	const handleShowAllChange = () => {
 		const newState = !isAllChecked;
 		setIsAllChecked(newState);
-		setIndoorCheckedState(new Array(indoorFeatures.length).fill(newState));
-		setOutdoorCheckedState(new Array(outdoorFeatures.length).fill(newState));
+		setIndoorCheckedState(new Array(IndoorAm.length).fill(newState));
+		setOutdoorCheckedState(new Array(OutdoorAm.length).fill(newState));
 	};
 
 	const renderFeatures = (features, checkedState, setCheckedState) => {
@@ -110,7 +96,7 @@ const CertainFeatureMenu = () => {
 								)
 							}
 						/>
-						<span>{feature}</span>
+						<span>{feature.feature_name}</span>
 					</div>
 				))
 		);
@@ -140,20 +126,12 @@ const CertainFeatureMenu = () => {
 
 			<div className="features-section">
 				<span className="features-header">INDOOR FEATURES</span>
-				{renderFeatures(
-					indoorFeatures,
-					indoorCheckedState,
-					setIndoorCheckedState
-				)}
+				{renderFeatures(IndoorAm, indoorCheckedState, setIndoorCheckedState)}
 			</div>
 
 			<div className="features-section">
 				<span className="features-header">OUTDOOR FEATURES</span>
-				{renderFeatures(
-					outdoorFeatures,
-					outdoorCheckedState,
-					setOutdoorCheckedState
-				)}
+				{renderFeatures(OutdoorAm, outdoorCheckedState, setOutdoorCheckedState)}
 			</div>
 		</div>
 	);
