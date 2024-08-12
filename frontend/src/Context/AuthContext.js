@@ -33,6 +33,7 @@ export const AuthProvider = ({ children }) => {
         // sessionStorage.removeItem('previous_path');
         Cookies.remove('access_token');
         Cookies.remove('user_details');
+        setIsMessageLoadingOpen(true);
     };
 
     useEffect(() => {
@@ -40,13 +41,10 @@ export const AuthProvider = ({ children }) => {
         const access_token = Cookies.get('access_token');
         const user = Cookies.get('user_details');
 
-        console.log('access_token', access_token);
-
         const checkAuth = () => {
 
             if (access_token) {
                 const userParse = JSON.parse(user)
-                console.log('userParse', userParse);
                 // login(userParse);
                 setIsAuthenticated(true);
                 setUserDetails(userParse);

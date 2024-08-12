@@ -28,7 +28,7 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
     const navigate = useNavigate();
 
     const [current, setCurrent] = useState(1);
-    const [pageSize, setPageSize] = useState(2);
+    const [pageSize, setPageSize] = useState(3);
     const [originalData, setOriginalData] = useState([]);
 
     const [filteredListings, setFilteredListings] = useState([]);

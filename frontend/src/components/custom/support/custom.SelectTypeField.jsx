@@ -8,6 +8,8 @@ const CustomSelectTypeField = (props) => {
   const disabled = props.disabled;
   const readOnly = props.readOnly;
   const value = props.value;
+  const handleFieldChange = props.handleFieldChange;
+  const name = props.name;
 
   const [options, setOptions] = useState([]);
   const [listingInformation, setListingInformation] = useState([]);
@@ -100,10 +102,6 @@ const CustomSelectTypeField = (props) => {
     }
   }, [labelName, props.cities ,props.provinces, props.countries]);
 
-  const handleSelectChange = (e) => {
-    console.log("Selected: ", e);
-    setSelectedOption(e);
-  };
   return (
     <div className="select-field">
       <label htmlFor={labelName} className="labelClassName">
@@ -111,9 +109,9 @@ const CustomSelectTypeField = (props) => {
       </label>
       <br />
       <Select
-        name={labelName}
+        name={name}
         className="fieldClassName"
-        onChange={handleSelectChange}
+        onChange={(value) => handleFieldChange(value, name, 'select')}
         placeholder={`Select ${labelName}`}
         options={options}
         suffixIcon={<CaretDownFilled/>}

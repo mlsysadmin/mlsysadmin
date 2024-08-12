@@ -173,13 +173,13 @@ module.exports = {
                         ...location
                     },
                     amenities: {
-                        indoor_features: JSON.stringify(indoor_features),
-                        outdoor_features: JSON.stringify(outdoor_features),
+                        indoor_features: indoor_features,
+                        outdoor_features: outdoor_features,
                         custom_amenities: {
-                            feature_name: JSON.stringify(feature_name)
+                            feature_name: feature_name
                         },
                         custom_inclusion: {
-                            inclusion_name: JSON.stringify(inclusion_name)
+                            inclusion_name: inclusion_name
                         }
                     },
                     photos: {

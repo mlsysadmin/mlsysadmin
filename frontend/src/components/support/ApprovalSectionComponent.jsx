@@ -3,42 +3,35 @@ import "../../styles/support/approvalSection.css";
 
 import SemiRoundBtn from "../custom/buttons/SemiRoundBtn.custom";
 import TextArea from "antd/es/input/TextArea";
+import { useAuth } from "../../Context/AuthContext";
+import DayJS from "dayjs";
 
-const ApprovalSectionComponent = () => {
+const ApprovalSectionComponent = (props) => {
+    const { approvals, level, isEditListing, isShowDetails } = props;
+    const { userDetails } = useAuth();
 
-    const [listingLevel, setLevel] = useState(1);
+    const [listingLevel, setLevel] = useState(0);
 
     useEffect(() => {
+        setLevel(level);
+        console.log("approvals", approvals);
 
-    }, [])
+    }, [level])
+    function fullName(approver) {
+        return `${approver.first_name} ${approver.middle_name} ${approver.last_name}`;
+    }
 
-    const approvalList = [
-        {
-            noted_by: '',
-            date_approved: '',
-            remarks: 'asdsfg',
-            level: 1,
-            status: 'Pending'
-        },
-        {
-            noted_by: '',
-            date_approved: '',
-            remarks: '',
-            level: 2,
-            status: 'Pending'
-        },
-        {
-            noted_by: '',
-            date_approved: '',
-            remarks: '',
-            level: 3,
-            status: 'Pending'
-        },
-    ]
+    function dateApproved(date) {
+        if (!date) {
+            return date
+        }
+        return DayJS('2024-07-16 08:52:37').format('MM/DD/YYYY hh:mm A');
+    }
 
-    const ApprovalListItems = () => approvalList.map((item, index) => {
+    const ApprovalListItems = () => approvals.slice(0, 3).map((approval, index) => {
 
-        const enableApproval = item.status === 'Pending' && listingLevel === item.level;
+        const approver = approval.approver;
+        const enableApproval = approval.approval_status === 'PENDING' && listingLevel === approver.level;
 
         return (
             <div className="support-approval--content-item" key={index}>
@@ -52,35 +45,36 @@ const ApprovalSectionComponent = () => {
                                 index === 0 ? 'Noted by: ' : 'Approver: '
                             }
                         </p>
-                        <p>{item.noted_by}</p>
+                        <p>{fullName(approver)}</p>
                     </div>
                     <div className="support-approval--item-date">
                         <p>Date Approved:</p>
-                        <p>{item.date_approved}</p>
+                        <p>{dateApproved(approval.approval_date)}</p>
                     </div>
                 </div>
                 <div className="support-approval--content-item-actions">
                     <div className="support-approval--content-item-input">
-                        <TextArea 
-                        placeholder="Enter Remarks" 
-                        rows={4} 
-                        defaultValue={item.remarks} 
-                        readOnly={!enableApproval}
+                        <TextArea
+                            placeholder="Enter Remarks"
+                            rows={4}
+                            defaultValue={approval.remarks}
+                            readOnly={!enableApproval}
+                            disabled={isShowDetails && isEditListing}
                         />
                     </div>
                     {
-                        enableApproval ? (
-                            <div className="support-approval--content-item-buttons">
-                                <SemiRoundBtn
-                                    type={'primary'}
-                                    label={'Approve'}
-                                    className={'approve-btn'} />
-                                <SemiRoundBtn
-                                    type={'primary'}
-                                    label={'Denied'}
-                                    className={'denied-btn'} />
-                            </div>
-                        ) : null
+                        enableApproval ? <div className="support-approval--content-item-buttons">
+                            <SemiRoundBtn
+                                type={'primary'}
+                                label={'Approve'}
+                                className={'approve-btn'}
+                                disabled={isShowDetails && isEditListing} />
+                            <SemiRoundBtn
+                                type={'primary'}
+                                label={'Denied'}
+                                className={'denied-btn'} 
+                                disabled={isShowDetails && isEditListing}/>
+                        </div> : null
                     }
                 </div>
             </div>

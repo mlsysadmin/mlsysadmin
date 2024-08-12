@@ -7,9 +7,10 @@ const CustomFeatureField = (props) => {
   const fieldType = props.fieldType;
   const className = props.className;
   const disabled = props.disabled;
-  const onChange = props.onChange;
+  const handleFeatureChange = props.handleFeatureChange;
   const indoorAmenities = props.indoorAmenities;
   const outdoorAmenities = props.outdoorAmenities;
+  const value = props.value;
 
   const [selectedOption, setSelectedOption] = useState("");
   const [options, setOptions] = useState([]);
@@ -39,7 +40,7 @@ const CustomFeatureField = (props) => {
       })
       setOptions(outdoor);
     }
-  }, [labelName]);
+  }, [labelName, indoorAmenities, outdoorAmenities]);
 
   return (
     <div className="FeaturesFields">
@@ -48,18 +49,19 @@ const CustomFeatureField = (props) => {
           name={labelName}
           className={className}
           defaultValue=""
-          onChange={onChange}
+          onChange={handleFeatureChange}
           disabled={disabled}
           options={options}
           suffixIcon={<CaretDownFilled/>}
+          value={value}
         >
         </Select>
       ) : (
         <Input
           status={status}
           type="text"
-          value={selectedOption}
-          onChange={onChange}
+          value={value}
+          onChange={handleFeatureChange}
           placeholder="Enter Feature"
           className={className} //"ammenitiesInputField"
           disabled={disabled}

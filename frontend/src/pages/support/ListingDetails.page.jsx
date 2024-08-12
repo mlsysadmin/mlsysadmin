@@ -13,11 +13,13 @@ const ListingDetailsPage = () => {
   const [isShowDetails, setShowDetails] = useState(false);
   const [listingDetails, setListingDetails] = useState([]);
   const [approvals, setApprovals] = useState([]);
+  const [listingSuccess, setListingSuccess] = useState(false);
 
   useEffect(() => {
+
     setIsMessageLoadingOpen(true);
     setIndex(-1);
-    openMessage('loading', 'Retrieving listing...', 3);
+    openMessage('loading', 'Retrieving listing...', 2);
 
     if (sessionStorage.getItem('props')) {
 
@@ -28,7 +30,6 @@ const ListingDetailsPage = () => {
       setShowDetails(props.isShowDetails);
 
       GetListingDetails(props.listing_id);
-
     }
   }, []);
 
@@ -36,26 +37,42 @@ const ListingDetailsPage = () => {
     try {
 
       const response = await GetListingDetailsByIdandStatus(listing_id);
-      console.log(response);
       setListingDetails(response.data.listing);
       setApprovals(response.data.approvals);
-      openMessage('success', response.message, 3);
+      openMessage('success', response.message, 1);
       setIsMessageLoadingOpen(false);
       setIndex(100);
+      setListingSuccess(true);
+
     } catch (error) {
+      const data = error.data;
       console.log(error);
+      openMessage('error', data.error.message, 3);
+      setIsMessageLoadingOpen(false);
+      setIndex(100);
     }
   }
 
   return (
     <>
-      <SupportListingComponent
-        isEditListing={isEdit} tabTitle={tabTitle}
-        isShowDetails={isShowDetails}
-        listingId={listingId}
-        setIsEdit={setIsEdit}
-        listingDetails={listingDetails} />
-      <ApprovalSectionComponent approvals={approvals}/>
+      {
+        listingSuccess ? (
+          <>
+            <SupportListingComponent
+              isEditListing={isEdit} 
+              tabTitle={tabTitle}
+              isShowDetails={isShowDetails}
+              listingId={listingId}
+              setEditListing={setIsEdit}
+              listingDetails={listingDetails} />
+            <ApprovalSectionComponent
+              approvals={approvals}
+              level={listingDetails.current_level}
+              isEditListing={isEdit}
+              isShowDetails={isShowDetails} />
+          </>
+        ) : <></>
+      }
     </>
   );
 };

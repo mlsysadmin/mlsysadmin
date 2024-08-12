@@ -5,7 +5,7 @@ import { Input, Te } from "antd";
 const { TextArea } = Input;
 
 const CustomTextField = (props) => {
-  const { labelName, inputStyle, inputType, disabled } = props;
+  const { labelName, inputStyle, inputType, disabled , value, name, handleFieldChange, handleKeyDown, handleOnBlur} = props;
   return (
     <div className="text-field">
       <label htmlFor={labelName} className="textLabel">
@@ -14,22 +14,28 @@ const CustomTextField = (props) => {
       {inputType === "input" ? (
         <Input
           type="text"
-          name={labelName}
+          name={name}
           placeholder={`Enter ${labelName}`}
           className="textField"
           disabled={disabled}
           size="large"
+          value={value}
+          onChange={(value) => handleFieldChange(value, name, 'input')}
+          onKeyDown={handleKeyDown}
+          onBlur={handleOnBlur}
         />
       ) : (
         <TextArea
           disabled={disabled}
-          name={labelName}
+          name={name}
           placeholder={
             labelName === "Address"
               ? "Enter Complete Address"
               : `Enter ${labelName}`
           }
           className="textField"
+          value={value}
+          onChange={(value) => handleFieldChange(value, name, 'input')}
         />
       )}
     </div>

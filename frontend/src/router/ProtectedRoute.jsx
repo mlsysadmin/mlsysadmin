@@ -15,19 +15,15 @@ const ProtectedRoute = ({ element }) => {
 
   useEffect(() => {
 
-    console.log("ProtectedRoute: isAuthenticated: ", isAuthenticated);
-
     if (!isAuthenticated) {
-
+        
       // Redirect to the login page if the user is not authenticated
       sessionStorage.removeItem('previous_path');
       navigate( '/support/signin', { 
         replace: true
       })
-      console.log("Redirecting to login page");
       
     }
-    console.log("Herrrree");
 
     sessionStorage.setItem('previous_path', location.pathname);
 

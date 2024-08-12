@@ -14,7 +14,7 @@ const CustomInclusions = Sequelize.define("custom_inclusions", {
   },
   inclusion_name: {
     allowNull: true,
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     get() {
       return JSON.parse(this.getDataValue('inclusion_name'));
     },
