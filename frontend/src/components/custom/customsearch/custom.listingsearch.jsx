@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Input, Select, Slider, Dropdown } from "antd";
-import { DownOutlined } from "@ant-design/icons";
+import { CaretDownOutlined } from "@ant-design/icons";
 import "../../../styles/custom.css";
 import CertainFeatureMenu from "./certainfeature";
 
@@ -107,7 +107,7 @@ const ListingSearch = () => {
 								className="select-field"
 								onClick={handleCertainFeatureClick}
 							>
-								Features <DownOutlined />
+								Features <CaretDownOutlined />
 							</Button>
 						</Dropdown>
 					</div>

@@ -122,6 +122,7 @@
   .includeItem {
     font-family: Poppins, sans-serif;
     margin-top: 15px;
+    font-size: 15px;
   }
   
   .includeItem:first-child {
@@ -140,6 +141,7 @@
     .title {
       max-width: 100%;
       font-size: 20px;
+
     }
   
     .card {
@@ -150,12 +152,13 @@
     .cardHeader {
       max-width: 100%;
       padding: 0 20px;
-      font-size: 20px;
+      font-size: 15px;
     }
   
     .cardContent {
       max-width: 100%;
       flex-wrap: wrap;
+      font-size: 15px;
     }
   
     .amenitiesContainer {
@@ -174,6 +177,7 @@
   
     .amenitiesList {
       margin-top: 40px;
+      font-size: 15px;
     }
   
     .includesGrid {
