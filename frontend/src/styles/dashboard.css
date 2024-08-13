@@ -81,14 +81,14 @@
    
 }
 #dashboard .banner .banner-content .banner-search .card-item.field  .ant-select-selection-placeholder{
-    color: #000000;
+    color: var(--mute-gray);
 }
 
 #dashboard .banner .banner-content .banner-search .card-item.field .ant-select-selector,
 #dashboard .banner .banner-content .banner-search .card-item.field.ant-input {
     border-radius: 5px !important;
-    border:1px solid #000000;
-    color:  #000000;
+    /* border:1px solid var(--mute-gray); */
+    color:  var(--mute-gray);
 }
 
 #dashboard .banner .banner-content .banner-search .card-item.field .ant-select-selector:focus,

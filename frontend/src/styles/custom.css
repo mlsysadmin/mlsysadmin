@@ -188,6 +188,7 @@ listing search */
 	border: 1px solid #8C9094;
 	display: flex;
 	justify-content: space-between;
+	padding: 0px 10px;
 }
 
 .input-field::placeholder {
