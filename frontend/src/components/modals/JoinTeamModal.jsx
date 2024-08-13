@@ -253,9 +253,14 @@ const JoinTeam = ({ toggleModal }) => {
 						overflowY: "auto",
 					}}
 				>
-					<h2 style={{ color: "#000000", fontSize: "24px" }}>
-						Join our innovative team at M Lhuillier.
-					</h2>
+					<div className="modal-header">
+						<h2 style={{ color: "#000000", fontSize: "24px" }}>
+							Join our innovative team at M Lhuillier.
+						</h2>
+						<span className="close-modal" onClick={toggleModal} style={{color:"#666", fontWeight:"lighter"}}>
+							&times;
+						</span>
+					</div>
 					<p style={{ fontSize: "16px", color: "#000000" }}>
 						Your expertise and passion are exactly what we need.
 					</p>
