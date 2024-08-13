@@ -15,6 +15,7 @@
     height: 240px;
      border-radius: 10px 10px 0 0;
     position: absolute;
+   
 }
 #card-listing .ant-card-body .listing-image {
     /* background: url('../asset/banners/listing.png'); */
@@ -122,4 +123,133 @@
 #card-listing .ant-card-body .card-content .card-content--subtitle .features .feature-icon
 {
     margin: auto 2px;
+}
+
+
+
+@media (max-width: 320px) {
+    #card-listing .ant-card-body {
+        width: 100%;
+        padding: 0px;
+    }
+
+    #card-listing .ant-card-body .listing-image {
+        height: 240px;
+    }
+
+    #card-listing .ant-card-body .listing-image .tags {
+        margin: 0 5px;
+        padding-top: 5px;
+    }
+
+    #card-listing .ant-card-body .listing-image .tags-right {
+        margin: 5px 5px;
+        padding-top: 8px;
+    }
+
+    #card-listing .ant-card-body .card-content {
+        /* padding: 5px !important;
+        box-shadow: none;
+        border-radius: 5px;
+        height: 10%; */
+        text-align: left;
+        /* padding: 10px 0 !important; */
+        padding: 15px !important;
+        /* padding: 15px 0 !important; */
+        font-family: var(--font-family);
+        background-color: #ffffff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+    
+    }
+
+    #card-listing .ant-card-body .card-content .card-content--title h4 {
+        font-size: 16px;
+    }
+
+    #card-listing .ant-card-body .card-content .card-content--subtitle .price {
+        font-size: 14px;
+    }
+
+    #card-listing .ant-card-body .card-content .card-content--subtitle {
+        font-size: 11px;
+        margin: 5px 3px;
+    }
+
+    #card-listing .ant-card-body .card-content .card-content--subtitle .features,
+    #card-listing .ant-card-body .card-content .card-content--subtitle .features .feature-content {
+        font-size: 14px;
+    }
+
+    #card-listing .ant-card-body .card-content .card-content--subtitle .features .feature-content {
+        margin: auto 2px;
+    }
+
+    #card-listing .ant-card-body .card-content .card-content--subtitle .features .feature-icon {
+        margin: auto 1px;
+    }
+}
+@media (max-width: 1024px) {
+    #card-listing .ant-card-body {
+        width: 65%;
+
+        margin-left: 17%;
+       
+    }
+
+    #card-listing .ant-card-body .listing-image {
+        height: 240px;
+    }
+
+    #card-listing .ant-card-body .listing-image .tags {
+        margin: 0 5px;
+        padding-top: 5px;
+    }
+
+    #card-listing .ant-card-body .listing-image .tags-right {
+        margin: 5px 5px;
+        padding-top: 8px;
+    }
+
+    #card-listing .ant-card-body .card-content {
+        /* padding: 5px !important;
+        box-shadow: none;
+        border-radius: 5px;
+        height: 10%; */
+        text-align: left;
+        /* padding: 10px 0 !important; */
+        padding: 15px !important;
+        /* padding: 15px 0 !important; */
+        font-family: var(--font-family);
+        background-color: #ffffff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+    
+    }
+
+    #card-listing .ant-card-body .card-content .card-content--title h4 {
+        font-size: 16px;
+    }
+
+    #card-listing .ant-card-body .card-content .card-content--subtitle .price {
+        font-size: 14px;
+    }
+
+    #card-listing .ant-card-body .card-content .card-content--subtitle {
+        font-size: 11px;
+        margin: 5px 3px;
+    }
+
+    #card-listing .ant-card-body .card-content .card-content--subtitle .features,
+    #card-listing .ant-card-body .card-content .card-content--subtitle .features .feature-content {
+        font-size: 14px;
+    }
+
+    #card-listing .ant-card-body .card-content .card-content--subtitle .features .feature-content {
+        margin: auto 2px;
+    }
+
+    #card-listing .ant-card-body .card-content .card-content--subtitle .features .feature-icon {
+        margin: auto 1px;
+    }
 }

@@ -21,8 +21,7 @@ import AdvanceSearch from '../asset/icons/advanceSearch.png';
 import Search from "../asset/icons/Search.png";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
 import FooterComponent from "./layout/FooterComponent";
-import ListingSearchLoggedin from "./custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
-import ListingSearch from "./custom/customsearch/custom.listingsearch";
+
 import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
 import CertainFeatureMenu from "./custom/customsearch/certainfeature";
 import {GetAllPublicListing} from "../api/GetAllPublicListings";
@@ -70,11 +69,7 @@ const newListings = publiclisting.filter(
 
 
 
-  const handleAdvancedSearchClick = () => {
-    console.log("handleAdvancedSearchClick called");
-    setAdvanceSearchOpen(!isAdvanceSearchOpen);
-    console.log("isAdvanceSearchOpen:", isAdvanceSearchOpen);
-  };
+
 
   const tags = [
 		{
@@ -331,14 +326,8 @@ const newListings = publiclisting.filter(
 				</Row>
 				{newListings.length > 0 && (
 					<div
-						className="listing-carousel"
-						style={{
-							cursor: "pointer",
-							display: "flex",
-							flexDirection: "row",
-							justifyContent: "center",
-							gap: "100px",
-						}}
+						className="listing-carousel-dashboard"
+						
 					>
 						{newListings.slice(0, 3).map((item, i) => {
 							return (

@@ -180,6 +180,7 @@ listing search */
 .select-field {
 	margin: 0 10px;
 	color: black;
+	padding: 12px;
 	height: 55px;
 	font-size: 15px;
 	border-radius: 3px;
@@ -188,6 +189,7 @@ listing search */
 	border: 1px solid #8C9094;
 	display: flex;
 	justify-content: space-between;
+	padding: 0px 10px;
 }
 
 .input-field::placeholder {
