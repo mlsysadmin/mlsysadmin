@@ -118,6 +118,7 @@
   aspect-ratio: 1.11;
   object-fit: auto;
   object-position: center;
+  background: transparent;
 }
 
 .featureValue {
@@ -407,6 +408,136 @@
     color: #8c9094;
     width: 100%;
     font: 400 18px Poppins, sans-serif;
+  }
+ 
+}
+@media only screen and (min-width: 360px) and (max-width: 480px) {
+  .leftcontainer {
+    display: flex;
+   width: 100%;
+    flex-direction: column;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 0 20px;
+  }
+  
+  .lefttitle {
+    font-family: Poppins, sans-serif;
+    color: #000;
+    width: 100%;
+    font-size: 20px;
+  }
+  
+  .specificationContainer {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    background-color: #FAFAFA;
+    width: 100%;
+  }
+  
+  .specificationHeader {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .specificationTable th, .specificationTable td {
+    padding: 8px;
+    font-size: 10px;
+  }
+
+  .specificationTable th:first-child, .specificationTable td:first-child {
+    border-right: none; /* Remove the border for better readability on small screens */
+  }
+
+  .specificationTable th:nth-child(3), .specificationTable td:nth-child(3) {
+    border-right: none; /* Remove the border for better readability on small screens */
+  }
+
+  .leftlocation {
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: #000;
+    margin-top: 33px;
+    width: 100%;
+  }
+  
+  .leftctaButton {
+    color: #d90000;
+    margin-top: 26px;
+    width: 100%;
+    font-size: 15px;
+    border: none;
+    background-color: transparent;
+  }
+  
+  .leftsectionTitle {
+    font-family: Poppins, sans-serif;
+    color: #000;
+    margin-top: 30px;
+    width: 100%;
+    font-size: 17px;
+  }
+  
+  .leftfeatureGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 30px;
+    width: 48%;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  
+  .featureCard {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    color: #1e1e1e;
+    white-space: nowrap;
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #000;
+ 
+  }
+  
+  .featureTitle {
+    font-family: Poppins, sans-serif;
+    font-size: 12px;
+  }
+  
+  .featureContent {
+    display: flex;
+    margin-top: 22px;
+    gap: 13px;
+  }
+  
+  .featureIcon {
+    aspect-ratio: 1.11;
+    object-fit: auto;
+    object-position: center;
+  }
+  
+  .featureValue {
+    font-family: Poppins, sans-serif;
+    margin: auto 0;
+    font-size: 12px;
+  }
+  
+  .leftdescriptionTitle {
+    color: #000;
+    margin-top: 30px;
+    width: 100%;
+    font: 20px Poppins;
+    font-weight: bold;
+  }
+  
+  .leftdescriptionText {
+    color: #8c9094;
+    width: 100%;
+    font: 400 15px Poppins, sans-serif;
   }
  
 }

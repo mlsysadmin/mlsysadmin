@@ -107,15 +107,19 @@ const JoinTeam = ({ toggleModal }) => {
 
 		const handleIdCardUpload = (event) => {
 			const file = event.target.files[0];
-			if (file) {
+			if (file && file.type.startsWith("image/")) {
 				setIdCard(URL.createObjectURL(file));
+			} else {
+				alert("Please upload a valid image file for the ID Card.");
 			}
 		};
 
 		const handleFacePhotoUpload = (event) => {
 			const file = event.target.files[0];
-			if (file) {
+			if (file && file.type.startsWith("image/")) {
 				setFacePhoto(URL.createObjectURL(file));
+			} else {
+				alert("Please upload a valid image file for the Face Photo.");
 			}
 		};
 
@@ -158,6 +162,7 @@ const JoinTeam = ({ toggleModal }) => {
 							<input
 								type="file"
 								id="idCardInput"
+								accept="image/*"
 								style={{ display: "none" }}
 								onChange={handleIdCardUpload}
 							/>
@@ -183,7 +188,7 @@ const JoinTeam = ({ toggleModal }) => {
 						<div className="photo-container">
 							{facePhoto ? (
 								<div className="upload-box">
-									<img src={facePhoto} alt="ID Card" className="photo" />
+									<img src={facePhoto} alt="Face Photo" className="photo" />
 								</div>
 							) : (
 								<div
@@ -197,6 +202,7 @@ const JoinTeam = ({ toggleModal }) => {
 							<input
 								type="file"
 								id="facePhotoInput"
+								accept="image/*"
 								style={{ display: "none" }}
 								onChange={handleFacePhotoUpload}
 							/>
@@ -217,6 +223,7 @@ const JoinTeam = ({ toggleModal }) => {
 			</div>
 		);
 	};
+
 
 	return (
 		<div className="join-modal-container">

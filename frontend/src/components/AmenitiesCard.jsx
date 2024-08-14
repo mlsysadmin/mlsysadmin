@@ -7,7 +7,7 @@ function AmenitiesCard({ amenities }) {
 			<h2 className={styles.cardHeader}>Amenities</h2>
 			<div className={styles.amenitiesContainer}>
 				<div className={styles.amenitiesGrid}>
-					{JSON.parse(amenities).map((columnItems, columnIndex) => (
+					{amenities.map((columnItems, columnIndex) => (
 						<div key={columnIndex} className={styles.amenitiesColumn}>
 							<ul className={styles.amenitiesList}>
 								<li>{columnItems}</li>
