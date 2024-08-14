@@ -16,27 +16,34 @@ import DayJS from "dayjs";
 
 // API
 import { GetAllPendingMasterList } from '../../../api/Support/Listing.api';
+import { useAuth } from "../../../Context/AuthContext";
+
+import Cookies from 'js-cookie';
 
 const { Search } = Input;
 
 const SupportPendingListingComponent = forwardRef((props, ref) => {
-    useEffect(() => {
-        GetAllForApproval()
-    }, []);
+    const { userDetails } = useAuth();
+
     const { setIsMessageLoadingOpen, setIndex, openMessage } = useOutletContext();
-
+    
     const navigate = useNavigate();
-
+    
     const [current, setCurrent] = useState(1);
     const [pageSize, setPageSize] = useState(3);
     const [originalData, setOriginalData] = useState([]);
-
+    
     const [filteredListings, setFilteredListings] = useState([]);
     const [total, setTotal] = useState(0);
     const [showButtons, setShowButtons] = useState(null);
-
+    
     const [messageApi, contextHolder] = message.useMessage();
-
+    
+    useEffect(() => {
+        GetAllForApproval();
+    }, []);
+    
+    
     const columns = [
         {
             title: 'Select',
@@ -79,18 +86,21 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
             dataIndex: 'status',
         },
     ];
-
+    
     const Format_Date = (date) => {
         return DayJS(date).format('DD-MM-YYYY').toString();
     }
-
+    
     const GetAllForApproval = async () => {
         try {
+            const user = Cookies.get('user_details');
 
             const payload = {
-                approver_email: 'jonalyn.mobilla@gmail.com',
+                approver_email: JSON.parse(user).email,
                 listing_status: 'PENDING'
             }
+            console.log(payload);
+            
 
             setIsMessageLoadingOpen(true);
             setIndex(-1);
@@ -127,12 +137,12 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
                 setTotal(listings.length);
                 setOriginalData(listings);
 
-                openMessage('success', getForApproval.message, 2);
+                openMessage('success', getForApproval.message, 1.5);
                 setTimeout(() => {
                     setIsMessageLoadingOpen(false);
                     setIndex(100);
                     setShowButtons(true);
-                }, 2500);
+                }, 1500);
 
             } else {
                 openMessage('success', getForApproval.message, 1.5);
@@ -145,6 +155,7 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
             fetchData(1, pageSize);
 
         } catch (error) {
+            console.error(error);
             const data = error.data;
             openMessage('error', data.error.message, 3);
             setIsMessageLoadingOpen(false);
@@ -231,7 +242,7 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
                     className={'approve-btn'} />
                 <SemiRoundBtn
                     type={'primary'}
-                    label={'Denied'}
+                    label={'Deny'}
                     className={'denied-btn'} />
             </>
         ) : <></>

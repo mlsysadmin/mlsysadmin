@@ -12,6 +12,8 @@ export const AuthProvider = ({ children }) => {
     const [isMessageLoadingOpen, setIsMessageLoadingOpen] = useState(false);
     const [zIndex, setIndex] = useState(100);
 
+    const access_token = Cookies.get('access_token');
+    const user = Cookies.get('user_details');
     console.log('isMessageLoadingOpen', isMessageLoadingOpen);
 
     // const login = useCallback(user => {
@@ -38,8 +40,6 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
 
-        const access_token = Cookies.get('access_token');
-        const user = Cookies.get('user_details');
 
         const checkAuth = () => {
 

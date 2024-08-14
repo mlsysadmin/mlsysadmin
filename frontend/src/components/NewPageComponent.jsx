@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/newpage.css";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FooterComponent, CustomMlFooter, MainLayout} from "../components";
+import { FooterComponent, CustomMlFooter, MainLayout } from "../components";
 import Card from "./custom/cards/Card";
 import Pagination from "./custom/pagination/Pagination";
 
-// import { cardData } from "../utils/ListingMockData";
+import { cardData } from "../utils/ListingMockData";
 
 
 import property from "../images/Guest/property.png";
@@ -40,15 +39,15 @@ console.log( "getlength", GetPhotoLength())
     allPublicListing()
   }, [])
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const cardsPerPage = 9
+	const [currentPage, setCurrentPage] = useState(1);
+	const cardsPerPage = 9;
 
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
 
-
-  const totalPages = Math.ceil(publiclisting.length / cardsPerPage);
+	const totalPages = Math.ceil(cardData.length / cardsPerPage);
+;
   return (
     <div className="newpage">
       <div className="newpage-container">

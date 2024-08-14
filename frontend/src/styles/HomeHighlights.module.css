@@ -1,0 +1,209 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    margin: 25px;
+  }
+  
+  .title {
+    color: #000;
+    width: 100%;
+    font: 700 30px Poppins, sans-serif;
+    margin: 10px;
+  }
+  
+  .card {
+    border-radius: 10px;
+    display: flex;
+    margin-top: 43px;
+    width: 100%;
+    padding-bottom: 30px;
+    flex-direction: column;
+    border: 1px solid #f5f6f7;
+  }
+  
+  .cardHeader {
+    border-radius: 10px 10px 0 0;
+    background-color: #e5e6e9;
+    width: 100%;
+    color: #000;
+    padding: 21px 28px;
+    font: 700 25px Poppins, sans-serif;
+  }
+  
+  .cardContent {
+    display: flex;
+    margin-left: 9%;
+    width: 100%;
+    max-width: 1300px;
+    align-items: start;
+    gap: 32%;
+    font-size: 20px;
+    color: #8c9094;
+    font-weight: 400;
+    justify-content: flex-start;
+  }
+  
+  .featureList {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .featureItem {
+    font-family: Poppins, sans-serif;
+    margin-top: 15px;
+  }
+  
+  .featureItem:first-child {
+    margin-top: 0;
+  }
+  
+  .amenitiesContainer {
+    align-self: center;
+    margin-top: 15px;
+    width: 100%;
+    max-width: 1477px;
+  }
+  
+  .amenitiesGrid {
+    gap: 10%;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .amenitiesColumn {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 33%;
+    margin-left: 0;
+  }
+  
+  .amenitiesList {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    font-size: 20px;
+    color: #8c9094;
+    font-weight: 400;
+  }
+  
+  .amenityItem {
+    font-family: Poppins, sans-serif;
+    margin-top: 24px;
+  }
+  
+  .amenityItem:first-child {
+    margin-top: 0;
+  }
+  
+  .includesGrid {
+    margin-left: 9%;
+    display: flex;
+    width: 100%;
+    max-width: 200%;
+    gap: 20px;
+  }
+  
+  .includesColumn {
+    flex-grow: 1;
+    flex-basis: auto;
+  }
+  
+  .includesList {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    font-size: 20px;
+    color: #8c9094;
+    font-weight: 400;
+  }
+  
+  .includeItem {
+    font-family: Poppins, sans-serif;
+    margin-top: 15px;
+  }
+  
+  .includeItem:first-child {
+    margin-top: 0;
+  }
+  
+  .serviceArea {
+    color: #8c9094;
+    align-self: start;
+    flex-grow: 1;
+    flex-basis: auto;
+    font: 400 20px Poppins, sans-serif;
+  }
+  
+  @media (max-width: 991px) {
+    .title {
+      max-width: 100%;
+      font-size: 20px;
+    }
+  
+    .card {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  
+    .cardHeader {
+      max-width: 100%;
+      padding: 0 20px;
+      font-size: 20px;
+    }
+  
+    .cardContent {
+      max-width: 100%;
+      flex-wrap: wrap;
+    }
+  
+    .amenitiesContainer {
+      max-width: 100%;
+    }
+  
+    .amenitiesGrid {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+  
+    .amenitiesColumn {
+      width: 100%;
+    }
+  
+    .amenitiesList {
+      margin-top: 40px;
+    }
+  
+    .includesGrid {
+      max-width: 100%;
+      flex-wrap: wrap;
+    }
+  
+    .includesColumn {
+      max-width: 100%;
+    }
+  
+    .includesList {
+      margin-top: 40px;
+    }
+  }
+  @media only screen and (max-width: 320px) {
+    .featureItem {
+        font-family: Poppins, sans-serif;
+        /* margin-top: 15px; */
+        font-size: 18px;
+      }
+      .amenityItem {
+        font-family: Poppins, sans-serif;
+        margin-top: 24px;
+        font-size: 18px;
+      }
+      .includeItem {
+        font-family: Poppins, sans-serif;
+        margin-top: 15px;
+        font-size: 18px;
+      }
+      
+  }

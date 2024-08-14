@@ -33,27 +33,40 @@ const FeaturedComponents = ({ onComplete }) => {
     setOutdoorAmenities(response);
     console.log("response", response);
   }
-  const FeatureList = ({ title, features, selectedFeatures, toggleFeature }) => (
-    <div className="featureCards">
-      <h2>{title}</h2>
-      <div className="features">
-      {features?.map((feature, index) => (
-          <div key={index}>
-            <span
-              className={`feature-item ${
-                selectedFeatures.includes(feature.feature_name)
-                  ? "selected"
-                  : ""
-              }`}
-              onClick={() => toggleFeature(feature.feature_name)}
-            >
-              {feature.feature_name}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  const FeatureList = ({
+		title,
+		features,
+		selectedFeatures,
+		toggleFeature,
+	}) => (
+		<div className="featureCards">
+			<h2>{title}</h2>
+			<div className="features">
+				{features?.map((feature, index) => (
+					<div key={index}>
+						<span
+							className={`feature-item ${
+								selectedFeatures.includes(feature.feature_name)
+									? "selected"
+									: ""
+							}`}
+							onClick={() => toggleFeature(feature.feature_name)}
+							style={{
+								backgroundColor: selectedFeatures.includes(feature.feature_name)
+									? "var(--red)"
+									: "transparent",
+								color: selectedFeatures.includes(feature.feature_name)
+									? "white"
+									: "inherit",
+							}}
+						>
+							{feature.feature_name}
+						</span>
+					</div>
+				))}
+			</div>
+		</div>
+	);
 
   useEffect(() => {
  

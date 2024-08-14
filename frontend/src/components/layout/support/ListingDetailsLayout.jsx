@@ -25,6 +25,7 @@ const ListingDetailsLayout = (props) => {
   const isEditListing = props.isEditListing;
   const setEditListing = props.setEditListing;
   const listingId = props.listingId;
+  const coordinates = props.coordinates;
 
   const [isFirstModalOpen, setIsFirstModalOpen] = useState(false);
   const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
@@ -419,10 +420,11 @@ const ListingDetailsLayout = (props) => {
               isEditListing && !isShowDetails && (
                 <div className="support--map">
                   <MapWrapper
-                    style={{ margin: '150px 0px 0px 0px' }}
+                    style={{ margin: '150px 0px 0px 0px', height: '355px' }}
                     children={
                       <MapComponent
                         style={{ height: "350px", width: "100%", borderRadius: "20px" }}
+                        coordinates={coordinates}
                       />
                     }
                   />

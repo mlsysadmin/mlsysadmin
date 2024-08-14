@@ -128,7 +128,7 @@
   gap: 1rem;
 }
 
-.ListingDetails .leftSide .select-field {
+.ListingDetails .leftSide .custom-select-type {
   margin: 10px 0px 0px 0px;
 }
 
@@ -159,7 +159,7 @@
   /* padding: 0px 10px 0px 10px; */
 }
 
-.select-field .labelClassName {
+.custom-select-type .labelClassName {
   color: var(--gray-border-color);
   font-family: var(--font-family);
   font-size: 17px;
@@ -170,7 +170,7 @@
   display: inline-block;
 }
 
-.select-field .fieldClassName option {
+.custom-select-type .fieldClassName option {
   color: var(--font-color);
   font-family: var(--font-family);
   font-size: 20px;
@@ -207,6 +207,7 @@
 .googleMapDisplay {
   border-radius: 10px;
   border: 1px #8c9094 dashed;
+  /* height: 260px; */
   /* width: 93%; */
   /* height: 47%; */
 }

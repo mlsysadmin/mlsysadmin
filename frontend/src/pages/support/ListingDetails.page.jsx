@@ -69,7 +69,8 @@ const ListingDetailsPage = () => {
               approvals={approvals}
               level={listingDetails.current_level}
               isEditListing={isEdit}
-              isShowDetails={isShowDetails} />
+              isShowDetails={isShowDetails}
+              listingStatus={listingDetails.listing_status}  />
           </>
         ) : <></>
       }

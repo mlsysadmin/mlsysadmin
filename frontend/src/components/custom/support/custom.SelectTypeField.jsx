@@ -103,7 +103,7 @@ const CustomSelectTypeField = (props) => {
   }, [labelName, props.cities ,props.provinces, props.countries]);
 
   return (
-    <div className="select-field">
+    <div className="custom-select-type">
       <label htmlFor={labelName} className="labelClassName">
         {labelName}
       </label>

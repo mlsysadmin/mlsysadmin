@@ -8,7 +8,7 @@ import { useAuth } from '../Context/AuthContext';
 import { SupportOutlet } from '../pages';
 
 const ProtectedRoute = ({ element }) => {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, userDeatils } = useAuth();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const ProtectedRoute = ({ element }) => {
 
     sessionStorage.setItem('previous_path', location.pathname);
 
-  }, [isAuthenticated])
+  }, [isAuthenticated, userDeatils])
 
   // Render the children components if the user is authenticated
   return  element;

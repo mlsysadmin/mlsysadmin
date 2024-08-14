@@ -20,6 +20,8 @@ const SupportListingComponent = (props) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const center = [10.3157, 123.8854];
+
   const Countries = async () => {
     try {
       const countries = await GetCountry();
@@ -83,6 +85,11 @@ const SupportListingComponent = (props) => {
 
   const SubButtons = () => {
     return subBtns.map((btn, index) => {
+      if (listingDetails.listing_status !== "PENDING" && isShowDetails) {
+        if (btn.label === 'Edit Listing') {
+          return null;
+        }
+      }
       return (
         <SemiRoundBtn
           key={index}
@@ -95,7 +102,9 @@ const SupportListingComponent = (props) => {
       )
     })
   }
+
   const ModalContent = () => {
+
     return (
       <>
         <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -103,9 +112,10 @@ const SupportListingComponent = (props) => {
           <span>Cebu City, Cebu</span>
         </div>
         <MapWrapper
-          style={{ margin: '20px 0px' }}
+          style={{ margin: '20px 0px', height: "260px" }}
           children={
             <MapComponent
+              coordinates={center}
               style={{ height: "260px", width: "100%", borderRadius: "20px" }}
             />
           }
@@ -151,8 +161,8 @@ const SupportListingComponent = (props) => {
         listingDetails={listingDetails}
         setEditListing={setEditListing}
         listingId={listingId}
+        coordinates={center}
       />
-
     </div>
   );
 };

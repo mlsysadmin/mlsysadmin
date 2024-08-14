@@ -175,7 +175,8 @@ const SupportFeatureLayout = forwardRef((props, ref) => {
         style={{ borderRadius: '10px' }}
         key={index}
         width={200}
-        src={file.url ? file.url : 'error'}
+        src={file.url}
+        // src={file.url ? file.url : 'error'}
         fallback={FallbackImage}
         preview={{
           visible: previewOpen,
@@ -225,6 +226,7 @@ const SupportFeatureLayout = forwardRef((props, ref) => {
         </div>
         <br />
         {
+          isShowDetails && isEditListing &&
           DaggerUploadPhotos(draggerModalProps)
         }
         <div className="preview-upload--view-modal" style={{
@@ -251,7 +253,7 @@ const SupportFeatureLayout = forwardRef((props, ref) => {
                     }}
                     width={290}
                     key={index}
-                    src={file.url ? file.url : 'error'}
+                    src={file.url}
                     fallback={FallbackImage}
                     preview={{
                       visible: previewOpen,
@@ -567,6 +569,7 @@ const SupportFeatureLayout = forwardRef((props, ref) => {
                   flexDirection: 'column',
                   fontWeight: 'bold'
                 }}
+                onClick={() => setIsModalOpen(true)}
                 >
                   <p>{fileList.length - photosToShow}</p>
                   <p>View More Photos</p>
