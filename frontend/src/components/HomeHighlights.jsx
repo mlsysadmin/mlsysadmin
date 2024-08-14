@@ -53,14 +53,14 @@ const HomeHighlights = ({ oneListing }) => {
 	const allFeatures = [...indoorFeatures, ...outdoorFeatures.flat()];
 
 	const amenities = oneListing.listings.amenities.custom_amenities.feature_name.map((amenity) => amenity);
-	const includes = JSON.parse(oneListing.listings.amenities.custom_inclusion.inclusion_name).map((inclusions)=> inclusions);
+	const includes = oneListing.listings.amenities.custom_inclusion.inclusion_name.map((inclusions)=> inclusions);
 
 	return (
 		<section className={styles.container}>
 			<h1 className={styles.title}>Home Highlights</h1>
 			<FeatureCard features={allFeatures} />
 			<AmenitiesCard amenities={amenities} />
-			<IncludesCard includes={includes} />
+			{/* <IncludesCard includes={includes} /> */}
 		</section>
 	);
 };
