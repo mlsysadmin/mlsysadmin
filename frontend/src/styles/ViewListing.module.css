@@ -27,15 +27,36 @@
   }
   
   .logoImage {
+    display: flex;
     aspect-ratio: 2;
-    object-fit: auto;
+    /* object-fit: auto; */
     object-position: center;
-    width: 100px;
+    width: 7%;
+    height: 55px;
     margin-right: 4%;
     border-radius: 20px;
     align-self: flex-end;
     max-width: 100%;
     z-index: 3; /* In front of the camera icon */
+    background-color: #fff;
+  }
+  .cameraImage{
+
+      aspect-ratio: 2;
+      /* object-fit: auto; */
+      object-position: center;
+      width: 65px;
+      height: 55px;
+      margin-right: 4%;
+      border-radius: 20px;
+      align-self: flex-end;
+      max-width: 100%;
+      z-index: 3; /* In front of the camera icon */
+      background-color: #fff;
+    
+  }
+  .number{
+    color: #d90000;
   }
   
   .infoContainer {
@@ -144,7 +165,7 @@
     }
   
     .logoImage {
-      width: 80px;
+      width: 16%;
     }
   
     .infoContainer {
@@ -163,166 +184,283 @@
   
   
   @media only screen and (max-width: 320px) {
-    /* .propertyCard {
+    .propertyCard {
       padding: 15px 20px;
       font-size: 20px;
+      position: relative;
+    }
+  
+    .backgroundImage {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      width: 93%;
+      z-index: 1;
     }
   
     .cameraIcon {
+      position: absolute;
+      top: 30px;
+      right: 20px;
+      z-index: 2;
       width: 15px;
       height: 15px;
     }
   
     .logoImage {
-      width: 40px;
+      object-fit: auto;
+      object-position: center;
+      width: 45px;
+      height: 25px;
+      border-radius: 20px;
+      align-self: flex-end;
+      z-index: 3;
+    }
+  
+    .cameraImage {
+      aspect-ratio: 2;
+      object-position: center;
+      width: 25px;
+      height: 25px;
+      border-radius: 20px;
+      background-color: #fff;
+      z-index: 3;
+    }
+  
+    .number {
+      color: #d90000;
+      font-size: 14px;
     }
   
     .infoContainer {
-      margin-top: 400px;
-      flex-direction: column;
-      gap: 8px;
+      position: relative;
+      display: flex;
+      margin-top: 60%;
+      width: 100%;
+      align-items: center;
+      gap: 5px;
+      justify-content: space-between;
+      z-index: 3;
+    }
+  
+    .statusPriceContainer {
+      display: flex;
+      width: 100%;
+    }
+  
+    .statusBadge {
+      font-family: Poppins, sans-serif;
+      border-radius: 20px;
+      background-color: #fff;
+      color: #000;
+      font-size: 12px;
+      height: 35%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 10px;
     }
   
     .priceTag {
-      padding: 8px 12px;
+      font-family: Inter, sans-serif;
+      border-radius: 20px;
+      background-color: #d90000;
+      color: #fff;
+      font-size: 16px;
+      height: 35%;
+      white-space: nowrap;
+      flex-grow: 1;
+      padding: 5px 10px;
+      text-align: right;
+    }
+  
+    .actionContainer {
+      display: flex;
+      flex-direction: column;
+      color: #d90000;
+      font-weight: 400;
+      white-space: nowrap;
+      margin-right: 20%;
+    }
+  
+    .saveButton {
+      border-radius: 20px;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px;
     }
   
     .saveIcon {
-      width: 30px;
+      aspect-ratio: 1.22;
+      object-fit: contain;
+      width: 20px;
     }
   
     .saveText {
-      display: none; /* Hide text for smaller screens */
-    /* } */ 
+      font-family: Poppins, sans-serif;
+      font-size: 14px;
+    }
+  
+    .moreOptionsIcon {
+      aspect-ratio: 7.69;
+      object-fit: contain;
+      width: 6px;
+      stroke-width: 1px;
+      stroke: #222;
+      margin: 10px 0 0 8px;
+      border: 1px solid #222;
+    }
+  
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  }
+  
+  
+  @media only screen and (min-width: 360px) and (max-width: 480px) {
     .propertyCard {
-        padding: 15px 20px;
-        font-size: 20px;
-        /* height: 50%; */
-      }
-      
-      .backgroundImage {
-        position: absolute;
-        inset: 0;
-        height: 100%;
-        width: 100%;
-        z-index: 1; /* Ensuring the background image is at the back */
-      }
-  .cameraIcon {
-    position: absolute;
-    top: 30px; /* Adjust as needed */
-    right: 20px; /* Adjust as needed */
-    z-index: 2; /* In front of the background image, but behind other content */
-    width: 15px; /* Adjust as needed */
-    height: 15px; /* Adjust as needed */
-  }
-  
-  .logoImage {
-    /* aspect-ratio: 2; */
-    object-fit: auto;
-    object-position: center;
-    width: 45px;
-    height: 25px;
-    margin-right: 4%;
-    border-radius: 20px;
-    align-self: flex-end;
-    /* max-width: 100%; */
-    z-index: 3; /* In front of the camera icon */
-  }
-  
-  .infoContainer {
-    position: relative;
-    display: flex;
-    margin-top: 60%;
-    width: 100%;
-    align-items: center;
-    gap: 5px;
-    justify-content: space-between;
-    z-index: 3; /* In front of the camera icon */
-  }
-  
-  .statusPriceContainer {
+      padding: 15px 20px;
+      font-size: 20px;
+      /* height: 50%; */
+    }
     
-    width: 100%;
-    display: flex;
- 
-  }
+    .backgroundImage {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      /* width: 100%; */
+      z-index: 1; /* Ensuring the background image is at the back */
+    }
+.cameraIcon {
+  position: absolute;
+  top: 30px; /* Adjust as needed */
+  right: 20px; /* Adjust as needed */
+  z-index: 2; /* In front of the background image, but behind other content */
+  width: 15px; /* Adjust as needed */
+  height: 15px; /* Adjust as needed */
+}
+
+.logoImage {
+  /* aspect-ratio: 2; */
+  object-fit: auto;
+  object-position: center;
+  width: 45px;
+  height: 25px;
+  margin-right: 4%;
+  border-radius: 20px;
+  align-self: flex-end;
+  /* max-width: 100%; */
+  z-index: 3; /* In front of the camera icon */
+}
+.cameraImage {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #fff;
+  z-index: 3;
+}
+.number {
+  color: #d90000;
+  font-size: 14px;
+  /* margin-left: 5px; */
+}
+.infoContainer {
+  position: relative;
+  display: flex;
+  margin-top: 60%;
+  width: 100%;
+  align-items: center;
+  gap: 5px;
+  justify-content: space-between;
+  z-index: 3; /* In front of the camera icon */
+}
+
+.statusPriceContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.statusBadge {
+  font-family: Poppins, sans-serif;
+  border-radius: 20px;
+  background-color: #fff;
+  color: #000;
+  font-size: 12px;
+  padding: 5px 10px;
+  position: absolute;
+  margin-bottom: 140%;
+  left: 16px;
+}
+
+.priceTag {
+  font-family: Inter, sans-serif;
+  border-radius: 20px;
+  background-color: #d90000;
+  color: #fff;
+  font-size: 16px;
+  white-space: nowrap;
+  padding: 5px 10px;
+}
+
+.actionContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: #d90000;
+  font-weight: 400;
+}
+
+.saveButton {
+  border-radius: 20px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.saveIcon {
+  width: 20px;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.saveText {
+  font-family: Poppins, sans-serif;
+  font-size: 14px;
+}
+
+.moreOptionsIcon {
+  width: 6px;
+  object-fit: contain;
+  stroke-width: 1px;
+  stroke: #222;
+  margin-top: 10px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
   
-  .statusBadge {
-    font-family: Poppins, sans-serif;
-    border-radius: 20px;
-    background-color: #fff;
-    color: #000;
-    font-size: 12px;
-    width: 100%;
-    height: 35%;
-    display: flex;
   }
-  
-  .priceTag {
-    font-family: Inter, sans-serif;
-    border-radius: 20px;
-    background-color: #d90000;
-    color: #fff;
-    font-size: 16px; /* Adjusted for smaller screen */
-    height: 35%;
-    white-space: nowrap;
-    flex-grow: 1;
-    padding: 5px 10px; /* Added padding for better spacing */
-  }
-  
-  .actionContainer {
-    display: flex;
-    flex-direction: column;
-    color: #d90000;
-    font-weight: 400;
-    white-space: nowrap;
-    margin-right: 20%; /* Reduced margin for smaller screen */
-  }
-  
-  .saveButton {
-    border-radius: 20px;
-    background-color: #fff;
-    display: flex;
-    gap: 4px; /* Adjusted gap for smaller screen */
-    padding: 5px;
-    
-  }
-  
-  .saveIcon {
-    aspect-ratio: 1.22;
-    object-fit: contain; /* Changed to contain for better scaling */
-    width: 20px; /* Adjusted width for smaller screen */
-  }
-  
-  .saveText {
-    font-family: Poppins, sans-serif;
-    margin: auto 0;
-    font-size: 14px; /* Adjusted font size for smaller screen */
-  }
-  
-  .moreOptionsIcon {
-    aspect-ratio: 7.69;
-    object-fit: contain; /* Changed to contain for better scaling */
-    width: 6px; /* Adjusted width for smaller screen */
-    stroke-width: 1px;
-    stroke: #222;
-    margin: 10px 0 0 8px; /* Adjusted margin for smaller screen */
-    border: 1px solid #222;
-  }
-  
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-  
-    
-  }
-  
- 

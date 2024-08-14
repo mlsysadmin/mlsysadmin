@@ -62,6 +62,7 @@ import {
 import ProtectedRoute from "./ProtectedRoute";
 
 
+
 const Routes = [
 	{
 		path: "/",
@@ -294,6 +295,7 @@ const Routes = [
 		],
 	},
 ];
+
 
 
 const AppRouter = createBrowserRouter(Routes);

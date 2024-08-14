@@ -8,7 +8,7 @@ function IncludesCard({ includes }) {
 			<div className={styles.includesGrid}>
 				<div className={styles.includesColumn}>
 					<div className={styles.amenitiesGrid}>
-						{JSON.parse(includes).map((columnItems, columnIndex) => (
+						{includes.map((columnItems, columnIndex) => (
 							<div key={columnIndex} className={styles.amenitiesColumn}>
 								<ul className={styles.includesList}>
 									<li>{columnItems}</li>
