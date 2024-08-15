@@ -1,0 +1,25 @@
+.search-sortation{
+	/* margin:0px 20px 0px 20px; */
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	/* align-items: flex-start; */
+	/* gap: 300px; */
+	width: 100%;
+	padding: 0px 120px;
+}
+.search-sortation .sort{
+	width: 50%;
+	display: flex;
+	justify-content: flex-start;
+	color: var(--mute-gray);
+
+}
+.search-sortation .sort-div-class{
+	width: 50%;
+	display: flex;
+	justify-content: flex-end;
+	color: var(--mute-gray);
+	font-size: 16px;
+}
+

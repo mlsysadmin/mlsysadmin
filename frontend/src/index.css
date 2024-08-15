@@ -15,6 +15,7 @@ body {
   --mute-red: #FFDBDB;
   --bg-shadow: rgba(0, 0, 0, 0.4);
   --green: rgb(0, 102, 0)
+  --black:black;
 }
 
 .poppins-thin {

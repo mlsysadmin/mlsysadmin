@@ -12,7 +12,7 @@ import {
 	ListingPage,
 	ListingFormPage,
 	LoginModal,
-	RegistrationModal,
+	// RegistrationModal,
 	ModalComponents,
 	Sidebar,
 	ListingsTable,
@@ -160,10 +160,10 @@ const Routes = [
 				path: "/Modalcomponents",
 				element: <ModalComponents />,
 			},
-			{
-				path: "/RegistrationModal",
-				element: <RegistrationModal />,
-			},
+			// {
+			// 	path: "/RegistrationModal",
+			// 	element: <RegistrationModal />,
+			// },
 			{
 				path: "/LoginModal",
 				element: <LoginModal />,

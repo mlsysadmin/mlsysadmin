@@ -4,7 +4,7 @@ import "../styles/All.css";
 import Card from "./custom/cards/Card";
 import property from "../images/Guest/property.png";
 import Pagination from "./custom/pagination/Pagination";
-import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout } from "../components";
+import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout, SearchPropertiesSoration } from "../components";
 import {GetAllPublicListing} from "../api/GetAllPublicListings";
 import {GetPhotoFromDB, GetPhotoLength} from "../utils/GetPhoto"
 
@@ -49,6 +49,7 @@ console.log( "getlength", GetPhotoLength())
         </div>
       <div className="all-page-container">
         <span className="all-h1">For Sale/Rent</span>
+        <SearchPropertiesSoration/>
         <div className="card-container">
           {currentCards.map((data, index) => (
             <Card

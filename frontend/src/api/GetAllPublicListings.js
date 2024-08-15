@@ -43,4 +43,24 @@ const GetPublicListingByID = async (params) =>{
         
     }
 }
-export {GetAllPublicListing, GetPublicListingByID} ;
+const GetPublicListingCount = async () => {
+	try {
+		const response = await MLBROKERAGEAxiosInstance.get(
+			`api/public/get/listing/all`,
+			{
+				headers: {
+					"x-api-key": process.env.REACT_APP_API_KEY,
+				},
+			}
+		);
+		const allPublicListing = response.data.data.data
+	   const listingCount = allPublicListing.length;
+			console.log("Number of public listings: ", listingCount);
+			return listingCount;
+	} catch (error) {
+		console.log("Error fetching public listings:", error);
+		return 0; 
+	}
+};
+
+export { GetAllPublicListing, GetPublicListingByID, GetPublicListingCount };

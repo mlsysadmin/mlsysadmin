@@ -141,7 +141,7 @@ const FeaturedPropertiesComponent = ({}) => {
   return (
     <Row
       id="featured-properties"
-      gutter={[16, { xs: 8, sm: 16, md: 32, lg: 48 }]}
+      gutter={[16, { xs: 8, sm: 16, md: 32, lg: 100 }]}
     >
       {featuredList.every((featured) => featured.isFeatured) ? (
         <div

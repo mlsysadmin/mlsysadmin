@@ -37,6 +37,10 @@
     margin: 0 auto;
     /* z-index: 1000; */
 }
+#featured-properties .featured-property--content .ant-card .ant-card-body{
+    border-radius: 20px;
+    box-shadow: 0 8px 10px -5px var(--bg-shadow);
+}
 
 #featured-properties .featured-property--content h4{
    color: black;
