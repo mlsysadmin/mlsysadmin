@@ -36,6 +36,7 @@ const JoinTeam = ({ toggleModal }) => {
 
 	const [errors, setErrors] = useState({});
 	const [showOtpModal, setShowOtpModal] = useState(false);
+	  const [isModalVisible, setIsModalVisible] = useState(false);
 
 	const allCountries = async () => {
 		const datares = await GetCountry();
@@ -69,11 +70,16 @@ const JoinTeam = ({ toggleModal }) => {
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
-		setFormData({
-			...formData,
+		setFormData((prevFormData) => ({
+			...prevFormData,
 			[name]: value,
-		});
+		}));
+
+		if (name === "mobileNumber" && value.length === 12) {
+			setIsModalVisible(true);
+		}
 	};
+
 
 	const handleValidation = () => {
 		let formErrors = {};
@@ -101,122 +107,33 @@ const JoinTeam = ({ toggleModal }) => {
 		}
 	};
 
-	const IdentifiableInformation = () => {
-		const [idCard, setIdCard] = useState(null);
-		const [facePhoto, setFacePhoto] = useState(null);
-
-		const handleIdCardUpload = (event) => {
-			const file = event.target.files[0];
-			if (file) {
-				setIdCard(URL.createObjectURL(file));
-			}
-		};
-
-		const handleFacePhotoUpload = (event) => {
-			const file = event.target.files[0];
-			if (file) {
-				setFacePhoto(URL.createObjectURL(file));
-			}
-		};
-
-		const handleRedo = (type) => {
-			if (type === "idCard") {
-				setIdCard(null);
-			} else if (type === "facePhoto") {
-				setFacePhoto(null);
-			}
-		};
-
-		const triggerFileInput = (inputId) => {
-			document.getElementById(inputId).click();
-		};
+	const Modal = ({ isVisible, onClose }) => {
+		if (!isVisible) return null;
 
 		return (
-			<div className="identifiable-info-container">
-				<h3>Identifiable Information</h3>
-				<div className="verification-section">
-					<div className="card-section">
-						<h2>Identification Card</h2>
-						<p>
-							Ensure your details are clear and unobstructed{" "}
-							<span className="required">**</span>
-						</p>
-						<div className="photo-container">
-							{idCard ? (
-								<div className="upload-box">
-									<img src={idCard} alt="ID Card" className="photo" />
-								</div>
-							) : (
-								<div
-									className="upload-box"
-									onClick={() => triggerFileInput("idCardInput")}
-								>
-									<span className="plus-sign">+</span>
-									<p>Upload ID Card</p>
-								</div>
-							)}
-							<input
-								type="file"
-								id="idCardInput"
-								style={{ display: "none" }}
-								onChange={handleIdCardUpload}
-							/>
-							<div className="photo-button">
-								<button id="redo" onClick={() => handleRedo("idCard")}>
-									Redo
-								</button>
-								<button
-									id="take-photo"
-									onClick={() => triggerFileInput("idCardInput")}
-								>
-									Take a Photo
-								</button>
-							</div>
-						</div>
-					</div>
-					<div className="face-section">
-						<h2>Face Identity Photo</h2>
-						<p>
-							Make sure your entire face is visible{" "}
-							<span className="required">**</span>
-						</p>
-						<div className="photo-container">
-							{facePhoto ? (
-								<div className="upload-box">
-									<img src={facePhoto} alt="ID Card" className="photo" />
-								</div>
-							) : (
-								<div
-									className="upload-box"
-									onClick={() => triggerFileInput("facePhotoInput")}
-								>
-									<span className="plus-sign">+</span>
-									<p>Upload Face Photo</p>
-								</div>
-							)}
-							<input
-								type="file"
-								id="facePhotoInput"
-								style={{ display: "none" }}
-								onChange={handleFacePhotoUpload}
-							/>
-							<div className="photo-button">
-								<button id="redo" onClick={() => handleRedo("facePhoto")}>
-									Redo
-								</button>
-								<button
-									id="take-photo"
-									onClick={() => triggerFileInput("facePhotoInput")}
-								>
-									Take a Photo
-								</button>
-							</div>
-						</div>
-					</div>
+			<div className="modal-notice" onClick={onClose}>
+				<div className="modal-notice-content">
+					<h2>Important Notice</h2>
+					<p>
+						To join our team, you need to create an ML Wallet account. Follow
+						these three easy steps:
+					</p>
+					<ol>
+						<li>
+							Download and install the ML Wallet application from Google Play or
+							the App Store.
+						</li>
+						<li>Sign up for an ML Wallet account.</li>
+						<li>
+							Once successfully registered, return here and fill out this form
+							to become an M Lhuillier broker/agent.
+						</li>
+					</ol>
 				</div>
 			</div>
 		);
 	};
+
 
 	return (
 		<div className="join-modal-container">
@@ -253,9 +170,18 @@ const JoinTeam = ({ toggleModal }) => {
 						overflowY: "auto",
 					}}
 				>
-					<h2 style={{ color: "#000000", fontSize: "24px" }}>
-						Join our innovative team at M Lhuillier.
-					</h2>
+					<div className="modal-header">
+						<h2 style={{ color: "#000000", fontSize: "24px" }}>
+							Join our innovative team at M Lhuillier.
+						</h2>
+						<span
+							className="close-modal"
+							onClick={toggleModal}
+							style={{ color: "#666", fontWeight: "lighter" }}
+						>
+							&times;
+						</span>
+					</div>
 					<p style={{ fontSize: "16px", color: "#000000" }}>
 						Your expertise and passion are exactly what we need.
 					</p>
@@ -273,6 +199,11 @@ const JoinTeam = ({ toggleModal }) => {
 								{errors.mobileNumber && (
 									<p className="error">{errors.mobileNumber}</p>
 								)}
+
+								<Modal
+									isVisible={isModalVisible}
+									onClose={() => setIsModalVisible(false)}
+								/>
 							</div>
 							<div className="join-team-group">
 								<span>Email Address</span>
@@ -535,7 +466,7 @@ const JoinTeam = ({ toggleModal }) => {
 							</div>
 						</div>
 					</div>
-					<IdentifiableInformation />
+					{/* <IdentifiableInformation /> */}
 					<div className="broker-questions-jointeam">
 						<div className="broker-questions-review">
 							<span>Are you a licensed Real Estate Broker?</span>
@@ -559,6 +490,16 @@ const JoinTeam = ({ toggleModal }) => {
 										onChange={handleInputChange}
 									/>
 									No
+								</label>
+								<label>
+									<input
+										type="radio"
+										name="brokerQuestion"
+										value="agent"
+										checked={formData.brokerQuestion === "agent"}
+										onChange={handleInputChange}
+									/>
+									Agent
 								</label>
 								{errors.brokerQuestion && (
 									<p className="error">{errors.brokerQuestion}</p>

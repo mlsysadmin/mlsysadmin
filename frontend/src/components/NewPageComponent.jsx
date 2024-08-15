@@ -57,7 +57,7 @@ const NewPageComponent = () => {
 					<div className="second-content">
 						<h1 className="new-page-label">New Properties</h1>
 
-						<SearchPropertiesSoration/>
+						<SearchPropertiesSoration />
 						<div className="card-container">
 							{currentCards.map((data, index) => (
 								<Card
@@ -70,7 +70,12 @@ const NewPageComponent = () => {
 									baths={data.listings.unit_details.no_of_bathrooms}
 									size={data.listings.unit_details.lot_area}
 									likes={GetPhotoLength(data.listings.photos.photo)}
-									forsale={data.listings.listing_type.listing_type}
+									forsale={
+										data.listings.listing_type.listing_type === "For Sale" ||
+										data.listings.listing_type.listing_type === "For Rent"
+											? "NEW"
+											: data.listings.listing_type.listing_type
+									}
 									subtitle={`${data.listings.property_type.subtype} ${data.listings.listing_type.listing_type}`}
 									handleClick={() => handleCardClick(data.listings.listing_id)}
 								/>

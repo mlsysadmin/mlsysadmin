@@ -1,624 +1,89 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/Featured.css";
 import Card from "./custom/cards/Card";
+import { useNavigate } from "react-router-dom";
 import property from "../images/Guest/property.png";
 import Pagination from "./custom/pagination/Pagination";
 import ListingSearch from "./custom/customsearch/custom.listingsearch";
+import SearchPropertiesSoration from "./custom/customsearch/searchSortationProperties";
+import { cardData } from "../utils/ListingMockData";
+import { GetAllPublicListing } from "../api/GetAllPublicListings";
+import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
+
 
 const FeaturedComponent = () => {
-  const prop = property;
-  const cardData = [
-    {
-      title: "3 Bedroom House for Rent in North Town Residences",
-      price: "PHP120,000/month",
-      imgSrc: prop,
-      beds: 3,
-      baths: 3,
-      size: 250,
-      likes: 15,
-      forsale: "Featured",
-      subtitle: "House and Lot for Rent",
-    },
-    {
-      title: "3 Bedroom House for Rent in North Town Residences",
-      price: "PHP80,000/month",
-      imgSrc: prop,
-      beds: 3,
-      baths: 3,
-      size: 250,
-      likes: 15,
-      forsale: "Featured",
-      subtitle: "House and Lot for Rent",
-    },
-    {
-      title: "Furnished 3 Bedroom House for Rent in Talamban",
-      price: "PHP50,000/month",
-      imgSrc: prop,
-      beds: 3,
-      baths: 3,
-      size: 250,
-      likes: 15,
-      forsale: "Featured",
-      subtitle: "House and Lot for Rent",
-    },
-    {
-      title: "3 Bedroom House for Rent in North Town Residences",
-      price: "PHP120,000/month",
-      imgSrc: prop,
-      beds: 3,
-      baths: 3,
-      size: 250,
-      likes: 15,
-      forsale: "Featured",
-      subtitle: "House and Lot for Rent",
-    },
-    {
-      title: "3 Bedroom House for Rent in North Town Residences",
-      price: "PHP80,000/month",
-      imgSrc: prop,
-      beds: 3,
-      baths: 3,
-      size: 250,
-      likes: 15,
-      forsale: "Featured",
-      subtitle: "House and Lot for Rent",
-    },
-    {
-      title: "Furnished 3 Bedroom House for Rent in Talamban",
-      price: "PHP50,000/month",
-      imgSrc: prop,
-      beds: 3,
-      baths: 3,
-      size: 250,
-      likes: 15,
-      forsale: "Featured",
-      subtitle: "House and Lot for Rent",
-    },
-    {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "3 Bedroom House for Rent in North Town Residences",
-        price: "PHP80,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      },
-      {
-        title: "Furnished 3 Bedroom House for Rent in Talamban",
-        price: "PHP50,000/month",
-        imgSrc: prop,
-        beds: 3,
-        baths: 3,
-        size: 250,
-        likes: 15,
-        forsale: "Featured",
-        subtitle: "House and Lot for Rent",
-      }
-  ];
 
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 9;
+  const navigate = useNavigate();
+	const [publiclisting, setPublicListing] = useState([]);
 
-  // Logic for displaying current cards
-  const indexOfLastCard = currentPage * cardsPerPage;
-  const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = cardData.slice(indexOfFirstCard, indexOfLastCard);
+	const handleCardClick = (id) => {
+		console.log("id", id);
+		// window.location.href = `/previewListing/${id}`;
+		navigate(`/previewListing/${id}`, { state: id });
+	};
 
-  // Logic for page numbers
-  const totalPages = Math.ceil(cardData.length / cardsPerPage);
+	const allPublicListing = async () => {
+		const res = await GetAllPublicListing();
+		const dataresp = res.data;
+		setPublicListing(dataresp);
+		console.log("public listing:", dataresp);
+	};
+	// console.log( GetPhotoFromDB())
+	console.log("getlength", GetPhotoLength());
+
+	useEffect(() => {
+		allPublicListing();
+	}, []);
+
+	const indexOfLastCard = currentPage * cardsPerPage;
+	const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+	const currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
+
+	const totalPages = Math.ceil(cardData.length / cardsPerPage);
   return (
-    <div className="feature-container">
-    <ListingSearch/>
-    <span className="feature-h1">Featured Properties</span>
-    <div className="card-container">
-      {currentCards.map((data, index) => (
-        <Card
-          key={index}
-          title={data.title}
-          price={data.price}
-          imgSrc={data.imgSrc}
-          beds={data.beds}
-          baths={data.baths}
-          size={data.size}
-          likes={data.likes}
-          forsale={data.forsale}
-          subtitle={data.subtitle}
-        />
-      ))}
-    </div>
-    <Pagination
-      currentPage={currentPage}
-      totalPages={totalPages}
-      paginate={setCurrentPage}
-    />
-  </div>
-  );
+		<div className="feature-container">
+			<ListingSearch />
+			<div className="second-content">
+				<span className="feature-h1">Featured Properties</span>
+				<SearchPropertiesSoration />
+				<div className="card-container">
+					{currentCards.map((data, index) => (
+						<Card
+							key={index}
+							id={data.listings.listing_id}
+							title={data.listings.title}
+							price={`PHP${data.listings.unit_details.price}`}
+							imgSrc={GetPhotoFromDB(data.listings.photos.photo)}
+							beds={data.listings.unit_details.no_of_beds}
+							baths={data.listings.unit_details.no_of_bathrooms}
+							size={data.listings.unit_details.lot_area}
+							likes={GetPhotoLength(data.listings.photos.photo)}
+							forsale={
+								data.listings.listing_type.listing_type === "For Sale" ||
+								data.listings.listing_type.listing_type === "For Rent"
+									? "Featured"
+									: data.listings.listing_type.listing_type
+							}
+							subtitle={`${data.listings.property_type.subtype} ${data.listings.listing_type.listing_type}`}
+							handleClick={() => handleCardClick(data.listings.listing_id)}
+						/>
+					))}
+				</div>
+				<Pagination
+					currentPage={currentPage}
+					totalPages={totalPages}
+					paginate={setCurrentPage}
+				/>
+			</div>
+			<Pagination
+				currentPage={currentPage}
+				totalPages={totalPages}
+				paginate={setCurrentPage}
+			/>
+		</div>
+	);
 };
 
 export default FeaturedComponent;

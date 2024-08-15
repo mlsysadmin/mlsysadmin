@@ -46,44 +46,47 @@ console.log( "getlength", GetPhotoLength())
 
   const totalPages = Math.ceil(publiclisting.length / cardsPerPage);
   return (
-    <div className="rent">
-      
-     <div className="topbar">
-     <ListingSearch/>
-     </div>
-      <div className="rentContainer">
-        <div className="rentContent">
-          <span className="rent-h1">Properties for Rent</span>
-          <SearchPropertiesSoration/>
-          <div className="card-container">
-          {currentCards.map((data, index) => (
-            <Card
-            key={index}
-            id= {data.listings.listing_id}
-            title={data.listings.title}
-            price={`PHP${data.listings.unit_details.price}`}
-            imgSrc={GetPhotoFromDB(data.listings.photos.photo)}
-            beds={data.listings.unit_details.no_of_beds}
-            baths={data.listings.unit_details.no_of_bathrooms}
-            size={data.listings.unit_details.lot_area}
-            likes={GetPhotoLength(data.listings.photos.photo)}
-            forsale={data.listings.listing_type.listing_type}
-            subtitle={`${data.listings.property_type.subtype} ${data.listings.listing_type.listing_type}`}
-            handleClick={() => handleCardClick(data.listings.listing_id)}
-            />
-          ))}
-        </div>
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          paginate={setCurrentPage}
-        />
-      </div>
-        <CustomMlFooter/>
-        <FooterComponent/>
-      </div>
-    </div>
-  );
+		<div className="rent">
+			<div className="topbar">
+				<ListingSearch />
+			</div>
+			<div className="rentContainer">
+				<div className="rentContent">
+					<span className="rent-h1">Properties for Rent</span>
+					<SearchPropertiesSoration />
+					<div className="card-container">
+						{currentCards.map((data, index) => (
+							<Card
+								key={index}
+								id={data.listings.listing_id}
+								title={data.listings.title}
+								price={`PHP${data.listings.unit_details.price}`}
+								imgSrc={GetPhotoFromDB(data.listings.photos.photo)}
+								beds={data.listings.unit_details.no_of_beds}
+								baths={data.listings.unit_details.no_of_bathrooms}
+								size={data.listings.unit_details.lot_area}
+								likes={GetPhotoLength(data.listings.photos.photo)}
+								forsale={
+									data.listings.listing_type.listing_type === "For Sale"
+										? "FOR RENT"
+										: data.listings.listing_type.listing_type
+								}
+								subtitle={`${data.listings.property_type.subtype} ${data.listings.listing_type.listing_type}`}
+								handleClick={() => handleCardClick(data.listings.listing_id)}
+							/>
+						))}
+					</div>
+					<Pagination
+						currentPage={currentPage}
+						totalPages={totalPages}
+						paginate={setCurrentPage}
+					/>
+				</div>
+				<CustomMlFooter />
+				<FooterComponent />
+			</div>
+		</div>
+	);
 }
 
 export default RentComponent;
