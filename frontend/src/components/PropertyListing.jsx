@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from '../styles/ViewListing.module.css';
 import redcamera from "../assets/icons/previewlisting/redcamera.png";
 import viewlist from '../assets/images/viewlist.png';
-import { GetPhotoFromDB } from "../utils/GetPhoto";
+import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 const PropertyListing = ({ oneListing }) => {
@@ -39,7 +39,7 @@ const PropertyListing = ({ oneListing }) => {
       />
       <div className={styles.logoImage}>
         <img src={redcamera} className={styles.cameraImage} alt="Camera Icon" />
-        <span className={styles.number}>15</span>
+        <span className={styles.number}>{GetPhotoLength(oneListing.listings.photos.photo)}</span>
       </div>
       <div className={styles.carouselControls}>
         <LeftOutlined className={styles.leftIcon} onClick={prevImage} />

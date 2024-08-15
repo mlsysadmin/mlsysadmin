@@ -72,7 +72,6 @@
     aspect-ratio: 2;
     /* object-fit: auto; */
     object-position: center;
-    width: 7%;
     height: 55px;
     margin-right: 4%;
     border-radius: 20px;
@@ -123,7 +122,9 @@
     border-radius: 20px;
     background-color: #fff;
     color: #000;
-    font-weight: 400;
+    font-weight: 600;
+    font-size: 24px;
+    padding: 10px;
     /* padding: 8px; */
   }
   
@@ -137,7 +138,8 @@
     white-space: nowrap;
     flex-grow: 1;
     width: fit-content;
-    padding: 8px 10px;
+    padding: 10px;
+    font-size: 30px;
   }
   
   .actionContainer {
