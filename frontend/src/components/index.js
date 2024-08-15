@@ -3,6 +3,7 @@ import FooterComponent from "./layout/FooterComponent";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
 import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
 import ListingSearch from "./custom/customsearch/custom.listingsearch";
+import SearchPropertiesSoration from "./custom/customsearch/searchSortationProperties";
 import ListingSearchLoggedin from "./custom/customAdvanceSearchLoggedin/ListingSearchLoggedin";
 
 //drafts
@@ -134,6 +135,7 @@ export {
 	RentComponent,
 	SellComponent,
 	SoldPropertyDetails,
+	SearchPropertiesSoration,
 	ApplicationDetails,
 	CancelledApplication,
 	DisapprovedApplication,

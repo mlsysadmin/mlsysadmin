@@ -154,22 +154,22 @@
     height: 50px;
     width: 100%;
     border: 1px solid var(--red);
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 18px;
     padding-right: 20px;
 }
 
 .insurance-guide-content-three-input button {
     position: absolute;
-    top: 50%;
-    right: 0px;
+    top: 30%;
+    right: 4px;
     transform: translateY(-50%);
     white-space: nowrap;
     background-color: var(--red);
     color: white;
     border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
+    border-radius: 10px;
+    padding: 8px 10px;
     font-size: 16px;
     cursor: pointer;
 }
@@ -199,7 +199,8 @@
 .health-insurance-products,
 .travel-insurance-products,
 .auto-insurance-products {
-    background-color: rgb(217, 0, 0, 11%);
+    /* background-color: rgb(217, 0, 0, 11%); */
+    border: 1px solid #d90000;
     width: 350px;
     height: 500px;
     border-radius: 20px;
@@ -253,9 +254,22 @@
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background-color: #d47b6b;
-    border: 3px solid #ff0000;
+    border: 2px solid #ff0000; /* Outer red circle */
     margin-right: 10px;
+    position: relative;
+}
+
+.auto-insurance-products .radio-buttons p:after {
+    content: "";
+    display: inline-block;
+    width: 8px; /* Size of the inner red circle */
+    height: 8px;
+    background-color: #ff0000; /* Inner red circle */
+    border-radius: 50%;
+    position: absolute;
+    /* top: 50%; */
+    left: 69%;
+ 
 }
 
 

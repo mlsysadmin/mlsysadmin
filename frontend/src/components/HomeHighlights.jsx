@@ -60,7 +60,7 @@ const HomeHighlights = ({ oneListing }) => {
 			<h1 className={styles.title}>Home Highlights</h1>
 			<FeatureCard features={allFeatures} />
 			<AmenitiesCard amenities={amenities} />
-			{/* <IncludesCard includes={includes} /> */}
+			<IncludesCard includes={includes} />
 		</section>
 	);
 };
