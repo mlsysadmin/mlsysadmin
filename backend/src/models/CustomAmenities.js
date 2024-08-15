@@ -14,7 +14,7 @@ const CustomAmenities = Sequelize.define("custom_amenities", {
   },
   feature_name: {
       allowNull: true,
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       get(){
         return JSON.parse(this.getDataValue('feature_name'));
       },

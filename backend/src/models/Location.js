@@ -24,6 +24,10 @@ const Location = Sequelize.define("locations", {
     allowNull: true,
     type: DataTypes.STRING(30)
   },
+  country: {
+    allowNull: true,
+    type: DataTypes.STRING(100)
+  },
   zipcode: {
     allowNull: true,
     type: DataTypes.INTEGER(20)

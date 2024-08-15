@@ -223,7 +223,7 @@ const SupportPendingApplicationComponent = forwardRef((props, ref) => {
                     className={'approve-btn'} />
                 <SemiRoundBtn
                     type={'primary'}
-                    label={'Denied'}
+                    label={'Deny'}
                     className={'denied-btn'} />
             </>
         ) : <></>

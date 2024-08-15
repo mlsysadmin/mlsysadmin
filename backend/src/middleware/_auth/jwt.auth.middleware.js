@@ -22,7 +22,8 @@ const verifyToken = (req, res, next) => {
         }
 
         const decoded = verify(token, process.env.SECRET_KEY, {
-            maxAge: '10m'
+            // maxAge: '10m'
+            maxAge: '1h'
             // maxAge: '5m'
         });
         

@@ -41,8 +41,6 @@ module.exports = {
 
             const response = await Promise.all(upload_photos);
 
-            console.log("dafsfd", filenames);
-
             response.forEach(resp => {
 
                 const request = {
@@ -61,6 +59,7 @@ module.exports = {
         
                 SuccessLoggerHelper(request, res);
             })
+            console.log("dafsfd", filenames);
 
             return filenames;
 
