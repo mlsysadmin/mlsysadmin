@@ -165,7 +165,6 @@ const SubMenu =
         otherServices: [
             {
                 submenu: [
-                    {sub: "Quick Cash Loans", link: '/house-and-lot'},
                     {sub: "Quick Cash Loans", link: '/house-and-lot'}, 
                     {sub: "Car Loan", link: '/condominium'},  
                     {sub: "Home Loan", link: '/HomeLoan'}, 
