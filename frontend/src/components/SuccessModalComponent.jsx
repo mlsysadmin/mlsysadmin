@@ -2,10 +2,15 @@ import React from "react";
 import "../styles/SuccessModalComponent.css";
 import { Button } from "antd";
 
-const SuccessModalComponent = ({ title, message, showButton, setIsSuccessModalOpen }) => {
-  const handleSuccessClose = () => setIsSuccessModalOpen(false);
+const SuccessModalComponent = ({
+	title,
+	message,
+	showButton,
+	setIsSuccessModalOpen,
+}) => {
+	const handleSuccessClose = () => setIsSuccessModalOpen(false);
 
-  return (
+	return (
 		<div
 			className="main-container"
 			style={{
