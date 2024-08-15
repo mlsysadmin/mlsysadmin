@@ -167,7 +167,7 @@ const ListingDetailsLayout = (props) => {
 
     }
 
-  }, [isShowDetails, listingDetails, listing]);
+  }, [isShowDetails, listingDetails, isEditListing]);
 
   const handleFieldChange = (e, name, fieldType) => {
     if (fieldType === 'select') {
@@ -223,6 +223,7 @@ const ListingDetailsLayout = (props) => {
     console.log('listing', listing);
     // openFirstModal();
     ConfirmModal(
+      true,
       modal,
       'Create Listing',
       'Are you sure you want to create listing?',
@@ -238,6 +239,7 @@ const ListingDetailsLayout = (props) => {
 
   const handleConfirmCreate = () => {
     SuccessModal(
+      true,
       modal,
       'Created',
       'Listing Created Successfully',

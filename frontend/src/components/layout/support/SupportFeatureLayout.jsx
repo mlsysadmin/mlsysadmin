@@ -136,9 +136,11 @@ const SupportFeatureLayout = forwardRef((props, ref) => {
 
   useEffect(() => {
     console.log("isShowDetails", isShowDetails);
+    console.log("filelist", fileList);
 
     if (isShowDetails && !isEditListing) {
-
+      console.log("dsfdfd");
+      
       setNumFieldsIndoor(indoor_features.length);
       setNumFieldsOutdoor(outdoor_features.length);
       setNumFieldsAmmenities(custom_amenities.length);
@@ -153,18 +155,21 @@ const SupportFeatureLayout = forwardRef((props, ref) => {
       // GetAmenities();
     }
   }, [isShowDetails, custom_amenities, custom_inclusion, indoor_features, outdoor_features]);
+// },[])
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    setListing((prev) => ({
-      ...prev,
-      indoor_features: selectedValuesIndoor,
-      outdoor_features: selectedValuesOutdoor,
-      custom_amenities: selectedValuesAmmenities,
-      custom_inclusion: selectedValuesIncludes,
-    }))
+  //   if (selectedValuesAmmenities && selectedValuesIncludes && selectedValuesIndoor && selectedValuesOutdoor) {
+  //     setListing((prev) => ({
+  //       ...prev,
+  //       indoor_features: selectedValuesIndoor,
+  //       outdoor_features: selectedValuesOutdoor,
+  //       custom_amenities: selectedValuesAmmenities,
+  //       custom_inclusion: selectedValuesIncludes,
+  //     }))
+  //   }
 
-  }, [selectedValuesIndoor, selectedValuesOutdoor, selectedValuesAmmenities, selectedValuesIncludes]);
+  // }, [selectedValuesIndoor, selectedValuesOutdoor, selectedValuesAmmenities, selectedValuesIncludes]);
 
   const DisplayUploadedPhotos = () => {
     return fileList.slice(0, photosToShow).map((file, index) => (
@@ -172,7 +177,7 @@ const SupportFeatureLayout = forwardRef((props, ref) => {
         wrapperStyle={{
           cursor: 'pointer'
         }}
-        style={{ borderRadius: '10px' }}
+        style={{ borderRadius: '10px', objectFit: 'cover', height: '100%' }}
         key={index}
         width={200}
         src={file.url}
@@ -284,7 +289,6 @@ const SupportFeatureLayout = forwardRef((props, ref) => {
       </Dragger>
     )
   }
-
 
   return (
     <div className="features">

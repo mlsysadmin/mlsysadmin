@@ -26,24 +26,24 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
     const { userDetails } = useAuth();
 
     const { setIsMessageLoadingOpen, setIndex, openMessage } = useOutletContext();
-    
+
     const navigate = useNavigate();
-    
+
     const [current, setCurrent] = useState(1);
     const [pageSize, setPageSize] = useState(3);
     const [originalData, setOriginalData] = useState([]);
-    
+
     const [filteredListings, setFilteredListings] = useState([]);
     const [total, setTotal] = useState(0);
     const [showButtons, setShowButtons] = useState(null);
-    
+
     const [messageApi, contextHolder] = message.useMessage();
-    
+
     useEffect(() => {
         GetAllForApproval();
     }, []);
-    
-    
+
+
     const columns = [
         {
             title: 'Select',
@@ -86,11 +86,11 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
             dataIndex: 'status',
         },
     ];
-    
+
     const Format_Date = (date) => {
         return DayJS(date).format('DD-MM-YYYY').toString();
     }
-    
+
     const GetAllForApproval = async () => {
         try {
             const user = Cookies.get('user_details');
@@ -99,8 +99,6 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
                 approver_email: JSON.parse(user).email,
                 listing_status: 'PENDING'
             }
-            console.log(payload);
-            
 
             setIsMessageLoadingOpen(true);
             setIndex(-1);
@@ -155,14 +153,28 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
             fetchData(1, pageSize);
 
         } catch (error) {
-            console.error(error);
-            const data = error.data;
-            openMessage('error', data.error.message, 3);
-            setIsMessageLoadingOpen(false);
-            setIndex(100);
-            setShowButtons(false);
-            setTotal(0);
-            setOriginalData([]);
+            try {
+
+                console.log("UpdateApproval", error);
+                const err = error.data.data.error;
+                console.error(error);
+                openMessage('error', err.message, 3);
+                setIsMessageLoadingOpen(false);
+                setIndex(100);
+                setShowButtons(false);
+                setTotal(0);
+                setOriginalData([]);
+
+            } catch (error) {
+                console.log("catch err", error);
+                openMessage('error', 'Something went wrong. Please refresh the page and try again.', 3);
+                setIsMessageLoadingOpen(false);
+                setIndex(100);
+                setShowButtons(false);
+                setTotal(0);
+                setOriginalData([]);
+            }
+
         }
     }
 
@@ -308,58 +320,58 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
         sessionStorage.setItem('props', JSON.stringify(props));
     }
 
-return (
-    <div>
-        {/* {contextHolder} */}
-        <div className={`support--pending-master-listing`}
-            style={{ width: "85%", margin: 'auto' }}>
-            <SupportSubMenu title={'Manage Pending Listing'}
-                isShowDetails={false} />
-            <div className="support--top-controls">
-                <div className="support--show-entries">
-                    <p style={{ fontWeight: 500 }}>Show entries</p>
-                    {' '}
-                    <Select
-                        options={showEntries()}
-                        size="large"
-                        defaultValue={10}
-                        suffixIcon={<CaretDownFilled />}
-                        className="support--select-entries" />
+    return (
+        <div>
+            {/* {contextHolder} */}
+            <div className={`support--pending-master-listing`}
+                style={{ width: "85%", margin: 'auto' }}>
+                <SupportSubMenu title={'Manage Pending Listing'}
+                    isShowDetails={false} />
+                <div className="support--top-controls">
+                    <div className="support--show-entries">
+                        <p style={{ fontWeight: 500 }}>Show entries</p>
+                        {' '}
+                        <Select
+                            options={showEntries()}
+                            size="large"
+                            defaultValue={10}
+                            suffixIcon={<CaretDownFilled />}
+                            className="support--select-entries" />
+                    </div>
+                    <div className="support--search-wrapper">
+                        <Input
+                            placeholder="Search"
+                            // onSearch={onSearch}
+                            style={{
+                                width: 300,
+                            }}
+                            size="large"
+                        />
+                    </div>
                 </div>
-                <div className="support--search-wrapper">
-                    <Input
-                        placeholder="Search"
-                        // onSearch={onSearch}
-                        style={{
-                            width: 300,
-                        }}
-                        size="large"
+                <SupportTable
+                    columns={columns}
+                    dataSource={filteredListings}
+                    rowSelection={rowSelection}
+                // dataSource={listings}
+                />
+                <div className="support--table-footer">
+                    <div className="support--approval-btns">
+                        <ApprovalBtns />
+                    </div>
+                    <TablePagination
+                        className={'support--table-pagination'}
+                        total={total}
+                        onPageChange={onPageChange}
+                        currentPage={current}
+                        pageSize={pageSize}
+                        onPrevClick={onPrev}
+                        onNextClick={onNext}
                     />
                 </div>
             </div>
-            <SupportTable
-                columns={columns}
-                dataSource={filteredListings}
-                rowSelection={rowSelection}
-            // dataSource={listings}
-            />
-            <div className="support--table-footer">
-                <div className="support--approval-btns">
-                    <ApprovalBtns />
-                </div>
-                <TablePagination
-                    className={'support--table-pagination'}
-                    total={total}
-                    onPageChange={onPageChange}
-                    currentPage={current}
-                    pageSize={pageSize}
-                    onPrevClick={onPrev}
-                    onNextClick={onNext}
-                />
-            </div>
         </div>
-    </div>
-)
+    )
 });
 
 export default SupportPendingListingComponent;

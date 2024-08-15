@@ -8,8 +8,9 @@ const styles = {
     },
 }
 
-const ConfirmModal = (Modal, title, message, okText, onConfirm, onCancel) => {
+const ConfirmModal = (isModalOpen ,Modal, title, message, okText, onConfirm, onCancel) => {
     Modal.confirm({
+        open: isModalOpen,
         title: title,
         content: message,
         okText: okText,
@@ -18,19 +19,19 @@ const ConfirmModal = (Modal, title, message, okText, onConfirm, onCancel) => {
         wrapClassName: 'confirm-modal',
         styles: styles,
         className: 'confirm-modal',
-        onOk() {
-            onConfirm();
-            console.log("CONFIRMED");
+        onOk: () => {
+            onConfirm()
         },
-        onCancel() {
+        onCancel: () => {
             // onCancel()
             console.log("CANCELLED");
         },
     });
 }
 
-const SuccessModal = (Modal, title, message, okText, onConfirm) => {
+const SuccessModal = (isModalOpen, Modal, title, message, okText, onConfirm) => {
     Modal.success({
+        open: isModalOpen,
         title: title,
         content: message,
         okText: okText,
@@ -40,7 +41,7 @@ const SuccessModal = (Modal, title, message, okText, onConfirm) => {
         styles: styles,
         onOk() {
             console.log("PREVIEW LISTING");
-
+            onConfirm();
         },
     });
 }

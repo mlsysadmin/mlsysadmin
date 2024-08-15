@@ -70,7 +70,7 @@ const SupportHeaderMenu = () => {
             ]
          },
         { label: "Pre-Approval Request", key: "pre-approval", link: '/support/pre-approval-request' },
-        { label: "Broker Applicants", key: "pre-approval", link: '/support/pre-approval-request' },
+        { label: "Broker Applicants", key: "broker-applicants", link: '/support/pre-approval-request' },
         { label: "Property Inquiry", key: "property-inquiry", link: '/support/property-inquiry' },
     ];
 

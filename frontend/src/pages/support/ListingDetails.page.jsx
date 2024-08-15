@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { ApprovalSectionComponent, SupportListingComponent } from "../../components/index";
 import { useLocation, useOutletContext } from "react-router-dom";
 import { GetListingDetailsByIdandStatus } from "../../api/Support/Listing.api";
 
 const ListingDetailsPage = () => {
+
+  document.title = "M Lhuillier Properties | Manage Pending Listing"
 
   const { setIsMessageLoadingOpen, setIndex, openMessage } = useOutletContext();
 
@@ -17,26 +19,33 @@ const ListingDetailsPage = () => {
 
   useEffect(() => {
 
-    setIsMessageLoadingOpen(true);
-    setIndex(-1);
-    openMessage('loading', 'Retrieving listing...', 2);
-
     if (sessionStorage.getItem('props')) {
-
+      console.log("props");
+      
       const props = JSON.parse(sessionStorage.getItem('props'));
       setListingId(props.listing_id);
       setTabTitle(props.tabTitle);
       setIsEdit(props.isEditListing);
       setShowDetails(props.isShowDetails);
-
-      GetListingDetails(props.listing_id);
     }
-  }, []);
+  }, [sessionStorage]);
+  
+  useEffect(() => {
+    console.log("getLisitng");
+    if (listingId) {
+    
+      GetListingDetails();
+    }
+  },[listingId])
 
-  const GetListingDetails = async (listing_id) => {
+  const GetListingDetails = useCallback(async () => {
     try {
 
-      const response = await GetListingDetailsByIdandStatus(listing_id);
+      setIsMessageLoadingOpen(true)
+      setIndex(-1);
+      openMessage('loading', 'Retrieving listing...', 2);
+
+      const response = await GetListingDetailsByIdandStatus(listingId);
       setListingDetails(response.data.listing);
       setApprovals(response.data.approvals);
       openMessage('success', response.message, 1);
@@ -51,12 +60,12 @@ const ListingDetailsPage = () => {
       setIsMessageLoadingOpen(false);
       setIndex(100);
     }
-  }
+  },[listingId])
 
   return (
     <>
       {
-        listingSuccess ? (
+        listingSuccess && (
           <>
             <SupportListingComponent
               isEditListing={isEdit} 
@@ -70,9 +79,10 @@ const ListingDetailsPage = () => {
               level={listingDetails.current_level}
               isEditListing={isEdit}
               isShowDetails={isShowDetails}
-              listingStatus={listingDetails.listing_status}  />
+              listingStatus={listingDetails.listing_status}
+              listingId={listingId}  />
           </>
-        ) : <></>
+        )
       }
     </>
   );

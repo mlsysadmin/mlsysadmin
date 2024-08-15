@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { GetCities, GetCountry, GetProvince } from "../../api/Public/Location.api";
 import ListingDetailsLayout from "../layout/support/ListingDetailsLayout";
 import SupportSubMenu from "./SupportSubMenu";
@@ -12,8 +12,12 @@ import { icon } from "leaflet";
 import AntdModal from "../modals/AntdModal";
 import MapWrapper from "../custom/custom.mapWrapper";
 import MapComponent from "../mapComponent";
+import { useNavigate } from "react-router-dom";
 const SupportListingComponent = (props) => {
   const { isEditListing, tabTitle, isShowDetails, listingId, setEditListing, listingDetails } = props;
+
+  const navigate = useNavigate();
+
   const [countries, setCountries] = useState([]);
   const [provinces, setProvinces] = useState([]);
   const [cities, setCities] = useState([]);
@@ -22,7 +26,7 @@ const SupportListingComponent = (props) => {
 
   const center = [10.3157, 123.8854];
 
-  const Countries = async () => {
+  const fetchCountries = useCallback(async () => {
     try {
       const countries = await GetCountry();
       setCountries(countries);
@@ -31,9 +35,9 @@ const SupportListingComponent = (props) => {
       console.log(error);
     }
 
-  }
+  })
 
-  const Provinces = async () => {
+  const fetchProvinces = useCallback(async () => {
     try {
       const provinces = await GetProvince();
 
@@ -43,8 +47,8 @@ const SupportListingComponent = (props) => {
       console.log(error);
     }
 
-  }
-  const Cities = async () => {
+  })
+  const fetchCities = useCallback(async () => {
     try {
       const cities = await GetCities();
 
@@ -54,16 +58,18 @@ const SupportListingComponent = (props) => {
       console.log(error);
     }
 
-  }
+  })
 
   useEffect(() => {
+    // console.log("Listing Details", listingDetails);
+
 
     if (!isEditListing && !isShowDetails) {
       // Countries();
       // Provinces();
       // Cities();
     }
-  }, [])
+  }, [isEditListing, isShowDetails, fetchCountries, fetchProvinces, fetchCities])
 
   const subBtns = [
     {
@@ -78,7 +84,16 @@ const SupportListingComponent = (props) => {
     },
     {
       label: 'View Listing as Public',
-      onClick: () => { },
+      onClick: () => {
+        navigate(
+          {
+            pathname: `/previewListing/${listingId}`,
+          },
+          {
+            state: listingId
+          }
+        )
+      },
       icon: <img src={GlobeIcon} alt="globe-icon" width={15} />
     }
   ]
@@ -134,6 +149,11 @@ const SupportListingComponent = (props) => {
   return (
     <div className="support-listing--wrapper" style={{ width: "85%", margin: 'auto' }}>
       <SupportSubMenu title={tabTitle} isShowDetails={isShowDetails} listingId={listingId} />
+      {
+        listingDetails?.listing_status === "DENIED" && <h1
+          style={{ textTransform: 'uppercase', color: '#D90000', textAlign: 'center', marginTop: '30px' }}
+        >{listingDetails.listing_status} Listing</h1>
+      }
       {
         isShowDetails && (
           <>
