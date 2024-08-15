@@ -254,7 +254,7 @@
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    border: 1px solid #ff0000;
+    border: 2px solid #ff0000; /* Outer red circle */
     margin-right: 10px;
     position: relative;
 }
@@ -262,15 +262,16 @@
 .auto-insurance-products .radio-buttons p:after {
     content: "";
     display: inline-block;
-    width: 18px; /* Adjust the size of the inner red circle */
-    height: 18px;
-    background-color: #ff0000;
+    width: 8px; /* Size of the inner red circle */
+    height: 8px;
+    background-color: #ff0000; /* Inner red circle */
     border-radius: 50%;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    /* transform: translate(-50%, -50%); */
+    /* top: 50%; */
+    left: 69%;
+ 
 }
+
 
 .insurance-guide-content-five {
     width: 100%;
