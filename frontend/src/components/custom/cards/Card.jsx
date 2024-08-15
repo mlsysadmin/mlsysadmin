@@ -44,11 +44,11 @@ const Card = ({
 					style={{
 						color:
 							forsale === "New"
-								? "green"
+								? "#000000"
 								: forsale === "For Sale"
-								? "red"
+								? "#000000"
 								: forsale === "For Rent"
-								? "orange"
+								? "#000000"
 								: forsale === "For Lease"
 								? "blue"
 								: "inherit",

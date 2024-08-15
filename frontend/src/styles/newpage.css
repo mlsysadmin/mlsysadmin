@@ -40,19 +40,13 @@
 }
 .second-content h1 {
 	font-size: 30px;
-	margin: 0px 0px 20px 0px;
+	margin: 0px 0px 20px 120px;
 }
 .new-page-label {
 	position: relative;
 	margin: 0px 100px 0px 0px;
 }
-.newpage .sort{
-	display: flex;
-	justify-content: flex-end;
-	font-size: 16px;
-	color: var(--mute-gray);
-	width: 93%;
-}
+
 /* newpage.css */
 
 .newpage .second-content .header {
