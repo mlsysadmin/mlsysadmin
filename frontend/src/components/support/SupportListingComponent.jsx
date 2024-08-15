@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { GetCities, GetCountry, GetProvince } from "../../api/Public/Location.api";
 import ListingDetailsLayout from "../layout/support/ListingDetailsLayout";
 import SupportSubMenu from "./SupportSubMenu";
@@ -9,13 +9,24 @@ import GlobeIcon from "../../asset/icons/globe.png";
 import "../../styles/support/Support.css";
 
 import { icon } from "leaflet";
+import AntdModal from "../modals/AntdModal";
+import MapWrapper from "../custom/custom.mapWrapper";
+import MapComponent from "../mapComponent";
+import { useNavigate } from "react-router-dom";
 const SupportListingComponent = (props) => {
   const { isEditListing, tabTitle, isShowDetails, listingId, setEditListing, listingDetails } = props;
+
+  const navigate = useNavigate();
+
   const [countries, setCountries] = useState([]);
   const [provinces, setProvinces] = useState([]);
   const [cities, setCities] = useState([]);
 
-  const Countries = async () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const center = [10.3157, 123.8854];
+
+  const fetchCountries = useCallback(async () => {
     try {
       const countries = await GetCountry();
       setCountries(countries);
@@ -24,9 +35,9 @@ const SupportListingComponent = (props) => {
       console.log(error);
     }
 
-  }
+  })
 
-  const Provinces = async () => {
+  const fetchProvinces = useCallback(async () => {
     try {
       const provinces = await GetProvince();
 
@@ -36,8 +47,8 @@ const SupportListingComponent = (props) => {
       console.log(error);
     }
 
-  }
-  const Cities = async () => {
+  })
+  const fetchCities = useCallback(async () => {
     try {
       const cities = await GetCities();
 
@@ -47,17 +58,18 @@ const SupportListingComponent = (props) => {
       console.log(error);
     }
 
-  }
+  })
 
   useEffect(() => {
-    console.log(listingDetails);
-    
-    if (!isEditListing) {
-      Countries();
-      Provinces();
-      Cities();
+    // console.log("Listing Details", listingDetails);
+
+
+    if (!isEditListing && !isShowDetails) {
+      // Countries();
+      // Provinces();
+      // Cities();
     }
-  }, [])
+  }, [isEditListing, isShowDetails, fetchCountries, fetchProvinces, fetchCities])
 
   const subBtns = [
     {
@@ -67,18 +79,32 @@ const SupportListingComponent = (props) => {
     },
     {
       label: 'Show Property on Map',
-      onClick: () => { },
+      onClick: () => { setIsModalOpen(true) },
       icon: <img src={LocationIcon} alt="location-icon" width={20} />
     },
     {
       label: 'View Listing as Public',
-      onClick: () => { },
+      onClick: () => {
+        navigate(
+          {
+            pathname: `/previewListing/${listingId}`,
+          },
+          {
+            state: listingId
+          }
+        )
+      },
       icon: <img src={GlobeIcon} alt="globe-icon" width={15} />
     }
   ]
 
   const SubButtons = () => {
     return subBtns.map((btn, index) => {
+      if (listingDetails.listing_status !== "PENDING" && isShowDetails) {
+        if (btn.label === 'Edit Listing') {
+          return null;
+        }
+      }
       return (
         <SemiRoundBtn
           key={index}
@@ -91,23 +117,72 @@ const SupportListingComponent = (props) => {
       )
     })
   }
+
+  const ModalContent = () => {
+
+    return (
+      <>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <img src={LocationIcon} alt="location-icon" width={20} />
+          <span>Cebu City, Cebu</span>
+        </div>
+        <MapWrapper
+          style={{ margin: '20px 0px', height: "260px" }}
+          children={
+            <MapComponent
+              coordinates={center}
+              style={{ height: "260px", width: "100%", borderRadius: "20px" }}
+            />
+          }
+        />
+        <div className="is-btn--wrapper" style={{ display: 'flex', justifyContent: 'end', alignItems: 'center' }}>
+          <SemiRoundBtn
+            label={'Close'}
+            type={'default'}
+            handleClick={() => { setIsModalOpen(false) }}
+            className={'is-btn'}
+          />
+        </div>
+      </>
+    )
+  }
   return (
     <div className="support-listing--wrapper" style={{ width: "85%", margin: 'auto' }}>
       <SupportSubMenu title={tabTitle} isShowDetails={isShowDetails} listingId={listingId} />
       {
+        listingDetails?.listing_status === "DENIED" && <h1
+          style={{ textTransform: 'uppercase', color: '#D90000', textAlign: 'center', marginTop: '30px' }}
+        >{listingDetails.listing_status} Listing</h1>
+      }
+      {
         isShowDetails && (
-          <div className="sub-btns">
-            <SubButtons />
-          </div>
+          <>
+            <div className="sub-btns">
+              <SubButtons />
+            </div>
+            <AntdModal
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
+              title={'Show Property on Map'}
+              isOkBtn={null}
+              footer={null}
+              handleClick={() => { setIsModalOpen(false) }}
+              children={<ModalContent />}
+            />
+          </>
         )
       }
       <ListingDetailsLayout
         countries={countries}
         provinces={provinces}
-        cities={cities} 
+        cities={cities}
         isShowDetails={isShowDetails}
         isEditListing={isEditListing}
-        listingDetails={listingDetails}/>
+        listingDetails={listingDetails}
+        setEditListing={setEditListing}
+        listingId={listingId}
+        coordinates={center}
+      />
     </div>
   );
 };

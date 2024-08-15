@@ -47,7 +47,7 @@ module.exports = {
             return province
 
         } catch (error) {
-
+            
             throw (error)
         }
     },

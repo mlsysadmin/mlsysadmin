@@ -17,7 +17,11 @@ const GetAllPendingMasterList = async (payload) => {
         return response.data.data;
         
     } catch (error) {
-        throw error.response.data;
+        if (Object.keys(error).includes('response')) {
+            throw error.response;
+        }else{
+            throw error;
+        }
     }
 }
 
@@ -103,10 +107,38 @@ const GetListingDetailsByIdandStatus = async (listing_id) => {
     }
 }
 
+// UPDATE
+const UpdateListingApproval = async (payload) => {
+    try {
+
+        const config = {
+            headers:{
+                'x-api-key': process.env.REACT_APP_API_KEY
+            },
+        }
+
+        const reqBody = {
+            payload: [
+                ...payload
+            ]
+        }
+        const response = await MLBROKERAGEAxiosInstance.post(`/api/support/update-approval`, reqBody, config);
+
+        return response.data.data;
+    } catch (error) {
+        if (Object.keys(error).includes('response')) {
+            throw error.response;
+        }else{
+            throw error;
+        }
+    }
+}
+
 export {
     GetAllPendingMasterList,
     GetAllActiveMasterList,
     GetAllDeniedList,
     GetSummary,
-    GetListingDetailsByIdandStatus
+    GetListingDetailsByIdandStatus,
+    UpdateListingApproval
 }

@@ -203,7 +203,7 @@ const Routes = [
 				element: <div />,
 			},
 			{
-				path: "client-management",
+				path: "dashboard",
 				// element: <SupportDashboardPage />,
 				element: <SupportDashboard />,
 			},
@@ -287,6 +287,10 @@ const Routes = [
 			{
 				path: "pre-approved/:listingId",
 				element: <PreApprovalRequestListing />,
+			},
+			{
+				path: "property-inquiry",
+				element: <PreApprovalRequest />,
 			},
 		],
 	},

@@ -211,7 +211,7 @@ const ValidationSchema = {
                 },
             })
             .custom((value, helpers) => {
-                const domain = ['mlhuillier.com', 'gmail.com'];
+                const domain = ['mlhuillier.com', 'gmail.com', 'student.passerellesnumeriques.org'];
 
                 let getIndex = value.indexOf('@');
                 getIndex += 1;

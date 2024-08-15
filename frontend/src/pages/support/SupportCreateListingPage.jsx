@@ -4,7 +4,11 @@ import { SupportListingComponent } from "../../components/index";
 const SupportCreateListing = () => {
   return (
     <div>
-      <SupportListingComponent isEditListing={false} tabTitle={'Create Listing'} isShowDetails={false}/>
+      <SupportListingComponent
+        isEditListing={true}
+        tabTitle={'Create Listing'}
+        isShowDetails={false}
+        listingDetails={null} />
     </div>
   );
 };

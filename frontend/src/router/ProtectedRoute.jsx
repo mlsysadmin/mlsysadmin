@@ -8,30 +8,26 @@ import { useAuth } from '../Context/AuthContext';
 import { SupportOutlet } from '../pages';
 
 const ProtectedRoute = ({ element }) => {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, userDeatils } = useAuth();
 
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
 
-    console.log("ProtectedRoute: isAuthenticated: ", isAuthenticated);
-
     if (!isAuthenticated) {
-
+        
       // Redirect to the login page if the user is not authenticated
       sessionStorage.removeItem('previous_path');
       navigate( '/support/signin', { 
         replace: true
       })
-      console.log("Redirecting to login page");
       
     }
-    console.log("Herrrree");
 
     sessionStorage.setItem('previous_path', location.pathname);
 
-  }, [isAuthenticated])
+  }, [isAuthenticated, userDeatils])
 
   // Render the children components if the user is authenticated
   return  element;

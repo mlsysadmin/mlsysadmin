@@ -309,7 +309,7 @@ module.exports = {
                 res.cookie('access_token', generateSessionToken, tokenCookieOptions);
                 res.cookie('user_details', JSON.stringify(verifyUser), useCookieOptions);
 
-                res.redirect(`${process.env.CLIENT_APP_URL}/support/client-management`);
+                res.redirect(`${process.env.CLIENT_APP_URL}/support/dashboard`);
             }
 
         } catch (error) {
