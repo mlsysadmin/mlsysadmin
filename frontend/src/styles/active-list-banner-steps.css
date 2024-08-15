@@ -32,9 +32,11 @@
     border-radius: 30px;
     padding: 10%;
     text-align: left;
-    background-color: #fceaea;
+    /* background-color: #fceaea; */
+    border:1px solid #ff0000;
     max-width: 90%;
-   margin-top: 20px;
+    margin: 0  20 auto;
+    margin-top: 2%;
   }
   
   .active-steps-listing-id, .active-steps-status {
