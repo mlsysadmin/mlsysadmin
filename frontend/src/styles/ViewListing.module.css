@@ -195,6 +195,7 @@
   
   /* Media Queries */
   @media only screen and (max-width: 1024px) and (min-width: 730px) {
+
     .propertyCard {
       padding: 30px 40px;
       font-size: 30px;
@@ -220,6 +221,46 @@
   
     .saveIcon {
       width: 40px;
+    }
+    .carouselControls {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      z-index: 3;
+      width: 100%;
+      transform: translateY(-50%);
+      padding: 0 20px;
+    }
+    
+    .leftIcon {
+      font-size: 24px;
+      color: black;
+      background-color: white;
+      border-radius: 50%;
+      padding: 10px;
+      cursor: pointer;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      margin-left: 4%;
+    }
+    .rightIcon {
+      font-size: 24px;
+      color: black;
+      background-color: white;
+      border-radius: 50%;
+      padding: 10px;
+      cursor: pointer;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      margin-right: 5%;
+    }
+    
+    
+    
+    .leftIcon:hover,
+    .rightIcon:hover {
+      color: #d90000;
     }
   }
   
@@ -280,7 +321,7 @@
       margin-top: 60%;
       width: 100%;
       align-items: center;
-      gap: 5px;
+      gap: 65px;
       justify-content: space-between;
       z-index: 3;
     }
@@ -291,16 +332,11 @@
     }
   
     .statusBadge {
-      font-family: Poppins, sans-serif;
-      border-radius: 20px;
-      background-color: #fff;
-      color: #000;
+
       font-size: 12px;
-      height: 35%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       padding: 5px 10px;
+      position: absolute;
+     bottom: 47vh;
     }
   
     .priceTag {
@@ -312,7 +348,7 @@
       height: 35%;
       white-space: nowrap;
       flex-grow: 1;
-      padding: 5px 10px;
+      padding: 5px ;
       text-align: right;
     }
   
@@ -330,8 +366,8 @@
       background-color: #fff;
       display: flex;
       align-items: center;
-      gap: 4px;
-      padding: 5px;
+      gap: 2px;
+      padding: 2px;
     }
   
     .saveIcon {
@@ -365,6 +401,39 @@
       clip: rect(0, 0, 0, 0);
       white-space: nowrap;
       border: 0;
+    }
+    .carouselControls {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      z-index: 3;
+      width: 100%;
+      transform: translateY(-50%);
+      padding: 0 20px;
+    }
+    
+    .leftIcon {
+      font-size: 10px;
+      color: black;
+      background-color: white;
+      border-radius: 50%;
+      padding: 10px;
+      cursor: pointer;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      margin-left: 4%;
+    }
+    .rightIcon {
+      font-size: 10px;
+      color: black;
+      background-color: white;
+      border-radius: 50%;
+      padding: 10px;
+      cursor: pointer;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      margin-right: 5%;
     }
   }
   
