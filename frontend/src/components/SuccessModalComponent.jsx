@@ -28,7 +28,7 @@ const SuccessModalComponent = ({
 				padding: "0px 0px 0px 0px",
 			}}
 		>
-			<div className="modal-container" onClick={handleSuccessClose}>
+			<div className="modal-container" onClick={handleSuccessClose} >
 				<h4 className="title">{title}</h4>
 				<p className="message">{message}</p>
 				{showButton && (

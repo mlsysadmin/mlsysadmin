@@ -131,11 +131,17 @@ const JoinTeam = ({ toggleModal }) => {
 			});
 		};
 
+			const handleCloseModal = () => {
+				setIsModalVisible(false);
+				resetForm();
+			};
+
+
 	const Modal = ({ isVisible, onClose }) => {
 		if (!isVisible) return null;
 
 		return (
-			<div className="modal-notice" onClick={onClose}>
+			<div className="modal-notice" onClick={handleCloseModal}>
 				<div className="modal-notice-content">
 					<h2>Important Notice</h2>
 					<p>
@@ -229,7 +235,7 @@ const JoinTeam = ({ toggleModal }) => {
 
 									<Modal
 										isVisible={isModalVisible}
-										onClose={() => setIsModalVisible(false)}
+										onClose={() => {setIsModalVisible(false); resetForm()}}
 									/>
 								</div>
 								<div className="join-team-group">
