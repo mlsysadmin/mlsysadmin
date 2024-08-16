@@ -3,14 +3,12 @@ import "../styles/OTPModal.css";
 import { Button, message } from "antd";
 import SuccessModalComponent from "../components/SuccessModalComponent";
 
-const OTPModal = ({ visible, onClose }) => {
+const OTPModal = ({ visible, onClose, onVerify }) => {
 	const [otp, setOtp] = useState(["", "", "", "", "", ""]);
 	const [resendDisabled, setResendDisabled] = useState(false);
 	const [timer, setTimer] = useState(30);
+	const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
 	const otpRefs = useRef([]);
-
-	const [showSuccessModalComponent, setShowSuccessModalComponent] =
-		useState(false);
 
 	useEffect(() => {
 		if (!visible) {
@@ -46,12 +44,21 @@ const OTPModal = ({ visible, onClose }) => {
 			return;
 		}
 
-		// Clear the OTP fields
-		setOtp(["", "", "", "", "", ""]);
+		setIsSuccessModalVisible(true);
 
-		// Show the Success Modal
-		setShowSuccessModalComponent(true);
-		onClose(); // Close the OTP modal
+		// Trigger the onVerify callback
+		if (onVerify) {
+			console.log("onVerify callback called"); // Debugging line
+			onVerify();
+		} else {
+			console.error("onVerify is not a function");
+		}
+	};
+
+	const handleCloseSuccessModal = () => {
+		setIsSuccessModalVisible(false);
+		onClose(); // Close the OTPModal after showing the success modal
+		// Any other logic after the success modal is closed
 	};
 
 	const handleResendOTP = () => {
@@ -73,11 +80,11 @@ const OTPModal = ({ visible, onClose }) => {
 		}, 1000);
 	};
 
-	if (!visible && !showSuccessModalComponent) return null;
+	if (!visible && !isSuccessModalVisible) return null;
 
 	return (
 		<>
-			{visible && (
+			{visible && !isSuccessModalVisible && (
 				<div
 					className="otp-modal-maincontainer"
 					style={{
@@ -140,14 +147,13 @@ const OTPModal = ({ visible, onClose }) => {
 					</div>
 				</div>
 			)}
-			{showSuccessModalComponent && (
+
+			{isSuccessModalVisible && (
 				<SuccessModalComponent
 					title="Successfully Submitted!"
-					message="Your application is yet to be reviewed.
-We will expedite the review process to minimize any inconvenience. Rest assured, we will keep you informed."
+					message="Your application is yet to be reviewed. We will expedite the review process to minimize any inconvenience. Rest assured, we will keep you informed."
 					showButton={false}
-					setIsSuccessModalOpen={setShowSuccessModalComponent}
-					onClick={onClose}
+					setIsSuccessModalOpen={handleCloseSuccessModal}
 				/>
 			)}
 		</>
