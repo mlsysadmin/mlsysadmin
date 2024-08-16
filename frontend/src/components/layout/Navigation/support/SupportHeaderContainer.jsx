@@ -21,10 +21,10 @@ const SupportHeaderContainer = ({ zIndex }) => {
         >
             <div style={{ display: "flex", gap: '10px', alignItems: 'center' }}>
                 <div className="ml-logo" style={{ display: "flex", margin: "0px 0px 0px 10px" }}>
-                    <a href="/">
+                    <a href="/support/dashboard">
                         <img
                             src="https://c.animaapp.com/1RDRTvCv/img/image-87-1@2x.png"
-                            alt="logo"
+                            alt="ml-logo"
                             style={{ width: "230px", display: 'flex' }}
                         />
                     </a>

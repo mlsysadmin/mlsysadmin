@@ -325,7 +325,7 @@ const SupportPendingListingComponent = forwardRef((props, ref) => {
             {/* {contextHolder} */}
             <div className={`support--pending-master-listing`}
                 style={{ width: "85%", margin: 'auto' }}>
-                <SupportSubMenu title={'Manage Pending Listing'}
+                <SupportSubMenu title={'Manage Pending Listings'}
                     isShowDetails={false} />
                 <div className="support--top-controls">
                     <div className="support--show-entries">
