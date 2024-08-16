@@ -2,10 +2,15 @@ import React from "react";
 import "../styles/SuccessModalComponent.css";
 import { Button } from "antd";
 
-const SuccessModalComponent = ({ title, message, showButton, setIsSuccessModalOpen }) => {
-  const handleSuccessClose = () => setIsSuccessModalOpen(false);
+const SuccessModalComponent = ({
+	title,
+	message,
+	showButton,
+	setIsSuccessModalOpen,
+}) => {
+	const handleSuccessClose = () => setIsSuccessModalOpen(false);
 
-  return (
+	return (
 		<div
 			className="main-container"
 			style={{
@@ -19,11 +24,11 @@ const SuccessModalComponent = ({ title, message, showButton, setIsSuccessModalOp
 				display: "flex",
 				justifyContent: "center",
 				alignItems: "center",
-				zIndex: 100,
+				zIndex: 1000,
 				padding: "0px 0px 0px 0px",
 			}}
 		>
-			<div className="modal-container" onClick={handleSuccessClose}>
+			<div className="modal-container" onClick={handleSuccessClose} >
 				<h4 className="title">{title}</h4>
 				<p className="message">{message}</p>
 				{showButton && (
