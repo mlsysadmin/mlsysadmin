@@ -26,6 +26,7 @@ import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
 import CertainFeatureMenu from "./custom/customsearch/certainfeature";
 import {GetAllPublicListing} from "../api/GetAllPublicListings";
 import {GetPhotoFromDB, GetPhotoLength} from "../utils/GetPhoto";
+import { Link } from "react-router-dom";
 
 const DashboardComponent = () => {
   const [loading, setLoading] = useState(false);
@@ -71,47 +72,48 @@ const newListings = publiclisting.filter(
 
 
 
-  const tags = [
-		{
-			key: "all",
-			label: "All",
-			link: "/all",
-		},
-		{
-			key: "new",
-			label: "New Listing",
-			link: "/new",
-		},
-		{
-			key: "featured",
-			label: "Featured",
-			link: "/featured",
-		},
-		{
-			key: "for-sale",
-			label: "For Sale",
-			link: "/all",
-		},
-		{
-			key: "for-rent",
-			label: "For Rent",
-			link: "",
-		},
-		{
-			key: "mortgage",
-			label: "Mortgage",
-			link: "",
-		},
-	];
+const tags = [
+	{
+		key: "all",
+		label: "All",
+		link: "/all",
+	},
+	{
+		key: "new",
+		label: "New Listing",
+		link: "/new",
+	},
+	{
+		key: "featured",
+		label: "Featured",
+		link: "/featured",
+	},
+	{
+		key: "for-sale",
+		label: "For Sale",
+		link: "/all",
+	},
+	{
+		key: "for-rent",
+		label: "For Rent",
+		link: "/rent",
+	},
+	{
+		key: "mortgage",
+		label: "Mortgage",
+		link: "/mortgage",
+	},
+];
 
-  const Tags = () => (
-    <Menu
-      className="menu-tags"
-      mode="horizontal"
-      items={tags}
-      selectedKeys={"all"}
-    />
-  );
+const Tags = () => (
+	<Menu className="menu-tags" mode="horizontal" selectedKeys={["all"]}>
+		{tags.map((tag) => (
+			<Menu.Item key={tag.key}>
+				{tag.link ? <Link to={tag.link}>{tag.label}</Link> : tag.label}
+			</Menu.Item>
+		))}
+	</Menu>
+);
   const responsive = {
     desktop: {
       breakpoint: {
@@ -231,16 +233,12 @@ const newListings = publiclisting.filter(
 											label={"Search"}
 											className="search round-btn"
 											icon={
-											
-													<img
-														src={Search}
-														className="search-icon"
-														style={{ fontWeight: "900" }}
-														width={20}
-														
-													/>
-													
-												
+												<img
+													src={Search}
+													className="search-icon"
+													style={{ fontWeight: "900" }}
+													width={20}
+												/>
 											}
 											classname="card-item"
 										/>
@@ -319,22 +317,25 @@ const newListings = publiclisting.filter(
 								<p>No New Listings Available</p>
 							)}
 							<div className="see-all-new-listing-dashboard">
-								<a style={{ color: "#8C9094" }}>See All</a>
+								<a href="/all" style={{ color: "#8C9094" }}>
+									See All
+								</a>
 							</div>
 						</div>
 					</Col>
 				</Row>
 				{newListings.length > 0 && (
-					<div
-						className="listing-carousel-dashboard"
-						
-					>
+					<div className="listing-carousel-dashboard">
 						{newListings.slice(0, 3).map((item, i) => {
 							return (
 								<CardListingComponent
 									title={item.listings.title}
 									price={`PHP ${item.listings.unit_details.price}`}
-									status={item.listings.listing_type.listing_type}
+									status={
+										item.listings.listing_type.listing_type === "For Sale"
+											? "NEW"
+											: item.listings.listing_type.listing_type
+									}
 									pics={GetPhotoLength(item.listings.photos.photo)}
 									features={item.features}
 									img={GetPhotoFromDB(item.listings.photos.photo)}

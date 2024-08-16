@@ -30,6 +30,11 @@
   .card-content {
     padding: 15px;
   }
+  .feature-h1{
+    font-size: 24px;
+    font-weight: 600;
+    margin: 20px 0px 20px 120px;
+  }
   
   @media (max-width: 768px) {
     .card {

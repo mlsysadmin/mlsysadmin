@@ -23,7 +23,7 @@ import ListingsTable from "./ListingsTable.page";
 import Sidebar from "./DraftSidebar.page";
 import PreviewListing from "./PreviewListing.page";
 import ModalComponents from "./ModalComponents.page";
-import RegistrationModal from "./RegistrationModal.page";
+// import RegistrationModal from "./RegistrationModal.page";
 import LoginModal from "./LoginModal.page";
 import { ShowDetailsProcessing } from "../components";
 import { ShowDetailsDenied } from "../components";
@@ -67,7 +67,7 @@ import SupportOutlet from "./support/SupportOutlet.page";
 export {
     ViewListingComponent,
     LoginModal,
-    RegistrationModal,
+    // RegistrationModal,
     ModalComponents,
     PreviewListing,
     Sidebar,

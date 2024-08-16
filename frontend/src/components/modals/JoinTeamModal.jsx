@@ -106,6 +106,31 @@ const JoinTeam = ({ toggleModal }) => {
 		}
 	};
 
+	 const resetForm = () => {
+			setFormData({
+				mobileNumber: "",
+				email: "",
+				lastName: "",
+				firstName: "",
+				middleName: "",
+				suffix: "",
+				country: "",
+				province: "",
+				city: "",
+				address: "",
+				birthdate: "",
+				countryOfBirth: "",
+				placeOfBirth: "",
+				civilStatus: "",
+				nationality: "",
+				sourceOfIncome: "",
+				idType: "",
+				idNo: "",
+				brokerQuestion: "",
+				brokerYears: "",
+			});
+		};
+
 	const Modal = ({ isVisible, onClose }) => {
 		if (!isVisible) return null;
 
@@ -135,7 +160,10 @@ const JoinTeam = ({ toggleModal }) => {
 
 	return (
 		<div className="join-modal-container">
-			{!showOtpModal && (
+			{isModalVisible ? (
+				<Modal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} />
+			) : (
+			!showOtpModal && (
 				<div
 					className="modal-overlay-jointeam"
 					role="dialog"
@@ -532,8 +560,10 @@ const JoinTeam = ({ toggleModal }) => {
 						</button>
 					</div>
 				</div>
+				)
 			)}
-			<OTPModal visible={showOtpModal} onClose={() => setShowOtpModal(false)} />
+			<OTPModal visible={showOtpModal} onClose={() => {setShowOtpModal(false); resetForm();}} />
+
 		</div>
 	);
 };

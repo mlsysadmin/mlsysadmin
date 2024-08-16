@@ -4,6 +4,7 @@ import CustomMlFooter from "./custom/Custom.Mlfooter";
 import FooterComponent from "./layout/FooterComponent";
 import MainLayout from "./layout/layout.component";
 import { Slider, Progress, Menu, Dropdown } from "antd";
+import iconcalcu from "../assets/icons/previewlisting/calculatorsign.png";
 import { DownOutlined } from "@ant-design/icons";
 import homeicon from "../asset/icons/homeicon.png";
 import dollaricon from "../asset/icons/dollar-icon.png";
@@ -29,22 +30,22 @@ const DiscoverHomeComponent = () => {
     setActiveIndex(index === activeIndex ? null : index);
   };
 
-  const computeMortgage = () =>{
+  const computeMortgage = () => {
     const dpPriceRange = DppriceRange[0];
     const homePriceRange = HomepriceRange[0];
     const interestRateDecimal = interestRate / 100;
 
-
-
     const monthlyInterestRate = interestRateDecimal / 12;
     const loanAmount = homePriceRange - dpPriceRange;
     const numberOfPayments = 30 * 12;
-    const totalMonthlyPayment = loanAmount *
-    ((monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) /
-      (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1));
+    const totalMonthlyPayment =
+      loanAmount *
+      ((monthlyInterestRate *
+        Math.pow(1 + monthlyInterestRate, numberOfPayments)) /
+        (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1));
 
     setMonthlyPayment(totalMonthlyPayment.toFixed(2));
-  } 
+  };
   const accordionData = [
     {
       label: "How much do you need to put down on a house?",
@@ -86,7 +87,6 @@ const DiscoverHomeComponent = () => {
                 </span>
               </div>
               <div className="discover-upper-btn">
-                
                 <div className="buy-a-home">
                   <div className="buy-home-text">
                     <a href="/buy-a-home">
@@ -165,12 +165,18 @@ const DiscoverHomeComponent = () => {
                 <div className="loan-term-frame">
                   <div className="loan-term-frame-title">Loan Term</div>
                   <div className="loan-term-frame-cont">
-                    <div className="loan-term-value">30 Years Fixed</div>
                     <img
-                      className="calculator-shop"
-                      alt="Calculator shop"
-                      src="https://cdn.animaapp.com/projects/64e41d552340cba66b90f01a/releases/6667bfedd77ca3da5aa489ba/img/calculator-2--shop-shopping-pay-payment-store-cash-calculate-mat@2x.png"
+                      src={iconcalcu}
+                      alt="Iconcalcu"
+                      style={{
+                        height: "15px",
+                        width: "15px",
+                        margin: "10px",
+                        color: "black",
+                      }}
                     />
+                    <div className="loan-term-value">30 Years Fixed</div>
+
                     {/* <img
                                             className="vector"
                                             alt="Vector"
@@ -234,7 +240,10 @@ const DiscoverHomeComponent = () => {
             <div className="mortlabel-cont">
               <span className="label-title">Monthly payment breakdown</span>
               <div className="per-range">
-                <div className="interest-group-label">
+                <div
+                  className="interest-group-label"
+                  style={{ position: "relative", display: "inline-block" }}
+                >
                   <Progress
                     type="circle"
                     percent={85}
@@ -242,19 +251,24 @@ const DiscoverHomeComponent = () => {
                     strokeWidth={10}
                     strokeColor="#D90000"
                     trailColor="#d900002b"
-                    format={(percent) => (
-                      <div
-                        style={{ fontSize: "16px", fontWeight: "bold" }}
-                        className="montly-pay-cal"
-                      >
-                        PHP {monthlyPayment} <br />
-                        per month
-                      </div>
-                    )}
+                    format={() => null} // No need to format inside the Progress component
                     gapDegree={10}
                     gapPosition="bottom"
                   />
+                  <div style={{}} className="montly-pay-cal">
+                    PHP {monthlyPayment} <br />
+                    <p
+                      style={{
+                        fontSize: "12px",
+                        color: "gray",
+                        fontWeight: "100px",
+                      }}
+                    >
+                      per month
+                    </p>
+                  </div>
                 </div>
+
                 <div className="principal">
                   <div className="content-info-mortgage">
                     <div className="payment-breakdown">
@@ -310,25 +324,28 @@ const DiscoverHomeComponent = () => {
             Home financing to make your goals a reality.
           </span>
         </div>
-      
+
         <div className="content-4">
           <a href="/buy-a-home">
             <div className="purchase">
               <div className="overlap-group">
                 <img src={homeicon} alt="home" />
-                <span className="span" style={{color:"black"}}>I want to purchase a home.</span>
-              </div>
-            </div>
-          </a>  
-          <a  href="/refinance" >
-            <div className="refinance">
-              <div className="overlap-group">
-                <img src={dollaricon} alt="dollar" />
-                  <span className="span" style={{color:"black"}}>I want to refinance my home </span>
+                <span className="span" style={{ color: "black" }}>
+                  I want to purchase a home.
+                </span>
               </div>
             </div>
           </a>
-          
+          <a href="/refinance">
+            <div className="refinance">
+              <div className="overlap-group">
+                <img src={dollaricon} alt="dollar" />
+                <span className="span" style={{ color: "black" }}>
+                  I want to refinance my home{" "}
+                </span>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
       <div className="faqs-container">
@@ -343,8 +360,8 @@ const DiscoverHomeComponent = () => {
                   style={{
                     backgroundColor:
                       activeIndex === index ? "#ffffff" : "white",
-                    display:activeIndex === index? "flex": "flex",
-                    flexDirection:activeIndex === index? "column": "row",
+                    display: activeIndex === index ? "flex" : "flex",
+                    flexDirection: activeIndex === index ? "column" : "row",
                   }}
                 >
                   {item.label}
@@ -356,12 +373,14 @@ const DiscoverHomeComponent = () => {
                     }}
                   />
                   {activeIndex === index && (
-                  <div className="dropdown-content" style={{ height: "auto" ,fontWeight:'100px'}}>
-                    {item.answer}
-                  </div>
-                )}
+                    <div
+                      className="dropdown-content"
+                      style={{ height: "auto", fontWeight: "100px" }}
+                    >
+                      {item.answer}
+                    </div>
+                  )}
                 </div>
-                
               </div>
             ))}
           </div>

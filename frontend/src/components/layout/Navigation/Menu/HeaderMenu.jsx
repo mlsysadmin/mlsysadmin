@@ -149,7 +149,7 @@ const HeaderMenu = () => {
 	const OtherServicesMenu = () => (
 		<MenuPopup
 			// handleOpenChange={handleBuyOpenChange}
-			title={"Learn more about our Products and Services"}
+			title={"Other Services"}
 			popUpOpen={otherServicesPopUpOpen}
 			label={"Other Services"}
 			content={OtherServicesMenuPopContent}
