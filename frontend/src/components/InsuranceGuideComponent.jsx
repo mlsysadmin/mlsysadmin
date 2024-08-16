@@ -40,7 +40,7 @@ const InsuranceGuideComponent = () => {
           <div className="insurance-guide-tagline">
             <span>
               {" "}
-              Life your life <br />
+              Live your life <br />
               without worry.
             </span>
             <br />
