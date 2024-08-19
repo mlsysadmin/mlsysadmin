@@ -22,14 +22,6 @@ const JoinTeam = ({ toggleModal }) => {
 		province: "",
 		city: "",
 		address: "",
-		birthdate: "",
-		countryOfBirth: "",
-		placeOfBirth: "",
-		civilStatus: "",
-		nationality: "",
-		sourceOfIncome: "",
-		idType: "",
-		idNo: "",
 		brokerQuestion: "",
 		brokerYears: "",
 	});
@@ -118,14 +110,14 @@ const JoinTeam = ({ toggleModal }) => {
 				province: "",
 				city: "",
 				address: "",
-				birthdate: "",
-				countryOfBirth: "",
-				placeOfBirth: "",
-				civilStatus: "",
-				nationality: "",
-				sourceOfIncome: "",
-				idType: "",
-				idNo: "",
+				// birthdate: "",
+				// countryOfBirth: "",
+				// placeOfBirth: "",
+				// civilStatus: "",
+				// nationality: "",
+				// sourceOfIncome: "",
+				// idType: "",
+				// idNo: "",
 				brokerQuestion: "",
 				brokerYears: "",
 			});
@@ -368,140 +360,7 @@ const JoinTeam = ({ toggleModal }) => {
 									{errors.address && <p className="error">{errors.address}</p>}
 								</div>
 							</div>
-							<div className="join-team-column-group">
-								<div className="join-team-group">
-									<span>Birthdate</span>
-									<input
-										type="text"
-										name="birthdate"
-										className="calendar-input-field"
-										placeholder="mm/dd/yyyy"
-										value={formData.birthdate}
-										onChange={handleInputChange}
-									/>
-									{errors.birthdate && (
-										<p className="error">{errors.birthdate}</p>
-									)}
-								</div>
-
-								<div className="join-team-group">
-									<span>Country of Birth</span>
-									<select
-										name="countryOfBirth"
-										value={formData.countryOfBirth}
-										onChange={handleInputChange}
-									>
-										<option value="">Select Country</option>
-										{getCountry?.map((country, index) => (
-											<option key={index} value={country.name}>
-												{country.name}
-											</option>
-										))}
-									</select>
-									{errors.countryOfBirth && (
-										<p className="error">{errors.countryOfBirth}</p>
-									)}
-								</div>
-								<div className="join-team-group">
-									<span>Place of Birth</span>
-									<select
-										name="placeOfBirth"
-										value={formData.placeOfBirth}
-										onChange={handleInputChange}
-									>
-										<option value="">Select City</option>
-										{getCities?.map((city, index) => (
-											<option key={index} value={city.name}>
-												{city.name}
-											</option>
-										))}
-									</select>
-									{errors.placeOfBirth && (
-										<p className="error">{errors.placeOfBirth}</p>
-									)}
-								</div>
-								<div className="join-team-group">
-									<span>Civil Status</span>
-									<select
-										name="civilStatus"
-										value={formData.civilStatus}
-										onChange={handleInputChange}
-									>
-										<option value="">Select Civil Status</option>
-										<option value="Single">Single</option>
-										<option value="Married">Married</option>
-										<option value="Separated">Separated</option>
-										<option value="Widowed">Widowed</option>
-									</select>
-									{errors.civilStatus && (
-										<p className="error">{errors.civilStatus}</p>
-									)}
-								</div>
-							</div>
-							<div className="join-team-column-group">
-								<div className="join-team-group">
-									<span>Nationality</span>
-									<select
-										name="nationality"
-										value={formData.nationality}
-										onChange={handleInputChange}
-									>
-										<option value="">Select Nationality</option>
-										<option value="1">Filipino</option>
-									</select>
-									{errors.nationality && (
-										<p className="error">{errors.nationality}</p>
-									)}
-								</div>
-								<div className="join-team-group">
-									<span>Source of Income</span>
-									<select
-										name="sourceOfIncome"
-										value={formData.sourceOfIncome}
-										onChange={handleInputChange}
-									>
-										<option value="">Source of Income</option>
-										<option value="BUSINESS INCOME/SELF">
-											BUSINESS INCOME/SELF
-										</option>
-										<option value="Salary/Pay/Wage/Commission">
-											Salary/Pay/Wage/Commission
-										</option>
-										<option value="Pension for Retiree">
-											Pension for Retiree
-										</option>
-										<option value="Regular Remittance Abroad">
-											Regular Remittance Abroad
-										</option>
-									</select>
-									{errors.sourceOfIncome && (
-										<p className="error">{errors.sourceOfIncome}</p>
-									)}
-								</div>
-								<div className="join-team-group">
-									<span>ID Type</span>
-									<select
-										name="idType"
-										value={formData.idType}
-										onChange={handleInputChange}
-									>
-										<option value="">ID Type</option>
-										<option value="1">National ID</option>
-									</select>
-									{errors.idType && <p className="error">{errors.idType}</p>}
-								</div>
-								<div className="join-team-group">
-									<span>ID No</span>
-									<input
-										type="text"
-										name="idNo"
-										placeholder="125BXOSER5"
-										value={formData.idNo}
-										onChange={handleInputChange}
-									/>
-									{errors.idNo && <p className="error">{errors.idNo}</p>}
-								</div>
-							</div>
+							
 						</div>
 						{/* <IdentifiableInformation /> */}
 						<div className="broker-questions-jointeam">
