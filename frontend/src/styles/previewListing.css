@@ -312,6 +312,11 @@
 .commercial-property-image .all{
   height: 300px;
 }
+
+.ant-modal {
+  display: block !important; /* Ensure the modal is displayed */
+}
+
 /* For screens larger than 1200px */
 @media (min-width: 1201px) {
   .Listing-property-details th,
