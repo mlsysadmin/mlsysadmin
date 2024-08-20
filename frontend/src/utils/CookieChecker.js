@@ -9,4 +9,28 @@ const isCookiePresent = (cookieName) => {
 	}
 	return false;
 };
-export { isCookiePresent};
+
+const getCookieData = () => {
+	const cookieString = document.cookie;
+	if (cookieString === "") {
+		return null;
+	}
+
+	const cookieList = cookieString.split(";");
+
+	let accountDetails = null;
+
+	cookieList.forEach((cookie) => {
+		const [name, value] = cookie.split("=");
+		const decodedValue = decodeURIComponent(value.trim());
+
+		if (name.trim() === "account_details") {
+			accountDetails = JSON.parse(decodedValue);
+		}
+	});
+
+	return accountDetails;
+};
+
+
+export { isCookiePresent, getCookieData };

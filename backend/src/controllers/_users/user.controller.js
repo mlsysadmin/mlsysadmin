@@ -132,6 +132,7 @@ module.exports = {
 
             const getToken = await GenerateToken();
 
+            console.log(req.body);
             if ((getToken) && params) {
                 const token = getToken.data.token;
 
