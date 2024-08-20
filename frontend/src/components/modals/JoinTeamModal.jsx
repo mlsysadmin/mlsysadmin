@@ -8,7 +8,7 @@ import {
 import OTPModal from "../../components/OTPModal";
 import { Select } from "antd";
 import { searchKyc } from "../../api/Public/User.api";
-import maskData from "../../utils/DataMasking";
+
 
 const JoinTeam = ({ toggleModal }) => {
 	const { Option } = Select;

@@ -139,11 +139,20 @@ const SupportPendingApplicationComponent = forwardRef((props, ref) => {
             fetchData(1, pageSize);
 
         } catch (error) {
-            const data = error.data;
-            openMessage('error', data.error.message, 3);
-            setIsMessageLoadingOpen(false);
-            setIndex(100);
-            setShowButtons(false);
+            try {
+                const data = error.data;
+                openMessage('error', data.error.message, 3);
+                setIsMessageLoadingOpen(false);
+                setIndex(100);
+                setShowButtons(false);
+
+            } catch (error) {
+                openMessage('error', 'Something went wrong. Please refresh the page and try again.', 3);
+                setIsMessageLoadingOpen(false);
+                setIndex(100);
+                setShowButtons(false);
+            }
+
         }
     }
 
@@ -278,7 +287,7 @@ const SupportPendingApplicationComponent = forwardRef((props, ref) => {
             {contextHolder}
             <div className={`support--pending-master-listing`}
                 style={{ width: "85%", margin: 'auto' }}>
-                <SupportSubMenu title={'Manage Pending Application'}
+                <SupportSubMenu title={'Manage Pending Applications'}
                     isShowDetails={false} />
                 <div className="support--top-controls">
                     <div className="support--show-entries">

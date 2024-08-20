@@ -233,7 +233,7 @@ const handleShowDetails = (e) => {
       {contextHolder}
       <div className={`support--pending-master-listing`}
         style={{ width: "85%", margin: 'auto' }}>
-        <SupportSubMenu title={'Manage Denied Listing'}
+        <SupportSubMenu title={'Manage Denied Listings'}
           isShowDetails={false} />
         <div className="support--top-controls">
           <div className="support--show-entries">
