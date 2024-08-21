@@ -303,7 +303,7 @@ const WrapUpDetails = ({ setWrapUpComplete }) => {
 				</div>
 				<div className="source-income-group">
 					<span className="label">Source of Income</span>
-					<button className="wrap-up-dropdown-button">
+					<button className="wrap-up-dropdown-button" style={{margin:"0px"}}>
 						<Dropdown
 							overlay={
 								<Menu onClick={(e) => handleIncomeType(e.key)}>
