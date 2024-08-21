@@ -2,6 +2,7 @@
     /* flex-direction: column; */
     width: 100%;
     background-color: #ffffff;
+
 }
 
 
@@ -74,6 +75,11 @@
 
 #dashboard .banner .banner-content .banner-search .card-item {
     margin: 5px;
+}
+#dashboard :where(.css-dev-only-do-not-override-1uq9j6g).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+    color: #d90000;
+    border-color: #d90000;
+    background: #ffffff;
 }
 
 #dashboard .banner .banner-content .banner-search .card-item.field {
@@ -412,13 +418,16 @@
 /* FEATURED PROPERTIES */
 .dashboard .discover .discover--section-4{
     /* background-color: #fff0f058; */
-    padding-top: 70px;
+    padding: 20px 100px;
     padding-bottom: 80px;
+    height: auto;
 }
 
 .dashboard .discover .card--brokerage-featured {
     margin: auto;
-    width: 75%;
+    width: 100%;
+    height: auto;
+    padding-bottom: 100px;
 }
 .dashboard .discover .discover--section-4 h3{
     text-align: left;

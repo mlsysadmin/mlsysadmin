@@ -21,13 +21,45 @@
 	flex-direction: column;
 }
 .join-team-group input,
-.join-team-group select {
+.join-team-group .ant-select {
 	width: 200px;
 	height: 40px;
-	border: 1px solid #8c9094;
+	border: 1px solid  var(--mute-gray);
 	padding: 10px;
 	border-radius: 5px;
-	color: #8c9094;
+	color:  var(--mute-gray);
+}
+
+.join-team-group input:disabled, .join-team-group .ant-select-disabled{
+	border-color: #d9d9d9;
+	background-color: #d9d9d9;
+
+}
+.join-team-group .ant-select .ant-select-selector-disabled{
+	border: 1px solid #d9d9d9;
+}
+
+.join-team-group :where(.css-dev-only-do-not-override-1uq9j6g).ant-select-outlined.ant-select-disabled:not(.ant-select-customize-input) .ant-select-selector{
+	border: 1px solid #d9d9d9;
+	background-color: #d9d9d9;
+}
+.join-team-group .ant-select .ant-select-selector{
+border: 1px solid #ffffff;
+padding: 0;
+}
+.join-team-group :where(.css-dev-only-do-not-override-1uq9j6g).ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover .ant-select-selector{
+border: 1px solid  #ffffff;
+border-style: none;
+box-shadow: none;
+
+}
+.join-team-group .ant-select .ant-select-item{
+	border: 1px solid  #ffffff;
+	background-color: #8c9094;
+	width: 200px;
+}
+.join-team-group .ant-select-item .ant-select-item-option .ant-select-item-option-active .ant-select-item-option-selected{
+		border: 1px solid  #ffffff;
 }
 .broker-questions-jointeam {
 	margin: 30px 0px 0px 0px;
@@ -243,7 +275,7 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;

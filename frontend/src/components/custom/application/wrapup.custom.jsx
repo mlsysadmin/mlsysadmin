@@ -5,6 +5,8 @@ import { Dropdown, Menu } from "antd";
 import countryList from "react-select-country-list";
 import { State, City } from "country-state-city";
 import { DownOutlined } from "@ant-design/icons";
+import { GetCountry, GetProvince, GetCities } from "../../../api/Public/Location.api";
+
 
 const WrapUpDetails = ({ setWrapUpComplete }) => {
 	const [email, setEmail] = useState("");
@@ -12,14 +14,20 @@ const WrapUpDetails = ({ setWrapUpComplete }) => {
 	const [lastname, setLastname] = useState("");
 	const [incomeType, setIncomeType] = useState("");
 	const [targetValue, setTargetvalue] = useState("");
+	const [countryOptions, setCountryOptions] = useState([]);
+    const [stateOptions, setStateOptions] = useState([]);
+    const [cityOptions, setCityOptions] = useState([]);
+    const [selectedCountry, setSelectedCountry] = useState(null);
+    const [selectedState, setSelectedState] = useState(null);
+    const [selectedCity, setSelectedCity] = useState(null);
 
-	const [stateOptions, setStateOptions] = useState([]);
-	const [cityOptions, setCityOptions] = useState([]);
-	const [selectedCountry, setSelectedCountry] = useState(null);
-	const [selectedState, setSelectedState] = useState(null);
-	const [selectedCity, setSelectedCity] = useState(null);
+	// const [stateOptions, setStateOptions] = useState([]);
+	// const [cityOptions, setCityOptions] = useState([]);
+	// const [selectedCountry, setSelectedCountry] = useState(null);
+	// const [selectedState, setSelectedState] = useState(null);
+	// const [selectedCity, setSelectedCity] = useState(null);
 
-	const countryOptions = useMemo(() => countryList().getData(), []);
+	// const countryOptions = useMemo(() => countryList().getData(), []);
 
 	// Handlers
 	const handleFirstname = (e) => setFirstname(e.target.value);
@@ -28,50 +36,77 @@ const WrapUpDetails = ({ setWrapUpComplete }) => {
 	const handleIncomeType = (value) => setIncomeType(value);
 	const handleTargetvalue = (value) => setTargetvalue(value);
 
-	const handleCountryChange = (value) => {
-		const selectedOption = countryOptions.find(
-			(option) => option.value === value
-		);
-		setSelectedCountry(selectedOption.label);
 
-		const states = State.getStatesOfCountry(selectedOption.value);
-		const stateOptions = states.map((state) => ({
-			value: state.isoCode,
-			label: state.name,
-		}));
-		setStateOptions(stateOptions);
-		setSelectedState("");
-		setCityOptions([]);
-	};
+  // Fetch countries from API
+    useEffect(() => {
+        const fetchCountries = async () => {
+            try {
+                const countries = await GetCountry();
+                setCountryOptions(countries.map(country => ({
+                    value: country.name, // Assuming the response has 'id' field
+                    label: country.name // Assuming the response has 'name' field
+                })));
+            } catch (error) {
+                console.error("Error fetching countries:", error);
+            }
+        };
+        fetchCountries();
+    }, []);
 
-	const handleStateChange = async (key) => {
-		try {
-			const selectedState = stateOptions.find((state) => state.value === key);
-			setSelectedState(selectedState.label);
+    // Fetch provinces based on selected country
+    useEffect(() => {
+        if (selectedCountry) {
+            const fetchProvinces = async () => {
+                try {
+                    const provinces = await GetProvince(selectedCountry); // Assuming you might need to pass selectedCountry
+                    setStateOptions(provinces.map(province => ({
+                        value: province.name, // Assuming the response has 'id' field
+                        label: province.name // Assuming the response has 'name' field
+                    })));
+					console.log(provinces);
+					
+                } catch (error) {
+                    console.error("Error fetching provinces:", error);
+                }
+            };
+            fetchProvinces();
+        }
+    }, [selectedCountry]);
 
-			const cities = await City.getCitiesOfState(selectedState.value);
-			if (cities.length > 0) {
-				const cityOptions = cities.map((city) => ({
-					value: city.name,
-					label: city.name,
-				}));
-				setCityOptions(cityOptions);
-				setSelectedCity(null);
-			} else {
-				setCityOptions([{ value: "no_cities", label: "No cities available" }]);
-				setSelectedCity("no_cities");
-			}
-		} catch (error) {
-			console.error("Error retrieving city options:", error);
-			setCityOptions([{ value: "error", label: "Error loading city options" }]);
-			setSelectedCity("error");
-		}
-	};
+    // Fetch cities based on selected province
+    useEffect(() => {
+        if (selectedState) {
+            const fetchCities = async () => {
+                try {
+                    const cities = await GetCities(selectedState); // Assuming you might need to pass selectedState
+                    setCityOptions(cities.map(city => ({
+                        value: city.name, // Assuming the response has 'id' field
+                        label: city.name // Assuming the response has 'name' field
+                    })));
+                } catch (error) {
+                    console.error("Error fetching cities:", error);
+                }
+            };
+            fetchCities();
+        }
+    }, [selectedState]);
 
-	const handleCityChange = (key) => {
-		const selectedCity = cityOptions.find((city) => city.value === key);
-		setSelectedCity(selectedCity.label);
-	};
+    // Handlers for dropdown changes
+    const handleCountryChange = (value) => {
+        setSelectedCountry(value);
+        setSelectedState(null); // Reset state and city when country changes
+        setSelectedCity(null);
+    };
+
+    const handleStateChange = (value) => {
+        setSelectedState(value);
+        setSelectedCity(null); // Reset city when state changes
+    };
+
+    const handleCityChange = (value) => {
+        setSelectedCity(value);
+    };
+
 
 	const incomeTypeOptions = [
 		"Salary/Pay/Wage/Commission",
@@ -174,89 +209,80 @@ const WrapUpDetails = ({ setWrapUpComplete }) => {
 					<span className="secure-text">SECURE</span>
 				</div>
 				<div className="country-group">
-					<span className="label">Country</span>
-					<button className="wrap-up-dropdown-button">
-						<Dropdown
-							overlay={
-								<Menu
-									onClick={(e) => handleCountryChange(e.key)}
-									style={{
-										maxHeight: "300px",
-										overflowY: "auto",
-									}}
-								>
-									{countryOptions.map((option) => (
-										<Menu.Item key={option.value}>{option.label}</Menu.Item>
-									))}
-								</Menu>
-							}
-						>
-							<a
-								className="ant-dropdown-link"
-								onClick={(e) => e.preventDefault()}
-							>
-								{selectedCountry || "Select Country"}
-								<DownOutlined />
-							</a>
-						</Dropdown>
-					</button>
-				</div>
-				<div className="province-group">
-					<span className="label">Province/State</span>
-					<button className="wrap-up-dropdown-button">
-						<Dropdown
-							overlay={
-								<Menu
-									onClick={(e) => handleStateChange(e.key)}
-									style={{
-										maxHeight: "300px",
-										overflowY: "auto",
-									}}
-								>
-									{stateOptions.map((option) => (
-										<Menu.Item key={option.value}>{option.label}</Menu.Item>
-									))}
-								</Menu>
-							}
-						>
-							<a
-								className="ant-dropdown-link"
-								onClick={(e) => e.preventDefault()}
-							>
-								{selectedState || "Select Province/State"}
-								<DownOutlined />
-							</a>
-						</Dropdown>
-					</button>
-				</div>
-				<div className="city-town-group">
-					<span className="label">City/Town</span>
-					<button className="wrap-up-dropdown-button">
-						<Dropdown
-							overlay={
-								<Menu
-									onClick={(e) => handleCityChange(e.key)}
-									style={{
-										maxHeight: "300px",
-										overflowY: "auto",
-									}}
-								>
-									{cityOptions.map((option) => (
-										<Menu.Item key={option.value}>{option.label}</Menu.Item>
-									))}
-								</Menu>
-							}
-						>
-							<a
-								className="ant-dropdown-link"
-								onClick={(e) => e.preventDefault()}
-							>
-								{selectedCity || "Select City/Town"}
-								<DownOutlined />
-							</a>
-						</Dropdown>
-					</button>
-				</div>
+                <span className="label">Country</span>
+                <button className="wrap-up-dropdown-button">
+                    <Dropdown
+                        overlay={
+                            <Menu
+                                onClick={(e) => handleCountryChange(e.key)}
+                                style={{ maxHeight: "300px", overflowY: "auto" }}
+                            >
+                                {countryOptions.map((option) => (
+                                    <Menu.Item key={option.value}>{option.label}</Menu.Item>
+                                ))}
+                            </Menu>
+                        }
+                    >
+                        <a
+                            className="ant-dropdown-link"
+                            onClick={(e) => e.preventDefault()}
+                        >
+                            {selectedCountry || "Select Country"}
+                            <DownOutlined />
+                        </a>
+                    </Dropdown>
+                </button>
+            </div>
+            <div className="province-group">
+                <span className="label">Province/State</span>
+                <button className="wrap-up-dropdown-button">
+                    <Dropdown
+                        overlay={
+                            <Menu
+                                onClick={(e) => handleStateChange(e.key)}
+                                style={{ maxHeight: "300px", overflowY: "auto" }}
+                            >
+                                {stateOptions.map((option) => (
+                                    <Menu.Item key={option.value}>{option.label}</Menu.Item>
+                                ))}
+                            </Menu>
+                        }
+                    >
+                        <a
+                            className="ant-dropdown-link"
+                            onClick={(e) => e.preventDefault()}
+                        >
+                            {selectedState || "Select Province/State"}
+                            <DownOutlined />
+                        </a>
+                    </Dropdown>
+                </button>
+            </div>
+            <div className="city-town-group">
+                <span className="label">City/Town</span>
+                <button className="wrap-up-dropdown-button">
+                    <Dropdown
+                        overlay={
+                            <Menu
+                                onClick={(e) => handleCityChange(e.key)}
+                                style={{ maxHeight: "300px", overflowY: "auto" }}
+                            >
+                                {cityOptions.map((option) => (
+                                    <Menu.Item key={option.value}>{option.label}</Menu.Item>
+                                ))}
+                            </Menu>
+                        }
+                    >
+                        <a
+                            className="ant-dropdown-link"
+                            onClick={(e) => e.preventDefault()}
+                        >
+                            {selectedCity || "Select City/Town"}
+                            <DownOutlined />
+                        </a>
+                    </Dropdown>
+                </button>
+            </div>
 				<div className="zipcode-group">
 					<span className="label">Zipcode</span>
 					<input

@@ -24,16 +24,17 @@ const PreviewListRightSideContent = () => {
 	// Calculate monthly payment
 	const monthlyPayment = (totalHomePrice - downPayment) / termInMonths;
 
-	const [showApplicationModal, setShowApplicationModal] = useState(false);
+	const [showApplicationDetailModal, setShowApplicationDetailModal] =
+		useState(false);
 
 	const handleButtonClick = () => {
 		console.log("Button clicked, showing modal");
-		setShowApplicationModal(true);
+		setShowApplicationDetailModal(true);
 	};
 
 	const handleCloseModal = () => {
 		console.log("Closing modal");
-		setShowApplicationModal(false);
+		setShowApplicationDetailModal(false);
 	};
 
 	const [publiclisting, setPublicListing] = useState([]);
@@ -217,8 +218,11 @@ const PreviewListRightSideContent = () => {
 				<button className="apply-button" onClick={handleButtonClick}>
 					APPLY NOW
 				</button>
-				{showApplicationModal && (
-					<ApplicationDetailModal onClose={handleCloseModal} />
+				{showApplicationDetailModal && (
+					<ApplicationDetailModal
+						visible={showApplicationDetailModal}
+						onClose={handleCloseModal}
+					/>
 				)}
 			</div>
 
