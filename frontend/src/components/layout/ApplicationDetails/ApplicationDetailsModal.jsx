@@ -8,6 +8,7 @@ import {
 	GetProvince,
 } from "../../../api/Public/Location.api";
 import OTPModal from "../../OTPModal";
+import { searchKyc } from "../../../api/Public/User.api";
 
 const FileUploadGrid = ({ validateFiles }) => {
 	const [files, setFiles] = useState([null, null, null, null]);
@@ -120,28 +121,78 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
 		fetchData();
 	}, []);
 
-	const handleNumberChange = (e) => {
-		setFormValues({ ...formValues, mobileNumber: e.target.value });
-		if (e.target.value.length === 11) {
-			fetchUserDetails(e.target.value);
-		}
-	};
+const handleInputChange = async (e) => {
+	const { name, value } = e.target;
+	setFormValues((prevFormData) => ({
+		...prevFormData,
+		[name]: value,
+	}));
 
-	const fetchUserDetails = async (inputtedNumber) => {
+	if (name === "mobileNumber" && value.length === 11) {
 		try {
-			const response = await axios.get(
-				`${process.env.REACT_APP_SEARCH_KYC}/user/searchKYC/${inputtedNumber}`
-			);
-			setUserDetails(response.data);
-		} catch (error) {
-			console.error("Error fetching user info:", error);
-		}
-	};
+			const response = await searchKyc(value);
+			const respData = response.data.data;
+			console.log("datas:", respData);
 
-	const handleInputChange = (e) => {
-		const { name, value } = e.target;
-		setFormValues({ ...formValues, [name]: value });
-	};
+			if (respData) {
+				setUserDetails(respData);
+				setFormValues((prevFormData) => ({
+					...prevFormData,
+					firstName: respData.name?.firstName
+						? respData.name.firstName.replace(/.(?=.{2})/g, "*")
+						: "",
+					lastName: respData.name?.lastName
+						? respData.name.lastName.replace(/.(?=.{2})/g, "*")
+						: "",
+					middleName: respData.name?.middleName
+						? respData.name.middleName.replace(/.(?=.{2})/g, "*")
+						: "",
+					suffix: respData.name?.suffix || "",
+					email: respData.email
+						? respData.email.replace(/(.{2}).*(?=@)/, "$1****")
+						: "",
+					country: respData.addresses?.current?.addressL0Name || "",
+					province: respData.addresses?.current?.addressL1Name || "",
+					city: respData.addresses?.current?.addressL2Name || "",
+					address: respData.addresses?.current?.otherAddress || "",
+					zipcode: respData.addresses?.current?.zipCode || "",
+				}));
+			} else {
+				setUserDetails(null);
+				setFormValues((prevFormData) => ({
+					...prevFormData,
+					firstName: "", 
+					lastName: "",
+					middleName: "",
+					suffix: "",
+					email: "",
+					country: "",
+					province: "",
+					city: "",
+					address: "",
+					zipcode: "",
+				}));
+			}
+		} catch (error) {
+			console.error("Error fetching user details:", error);
+			setUserDetails(null);
+			setFormValues((prevFormData) => ({
+				...prevFormData,
+				firstName: "",
+				lastName: "",
+				middleName: "",
+				suffix: "",
+				email: "",
+				country: "",
+				province: "",
+				city: "",
+				address: "",
+				zipcode: "",
+			}));
+		}
+	}
+};
+
 
 	const validateFiles = (newFiles) => {
 		setFiles(newFiles);
@@ -172,17 +223,19 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
 		console.log("Files selected:", files);
 
 		// Reset the form and files after successful submission
-		setFormValues({
-			mobileNumber: "",
-			lastName: "",
+		setFormValues((prevFormData) => ({
+			...prevFormData,
 			firstName: "",
+			lastName: "",
+			middleName: "",
+			suffix: "",
 			email: "",
 			country: "",
 			province: "",
 			city: "",
-			zipcode: "",
 			address: "",
-		});
+			zipcode: "",
+		}));
 		setFiles([null, null, null, null]);
 		setErrors({});
 
@@ -225,7 +278,7 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
 											className="application-input"
 											placeholder="09"
 											value={formValues.mobileNumber}
-											onChange={handleNumberChange}
+											onChange={handleInputChange}
 											required
 											pattern="\d{10,11}"
 											maxLength="11"
@@ -235,7 +288,7 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
 								</div>
 								<div className="application-second-row">
 									<div className="application-content">
-										<p>Lastname {userDetails.lastName}</p>
+										<p>Lastname </p>
 										<input
 											type="text"
 											name="lastName"
@@ -243,11 +296,12 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
 											placeholder="Lastname"
 											value={formValues.lastName}
 											onChange={handleInputChange}
+											disabled={!!userDetails?.name.lastName}
 											required
 										/>
 									</div>
 									<div className="application-content">
-										<p>First Name {userDetails.firstName}</p>
+										<p>First Name</p>
 										<input
 											type="text"
 											name="firstName"
@@ -255,6 +309,7 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
 											placeholder="First Name"
 											value={formValues.firstName}
 											onChange={handleInputChange}
+											disabled={!!userDetails?.name.firstName}
 											required
 										/>
 									</div>
@@ -267,6 +322,7 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
 											placeholder="Email Address"
 											value={formValues.email}
 											onChange={handleInputChange}
+											disabled={!!userDetails?.email}
 											required
 										/>
 									</div>
@@ -279,6 +335,9 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
 											className="application-select"
 											value={formValues.country}
 											onChange={handleInputChange}
+											disabled={
+												!!userDetails?.addresses?.current?.addressL0Name
+											}
 											required
 										>
 											<option value="">Select Country</option>
@@ -299,6 +358,9 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
 											className="application-select"
 											value={formValues.province}
 											onChange={handleInputChange}
+											disabled={
+												!!userDetails?.addresses?.current?.addressL1Name
+											}
 											required
 										>
 											<option value="">Select Province</option>
@@ -319,6 +381,9 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
 											className="application-select"
 											value={formValues.city}
 											onChange={handleInputChange}
+											disabled={
+												!!userDetails?.addresses?.current?.addressL2Name
+											}
 											required
 										>
 											<option value="">Select City</option>
@@ -341,6 +406,7 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
 											placeholder="Zipcode"
 											value={formValues.zipcode}
 											onChange={handleInputChange}
+											disabled={!!userDetails?.addresses?.current?.zipCode}
 											required
 										/>
 									</div>
@@ -353,6 +419,7 @@ const ApplicationDetailModal = ({ visible, onClose }) => {
 											placeholder="Enter House No/Unit/Building Name/Street"
 											value={formValues.address}
 											onChange={handleInputChange}
+											disabled={!!userDetails?.addresses?.current?.otherAddress}
 											required
 										/>
 									</div>
