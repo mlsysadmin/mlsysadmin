@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Input, Select, Slider, Dropdown } from "antd";
 import { CaretDownOutlined } from "@ant-design/icons";
 import "../../../styles/custom.css";
-import CertainFeatureMenu from "./certainfeature";
+	import CertainFeatureMenu from "./certainfeature";
 
 const ListingSearch = () => {
 	const { Option } = Select;

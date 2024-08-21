@@ -76,6 +76,11 @@
 #dashboard .banner .banner-content .banner-search .card-item {
     margin: 5px;
 }
+#dashboard :where(.css-dev-only-do-not-override-1uq9j6g).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+    color: #d90000;
+    border-color: #d90000;
+    background: #ffffff;
+}
 
 #dashboard .banner .banner-content .banner-search .card-item.field {
     width: 140px;
