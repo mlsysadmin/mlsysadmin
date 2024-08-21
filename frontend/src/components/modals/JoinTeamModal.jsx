@@ -104,7 +104,7 @@ const JoinTeam = ({ toggleModal }) => {
 						country: respData.addresses?.current?.addressL0Name || "",
 						province: respData.addresses?.current?.addressL1Name || "",
 						city: respData.addresses?.current?.addressL2Name || "",
-						street: respData.addresses?.current?.otherAddress || "",
+						address: respData.addresses?.current?.otherAddress || "",
 					}));
 				} else {
 					setIsModalVisible(true);
@@ -115,32 +115,48 @@ const JoinTeam = ({ toggleModal }) => {
 		}
 	};
 
+const handleValidation = () => {
+	console.log("Validating formData:", formData);
+	let formErrors = {};
+	let isValid = true;
 
-	const handleValidation = () => {
-		let formErrors = {};
-		let isValid = true;
-
-		Object.keys(formData).forEach((key) => {
-			if (!formData[key]) {
-				formErrors[key] = "This field is required";
-				isValid = false;
-			}
-		});
-
-		if (!formData.brokerQuestion) {
-			formErrors.brokerQuestion = "This field is required";
+	
+	Object.keys(formData).forEach((key) => {
+	
+		if (!formData[key] || formData[key].trim() === "") {
+			formErrors[key] = "This field is required";
 			isValid = false;
 		}
+	});
 
-		setErrors(formErrors);
-		return isValid;
-	};
 
-	const handleSubmit = () => {
-		if (handleValidation()) {
-			setShowOtpModal(true);
-		}
-	};
+	if (!formData.brokerQuestion) {
+		formErrors.brokerQuestion = "This field is required";
+		isValid = false;
+	}
+
+	// Update errors state
+	setErrors(formErrors);
+
+	
+	console.log("Form errors:", formErrors);
+
+	return isValid;
+};
+
+const handleSubmit = (e) => {
+	e.preventDefault(); 
+
+	const isValid = handleValidation();
+	console.log("Validation result:", isValid);
+
+	if (isValid) {
+		setShowOtpModal(true);
+	} else {
+		console.log("Form is invalid, not showing OTP modal");
+	}
+};
+
 
 	const resetForm = () => {
 		setFormData({
@@ -201,13 +217,19 @@ const JoinTeam = ({ toggleModal }) => {
 
 	return (
 		<div className="join-modal-container">
-			{isModalVisible ? (
-				<Modal
-					isVisible={isModalVisible}
-					onClose={() => setIsModalVisible(false)}
-				/>
-			) : (
-				!showOtpModal && (
+			<Modal isVisible={isModalVisible} onClose={handleCloseModal} />
+			{showOtpModal &&
+				(
+					<OTPModal
+						visible={showOtpModal}
+						onClose={() => {
+							setShowOtpModal(false);
+							resetForm();
+						}}
+					/>
+				)}
+			{!showOtpModal &&
+				!isModalVisible &&(
 					<div
 						className="modal-overlay-jointeam"
 						role="dialog"
@@ -270,14 +292,6 @@ const JoinTeam = ({ toggleModal }) => {
 										{errors.mobileNumber && (
 											<p className="error">{errors.mobileNumber}</p>
 										)}
-
-										<Modal
-											isVisible={isModalVisible}
-											onClose={() => {
-												setIsModalVisible(false);
-												resetForm();
-											}}
-										/>
 									</div>
 									<div className="join-team-group">
 										<span>Email Address</span>
@@ -344,7 +358,7 @@ const JoinTeam = ({ toggleModal }) => {
 											}
 										>
 											<Option value="">Select Option</Option>
-											<Option value="">None</Option>
+											<Option value="None">None</Option>
 											<Option value="Jr.">Jr.</Option>
 											<Option value="Sr.">Sr.</Option>
 										</Select>
@@ -495,15 +509,7 @@ const JoinTeam = ({ toggleModal }) => {
 							</button>
 						</div>
 					</div>
-				)
-			)}
-			<OTPModal
-				visible={showOtpModal}
-				onClose={() => {
-					setShowOtpModal(false);
-					resetForm();
-				}}
-			/>
+				)}
 		</div>
 	);
 };
