@@ -2,6 +2,7 @@
     /* flex-direction: column; */
     width: 100%;
     background-color: #ffffff;
+
 }
 
 
@@ -74,6 +75,11 @@
 
 #dashboard .banner .banner-content .banner-search .card-item {
     margin: 5px;
+}
+#dashboard :where(.css-dev-only-do-not-override-1uq9j6g).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+    color: #d90000;
+    border-color: #d90000;
+    background: #ffffff;
 }
 
 #dashboard .banner .banner-content .banner-search .card-item.field {
@@ -412,13 +418,16 @@
 /* FEATURED PROPERTIES */
 .dashboard .discover .discover--section-4{
     /* background-color: #fff0f058; */
-    padding-top: 70px;
+    padding: 20px 100px;
     padding-bottom: 80px;
+    height: auto;
 }
 
 .dashboard .discover .card--brokerage-featured {
     margin: auto;
-    width: 75%;
+    width: 100%;
+    height: auto;
+    padding-bottom: 100px;
 }
 .dashboard .discover .discover--section-4 h3{
     text-align: left;
@@ -659,7 +668,7 @@
         text-align: center;
         justify-content: center;
         align-items: center;
-        margin-top: 30px;
+        margin-top: 140px;
     }
     
     #dashboard .banner .banner-tags .menu-tags li {
@@ -693,7 +702,7 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
-      margin-left: 0%;
+      margin-left: 30%;
         
     }
    
@@ -706,83 +715,7 @@
 
 }
 
-@media screen and (min-width: 481px) and (max-width: 800px) {
-    #dashboard .banner .banner-tags .menu-tags{
-        margin-top: 30px;
-    }
-    .dashboard .discover .discover-content{
-        margin: 80px 5px 50px 5px;
-    }
-    .dashboard .discover .discover--section-3 .card--brokerage-inquire {
-        display: block
-    }
 
-    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-image,
-    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-container {
-        width: 100%;
-    }
-
-    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-container {
-        padding-top: 40px;
-        padding-bottom: 40px;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--content {
-        margin: 0px !important;
-    }
-
-    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--description,
-    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--sub-desc {
-        width: 100%;
-    }
-
-    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--actions .action-btn {
-        width: 100%;
-        margin: 10px auto;
-    }
-    .dashboard .ratings{
-        margin: 50px auto 15px auto;
-        width: 90%;
-    }
-    .dashboard .discover .discover--section-4{
-        padding-bottom: 80px;
-    }
-    .dashboard .discover .card--brokerage-featured{
-        width: 85%;
-    }
-}
-
-
-
-/* @media (max-width: 320px) {
-    #dashboard .banner .banner-title {
-        font-size: 28px;
-        text-align: center;
-        color: white;
-    }
-
-    #dashboard .banner .banner-tags .menu-tags li {
-        margin: 4px;
-        line-height: 26px;
-        padding-inline: 10px;
-    }
-
-    #dashboard .banner .banner-content .banner-search {
-        padding: 12px;
-        border-radius: 20px;
-    }
-
-    #dashboard .banner .banner-content .banner-search .card-item.field {
-        width: 120px;
-    }
-
-    #dashboard .banner .banner-content .banner-search .round-btn {
-        font-size: 10px;
-        margin: 3px;
-    }
-} */
 @media screen and (min-width: 320px) and (max-width:800px)
 {
     .dashboard .discover {
@@ -794,6 +727,11 @@
         justify-content: center;
         align-items: center;
     }
+
+    
+ #dashboard .banner .banner-content .banner-search{
+    margin-top: 170px;
+ }
 
     .dashboard .discover .discover-content .discover-section--title .section-2-title {
         padding: 0 20px 10px 20px;
@@ -894,6 +832,68 @@
 
     
 }
+
+@media screen and (min-width: 412px) and (max-width:915px){
+    #dashboard .banner .banner-tags .menu-tags {
+    margin-top: -30px !important;
+    }
+}
+
+@media screen and (min-width: 393px) and (max-width:851px){
+     #dashboard .banner .banner-tags .menu-tags {
+    margin-top: -30px !important;
+    }
+}
+
+
+@media screen and (min-width: 360px) and (max-width: 800px) {
+    #dashboard .banner .banner-tags .menu-tags{
+        margin-top: 50px;
+    }
+    .dashboard .discover .discover-content{
+        margin: 80px 5px 50px 5px;
+    }
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire {
+        display: block
+    }
+
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-image,
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-container {
+        width: 100%;
+    }
+
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-container {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--content {
+        margin: 0px !important;
+    }
+
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--description,
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--sub-desc {
+        width: 100%;
+    }
+
+    .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--actions .action-btn {
+        width: 100%;
+        margin: 10px auto;
+    }
+    .dashboard .ratings{
+        margin: 50px auto 15px auto;
+        width: 90%;
+    }
+    .dashboard .discover .discover--section-4{
+        padding-bottom: 80px;
+    }
+    .dashboard .discover .card--brokerage-featured{
+        width: 85%;
+    }
+}
+
  @media  (max-width: 1024px) {
     .dashboard .discover {
         margin-top: 100px;
@@ -997,3 +997,4 @@
 
 
 } 
+

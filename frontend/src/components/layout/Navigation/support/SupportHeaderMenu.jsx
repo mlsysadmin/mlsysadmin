@@ -70,7 +70,8 @@ const SupportHeaderMenu = () => {
             ]
          },
         { label: "Pre-Approval Request", key: "pre-approval", link: '/support/pre-approval-request' },
-        { label: "Client Management", key: "client", link: '/support/client-management' },
+        { label: "Broker Applicants", key: "broker-applicants", link: '/support/pre-approval-request' },
+        { label: "Property Inquiry", key: "property-inquiry", link: '/support/property-inquiry' },
     ];
 
     const items = MenuItems.map((item, index) => ({

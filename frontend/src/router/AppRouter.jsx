@@ -4,6 +4,7 @@ import MainOutlet from "../pages/MainOutlet";
 import NewPage from "../pages/New.page";
 import Dashboard from "../pages/Dashboard.page";
 import Allpage from "../pages/Buyer.All.page";
+import ApplicationHistoryPage from "../pages/ApplicationHistory.page";
 import Featuredpage from "../pages/Buyer.Featured.page";
 
 
@@ -59,7 +60,7 @@ import {
 	ApprovedApplication,
 	SupportCreateListing,
 } from "../pages";
-import ProtectedRoute from "./ProtectedRoute";
+import { ProtectedRoute, BuyerProtectedRoute } from "./ProtectedRoute";
 
 
 
@@ -188,6 +189,10 @@ const Routes = [
 				path: "/previewListing/:new_id",
 				element: <PreviewListing />,
 			},
+			{
+				path: "buyer-application-history",
+				element: <BuyerProtectedRoute element={<ApplicationHistoryPage />} />,
+			},
 		],
 	},
 	{
@@ -203,7 +208,7 @@ const Routes = [
 				element: <div />,
 			},
 			{
-				path: "client-management",
+				path: "dashboard",
 				// element: <SupportDashboardPage />,
 				element: <SupportDashboard />,
 			},
@@ -287,6 +292,10 @@ const Routes = [
 			{
 				path: "pre-approved/:listingId",
 				element: <PreApprovalRequestListing />,
+			},
+			{
+				path: "property-inquiry",
+				element: <PreApprovalRequest />,
 			},
 		],
 	},

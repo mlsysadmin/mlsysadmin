@@ -9,6 +9,7 @@ import userProfile from "../../../../assets/profile-user.png";
 
 
 import JoinTeam from "../../../modals/JoinTeamModal";
+import { isCookiePresent } from "../../../../utils/CookieChecker";
 import UserLogInProfileDropdownBtn from "../../../custom/buttons/BuyerLogInButtonDropdown";
 // import userProfileLogIn from "../../../../assets/userProfileLogIn.png"
 // import ProfileDropDown
@@ -26,13 +27,22 @@ const HeaderMenu = () => {
 	const [otherServicesPopUpOpen, setotherServicesPopUpOpen] = useState(false);
 	const navigate = useNavigate();
 	const location = useLocation();
+
+
+	 const sessionCookieName = process.env.REACT_APP_SESSION_COOKIE_NAME;
+	const accountCookieName = process.env.REACT_APP_ACCOUNT_COOKIE_NAME;
+	const isMLWWSPresent = isCookiePresent(sessionCookieName);
+	const isAccountDetailsPresent = isCookiePresent(accountCookieName);
+		console.log("isMLWWSPresent:", isMLWWSPresent);
+		console.log("isAccountDetailsPresent:", isAccountDetailsPresent);
+
+
 	const url_Redirect = process.env.REACT_APP_LOGIN_URL;
 	const handleUserProfileClick = () => {
 		if (url_Redirect) {
 			window.location.href = url_Redirect;
 		}
 	};
-
 
 	//modals
 	const [showModal, setShowModal] = useState(false);
@@ -108,7 +118,6 @@ const HeaderMenu = () => {
 	const OtherServicesMenuPopContent = (
 		<MenuPopupContent submenu={SubMenu.otherServices} />
 	);
-
 	const RentMenu = () => (
 		<MenuPopup
 			// handleOpenChange={handleRentOpenChange}
@@ -212,28 +221,35 @@ const HeaderMenu = () => {
 					label="List your Property"
 					onClick={handleUserProfileClick}
 				/>
-				<RoundBtn
-					type="primary"
-					className="menu-buttons"
-					style={{
-						color: "#D90000",
-						backgroundColor: "transparent",
-						border: "1px solid #d90000",
-						boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-						padding: "5px 5px",
-						cursor: "pointer",
-					}}
-					label="Join our Team"
-					onClick={handleJoinTeamClick}
-				/>
-				{showModal && <JoinTeam toggleModal={toggleModal} />}
-				<Row align={"middle"} className="menu-buttons">
-					<img
-						src={userProfile}
-						style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
-						onClick={handleUserProfileClick}
+				{!isMLWWSPresent && (
+					<RoundBtn
+						type="primary"
+						className="menu-buttons"
+						style={{
+							color: "#D90000",
+							backgroundColor: "transparent",
+							border: "1px solid #d90000",
+							boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+							padding: "5px 5px",
+							cursor: "pointer",
+						}}
+						label="Join our Team"
+						onClick={handleJoinTeamClick}
 					/>
-					{/* <SellerLogInButtonDropdown/> */}
+				)}
+
+				{showModal && <JoinTeam toggleModal={toggleModal} />}
+
+				<Row align={"middle"} className="menu-buttons">
+					{isMLWWSPresent ? (
+						<UserLogInProfileDropdownBtn />
+					) : (
+						<img
+							src={userProfile}
+							style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
+							onClick={handleUserProfileClick}
+						/>
+					)}
 				</Row>
 			</div>
 		</>

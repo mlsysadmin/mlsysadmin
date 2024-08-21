@@ -66,7 +66,38 @@ const Logout = async () => {
     }
 }
 
-export {
-    GoogleSignIn,
-    Logout
-}
+const searchKyc = async (cellphoneNumber) => {
+	try {
+		const reqbody = {
+            payload : {
+                cellphoneNumber
+            }
+		};
+		console.log("Sending payload:", reqbody); 
+		
+        const config = {
+			headers: {
+				"Content-Type": "application/json",
+				"x-api-key": process.env.REACT_APP_API_KEY,
+			},
+		};
+
+		const response = await MLBROKERAGEAxiosInstance.post(
+			"/api/user/search-kyc",
+			reqbody,
+			config
+		);
+
+		return response.data;
+	} catch (error) {
+		console.error(
+			"Error fetching KYC data:",
+			error.response ? error.response.data : error.message
+		);
+		throw error;
+	}
+};
+
+
+
+export { GoogleSignIn, Logout, searchKyc };

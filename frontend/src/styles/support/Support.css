@@ -10,7 +10,8 @@
 .descriptionText,
 .unitDetailsText,
 .locationText,
-.featureText, .uploadPhotosText {
+.featureText,
+.uploadPhotosText {
   padding: 20px 0px 5px 0px;
   color: #000000bd;
   font-family: var(--font-family);
@@ -76,18 +77,26 @@
   font-size: 1.1rem;
 }
 
-.support--submit-btn{
+.support--submit-btn {
   display: flex;
   justify-content: end;
+  gap: 15px;
 }
 
-.support--submit-btn .submit-btn, 
+.support--submit-btn .submit-btn,
 .support--submit-btn .submit-btn.ant-btn:hover {
   padding: 28px 33px;
   font-size: 16px;
   background: var(--red);
 }
-
+.support--submit-btn .cancel-btn,
+.support--submit-btn .cancel-btn.ant-btn:hover{
+  padding: 28px 33px;
+  font-size: 16px;
+  background: transparent;
+  border: 1px solid var(--red);
+  color: var(--red);
+}
 .fmodal .button-primary {
   background-color: #d90000;
   color: white;
@@ -119,7 +128,7 @@
   gap: 1rem;
 }
 
-.ListingDetails .leftSide .select-field {
+.ListingDetails .leftSide .custom-select-type {
   margin: 10px 0px 0px 0px;
 }
 
@@ -130,7 +139,7 @@
 .ListingDetails .features .FeaturesFields .ammenitiesInputField.ant-input:hover,
 .ListingDetails .features .FeaturesFields .ammenitiesInputField.ant-input:focus,
 .ListingDetails .features .FeaturesFields .includesInputField.ant-input:hover,
-.ListingDetails .features .FeaturesFields .includesInputField.ant-input:focus  {
+.ListingDetails .features .FeaturesFields .includesInputField.ant-input:focus {
   border-color: var(--red) !important;
   box-shadow: 0 0 0 2px #f778783f !important;
 
@@ -150,7 +159,7 @@
   /* padding: 0px 10px 0px 10px; */
 }
 
-.select-field .labelClassName {
+.custom-select-type .labelClassName {
   color: var(--gray-border-color);
   font-family: var(--font-family);
   font-size: 17px;
@@ -161,7 +170,7 @@
   display: inline-block;
 }
 
-.select-field .fieldClassName option {
+.custom-select-type .fieldClassName option {
   color: var(--font-color);
   font-family: var(--font-family);
   font-size: 20px;
@@ -196,17 +205,17 @@
 }
 
 .googleMapDisplay {
-  margin: 100px 0px 0px 0px;
   border-radius: 10px;
   border: 1px #8c9094 dashed;
+  /* height: 260px; */
   /* width: 93%; */
-  height: 47%;
+  /* height: 47%; */
 }
 
 .ListingDetails .features {
   display: grid;
   grid-template-columns: 1fr;
-  width: 99%;
+  /* width: 99%; */
   /* padding: 1%; */
   grid-column: 1 / span 2;
 }
@@ -222,7 +231,7 @@
 .indoorFeaturesText,
 .outdoorFeaturesText,
 .featuresAndAmenitiesText,
-.includesText{
+.includesText {
   color: #8c9094;
   font-family: "Poppins", Helvetica;
   font-size: 20px;
@@ -285,51 +294,74 @@
   margin: 10px 0;
 }
 
-.features .support--features{
+.support--features .FeaturesFields input:disabled, 
+.support--features .FeaturesFields .fieldFeatures.ant-select-disabled .ant-select-selector,
+.ListingDetails .fieldClassName.ant-select-disabled .ant-select-selector {
+  color: rgb(0 0 0 / 63%);
+  background-color: rgb(0 0 0 / 3%);
+}
+
+.description-caption.ant-input:disabled {
+  color: rgb(0 0 0 / 63%);
+  background-color: rgb(0 0 0 / 3%);
+}
+
+.features .support--features {
   margin: 8px 0;
 }
 
-.support--upload-photos{
+.support--upload-photos {
   margin: 35px 0 20px 0;
 }
 
-.support--upload-photos .drag-upload.ant-upload-wrapper{
+.support--upload-photos .drag-upload.ant-upload-wrapper {
   display: block;
 }
-.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload{
+
+.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload {
   padding: 30px;
 }
-.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload:hover{
+
+.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload:hover {
   border-color: var(--red);
-  
+
 }
 
-.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload-list .ant-upload-list{
+.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload-list .ant-upload-list {
   width: 150px;
   height: 150px;
 }
 
-.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload-list .ant-upload-list-item{
+.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload-list .ant-upload-list-item {
   padding: 0;
   border-radius: 10px;
 }
-.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload-list .ant-upload-list-item::before{
+
+.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload-list .ant-upload-list-item::before {
   width: 0;
   height: 0;
 }
-.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload-list.ant-upload-list-picture-card{
+
+.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload-list.ant-upload-list-picture-card {
   gap: 25px;
   margin: 30px 0;
 }
 
-.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload-list .ant-upload-list-item-thumbnail img{
+.support--upload-photos .drag-upload.ant-upload-wrapper .ant-upload-list .ant-upload-list-item-thumbnail img {
   object-fit: cover;
   border-radius: 10px;
 }
+.support--upload-photos .upload-photos--header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 
 /* SUPPORT SUB BTNS */
 
-.support-listing--wrapper .sub-btns{
+.support-listing--wrapper .sub-btns {
   display: flex;
   justify-content: end;
   gap: 1rem;
@@ -339,13 +371,14 @@
 }
 
 /* SUPPORT SUB BTNS */
-.support-listing--wrapper .sub-btns button.listing-details--sub-btn, 
-.support-listing--wrapper .sub-btns button.listing-details--sub-btn:hover{
+.support-listing--wrapper .sub-btns button.listing-details--sub-btn,
+.support-listing--wrapper .sub-btns button.listing-details--sub-btn:hover {
   border-color: var(--red);
   color: var(--red);
   font-weight: bold;
 }
-.support-listing--wrapper .sub-btns button.listing-details--sub-btn.ant-btn-lg{
+
+.support-listing--wrapper .sub-btns button.listing-details--sub-btn.ant-btn-lg {
   height: 45px;
 }
 

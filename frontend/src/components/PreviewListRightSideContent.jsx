@@ -223,7 +223,7 @@ const PreviewListRightSideContent = () => {
 						visible={showApplicationDetailModal}
 						onClose={handleCloseModal}
 					/>
-				)} 
+				)}
 			</div>
 
 			<div className="contact-us">

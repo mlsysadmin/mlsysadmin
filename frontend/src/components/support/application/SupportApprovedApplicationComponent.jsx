@@ -214,7 +214,7 @@ const openMessage = (type, content, duration) => {
       {contextHolder}
       <div className={`support--pending-master-listing`}
         style={{ width: "85%", margin: 'auto' }}>
-        <SupportSubMenu title={'Manage Active Listing'}
+        <SupportSubMenu title={'Manage Approved Applications'}
           isShowDetails={false} />
         <div className="support--top-controls">
           <div className="support--show-entries">

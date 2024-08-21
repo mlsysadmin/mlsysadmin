@@ -25,6 +25,8 @@ const SupportDeniedMasterlistComponent = () => {
 }, []);
 const { setIsMessageLoadingOpen, setIndex } = useOutletContext();
 
+const navigate = useNavigate();
+
 const [current, setCurrent] = useState(1);
 const [pageSize, setPageSize] = useState(2);
 const [originalData, setOriginalData] = useState([]);
@@ -103,7 +105,7 @@ const GetAllForApproval = async () => {
                 const location = list.location
                 return {
                     key: i,
-                    select: <SemiRoundBtn label={'Show Details'} className={'support--show-details-btn'} />,
+                    select: <SemiRoundBtn label={'Show Details'} className={'support--show-details-btn'} handleClick={() => handleShowDetails(list.listing_id)}/>,
                     date: Format_Date(list.createdAt),
                     listing_id: list.listing_id,
                     title: list.title,
@@ -210,12 +212,28 @@ const openMessage = (type, content, duration) => {
     });
 };
 
+const handleShowDetails = (e) => {
+    console.log('Show Details', e);
+    const props = {
+        listing_id: e,
+        isEditListing: false,
+        tabTitle: 'Denied Listing',
+        isShowDetails: true,
+    }
+    navigate(
+        {
+            pathname: '/support/master-list/listing-details',
+        },
+    );
+    sessionStorage.setItem('props', JSON.stringify(props));
+}
+
   return (
     <div>
       {contextHolder}
       <div className={`support--pending-master-listing`}
         style={{ width: "85%", margin: 'auto' }}>
-        <SupportSubMenu title={'Manage Denied Listing'}
+        <SupportSubMenu title={'Manage Denied Listings'}
           isShowDetails={false} />
         <div className="support--top-controls">
           <div className="support--show-entries">

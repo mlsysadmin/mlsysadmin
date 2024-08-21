@@ -30,6 +30,11 @@ const SupportOutlet = () => {
     });
   };
 
+  useEffect(() => {
+    console.log("Outlet Index", zIndex);
+    
+  },[])
+
   return (
     <>
       {contextHolder}

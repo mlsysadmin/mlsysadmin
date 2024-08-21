@@ -14,7 +14,7 @@ const Amenities = Sequelize.define("amenities", {
     },
     indoor_features: {
         allowNull: true,
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         get() {
             return JSON.parse(this.getDataValue('indoor_features'));
         },
@@ -24,7 +24,7 @@ const Amenities = Sequelize.define("amenities", {
     },
     outdoor_features: {
         allowNull: true,
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         get() {
             return JSON.parse(this.getDataValue('outdoor_features'));
         },

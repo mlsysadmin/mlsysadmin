@@ -132,6 +132,7 @@ module.exports = {
 
             const getToken = await GenerateToken();
 
+            console.log(req.body);
             if ((getToken) && params) {
                 const token = getToken.data.token;
 
@@ -221,7 +222,12 @@ module.exports = {
     GoogleSignIn: async (req, res, next) => {
         try {
 
-            const URL = await GenerateURL();
+            const api_key = process.env.X_API_KEY;
+
+            const URL = await GenerateURL(api_key);
+
+            console.log("GENERATED URL: ", URL);
+            
 
             const data = DataResponseHandler(
                 { url: URL },
@@ -281,6 +287,9 @@ module.exports = {
                     // secure: true,
                     // sameSite: true,
                     // domain: process.env.CLIENT_APP_URL,
+                    // httOnly: process.env.COOKIE_HTTP_ONLY,
+                    // secure: process.env.COOKIE_SECURE,
+                    domain: process.env.COOKIE_DOMAIN,
                     signed: true
                     // expires: new Date(Date.now() + 900000)
                 }
@@ -289,10 +298,10 @@ module.exports = {
                     expires: new Date(Date.now() + 300000),
                     maxAge: 300000, // 5 min
                     // path: '/',
-                    // httOnly: true,
-                    // secure: true,
+                    // httOnly: process.env.COOKIE_HTTP_ONLY,
+                    // secure: process.env.COOKIE_SECURE,
                     // sameSite: true,
-                    // domain: process.env.CLIENT_APP_URL,
+                    domain: process.env.COOKIE_DOMAIN,
                     // expires: new Date(Date.now() + 900000)
                 }
 
@@ -309,7 +318,7 @@ module.exports = {
                 res.cookie('access_token', generateSessionToken, tokenCookieOptions);
                 res.cookie('user_details', JSON.stringify(verifyUser), useCookieOptions);
 
-                res.redirect(`${process.env.CLIENT_APP_URL}/support/client-management`);
+                res.redirect(`${process.env.CLIENT_APP_URL}/support/dashboard`);
             }
 
         } catch (error) {

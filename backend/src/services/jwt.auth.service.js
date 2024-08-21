@@ -20,7 +20,7 @@ module.exports = {
         const token = jwt.sign(payload,
             process.env.SECRET_KEY,
             {
-                expiresIn: Math.floor(Date.now() / 1000) + (10 * 60) // 5 minutes
+                expiresIn: Math.floor(Date.now() / 1000) + (60 * 60) // 5 minutes
                 // expiresIn: Math.floor(Date.now() / 1000) + (5 * 60) // 5 minutes
                 // expiresIn: Math.floor(Date.now() / 1000) + 5 // 5 seconds
             }

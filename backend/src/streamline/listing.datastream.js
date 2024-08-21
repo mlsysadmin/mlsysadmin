@@ -642,7 +642,8 @@ module.exports = {
                         model: PropertyListing,
                         as: 'listing',
                         where: {
-                            listing_status: fields.listing_status
+                            listing_status: fields.listing_status,
+                            current_level: fields.approver_level
                         },
                         attributes: [
                             'createdAt',

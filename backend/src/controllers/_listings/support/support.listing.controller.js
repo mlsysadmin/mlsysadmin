@@ -270,7 +270,19 @@ module.exports = {
 
             const GetAllListing = await Sequelize.transaction(async (transaction) => {
 
-                const get_all_listing = await FindAllListingForApprovalByApprover({ ...payload, approval_status }, transaction);
+                const approver = await FindApprover({email:payload.approver_email}, transaction);
+                
+                let approver_level = null;
+
+                if (approver.length !== 0) {
+                    approver.forEach((app) => {
+                        if (app.email === payload.approver_email) {
+                            approver_level = app.level;
+                        }
+                    })
+                }
+
+                const get_all_listing = await FindAllListingForApprovalByApprover({ ...payload, approval_status, approver_level }, transaction);
 
                 return get_all_listing;
 
@@ -503,7 +515,19 @@ module.exports = {
 
                 const property_listing = await FindAllMasterListing({}, transaction);
 
-                const get_all_listing = await FindAllListingForApprovalByApprover({ ...payload, approval_status }, transaction);
+                const approver = await FindApprover({email:payload.approver_email}, transaction);
+                
+                let approver_level = null;
+
+                if (approver.length !== 0) {
+                    approver.forEach((app) => {
+                        if (app.email === payload.approver_email) {
+                            approver_level = app.level;
+                        }
+                    })
+                }
+
+                const get_all_listing = await FindAllListingForApprovalByApprover({ ...payload, approval_status, approver_level }, transaction);
 
                 const sold = property_listing.filter((property) => property.property_status === "SOLD");
                 const active = property_listing.filter((property) => property.property_status === "ACTIVE");
