@@ -262,13 +262,13 @@
 .auto-insurance-products .radio-buttons p:after {
     content: "";
     display: inline-block;
-    width: 8px; /* Size of the inner red circle */
-    height: 8px;
+    width: 5px; /* Size of the inner red circle */
+    height: 5px;
     background-color: #ff0000; /* Inner red circle */
     border-radius: 50%;
     position: absolute;
     /* top: 50%; */
-    left: 69%;
+    left: 68.5%;
  
 }
 
@@ -459,6 +459,18 @@
         font-size: 18px;
         margin: 0px 0px 0px 10px;
     }
+    .auto-insurance-products .radio-buttons p:after {
+        content: "";
+        display: inline-block;
+        width: 5px; /* Size of the inner red circle */
+        height: 5px;
+        background-color: #ff0000; /* Inner red circle */
+        border-radius: 50%;
+        position: absolute;
+        /* top: 50%; */
+        left:24%;
+     
+    }
     
 }
 @media screen and (min-width: 360px) and (max-width: 480px) {
@@ -635,6 +647,18 @@
     .insurance-guide-content-five span {
         font-size: 18px;
         margin: 0px 0px 0px 10px;
+    }
+    .auto-insurance-products .radio-buttons p:after {
+        content: "";
+        display: inline-block;
+        width: 5px; /* Size of the inner red circle */
+        height: 5px;
+        background-color: #ff0000; /* Inner red circle */
+        border-radius: 50%;
+        position: absolute;
+        /* top: 50%; */
+        left: 27%;
+     
     }
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
@@ -814,6 +838,18 @@
     .insurance-guide-content-five span {
         font-size: 26px;
         margin: 0px 0px 0px 10px;
+    }
+    .auto-insurance-products .radio-buttons p:after {
+        content: "";
+        display: inline-block;
+        width: 5px; /* Size of the inner red circle */
+        height: 5px;
+        background-color: #ff0000; /* Inner red circle */
+        border-radius: 50%;
+        position: absolute;
+        /* top: 50%; */
+        left: 73%;
+     
     }
 }
 @media screen and (min-width: 769px) and (max-width: 1024px) {

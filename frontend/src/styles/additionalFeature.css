@@ -21,7 +21,10 @@
 	margin: 5px;
 	display: flex;
 	align-items: center;
-    border: none;
+    border: 1px solid #d90000;
+	border-radius: 30px;
+	width: 50%;
+	height: 50%;
 }
 
 .addFeatureList .features ul {
@@ -149,6 +152,7 @@
 	}
 	.AddFeature .feature-item {
 		width: 100%;
+		font-size: 16px;
 	}
 	.feature-item-container {
 		width: 100%;
@@ -170,4 +174,5 @@
 	.addFeatureList .features ul {
 		height: 100%;
 	}
+	
 }
