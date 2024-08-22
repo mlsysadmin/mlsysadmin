@@ -57,12 +57,12 @@ export const ListingForm = () => {
   };
 
   const handlePreviewListing = () => {
-    navigate("/previewlisting");
+    navigate("/previewListing");
   };
 
   return (
     <>
-      <div className="ContentContainer">
+      <div className="listing-ContentContainer">
         <div>
           <ListingBanner />
         </div>
