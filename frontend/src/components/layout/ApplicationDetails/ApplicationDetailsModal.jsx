@@ -296,7 +296,7 @@ const handleInputChange = async (e) => {
 											placeholder="Lastname"
 											value={formValues.lastName}
 											onChange={handleInputChange}
-											disabled={!!userDetails?.name.lastName}
+											disabled={!!userDetails?.name?.lastName}
 											required
 										/>
 									</div>
@@ -309,7 +309,7 @@ const handleInputChange = async (e) => {
 											placeholder="First Name"
 											value={formValues.firstName}
 											onChange={handleInputChange}
-											disabled={!!userDetails?.name.firstName}
+											disabled={!!userDetails?.name?.firstName}
 											required
 										/>
 									</div>
