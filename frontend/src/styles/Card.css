@@ -231,7 +231,7 @@
 
 	.cardImage p {
 		position: absolute;
-		top: 1%;
+		top: 4%;
 		left: 2%;
 		background-color: #fff;
 		border-radius: 10px;
@@ -306,7 +306,7 @@
 	}
 }
 
-@media only screen and (max-width: 720px) {
+@media screen and (min-width: 360px) and (max-width: 480px) {
 	.card {
 		background-color: #fff;
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -341,7 +341,7 @@
 
 	.cardImage p {
 		position: absolute;
-		top: 1%;
+		top: 4%;
 		left: 2%;
 		background-color: #fff;
 		border-radius: 10px;

@@ -53,6 +53,7 @@ console.log( "getlength", GetPhotoLength())
 			<div className="rentContainer">
 				<div className="rentContent">
 					<span className="rent-h1">Properties for Rent</span>
+					
 					<SearchPropertiesSoration />
 					<div className="card-container">
 						{currentCards.map((data, index) => (

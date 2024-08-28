@@ -28,21 +28,20 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	width: 50%;
+	width: 100%;
 	padding: 0px;
 	margin-top: 10px;
 }
 
 .search-sortation .sort span{
-	width: 500px;
 	font-size: 15px;
 }
 }
 
-@media screen and (min-width:393px) and (max-width: 851px){
+@media screen and (min-width: 360px) and (max-width: 800px){
 	.search-sortation{
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: space-between;
 	width: 100%;
 	padding: 0px;
@@ -50,23 +49,98 @@
 }
 
 .search-sortation .sort span{
-	width: 500px;
 	font-size: 15px;
-	margin-left: 50px;
 }
 }
+
+@media screen and (min-width: 375px) and (max-width: 812px){
+	.search-sortation{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	padding: 0px;
+	margin-top: 10px;
+}
+
+.search-sortation .sort span{
+	font-size: 15px;
+}
+}
+
+@media screen and (min-width: 390px) and (max-width: 844px){
+	.search-sortation{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	padding: 0px;
+	margin-top: 10px;
+}
+
+.search-sortation .sort span{
+	font-size: 15px;
+}
+}
+
+@media screen and (min-width:393px) and (max-width: 851px){
+	.search-sortation{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	padding: 0px;
+	margin-top: 10px;
+}
+
+.search-sortation .sort span{
+	font-size: 15px;
+}
+}
+
+@media screen and (min-width: 428px) and (max-width: 926px){
+	.search-sortation{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	padding: 0px;
+	margin-top: 10px;
+}
+
+.search-sortation .sort span{
+	font-size: 15px;
+}
+}
+
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
 .search-sortation {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        width: 100%;
+        width: 95%;
         padding: 0px;
         margin-top: 10px;
+		margin-left: 15px;
     }
     .search-sortation .sort span {
-        width: 500px;
+        font-size: 15px;
+        margin-left: 0px;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1280px){
+	.search-sortation {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 95%;
+        padding: 0px;
+        margin-top: 10px;
+		margin-left: 15px;
+    }
+    .search-sortation .sort span {
         font-size: 15px;
         margin-left: 0px;
     }
