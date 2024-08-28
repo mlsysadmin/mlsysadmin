@@ -217,7 +217,8 @@ const LocationDetailsComponent = ({ onComplete }) => {
           />
         </div>
         <div className="embedd-map">
-          <MapContainer center={position} zoom={13} style={{ height: "300px", width: "400px", borderRadius: "30px", marginLeft: "50px" }}>
+          <MapContainer center={position} zoom={13} style={{
+             height: "300px", width: "400px", borderRadius: "30px", marginLeft: "50px" }}>
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
