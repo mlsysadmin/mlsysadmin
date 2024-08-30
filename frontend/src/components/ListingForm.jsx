@@ -57,7 +57,7 @@ export const ListingForm = () => {
   };
 
   const handlePreviewListing = () => {
-    navigate("/previewListing");
+    navigate("/previewListing/:new_id");
   };
 
   return (
