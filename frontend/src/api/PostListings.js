@@ -10,8 +10,9 @@ const PostSellerListing = async (property_fields = {}) => {
 			listing_status,
 			current_level,
 			level,
+			title,
 			description,
-			property_type: { type, subtype } = {}, // Default to an empty object
+			property_type: { type, subtype } = {},
 			listing_type_id,
 			unit_details: {
 				price,
@@ -25,7 +26,7 @@ const PostSellerListing = async (property_fields = {}) => {
 				parking,
 				floor_area,
 				lot_area,
-			} = {}, // Default to an empty object
+			} = {}, 
 			location: {
 				subdivision,
 				city,
@@ -33,14 +34,14 @@ const PostSellerListing = async (property_fields = {}) => {
 				other,
 				zipcode,
 				map_location,
-			} = {}, // Default to an empty object
+			} = {}, 
 			amenities: {
 				indoor_features,
 				outdoor_features,
-				custom_amenities: { feature_name } = {}, // Default to an empty object
-				custom_inclusion: { inclusion_name } = {}, // Default to an empty object
-			} = {}, // Default to an empty object
-			photos: { photo, upload_date_time } = {}, // Default to an empty object
+				custom_amenities: { feature_name } = {}, 
+				custom_inclusion: { inclusion_name } = {}, 
+			} = {},
+			photos: { photo, upload_date_time } = {}, 
 		} = property_fields;
 
 		const reqbody = {
@@ -52,6 +53,7 @@ const PostSellerListing = async (property_fields = {}) => {
 				current_level,
 				level,
 				description,
+				title,
 				property_type: { type, subtype },
 				listing_type_id,
 				unit_details: {

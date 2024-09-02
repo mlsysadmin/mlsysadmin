@@ -31,7 +31,7 @@ export const ListingForm = () => {
 		seller: "",
 		title: "",
 		description: "",
-		listing_status: "",
+		listing_status: "PENDING",
 		current_level: "",
 		level: "",
 		property_type: {
@@ -125,8 +125,8 @@ export const ListingForm = () => {
 		setShowSuccessfulMsgModal(false);
 	};
 
-	const handlePreviewListing = () => {
-		navigate("/previewListing");
+	const handlePreviewListing = (id) => {
+		navigate(`/previewListing/${id}`, { state: id });
 	};
 
 	return (
@@ -174,25 +174,25 @@ export const ListingForm = () => {
 							<div ref={(el) => (stepRefs.current[2] = el)}>
 								<LocationDetailsComponent
 									onComplete={(completed) => handleStepComplete(2, completed)}
-									setPropertyFields={setPropertyFields}
+									setPropertyFields={setPropertyDataFields}
 								/>
 							</div>
 							<div ref={(el) => (stepRefs.current[3] = el)}>
 								<DescriptionDetailsComponent
 									onComplete={(completed) => handleStepComplete(3, completed)}
-									setPropertyFields={setPropertyFields}
+									setPropertyFields={setPropertyDataFields}
 								/>
 							</div>
 							<div ref={(el) => (stepRefs.current[4] = el)}>
 								<UploadPhotosComponent
 									onComplete={(completed) => handleStepComplete(4, completed)}
-									setPropertyFields={setPropertyFields}
+									setPropertyFields={setPropertyDataFields}
 								/>
 							</div>
 							<div ref={(el) => (stepRefs.current[5] = el)}>
 								<FeaturedComponents
 									onComplete={(completed) => handleStepComplete(5, completed)}
-									setPropertyFields={setPropertyFields}
+									setPropertyFields={setPropertyDataFields}
 								/>
 							</div>
 							<p style={{ fontWeight: "500" }}>

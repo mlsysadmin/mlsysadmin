@@ -25,7 +25,6 @@ const UnitDetailsComponent = ({
 	propIdInputError,
 	setPropIdInputError,
 	setPropertyFields,
-  property_id
 }) => {
 
   const [price, setPrice] = useState("");
