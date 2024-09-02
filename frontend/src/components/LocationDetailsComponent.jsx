@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Circle } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import "../styles/listing-form.css";
 import { GetCities, GetProvince, GetCountry } from "../api/Public/Location.api";
+import  "../styles/ViewListing.module.css";
 
 const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 	const [getCountry, setGetCountry] = useState([]);

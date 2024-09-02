@@ -367,9 +367,9 @@
     flex-direction: column;
     align-items: flex-start;
     max-width: 100%;
-    margin: 0  20 auto;
+    /* margin: 0  20 auto;
     margin-top: 2%;
-    margin-left: 20px;
+    margin-left: 20px; */
   
   }
   .listing-steps-process {

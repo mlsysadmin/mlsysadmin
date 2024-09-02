@@ -820,6 +820,39 @@ span.selected {
   margin-left: 5%; /* Add right margin for spacing */
   margin-bottom: 10px; /* Add bottom margin for spacing */
 }
+/* .embedd-map{
+  height: 300px;
+  width: 400px;
+  border-radius: 20px;
+  margin-left: 50px;
+
+} */
+.embedd-map {
+  margin-left: 50px;
+}
+
+.embedd-map .leaflet-container {
+  height: 300px;
+  width: 400px;
+  border-radius: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .embedd-map .leaflet-container {
+      width: 100%;
+      height: 250px;
+      margin-left: 0;
+      border-radius: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .embedd-map .leaflet-container {
+      height: 200px;
+      border-radius: 15px;
+  }
+}
 @media  screen and (max-width:320px){
   .listing-application{
     display: flex;
