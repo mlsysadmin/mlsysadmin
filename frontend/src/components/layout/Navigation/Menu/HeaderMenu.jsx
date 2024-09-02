@@ -7,6 +7,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import RoundBtn from "../../../custom/buttons/RoundBtn.custom";
 import userProfile from "../../../../assets/profile-user.png";
 
+import { getCookieData } from "../../../../utils/CookieChecker";
+import { searchKyc } from "../../../../api/Public/User.api";
 
 import JoinTeam from "../../../modals/JoinTeamModal";
 import { isCookiePresent } from "../../../../utils/CookieChecker";
@@ -29,7 +31,7 @@ const HeaderMenu = () => {
 	const location = useLocation();
 
 
-	 const sessionCookieName = process.env.REACT_APP_SESSION_COOKIE_NAME;
+	const sessionCookieName = process.env.REACT_APP_SESSION_COOKIE_NAME;
 	const accountCookieName = process.env.REACT_APP_ACCOUNT_COOKIE_NAME;
 	const isMLWWSPresent = isCookiePresent(sessionCookieName);
 	const isAccountDetailsPresent = isCookiePresent(accountCookieName);
@@ -43,6 +45,28 @@ const HeaderMenu = () => {
 			window.location.href = url_Redirect;
 		}
 	};
+
+
+	//get user DEtails
+	const [userDetails, setUserDetails] = useState(null);
+
+	const accountDetails = getCookieData();
+		const fetchUserDetails = async () => {
+			try {
+				const response = await searchKyc(accountDetails.mobileNumber);
+				const respData = response.data.data;
+				console.log("API Response:", respData);
+				setUserDetails(respData);
+			} catch (error) {
+				console.error("Error fetching user details:", error);
+			}
+		};
+
+		useEffect(() => {
+			fetchUserDetails();
+			console.log("user", userDetails);
+		}, []);
+
 
 	//modals
 	const [showModal, setShowModal] = useState(false);
@@ -237,12 +261,16 @@ const HeaderMenu = () => {
 						onClick={handleJoinTeamClick}
 					/>
 				)}
-
 				{showModal && <JoinTeam toggleModal={toggleModal} />}
-
 				<Row align={"middle"} className="menu-buttons">
 					{isMLWWSPresent ? (
-						<UserLogInProfileDropdownBtn />
+						userDetails.tier.label === "Buyer" ? (
+							<UserLogInProfileDropdownBtn />
+						) : userDetails.tier.label === "Fully Verified" ? (
+							<SellerLogInButtonDropdown />
+						) : (
+							<></>
+						)
 					) : (
 						<img
 							src={userProfile}

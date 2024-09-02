@@ -120,7 +120,14 @@ const handleLogout = () => {
 								Application History
 							</a>
 						</li>
-						<li onClick={handleLogout} style={{cursor:"pointer"}}>Logout</li>
+						<li>
+							<a href="/buyer-application-history" style={{ color: "#ffffff" }}>
+								Saved Property
+							</a>
+						</li>
+						<li onClick={handleLogout} style={{ cursor: "pointer" }}>
+							Logout
+						</li>
 						<li></li>
 					</ul>
 				</div>

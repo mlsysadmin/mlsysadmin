@@ -1,5 +1,5 @@
 
-.sidebar-container {
+.whole-sidebar .sidebar-container {
   background: linear-gradient(180deg in oklab, #ffeded, white);
   height: 100%;
   width: 14vw;
@@ -8,7 +8,7 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.sidebar-container.open {
+.whole-sidebar .sidebar-container.open {
   transform: translateX(0);
 }
 
