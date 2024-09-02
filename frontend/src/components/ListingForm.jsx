@@ -104,7 +104,6 @@ export const ListingForm = () => {
 
 			console.log("API Response:", postdata);
 
-<<<<<<< HEAD
 			setPropertyFields(postdata);
 			setShowSuccessfulMsgModal(true);
 		} catch (error) {
@@ -114,11 +113,6 @@ export const ListingForm = () => {
 			);
 		}
 	};
-=======
-  const handlePreviewListing = () => {
-    navigate("/previewListing/:new_id");
-  };
->>>>>>> 3133f26c28dc9d0f327563410c9e0863eca18c4d
 
 	const setPropertyDataFields = (updatedFields) => {
 		setPropertyFields((prevFields) => ({
