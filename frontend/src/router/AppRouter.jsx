@@ -127,7 +127,7 @@ const Routes = [
 			},
 			{
 				path: "/listing",
-				element: <ListingPage />,
+				element: <BuyerSellerProtectedRoute element={<ListingPage /> }/>
 			},
 			{
 				path: "/drafts",
@@ -192,8 +192,8 @@ const Routes = [
 			{
 				path: "buyer-application-history",
 				element: (
-					// <BuyerSellerProtectedRoute element={<ApplicationHistoryPage />} />
-					<ApplicationHistoryPage />
+					<BuyerSellerProtectedRoute element={<ApplicationHistoryPage />} />
+					// <ApplicationHistoryPage />
 				),
 			},
 		],
