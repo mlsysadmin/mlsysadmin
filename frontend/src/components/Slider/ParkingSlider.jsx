@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 
 
-const ParkingInputSlider = () => {
-  const [bedValue, setBedValue] = useState(0);
-
+const ParkingInputSlider = ({value,onChange}) => {
   return (
     <div>
       <div className="parking-value">
@@ -11,7 +9,7 @@ const ParkingInputSlider = () => {
           id="parking-input"
           className="parking-input"
           type="text"
-          value={bedValue}
+          value={value}
           readOnly
         />
       </div>
@@ -23,8 +21,8 @@ const ParkingInputSlider = () => {
           type="range"
           min="0"
           max="5"
-          value={bedValue}
-          onChange={(e) => setBedValue(e.target.value)}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
         />
       </div>
     </div>

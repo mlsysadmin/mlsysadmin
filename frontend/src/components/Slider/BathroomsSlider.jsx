@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
 
-const BathroomInputSlider = () => {
-  const [bedValue, setBedValue] = useState(0);
+const BathroomInputSlider = ({value, onChange}) => {
 
   return (
     <div>
@@ -11,7 +10,7 @@ const BathroomInputSlider = () => {
           id="bathroom-input"
           className="bathroom-input"
           type="text"
-          value={bedValue}
+          value={value}
           readOnly
         />
       </div>
@@ -23,8 +22,8 @@ const BathroomInputSlider = () => {
           type="range"
           min="0"
           max="5"
-          value={bedValue}
-          onChange={(e) => setBedValue(e.target.value)}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
         />
       </div>
     </div>

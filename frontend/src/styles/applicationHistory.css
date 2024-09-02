@@ -15,8 +15,9 @@
 .application-history-container .sidebar {
   width: 80%;
   background-color: #E9E9E9;
-  height: 180px;
+  height: auto;
   border-radius: 20px;
+  padding-bottom: 20px;
   margin: 0px 0px 0px 40px;
 }
 
@@ -37,7 +38,7 @@
 
 }
 
-.application-history-container .application-history-btn {
+/* .application-history-container .application-history-btn {
   display: block;
   width: 100%;
   padding: 20px;
@@ -51,14 +52,35 @@
   font-weight: bold;
   text-align: center;
   position: relative;
+} */
+ .application-history-container .application-history-btn {
+  display: block;
+  width: 100%;
+  padding: 20px;
+  color: #000000;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+  position: relative;
+  transition: background-color 0.3s ease;
+  border-radius: 0;
+}
+
+.application-history-container .application-history-btn.active {
+  background-color: var(--red);
+  color: white;
 }
 
 .application-history-container .application-history-btn:hover {
   background-color: #d90000;
+  /* background-color: #7f8c8d;  */
 }
 
 
-.application-history-container .application-history-btn::before {
+.application-history-container .application-history-btn.active::before {
 content: '';
 position: absolute;
 left: 0;

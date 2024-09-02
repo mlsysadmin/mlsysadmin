@@ -1,5 +1,5 @@
 
-.sidebar-container {
+.whole-sidebar .sidebar-container {
   background: linear-gradient(180deg in oklab, #ffeded, white);
   height: 100%;
   width: 14vw;
@@ -8,7 +8,7 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.sidebar-container.open {
+.whole-sidebar .sidebar-container.open {
   transform: translateX(0);
 }
 
@@ -98,7 +98,7 @@
 }
 
 
-@media (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 768px) {
   .sidebar-menu-item {
     padding: 1rem;
   }
@@ -124,7 +124,7 @@
   background-color: #a50000;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 768px) {
   .create-listing-button {
     margin-top: 1.5rem;
     width: 100%;
@@ -141,13 +141,13 @@
 }
 
 .hamburger .line {
-  width: 25px;
+  width: 18px;
   height: 3px;
-  background-color: #000;
+  background-color: gray;
   margin: 4px 0;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 768px) {
   .hamburger {
     display: block;
     height: 30%;

@@ -60,7 +60,7 @@ import {
 	ApprovedApplication,
 	SupportCreateListing,
 } from "../pages";
-import { ProtectedRoute, BuyerProtectedRoute } from "./ProtectedRoute";
+import { ProtectedRoute, BuyerSellerProtectedRoute } from "./ProtectedRoute";
 
 
 
@@ -191,7 +191,10 @@ const Routes = [
 			},
 			{
 				path: "buyer-application-history",
-				element: <BuyerProtectedRoute element={<ApplicationHistoryPage />} />,
+				element: (
+					// <BuyerSellerProtectedRoute element={<ApplicationHistoryPage />} />
+					<ApplicationHistoryPage />
+				),
 			},
 		],
 	},
