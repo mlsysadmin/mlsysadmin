@@ -114,7 +114,9 @@ const PropertyListing = ({ oneListing }) => {
 							tagLabel={checked ? <HeartFilled /> : <HeartOutlined />}
 							style={{
 								fontSize: "23px",
-								color: "var(--red",
+								fontSize: "23px",
+								color:  "var(--red)" , 
+								backgroundColor: checked ? "transparent" : "", 	
 								padding: "0px 0px 0px 5px",
 							}}
 							className="circle-tags heart"

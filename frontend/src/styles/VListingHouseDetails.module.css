@@ -63,16 +63,20 @@
   font-weight: 400;
   font-size: 30px;
   color: #000;
-  margin-top: 33px;
+  /* margin-top: 33px; */
   width: 100%;
 }
 
 .leftctaButton {
   color: #d90000;
-  margin-top: 26px;
+  /* margin-top: 26px; */
   width: 100%;
-  font-size: 30px;
+  display: flex;
+  align-items: flex-start;
+  font-size: 24px;
   border: none;
+  font-weight: 600;
+  text-decoration: underline;
   background-color: transparent;
 }
 
