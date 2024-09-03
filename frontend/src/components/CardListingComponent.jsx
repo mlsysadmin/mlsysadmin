@@ -107,13 +107,18 @@ const CardListingComponent = ({ loading, status, pics, title, price, features, l
 					size="small"
 					bordered={false}
 					loading={loading}
+					onClick={handleClick}
 				>
 					<div className="listing-image">
 						<img src={img} className="image"></img>
 						<div className="tags">
 							<CustomTag
 								tagLabel={status}
-								style={{backgroundColor:"#d90000", borderColor:"#d90000", color:"#ffffff" }}
+								style={{
+									backgroundColor: "#d90000",
+									borderColor: "#d90000",
+									color: "#ffffff",
+								}}
 							/>
 							<CustomTag tagLabel={<ImageTag />} />
 						</div>
@@ -129,7 +134,7 @@ const CardListingComponent = ({ loading, status, pics, title, price, features, l
 							{/* <CustomTag tagLabel={<Filter />} className="circle-tags" /> */}
 						</div>
 					</div>
-					<div className="card-content" onClick={handleClick}>
+					<div className="card-content">
 						<div className="card-content--title">
 							<h4>{title}</h4>
 						</div>
@@ -138,7 +143,12 @@ const CardListingComponent = ({ loading, status, pics, title, price, features, l
 							<div className="features">
 								{/* <Features /> */}
 								<div className="feature-content">
-									<img src={Shower} alt="sqm" className="feature-icon" style={{color:"#333333"}}/>
+									<img
+										src={Shower}
+										alt="sqm"
+										className="feature-icon"
+										style={{ color: "#333333" }}
+									/>
 									<p className="feature-detail">{no_of_bathrooms}</p>
 								</div>
 								<div className="feature-content">
