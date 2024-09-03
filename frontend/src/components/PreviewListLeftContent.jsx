@@ -49,8 +49,9 @@ const PreviewListLeftContent = ({ label, value , oneListing}) => {
 			</main>
 			<div className="property-on-map">
 				<h3>Location</h3>
+				<MapComponent oneListing={oneListing} />
 			</div>
-			<MapComponent />
+
 			<div className="view-similar-properties">
 				<h3>Home Details</h3>
 				<div className={styles.specificationContainer}>
