@@ -838,7 +838,7 @@ span.selected {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .embedd-map .leaflet-container {
       width: 100%;
       height: 250px;
@@ -852,7 +852,7 @@ span.selected {
       height: 200px;
       border-radius: 15px;
   }
-}
+} */
 @media  screen and (max-width:320px){
   .listing-application{
     display: flex;

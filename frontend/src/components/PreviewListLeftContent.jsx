@@ -53,72 +53,73 @@ const PreviewListLeftContent = ({ label, value, oneListing }) => {
   // };
 
   return (
-    <div className="leftContent">
-      <main className={styles.leftcontainer}>
-        <h1 className={styles.lefttitle}>{oneListing.listings.title}</h1>
-        <p className={styles.leftlocation}>
-          {LocationFormatter(oneListing.listings.location)}
-        </p>
+		<div className="leftContent">
+			<main className={styles.leftcontainer}>
+				<h1 className={styles.lefttitle}>{oneListing.listings.title}</h1>
+				<p className={styles.leftlocation}>
+					{LocationFormatter(oneListing.listings.location)}
+				</p>
         <button className={styles.leftctaButton} onClick={handleButtonClick}>
       Get Pre-Approved
     </button>
-        <h2 className={styles.leftsectionTitle}>About this home</h2>
-        <section className={styles.leftfeatureGrid}>
-          {features.map((feature, index) => (
-            <VLFeatureCard key={index} {...feature} />
-          ))}
-        </section>
-        <h2 className={styles.leftdescriptionTitle}>Description</h2>
-        <p className={styles.leftdescriptionText}>
-          {oneListing.listings.description}
-        </p>
-      </main>
-      <div className="property-on-map">
-        <h3>Location</h3>
-      </div>
-      <MapComponent />
-      <div className="view-similar-properties">
-        <h3>Home Details</h3>
-        <div className={styles.specificationContainer}>
-          <h4 className={styles.specificationHeader}>Specification</h4>
-          <table className={styles.specificationTable}>
-            <tbody>
-              <tr>
-                <th>Property ID</th>
-                <td>{oneListing.listings.property_id}</td>
-                <th>Floor Area</th>
-                <td>{oneListing.listings.unit_details.floor_area}</td>
-              </tr>
-              <tr>
-                <th>Listing Type</th>
-                <td>{oneListing.listings.listing_type.listing_type}</td>
-                <th>Lot Area</th>
-                <td>{oneListing.listings.unit_details.lot_area}</td>
-              </tr>
-              <tr>
-                <th>Furnishing</th>
-                <td>{oneListing.listings.unit_details.classification}</td>
-                <th>Price per SqM</th>
-                <td>{oneListing.listings.unit_details.price_per_sqm}</td>
-              </tr>
-              <tr>
-                <th>Bedroom</th>
-                <td>{oneListing.listings.unit_details.no_of_beds}</td>
-                <th>No of Floors</th>
-                <td>{oneListing.listings.unit_details.no_of_floors}</td>
-              </tr>
-              <tr>
-                <th>Bathroom</th>
-                <td>{oneListing.listings.unit_details.no_of_bathrooms}</td>
-                <th>Car Parking</th>
-                <td>{oneListing.listings.unit_details.parking}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  );
+				<h2 className={styles.leftsectionTitle}>About this home</h2>
+				<section className={styles.leftfeatureGrid}>
+					{features.map((feature, index) => (
+						<VLFeatureCard key={index} {...feature} />
+					))}
+				</section>
+				<h2 className={styles.leftdescriptionTitle}>Description</h2>
+				<p className={styles.leftdescriptionText}>
+					{oneListing.listings.description}
+				</p>
+			</main>
+			<div className="property-on-map">
+				<h3>Location</h3>
+				<MapComponent oneListing={oneListing} />
+			</div>
+
+			<div className="view-similar-properties">
+				<h3>Home Details</h3>
+				<div className={styles.specificationContainer}>
+					<h4 className={styles.specificationHeader}>Specification</h4>
+					<table className={styles.specificationTable}>
+						<tbody>
+							<tr>
+								<th>Property ID</th>
+								<td>{oneListing.listings.property_id}</td>
+								<th>Floor Area</th>
+								<td>{oneListing.listings.unit_details.floor_area}</td>
+							</tr>
+							<tr>
+								<th>Listing Type</th>
+								<td>{oneListing.listings.listing_type.listing_type}</td>
+								<th>Lot Area</th>
+								<td>{oneListing.listings.unit_details.lot_area}</td>
+							</tr>
+							<tr>
+								<th>Furnishing</th>
+								<td>{oneListing.listings.unit_details.classification}</td>
+								<th>Price per SqM</th>
+								<td>{oneListing.listings.unit_details.price_per_sqm}</td>
+							</tr>
+							<tr>
+								<th>Bedroom</th>
+								<td>{oneListing.listings.unit_details.no_of_beds}</td>
+								<th>No of Floors</th>
+								<td>{oneListing.listings.unit_details.no_of_floors}</td>
+							</tr>
+							<tr>
+								<th>Bathroom</th>
+								<td>{oneListing.listings.unit_details.no_of_bathrooms}</td>
+								<th>Car Parking</th>
+								<td>{oneListing.listings.unit_details.parking}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default PreviewListLeftContent;
