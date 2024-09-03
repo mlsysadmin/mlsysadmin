@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 // import Navigation from "./layout/NavigationComponent";
 import Footer from "./MY Drafts/Components/FooterComponent";
+import CustomMlFooter from "./custom/Custom.Mlfooter";
+import FooterComponent from "./layout/FooterComponent";
 import "../styles/previewListing.css";
 
 // import ApplicationDetailModal from "./layout/ApplicationDetails/ApplicationDetailsModal";
@@ -144,7 +146,8 @@ const PreviewListing = () => {
 					</div>
 				)}
 			</div>
-			<Footer />
+			<CustomMlFooter />
+			<FooterComponent />
 		</div>
 	);
 };
