@@ -219,7 +219,7 @@ listing search */
 	margin-right: auto;
 }
 
-.right-button {
+.subcontent-inputs-1 .right-button {
 	background-color: var(--red);
 	color: white;
 	border-radius: 5px;
@@ -231,6 +231,7 @@ listing search */
 	justify-content: center;
 	height: 55px;
 	width: 100px;
+	margin-top: 0px;
 }
 
 .right-button:hover {
