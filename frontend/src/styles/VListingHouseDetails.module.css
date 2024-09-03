@@ -46,17 +46,17 @@
   /* border-bottom: 1px solid #E0E0E0; */
 }
 
-.specificationTable td {
-  /* border-bottom: 1px solid #E0E0E0; */
+/* .specificationTable td {
+  border-bottom: 1px solid #E0E0E0;
 }
 
 .specificationTable th:first-child, .specificationTable td:first-child {
-  /* border-right: 1px solid #E0E0E0; */
+  border-right: 1px solid #E0E0E0;
 }
 
 .specificationTable th:nth-child(3), .specificationTable td:nth-child(3) {
-  /* border-right: 1px solid #E0E0E0; */
-}
+  border-right: 1px solid #E0E0E0;
+} */
 
 .leftlocation {
   font-family: Poppins, sans-serif;
