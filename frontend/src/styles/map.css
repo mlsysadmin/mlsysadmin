@@ -1,12 +1,13 @@
-.property-on-map  .ant-spin-container .MapContainer {
+.property-on-map  .ant-spin-container .Brokerage-map-Container {
     height: 40vh;
-    width: 900px;
+    width: 820px;
     border-radius: 10px;
 }
 
 @media (max-width: 480px) {
     /* Mobile devices */
-    .property-on-map .MapContainer {
+  
+    .property-on-map .ant-spin-container .Brokerage-map-Container {
         height: 30vh;
         width: 90vw;
         margin-left: 10px;
@@ -16,7 +17,7 @@
 
 @media (min-width: 481px) and (max-width: 768px) {
     /* iPads, Tablets */
-    .property-on-map  .ant-spin-container .MapContainer {
+    .property-on-map  .ant-spin-container .Brokerage-map-Container {
         height: 35vh;
         width: 85vw;
         margin-left: 17px;
@@ -26,7 +27,7 @@
 
 @media (min-width: 769px) and (max-width: 1024px) {
     /* Small screens, laptops */
-    .property-on-map  .ant-spin-container .MapContainer {
+    .property-on-map  .ant-spin-container .Brokerage-map-Container {
         height: 35vh;
         width: 85vw;
         margin-left: 17px;
@@ -36,7 +37,7 @@
 
 @media (min-width: 1025px) and (max-width: 1200px) {
     /* Desktops, large screens */
-    .property-on-map .MapContainer {
+    .property-on-map .ant-spin-container .Brokerage-map-Container {
         height: 45vh;
         width: 60vw;
     }

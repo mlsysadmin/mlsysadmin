@@ -55,7 +55,7 @@ const MapComponent = ({ style, oneListing }) => {
             <MapContainer
               center={coordinates}
               zoom={13}
-              className="MapContainer"
+              className="Brokerage-map-Container"
             >
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
