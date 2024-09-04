@@ -160,7 +160,7 @@ const PreviewListing = () => {
             </div>
             <HomeHighlights oneListing={oneListing} />
           </div>
-        )}
+        )}  
       </div>
       <CustomMlFooter />
 			<FooterComponent />
