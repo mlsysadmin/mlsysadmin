@@ -51,7 +51,6 @@ console.log( "getlength", GetPhotoLength())
 				<ListingSearch />
 			</div>
 			<div className="rentContainer">
-				<div className="rentContent">
 					<span className="rent-h1">Properties for Rent</span>
 					<SearchPropertiesSoration />
 					<div className="card-container">
@@ -84,7 +83,7 @@ console.log( "getlength", GetPhotoLength())
 				</div>
 				<CustomMlFooter />
 				<FooterComponent />
-			</div>
+			
 		</div>
 	);
 }
