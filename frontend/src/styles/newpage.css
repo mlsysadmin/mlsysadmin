@@ -16,11 +16,6 @@
 	height: 100%;
 	padding: 0px 0;
 }
-.newpage .card-container{
-  display: flex;
-  flex-wrap: wrap;
-  margin: 10px 100px 10px 100px;
-}
 .newpage-contents {
 	display: flex;
 	flex-direction: column;
@@ -37,6 +32,7 @@
 	justify-content: start;
 	/* font-size: 32px; */
 	font-weight: normal;
+	width: 100%;
 }
 .second-content h1 {
 	font-size: 30px;
@@ -63,7 +59,7 @@
 }
 
 
-@media screen and (min-width: 320px) and (max-width: 568px) {
+@media screen and (min-width: 320px) and (max-width: 360px) {
 	.newpage-container {
 		justify-content: left;
 	}
@@ -72,12 +68,17 @@
 		grid-gap: 20px;
 		width: 100%;
 	}
+
 	.second-content {
-		padding: 5px;
+    display: flex;
+    flex-direction: column;
+	width: 100%;
+	padding: 0;
 	}
+
 	.second-content h1 {
 		font-size: 20px;
-		margin: 50px 0px 0px 0px;
+		margin: 0px;
 	}
 	.second-content .card-container {
 		margin: 0px;
@@ -107,12 +108,9 @@
 		grid-gap: 20px;
 		width: 100%;
 	}
-	.second-content {
-		padding: 10px;
-	}
 	.second-content h1 {
 		font-size: 22px;
-		margin: 50px 0px 0px 0px;
+		margin: 0px 0px 20px 0px;
 	}
 	.second-content .card-container {
 		margin: 0px;
@@ -124,44 +122,18 @@
         width: 100%;
         border-bottom: 1px solid #ddd;
         border-radius: 20px;
-        height: 250px;
+        height: 200px;
     }
 
 	.card {
     border: 1px solid #ddd;
     border-radius: 20px;
     box-sizing: border-box;
-	width: 100%;
 }
 
 .second-content .card-container {
 		margin: 0px;
-		width: 100%;
-	}
-
-	.second-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    /* font-size: 32px; */
-    font-weight: normal;
-}
-}
-
-
-
-@media screen and (min-width: 375px) and (max-width: 812px) {
-	.second-content .card-container {
-		margin: 0px;
-		width: 100%;
-	}
-}
-
-
-@media screen and (min-width: 390px) and (max-width: 844px) {
-	.second-content .card-container {
-		margin: 0px;
-		width: 100%;
+		width: 62%;
 	}
 }
 
@@ -170,29 +142,33 @@
         width: 100%;
         border-bottom: 1px solid #ddd;
         border-radius: 20px;
-        height: 280px;
+        height: 200px;
     }
 
 	.card {
     border: 1px solid #ddd;
     border-radius: 20px;
     box-sizing: border-box;
-	width: 100%;
 }
 
 .second-content .card-container {
 		margin: 0px;
-		width: 100%;
+		width: 68%;
+	}
+}
+
+@media screen and (min-width: 375px) and (max-width: 812px) {
+	.second-content .card-container {
+		margin: 0px;
+		width: 65%;
 	}
 }
 
 
-
-
-@media screen and (min-width: 412px) and (max-width: 915px) {
+@media screen and (min-width: 390px) and (max-width: 844px) {
 	.second-content .card-container {
 		margin: 0px;
-		width: 100%;
+		width: 67%;
 	}
 }
 
@@ -200,63 +176,45 @@
 @media screen and (min-width: 414px) and (max-width: 896px) {
 	.second-content .card-container {
 		margin: 0px;
-		width: 100%;
+		width: 72%;
 	}
-
-	.card img {
-        width: 100%;
-        border-bottom: 1px solid #ddd;
-        border-radius: 20px;
-        height: 270px;
-    }
 }
 
+@media screen and (min-width: 412px) and (max-width: 915px) {
+	.second-content .card-container {
+		margin: 0px;
+		width: 71%;
+	}
+}
 
 @media screen and (min-width: 428px) and (max-width: 926px) {
 	.second-content .card-container {
 		margin: 0px;
-		width: 100%;
+		width: 74%;
 	}
-
-	.card img {
-        width: 100%;
-        border-bottom: 1px solid #ddd;
-        border-radius: 20px;
-        height: 300px;
-    }
 }
-
 
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-.newpage .card-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin: 0px;
-	width: 98%;
-	gap: 1rem;
-} 
-
-
-.second-content {
-    padding: 20px;
+	.newpage .card-container {
     display: flex;
-    flex-direction: column;
-    justify-content: start;
-    /* font-size: 32px; */
-    font-weight: normal;
-}
+    flex-wrap: wrap;
+    margin: 0px;
+	width: 100%;
+} 
 
 .second-content h1 {
     font-size: 30px;
-    margin: 50px 0px 0px 0px;
+    margin: 0px;
 }
 }
 
 @media screen and (min-width: 800px) and (max-width: 1280px) {
 	.newpage .card-container {
-	width: 98%;
-	margin: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px;
+	width: 100%;
 } 
 .second-content {
     padding: 20px;
@@ -266,17 +224,4 @@
     /* font-size: 32px; */
     font-weight: normal;
 }
-
-.card img {
-        width: 100%;
-        border-bottom: 1px solid #ddd;
-        border-radius: 20px;
-        height: 250px;
-    }
-
-.newpage  .second-content h1 {
-    font-size: 30px;
-    margin: 0px;
 }
-}
-

@@ -57,7 +57,7 @@ const Card = ({
 								? "#ffffff"
 								: forsale === "For Rent"
 								? "#ffffff"
-								: "var(--red)"
+								: "var(--red)",
 					}}
 				>
 					{forsale}
@@ -84,11 +84,14 @@ const Card = ({
 					</div>
 					<div className="card-icons">
 						<p>
-							<span id="bed-icon">
-								<BedOutlinedIcon /> {beds}
+							<span>
+								<BedOutlinedIcon />
+
+								<label id="bed-icon">{beds}</label>
 								<ShowerOutlinedIcon />
 							</span>{" "}
-							{baths} <span></span>
+							{baths}
+							<span></span>
 							<span>
 								<ShortcutOutlinedIcon />
 							</span>{" "}

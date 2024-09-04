@@ -1173,7 +1173,7 @@
     background-color: #fff;
     width: 90%;
     left: 5%;
-    height: 25%;
+    height: 24%;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -1204,6 +1204,34 @@
     color: #fff;
     font-weight: bold;
     text-align: center;
+}
+
+.contactUsContent {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 200px 0px 0px 0px;
+}
+
+    .location {
+        display: flex;
+        gap: 1rem;
+        margin: 0px;
+        width: 50%;
+    }
+
+     .map{
+    width: 40%;
+    position: relative;
+     }
+
+    #map {
+    width: 100%;
+    height: auto;
 }
 }
 

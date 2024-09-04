@@ -52,32 +52,32 @@ const PropertiesForRent = () => {
               hoverable
               cover={<img alt={`Property ${property.id}`} src={property.image} />}
             >
-              <Meta
-                title={property.description}
-                description={
-                  <div className="property-info">
-                    <span>{property.type}</span>
-                    <div className="property-details">
-                      <div className="property-details-price">
-                        <p>Price: {property.price}</p>
+                <Meta
+                  title={property.description}
+                  description={
+                    <div className="property-info">
+                      <span>{property.type}</span>
+                      <div className="property-details">
+                        <div className="property-details-price">
+                          <p>Price: {property.price}</p>
+                        </div>
+                        <div className="properties-desc">
+                          <p>Bedrooms: {property.bedrooms}</p>
+                          <p>Bathrooms: {property.bathrooms}</p>
+                          <p>Area: {property.area} sq.m.</p>
+                        </div>
                       </div>
-                      <div className="properties-desc">
-                        <p>Bedrooms: {property.bedrooms}</p>
-                        <p>Bathrooms: {property.bathrooms}</p>
-                        <p>Area: {property.area} sq.m.</p>
+                      <div className="property-info-footer">
+                        {/* <Tag color="geekblue">{property.type}</Tag> */}
+                        <div className="camera-icon">
+                          <CameraOutlined />
+                          <span>10</span>
+                        </div>
+                        <Tag color="green" className='new-label'>New</Tag>
                       </div>
                     </div>
-                    <div className="property-info-footer">
-                      {/* <Tag color="geekblue">{property.type}</Tag> */}
-                      <div className="camera-icon">
-                        <CameraOutlined />
-                        <span>10</span>
-                      </div>
-                      <Tag color="green" className='new-label'>New</Tag>
-                    </div>
-                  </div>
-                }
-              />
+                  }
+                />
             </Card>
           </div>
         ))}

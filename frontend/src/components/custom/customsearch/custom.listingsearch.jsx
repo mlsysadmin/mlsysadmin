@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Input, Select, Slider, Dropdown,} from "antd";
+import { Button, Input, Select, Slider, Dropdown } from "antd";
 
 import { CaretDownOutlined } from "@ant-design/icons";
 import "../../../styles/custom.css";
@@ -11,6 +11,7 @@ const ListingSearch = () => {
 	const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
 	const [iscertainFeatureOpen, setcertainFeatureOpen] = useState(false);
 	const [getProvince, setGetProvince] = useState([]);
+	const [isCustomRange, setIsCustomRange] = useState(false);
 
 	const handleAdvancedSearchClick = () => {
 		setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
@@ -19,27 +20,39 @@ const ListingSearch = () => {
 	const handleCertainFeatureClick = () => {
 		setcertainFeatureOpen(!iscertainFeatureOpen);
 	};
+	const handleCustomRangeClick = () => {
+		setIsCustomRange(!isCustomRange);
+	};
+
+	const handleMinChange = (e) => {
+		const value = e.target.value === "" ? "" : parseInt(e.target.value, 10);
+		setPriceRange([value, priceRange[1]]);
+	};
+
+	const handleMaxChange = (e) => {
+		 const value = e.target.value === "" ? "" : parseInt(e.target.value, 10);
+			setPriceRange([priceRange[0], value]);
+	};
 
 	const allProvince = async () => {
 		const dataProvince = await GetProvince();
 		setGetProvince(dataProvince);
 		console.log("province", dataProvince);
-	}
-	
-	useEffect(()=>{
-		const fetchData = async() =>{
-			try{
+	};
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
 				await allProvince();
-			}catch (error){
+			} catch (error) {
 				console.log(error);
 			}
-		}
+		};
 		fetchData();
-	},[])
+	}, []);
 
 	const [bedValue, setBedValue] = useState(0);
-	const [priceRange, setPriceRange] = useState([0, 50000000]);
-
+	const [priceRange, setPriceRange] = useState([0, 100000000]);
 
 	const handleSliderChange = (value) => {
 		setPriceRange(value);
@@ -83,26 +96,56 @@ const ListingSearch = () => {
 								className="searh-custom-slider"
 								range
 								min={0}
-								max={50000000} 
+								max={100000000}
 								step={10000}
 								value={priceRange}
 								onChange={handleSliderChange}
-								defaultValue={[0, 50000000]}
+								defaultValue={[0, 100000000]}
 							/>
 						</div>
 						<div className="range-container">
 							<p className="range-border">
 								MIN{" "}
-								<b style={{ color: "#f60000" }}>
-									PHP{priceRange[0].toLocaleString()}
-								</b>
+								{isCustomRange ? (
+									<span className="range-prefix">
+										PHP
+										<input
+											type="text"
+											value={priceRange[0]}
+											onChange={handleMinChange}
+											className="range-input"
+										/>
+									</span>
+								) : (
+									<b style={{ color: "#f60000" }}>
+										PHP{priceRange[0].toLocaleString()}
+									</b>
+								)}
 							</p>
 							<p className="range-border">
 								MAX{" "}
-								<b style={{ color: "#f60000" }}>
-									PHP{priceRange[1].toLocaleString()}
-								</b>
+								{isCustomRange ? (
+									<span className="range-prefix">
+										PHP
+										<input
+											type="text"
+											value={priceRange[1]}
+											onChange={handleMaxChange}
+											className="range-input"
+										/>
+									</span>
+								) : (
+									<b style={{ color: "#f60000" }}>
+										PHP{priceRange[1].toLocaleString()}
+									</b>
+								)}
 							</p>
+							<button
+								className="custom-range-button"
+								onClick={handleCustomRangeClick}
+							>
+								Custom Range
+							</button>
 						</div>
 					</div>
 					<div className="subcontent-inputs-2">

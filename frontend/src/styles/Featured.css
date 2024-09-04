@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
 } */
-.card-container {
+.feature-container .card-container {
     display: flex;
     flex-wrap: wrap;
     /* justify-content: center;
@@ -13,7 +13,7 @@
     margin: 10px 100px 10px 100px;
   }
   
-  .card {
+  .feature-container .card {
     border: 1px solid #ddd;
     border-radius: 20px;
     margin: 10px;
@@ -21,25 +21,23 @@
     box-sizing: border-box;
   }
   
-  .card img {
+  .feature-container  .card img {
     width: 100%;
     border-bottom: 1px solid #ddd;
     border-radius: 20px;
   }
   
-  .card-content {
+  /* .card-content {
     padding: 15px;
-  }
+  } */
   .feature-h1{
     font-size: 24px;
     font-weight: 600;
     margin: 20px 0px 20px 120px;
   }
   
-
-
-@media screen and (min-width: 320px) and (max-width: 568px){
-   .card {
+@media screen and (min-width: 320px) and (max-width: 360px){
+   .feature-container .card {
     border: 1px solid #ddd;
     border-radius: 20px;
     width: 100%;
@@ -51,10 +49,13 @@
     margin:0px;
     width: 100%;
 }
+.feature-h1{
+  margin: 20px 0px 20px 30px;
+}
 }
 
 @media screen and (min-width: 360px) and (max-width: 480px){
-  .card {
+  .feature-container .card {
     border: 1px solid #ddd;
     border-radius: 20px;
     width: 100%;
@@ -68,7 +69,7 @@
 }
 
 @media screen and (min-width: 360px) and (max-width: 800px){
-  .card {
+  .feature-container .card {
     border: 1px solid #ddd;
     border-radius: 20px;
     width: 100%;
@@ -135,11 +136,11 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-	  width: 95%;
+    width: 95%;
     margin: 10px;
 } 
 
-    .card {
+    .feature-container .card {
       border: 1px solid #ddd;
       border-radius: 20px;
       box-sizing: border-box;
@@ -147,4 +148,3 @@
     }
 
 }
-
