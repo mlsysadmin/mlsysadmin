@@ -119,8 +119,8 @@
 @media screen and (min-width: 360px) and (max-width: 800px){
   .otp-modal-maincontainer .otp-box {
     border-radius: 10px;
-    height: 45px;
-    width: 40px;
+    height: 50px;
+    width: 45px;
     border: 1px solid #8c9094;
     font-size: x-large;
     text-align: center;
@@ -132,8 +132,8 @@
 @media screen and (min-width: 375px) and (max-width: 812px) {
 .otp-modal-maincontainer .otp-box {
     border-radius: 10px;
-    height: 45px;
-    width: 40px;
+    height: 50px;
+    width: 45px;
     border: 1px solid #8c9094;
     font-size: x-large;
     text-align: center;
@@ -144,8 +144,8 @@
 @media screen and (min-width: 390px) and (max-width: 844px) {
 	.otp-modal-maincontainer .otp-box {
     border-radius: 10px;
-    height: 45px;
-    width: 40px;
+    height: 50px;
+    width: 45px;
     border: 1px solid #8c9094;
     font-size: x-large;
     text-align: center;
@@ -155,8 +155,8 @@
 @media screen and (min-width:393px) and (max-width: 851px){
 .otp-modal-maincontainer .otp-box {
     border-radius: 10px;
-    height: 45px;
-    width: 40px;
+    height: 50px;
+    width: 45px;
     border: 1px solid #8c9094;
     font-size: x-large;
     text-align: center;
@@ -169,8 +169,8 @@
 @media screen and (min-width: 412px) and (max-width: 915px) {
 .otp-modal-maincontainer .otp-box {
     border-radius: 10px;
-    height: 45px;
-    width: 40px;
+    height: 50px;
+    width: 45px;
     border: 1px solid #8c9094;
     font-size: x-large;
     text-align: center;
@@ -181,8 +181,8 @@
 @media screen and (min-width: 414px) and (max-width: 896px) {
 	.otp-modal-maincontainer .otp-box {
     border-radius: 10px;
-    height: 45px;
-    width: 40px;
+    height: 50px;
+    width: 45px; 
     border: 1px solid #8c9094;
     font-size: x-large;
     text-align: center;

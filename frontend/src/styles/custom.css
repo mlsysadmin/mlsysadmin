@@ -219,7 +219,7 @@ listing search */
 	margin-right: auto;
 }
 
-.right-button {
+.subcontent-inputs-1 .right-button {
 	background-color: var(--red);
 	color: white;
 	border-radius: 5px;
@@ -231,6 +231,7 @@ listing search */
 	justify-content: center;
 	height: 55px;
 	width: 100px;
+	margin-top: 0px;
 }
 
 .right-button:hover {
@@ -608,6 +609,17 @@ listing search */
     padding: 20px;
 }
 
+.subcontent-inputs-1 {
+    display: flex;
+	gap: 10px;
+}
+
+.subcontent-inputs-2{
+	display: flex;
+	gap: 10px;
+}
+
+
     .advance-searchdropdown .advance-search-group1 {
         display: flex;
         flex-direction: row;
@@ -625,6 +637,23 @@ listing search */
         padding: 5px;
 		margin-right: 20px;
     }
+
+	.subcontent-inputs-1 .right-button {
+    background-color: var(--red);
+    color: white;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 100px;
+    margin-top: 80rem;
+	position: absolute;
+	right: 20px;
+}
 }
 
 @media only screen and (min-width: 360px) and (max-width: 800px){
@@ -637,6 +666,24 @@ listing search */
 	margin: 0px;
 } 
 
+.subcontent-inputs-1 .right-button {
+    background-color: var(--red);
+    color: white;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 100px;
+    margin-top: 80rem;
+	position: absolute;
+	right: 20px;
+	
+}
+
 }
 
 @media screen and (min-width:375px) and (max-width: 851px){
@@ -648,4 +695,22 @@ listing search */
 	border-radius: 8px;
 	margin: 0px;
 } 
+
+.subcontent-inputs-1 .right-button {
+    background-color: var(--red);
+    color: white;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 100px;
+    margin-top: 80rem;
+	position: absolute;
+	right: 20px;
+	
+}
 }

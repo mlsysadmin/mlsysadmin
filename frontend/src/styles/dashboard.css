@@ -812,25 +812,30 @@
     .dashboard .discover .discover--section-4 {
         padding-top: 50px;
         padding-bottom: 60px;
+       
     }
 
     .dashboard .discover .discover--section-4 h3 {
         font-size: 28px;
     }
-
+    /* .dashboard #featured-properties .featured-property .featured-img img {
+        max-width: 400px;
+        width: 300px;
+        height: 300px;
+        border-radius: 20px;
+        
+    } */
+    .dashboard .discover .discover--section-4 {
+        background-color: #fff0f058;
+        padding: 20px 0px;
+        padding-bottom: 80px;
+        /* height: auto; */
+    }
+    
     .dashboard .discover .card--brokerage-featured {
         width: 90%;
     }
-    .listing-carousel-dashboard{
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 50px;
-      
-    }
 
-    
 }
 
 @media screen and (min-width: 412px) and (max-width:915px){
@@ -912,14 +917,6 @@
     .dashboard .discover .discover-content .discover-section--title h2 {
         font-size: 24px;
         margin-left: 20px;
-    }
-  .discover-content .listing-carousel-dashboard{
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 50px;
-  
     }
     .dashboard .discover .discover-content .discover-section--title p {
         font-size: 14px;

@@ -15,8 +15,9 @@
 .application-history-container .sidebar {
   width: 80%;
   background-color: #E9E9E9;
-  height: 250px;
+  height: auto;
   border-radius: 20px;
+  padding-bottom: 20px;
   margin: 0px 0px 0px 40px;
 }
 
@@ -37,7 +38,7 @@
 
 }
 
-.application-history-container .application-history-btn {
+/* .application-history-container .application-history-btn {
   display: block;
   width: 100%;
   padding: 20px;
@@ -48,26 +49,43 @@
   text-align: left;
   border-radius: 0px;
   position: relative;
+} */
+ .application-history-container .application-history-btn {
+  display: block;
+  width: 100%;
+  padding: 20px;
+  color: #000000;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+  position: relative;
+  transition: background-color 0.3s ease;
+  border-radius: 0;
+}
+
+.application-history-container .application-history-btn.active {
+  background-color: var(--red);
+  color: white;
 }
 
 .application-history-container .application-history-btn:hover {
   background-color: #d90000;
-  position: relative;
-  color: #fff;
-}
-.application-history-container .application-history-btn:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background-color: #8c9094;
-  transition: width 0.3s ease-in-out;
+  /* background-color: #7f8c8d;  */
 }
 
 
-
+.application-history-container .application-history-btn.active::before {
+content: '';
+position: absolute;
+left: 0;
+top: 0;
+bottom: 0;
+width: 14px;
+background-color: #7f8c8d; 
+}
 
 
 /* History Section Styling */

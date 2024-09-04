@@ -29,7 +29,7 @@ const ProtectedRoute = ({ element }) => {
   // Render the children components if the user is authenticated
   return  element;
 };
-const BuyerProtectedRoute = ({ element }) => {
+const BuyerSellerProtectedRoute = ({ element }) => {
 
 	const sessionCookieName = process.env.REACT_APP_SESSION_COOKIE_NAME;
 	const accountCookieName = process.env.REACT_APP_ACCOUNT_COOKIE_NAME;
@@ -56,4 +56,4 @@ const BuyerProtectedRoute = ({ element }) => {
 	return element;
 };
 
-export { ProtectedRoute,BuyerProtectedRoute};
+export { ProtectedRoute, BuyerSellerProtectedRoute };

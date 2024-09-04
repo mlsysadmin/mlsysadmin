@@ -77,7 +77,7 @@
 	}
 	.second-content h1 {
 		font-size: 20px;
-		margin: 0px;
+		margin: 50px 0px 0px 0px;
 	}
 	.second-content .card-container {
 		margin: 0px;
@@ -112,7 +112,7 @@
 	}
 	.second-content h1 {
 		font-size: 22px;
-		margin: 0px 0px 20px 0px;
+		margin: 50px 0px 0px 0px;
 	}
 	.second-content .card-container {
 		margin: 0px;
@@ -234,6 +234,7 @@
     grid-template-columns: repeat(2, 1fr);
     margin: 0px;
 	width: 98%;
+	gap: 1rem;
 } 
 
 
@@ -248,13 +249,14 @@
 
 .second-content h1 {
     font-size: 30px;
-    margin: 0px;
+    margin: 50px 0px 0px 0px;
 }
 }
 
 @media screen and (min-width: 800px) and (max-width: 1280px) {
 	.newpage .card-container {
 	width: 98%;
+	margin: 0px;
 } 
 .second-content {
     padding: 20px;
@@ -272,7 +274,7 @@
         height: 250px;
     }
 
-.second-content h1 {
+.newpage  .second-content h1 {
     font-size: 30px;
     margin: 0px;
 }

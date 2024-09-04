@@ -37,6 +37,10 @@ import CertainFeatureMenu from "./custom/customsearch/certainfeature";
 import { GetAllPublicListing } from "../api/GetAllPublicListings";
 import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
 import { Link } from "react-router-dom";
+import {Select} from "antd";
+import { GetProvince } from "../api/Public/Location.api";
+
+const {Option} = Select;
 
 const DashboardComponent = () => {
   const [loading, setLoading] = useState(false);
@@ -71,6 +75,23 @@ const DashboardComponent = () => {
   useEffect(() => {
     allPublicListing();
   }, []);
+
+
+  const [getProvince, setGetProvince] = useState([]);
+
+  const allProvinces = async () => {
+		try {
+			const dataprovince = await GetProvince(); 
+			setGetProvince(dataprovince);
+      console.log("province", dataprovince)
+		} catch (error) {
+			console.error("Error fetching provinces:", error);
+		}
+	};
+
+	useEffect(() => {
+		allProvinces();
+	}, []);
 
   const newListings = publiclisting.filter(
     (item) => item.listings.listing_type.listing_type === "For Sale"
@@ -178,66 +199,72 @@ const DashboardComponent = () => {
   };
 
   return (
-    <div className="dashboard">
-      <div id="dashboard">
-        <div className="banner">
-          <div className="banner-content">
-            <Col className="banner-title">
-              <h1>Find Your Dream Home</h1>
-            </Col>
-            <Col className="banner-tags">
-              <Tags />
-            </Col>
-            <Col className="banner-search">
-              <Card>
-                <Row className="search-container">
-                  <RoundInput
-                    placeholder="Enter keyword"
-                    size="middle"
-                    classname="card-item field"
-                  />
-                  <RoundSelect
-                    placeholder="Location"
-                    size="middle"
-                    classname="card-item field"
-                    suffixIcon={<CaretDownOutlined />}
-                  />
-                  <RoundSelect
-                    placeholder="Property Type"
-                    size="middle"
-                    classname="card-item field"
-                    suffixIcon={<CaretDownOutlined />}
-                  />
-                  <RoundSelect
-                    placeholder="Listing Type"
-                    size="middle"
-                    classname="card-item field"
-                    suffixIcon={<CaretDownOutlined />}
-                  />
-                  {/* <RoundSelect
+		<div className="dashboard">
+			<div id="dashboard">
+				<div className="banner">
+					<div className="banner-content">
+						<Col className="banner-title">
+							<h1>Find Your Dream Home</h1>
+						</Col>
+						<Col className="banner-tags">
+							<Tags />
+						</Col>
+						<Col className="banner-search">
+							<Card>
+								<Row className="search-container">
+									<RoundInput
+										placeholder="Enter keyword"
+										size="middle"
+										classname="card-item field"
+									/>
+									<RoundSelect
+										placeholder="Location"
+										size="middle"
+										classname="card-item field"
+										suffixIcon={<CaretDownOutlined />}
+									>
+										{getProvince.map((province, index) => (
+											<Select.Option key={index} value={province.name}>
+												{province.name}
+											</Select.Option>
+										))}
+									</RoundSelect>
+									<RoundSelect
+										placeholder="Property Type"
+										size="middle"
+										classname="card-item field"
+										suffixIcon={<CaretDownOutlined />}
+									/>
+									<RoundSelect
+										placeholder="Listing Type"
+										size="middle"
+										classname="card-item field"
+										suffixIcon={<CaretDownOutlined />}
+									/>
+									{/* <RoundSelect
                     placeholder="Features"
                     size="middle"
                     classname="card-item field"
                     suffixIcon={<CaretDownOutlined />}
                     overlay={<CertainFeatureMenu />}
                   /> */}
-                  <Dropdown
-                    classname="card-item field"
-                    overlay={<CertainFeatureMenu />}
-                    trigger={["click"]}
-                    visible={iscertainFeatureOpen}
-                    onVisibleChange={handleCertainFeatureClick}
-                  >
-                    <Button
-                      className="card-item field"
-                      onClick={handleCertainFeatureClick}
-                      style={{ color: "#8C9094" }}
-                    >
-                      Features <CaretDownOutlined />
-                    </Button>
-                  </Dropdown>
-                  <Row className="">
-                    {/* <RoundBtn
+									<Dropdown
+										classname="card-item field"
+										overlay={<CertainFeatureMenu />}
+										trigger={["click"]}
+										visible={iscertainFeatureOpen}
+										onVisibleChange={handleCertainFeatureClick}
+									>
+										<Button
+											className="card-item field"
+											onClick={handleCertainFeatureClick}
+											style={{ color: "#8C9094" }}
+										>
+											Features <CaretDownOutlined />
+										</Button>
+									</Dropdown>
+									<Row className="">
+										{/* <RoundBtn
 											label={"Advanced"}
 											className="advanced round-btn"
 											icon={
@@ -255,29 +282,29 @@ const DashboardComponent = () => {
 											classname="card-item"
 											onClick={handleAdvancedSearchClick}
 										/> */}
-                    <RoundBtn
-                      label={"Search"}
-                      className="search round-btn"
-                      icon={
-                        <img
-                          src={Search}
-                          className="search-icon"
-                          style={{ fontWeight: "900" }}
-                          width={20}
-                        />
-                      }
-                      classname="card-item"
-                    />
-                  </Row>
-                </Row>
-                {isAdvanceSearchOpen && <CertainFeatureMenu />}
-              </Card>
-            </Col>
-          </div>
-        </div>
-      </div>
-      <div className="discover">
-        {/* <Row className="discover-content">
+										<RoundBtn
+											label={"Search"}
+											className="search round-btn"
+											icon={
+												<img
+													src={Search}
+													className="search-icon"
+													style={{ fontWeight: "900" }}
+													width={20}
+												/>
+											}
+											classname="card-item"
+										/>
+									</Row>
+								</Row>
+								{isAdvanceSearchOpen && <CertainFeatureMenu />}
+							</Card>
+						</Col>
+					</div>
+				</div>
+			</div>
+			<div className="discover">
+				{/* <Row className="discover-content">
 					<Col className="discover-section--title">
 						<h2>Discover Latest Properties</h2>
 						<p>Newest Properties Around You</p>
@@ -333,50 +360,50 @@ const DashboardComponent = () => {
 						})}
 					</Carousel>
 				</div> */}
-        <Row className="discover-content">
-          <Col className="discover-section--title">
-            <h2>Discover Latest Properties</h2>
-            <div className="section-2-title">
-              {newListings.length > 0 ? (
-                <p>Newest Properties Around You</p>
-              ) : (
-                <p>No New Listings Available</p>
-              )}
-              <div className="see-all-new-listing-dashboard">
-                <a href="/all" style={{ color: "#8C9094" }}>
-                  See All
-                </a>
-              </div>
-            </div>
-          </Col>
-        </Row>
-        {newListings.length > 0 && (
-          <div className="listing-carousel-dashboard">
-            {newListings.slice(0, 3).map((item, i) => {
-              return (
-                <CardListingComponent
-                  title={item.listings.title}
-                  price={`PHP ${item.listings.unit_details.price}`}
-                  status={
-                    item.listings.listing_type.listing_type === "For Sale"
-                      ? "NEW"
-                      : item.listings.listing_type.listing_type
-                  }
-                  pics={GetPhotoLength(item.listings.photos.photo)}
-                  features={item.features}
-                  img={GetPhotoFromDB(item.listings.photos.photo)}
-                  no_of_bathrooms={item.listings.unit_details.no_of_bathrooms}
-                  lot={item.listings.unit_details.lot_area}
-                  key={i}
-                  listingId={item.listings.listing_id}
-                  loading={loading}
-                  handleClick={() => handleCardClick(item.listings.listing_id)}
-                />
-              );
-            })}
-          </div>
-        )}
-        {/* <div className="see-more--container">
+				<Row className="discover-content">
+					<Col className="discover-section--title">
+						<h2>Discover Latest Properties</h2>
+						<div className="section-2-title">
+							{newListings.length > 0 ? (
+								<p>Newest Properties Around You</p>
+							) : (
+								<p>No New Listings Available</p>
+							)}
+							<div className="see-all-new-listing-dashboard">
+								<a href="/all" style={{ color: "#8C9094" }}>
+									See All
+								</a>
+							</div>
+						</div>
+					</Col>
+				</Row>
+				{newListings.length > 0 && (
+					<div className="listing-carousel-dashboard">
+						{newListings.slice(0, 3).map((item, i) => {
+							return (
+								<CardListingComponent
+									title={item.listings.title}
+									price={`PHP ${item.listings.unit_details.price}`}
+									status={
+										item.listings.listing_type.listing_type === "For Sale"
+											? "NEW"
+											: item.listings.listing_type.listing_type
+									}
+									pics={GetPhotoLength(item.listings.photos.photo)}
+									features={item.features}
+									img={GetPhotoFromDB(item.listings.photos.photo)}
+									no_of_bathrooms={item.listings.unit_details.no_of_bathrooms}
+									lot={item.listings.unit_details.lot_area}
+									key={i}
+									listingId={item.listings.listing_id}
+									loading={loading}
+									handleClick={() => handleCardClick(item.listings.listing_id)}
+								/>
+							);
+						})}
+					</div>
+				)}
+				{/* <div className="see-more--container">
 					<a href="/new">
 						<SemiRoundBtn
 							label={"SEE MORE NEW LISTINGS"}
@@ -385,32 +412,32 @@ const DashboardComponent = () => {
 						/>
 					</a>
 				</div> */}
-        <div className="discover--section-2">
-          <h3>Helping you buy, rent and sell in Real Estate</h3>
-          <Row className="card--brokerage-category" gutter={[50, 50]}>
-            <CardCategories />
-          </Row>
-          <div className="discover--section-3">
-            <div className="card--brokerage-inquire">
-              {/* <div className="inquire-image">
+				<div className="discover--section-2">
+					<h3>Helping you buy, rent and sell in Real Estate</h3>
+					<Row className="card--brokerage-category" gutter={[50, 50]}>
+						<CardCategories />
+					</Row>
+					<div className="discover--section-3">
+						<div className="card--brokerage-inquire">
+							{/* <div className="inquire-image">
 								<Image src={FuenteCircle} preview={false} />
 							</div> */}
-              <div className="inquire-container">
-                <div className="inquire--content">
-                  <div className="inquire--title">
-                    <h3>Thinking about selling your Home?</h3>
-                  </div>
-                  <div className="inquire--description">
-                    <p>
-                      Sell your property with ease. Join our platform today for
-                      a convenient selling experience.
-                    </p>
-                  </div>
-                  <div className="inquire--sub-desc">
-                    <p>Sign in and start your successful sale!</p>
-                  </div>
-                  <div className="inquire--actions">
-                    {/* <a href="/contact-us">
+							<div className="inquire-container">
+								<div className="inquire--content">
+									<div className="inquire--title">
+										<h3>Thinking about selling your Home?</h3>
+									</div>
+									<div className="inquire--description">
+										<p>
+											Sell your property with ease. Join our platform today for
+											a convenient selling experience.
+										</p>
+									</div>
+									<div className="inquire--sub-desc">
+										<p>Sign in and start your successful sale!</p>
+									</div>
+									<div className="inquire--actions">
+										{/* <a href="/contact-us">
 											<RoundBtn
 												label={"Contact us"}
 												type={"default"}
@@ -418,53 +445,53 @@ const DashboardComponent = () => {
 												size={"large"}
 											/>
 										</a> */}
-                    <RoundBtn
-                      label={"Sign in your ML Wallet Account"}
-                      type={"default"}
-                      className="sign-in--action action-btn"
-                      size={"large"}
-                      onClick={handleUserProfileClick}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br />
-          <br />
-          <br />
-          <div className="discover--section-4">
-            <div className="card--brokerage-featured">
-              <div className="featured-container">
-                <div className="featured--title">
-                  <h3>Featured Properties</h3>
-                </div>
-                <div className="featured--content">
-                  <FeaturedPropertiesComponent />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+										<RoundBtn
+											label={"Sign in your ML Wallet Account"}
+											type={"default"}
+											className="sign-in--action action-btn"
+											size={"large"}
+											onClick={handleUserProfileClick}
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br />
+					<br />
+					<br />
+					<div className="discover--section-4">
+						<div className="card--brokerage-featured">
+							<div className="featured-container">
+								<div className="featured--title">
+									<h3>Featured Properties</h3>
+								</div>
+								<div className="featured--content">
+									<FeaturedPropertiesComponent />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-        <div className="ratings">
-          <div className="rating-container">
-            <div className="rating--title">
-              <h3>What Our Clients are Saying?</h3>
-            </div>
-            <div className="rating--content">
-              <RatingCarouselComponent />
-            </div>
-          </div>
-        </div>
-      </div>
-      <br />
-      <br />
-      <br />
-      <CustomMlFooter />
-      <FooterComponent />
-    </div>
-  );
+				<div className="ratings">
+					<div className="rating-container">
+						<div className="rating--title">
+							<h3>What Our Clients are Saying?</h3>
+						</div>
+						<div className="rating--content">
+							<RatingCarouselComponent />
+						</div>
+					</div>
+				</div>
+			</div>
+			<br />
+			<br />
+			<br />
+			<CustomMlFooter />
+			<FooterComponent />
+		</div>
+	);
 };
 
 export default DashboardComponent;

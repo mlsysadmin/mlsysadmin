@@ -4,7 +4,7 @@
     padding: 20px;
     text-align: center;
     width: 100%;
-    margin: 10px;
+    margin: 20px 10px 10px auto
 }
 
 .banner-content h2 {
@@ -29,7 +29,7 @@
     padding: 20px;
     text-align: center;
     width: 100%;
-    margin: 10px;
+    margin: 20px 10px 10px auto
 }
 
 .banner-Denied-content h2 {

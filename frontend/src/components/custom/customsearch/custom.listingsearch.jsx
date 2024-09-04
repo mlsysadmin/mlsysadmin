@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import { Button, Input, Select, Slider, Dropdown } from "antd";
+import React, { useEffect, useState } from "react";
+import { Button, Input, Select, Slider, Dropdown,} from "antd";
+
 import { CaretDownOutlined } from "@ant-design/icons";
 import "../../../styles/custom.css";
-	import CertainFeatureMenu from "./certainfeature";
+import CertainFeatureMenu from "./certainfeature";
+import { GetProvince } from "../../../api/Public/Location.api";
 
 const ListingSearch = () => {
 	const { Option } = Select;
 	const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
 	const [iscertainFeatureOpen, setcertainFeatureOpen] = useState(false);
+	const [getProvince, setGetProvince] = useState([]);
 
 	const handleAdvancedSearchClick = () => {
 		setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
@@ -17,8 +20,25 @@ const ListingSearch = () => {
 		setcertainFeatureOpen(!iscertainFeatureOpen);
 	};
 
+	const allProvince = async () => {
+		const dataProvince = await GetProvince();
+		setGetProvince(dataProvince);
+		console.log("province", dataProvince);
+	}
+	
+	useEffect(()=>{
+		const fetchData = async() =>{
+			try{
+				await allProvince();
+			}catch (error){
+				console.log(error);
+			}
+		}
+		fetchData();
+	},[])
+
 	const [bedValue, setBedValue] = useState(0);
-	const [priceRange, setPriceRange] = useState([500, 1000000]);
+	const [priceRange, setPriceRange] = useState([0, 50000000]);
 
 
 	const handleSliderChange = (value) => {
@@ -35,7 +55,12 @@ const ListingSearch = () => {
 				<div className="subcontent-inputs-1">
 					<input className="input-field" placeholder="Enter keyword" />
 					<select className="select-field" placeholder="Location">
-						<option value="option1">Location</option>
+						<option value="">Location</option>
+						{getProvince?.map((province, index) => (
+							<option key={index} value={province.name}>
+								{province.name}
+							</option>
+						))}
 					</select>
 					<select className="select-field" placeholder="Property Type">
 						<option value="residential">Property Type</option>
@@ -57,12 +82,12 @@ const ListingSearch = () => {
 							<Slider
 								className="searh-custom-slider"
 								range
-								min={500}
-								max={1000000}
-								step={100}
+								min={0}
+								max={50000000} 
+								step={10000}
 								value={priceRange}
 								onChange={handleSliderChange}
-								defaultValue={[500, 1000000]}
+								defaultValue={[0, 50000000]}
 							/>
 						</div>
 						<div className="range-container">
