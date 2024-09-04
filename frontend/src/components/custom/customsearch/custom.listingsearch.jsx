@@ -38,7 +38,7 @@ const ListingSearch = () => {
 	},[])
 
 	const [bedValue, setBedValue] = useState(0);
-	const [priceRange, setPriceRange] = useState([0, 50000000]);
+	const [priceRange, setPriceRange] = useState([0, 100000000]);
 
 
 	const handleSliderChange = (value) => {
@@ -83,11 +83,11 @@ const ListingSearch = () => {
 								className="searh-custom-slider"
 								range
 								min={0}
-								max={50000000} 
+								max={100000000}
 								step={10000}
 								value={priceRange}
 								onChange={handleSliderChange}
-								defaultValue={[0, 50000000]}
+								defaultValue={[0, 100000000]}
 							/>
 						</div>
 						<div className="range-container">

@@ -34,25 +34,25 @@
     box-sizing: border-box;
   } */
   
-  .card img {
+  /* .card img {
     width: 100%;
     border-bottom: 1px solid #ddd;
   }
   
   .card-content {
     padding: 15px;
-  }
+  } */
   
   @media (max-width: 768px) {
-    .card {
+    /* .card {
       width: calc(50% - 20px);
-    }
+    } */
   }
   
   @media (max-width: 576px) {
-    .card {
+    /* .card {
       width: calc(100% - 20px);
-    }
+    } */
   }
 
   @media screen and (min-width: 320px) and (max-width: 568px){
