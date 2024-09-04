@@ -157,7 +157,7 @@
 		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
-		margin: 10px 0px 10px 0px;
+		margin: 10px 0px 10px 5px;
 	}
 	.card-img {
 		height: 200px;
@@ -201,6 +201,12 @@
 	.card-content h4 {
 		font-size: 15px;
 	}
+	.bot .card-price-detail p {
+		font-size: 15px;
+	}
+	.bot p {
+		font-size: 15px;
+	}
 }
 
 @media screen and (min-width: 481px) and (max-width: 768px) {
@@ -229,6 +235,12 @@
 	.card-content h4 {
 		font-size: 16px;
 	}
+	.bot .card-price-detail p {
+		font-size: 16px;
+	}
+	.bot p {
+		font-size: 16px;
+	}
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
@@ -250,6 +262,12 @@
 	}
 	.card-content h3,
 	.card-content h4 {
+		font-size: 16px;
+	}
+	.bot .card-price-detail p {
+		font-size: 16px;
+	}
+	.bot p {
 		font-size: 16px;
 	}
 }
@@ -284,6 +302,12 @@
 	.card-content h4 {
 		font-size: 16px;
 	}
+		.bot .card-price-detail p {
+		font-size: 17px;
+	}
+	.bot p {
+		font-size: 17px;
+	}
 }
 
 @media screen and (min-width: 1201px) and (max-width: 1400px) {
@@ -292,12 +316,13 @@
 		bottom: 20px;
 	}
 	.card {
-		width: calc(51% - 30px);
+		width: calc(33% - 30px);
 	}
 	.card-container {
 		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
+		margin: 10px 0px 0px 20px ;
 		/* margin: 10px 0px 10px 0px; */
 	}
 	.card-img {
