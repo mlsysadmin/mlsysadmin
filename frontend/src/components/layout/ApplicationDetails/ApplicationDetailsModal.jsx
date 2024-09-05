@@ -262,9 +262,14 @@ const handleInputChange = async (e) => {
 						alignItems: "center",
 						zIndex: 1000,
 						padding: "0px 0px 0px 0px",
+						overflowY:"auto",
 					}}
 				>
-					<div className="overlay" onClick={onClose}></div>
+					<div
+						className="overlay"
+						onClick={onClose}
+						
+					></div>
 					<div className="application-modal-container">
 						<h3 className="application-header">Application Details</h3>
 						<form onSubmit={handleSubmit} className="application-modal-content">
