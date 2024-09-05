@@ -168,9 +168,9 @@
 	.AddFeature .feature-item {
 		width: 100%;
 	}
-	.feature-item-container {
+	/* .feature-item-container {
 		width: 50%;
-	}
+	} */
 	.addFeatureList .features ul {
 		height: 100%;
 	}

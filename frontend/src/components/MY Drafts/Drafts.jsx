@@ -3,7 +3,9 @@ import React, { useState } from "react";
 // import Navigation from "../layout/NavigationComponent";
 import SidebarComponent from "./Components/DraftSidebarComponent";
 import ListingsTableComponent from "./Components/ListingsTableComponent";
-import FooterComponent from "./Components/FooterComponent";
+// import FooterComponent from "./Components/FooterComponent";
+import CustomMlFooter from "../custom/Custom.Mlfooter";
+import FooterComponent from "../layout/FooterComponent";
 // import MainLayout from "../layout/layout.component";
 import "../../styles/drafts.css";
 
@@ -21,7 +23,8 @@ const Drafts = () => {
           <ListingsTableComponent />
         </div>
       </div>
-      <FooterComponent />
+      <CustomMlFooter />
+			<FooterComponent />
     </div>
   );
 };

@@ -159,7 +159,78 @@
   color: black;
 }
 
+/* Responsive styles for 320px — 480px */
+@media (min-width: 320px) and (max-width: 480px) {
+  .listings-table-header-section {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
 
+  .tabs-listings-table {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .table-header-button {
+    font-size: 14px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+  }
+
+  .listsum-search-section {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .table-dropdown {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .search-input-container {
+    width: 100%;
+  }
+
+  .search-input {
+    width: calc(100% - 20px); /* Account for padding and icon */
+    font-size: 14px;
+  }
+
+  .listings-whole-table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+ .listings-table{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+ }
+  .listings-table th,
+  .listings-table td {
+    padding: 8px;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .listings-table th {
+    font-size: 14px;
+  }
+
+  .listings-show-details-button {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  .pagination-list .page-link {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+  }
+}
 /* Base styles remain as is */
 
 /* Responsive adjustments for screen sizes between 481px and 768px */
@@ -227,107 +298,4 @@
     font-size: 14px;
   }
 }
-@media (min-width: 320px) and (max-width: 480px) {
-  .listings-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    display: block;
-  }
 
-  .listings-table thead {
-    display: none; /* Hide table headers */
-  }
-
-  .listings-table tr {
-    display: block;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-  }
-
-  .listings-table td {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .listings-table td:last-child {
-    border-bottom: none;
-  }
-
-  .listings-table td:before {
-    content: attr(data-label);
-    font-weight: bold;
-    margin-right: 10px;
-  }
-
-  .listings-table td:first-child {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-  }
-
-  .listings-table td:last-child {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-  }
-}
-/* Base styles remain the same as provided */
-
-/* Media Queries for responsive design */
-@media (max-width: 480px) {
-  .listings-table-header-section {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 10px;
-    padding: 10px;
-  }
-
-  .tabs-listings-table {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .table-header-button {
-    padding: 15px 20px;
-    font-size: 14px;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  .listsum-search-section {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-  }
-
-  .table-dropdown, .search-input-container {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  .search-input {
-    width: 100%;
-  }
-
-  .listings-whole-table {
-    overflow-x: auto;
-    width: 100%;
-  }
-
-  .pagination-container {
-    flex-direction: column;
-  }
-
-  .pagination-list {
-    flex-wrap: wrap;
-  }
-
-  .page-link {
-    width: 35px;
-    height: 35px;
-    font-size: 14px;
-  }
-}
