@@ -1446,13 +1446,14 @@ align-items: center;
   height: auto;
 }
 .second-content-span{
-  font-size:24px;
-  margin: 10px 0px 0px 0px;
+  font-size:30px;
+  margin: 10px 0px 0px 110px;
 }
 .sell .banner-buttons{
   display: flex;
   flex-direction: row;
   gap: 20px;
+  margin-top: 30px;
 }
 .banner-buttons #contactUs,
 .banner-buttons #signIn{
@@ -1467,11 +1468,13 @@ align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* width: 100%; */
+  width: 100%;
+  margin: 0px 0px 0px 250px;
 }
 .sell .content p{
   font-size: 20px;
-  width: 300px;
+  width: 100%;
+  margin: 0px;
 }
 .second-section .content #ListPropertybtn{
   width: 250px;
@@ -1485,6 +1488,7 @@ align-items: center;
   flex-direction: column;
   width: 100%;
   margin: 0px 0px 0px 80px;
+  font-size: 20px;
 }
 .sell .second-section .options p{
   font-size: 20px;
@@ -1496,13 +1500,12 @@ align-items: center;
 .sell .third-section .third-cont-guide{
   color: #000;
   font-weight: bold;
-  font-size:24px;
-  margin: 30px 0px 0px 0px;
+  font-size:30px;
 }
 .third-section .section-cont-guide {
   font-size: 18px;
   width: 100%;
-  margin: 0px 0px 0px 150px;
+  margin: 0px;
 }
 .third-section .section-cards .cards{
 display: flex;
@@ -1553,4 +1556,3 @@ align-items: center;
   width: 50%;
 }
 }
-

@@ -80,6 +80,17 @@
 		font-size: 22px;
 		margin-left:20px;
 	}
+	.second-content .card-container {
+		margin: 0px;
+		width: 310px;
+	}
+
+	.card img {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    border-radius: 20px;
+	height: 200px;
+}
 
 .bot{
 	display: flex;
@@ -99,7 +110,7 @@
 	}
 	.second-content h1 {
 		font-size: 22px;
-		margin: 0px 0px 20px 20px;
+		margin: 0px 0px 20px 0px;
 	}
 	
 	.second-content {
@@ -165,4 +176,73 @@
 	width: 100%;
 	padding: 10px;
 	}
+}
+
+@media screen and (min-width: 375px) and (max-width: 812px) {
+	.second-content .card-container {
+		margin: 0px;
+		width: 65%;
+	}
+}
+
+
+@media screen and (min-width: 390px) and (max-width: 844px) {
+	.second-content .card-container {
+		margin: 0px;
+		width: 67%;
+	}
+}
+
+
+@media screen and (min-width: 414px) and (max-width: 896px) {
+	.second-content .card-container {
+		margin: 0px;
+		width: 72%;
+	}
+}
+
+@media screen and (min-width: 412px) and (max-width: 915px) {
+	.second-content .card-container {
+		margin: 0px;
+		width: 71%;
+	}
+}
+
+@media screen and (min-width: 428px) and (max-width: 926px) {
+	.second-content .card-container {
+		margin: 0px;
+		width: 74%;
+	}
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+	.newpage .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px;
+	width: 100%;
+} 
+
+.second-content h1 {
+    font-size: 30px;
+    margin: 0px;
+}
+}
+
+@media screen and (min-width: 800px) and (max-width: 1280px) {
+	.newpage .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px;
+	width: 100%;
+} 
+.second-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    /* font-size: 32px; */
+    font-weight: normal;
+}
 }
