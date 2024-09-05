@@ -11,6 +11,7 @@ import { getCookieData } from "../../../../utils/CookieChecker";
 import { searchKyc } from "../../../../api/Public/User.api";
 
 import JoinTeam from "../../../modals/JoinTeamModal";
+import PropertySearchModal from "../../../modals/PropertySearchModal";
 import { isCookiePresent } from "../../../../utils/CookieChecker";
 import UserLogInProfileDropdownBtn from "../../../custom/buttons/BuyerLogInButtonDropdown";
 // import userProfileLogIn from "../../../../assets/userProfileLogIn.png"
@@ -40,11 +41,18 @@ const HeaderMenu = () => {
 
 
 	const url_Redirect = process.env.REACT_APP_LOGIN_URL;
+
+	const [showSearchPropertyModal, setshowSearchPropertyModal] = useState(false);
 	const handleUserProfileClick = () => {
-		if (url_Redirect) {
-			window.location.href = url_Redirect;
-		}
+		// if (url_Redirect) {
+		// 	window.location.href = url_Redirect;
+		// }
+		setshowSearchPropertyModal(true);
 	};
+
+	const closeModal = () =>{
+		setshowSearchPropertyModal(false);
+	}
 
 
 	//get user DEtails
@@ -245,6 +253,12 @@ const HeaderMenu = () => {
 					label="List your Property"
 					onClick={handleUserProfileClick}
 				/>
+				{showSearchPropertyModal && (
+					<PropertySearchModal
+						openModal={showSearchPropertyModal}
+						closeModal={closeModal}
+					/>
+				)}
 				{!isMLWWSPresent && (
 					<RoundBtn
 						type="primary"
