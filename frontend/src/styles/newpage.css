@@ -59,7 +59,7 @@
 }
 
 
-@media screen and (min-width: 320px) and (max-width: 360px) {
+@media screen and (min-width: 320px) and (max-width: 359px) {
 	.newpage-container {
 		justify-content: left;
 	}
@@ -77,8 +77,8 @@
 	}
 
 	.second-content h1 {
-		font-size: 20px;
-		margin: 0px;
+		font-size: 22px;
+		margin-left:20px;
 	}
 	.second-content .card-container {
 		margin: 0px;
@@ -112,48 +112,69 @@
 		font-size: 22px;
 		margin: 0px 0px 20px 0px;
 	}
-	.second-content .card-container {
-		margin: 0px;
+	
+	.second-content {
+    display: flex;
+    flex-direction: column;
+	width: 100%;
+	padding: 5px;
+	}
+
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+	.second-content h1 {
+		font-size: 28px;
+		margin: 40px 0px 20px 20px;
+	}
+	
+	.second-content {
+    display: flex;
+    flex-direction: column;
+	width: 100%;
+	padding: 5px;
+	}
+
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+	.second-content h1 {
+		font-size: 28px;
+		margin: 40px 0px 20px 20px;
+	}
+	
+	.second-content {
+    display: flex;
+    flex-direction: column;
+	width: 100%;
+	padding: 10px;
 	}
 }
 
-@media screen and (min-width: 360px) and (max-width: 800px){
-	.card img {
-        width: 100%;
-        border-bottom: 1px solid #ddd;
-        border-radius: 20px;
-        height: 200px;
-    }
-
-	.card {
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    box-sizing: border-box;
-}
-
-.second-content .card-container {
-		margin: 0px;
-		width: 62%;
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+	.second-content h1 {
+		font-size: 28px;
+		margin: 40px 0px 20px 40px;
+	}
+	
+	.second-content {
+    display: flex;
+    flex-direction: column;
+	width: 100%;
+	padding: 10px;
 	}
 }
 
-@media screen and (min-width:393px) and (max-width: 851px){
-	.card img {
-        width: 100%;
-        border-bottom: 1px solid #ddd;
-        border-radius: 20px;
-        height: 200px;
-    }
-
-	.card {
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    box-sizing: border-box;
-}
-
-.second-content .card-container {
-		margin: 0px;
-		width: 68%;
+@media screen and (min-width: 1201px) and (max-width: 1400px) {
+	.second-content h1 {
+		font-size: 30px;
+		margin: 40px 0px 20px 50px;
+	}
+	
+	.second-content {
+    display: flex;
+    flex-direction: column;
+	width: 100%;
+	padding: 10px;
 	}
 }
 

@@ -23,7 +23,7 @@
 	font-size: 16px;
 }
 
-@media only screen and (min-width: 320px) and (max-width: 568px){
+@media only screen and (min-width: 320px) and (max-width: 359px){
 	.search-sortation{
 	display: flex;
 	flex-direction: row;
@@ -47,109 +47,114 @@
 }
 }
 
-@media screen and (min-width: 360px) and (max-width: 800px){
+@media screen and (min-width:360px) and (max-width: 480px){
 	.search-sortation{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	width: 100%;
 	margin-top: 10px;
+	padding:0px 5px 0px 5px;
 }
 
-.search-sortation .sort span{
-	font-size: 15px;
+.search-sortation  .sort span{
+	font-size: 14px;
+	margin-left: 20px;
+}
+.search-sortation .sort-div-class{
+	font-size: 14px;
 }
 }
 
-@media screen and (min-width: 375px) and (max-width: 812px){
+@media screen and (min-width: 481px) and (max-width: 768px) {
 	.search-sortation{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	width: 100%;
-	padding: 0px;
 	margin-top: 10px;
+	padding:0px 5px 0px 5px;
 }
 
-.search-sortation .sort span{
-	font-size: 15px;
+.search-sortation  .sort span{
+	font-size: 17px;
+	margin-left: 20px;
+}
+.search-sortation .sort-div-class{
+	font-size: 17px;
 }
 }
-
-@media screen and (min-width: 390px) and (max-width: 844px){
+@media screen and (min-width: 481px) and (max-width: 768px) {
 	.search-sortation{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	width: 100%;
-	padding: 0px;
 	margin-top: 10px;
+	padding:0px 5px 0px 5px;
 }
 
-.search-sortation .sort span{
-	font-size: 15px;
+.search-sortation  .sort span{
+	font-size: 17px;
+	margin-left: 20px;
+}
+.search-sortation .sort-div-class{
+	font-size: 17px;
 }
 }
-
-@media screen and (min-width:393px) and (max-width: 851px){
+@media screen and (min-width: 769px) and (max-width: 1024px) {
 	.search-sortation{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	width: 100%;
-	padding: 0px;
 	margin-top: 10px;
+	padding:0px 5px 0px 5px;
 }
 
-.search-sortation .sort span{
-	font-size: 15px;
+.search-sortation  .sort span{
+	font-size: 20px;
+	margin-left: 20px;
+}
+.search-sortation .sort-div-class{
+	font-size: 20px;
 }
 }
-
-@media screen and (min-width: 428px) and (max-width: 926px){
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
 	.search-sortation{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	width: 100%;
-	padding: 0px;
 	margin-top: 10px;
+	padding:0px 5px 0px 5px;
 }
 
-.search-sortation .sort span{
-	font-size: 15px;
+.search-sortation  .sort span{
+	font-size: 20px;
+	margin-left: 40px;
+}
+.search-sortation .sort-div-class{
+	font-size: 20px;
+	margin-right: 10px;
 }
 }
-
-
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-.search-sortation {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 95%;
-        padding: 0px;
-        margin-top: 10px;
-		margin-left: 15px;
-    }
-    .search-sortation .sort span {
-        font-size: 15px;
-        margin-left: 0px;
-    }
+@media screen and (min-width: 1201px) and (max-width: 1400px) {
+	.search-sortation{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 10px;
+	padding:0px 5px 0px 5px;
 }
 
-@media screen and (min-width: 800px) and (max-width: 1280px){
-	.search-sortation {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 95%;
-        padding: 0px;
-        margin-top: 10px;
-		margin-left: 15px;
-    }
-    .search-sortation .sort span {
-        font-size: 15px;
-        margin-left: 0px;
-    }
+.search-sortation  .sort span{
+	font-size: 20px;
+	margin-left: 40px;
+}
+.search-sortation .sort-div-class{
+	font-size: 20px;
+	margin-right: 10px;
+}
 }
