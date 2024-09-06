@@ -106,6 +106,7 @@ const PropertySearchModal = ({ openModal, closeModal }) => {
 				onCancel={closeModal}
 				footer={null}
 				className="custom-modal-searchprop"
+                
 			>
 				{!isSuccessModalVisible && (
 					<div className="modal-content-searchprop">
