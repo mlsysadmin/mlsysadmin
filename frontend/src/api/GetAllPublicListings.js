@@ -9,7 +9,6 @@ const GetAllPublicListing = async () =>{
             }
         });
         const allpubliclisting = response.data.data
-        console.log("public listing: ", allpubliclisting);
         return allpubliclisting;
         
     } catch (error) {

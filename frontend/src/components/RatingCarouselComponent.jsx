@@ -15,11 +15,12 @@ const RatingCarouselComponent = () => {
     }
 
     const HideRate = (review) => {
-        console.log(review.length);
         return review.length > 150 ? review.slice(0, 150) : review
     }
     return (
-        <div className="rating">
+        <div className="rating" style={{
+            textAlign: 'center'
+        }}>
             <Carousel arrows={true} infinite={true} className="rate-carousel" dots={false}>
                 {
                     Ratings.map((rate, i) => {

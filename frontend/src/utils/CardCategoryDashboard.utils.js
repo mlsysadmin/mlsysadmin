@@ -30,6 +30,22 @@ const CardCategory = [
         perfect place to live your best life!`,
 		buttonTitle: "Find rentals",
 	},
+	// {
+	// 	icon: Rent,
+	// 	image: image,
+	// 	category: "Rent",
+	// 	decription: `Discover your dream rental property today! Let us help you find the 
+    //     perfect place to live your best life!`,
+	// 	buttonTitle: "Find rentals",
+	// },
+	// {
+	// 	icon: Rent,
+	// 	image: image,
+	// 	category: "Rent",
+	// 	decription: `Discover your dream rental property today! Let us help you find the 
+    //     perfect place to live your best life!`,
+	// 	buttonTitle: "Find rentals",
+	// },
 ];
 
 export default CardCategory;

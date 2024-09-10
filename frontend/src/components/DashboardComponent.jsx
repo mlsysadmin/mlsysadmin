@@ -48,13 +48,9 @@ const DashboardComponent = () => {
   const handleCertainFeatureClick = () => {
     setcertainFeatureOpen(!iscertainFeatureOpen);
   };
-  useEffect(() => {
-    console.log(userLikes);
-  });
 
   const navigate = useNavigate();
   const handleCardClick = (id) => {
-    console.log("id", id);
     // window.location.href = `/previewListing/${id}`;
     navigate(`/previewListing/${id}`, { state: id });
   };
@@ -66,7 +62,6 @@ const DashboardComponent = () => {
     const res = await GetAllPublicListing();
     const dataresp = res.data;
     setPublicListing(dataresp);
-    console.log("public listing:", dataresp);
   };
   useEffect(() => {
     allPublicListing();
@@ -124,32 +119,6 @@ const DashboardComponent = () => {
       ))}
     </Menu>
   );
-  const responsive = {
-    desktop: {
-      breakpoint: {
-        max: 3000,
-        min: 1024,
-      },
-      items: 3,
-      partialVisibilityGutter: 40,
-    },
-    mobile: {
-      breakpoint: {
-        max: 480,
-        min: 315,
-      },
-      items: 1,
-      partialVisibilityGutter: 0,
-    },
-    tablet: {
-      breakpoint: {
-        max: 1024,
-        min: 481,
-      },
-      items: 1,
-      partialVisibilityGutter: 30,
-    },
-  };
 
   const CardCategories = () => {
     return CardCategory.map((item, i) => {
@@ -169,7 +138,11 @@ const DashboardComponent = () => {
               </div>
               <div className="overlay-title">{item.category}</div>
               <div className="overlay-description">{item.decription}</div>
-              <div className="button-card-class">{item.buttonTitle}</div>
+              <SemiRoundBtn
+                label={item.buttonTitle}
+                size={'middle'}
+                className={'button-card-class'}
+              />
             </div>
           </Card>
         </Col>
@@ -277,78 +250,26 @@ const DashboardComponent = () => {
         </div>
       </div>
       <div className="discover">
-        {/* <Row className="discover-content">
-					<Col className="discover-section--title">
-						<h2>Discover Latest Properties</h2>
-						<p>Newest Properties Around You</p>
-					</Col>
-				</Row>
-				<div className="listing-carousel" style={{ cursor: "pointer" , display:"flex", flexDirection:"row", justifyContent:"space-evenly"}}>
-					<Carousel
-						additionalTransfrom={0}
-						arrows
-						autoPlaySpeed={3000}
-						centerMode={true}
-						dotListClass=""
-						draggable
-						focusOnSelect={false}
-						keyBoardControl
-						minimumTouchDrag={80}
-						pauseOnHover
-						renderArrowsWhenDisabled={false}
-						renderButtonGroupOutside={false}
-						renderDotsOutside={false}
-						rewind={false}
-						rewindWithAnimation={false}
-						rtl={false}
-						shouldResetAutoplay
-						showDots={false}
-						slidesToSlide={1}
-						swipeable
-						responsive={responsive}
-						className="card-listing--carousel"
-						containerClass="container-carousel"
-						infinite
-						itemClass="carousel-item"
-						transitionDuration={300}
-						sliderClass="carousel-slider-ul"
-					>
-						{publiclisting.map((item, i) => {
-							return (
-								<CardListingComponent
-									title={item.listings.title}
-									price={`PHP ${item.listings.unit_details.price}`}
-									status={item.listings.listing_type.listing_type}
-									pics={GetPhotoLength(item.listings.photos.photo)}
-									features={item.features}
-									img={GetPhotoFromDB(item.listings.photos.photo)}
-									no_of_bathrooms={item.listings.unit_details.no_of_bathrooms}
-									lot={item.listings.unit_details.lot_area}
-									key={i}
-									listingId={item.listings.listing_id}
-									loading={loading}
-									handleClick={() => handleCardClick(item.listings.listing_id)}
-								/>
-							);
-						})}
-					</Carousel>
-				</div> */}
         <Row className="discover-content">
-          <Col className="discover-section--title">
-            <h2>Discover Latest Properties</h2>
+          <div className="discover-section--title">
+            <h2>Newest Properties</h2>
+          </div>
+          <div className="discover-section--sub-title">
             <div className="section-2-title">
               {newListings.length > 0 ? (
-                <p>Newest Properties Around You</p>
+                <>
+                  <p>Discover new homes around you</p>
+                  <div className="see-all-new-listing-dashboard">
+                    <a href="/all" style={{ color: "#8C9094" }}>
+                      See All
+                    </a>
+                  </div>
+                </>
               ) : (
                 <p>No New Listings Available</p>
               )}
-              <div className="see-all-new-listing-dashboard">
-                <a href="/all" style={{ color: "#8C9094" }}>
-                  See All
-                </a>
-              </div>
             </div>
-          </Col>
+          </div>
         </Row>
         {newListings.length > 0 && (
           <div className="listing-carousel-dashboard">
@@ -376,18 +297,9 @@ const DashboardComponent = () => {
             })}
           </div>
         )}
-        {/* <div className="see-more--container">
-					<a href="/new">
-						<SemiRoundBtn
-							label={"SEE MORE NEW LISTINGS"}
-							size="large"
-							className="see-more--btn"
-						/>
-					</a>
-				</div> */}
         <div className="discover--section-2">
           <h3>Helping you buy, rent and sell in Real Estate</h3>
-          <Row className="card--brokerage-category" gutter={[50, 50]}>
+          <Row className="card--brokerage-category">
             <CardCategories />
           </Row>
           <div className="discover--section-3">
@@ -410,20 +322,12 @@ const DashboardComponent = () => {
                     <p>Sign in and start your successful sale!</p>
                   </div>
                   <div className="inquire--actions">
-                    {/* <a href="/contact-us">
-											<RoundBtn
-												label={"Contact us"}
-												type={"default"}
-												className="contact-us--action action-btn"
-												size={"large"}
-											/>
-										</a> */}
-                    <RoundBtn
-                      label={"Sign in your ML Wallet Account"}
+                    <SemiRoundBtn
+                      label={"Sign in to your ML Wallet Account"}
                       type={"default"}
                       className="sign-in--action action-btn"
-                      size={"large"}
-                      onClick={handleUserProfileClick}
+                      size={"small"}
+                      handleClick={handleUserProfileClick}
                     />
                   </div>
                 </div>
@@ -434,20 +338,22 @@ const DashboardComponent = () => {
           <br />
           <br />
           <div className="discover--section-4">
-            <div className="card--brokerage-featured">
-              <div className="featured-container">
-                <div className="featured--title">
-                  <h3>Featured Properties</h3>
-                </div>
-                <div className="featured--content">
-                  <FeaturedPropertiesComponent />
-                </div>
-              </div>
+            {/* <div className="card--brokerage-featured"> */}
+            {/* <div className="featured-container"> */}
+            <div className="featured--title">
+              <h3>Featured Properties</h3>
             </div>
+            <div className="featured--content">
+              <FeaturedPropertiesComponent />
+            </div>
+            {/* </div> */}
+            {/* </div> */}
           </div>
         </div>
 
-        <div className="ratings">
+        <div className="ratings" style={{
+          textAlign: 'center'
+        }}>
           <div className="rating-container">
             <div className="rating--title">
               <h3>What Our Clients are Saying?</h3>
@@ -461,8 +367,6 @@ const DashboardComponent = () => {
       <br />
       <br />
       <br />
-      <CustomMlFooter />
-      <FooterComponent />
     </div>
   );
 };

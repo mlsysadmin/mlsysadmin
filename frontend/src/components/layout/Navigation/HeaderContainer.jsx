@@ -29,7 +29,10 @@ const HeaderContainer = ({ showDrawer, screenSize }) => {
           // src="https://anima-uploads.s3.amazonaws.com/projects/64e41d552340cba66b90f01a/releases/64e41e67e1c2a81b98b3c871/img/logo@2x.png"
           src={BrokerageLogo}
           alt="logo"
-          style={{ width: "150px", height: "60px" }}
+          style={{ 
+            width: "150px", 
+            // height: "60px" 
+          }}
           // width={140}
           // height={55}
         />
