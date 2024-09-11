@@ -1,16 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Modal } from "antd";
 import "../../styles/otherservicesSearchPropertyModal.css"; // Ensure you have this CSS for styling
-import {
-	GetCountry,
-	GetCities,
-	GetProvince,
-} from "../../api/Public/Location.api";
-import { searchKyc } from "../../api/Public/User.api";
+import DashboardComponent from "../DashboardComponent";
 
-const PropertySearchModal = ({ openModal, closeModal }) => {
-	const [userDetails, setUserDetails] = useState(null);
+const PropertySearchModal = ({ closeModal }) => {
 	const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
+	 const navigate = useNavigate();
 	const [formData, setFormData] = useState({
 		mobileNumber: "",
 		email: "",
@@ -18,71 +14,23 @@ const PropertySearchModal = ({ openModal, closeModal }) => {
 		firstName: "",
 		middleName: "",
 		suffix: "",
-
 	});
+	const handleSubmit = () => {
+		setIsSuccessModalVisible(true);
+	};
 
-	// const handleInputChange = async (e) => {
-	// 	const { name, value } = e.target;
-	// 	setFormData((prevFormData) => ({
-	// 		...prevFormData,
-	// 		[name]: value,
-	// 	}));
-
-	// 	if (name === "mobileNumber" && value.length === 11) {
-	// 		try {
-	// 			const response = await searchKyc(value);
-	// 			const respData = response.data.data;
-	// 			setUserDetails(respData);
-	// 			console.log("datas:", respData);
-	// 			if (respData) {
-	// 				setFormData((prevFormData) => ({
-	// 					...prevFormData,
-	// 					firstName: respData.name?.firstName
-	// 						? respData.name.firstName.replace(/.(?=.{2})/g, "*")
-	// 						: "",
-	// 					lastName: respData.name?.lastName
-	// 						? respData.name.lastName.replace(/.(?=.{2})/g, "*")
-	// 						: "",
-	// 					middleName: respData.name?.middleName
-	// 						? respData.name.middleName.replace(/.(?=.{2})/g, "*")
-	// 						: "",
-	// 					suffix: respData.name?.suffix || "",
-	// 					email: respData.email
-	// 						? respData.email.replace(/(.{2}).*(?=@)/, "$1****")
-	// 						: "",
-	// 				}));
-	// 			}
-	// 			// } else {
-	// 			// 	setIsModalVisible(true);
-	// 			// }
-	// 		} catch (error) {
-	// 			console.error("Error fetching user details:", error);
-	// 		}
-	// 	}
-	// };
-    	const handleSubmit = () => {
-             setIsSuccessModalVisible(true);
-
-            // if (open){
-            //     setIsSuccessModalVisible(true);
-            //     closeModal();
-            //     console.log("parent modal close:", closeModal());
-            // }
-		};
-
-     const [otherType, setOtherType] = useState("");
+	const [otherType, setOtherType] = useState("");
 	const [isOtherSelected, setIsOtherSelected] = useState(false);
-    const handleOtherType = (event) => {
-	const selectedType = event.target.value;
-	setOtherType(selectedType);
+	const handleOtherType = (event) => {
+		const selectedType = event.target.value;
+		setOtherType(selectedType);
 
-	if (selectedType === "Others") {
-		setIsOtherSelected(true);
-	} else {
-		setIsOtherSelected(false);
-	}
-     };
-
+		if (selectedType === "Others") {
+			setIsOtherSelected(true);
+		} else {
+			setIsOtherSelected(false);
+		}
+	};
 
 	const resetForm = () => {
 		setFormData({
@@ -96,20 +44,14 @@ const PropertySearchModal = ({ openModal, closeModal }) => {
 	};
 	const closeSuccessModal = () => {
 		setIsSuccessModalVisible(false);
-        closeModal();
+		navigate("/");
 	};
-
 	return (
-		<>
-			<Modal
-				open={openModal}
-				onCancel={closeModal}
-				footer={null}
-				className="custom-modal-searchprop"
-                
-			>
-				{!isSuccessModalVisible && (
-					<div className="modal-content-searchprop">
+		<div className="dashboard-modal-container-search">
+			<DashboardComponent />
+			{!isSuccessModalVisible && (
+				<div className="modal-content-searchprop">
+					<div className="modal-inner-content">
 						<div className="toptitle">
 							<h1>Looking for Your Dream Property? </h1>
 							<span className="top-description">
@@ -120,7 +62,6 @@ const PropertySearchModal = ({ openModal, closeModal }) => {
 								preferences.
 							</span>
 						</div>
-
 						<div className="why-choose-us">
 							<h2>Why Choose Us?</h2>
 							<ul>
@@ -142,7 +83,6 @@ const PropertySearchModal = ({ openModal, closeModal }) => {
 								</li>
 							</ul>
 						</div>
-
 						<div className="how-it-works">
 							<h2>How it Works?</h2>
 							<div className="steps">
@@ -188,7 +128,6 @@ const PropertySearchModal = ({ openModal, closeModal }) => {
 								</div>
 							</div>
 						</div>
-
 						<div className="form-section">
 							<h3>Ready to Start Your Property Search?</h3>
 							<p>
@@ -343,8 +282,9 @@ const PropertySearchModal = ({ openModal, closeModal }) => {
 							</form>
 						</div>
 					</div>
-				)}
-			</Modal>
+				</div>
+			)}
+			{/* </Modal> */}
 
 			<Modal
 				open={isSuccessModalVisible}
@@ -361,7 +301,7 @@ const PropertySearchModal = ({ openModal, closeModal }) => {
 					</p>
 				</div>
 			</Modal>
-		</>
+		</div>
 	);
 };
 
