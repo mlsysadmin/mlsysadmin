@@ -132,7 +132,7 @@
 }
 .form-row input:disabled, .form-row select:disabled{
     border-color: #d9d9d9;
-	background-color: #d9d9d9;
+    background-color: #d9d9d9;
 }
 .form-column{
     display: flex;

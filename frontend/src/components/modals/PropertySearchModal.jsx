@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
 import { Modal } from "antd";
-import "../../styles/otherservicesSearchPropertyModal.css"; // Ensure you have this CSS for styling
-import {
-	GetCountry,
-	GetCities,
-	GetProvince,
-} from "../../api/Public/Location.api";
-import { searchKyc } from "../../api/Public/User.api";
+import "../../styles/otherservicesSearchPropertyModal.css";
+import { useNavigate } from "react-router-dom";
 
 const PropertySearchModal = ({ openModal, closeModal }) => {
 	const [userDetails, setUserDetails] = useState(null);
@@ -18,71 +13,29 @@ const PropertySearchModal = ({ openModal, closeModal }) => {
 		firstName: "",
 		middleName: "",
 		suffix: "",
-
 	});
+	const handleSubmit = () => {
+		setIsSuccessModalVisible(true);
 
-	// const handleInputChange = async (e) => {
-	// 	const { name, value } = e.target;
-	// 	setFormData((prevFormData) => ({
-	// 		...prevFormData,
-	// 		[name]: value,
-	// 	}));
+		// if (open){
+		//     setIsSuccessModalVisible(true);
+		//     closeModal();
+		//     console.log("parent modal close:", closeModal());
+		// }
+	};
 
-	// 	if (name === "mobileNumber" && value.length === 11) {
-	// 		try {
-	// 			const response = await searchKyc(value);
-	// 			const respData = response.data.data;
-	// 			setUserDetails(respData);
-	// 			console.log("datas:", respData);
-	// 			if (respData) {
-	// 				setFormData((prevFormData) => ({
-	// 					...prevFormData,
-	// 					firstName: respData.name?.firstName
-	// 						? respData.name.firstName.replace(/.(?=.{2})/g, "*")
-	// 						: "",
-	// 					lastName: respData.name?.lastName
-	// 						? respData.name.lastName.replace(/.(?=.{2})/g, "*")
-	// 						: "",
-	// 					middleName: respData.name?.middleName
-	// 						? respData.name.middleName.replace(/.(?=.{2})/g, "*")
-	// 						: "",
-	// 					suffix: respData.name?.suffix || "",
-	// 					email: respData.email
-	// 						? respData.email.replace(/(.{2}).*(?=@)/, "$1****")
-	// 						: "",
-	// 				}));
-	// 			}
-	// 			// } else {
-	// 			// 	setIsModalVisible(true);
-	// 			// }
-	// 		} catch (error) {
-	// 			console.error("Error fetching user details:", error);
-	// 		}
-	// 	}
-	// };
-    	const handleSubmit = () => {
-             setIsSuccessModalVisible(true);
-
-            // if (open){
-            //     setIsSuccessModalVisible(true);
-            //     closeModal();
-            //     console.log("parent modal close:", closeModal());
-            // }
-		};
-
-     const [otherType, setOtherType] = useState("");
+	const [otherType, setOtherType] = useState("");
 	const [isOtherSelected, setIsOtherSelected] = useState(false);
-    const handleOtherType = (event) => {
-	const selectedType = event.target.value;
-	setOtherType(selectedType);
+	const handleOtherType = (event) => {
+		const selectedType = event.target.value;
+		setOtherType(selectedType);
 
-	if (selectedType === "Others") {
-		setIsOtherSelected(true);
-	} else {
-		setIsOtherSelected(false);
-	}
-     };
-
+		if (selectedType === "Others") {
+			setIsOtherSelected(true);
+		} else {
+			setIsOtherSelected(false);
+		}
+	};
 
 	const resetForm = () => {
 		setFormData({
@@ -94,9 +47,12 @@ const PropertySearchModal = ({ openModal, closeModal }) => {
 			suffix: "",
 		});
 	};
+
+	const navigate = useNavigate();
 	const closeSuccessModal = () => {
 		setIsSuccessModalVisible(false);
-        closeModal();
+		closeModal();
+		navigate("/");
 	};
 
 	return (
@@ -106,7 +62,6 @@ const PropertySearchModal = ({ openModal, closeModal }) => {
 				onCancel={closeModal}
 				footer={null}
 				className="custom-modal-searchprop"
-                
 			>
 				{!isSuccessModalVisible && (
 					<div className="modal-content-searchprop">

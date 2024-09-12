@@ -61,6 +61,7 @@ import {
 	SupportCreateListing,
 } from "../pages";
 import { ProtectedRoute, BuyerSellerProtectedRoute } from "./ProtectedRoute";
+import { PropertySearchModal } from "../components";
 
 
 
@@ -189,6 +190,10 @@ const Routes = [
 			{
 				path: "/previewListing/:new_id",
 				element: <PreviewListing />,
+			},
+			{
+				path:"/propertySearchmodal",
+				element:<PropertySearchModal/>
 			},
 			{
 				path: "buyer-application-history",

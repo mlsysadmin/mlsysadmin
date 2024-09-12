@@ -169,11 +169,13 @@ const SubMenu = {
 								fontSize: "13px",
 								textDecoration: "underline",
 							}}
+							href="/?openModal=true"
 						>
 							Begin Your Property Search Today with Our Help!
 						</a>
 					</span>
-					<br /><br />
+					<br />
+					<br />
 					<span>
 						<a
 							style={{
