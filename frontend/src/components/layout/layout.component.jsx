@@ -34,7 +34,7 @@ const MainLayout = () => {
         <>
             <HeaderContainer showDrawer={showDrawer} screenSize={screenSize}/>
             <Layout className='side'>
-                <SideBar openDrawer={openDrawer} onClose={onClose}/>
+                <SideBar openDrawer={openDrawer} onClose={onClose} setOpenDrawer={setOpenDrawer}/>
             </Layout>
         </>
     )

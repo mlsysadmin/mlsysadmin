@@ -151,4 +151,7 @@
         inset: 110px auto auto 112.586px !important;
         width: auto;
     }
+    .header.ant-layout-header{
+        padding: 15px 0px;
+    }
 }

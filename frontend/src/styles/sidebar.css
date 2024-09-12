@@ -8,6 +8,10 @@
     width: 100% !important;
 }
 
+.side-bar--drawer .ant-drawer-header .ant-drawer-close{
+    margin-top: 0px;
+}
+
 .side-bar--drawer .sidebar-menu.ant-menu.ant-menu-root.ant-menu-inline{
     border-inline-end: none !important;
     font-family: var(--font-family);
