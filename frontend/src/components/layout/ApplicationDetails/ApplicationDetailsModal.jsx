@@ -35,7 +35,7 @@ const FileUploadGrid = ({ validateFiles }) => {
 	return (
 		<div className="grid-container">
 			{files.map((file, index) => (
-				<div key={index} className="grid-item">
+				<div key={index} className="grid-item" style={{cursor:"pointer"}}>
 					<div className="add-Button">
 						<input
 							type="file"
@@ -201,18 +201,18 @@ const handleInputChange = async (e) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		const errors = {};
-		Object.keys(formValues).forEach((key) => {
-			if (!formValues[key]) {
-				errors[key] = "This field is required";
-			}
-		});
+		// const errors = {};
+		// Object.keys(formValues).forEach((key) => {
+		// 	if (!formValues[key]) {
+		// 		errors[key] = "This field is required";
+		// 	}
+		// });
 
-		if (Object.keys(errors).length > 0) {
-			setErrors(errors);
-			message.error("All fields are required!");
-			return;
-		}
+		// if (Object.keys(errors).length > 0) {
+		// 	setErrors(errors);
+		// 	message.error("All fields are required!");
+		// 	return;
+		// }
 
 		if (!files.every((file) => file)) {
 			message.error("All files must be uploaded!");
@@ -246,7 +246,7 @@ const handleInputChange = async (e) => {
 
 	return (
 		<>
-			{!showOtpModal && visible && (
+			{visible && !showOtpModal && (
 				<div
 					className="modal-main-container"
 					style={{
@@ -262,14 +262,10 @@ const handleInputChange = async (e) => {
 						alignItems: "center",
 						zIndex: 1000,
 						padding: "0px 0px 0px 0px",
-						overflowY:"auto",
+						overflowY: "auto",
 					}}
 				>
-					<div
-						className="overlay"
-						onClick={onClose}
-						
-					></div>
+					<div className="overlay" onClick={onClose}></div>
 					<div className="application-modal-container">
 						<h3 className="application-header">Application Details</h3>
 						<form onSubmit={handleSubmit} className="application-modal-content">
