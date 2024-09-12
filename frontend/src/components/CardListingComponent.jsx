@@ -107,10 +107,9 @@ const CardListingComponent = ({ loading, status, pics, title, price, features, l
 					size="small"
 					bordered={false}
 					loading={loading}
-					onClick={handleClick}
 				>
 					<div className="listing-image">
-						<img src={img} className="image"></img>
+						<img src={img} className="image" onClick={handleClick}></img>
 						<div className="tags">
 							<CustomTag
 								tagLabel={status}
@@ -134,7 +133,7 @@ const CardListingComponent = ({ loading, status, pics, title, price, features, l
 							{/* <CustomTag tagLabel={<Filter />} className="circle-tags" /> */}
 						</div>
 					</div>
-					<div className="card-content">
+					<div className="card-content" onClick={handleClick}>
 						<div className="card-content--title">
 							<h4>{title}</h4>
 						</div>
