@@ -699,9 +699,9 @@
           display: none;
       }
 
-      /* .dashboard .discover .discover--section-2 .card--brokerage-category .overlay-content {
+      .dashboard .discover .discover--section-2 .card--brokerage-category .overlay-content {
           height: 0%;
-      } */
+      }
 
       .dashboard .discover .discover--section-2 h3 {
           font-size: 30px;

@@ -36,9 +36,14 @@ const Card = ({
   // };
 
   return (
-		<div className="card" style={{ cursor: "pointer" }} onClick={handleClick}>
+		<div className="card" style={{ cursor: "pointer" }}>
 			<div className="cardImage">
-				<img src={imgSrc} alt={title} className="card-img" />
+				<img
+					src={imgSrc}
+					alt={title}
+					className="card-img"
+					onClick={handleClick}
+				/>
 				<p
 					className={isFeatured ? "featured" : ""}
 					style={{
@@ -75,7 +80,7 @@ const Card = ({
           </div> */}
 				</div>
 			</div>
-			<div className="card-content">
+			<div className="card-content" onClick={handleClick}>
 				<h3>{title}</h3>
 				<h4>{subtitle}</h4>
 				<div className="bot">

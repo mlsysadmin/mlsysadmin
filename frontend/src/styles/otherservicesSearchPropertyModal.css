@@ -1,18 +1,7 @@
 .custom-modal-searchprop {
     width: auto;
 }
-.ant-modal-root .ant-modal-wrap {
-    margin-right: 300px;
-    width: 100%;
-}
-.modal-content-searchprop .ant-modal-body{
-    background-color: #fff; 
-    padding: 40px;
-    border-radius: 8px;
-    text-align: center;
-    width: 100%;
-    height: auto;
-}
+
 .custom-modal-searchprop .ant-modal-close {
     display: none; 
 }
@@ -29,6 +18,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+	width:100%;
 }
 
 
@@ -36,11 +26,16 @@
 .modal-content-searchprop {
     padding: 20px;
 }
+.toptitle{
+	width: 100%;
+	margin-top: 50px;
+	display: flex;
+	flex-direction: column;
+}
 
 .toptitle h1 {
     font-size: 24px;
     margin-bottom: 10px;
-    margin-top: 50px;
 }
 
 .toptitle span {
@@ -48,6 +43,17 @@
     color: #555;
 }
 
+.why-choose-us{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+.how-it-works{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
 .why-choose-us h2,
 .how-it-works h2 {
     font-size: 20px;
@@ -103,6 +109,10 @@
 
 .form-section {
     margin-top: 30px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
 }
 
 .property-search-form {
@@ -132,7 +142,7 @@
 }
 .form-row input:disabled, .form-row select:disabled{
     border-color: #d9d9d9;
-	background-color: #d9d9d9;
+    background-color: #d9d9d9;
 }
 .form-column{
     display: flex;
@@ -159,7 +169,6 @@
     flex-direction: column;
     justify-content: left;
     align-items: left;
-    width:1000px;
     flex-wrap: wrap;
     height: auto;
     padding: 20px;
@@ -195,4 +204,242 @@
     flex-direction: column;
     gap: 30px;
     width: 400px;
+}
+@media screen and (min-width: 320px) and (max-width: 359px) {
+.ant-modal .ant-modal-body {
+    width: 100%;
+}
+.modal-content-searchprop {
+   /* width: 250px; */
+   display: flex;
+   flex-wrap: wrap;
+   margin: 10px;
+}
+.toptitle{
+	margin-top: 20px;
+	display: flex;
+	flex-wrap: wrap;
+}
+.toptitle h1 {
+    font-size: 20px;
+}
+.toptitle span {
+    font-size: 15px;
+
+}
+.how-it-works{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+.how-it-works .steps {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+   padding: 0px;
+}
+.how-it-works .step{
+	width: 80%;
+}
+.form-section{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	
+}
+.form-section h3{
+	width: 100%;
+}
+.form-section p{
+	width: 100%;
+}
+.form-section .property-search-form{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+.form-row{
+	display: flex;
+	flex-direction: column;
+	
+}
+}
+
+@media screen and (min-width: 360px) and (max-width: 480px) {
+.ant-modal .ant-modal-body {
+    width: 100%;
+}
+.modal-content-searchprop {
+   /* width: 300px; */
+   display: flex;
+   flex-wrap: wrap;
+   margin: 15px;
+}
+.toptitle{
+	margin-top: 20px;
+	display: flex;
+	flex-wrap: wrap;
+}
+.toptitle h1 {
+    font-size: 20px;
+}
+.toptitle span {
+    font-size: 15px;
+
+}
+.how-it-works{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+.how-it-works .steps {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+   padding: 0px;
+}
+.how-it-works .step{
+	width: 80%;
+}
+.form-section{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	
+}
+.form-section h3{
+	width: 100%;
+}
+.form-section p{
+	width: 100%;
+}
+.form-section .property-search-form{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+.form-row{
+	display: flex;
+	flex-direction: column;
+	
+}
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+.ant-modal .ant-modal-body {
+    width:100%;
+}
+.modal-content-searchprop {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   
+
+}
+.toptitle{
+	margin-top: 20px;
+	display: flex;
+	flex-wrap: wrap;
+}
+.toptitle h1 {
+    font-size: 20px;
+}
+.toptitle span {
+    font-size: 15px;
+
+}
+.how-it-works{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+.how-it-works .steps {
+    display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+    flex-direction: row;
+    width: 100%;
+   padding: 0px;
+}
+.how-it-works .step{
+	width: 30%;
+}
+.form-section{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	
+}
+.form-section h3{
+	width: 100%;
+}
+.form-section p{
+	width: 100%;
+}
+.form-section .property-search-form{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+.form-row{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	width: 650px;
+	gap: 30px;
+}
+.form-column{
+	width: 45%;
+}
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+.how-it-works{
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+.how-it-works .steps {
+    display: flex;
+	flex-wrap: wrap;
+	justify-content: left;
+    flex-direction: row;
+    width: 100%;
+    padding: 0px;
+}
+.how-it-works .step{
+	width: 30%;
+}
+.form-section{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	
+}
+.form-section h3{
+	width: 100%;
+}
+.form-section p{
+	width: 100%;
+}
+.form-section .property-search-form{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	width: 98%;
+}
+.form-row{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 700px;
+	gap: 20px;
+}
+.form-column{
+	width: 45%;
+}
+.submit-row {
+    justify-content: right;
+}
 }

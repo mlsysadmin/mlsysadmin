@@ -44,10 +44,10 @@ const HeaderMenu = () => {
 
 	const [showSearchPropertyModal, setshowSearchPropertyModal] = useState(false);
 	const handleUserProfileClick = () => {
-		// if (url_Redirect) {
-		// 	window.location.href = url_Redirect;
-		// }
-		setshowSearchPropertyModal(true);
+		if (url_Redirect) {
+			window.location.href = url_Redirect;
+		}
+		// setshowSearchPropertyModal(true);
 	};
 
 	const closeModal = () =>{
@@ -253,12 +253,12 @@ const HeaderMenu = () => {
 					label="List your Property"
 					onClick={handleUserProfileClick}
 				/>
-				{showSearchPropertyModal && (
+				{/* {showSearchPropertyModal && (
 					<PropertySearchModal
 						openModal={showSearchPropertyModal}
 						closeModal={closeModal}
 					/>
-				)}
+				)} */}
 				{!isMLWWSPresent && (
 					<RoundBtn
 						type="primary"

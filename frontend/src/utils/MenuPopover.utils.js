@@ -85,31 +85,31 @@ const SubMenu = {
 								nationwide. You may visit our
 							</span>
 							<p>
-								<a href="/home" className="redirect">
+								<a href="https://mlhuillier.com/home-loan/" className="redirect">
 									Home Loan Dashboard <RightOutlined />
 								</a>
 							</p>
 						</div>
 					),
-					link: "/home",
+					link: "https://mlhuillier.com/home-loan/",
 				},
 			],
 		},
 		{
 			header: "Home Loan Guide",
 			submenu: [
-				{ sub: "Discover Home Loan", link: "/discover-home" },
+				{ sub: "Discover Home Loan", link: "https://mlhuillier.com/home-loan/" },
 				{ sub: "Loan Calculator", link: "/loan-calculator" },
 			],
 		},
 		{
 			header: "Explore more options",
 			submenu: [
-				{ sub: "Refinance your home", link: "/home-refinance" },
-				{ sub: "Learn more about mortgage process", link: "/mortgage-process" },
-				{ sub: "Car Loan", link: "/car-loan" },
-				{ sub: "Quick Cash Loan", link: "/quick-cash-loan" },
-				{ sub: "Pensioner's Loan", link: "/pension-loan" },
+				{ sub: "Refinance your home", link: "/refinance" },
+				{ sub: "Learn more about mortgage process", link: "/" },
+				{ sub: "Car Loan", link: "https://mlhuillier.com/car-loan" },
+				{ sub: "Quick Cash Loan", link: "https://mlhuillier.com/quick-cash-loans" },
+				{ sub: "Pensioner's Loan", link: "/" },
 			],
 		},
 	],
@@ -132,26 +132,26 @@ const SubMenu = {
 								<br /> a wide range of risks & threats. <br /> You may visit our
 							</span>
 							<p>
-								<a href="/home" className="redirect">
+								<a href="https://webinsurance.mlhuillier.com/" className="redirect">
 									Home Insurance Dashboard <RightOutlined />
 								</a>
 							</p>
 						</div>
 					),
-					link: "/home",
+					link: "https://webinsurance.mlhuillier.com/",
 				},
 			],
 		},
 		{
 			header: "Home Insurance Guide",
-			submenu: [{ sub: "Insurance Guide", link: "/insurance-guide" }],
+			submenu: [{ sub: "Insurance Guide", link: "https://mlhuillier.com/insurance" }],
 		},
 		{
 			header: "Other  ML Insurance Products ",
 			submenu: [
-				{ sub: "Personal Accident Insurance", link: "/home-refinance" },
+				{ sub: "Personal Accident Insurance", link: "https://webinsurance.mlhuillier.com/personal-accident-insurance" },
 				{ sub: "Auto Insurance", link: "/mortgage-process" },
-				{ sub: "Dengue RX Insurance", link: "/car-loan" },
+				{ sub: "Dengue RX Insurance", link: "https://webinsurance.mlhuillier.com/medical-reimbursement" },
 				{ sub: "Medicare Plus Insurance", link: "/quick-cash-loan" },
 				{ sub: "Global Travel Protect Insurance", link: "/pension-loan" },
 				{ sub: "OFW Balik Manggagawa Insurance", link: "/pension-loan" },
@@ -169,11 +169,13 @@ const SubMenu = {
 								fontSize: "13px",
 								textDecoration: "underline",
 							}}
+							href="/?openModal=true"
 						>
 							Begin Your Property Search Today with Our Help!
 						</a>
 					</span>
-					<br /><br />
+					<br />
+					<br />
 					<span>
 						<a
 							style={{
@@ -189,36 +191,36 @@ const SubMenu = {
 				</>
 			),
 			submenu: [
-				{ sub: "Quick Cash Loans", link: "/house-and-lot" },
-				{ sub: "Car Loan", link: "/condominium" },
-				{ sub: "Home Loan", link: "/HomeLoan" },
-				{ sub: "Kwarta Padala", link: "/HomeLoan" },
+				{ sub: "Quick Cash Loans", link: "https://mlhuillier.com/quick-cash-loans/" },
+				{ sub: "Car Loan", link: "https://mlhuillier.com/car-loan/" },
+				{ sub: "Home Loan", link: "https://mlhuillier.com/home-loan/" },
+				{ sub: "Kwarta Padala", link: "https://mlhuillier.com/kwarta-padala/" },
 			],
 		},
 		{
 			header: "",
 			submenu: [
-				{ sub: "ML Wallet ", link: "/office-space" },
-				{ sub: "ML Payroll Pro", link: "/retail-space" },
-				{ sub: "ML Express", link: "/service-office" },
-				{ sub: "Money Changer", link: "/commercial" },
+				{ sub: "ML Wallet ", link: "https://mlhuillier.com/ml-wallet/" },
+				{ sub: "ML Payroll Pro", link: "https://mlhuillier.com/ml-payroll-pro/" },
+				{ sub: "ML Express", link: "https://mlhuillier.com/ml-express/" },
+				{ sub: "Money Changer", link: "https://mlhuillier.com/money-changer/" },
 			],
 		},
 		{
 			header: "",
 			submenu: [
-				{ sub: "Jewelry ", link: "/office-space" },
-				{ sub: "Insurance", link: "/retail-space" },
-				{ sub: "ML Moves", link: "/service-office" },
-				{ sub: "Telco, Gaming & TV Loading", link: "/commercial" },
+				{ sub: "Jewelry ", link: "https://mlhuillier.com/jewelry/" },
+				{ sub: "Insurance", link: "https://mlhuillier.com/insurance/" },
+				{ sub: "ML Moves", link: "https://mlhuillier.com/ml-moves/" },
+				{ sub: "Telco, Gaming & TV Loading", link: "https://mlhuillier.com/telco-gaming-and-tv-loading/" },
 			],
 		},
 		{
 			header: "Online Services",
 			submenu: [
-				{ sub: "Shop Online", link: "/buyer-guide" },
-				{ sub: "Buy Eload", link: "/buyer-guide" },
-				{ sub: "Pay Bills", link: "/buyer-guide" },
+				{ sub: "Shop Online", link: "https://shop.mlhuillier.com/" },
+				{ sub: "Buy Eload", link: "https://mlweb.mlhuillier.com/eload" },
+				{ sub: "Pay Bills", link: "https://mlweb.mlhuillier.com/bills-pay" },
 			],
 		},
 	],

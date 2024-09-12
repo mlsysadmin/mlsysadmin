@@ -23,6 +23,7 @@ import CardListingComponent from "./CardListingComponent";
 import FeaturedPropertiesComponent from "./FeaturedPropertiesComponent";
 import RatingCarouselComponent from "./RatingCarouselComponent";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
+import PropertySearchModal from "./modals/PropertySearchModal";
 
 import { MockData } from "../utils/ListingMockData";
 import CardCategory from "../utils/CardCategoryDashboard.utils";
@@ -36,7 +37,7 @@ import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
 import CertainFeatureMenu from "./custom/customsearch/certainfeature";
 import { GetAllPublicListing } from "../api/GetAllPublicListings";
 import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Select } from "antd";
 import { GetProvince } from "../api/Public/Location.api";
 
@@ -70,7 +71,6 @@ const DashboardComponent = () => {
   useEffect(() => {
     allPublicListing();
   }, []);
-
 
   const [getProvince, setGetProvince] = useState([]);
 
@@ -170,6 +170,26 @@ const DashboardComponent = () => {
       );
     });
   };
+  const location = useLocation();
+  const [isPropSearchModalOpen, setIsPropSearchModalOpen] = useState(false);
+  const checkQueryForPropertySearchModal = () => {
+    const params = new URLSearchParams(location.search);
+    const openModal = params.get("openModal");
+
+    if (openModal === "true") {
+      setIsPropSearchModalOpen(true);
+    } else {
+      setIsPropSearchModalOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    checkQueryForPropertySearchModal();
+    console.log("Modal open state:", isPropSearchModalOpen);
+  }, [location]);
+  const handleModalClose = () => {
+    setIsPropSearchModalOpen(false);
+  };
 
   return (
     <div className="dashboard">
@@ -214,13 +234,6 @@ const DashboardComponent = () => {
                     classname="card-item field"
                     suffixIcon={<CaretDownOutlined />}
                   />
-                  {/* <RoundSelect
-                    placeholder="Features"
-                    size="middle"
-                    classname="card-item field"
-                    suffixIcon={<CaretDownOutlined />}
-                    overlay={<CertainFeatureMenu />}
-                  /> */}
                   <Dropdown
                     classname="card-item field"
                     overlay={<CertainFeatureMenu />}
@@ -237,24 +250,6 @@ const DashboardComponent = () => {
                     </Button>
                   </Dropdown>
                   <Row className="">
-                    {/* <RoundBtn
-											label={"Advanced"}
-											className="advanced round-btn"
-											icon={
-												<>
-													<img
-														src={AdvanceSearch}
-														onClick={handleAdvancedSearchClick}
-														className="search-icon"
-														style={{ fontWeight: "900" }}
-														width={27}
-													/>
-													
-												</>
-											}
-											classname="card-item"
-											onClick={handleAdvancedSearchClick}
-										/> */}
                     <RoundBtn
                       label={"Search"}
                       className="search round-btn"
@@ -413,6 +408,10 @@ const DashboardComponent = () => {
       <br />
       <br />
       <br />
+      <PropertySearchModal
+        openModal={isPropSearchModalOpen}
+        closeModal={handleModalClose}
+      />
     </div>
   );
 };
