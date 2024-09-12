@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  Button,
-  Card,
-  Col,
-  Image,
-  Menu,
-  Row,
-  Space,
-  Tag,
-  Dropdown,
+	Button,
+	Card,
+	Col,
+	Image,
+	Menu,
+	Row,
+	Space,
+	Tag,
+	Dropdown,
 } from "antd";
 import { CaretDownOutlined, SearchOutlined } from "@ant-design/icons";
 import Carousel from "react-multi-carousel";
@@ -23,6 +23,7 @@ import CardListingComponent from "./CardListingComponent";
 import FeaturedPropertiesComponent from "./FeaturedPropertiesComponent";
 import RatingCarouselComponent from "./RatingCarouselComponent";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
+import PropertySearchModal from "./modals/PropertySearchModal";
 
 import { MockData } from "../utils/ListingMockData";
 import CardCategory from "../utils/CardCategoryDashboard.utils";
@@ -36,54 +37,53 @@ import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
 import CertainFeatureMenu from "./custom/customsearch/certainfeature";
 import { GetAllPublicListing } from "../api/GetAllPublicListings";
 import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
-import { Link } from "react-router-dom";
-import {Select} from "antd";
+import { Link, useLocation } from "react-router-dom";
+import { Select } from "antd";
 import { GetProvince } from "../api/Public/Location.api";
 
-const {Option} = Select;
+const { Option } = Select;
 
 const DashboardComponent = () => {
-  const [loading, setLoading] = useState(false);
-  const [userLikes, setUserLikes] = useState([]);
-  const [publiclisting, setPublicListing] = useState([]);
-  const [isAdvanceSearchOpen, setAdvanceSearchOpen] = useState(false);
-  const [iscertainFeatureOpen, setcertainFeatureOpen] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const [userLikes, setUserLikes] = useState([]);
+	const [publiclisting, setPublicListing] = useState([]);
+	const [isAdvanceSearchOpen, setAdvanceSearchOpen] = useState(false);
+	const [iscertainFeatureOpen, setcertainFeatureOpen] = useState(false);
 
-  const handleCertainFeatureClick = () => {
-    setcertainFeatureOpen(!iscertainFeatureOpen);
-  };
-  useEffect(() => {
-    console.log(userLikes);
-  });
+	const handleCertainFeatureClick = () => {
+		setcertainFeatureOpen(!iscertainFeatureOpen);
+	};
+	useEffect(() => {
+		console.log(userLikes);
+	});
 
-  const navigate = useNavigate();
-  const handleCardClick = (id) => {
-    console.log("id", id);
-    // window.location.href = `/previewListing/${id}`;
-    navigate(`/previewListing/${id}`, { state: id });
-  };
-  // const handleCardClick = () => {
-  //   navigate('/previewListing');
-  // };
+	const navigate = useNavigate();
+	const handleCardClick = (id) => {
+		console.log("id", id);
+		// window.location.href = `/previewListing/${id}`;
+		navigate(`/previewListing/${id}`, { state: id });
+	};
+	// const handleCardClick = () => {
+	//   navigate('/previewListing');
+	// };
 
-  const allPublicListing = async () => {
-    const res = await GetAllPublicListing();
-    const dataresp = res.data;
-    setPublicListing(dataresp);
-    console.log("public listing:", dataresp);
-  };
-  useEffect(() => {
-    allPublicListing();
-  }, []);
+	const allPublicListing = async () => {
+		const res = await GetAllPublicListing();
+		const dataresp = res.data;
+		setPublicListing(dataresp);
+		console.log("public listing:", dataresp);
+	};
+	useEffect(() => {
+		allPublicListing();
+	}, []);
 
+	const [getProvince, setGetProvince] = useState([]);
 
-  const [getProvince, setGetProvince] = useState([]);
-
-  const allProvinces = async () => {
+	const allProvinces = async () => {
 		try {
-			const dataprovince = await GetProvince(); 
+			const dataprovince = await GetProvince();
 			setGetProvince(dataprovince);
-      console.log("province", dataprovince)
+			console.log("province", dataprovince);
 		} catch (error) {
 			console.error("Error fetching provinces:", error);
 		}
@@ -93,112 +93,133 @@ const DashboardComponent = () => {
 		allProvinces();
 	}, []);
 
-  const newListings = publiclisting.filter(
-    (item) => item.listings.listing_type.listing_type === "For Sale"
-  );
-  const url_Redirect = process.env.REACT_APP_LOGIN_URL;
-  const handleUserProfileClick = () => {
-    if (url_Redirect) {
-      window.location.href = url_Redirect;
-    }
-  };
+	const newListings = publiclisting.filter(
+		(item) => item.listings.listing_type.listing_type === "For Sale"
+	);
+	const url_Redirect = process.env.REACT_APP_LOGIN_URL;
+	const handleUserProfileClick = () => {
+		if (url_Redirect) {
+			window.location.href = url_Redirect;
+		}
+	};
 
-  const tags = [
-    {
-      key: "all",
-      label: "All",
-      link: "/all",
-    },
-    {
-      key: "new",
-      label: "New Listing",
-      link: "/new",
-    },
-    {
-      key: "featured",
-      label: "Featured",
-      link: "/featured",
-    },
-    {
-      key: "for-sale",
-      label: "For Sale",
-      link: "/all",
-    },
-    {
-      key: "for-rent",
-      label: "For Rent",
-      link: "/rent",
-    },
-    {
-      key: "mortgage",
-      label: "Mortgage",
-      link: "/mortgage",
-    },
-  ];
+	const tags = [
+		{
+			key: "all",
+			label: "All",
+			link: "/all",
+		},
+		{
+			key: "new",
+			label: "New Listing",
+			link: "/new",
+		},
+		{
+			key: "featured",
+			label: "Featured",
+			link: "/featured",
+		},
+		{
+			key: "for-sale",
+			label: "For Sale",
+			link: "/all",
+		},
+		{
+			key: "for-rent",
+			label: "For Rent",
+			link: "/rent",
+		},
+		{
+			key: "mortgage",
+			label: "Mortgage",
+			link: "/mortgage",
+		},
+	];
 
-  const Tags = () => (
-    <Menu className="menu-tags" mode="horizontal" selectedKeys={["all"]}>
-      {tags.map((tag) => (
-        <Menu.Item key={tag.key}>
-          {tag.link ? <Link to={tag.link}>{tag.label}</Link> : tag.label}
-        </Menu.Item>
-      ))}
-    </Menu>
-  );
-  const responsive = {
-    desktop: {
-      breakpoint: {
-        max: 3000,
-        min: 1024,
-      },
-      items: 3,
-      partialVisibilityGutter: 40,
-    },
-    mobile: {
-      breakpoint: {
-        max: 480,
-        min: 315,
-      },
-      items: 1,
-      partialVisibilityGutter: 0,
-    },
-    tablet: {
-      breakpoint: {
-        max: 1024,
-        min: 481,
-      },
-      items: 1,
-      partialVisibilityGutter: 30,
-    },
-  };
+	const Tags = () => (
+		<Menu className="menu-tags" mode="horizontal" selectedKeys={["all"]}>
+			{tags.map((tag) => (
+				<Menu.Item key={tag.key}>
+					{tag.link ? <Link to={tag.link}>{tag.label}</Link> : tag.label}
+				</Menu.Item>
+			))}
+		</Menu>
+	);
+	const responsive = {
+		desktop: {
+			breakpoint: {
+				max: 3000,
+				min: 1024,
+			},
+			items: 3,
+			partialVisibilityGutter: 40,
+		},
+		mobile: {
+			breakpoint: {
+				max: 480,
+				min: 315,
+			},
+			items: 1,
+			partialVisibilityGutter: 0,
+		},
+		tablet: {
+			breakpoint: {
+				max: 1024,
+				min: 481,
+			},
+			items: 1,
+			partialVisibilityGutter: 30,
+		},
+	};
 
-  const CardCategories = () => {
-    return CardCategory.map((item, i) => {
-      return (
-        <Col key={i}>
-          <Card
-            style={{
-              // backgroundImage: `url(${item.image})`,
-              backgroundColor: "#ffffff",
-            }}
-          >
-            <div className="overlay-content">
-              <div className="overlay-icon">
-                {/* <span>
+	const CardCategories = () => {
+		return CardCategory.map((item, i) => {
+			return (
+				<Col key={i}>
+					<Card
+						style={{
+							// backgroundImage: `url(${item.image})`,
+							backgroundColor: "#ffffff",
+						}}
+					>
+						<div className="overlay-content">
+							<div className="overlay-icon">
+								{/* <span>
                   <Image src={item.icon} preview={false} height={30} />
                 </span> */}
-              </div>
-              <div className="overlay-title">{item.category}</div>
-              <div className="overlay-description">{item.decription}</div>
-              <div className="button-card-class">{item.buttonTitle}</div>
-            </div>
-          </Card>
-        </Col>
-      );
-    });
-  };
+							</div>
+							<div className="overlay-title">{item.category}</div>
+							<div className="overlay-description">{item.decription}</div>
+							<div className="button-card-class">{item.buttonTitle}</div>
+						</div>
+					</Card>
+				</Col>
+			);
+		});
+	};
 
-  return (
+	const location = useLocation();
+	const [isPropSearchModalOpen, setIsPropSearchModalOpen] = useState(false);
+	const checkQueryForPropertySearchModal = () => {
+		const params = new URLSearchParams(location.search);
+		const openModal = params.get("openModal");
+
+		if (openModal === "true") {
+			setIsPropSearchModalOpen(true);
+		} else {
+			setIsPropSearchModalOpen(false);
+		}
+	};
+
+	useEffect(() => {
+		checkQueryForPropertySearchModal();
+		console.log("Modal open state:", isPropSearchModalOpen);
+	}, [location]);
+	const handleModalClose = () => {
+		setIsPropSearchModalOpen(false);
+	};
+
+	return (
 		<div className="dashboard">
 			<div id="dashboard">
 				<div className="banner">
@@ -490,6 +511,10 @@ const DashboardComponent = () => {
 			<br />
 			<CustomMlFooter />
 			<FooterComponent />
+			<PropertySearchModal
+				openModal={isPropSearchModalOpen}
+				closeModal={handleModalClose}
+			/>
 		</div>
 	);
 };
