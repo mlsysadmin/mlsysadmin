@@ -146,20 +146,23 @@ const FeaturedPropertiesComponent = ({ }) => {
   }
 
   return (
-    <Row
-      id="featured-properties"
-    // gutter={[16, { xs: 8, sm: 16, md: 32, lg: 150 }]}
-    >
-      {
-        featuredList.every((featured) => featured.isFeatured) ? (
-          <div
-            className="no-featured-item"
-            style={{ fontSize: "18px", color: "var(--red)" }}
-          >
-            No Featured Items Available
-          </div>
-        ) : <FeaturedCards />
-      }
+    <>
+      <Row
+        id="featured-properties"
+      // gutter={[16, { xs: 8, sm: 16, md: 32, lg: 150 }]}
+      >
+        {
+          featuredList.every((featured) => featured.isFeatured) ? (
+            <div
+              className="no-featured-item"
+              style={{ fontSize: "18px", color: "var(--red)" }}
+            >
+              No Featured Items Available
+            </div>
+          ) : <FeaturedCards />
+        }
+      </Row>
+      <br />
       {
         cardLength == 1 && (
           <div style={{
@@ -174,11 +177,14 @@ const FeaturedPropertiesComponent = ({ }) => {
                 height: '38px',
                 fontWeight: '600'
               }}
+              handleClick={() => navigate({
+                pathname: '/featured'
+              })}
             />
           </div>
         )
       }
-    </Row>
+    </>
   );
 };
 

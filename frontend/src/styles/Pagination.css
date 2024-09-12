@@ -1,7 +1,8 @@
 .custom-pagination {
   display: flex;
   justify-content: space-between;
-  margin: 20px 0;
+  padding:10px 100px 10px 100px;
+  width: 100%;
 }
 
 .custom-pagination .pagination-numbers span {
@@ -60,4 +61,100 @@
   cursor: not-allowed;
   opacity: 0.5;
   pointer-events: none;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 359px){
+.custom-pagination {
+  padding:0px;
+  margin-bottom: 20px;
+}
+.custom-pagination span {
+  margin: 0 5px;
+  padding: 5px;
+  font-weight: 300;
+  font-size: 15px;
+}
+.custom-pagination .pagination-numbers span {
+  margin: 0 5px;
+  padding: 5px 10px;
+}
+}
+
+@media screen and (min-width:360px) and (max-width: 480px){
+.custom-pagination {
+  padding:0px;
+  margin-bottom: 20px;
+}
+.custom-pagination span {
+  margin: 0 5px;
+  padding: 5px;
+  font-weight: 300;
+  font-size: 15px;
+}
+.custom-pagination .pagination-numbers span {
+  margin: 0 5px;
+  padding: 5px 10px;
+}
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+.custom-pagination {
+  padding:0px;
+  margin-bottom: 20px;
+}
+.custom-pagination span {
+  margin: 0 5px;
+  padding: 10px;
+  font-weight: 300;
+  font-size: 15px;
+}
+.custom-pagination .pagination-numbers span {
+  margin: 0 5px;
+  padding: 10px 15px;
+}
+}
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+.custom-pagination {
+  padding:0px;
+  margin-bottom: 20px;
+}
+.custom-pagination span {
+  margin: 0 5px;
+  padding: 10px;
+  font-size: 15px;
+}
+.custom-pagination .pagination-numbers span {
+  margin: 0 5px;
+  padding: 15px 20px;
+}
+}
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+.custom-pagination {
+  padding:0px;
+  margin-bottom: 20px;
+}
+.custom-pagination span {
+  margin: 10px 30px;
+  padding: 5px;
+  font-size: 18px;
+}
+.custom-pagination .pagination-numbers span {
+  margin: 0 10px;
+   padding: 15px 20px;
+}
+}
+@media screen and (min-width: 1201px) and (max-width: 1400px) {
+.custom-pagination {
+  padding:0px;
+  margin-bottom: 20px;
+}
+.custom-pagination span {
+   margin: 10px 30px;
+  padding: 5px;
+  font-weight: 300;
+  font-size: 18px;
+}
+.custom-pagination .pagination-numbers span {
+  padding: 15px 20px;
+}
 }

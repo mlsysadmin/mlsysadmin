@@ -37,6 +37,10 @@ import CertainFeatureMenu from "./custom/customsearch/certainfeature";
 import { GetAllPublicListing } from "../api/GetAllPublicListings";
 import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
 import { Link } from "react-router-dom";
+import { Select } from "antd";
+import { GetProvince } from "../api/Public/Location.api";
+
+const { Option } = Select;
 
 const DashboardComponent = () => {
   const [loading, setLoading] = useState(false);
@@ -65,6 +69,23 @@ const DashboardComponent = () => {
   };
   useEffect(() => {
     allPublicListing();
+  }, []);
+
+
+  const [getProvince, setGetProvince] = useState([]);
+
+  const allProvinces = async () => {
+    try {
+      const dataprovince = await GetProvince();
+      setGetProvince(dataprovince);
+      console.log("province", dataprovince)
+    } catch (error) {
+      console.error("Error fetching provinces:", error);
+    }
+  };
+
+  useEffect(() => {
+    allProvinces();
   }, []);
 
   const newListings = publiclisting.filter(
@@ -174,7 +195,13 @@ const DashboardComponent = () => {
                     size="middle"
                     classname="card-item field"
                     suffixIcon={<CaretDownOutlined />}
-                  />
+                  >
+                    {getProvince.map((province, index) => (
+                      <Select.Option key={index} value={province.name}>
+                        {province.name}
+                      </Select.Option>
+                    ))}
+                  </RoundSelect>
                   <RoundSelect
                     placeholder="Property Type"
                     size="middle"
@@ -295,6 +322,25 @@ const DashboardComponent = () => {
                 />
               );
             })}
+            <div
+              style={{
+                display: 'none',
+                justifyContent: 'center',
+              }}
+              className="carousel--see-all-btn">
+              <SemiRoundBtn
+                label={'See all new properties'}
+                style={{
+                  borderColor: '#D90000',
+                  color: '#D90000',
+                  height: '38px',
+                  fontWeight: '600'
+                }}
+                handleClick={() => navigate({
+                  pathname: '/new',
+                })}
+              />
+            </div>
           </div>
         )}
         <div className="discover--section-2">

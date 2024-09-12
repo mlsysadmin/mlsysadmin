@@ -55,8 +55,8 @@ const ContactUsComponent = () => {
                   <p>You can reach us anytime</p>
                 </div>
                 <div className="nameField">
-                  <input type="text" className="name" placeholder="Firstname" />
-                  <input type="text" className="name" placeholder="Lastname" />
+                  <input type="text" className="name" placeholder="First Name" />
+                  <input type="text" className="name" placeholder="Last Name" />
                 </div>
                 <input
                   type="text"

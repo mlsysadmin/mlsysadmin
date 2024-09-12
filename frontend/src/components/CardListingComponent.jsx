@@ -24,7 +24,6 @@ const CardListingComponent = ({ loading, status, pics, title, price, features, l
     }
 
 
-
     const ImageTag = () => (
         <div className='image-tag'>
             <CameraFilled />

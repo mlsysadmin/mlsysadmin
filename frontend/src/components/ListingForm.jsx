@@ -9,7 +9,11 @@ import UploadPhotosComponent from "../components/UploadPhotosComponent";
 import FeaturedComponents from "../components/FeatureListComponents";
 import ListingBanner from "../components/layout/ListingBanner";
 import ListingSteps from "../components/layout/ListingSteps";
-import Footer from "../components/custom/Custom.Mlfooter";
+// import Footer from "../components/custom/Custom.Mlfooter";
+import CustomMlFooter from "./custom/Custom.Mlfooter";
+import FooterComponent from "./layout/FooterComponent";
+
+
 
 export const ListingForm = () => {
 	const [currentStep, setCurrentStep] = useState(0);
@@ -232,7 +236,8 @@ export const ListingForm = () => {
 					</div>
 				</div>
 			</div>
-			<Footer />
+			<CustomMlFooter />
+			<FooterComponent />
 		</>
 	);
 };

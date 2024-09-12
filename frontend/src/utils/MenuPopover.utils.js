@@ -163,7 +163,7 @@ const SubMenu = {
 			header: (
 				<>
 					<span>
-						<a 
+						<a
 							style={{
 								color: "var(--red)",
 								fontSize: "13px",
@@ -173,10 +173,22 @@ const SubMenu = {
 							Begin Your Property Search Today with Our Help!
 						</a>
 					</span>
+					<br /><br />
+					<span>
+						<a
+							style={{
+								color: "#000000",
+								fontSize: "13px",
+								fontWeight: "bold",
+								margin: "0px 0px 0px 0px",
+							}}
+						>
+							Learn more about our Products and Services
+						</a>
+					</span>
 				</>
 			),
 			submenu: [
-				{sub: "Learn more about our Products and Services"},
 				{ sub: "Quick Cash Loans", link: "/house-and-lot" },
 				{ sub: "Car Loan", link: "/condominium" },
 				{ sub: "Home Loan", link: "/HomeLoan" },

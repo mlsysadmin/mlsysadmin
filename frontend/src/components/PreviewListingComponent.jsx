@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 // import Navigation from "./layout/NavigationComponent";
-import Footer from "./MY Drafts/Components/FooterComponent";
+// import Footer from "./MY Drafts/Components/FooterComponent";
+import CustomMlFooter from "./custom/Custom.Mlfooter";
+import FooterComponent from "./layout/FooterComponent";
 import "../styles/previewListing.css";
 
 // import ApplicationDetailModal from "./layout/ApplicationDetails/ApplicationDetailsModal";
@@ -27,18 +29,36 @@ const PreviewListing = () => {
   const [downPayment, setDownPayment] = React.useState(100000); // Initial down payment
   const [showApplicationModal, setShowApplicationModal] = useState(false);
 
-
-
   const features = [
-    { title: 'Bedrooms', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/ffa0b4ae5294fab32f04e2df5bccc9e215b962c4a23b87baa3b3a4f9d11a3bf0?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5', value: '5' },
-    { title: 'Bathrooms', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/372723378f9151c6cced3d234ccf4d85735cb0c5bd16df4ca6bac2adaf6189fb?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5', value: '5' },
-    { title: 'Garage', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/a17243275d0fedc1a93dbce25cd9571671d11f482871f3219644e3e5fe1afa72?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5', value: '3' },
-    { title: 'Area', iconSrc: 'https://cdn.builder.io/api/v1/image/assets/TEMP/c279a46ede99c04710deb1142ac34bf9008c0ed800284e2cdc230b0e6a25fc86?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5', value: '300 SqM' },
-    { title: 'Price per SqM', iconSrc: '', value: '' }
+    {
+      title: "Bedrooms",
+      iconSrc:
+        "https://cdn.builder.io/api/v1/image/assets/TEMP/ffa0b4ae5294fab32f04e2df5bccc9e215b962c4a23b87baa3b3a4f9d11a3bf0?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
+      value: "5",
+    },
+    {
+      title: "Bathrooms",
+      iconSrc:
+        "https://cdn.builder.io/api/v1/image/assets/TEMP/372723378f9151c6cced3d234ccf4d85735cb0c5bd16df4ca6bac2adaf6189fb?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
+      value: "5",
+    },
+    {
+      title: "Garage",
+      iconSrc:
+        "https://cdn.builder.io/api/v1/image/assets/TEMP/a17243275d0fedc1a93dbce25cd9571671d11f482871f3219644e3e5fe1afa72?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
+      value: "3",
+    },
+    {
+      title: "Area",
+      iconSrc:
+        "https://cdn.builder.io/api/v1/image/assets/TEMP/c279a46ede99c04710deb1142ac34bf9008c0ed800284e2cdc230b0e6a25fc86?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
+      value: "300 SqM",
+    },
+    { title: "Price per SqM", iconSrc: "", value: "" },
   ];
-  
-  const term = 30; 
-  const termInMonths = term * 12; 
+
+  const term = 30;
+  const termInMonths = term * 12;
 
   const totalHomePrice = homePrice + homePrice * (stepsGap / 100);
 
@@ -46,7 +66,6 @@ const PreviewListing = () => {
   const handlePesosChange = (newPesos) => {
     setPesos(newPesos);
   };
-
 
   const url = process.env.REACT_APP_STORAGE_BUCKET_URL;
   const objectname = process.env.REACT_APP_OBJECT_NAME;
@@ -74,7 +93,7 @@ const PreviewListing = () => {
     };
     getlistingByID();
   }, [location.state]);
-  
+
   console.log("photos", GetAllPhoto());
 
   // if (oneListing) {
@@ -85,7 +104,7 @@ const PreviewListing = () => {
   // } else {
   //   console.log("oneListing is undefined");
   // }
-  
+
   // let images = (oneListing?.listings?.photos?.photo || []);
 
   // const previousImage = () => {
@@ -93,27 +112,26 @@ const PreviewListing = () => {
   //   setCurrentIndex(newIndex);
   //   updateSmallImages(newIndex);
   // };
-  
+
   // const nextImage = () => {
   //   const newIndex = (currentIndex + 1) % images.length;
   //   setCurrentIndex(newIndex);
   //   updateSmallImages(newIndex);
   // };
-  
+
   // const updateSmallImages = (newIndex) => {
   //   const nextIndex1 = (newIndex + 1) % images.length;
   //   const nextIndex2 = (newIndex + 2) % images.length;
-  
+
   //   const newSmallImages = [images[nextIndex1], images[nextIndex2]];
   //   setSmallImages(newSmallImages);
-  
+
   //   const newPhotoCount = getPhotoCountForMainImage(newIndex);
   //   setPhotoCount(newPhotoCount);
   // };
-  
+
   // const getPhotoCountForMainImage = (index) => {
   // };
-
 
   const [isFavorite, setIsFavorite] = React.useState(false);
 
@@ -122,31 +140,32 @@ const PreviewListing = () => {
   };
 
   return (
-		<div className="previewlist">
-			{/* <Navigation /> */}
+    <div className="previewlist">
+      {/* <Navigation /> */}
 
-			<div
-				className="contentContainer"
-				style={{ display: "flex", width: "100%", gap: "1rem" }}
-			>
-				{oneListing && (
-					<div className="real-estate-listing-card">
-						<PropertyListing oneListing={oneListing} />
-						{/* <div className="previewlist-overview">
+      <div
+        className="contentContainer"
+        style={{ display: "flex", width: "100%", gap: "1rem" }}
+      >
+        {oneListing && (
+          <div className="real-estate-listing-card">
+            <PropertyListing oneListing={oneListing} />
+            {/* <div className="previewlist-overview">
               <span>OVERVIEW</span>
               <p>Property ID: {oneListing.listings.property_id}</p>
             </div> */}
-						<div className="midContent">
-							<PreviewListLeftContent oneListing={oneListing} />
-							<PreviewListRightSideContent />
-						</div>
-						<HomeHighlights oneListing={oneListing} />
-					</div>
-				)}
-			</div>
-			<Footer />
-		</div>
-	);
+            <div className="midContent">
+              <PreviewListLeftContent oneListing={oneListing} />
+              <PreviewListRightSideContent />
+            </div>
+            <HomeHighlights oneListing={oneListing} />
+          </div>
+        )}  
+      </div>
+      <CustomMlFooter />
+			<FooterComponent />
+    </div>
+  );
 };
 
 export default PreviewListing;
