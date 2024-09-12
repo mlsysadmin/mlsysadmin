@@ -84,6 +84,7 @@
     border-radius: 10px;
     border: 1px solid var(--mute-gray);
     color: #8C9094;
+    width: 100%;
   }
 
   .mort-container .year-loans{
@@ -386,6 +387,10 @@ font-size: 16px;
 .mort-content .pre-approvedbtn{
   width: 150px;
   margin: 0px 0px 0px 40px;
+}
+
+.calc-range-container{
+  height: 450px;
 }
 }
 @media screen and (min-width:769px) and (max-width: 1400px ) { 
