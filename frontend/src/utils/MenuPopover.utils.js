@@ -169,7 +169,7 @@ const SubMenu = {
 								fontSize: "13px",
 								textDecoration: "underline",
 							}}
-							href="/propertySearchmodal"
+							href="/?openModal=true"
 						>
 							Begin Your Property Search Today with Our Help!
 						</a>

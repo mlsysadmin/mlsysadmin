@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { Modal } from "antd";
-import "../../styles/otherservicesSearchPropertyModal.css"; // Ensure you have this CSS for styling
-import DashboardComponent from "../DashboardComponent";
+import "../../styles/otherservicesSearchPropertyModal.css";
+import { useNavigate } from "react-router-dom";
 
-const PropertySearchModal = ({ closeModal }) => {
+const PropertySearchModal = ({ openModal, closeModal }) => {
+	const [userDetails, setUserDetails] = useState(null);
 	const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
-	 const navigate = useNavigate();
 	const [formData, setFormData] = useState({
 		mobileNumber: "",
 		email: "",
@@ -17,6 +16,12 @@ const PropertySearchModal = ({ closeModal }) => {
 	});
 	const handleSubmit = () => {
 		setIsSuccessModalVisible(true);
+
+		// if (open){
+		//     setIsSuccessModalVisible(true);
+		//     closeModal();
+		//     console.log("parent modal close:", closeModal());
+		// }
 	};
 
 	const [otherType, setOtherType] = useState("");
@@ -42,16 +47,24 @@ const PropertySearchModal = ({ closeModal }) => {
 			suffix: "",
 		});
 	};
+
+	const navigate = useNavigate();
 	const closeSuccessModal = () => {
 		setIsSuccessModalVisible(false);
+		closeModal();
 		navigate("/");
 	};
+
 	return (
-		<div className="dashboard-modal-container-search">
-			<DashboardComponent />
-			{!isSuccessModalVisible && (
-				<div className="modal-content-searchprop">
-					<div className="modal-inner-content">
+		<>
+			<Modal
+				open={openModal}
+				onCancel={closeModal}
+				footer={null}
+				className="custom-modal-searchprop"
+			>
+				{!isSuccessModalVisible && (
+					<div className="modal-content-searchprop">
 						<div className="toptitle">
 							<h1>Looking for Your Dream Property? </h1>
 							<span className="top-description">
@@ -62,6 +75,7 @@ const PropertySearchModal = ({ closeModal }) => {
 								preferences.
 							</span>
 						</div>
+
 						<div className="why-choose-us">
 							<h2>Why Choose Us?</h2>
 							<ul>
@@ -83,6 +97,7 @@ const PropertySearchModal = ({ closeModal }) => {
 								</li>
 							</ul>
 						</div>
+
 						<div className="how-it-works">
 							<h2>How it Works?</h2>
 							<div className="steps">
@@ -128,6 +143,7 @@ const PropertySearchModal = ({ closeModal }) => {
 								</div>
 							</div>
 						</div>
+
 						<div className="form-section">
 							<h3>Ready to Start Your Property Search?</h3>
 							<p>
@@ -282,9 +298,8 @@ const PropertySearchModal = ({ closeModal }) => {
 							</form>
 						</div>
 					</div>
-				</div>
-			)}
-			{/* </Modal> */}
+				)}
+			</Modal>
 
 			<Modal
 				open={isSuccessModalVisible}
@@ -301,7 +316,7 @@ const PropertySearchModal = ({ closeModal }) => {
 					</p>
 				</div>
 			</Modal>
-		</div>
+		</>
 	);
 };
 
