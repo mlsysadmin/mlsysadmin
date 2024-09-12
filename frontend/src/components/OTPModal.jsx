@@ -98,7 +98,7 @@ const OTPModal = ({ visible, onClose, onVerify }) => {
 						display: "flex",
 						justifyContent: "center",
 						alignItems: "center",
-						zIndex: 100,
+						zIndex: 1000,
 						padding: "0px 0px 0px 0px",
 					}}
 				>
