@@ -12,8 +12,8 @@ const CustomMlFooter = () => {
     return (
 			<div className="third-content-footer">
 				<div className="third-cont">
-					<Row>
-						<Col span={8}>
+					<div className="col-footer-container">
+						<Col span={8} className="col-footer-name">
 							<img src={mllogo} alt="ML Logo" className="logo-ml" />
 							<div className="customer-care">
 								<CustomerServiceFilled style={{ color: "#ff2800" }} />
@@ -60,7 +60,7 @@ const CustomMlFooter = () => {
 								</div>
 							</div>
 						</Col>
-					</Row>
+					</div>
 				</div>
 			</div>
 		);

@@ -225,12 +225,16 @@
 	}
 	.card {
 		width: calc(51% - 30px);
+		/* width: 100%; */
 	}
 	.card-container {
-		width: 90%;
+		width: 100%;
 		display: flex;
+		justify-content: center;
+		align-items: center;
 		flex-wrap: wrap;
 		margin: 10px 0px 10px 0px;
+		padding: 0px 10px 0px 10px;
 	}
 	.card-img {
 		height: 250px;
@@ -253,7 +257,7 @@
 		bottom: 20px;
 	}
 	.card {
-		width: calc(51% - 30px);
+		width: calc(50% - 30px);
 	}
 	.card-container {
 		width: 100%;
