@@ -725,14 +725,14 @@ listing search */
 		padding-right: 20px;
 	}
 }
-@media screen and (min-width: 1025px) and (max-width: 1400px) {
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
 	.first-content{
-		margin-left: 15px;
+	margin-left: 20px;
 	}
 	.first-content .sub-content1 {
 		display: flex;
 		flex-wrap: wrap;
-		margin-left: 5px;
+		width: 90%;
 	}
 	.advance-searchdropdown {
 		display: flex;

@@ -2,11 +2,10 @@
   background: linear-gradient(180deg in oklab, #FFEDED, white);
   color: white;
   /* padding: 30px; */
-  display: flex;
+  width: 100%;
 }
 
 .third-cont {
-  width: 100%;
   justify-content: center;
   align-items: center;
   height: 300px;
@@ -17,6 +16,7 @@
 .col-footer-container{
   display: flex;
   flex-direction: row;
+  gap: 20px;
 }
 
 .social-icon {
@@ -89,7 +89,6 @@
     flex-direction: column;
   }
   .third-cont {
-    width: 100%;
     display: flex;
     justify-content: left;
     align-items: flex-start;
@@ -210,7 +209,6 @@ flex-direction: row;
 
 @media  screen and (min-width:481px) and (max-width:768px){
   .third-cont {
-    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -275,14 +273,23 @@ flex-direction: row;
  }
  .col-footer-name{
   max-width: 100%;
-  display: flex;
+  display:block;
   flex-direction: column;
 }
+.last-col-icons img{
+  width: 150px;
+}
+.col-footer-container{
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  margin-left: 50px;
+ }
 }
 
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
   .third-cont {
-    margin: 50px 0px 0px 100px;
+    margin: 50px 0px 0px 20px;
   }
   .customer-care {
     margin: 20px 0px 0px 20px;
@@ -298,6 +305,12 @@ flex-direction: row;
   .logo-ml {
     width: 250px;
  }
+   .col-footer-container{
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+ }
+
 }
 
 @media screen and (min-width: 1201px) and (max-width: 1400px) {
@@ -318,4 +331,11 @@ flex-direction: row;
   .logo-ml {
     width: 250px;
  }
+ .col-footer-container{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+ }
+
+
 }
