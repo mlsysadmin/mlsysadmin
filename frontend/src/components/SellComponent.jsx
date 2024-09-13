@@ -5,33 +5,34 @@ import { Row, Col } from "antd";
 import bannerImg from "../asset/icons/banner.png";
 import { Button, Radio } from "antd";
 import { FooterComponent, CustomMlFooter, MainLayout } from "../components";
+import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 
 const SellComponent = () => {
-  const [value, setValue] = useState(1);
+	const [value, setValue] = useState(1);
 
-  const onChange = (e) => {
-    console.log("radio checked", e.target.value);
-    setValue(e.target.value);
-  };
+	const onChange = (e) => {
+		console.log("radio checked", e.target.value);
+		setValue(e.target.value);
+	};
 
-  const navigate = useNavigate();
-  const location = useLocation();
+	const navigate = useNavigate();
+	const location = useLocation();
 
-  const url_Redirect = process.env.REACT_APP_LOGIN_URL;
+	const url_Redirect = process.env.REACT_APP_LOGIN_URL;
 
-  const handleSignIn = () => {
-    if (url_Redirect) {
-      window.location.href = url_Redirect;
-    }
-  };
+	const handleSignIn = () => {
+		if (url_Redirect) {
+			window.location.href = url_Redirect;
+		}
+	};
 
-  const [selectedOption, setSelectedOption] = useState("");
+	const [selectedOption, setSelectedOption] = useState("");
 
 	const handleChange = (event) => {
 		setSelectedOption(event.target.value);
 	};
 
-  return (
+	return (
 		<div className="sell">
 			<div className="sell-container">
 				<div className="sell-contents">
@@ -46,16 +47,31 @@ const SellComponent = () => {
 								at the best price
 							</span>
 							<div className="banner-buttons">
-								<a href="/contact-us">
+								{/* <a href="/contact-us">
 									<button id="contactUs" type="primary">
 										Contact Us
 									</button>{" "}
-								</a>
-								<a onClick={handleSignIn}>
+								</a> */}
+								<SemiRoundBtn
+									label={'Contact Us'}
+									id="contactUs"
+									className={'sell--action-btn'}
+									handleClick={() => navigate({
+										pathname: "contact-us"
+									})}
+								/>
+								{/* <a onClick={handleSignIn}>
 									<button id="signIn" type="primary">
 										Sign In
 									</button>
-								</a>
+								</a> */}
+								{' '}
+								<SemiRoundBtn
+									label={'Sign In'}
+									id="signIn"
+									className={'sell--action-btn'}
+									handleClick={() => handleSignIn}
+								/>
 							</div>
 						</div>
 					</div>
@@ -70,15 +86,12 @@ const SellComponent = () => {
 									Do you want to Sell or put your house on Rent? M Lhuillier has
 									the right solution for you. Your advertisement will be viewed.
 								</p>
-								<button
+								<SemiRoundBtn
+									label={'List Your Property'}
 									id="ListPropertybtn"
-									type="primary"
-									onClick={handleSignIn}
-									style={{ cursor: "pointer" }}
-								>
-									{" "}
-									List Your Property
-								</button>
+									className={'sell--action-btn'}
+									handleClick={() => handleSignIn}
+								/>
 							</div>
 							<div className="options">
 								<label>
@@ -119,10 +132,12 @@ const SellComponent = () => {
 					</div>
 					<div className="third-section">
 						<span className="third-cont-guide">How it works?</span>
-						<div className="section-cards">
+						<div className="third--subtitle">
 							<p className="section-cont-guide">
 								Create your seller account today:
 							</p>
+						</div>
+						<div className="section-cards">
 							<div className="cards">
 								<div className="card1">
 									<h5>Step 1:</h5>
@@ -178,14 +193,17 @@ const SellComponent = () => {
 								home, we{"'"}re here to talk through your options.
 							</p>
 						</div>
-						<a href="/contact-us">
-							<button id="contactUs">Contact Us</button>
-						</a>
+						<SemiRoundBtn
+							label={'Contact Us'}
+							id="contactUs"
+							className={'sell--action-btn'}
+							handleClick={() => navigate({
+								pathname: "contact-us"
+							})}
+						/>
 					</div>
 				</div>
 			</div>
-			<CustomMlFooter />
-			<FooterComponent />
 		</div>
 	);
 };

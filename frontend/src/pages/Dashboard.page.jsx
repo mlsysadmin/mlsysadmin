@@ -8,7 +8,7 @@ const Dashboard = () => {
     <>
       <DashboardComponent />
       <div id='dashboard-footer'>
-        {/* <CustomMlFooter /> */}
+        <CustomMlFooter />
         <FooterComponent />
       </div>
     </>

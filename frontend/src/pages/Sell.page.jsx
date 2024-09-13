@@ -1,9 +1,13 @@
 import React from "react";
-import { SellComponent } from "../components";
+import { CustomMlFooter, FooterComponent, SellComponent } from "../components";
 
 const SellPage = () => {
     return (
-        <SellComponent/>
+        <>
+            <SellComponent/>
+        <CustomMlFooter />
+		<FooterComponent />
+        </>
     );
 }
 
