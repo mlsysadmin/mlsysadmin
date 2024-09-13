@@ -227,7 +227,7 @@
 		width: calc(51% - 30px);
 	}
 	.card-container {
-		width: 100%;
+		width: 90%;
 		display: flex;
 		flex-wrap: wrap;
 		margin: 10px 0px 10px 0px;
