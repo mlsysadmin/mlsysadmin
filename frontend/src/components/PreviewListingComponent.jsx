@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
-// import Navigation from "./layout/NavigationComponent";
-// import Footer from "./MY Drafts/Components/FooterComponent";
-import CustomMlFooter from "./custom/Custom.Mlfooter";
-import FooterComponent from "./layout/FooterComponent";
 import "../styles/previewListing.css";
 
 // import ApplicationDetailModal from "./layout/ApplicationDetails/ApplicationDetailsModal";
 import PreviewListLeftContent from "./PreviewListLeftContent";
 import PreviewListRightSideContent from "./PreviewListRightSideContent";
 import MLBROKERAGEAxiosInstance from "../helper/axios";
-import GetAllPublicListing, {
+import { GetPropertiesBySaleStatus,
   GetPublicListingByID,
 } from "../api/GetAllPublicListings";
 import { LocationFormatter } from "../utils/LocationDateFormatter";
@@ -76,17 +71,12 @@ const PreviewListing = () => {
   useEffect(() => {
     const getlistingByID = async () => {
       try {
-        const params = {
-          listing_id: location.state,
-          property_status: "ACTIVE",
-        };
 
-        console.log(params.listing_id);
-        const onelistingdata = await GetPublicListingByID(params);
+        console.log(location);
+        const onelistingdata = await GetPublicListingByID(location.state);
         const dataresp = onelistingdata.data;
 
         setOneListing(dataresp);
-        // console.log(onelistingdata);
       } catch (error) {
         console.log(error);
       }
@@ -162,8 +152,7 @@ const PreviewListing = () => {
           </div>
         )}  
       </div>
-      <CustomMlFooter />
-			<FooterComponent />
+      
     </div>
   );
 };

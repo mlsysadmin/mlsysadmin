@@ -1,11 +1,15 @@
 import React from "react";
 
 
-import { PreviewListing } from "../components";
+import { CustomMlFooter, FooterComponent, PreviewListing } from "../components";
 
 
-const previewListing = () =>{
-    return <PreviewListing/>
+const previewListing = () => {
+    return <>
+        <PreviewListing />
+        <CustomMlFooter />
+        <FooterComponent />
+    </>
 }
 
 export default previewListing;

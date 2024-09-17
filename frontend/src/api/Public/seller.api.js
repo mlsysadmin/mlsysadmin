@@ -1,4 +1,4 @@
-const { default: MLBROKERAGEAxiosInstance } = require("../../helper/axios");
+const { MLBROKERAGEAxiosInstance } = require("../../helper/axios");
 const {
 	FeaturesLists,
 	PropertyTypes,

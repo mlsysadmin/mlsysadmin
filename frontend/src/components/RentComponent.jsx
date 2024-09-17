@@ -11,7 +11,7 @@ import Card from "./custom/cards/Card";
 import property from "../images/Guest/property.png";
 import Pagination from "./custom/pagination/Pagination";
 import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout, SearchPropertiesSoration } from "../components";
-import {GetAllPublicListing} from "../api/GetAllPublicListings";
+import {GetPropertiesBySaleStatus} from "../api/GetAllPublicListings";
 import {GetPhotoFromDB, GetPhotoLength} from "../utils/GetPhoto";
 
 const RentComponent = () => {
@@ -27,7 +27,7 @@ const RentComponent = () => {
   };
   
   const allPublicListing = async () =>{
-    const res = await GetAllPublicListing();
+    const res = await GetPropertiesBySaleStatus();
     const dataresp = res.data
     setPublicListing(dataresp);
     console.log("public listing:", dataresp)

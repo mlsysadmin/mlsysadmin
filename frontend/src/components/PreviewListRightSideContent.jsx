@@ -8,7 +8,7 @@ import user from "../assets/icons/previewlisting/usercircle.png";
 import chat from "../assets/icons/previewlisting/chatmessages.png";
 import call from "../assets/icons/previewlisting/callphone.png";
 import "../styles/previewListing.css";
-import { GetAllPublicListing } from "../api/GetAllPublicListings";
+import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
 import { GetPhotoFromDB } from "../utils/GetPhoto";
 
 const PreviewListRightSideContent = () => {
@@ -44,7 +44,7 @@ const PreviewListRightSideContent = () => {
   const [publiclisting, setPublicListing] = useState([]);
 
   const allPublicListing = async () => {
-    const res = await GetAllPublicListing();
+    const res = await GetPropertiesBySaleStatus();
     const dataresp = res.data;
     setPublicListing(dataresp);
     console.log("public listing:", dataresp);

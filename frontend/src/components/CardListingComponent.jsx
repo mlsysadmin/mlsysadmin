@@ -6,7 +6,7 @@ import Sqm from '../asset/icons/meters.png';
 import Shower from '../asset/icons/showerhead.png';
 import FilterIcon from '../asset/icons/slider.png';
 import CustomTag from './custom/tags/Tags.custom';
-import { GetAllPublicListing } from "../api/GetAllPublicListings";
+import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
 import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
 import { CameraFilled, HeartFilled, HeartOutlined } from '@ant-design/icons';
 
@@ -16,10 +16,9 @@ const CardListingComponent = ({ loading, status, pics, title, price, features, l
     const [likes, setLikes] = useState([]);
 
     const allPublicListing = async () => {
-        const res = await GetAllPublicListing();
+        const res = await GetPropertiesBySaleStatus();
         const dataresp = res.data
         setPublicListing(dataresp);
-        console.log("public listing:", dataresp)
 
     }
 

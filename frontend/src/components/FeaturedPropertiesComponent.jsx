@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Col, Divider, Image, Row } from "antd";
 import { FeaturedProperties } from "../utils/ListingMockData";
-import { GetAllPublicListing } from "../api/GetAllPublicListings";
+import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
 import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
 import "../styles/featuredProperties.css";
 import sqm from "../asset/icons/sqm2.png";
@@ -46,13 +46,13 @@ const FeaturedPropertiesComponent = ({ }) => {
   };
 
   const allPublicListing = async () => {
-    const res = await GetAllPublicListing();
+    const res = await GetPropertiesBySaleStatus();
     const dataresp = res.data;
     setFeaturedList(dataresp);
   };
 
   useEffect(() => {
-    allPublicListing();
+    // allPublicListing();
   }, []);
 
 
@@ -157,7 +157,7 @@ const FeaturedPropertiesComponent = ({ }) => {
               className="no-featured-item"
               style={{ fontSize: "18px", color: "var(--red)" }}
             >
-              No Featured Items Available
+              No Featured Properties Available
             </div>
           ) : <FeaturedCards />
         }

@@ -1,4 +1,4 @@
-import MLBROKERAGEAxiosInstance from "../helper/axios";
+import {MLBROKERAGEAxiosInstance} from "../helper/axios";
 
 
 const PostSellerListing = async (property_fields = {}) => {
