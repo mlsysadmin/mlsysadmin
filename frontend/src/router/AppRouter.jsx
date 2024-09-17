@@ -196,7 +196,7 @@ const Routes = [
 				element:<PropertySearchModal/>
 			},
 			{
-				path: "buyer-application-history",
+				path: "/buyer-application-history",
 				element: (
 					<BuyerSellerProtectedRoute element={<ApplicationHistoryPage />} />
 					// <ApplicationHistoryPage />

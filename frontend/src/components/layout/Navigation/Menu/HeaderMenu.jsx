@@ -31,51 +31,66 @@ const HeaderMenu = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-
 	const sessionCookieName = process.env.REACT_APP_SESSION_COOKIE_NAME;
 	const accountCookieName = process.env.REACT_APP_ACCOUNT_COOKIE_NAME;
 	const isMLWWSPresent = isCookiePresent(sessionCookieName);
 	const isAccountDetailsPresent = isCookiePresent(accountCookieName);
-		console.log("isMLWWSPresent:", isMLWWSPresent);
-		console.log("isAccountDetailsPresent:", isAccountDetailsPresent);
-
-
-	const url_Redirect = process.env.REACT_APP_LOGIN_URL;
-
-	const [showSearchPropertyModal, setshowSearchPropertyModal] = useState(false);
-	const handleUserProfileClick = () => {
-		if (url_Redirect) {
-			window.location.href = url_Redirect;
-		}
-		// setshowSearchPropertyModal(true);
-	};
-
-	const closeModal = () =>{
-		setshowSearchPropertyModal(false);
-	}
-
-
-	//get user DEtails
 	const [userDetails, setUserDetails] = useState(null);
 
+	const login = process.env.REACT_APP_LOGIN_URL;
+
+	console.log("isMLWWSPresent:", isMLWWSPresent);
+	console.log("isAccountDetailsPresent:", isAccountDetailsPresent);
+
+	const [showSearchPropertyModal, setshowSearchPropertyModal] = useState(false);
+
+	const closeModal = () => {
+		setshowSearchPropertyModal(false);
+	};
+
+	//get user DEtails
+
 	const accountDetails = getCookieData();
-		const fetchUserDetails = async () => {
-			try {
-				const response = await searchKyc(accountDetails.mobileNumber);
-				const respData = response.data.data;
-				console.log("API Response:", respData);
-				setUserDetails(respData);
-			} catch (error) {
-				console.error("Error fetching user details:", error);
-			}
-		};
+	const fetchUserDetails = async () => {
+		try {
+			const response = await searchKyc(accountDetails.mobileNumber);
+			const respData = response.data.data;
+			console.log("API Response:", respData);
+			setUserDetails(respData);
+		} catch (error) {
+			console.error("Error fetching user details:", error);
+		}
+	};
 
-		useEffect(() => {
-			fetchUserDetails();
-			console.log("user", userDetails);
-		}, []);
+	useEffect(() => {
+		fetchUserDetails();
+		console.log("user", userDetails);
+	}, []);
 
+	const handleUserProfileClick = () => {
+		const loginUrl = process.env.REACT_APP_LOGIN_URL;
+		const redirectUrl = `${process.env.REACT_APP_REDIRECT_URL}`;
 
+		window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+			redirectUrl
+		)}`;
+
+		// if (userDetails.tier.label === "Buyer") {
+		// 	const redirectUrlbuyer = `${process.env.REACT_APP_REDIRECT_URL}/buyer-application-history`;
+		// 	window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+		// 		redirectUrlbuyer
+		// 	)}`;
+		// } else if (userDetails.tier.label === "Fully Verified") {
+		// 	const redirectUrlseller = `${process.env.REACT_APP_REDIRECT_URL}/clientmanagement`;
+		// 	window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+		// 		redirectUrlseller
+		// 	)}`;
+		// } else {
+		// 	window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+		// 		redirectUrl
+		// 	)}`;
+		// }
+	};
 	//modals
 	const [showModal, setShowModal] = useState(false);
 
@@ -297,6 +312,5 @@ const HeaderMenu = () => {
 		</>
 	);
 };
-
 
 export default HeaderMenu;

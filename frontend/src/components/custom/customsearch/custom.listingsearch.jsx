@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Button, Input, Select, Slider, Dropdown } from "antd";
+import { Button, Input, Select, Slider, Dropdown} from "antd";
 
-import { CaretDownOutlined } from "@ant-design/icons";
+import { CaretDownOutlined,SettingOutlined } from "@ant-design/icons";
 import "../../../styles/custom.css";
 import CertainFeatureMenu from "./certainfeature";
 import { GetProvince } from "../../../api/Public/Location.api";
@@ -140,12 +140,10 @@ const ListingSearch = () => {
 									</b>
 								)}
 							</p>
-							<button
-								className="custom-range-button"
-								onClick={handleCustomRangeClick}
-							>
-								Custom Range
-							</button>
+								<SettingOutlined
+									className="custom-range-button"
+									onClick={handleCustomRangeClick}
+								/>
 						</div>
 					</div>
 					<div className="subcontent-inputs-2">
