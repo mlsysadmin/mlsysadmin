@@ -14,25 +14,54 @@ import property from "../images/Guest/property.png";
 import ListingSearch from "./custom/customsearch/custom.listingsearch";
 import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
 import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
+import NoListingAvailable from "./custom/custom.NoListingAvailable";
+
+import DefaultPropertyImage from "../asset/fallbackImage.png";
+import { GetAllListing } from "../api/GetAllPublicListings";
+import { AmountFormatterGroup } from "../utils/AmountFormatter";
+
 
 const NewPageComponent = () => {
   const navigate = useNavigate();
-  const [publiclisting, setPublicListing] = useState([]);
+  
+const [loading, setLoading] = useState(false);
+  const [publiclisting, setPublicListing] = useState([
+		{
+			id: 0,
+			title: "",
+			price: 0,
+			status: "",
+			pics: 0,
+			img: DefaultPropertyImage,
+			no_of_bathrooms: 0,
+			lot: 0,
+			property_no: "",
+		},
+	]);
 
-  const handleCardClick = (id) => {
-    console.log("id", id);
-    // window.location.href = `/previewListing/${id}`;
-    navigate(`/previewListing/${id}`, { state: id });
-  };
+  const handleCardClick = (propertyNo) => {
+		console.log("id", propertyNo);
+		// window.location.href = `/previewListing/${id}`;
+		navigate(`/previewListing/?id=${propertyNo}`, { state: propertyNo });
+	};
 
-  const allPublicListing = async () => {
-    const res = await GetPropertiesBySaleStatus();
-    const dataresp = res.data;
-    setPublicListing(dataresp);
-    console.log("public listing:", dataresp);
-  };
-  // console.log( GetPhotoFromDB())
-  console.log("getlength", GetPhotoLength());
+const allPublicListing = async () => {
+	try {
+		const res = await GetPropertiesBySaleStatus();
+		const dataresp = res.data;
+
+		if (dataresp && dataresp.length > 0) {
+			setPublicListing(dataresp); 
+			console.log("public listing:", dataresp);
+		} else {
+			setPublicListing([]);
+			console.log("No listings found.");
+		}
+	} catch (error) {
+		console.error("Error fetching public listings:", error);
+		setPublicListing([]); 
+	}
+};
 
   useEffect(() => {
     allPublicListing();
@@ -46,9 +75,9 @@ const NewPageComponent = () => {
 
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
+  const currentCards = publiclisting?.slice(indexOfFirstCard, indexOfLastCard);
 
-  const totalPages = Math.ceil(cardData.length / cardsPerPage);
+  const totalPages = Math.ceil(publiclisting?.length / cardsPerPage);
   return (
 		<div className="newpage">
 			<div className="newpage-container">
@@ -59,27 +88,30 @@ const NewPageComponent = () => {
 
 						<SearchPropertiesSoration />
 						<div className="card-container">
-							{currentCards.map((data, index) => (
-								<Card
-									key={index}
-									id={data.listings.listing_id}
-									title={data.listings.title}
-									price={`PHP${data.listings.unit_details.price}`}
-									imgSrc={GetPhotoFromDB(data.listings.photos.photo)}
-									beds={data.listings.unit_details.no_of_beds}
-									baths={data.listings.unit_details.no_of_bathrooms}
-									size={data.listings.unit_details.lot_area}
-									likes={GetPhotoLength(data.listings.photos.photo)}
-									forsale={
-										data.listings.listing_type.listing_type === "For Sale" ||
-										data.listings.listing_type.listing_type === "For Rent"
-											? "NEW"
-											: data.listings.listing_type.listing_type
-									}
-									subtitle={`${data.listings.property_type.subtype} ${data.listings.listing_type.listing_type}`}
-									handleClick={() => handleCardClick(data.listings.listing_id)}
-								/>
-							))}
+							{currentCards.length > 0 ? (
+								currentCards.map((item, index) => (
+									<Card
+										title={`${item.ProjectName} - (${item.UnitName})`}
+										subtitle={item.PropertyType}
+										price={`PHP ${AmountFormatterGroup(item.Price)}`}
+										status={item.SaleType}
+										pics={
+											GetPhotoFromDB(item.Photo)
+												? GetPhotoLength(item.id) + 1
+												: GetPhotoLength(item.id)
+										}
+										img={GetPhotoFromDB(item.Photo)}
+										no_of_bathrooms={item.BathRooms}
+										lot={item.LotArea}
+										bed={item.BedRooms}
+										key={index}
+										loading={loading}
+										handleClick={() => handleCardClick(item.PropertyNo)}
+									/>
+								))
+							) : (
+								<NoListingAvailable />
+							)}
 						</div>
 						<Pagination
 							currentPage={currentPage}

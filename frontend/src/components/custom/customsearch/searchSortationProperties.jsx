@@ -3,7 +3,7 @@ import "../../../styles/searchsortation.css"
 import { Dropdown, Menu, Space } from "antd";
 import { CaretDownOutlined } from "@ant-design/icons";
 import { useState, useEffect } from "react";
-import { GetPublicListingCount } from "../../../api/GetAllPublicListings";
+import {  GetPublicListingCount } from "../../../api/GetAllPublicListings";
 
 const SearchPropertiesSoration = () =>{
    const [publicListingCount, setPublicListingCount] = useState(0);
