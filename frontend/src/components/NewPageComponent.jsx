@@ -12,7 +12,7 @@ import { cardData } from "../utils/ListingMockData";
 
 import property from "../images/Guest/property.png";
 import ListingSearch from "./custom/customsearch/custom.listingsearch";
-import { GetAllPublicListing } from "../api/GetAllPublicListings";
+import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
 import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
 
 const NewPageComponent = () => {
@@ -26,7 +26,7 @@ const NewPageComponent = () => {
   };
 
   const allPublicListing = async () => {
-    const res = await GetAllPublicListing();
+    const res = await GetPropertiesBySaleStatus();
     const dataresp = res.data;
     setPublicListing(dataresp);
     console.log("public listing:", dataresp);

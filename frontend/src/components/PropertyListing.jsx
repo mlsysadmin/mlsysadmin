@@ -3,7 +3,7 @@ import styles from "../styles/ViewListing.module.css";
 import redcamera from "../assets/icons/previewlisting/redcamera.png";
 import viewlist from "../assets/images/viewlist.png";
 import CustomTag from "./custom/tags/Tags.custom";
-import { GetAllPublicListing } from "../api/GetAllPublicListings";
+import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
 
 import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
 import {
@@ -19,7 +19,7 @@ const PropertyListing = ({ oneListing }) => {
   const [publiclisting, setPublicListing] = useState([]);
 
   const allPublicListing = async () => {
-    const res = await GetAllPublicListing();
+    const res = await GetPropertiesBySaleStatus();
     const dataresp = res.data;
     setPublicListing(dataresp);
     console.log("public listing:", dataresp);

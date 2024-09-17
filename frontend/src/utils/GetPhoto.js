@@ -1,25 +1,38 @@
-const GetPhotoFromDB = (data) => {
-  try {
-    const url = process.env.REACT_APP_STORAGE_BUCKET_URL;
-    const objectname = process.env.REACT_APP_OBJECT_NAME;
+import { GetUnitPhotos } from "../api/GetAllPublicListings";
+import DefaultPropertyImage from '../asset/fallbackImage.png';
 
-    if (data) {
-      const parsedData = JSON.parse(data);
-      return `${url}${objectname}/${parsedData[0].photo}`;
+const GetPhotoFromDB = (photoPath) => {
+  try {
+    const url = process.env.REACT_APP_IGOT_API_URL;
+
+    if (photoPath) {
+      return `${url}/${photoPath}`;
     } else {
-      return null;
+      return DefaultPropertyImage;
     }
   } catch (error) {
-    return null;
+    return DefaultPropertyImage;
   }
 };
 
-const GetPhotoLength = (data) => {
+const GetPhotoLength = (unitId) => {
   try {
-    if (data) {
-      const parsedData = JSON.parse(data);
-      const datalength = parsedData.length;
-      return datalength;
+    console.log(unitId);
+    
+    if (unitId) {
+
+      let photoLength = 0
+
+      GetUnitPhotos(unitId).then((data) => {
+        
+        photoLength = data.length;
+        
+      }).catch(err => {
+        photoLength = 0;
+      });
+      
+      return photoLength;
+
     } else {
       return 0;
     }
@@ -37,11 +50,9 @@ const GetAllPhoto = (oneListing) => {
       const images = parsedData.map(img => (
         `${url}${objectname}/${img.photo}`
       ))
-      // console.log('Parsed data:', parsedData);
-      // console.log( "parse photo", parsedData[0].photo);
-      
-      // return `${url}${objectname}/${parsedData}`;
+
       return `images, ${images}`;
+
     } else {
       return null;
     }

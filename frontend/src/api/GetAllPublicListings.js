@@ -1,41 +1,28 @@
 
-import MLBROKERAGEAxiosInstance from "../helper/axios";
+import {
+    MLBROKERAGEAxiosInstance,
+    IGOTSOLUTIONSAxiosInstance
+} from "../helper/axios";
 
-const GetAllPublicListing = async () =>{
+const GetPropertiesBySaleStatus = async () =>{
+    
     try {
-        const response = await MLBROKERAGEAxiosInstance.get(`api/public/get/listing/all` ,{
-            headers: {
-                'x-api-key' : process.env.REACT_APP_API_KEY
-            }
-        });
-        const allpubliclisting = response.data.data
-        return allpubliclisting;
+        const response = await IGOTSOLUTIONSAxiosInstance.get(`/api/getPropertiesBySaleStatus/unsold`);
+
+        return response;
         
     } catch (error) {
         console.log(error);
     }
 }
 
-const GetPublicListingByID = async (params) =>{
+const GetPublicListingByID = async (propertyNo) =>{
     try {
-       
-        const payload = {
 
-            listing_id: params.listing_id,
-            property_status: params.property_status,
-        }
-        const config ={
-            headers: {
-                'x-api-key' :'AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM'
-            },
-            params: {payload}
-        }
-
-        const response = await MLBROKERAGEAxiosInstance.get(`api/public/get/listing/one`,config);
-        const listingbyID = response.data.data;
+        const response = await IGOTSOLUTIONSAxiosInstance.get(`api/getPropertyById/${propertyNo}`);
+        const listingbyID = response.data;
         console.log("listing by id: ", listingbyID);
         return listingbyID;
-
         
     } catch (error) {
         console.log(error);
@@ -62,4 +49,20 @@ const GetPublicListingCount = async () => {
 	}
 };
 
-export { GetAllPublicListing, GetPublicListingByID, GetPublicListingCount };
+const GetUnitPhotos = async (unitId) => {
+    try {
+        
+        const response = await IGOTSOLUTIONSAxiosInstance.get(`api/getUnitPhotos/${unitId}`);
+
+        const unitPhotos = response.data;
+
+        return unitPhotos;
+        
+
+    } catch (error) {
+        console.log(error);
+        return error
+    }
+}
+
+export { GetPropertiesBySaleStatus, GetPublicListingByID, GetPublicListingCount, GetUnitPhotos };

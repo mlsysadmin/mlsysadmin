@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Button,
@@ -35,18 +35,34 @@ import FooterComponent from "./layout/FooterComponent";
 
 import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
 import CertainFeatureMenu from "./custom/customsearch/certainfeature";
-import { GetAllPublicListing } from "../api/GetAllPublicListings";
+import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
 import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
 import { Link, useLocation } from "react-router-dom";
 import { Select } from "antd";
 import { GetProvince } from "../api/Public/Location.api";
+
+import DefaultPropertyImage from '../asset/fallbackImage.png';
+import { AmountFormatterGroup } from "../utils/AmountFormatter";
 
 const { Option } = Select;
 
 const DashboardComponent = () => {
   const [loading, setLoading] = useState(false);
   const [userLikes, setUserLikes] = useState([]);
-  const [publiclisting, setPublicListing] = useState([]);
+  const [publiclisting, setPublicListing] = useState([
+    {
+      id: 0,
+      title: "",
+      price: 0,
+      status: "",
+      pics: 0,
+      img: DefaultPropertyImage,
+      no_of_bathrooms: 0,
+      lot: 0,
+      property_no: ''
+    }
+  ]);
+
   const [isAdvanceSearchOpen, setAdvanceSearchOpen] = useState(false);
   const [iscertainFeatureOpen, setcertainFeatureOpen] = useState(false);
 
@@ -59,17 +75,64 @@ const DashboardComponent = () => {
     // window.location.href = `/previewListing/${id}`;
     navigate(`/previewListing/${id}`, { state: id });
   };
-  // const handleCardClick = () => {
-  //   navigate('/previewListing');
-  // };
 
-  const allPublicListing = async () => {
-    const res = await GetAllPublicListing();
-    const dataresp = res.data;
-    setPublicListing(dataresp);
-  };
+  function isPastAMonth(date) {
+    if (!date) {
+      return false
+    }
+
+    function getDaysInMonth(year, month) {
+      return new Date(year, month + 1, 0).getDate();
+    }
+
+    const today = new Date();
+    const creationDate = new Date('2024-09-10');
+
+    const timeDifference = today - creationDate; // difference in milliseconds
+    
+    const daysDifference = timeDifference / (1000 * 3600 * 24);
+
+    console.log("isNew",daysDifference, getDaysInMonth(today.getFullYear(), today.getMonth()));
+    
+    return daysDifference > getDaysInMonth(today.getFullYear(), today.getMonth()); // Property is past 30 days created - true
+
+  }
+
+  const propertiesBySaleStatus = useCallback(async () => {
+    try {
+      const res = await GetPropertiesBySaleStatus();
+
+      const dataresp = res.data;
+
+      const listing = dataresp.filter((listing) => !isPastAMonth(listing.created_at)).map((item, i) => {
+
+        console.log('listing', item);
+        
+        const getLength = GetPhotoLength(item.id);
+
+        const image = GetPhotoFromDB(item.Photo);
+
+        return {
+          id: item.id,
+          title: `${item.ProjectName} - ${item.UnitName}`,
+          price: item.Price,
+          status: "New",
+          pics: image ? getLength + 1 : getLength,
+          img: image,
+          no_of_bathrooms: item.BathRooms,
+          lot: item.LotArea,
+          property_no: item.PropertyNo
+        }
+      });
+
+      setPublicListing(await listing);
+    } catch (error) {
+      console.log("ERROROR", error);
+    }
+  }, [])
+
   useEffect(() => {
-    allPublicListing();
+    propertiesBySaleStatus();
   }, []);
 
   const [getProvince, setGetProvince] = useState([]);
@@ -78,19 +141,22 @@ const DashboardComponent = () => {
     try {
       const dataprovince = await GetProvince();
       setGetProvince(dataprovince);
-      console.log("province", dataprovince)
     } catch (error) {
       console.error("Error fetching provinces:", error);
     }
   };
 
   useEffect(() => {
-    allProvinces();
+    // allProvinces();
   }, []);
 
-  const newListings = publiclisting.filter(
-    (item) => item.listings.listing_type.listing_type === "For Sale"
-  );
+  // const newListings = publiclisting.filter(
+  //   (item) => item.SaleStatus === "unsold"
+  // );
+
+  // console.log("newListings", newListings);
+
+
   const url_Redirect = process.env.REACT_APP_LOGIN_URL;
   const handleUserProfileClick = () => {
     if (url_Redirect) {
@@ -185,7 +251,6 @@ const DashboardComponent = () => {
 
   useEffect(() => {
     checkQueryForPropertySearchModal();
-    console.log("Modal open state:", isPropSearchModalOpen);
   }, [location]);
   const handleModalClose = () => {
     setIsPropSearchModalOpen(false);
@@ -278,7 +343,7 @@ const DashboardComponent = () => {
           </div>
           <div className="discover-section--sub-title">
             <div className="section-2-title">
-              {newListings.length > 0 ? (
+              {publiclisting.length > 0 ? (
                 <>
                   <p>Discover new homes around you</p>
                   <div className="see-all-new-listing-dashboard">
@@ -293,30 +358,27 @@ const DashboardComponent = () => {
             </div>
           </div>
         </Row>
-        {newListings.length > 0 && (
+        {publiclisting.length > 0 && (
           <div className="listing-carousel-dashboard">
-            {newListings.slice(0, 3).map((item, i) => {
-              return (
-                <CardListingComponent
-                  title={item.listings.title}
-                  price={`PHP ${item.listings.unit_details.price}`}
-                  status={
-                    item.listings.listing_type.listing_type === "For Sale"
-                      ? "NEW"
-                      : item.listings.listing_type.listing_type
-                  }
-                  pics={GetPhotoLength(item.listings.photos.photo)}
-                  features={item.features}
-                  img={GetPhotoFromDB(item.listings.photos.photo)}
-                  no_of_bathrooms={item.listings.unit_details.no_of_bathrooms}
-                  lot={item.listings.unit_details.lot_area}
-                  key={i}
-                  listingId={item.listings.listing_id}
-                  loading={loading}
-                  handleClick={() => handleCardClick(item.listings.listing_id)}
-                />
-              );
-            })}
+            {
+              publiclisting.slice(0, 3).map((item, i) => {
+
+                return (
+                  <CardListingComponent
+                    title={item.title}
+                    price={`PHP ${AmountFormatterGroup(item.price)}`}
+                    status={item.status}
+                    pics={item.pics}
+                    img={item.img}
+                    no_of_bathrooms={item.no_of_bathrooms}
+                    lot={item.lot}
+                    key={i}
+                    loading={loading}
+                    handleClick={() => handleCardClick(item.property_no)}
+                  />
+                );
+              })
+            }
             <div
               style={{
                 display: 'none',

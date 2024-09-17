@@ -7,7 +7,7 @@ import Pagination from "./custom/pagination/Pagination";
 import ListingSearch from "./custom/customsearch/custom.listingsearch";
 import SearchPropertiesSoration from "./custom/customsearch/searchSortationProperties";
 import { cardData } from "../utils/ListingMockData";
-import { GetAllPublicListing } from "../api/GetAllPublicListings";
+import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
 import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
 
 
@@ -25,7 +25,7 @@ const FeaturedComponent = () => {
 	};
 
 	const allPublicListing = async () => {
-		const res = await GetAllPublicListing();
+		const res = await GetPropertiesBySaleStatus();
 		const dataresp = res.data;
 		setPublicListing(dataresp);
 		console.log("public listing:", dataresp);
