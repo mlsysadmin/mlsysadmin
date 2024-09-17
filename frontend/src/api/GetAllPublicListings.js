@@ -29,18 +29,12 @@ const GetPublicListingByID = async (propertyNo) =>{
         
     }
 }
+
 const GetPublicListingCount = async () => {
 	try {
-		const response = await MLBROKERAGEAxiosInstance.get(
-			`api/public/get/listing/all`,
-			{
-				headers: {
-					"x-api-key": process.env.REACT_APP_API_KEY,
-				},
-			}
-		);
-		const allPublicListing = response.data.data.data
-	   const listingCount = allPublicListing.length;
+        const response = await IGOTSOLUTIONSAxiosInstance.get(`/api/getPropertiesBySaleStatus/unsold`);
+
+	        const listingCount = response.data.length;
 			console.log("Number of public listings: ", listingCount);
 			return listingCount;
 	} catch (error) {
@@ -49,12 +43,31 @@ const GetPublicListingCount = async () => {
 	}
 };
 
+// const GetAllListing = async () =>{
+//     try{
+//         const response = await IGOTSOLUTIONSAxiosInstance.get(
+// 					`api/getProperties`,
+// 					{
+// 						headers: {
+// 							"x-api-key": process.env.REACT_APP_API_KEY,
+// 						},
+// 					}
+// 				);
+
+//         console.log("all listings:", response);
+//         return response;
+
+//     }catch (error){
+//         return error;
+//     }
+// }
+
 const GetUnitPhotos = async (unitId) => {
     try {
         
         const response = await IGOTSOLUTIONSAxiosInstance.get(`api/getUnitPhotos/${unitId}`);
 
-        const unitPhotos = response.data;
+        const unitPhotos = response;
 
         return unitPhotos;
         
@@ -65,4 +78,10 @@ const GetUnitPhotos = async (unitId) => {
     }
 }
 
-export { GetPropertiesBySaleStatus, GetPublicListingByID, GetPublicListingCount, GetUnitPhotos };
+export {
+	GetPropertiesBySaleStatus,
+	GetPublicListingByID,
+	GetPublicListingCount,
+	GetUnitPhotos,
+	// GetAllListing,
+};

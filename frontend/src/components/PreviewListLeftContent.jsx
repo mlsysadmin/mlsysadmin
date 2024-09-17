@@ -8,10 +8,6 @@ import area from "../assets/icons/previewlisting/area.png";
 import { useNavigate } from 'react-router-dom';
 
 
-
-
-
-
 const PreviewListLeftContent = ({ label, value, oneListing }) => {
   const features = [
     {

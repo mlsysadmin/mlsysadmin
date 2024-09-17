@@ -86,43 +86,6 @@ const PreviewListing = () => {
 
   console.log("photos", GetAllPhoto());
 
-  // if (oneListing) {
-  //   console.log("Title:", oneListing.title);
-  //   console.log("Photos:", JSON.parse(oneListing.listings.photos.photo))
-  //   console.log("Photos:", images);
-  //   ;
-  // } else {
-  //   console.log("oneListing is undefined");
-  // }
-
-  // let images = (oneListing?.listings?.photos?.photo || []);
-
-  // const previousImage = () => {
-  //   const newIndex = (currentIndex - 1 + images.length) % images.length;
-  //   setCurrentIndex(newIndex);
-  //   updateSmallImages(newIndex);
-  // };
-
-  // const nextImage = () => {
-  //   const newIndex = (currentIndex + 1) % images.length;
-  //   setCurrentIndex(newIndex);
-  //   updateSmallImages(newIndex);
-  // };
-
-  // const updateSmallImages = (newIndex) => {
-  //   const nextIndex1 = (newIndex + 1) % images.length;
-  //   const nextIndex2 = (newIndex + 2) % images.length;
-
-  //   const newSmallImages = [images[nextIndex1], images[nextIndex2]];
-  //   setSmallImages(newSmallImages);
-
-  //   const newPhotoCount = getPhotoCountForMainImage(newIndex);
-  //   setPhotoCount(newPhotoCount);
-  // };
-
-  // const getPhotoCountForMainImage = (index) => {
-  // };
-
   const [isFavorite, setIsFavorite] = React.useState(false);
 
   const toggleFavorite = () => {

@@ -11,65 +11,68 @@ import ShortcutOutlinedIcon from '@mui/icons-material/ShortcutOutlined';
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 
 const Card = ({
-  id,
-  title,
-  subtitle,
-  price,
-  imgSrc,
-  beds,
-  baths,
-  size,
-  likes,
-  forsale,
-  handleClick
+	loading,
+	status,
+	pics,
+	title,
+	price,
+	features,
+	listingId,
+	no_of_bathrooms,
+	bed,
+	subtitle,
+	lot,
+	img,
+	handleClick,
 }) => {
-  const isFeatured = forsale.toLowerCase() === "featured";
-  const [isHeartFilled, setIsHeartFilled] = useState(false);
-  
-  const handleHeartClick = () => {
-    setIsHeartFilled(!isHeartFilled);
-  }
-  // const navigate = useNavigate();
+	const isFeatured = status === "featured";
+	const [isHeartFilled, setIsHeartFilled] = useState(false);
 
-  // const handleCardClick = () => {
-  //   onClick(id);;
-  // };
+	const handleHeartClick = () => {
+		setIsHeartFilled(!isHeartFilled);
+	};
+	// const navigate = useNavigate();
 
-  return (
+	// const handleCardClick = () => {
+	//   onClick(id);;
+	// };
+
+	return (
 		<div className="card" style={{ cursor: "pointer" }}>
 			<div className="cardImage">
 				<img
-					src={imgSrc}
+					src={img}
 					alt={title}
 					className="card-img"
 					onClick={handleClick}
+					loading={loading}
 				/>
 				<p
 					className={isFeatured ? "featured" : ""}
 					style={{
 						color:
-							forsale === "New"
+							status === "New"
 								? "#ffffff"
-								: forsale === "For Sale"
+								: status === "For Sale"
 								? "#000000"
-								: forsale === "For Rent"
+								: status === "For Rent"
 								? "#000000"
 								: "White",
 						backgroundColor:
-							forsale === "New"
+							status === "New"
 								? "var(--red)"
-								: forsale === "For Sale"
+								: status === "For Sale"
 								? "#ffffff"
-								: forsale === "For Rent"
+								: status === "For Rent"
 								? "#ffffff"
 								: "var(--red)",
 					}}
 				>
-					{forsale}
+					{status}
 				</p>
 				<div className="likes">
 					<CameraAltIcon />
-					<b>{likes}</b>
+					<b>{pics}</b>
 				</div>
 				<div className="bottomicns">
 					<div className="icon" onClick={handleHeartClick}>
@@ -92,15 +95,15 @@ const Card = ({
 							<span>
 								<BedOutlinedIcon />
 
-								<label id="bed-icon">{beds}</label>
+								<label id="bed-icon">{bed}</label>
 								<ShowerOutlinedIcon />
 							</span>{" "}
-							{baths}
+							{no_of_bathrooms}
 							<span></span>
 							<span>
 								<ShortcutOutlinedIcon />
 							</span>{" "}
-							{size} SqM
+							{lot} SqM
 						</p>
 					</div>
 				</div>
