@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import "../../styles/additionalFeature.css";
 import { MinusCircleOutlined } from '@ant-design/icons';
 
-const AddFeature = ({ setPropertiesFields }) => {
+const AddFeature = ({ setPropertyFields }) => {
 	const initialFeatures = ["Landscaped Parks with picnic grounds"];
 	const initialIncludes = ["Living Room with Dining Area"];
 
-	const [features, setFeatures] = useState(initialFeatures);
-	const [includes, setIncludes] = useState(initialIncludes);
+	const [features, setFeatures] = useState([]);
+	const [includes, setIncludes] = useState([]);
 	const [selectedFeatures, setSelectedFeatures] = useState([]);
 	const [selectedIncludes, setSelectedIncludes] = useState([]);
 	const [newFeature, setNewFeature] = useState("");
@@ -20,12 +20,11 @@ const AddFeature = ({ setPropertiesFields }) => {
 			setItems((prevItems) => [...prevItems, item]);
 			setNewItem("");
 			setAdding(false);
-			setPropertiesFields((prevFields) => ({
-				...prevFields,
-				amenities: {
-					...prevFields.amenities,
-					[category]: [...prevFields.amenities[category], item],
-				},
+			setPropertyFields((prevFields) => ({
+				AddedFeature: [
+					// ...prevFields.Features,
+					{ FeatureName: item, Type: category },
+				],
 			}));
 		}
 	};
@@ -33,31 +32,60 @@ const AddFeature = ({ setPropertiesFields }) => {
 	const removeItem = (index, setItems, category) => {
 		setItems((prevItems) => {
 			const updatedItems = prevItems.filter((_, i) => i !== index);
-			// Update the property fields based on the category
-			setPropertiesFields((prevFields) => ({
-				...prevFields,
-				amenities: {
-					...prevFields.amenities,
-					[category]: updatedItems,
-				},
-			}));
+			setPropertyFields((prevFields) => {
+				const featuresWithType = [...features, ...includes].map((item) => ({
+					FeatureName: item,
+					Type: includes.includes(item) ? "Includes" : "Amenities",
+				}));
+
+				return {
+					...prevFields,
+					AddedFeature: {
+						[category]: updatedItems,
+					},
+					AddedFeature: featuresWithType,
+				};
+			});
+
 			return updatedItems;
 		});
 	};
 
-	useEffect(() => {
-		console.log("Features:", features);
-		console.log("Includes:", includes);
-	}, [features, includes]);
+	// useEffect(() => {
+	// 	console.log("Features State Updated:", features);
+	// }, [features]);
+
+	// useEffect(() => {
+	// 	console.log("Includes State Updated:", includes);
+	// }, [includes]);
 
 	useEffect(() => {
-		setPropertiesFields({
-			amenities: {
-				custom_amenities: { feature_name: features },
-				custom_inclusion: { inclusion_name: includes },
-			},
+		const featuresWithType = [
+			...features.map((feature) => ({
+				FeatureName: feature,
+				Type: "amenities",
+			})),
+			...includes.map((include) => ({
+				FeatureName: include,
+				Type: "includes",
+			})),
+		];
+
+		setPropertyFields({
+			AddedFeature: [...featuresWithType],
 		});
-	}, [features, includes, setPropertiesFields]);
+		// console.log("featurewithtpye:", featuresWithType);
+
+		// setPropertiesFields((prevFields) => {
+		// 		Features: [
+		// 			...prevFields.Features,
+		// 			...featuresWithType,
+		// 		],
+
+		// 	console.log("Updated Property Fields:", updatedFields);
+		// 	return updatedFields;
+		// });
+	}, [features, includes, setPropertyFields]);
 
 	return (
 		<div className="AddFeature">
@@ -76,12 +104,10 @@ const AddFeature = ({ setPropertiesFields }) => {
 						setFeatures,
 						setNewFeature,
 						setAddingFeature,
-						"custom_amenities"
+						"Amenities"
 					)
 				}
-				removeItem={(index) =>
-					removeItem(index, setFeatures, "custom_amenities")
-				}
+				removeItem={(index) => removeItem(index, setFeatures, "Amenities")}
 			/>
 			<FeatureList
 				title="Includes"
@@ -98,12 +124,10 @@ const AddFeature = ({ setPropertiesFields }) => {
 						setIncludes,
 						setNewInclude,
 						setAddingInclude,
-						"custom_inclusion"
+						"Includes"
 					)
 				}
-				removeItem={(index) =>
-					removeItem(index, setIncludes, "custom_inclusion")
-				}
+				removeItem={(index) => removeItem(index, setIncludes, "Includes")}
 			/>
 		</div>
 	);

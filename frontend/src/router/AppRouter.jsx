@@ -128,8 +128,8 @@ const Routes = [
 			},
 			{
 				path: "/listing",
-				// element: <BuyerSellerProtectedRoute element={<ListingPage /> }/>
-				element:<ListingPage/>,
+				element: <BuyerSellerProtectedRoute element={<ListingPage /> }/>
+				// element:<ListingPage/>,
 			},
 			{
 				path: "/drafts",

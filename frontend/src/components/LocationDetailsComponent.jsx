@@ -1,41 +1,69 @@
 import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Circle } from 'react-leaflet';
+import { MapContainer, TileLayer, Circle, useMap } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import "../styles/listing-form.css";
 import { GetCities, GetProvince, GetCountry } from "../api/Public/Location.api";
 import  "../styles/ViewListing.module.css";
 
+
+
+
+const MapUpdater = ({ position }) => {
+	const map = useMap();
+	map.setView(position, 13);
+	return null;
+};
+
 const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 	const [getCountry, setGetCountry] = useState([]);
-	const [selectedCountry, setSelectedCountry] = useState(""); // New state for selected country
+	const [selectedCountry, setSelectedCountry] = useState("");
 	const [getProvince, setGetProvince] = useState([]);
-	const [selectedProvince, setSelectedProvince] = useState(""); // New state for selected province
+	const [selectedProvince, setSelectedProvince] = useState(""); 
 	const [getCities, setGetCities] = useState([]);
-	const [selectedCity, setSelectedCity] = useState(""); // New state for selected city
+	const [selectedCity, setSelectedCity] = useState(""); 
 	const [subdivision, setSubdivision] = useState("");
 	const [zipcode, setZipcode] = useState("");
 	const [address, setAddress] = useState("");
-	const [mapLocation, setMapLocation] = useState("");
-	const [position, setPosition] = useState([10.3414, 123.9125]); // Default position for Banilad
+	const [radius, setRadius] = useState(500); 
+	const [filteredCities, setFilteredCities] = useState([]);
+	const [position, setPosition] = useState([10.3414, 123.9125]); 
+
 
 	const allCountries = async () => {
 		const datares = await GetCountry();
 		setGetCountry(datares);
-		console.log("These are countries:", datares);
+		// console.log("These are countries:", datares);
 	};
 
 	const allCities = async () => {
 		const datarescities = await GetCities();
 		setGetCities(datarescities);
-		console.log("These are cities:", datarescities);
+		// console.log("These are cities:", datarescities);
 	};
 
 	const allProvince = async () => {
 		const dataresprovince = await GetProvince();
 		setGetProvince(dataresprovince);
-		console.log("These are provinces:", dataresprovince);
+		// console.log("These are provinces:", dataresprovince);
 	};
+	
+ const handleProvinceChange = (province) => {
+		setSelectedProvince(province);
+		console.log("Selected Province:", province); 
 
+		const provinceData = getProvince.find((p) => p.name === province);
+		if (provinceData) {
+			const provinceId = provinceData.addressL1Id;
+			const filtered = getCities.filter((city) => {
+				// console.log("Checking city:", city.name); 
+				return city.addressL1Id === provinceId; 
+			});
+			// console.log("Filtered cities:", filtered); 
+			setFilteredCities(filtered);
+		} else {
+			setFilteredCities([]); 
+		}
+ };
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -52,13 +80,14 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 		const { name, value } = e.target;
 		switch (name) {
 			case "country":
-				setSelectedCountry(value); // Store the selected country name
+				setSelectedCountry(value); 
 				break;
 			case "province":
-				setSelectedProvince(value); // Store the selected province name
+				setSelectedProvince(value);
 				break;
 			case "city":
-				setSelectedCity(value); // Store the selected city name
+				setSelectedCity(value); 
+				 handleMapLocationChange(value);
 				break;
 			case "zipcode":
 				setZipcode(value);
@@ -71,42 +100,38 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 		}
 	};
 
-	const handleMapLocationChange = async (event) => {
-		const location = event.target.value;
-		setMapLocation(location);
 
-		// Geocode the address to get coordinates
-		const response = await fetch(
-			`https://nominatim.openstreetmap.org/search?format=json&q=${location}`
-		);
-		const data = await response.json();
+	 const handleMapLocationChange = async (city) => {
+			try {
+				const response = await fetch(
+					`https://nominatim.openstreetmap.org/search?format=json&q=${city}`
+				);
+				const data = await response.json();
 
-		if (data && data.length > 0) {
-			const { lat, lon } = data[0];
-			setPosition([parseFloat(lat), parseFloat(lon)]);
-		}
-	};
+				if (data && data.length > 0) {
+					const { lat, lon } = data[0];
+					setPosition([parseFloat(lat), parseFloat(lon)]);
+				} else {
+					console.log("No results found for this location");
+				}
+			} catch (error) {
+				console.error("Error fetching geocode data: ", error);
+			}
+		};
 
 	useEffect(() => {
 		const isComplete =
-			selectedCountry &&
-			selectedProvince &&
-			selectedCity &&
-			zipcode &&
-			address &&
-			mapLocation;
+			selectedCountry && selectedProvince && selectedCity && zipcode && address;
 		onComplete(isComplete);
 
 		if (isComplete) {
 			setPropertyFields({
-				location: {
-					subdivision,
-					city: selectedCity,
-					province: selectedProvince,
-					other: selectedCountry,
-					zipcode: zipcode,
-					map_location: mapLocation,
-				},
+				City: selectedCity,
+				ProvinceState: selectedProvince,
+				Country: selectedCountry,
+				Zipcode: zipcode,
+				MapLocation: selectedCity, 
+				Location: address, 
 			});
 		}
 	}, [
@@ -115,8 +140,6 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 		selectedCity,
 		zipcode,
 		address,
-		mapLocation,
-		subdivision,
 		onComplete,
 	]);
 
@@ -153,7 +176,8 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 						id="province"
 						className="location-form-inputs"
 						value={selectedProvince}
-						onChange={handleAddressChange}
+						onChange={(e) => handleProvinceChange(e.target.value)}
+						// onChange={handleAddressChange}
 					>
 						<option value="">Select Province</option>
 						{getProvince.map((province, index) => (
@@ -175,7 +199,7 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 						onChange={handleAddressChange}
 					>
 						<option value="">Select City</option>
-						{getCities.map((city, index) => (
+						{filteredCities.map((city, index) => (
 							<option key={index} value={city.name}>
 								{city.name}
 							</option>
@@ -199,14 +223,14 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 			<div className="below-div">
 				<div className="end-form-group">
 					<label htmlFor="address" className="second-form-label">
-						House No/Unit/Building Name/Street
+						Building Name/Street
 					</label>
 					<input
 						type="text"
 						id="address"
 						name="address"
 						className="form-input"
-						placeholder="Enter House No/Unit/Building Name/Street"
+						placeholder="Enter Building Name/Street"
 						value={address}
 						onChange={handleAddressChange}
 					/>
@@ -215,26 +239,15 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 					<label htmlFor="map-location" className="second-form-labels">
 						Map Location
 					</label>
-					<input
-						type="text"
-						id="map-location"
-						className="form-input"
-						placeholder="Enter Map Location"
-						value={mapLocation}
-						onChange={handleMapLocationChange}
-					/>
 				</div>
 				<div className="embedd-map">
-					<MapContainer
-						center={position}
-						zoom={13}
-						
-					>
+					<MapContainer center={position} zoom={13}>
 						<TileLayer
 							url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 							attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 						/>
-						<Circle center={position} radius={500} />
+						<Circle center={position} radius={radius} />
+						<MapUpdater position={position} />
 					</MapContainer>
 				</div>
 			</div>
