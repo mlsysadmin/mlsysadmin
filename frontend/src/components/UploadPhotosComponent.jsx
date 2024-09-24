@@ -18,7 +18,7 @@ const UploadPhotosComponent = ({ onComplete, setPropertyFields }) => {
 					100,
 					0,
 					(uri) => {
-						setUploadedPhotos((prev) => [...prev, { file, preview: uri }]);
+						setUploadedPhotos((prev) => [...prev, { file, preview: uri, filename:file.name }]);
 					},
 					"base64"
 				);
@@ -54,16 +54,15 @@ const UploadPhotosComponent = ({ onComplete, setPropertyFields }) => {
     const complete = uploadedPhotos !== null && uploadedPhotos.length >= 1;
 		if (complete) {
       setPropertyFields({
-				photos: {
-					photo: uploadedPhotos,
-					upload_date_time: upload_date_time,
-				},
+					Photo: uploadedPhotos,
+
 			});
 			onComplete(true);
 		} else {
 			onComplete(false); 
 		}
 	}, [uploadedPhotos, onComplete]);
+
 
 	return (
 		<div className="uploadPhotos">

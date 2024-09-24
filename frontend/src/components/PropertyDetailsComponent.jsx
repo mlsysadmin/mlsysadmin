@@ -11,21 +11,20 @@ const PropertyDetailsComponent = ({ onComplete, setPropertyFields }) => {
 		onComplete(isCompleted);
 		if (isCompleted) {
 			setPropertyFields({
-				property_type: {
-					type: selectedListingTab,
-					subtype: selectedPropertyTab,
-				},
-				listing_type_id: selectedListingTab,
+				SaleType: selectedListingTab.toLowerCase(),
+				PropertyType: selectedPropertyTab.toLowerCase(),
 			});
 		}
 	}, [selectedPropertyTab, selectedListingTab, onComplete, setPropertyFields]);
 
-	const handlePropertyTabClick = (tab) => {
+    const handlePropertyTabClick = (tab) => {
 		setSelectedPropertyTab(tab);
-	};
+
+     };
 
 	const handleListingTabClick = (tab) => {
 		setSelectedListingTab(tab);
+
 	};
 
 	return (
@@ -63,7 +62,7 @@ const PropertyDetailsComponent = ({ onComplete, setPropertyFields }) => {
 							<div className="tab-label">Residential</div>
 							<div className="tab-wrapper">
 								<div className="tabs">
-									{["Condominium", "House and Lot", "Townhouse"].map((tab) => (
+									{["Condominium", "House and Lot","Lot", "Townhouse"].map((tab) => (
 										<div
 											key={tab}
 											className={`tab ${
@@ -105,7 +104,7 @@ const PropertyDetailsComponent = ({ onComplete, setPropertyFields }) => {
 						<div className="tab-category">
 							<div className="listing-tab-wrapper">
 								<div className="listing-tabs">
-									{["For Rent", "For Sale", "Pre-Selling"].map((tab) => (
+									{["Rent", "Sale", "Pre-Selling"].map((tab) => (
 										<div
 											key={tab}
 											className={`tab ${

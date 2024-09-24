@@ -1,5 +1,9 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import "../../../styles/DraftSidebarComponent.css";
+import { getCookieData } from "../../../utils/CookieChecker";
+import { searchKyc } from "../../../api/Public/User.api";
+
 
 const Container = (props) => {
   return <div className="drafts-container">{props.children}</div>;
@@ -60,41 +64,66 @@ const Sidebar = () => {
     setIsOpen(!isOpen);
   };
 
+
+  const [userDetails, setUserDetails] = useState(null);
+
+	const accountDetails = getCookieData();
+	console.log("details:", accountDetails);
+	console.log("mobile number", accountDetails.mobileNumber);
+
+	const fetchUserDetails = async () => {
+		try {
+			const response = await searchKyc(accountDetails.mobileNumber);
+			const respData = response.data.data;
+			console.log("API Response:", respData);
+			setUserDetails(respData);
+		} catch (error) {
+			console.error("Error fetching user details:", error);
+		}
+	};
+
+	useEffect(() => {
+		fetchUserDetails();
+		console.log("user", userDetails);
+	}, []);
+
+
   return (
-  <div className="whole-sidebar">
-    <Container>
-      <HamburgerButton isOpen={isOpen} onClick={toggleSidebar} />
-      <SidebarContainer isOpen={isOpen} onClose={toggleSidebar}>
-        <SidebarHeader>Marie Rodriguez</SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <a href="/drafts" style={{ color: "Black" }}>
-              My Drafts
-            </a>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <a href="/listing-summary-lists" style={{ color: "Black" }}>
-              Listings
-            </a>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <a href="/active-summary-lists" style={{ color: "Black" }}>
-              Active/Inactive
-            </a>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <a href="/sold-properties" style={{ color: "Black" }}>
-              Sold Properties
-            </a>
-          </SidebarMenuItem>
-          <CreateListingButton>Create Listing</CreateListingButton>
-        </SidebarMenu>
-        
-      </SidebarContainer>
-     
-    </Container>
-    </div>
-  );
+		<div className="whole-sidebar">
+			<Container>
+				<HamburgerButton isOpen={isOpen} onClick={toggleSidebar} />
+				<SidebarContainer isOpen={isOpen} onClose={toggleSidebar}>
+					<SidebarHeader>
+						{accountDetails.firstName} &nbsp;
+						{accountDetails.lastName}
+					</SidebarHeader>
+					<SidebarMenu>
+						<SidebarMenuItem>
+							<a href="/drafts" style={{ color: "Black" }}>
+								My Drafts
+							</a>
+						</SidebarMenuItem>
+						<SidebarMenuItem>
+							<a href="/listing-summary-lists" style={{ color: "Black" }}>
+								Listings
+							</a>
+						</SidebarMenuItem>
+						<SidebarMenuItem>
+							<a href="/active-summary-lists" style={{ color: "Black" }}>
+								Active/Inactive
+							</a>
+						</SidebarMenuItem>
+						<SidebarMenuItem>
+							<a href="/sold-properties" style={{ color: "Black" }}>
+								Sold Properties
+							</a>
+						</SidebarMenuItem>
+						<CreateListingButton>Create Listing</CreateListingButton>
+					</SidebarMenu>
+				</SidebarContainer>
+			</Container>
+		</div>
+	);
 };
 
 export default Sidebar;

@@ -1,6 +1,6 @@
 'use strict'
 
-const { default: MLBROKERAGEAxiosInstance } = require("../../helper/axios");
+const { MLBROKERAGEAxiosInstance } = require("../../helper/axios");
 
 const Config = (params, headers) => {
     const config = {
