@@ -6,7 +6,8 @@ import property from "../images/Guest/property.png";
 import Pagination from "./custom/pagination/Pagination";
 import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout, SearchPropertiesSoration } from "../components";
 import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
-import {GetPhotoFromDB, GetPhotoLength} from "../utils/GetPhoto"
+import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto"
+import { CapitalizeString, GetPropertyTitle, isPastAMonth } from "../utils/StringFunctions.utils";
 import NoListingAvailable from "./custom/custom.NoListingAvailable";
 
 import DefaultPropertyImage from "../asset/fallbackImage.png";
@@ -14,13 +15,13 @@ import { GetAllListing } from "../api/GetAllPublicListings";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
 
 const AllComponent = () => {
-  const navigate = useNavigate();
-const [loading, setLoading] = useState(false);
+	const navigate = useNavigate();
+	const [loading, setLoading] = useState(false);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const cardsPerPage = 9;
+	const [currentPage, setCurrentPage] = useState(1);
+	const cardsPerPage = 9;
 
-  const [publiclisting, setPublicListing] = useState([
+	const [publiclisting, setPublicListing] = useState([
 		{
 			id: 0,
 			title: "",
@@ -30,51 +31,74 @@ const [loading, setLoading] = useState(false);
 			img: DefaultPropertyImage,
 			no_of_bathrooms: 0,
 			lot: 0,
-			property_no: "",
-		},
+			property_no: '',
+			isFeatured: '',
+			sale_type: '',
+			property_type: '',
+			no_of_beds: ''
+		}
 	]);
 
-  
-  const handleCardClick = (propertyNo) => {
+
+	const handleCardClick = (propertyNo) => {
 		console.log("id", propertyNo);
 		// window.location.href = `/previewListing/${id}`;
 		navigate(`/previewListing/?id=${propertyNo}`, { state: propertyNo });
 	};
-  
-const getlistings = async () =>{
-   try {
+
+	const getlistings = async () => {
+		try {
 			const res = await GetPropertiesBySaleStatus();
+
 			const dataresp = res.data;
 
-			if (dataresp && dataresp.length > 0) {
-				setPublicListing(dataresp);
-				console.log("public listing:", dataresp);
-			} else {
-				setPublicListing([]);
-				console.log("No listings found.");
-			}
+			const listing = dataresp.filter((listing) => !isPastAMonth(listing.created_at)).map((item, i) => {
+
+				console.log('listing', item);
+
+				const getLength = GetPhotoLength(item.id);
+
+				const image = GetPhotoWithUrl(item.Photo);
+
+				return {
+					id: item.id,
+					title: GetPropertyTitle(item.ProjectName, item.UnitName),
+					price: AmountFormatterGroup(item.Price),
+					status: "New",
+					pics: image ? getLength + 1 : getLength,
+					img: image,
+					no_of_bathrooms: item.BathRooms,
+					lot: item.LotArea,
+					property_no: item.PropertyNo,
+					isFeatured: "yes",
+					sale_type: CapitalizeString(item.SaleType),
+					no_of_beds: item.BedRooms,
+					property_type: item.PropertyType
+					// isFeatured: item.IsFeatured
+				}
+			});
 		} catch (error) {
 			console.error("Error fetching public listings:", error);
 			setPublicListing([]);
 		}
-  
-}
- 
-// console.log( GetPhotoFromDB())
-console.log( "getlength", GetPhotoLength())
 
-  useEffect (() => {
-    // allPublicListing()
-    getlistings()
-  }, [])
+	}
 
-  const indexOfLastCard = currentPage * cardsPerPage;
-  const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = publiclisting?.slice(indexOfFirstCard, indexOfLastCard);
+	// console.log( GetPhotoFromDB())
+	console.log("getlength", GetPhotoLength())
+
+	useEffect(() => {
+		// allPublicListing()
+		getlistings()
+	}, [])
+
+	const indexOfLastCard = currentPage * cardsPerPage;
+	const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+	const currentCards = publiclisting?.slice(indexOfFirstCard, indexOfLastCard);
 
 
-  const totalPages = Math.ceil(publiclisting?.length / cardsPerPage);
-  return (
+	const totalPages = Math.ceil(publiclisting?.length / cardsPerPage);
+	return (
 		<div className="all-container">
 			<div className="all-searchcomponent">
 				<ListingSearch />
@@ -82,31 +106,26 @@ console.log( "getlength", GetPhotoLength())
 			<div className="all-page-container">
 				<span className="all-h1">For Sale/Rent</span>
 				<SearchPropertiesSoration />
-
 				<div className="card-container">
 					{currentCards.length > 0 ? (
 						currentCards.map((item, index) => (
 							<Card
-								title={`${item.ProjectName} - (${item.UnitName})`}
-								subtitle={item.PropertyType}
-								price={`PHP ${AmountFormatterGroup(item.Price)}`}
-								status={item.SaleType}
-								pics={
-									GetPhotoFromDB(item.Photo)
-										? GetPhotoLength(item.id) + 1
-										: GetPhotoLength(item.id)
-								}
-								img={GetPhotoFromDB(item.Photo)}
-								no_of_bathrooms={item.BathRooms}
-								lot={item.LotArea}
-								bed={item.BedRooms}
+								title={item.title}
+								subtitle={`${CapitalizeString(item.property_type)} For ${CapitalizeString(item.sale_type)}`}
+								price={`PHP ${AmountFormatterGroup(item.price)}`}
+								status={item.sale_type}
+								pics={item.pics}
+								img={item.img}
+								no_of_bathrooms={item.no_of_bathrooms}
+								lot={item.lot}
+								bed={item.no_of_beds}
 								key={index}
 								loading={loading}
-								handleClick={() => handleCardClick(item.PropertyNo)}
+								handleClick={() => handleCardClick(item.property_no)}
 							/>
 						))
 					) : (
-						<NoListingAvailable/>
+						<NoListingAvailable />
 					)}
 				</div>
 

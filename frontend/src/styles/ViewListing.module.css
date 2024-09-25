@@ -66,6 +66,7 @@
     margin-left: 4%;
     z-index: 1; /* Ensuring the background image is at the back */
     border-radius: 10px;
+    object-fit: cover;
   }
   
   .cameraIcon {
@@ -85,22 +86,23 @@
     height: 50px;
     margin-right: 4%;
     border-radius: 20px;
-    padding: 0px 0px 0px 10px;
+    /* padding: 0px 0px 0px 10px; */
     align-self: flex-end;
     max-width: 100%;
     z-index: 3; /* In front of the camera icon */
     background-color: #fff;
+    justify-content: center;
   }
   .cameraImage{
 
       aspect-ratio: 2;
       /* object-fit: auto; */
       object-position: center;
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
       margin-right: 4%;
       border-radius: 20px;
-      align-self: flex-end;
+      align-self: center;
       max-width: 100%;
       z-index: 3; /* In front of the camera icon */
       background-color: #fff;
@@ -129,6 +131,10 @@
     margin-left: 3%;
     /* margin-top: 5%; */
   }
+  .statusBadge, .priceTag, .saveButton, .logoImage{
+    border-radius: 10px !important;
+  }
+
   
   .statusBadge {
     font-family: Poppins, sans-serif;
@@ -138,6 +144,7 @@
     font-weight: 600; 
     font-size: 24px;
     padding: 10px;
+    border: 1px solid gainsboro;
     /* padding: 8px; */
   }
   
@@ -295,11 +302,7 @@
     }
   
     .backgroundImage {
-      position: absolute;
-      inset: 0;
-      height: 100%;
       width: 93%;
-      z-index: 1;
     }
   
     .cameraIcon {
@@ -462,17 +465,14 @@
   
   @media only screen and (min-width: 360px) and (max-width: 480px) {
     .propertyCard {
-      padding: 15px 20px;
+      padding: 15px 20px 15px 25px;
       font-size: 20px;
       /* height: 50%; */
     }
     
     .backgroundImage {
-      position: absolute;
-      inset: 0;
-      height: 100%;
-      /* width: 100%; */
-      z-index: 1; /* Ensuring the background image is at the back */
+      width: 95%;
+      margin-left: 3% ;
     }
 .cameraIcon {
   position: absolute;
@@ -486,14 +486,13 @@
 .logoImage {
   /* aspect-ratio: 2; */
   object-fit: auto;
-  object-position: center;
-  width: 45px;
-  height: 25px;
-  margin-right: 4%;
-  border-radius: 20px;
-  align-self: flex-end;
-  /* max-width: 100%; */
-  z-index: 3; /* In front of the camera icon */
+  width: 55px;
+  height: 27px;
+  margin-right: 0%;
+  border-radius: 10px !important;
+  padding: 0 5px;
+  align-items: center;
+  gap: 2px;
 }
 .cameraImage {
   width: 25px;
@@ -506,11 +505,12 @@
   color: #d90000;
   font-size: 14px;
   /* margin-left: 5px; */
+  margin-top: 3px;
 }
 .infoContainer {
   position: relative;
   display: flex;
-  margin-top: 60%;
+  margin-top: 58%;
   width: 100%;
   align-items: center;
   gap: 5px;
@@ -537,31 +537,21 @@
 }
 
 .priceTag {
-  font-family: Inter, sans-serif;
-  border-radius: 20px;
-  background-color: #d90000;
-  color: #fff;
   font-size: 16px;
-  white-space: nowrap;
-  padding: 5px 10px;
 }
 
 .actionContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  color: #d90000;
-  font-weight: 400;
+  align-items: center;
+  margin-right: 0%;
 }
 
 .saveButton {
-  border-radius: 20px;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 5px;
+  border-radius: 10px;
   margin-bottom: 5px;
+}
+
+.saveButton .ant-tag.heart{
+  margin-inline-end:7px
 }
 
 .saveIcon {
@@ -571,8 +561,7 @@
 }
 
 .saveText {
-  font-family: Poppins, sans-serif;
-  font-size: 14px;
+  display: none;
 }
 
 .moreOptionsIcon {
@@ -593,6 +582,10 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+.rightIcon{
+  margin-right: 0;
 }
 
   

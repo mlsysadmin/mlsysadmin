@@ -12,7 +12,7 @@ import property from "../images/Guest/property.png";
 import Pagination from "./custom/pagination/Pagination";
 import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout, SearchPropertiesSoration } from "../components";
 import {GetPropertiesBySaleStatus} from "../api/GetAllPublicListings";
-import {GetPhotoFromDB, GetPhotoLength} from "../utils/GetPhoto";
+import {GetPhotoWithUrl, GetPhotoLength} from "../utils/GetPhoto";
 
 const RentComponent = () => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const RentComponent = () => {
     console.log("public listing:", dataresp)
 
   }
-// console.log( GetPhotoFromDB())
+// console.log( GetPhotoWithUrl())
 console.log( "getlength", GetPhotoLength())
 
   useEffect (() => {
@@ -61,7 +61,7 @@ console.log( "getlength", GetPhotoLength())
 								id={data.listings.listing_id}
 								title={data.listings.title}
 								price={`PHP${data.listings.unit_details.price}`}
-								imgSrc={GetPhotoFromDB(data.listings.photos.photo)}
+								imgSrc={GetPhotoWithUrl(data.listings.photos.photo)}
 								beds={data.listings.unit_details.no_of_beds}
 								baths={data.listings.unit_details.no_of_bathrooms}
 								size={data.listings.unit_details.lot_area}

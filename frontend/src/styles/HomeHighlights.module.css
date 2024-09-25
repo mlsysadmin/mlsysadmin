@@ -1,229 +1,169 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    padding: 0 20px;
-    /* margin: 25px; */
-    width: 100%;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  /* margin: 25px; */
+  width: 100%;
+  margin-bottom: 80px;
+}
+
+.title {
+  color: #000;
+  width: 100%;
+  font: 700 25px Poppins, sans-serif;
+  /* margin: 10px; */
+  margin-left: 3%;
+}
+
+.card {
+  border-radius: 10px;
+  display: flex;
+  margin-top: 35px;
+  /* width: 100%; */
+  width: 93%;
+  padding-bottom: 30px;
+  flex-direction: column;
+  /* border: 1px solid #f5f6f7; */
+  border: 1px solid #e7e7e7;
+  margin-left: 3%;
+}
+
+.cardHeader {
+  border-radius: 10px 10px 0 0;
+  background-color: #ededed;
+  width: 100%;
+  color: #000;
+  padding: 10px 20px;
+  font: 700 20px Poppins, sans-serif;
+}
+
+.cardContent,
+.amenitiesContainer, .includesGrid {
+  font-size: 16px;
+  color: #8c9094;
+  font-weight: 400;
+  padding: 15px 50px;
+
+}
+
+.includesColumn, .amenitiesColumn, .featuresColumn{
+  width: 21%;
+}
+
+.includesGrid, .cardContent, .amenitiesGrid{
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.featureList, .amenitiesList, .includesList {
+  display: flex;
+  flex-direction: column;
+}
+
+.featureItem, .amenityItem, .includeItem {
+  margin-top: 15px;
+}
+
+/* .includesGrid {
+  margin-left: 9%;
+  display: flex;
+  width: 100%;
+  max-width: 200%;
+  gap: 20px;
+}
+
+.includesColumn {
+  flex-grow: 1;
+  flex-basis: auto;
+} */
+
+@media (max-width: 991px) {
   .title {
-    color: #000;
-    width: 100%;
-    font: 700 30px Poppins, sans-serif;
-    /* margin: 10px; */
-    margin-left: 3%;
-  }
-  
-  .card {
-    border-radius: 10px;
-    display: flex;
-    margin-top: 43px;
-    /* width: 100%; */
-    width: 93%;
-    padding-bottom: 30px;
-    flex-direction: column;
-    border: 1px solid #f5f6f7;
-    margin-left: 3%;
-  }
-  
-  .cardHeader {
-    border-radius: 10px 10px 0 0;
-    background-color: #e5e6e9;
-    width: 100%;
-    color: #000;
-    padding: 21px 28px;
-    font: 700 25px Poppins, sans-serif;
-  }
-  
-  .cardContent {
-    display: flex;
-    margin-left: 9%;
-    width: 100%;
-    max-width: 1300px;
-    align-items: start;
-    gap: 32%;
+    max-width: 100%;
     font-size: 20px;
-    color: #8c9094;
-    font-weight: 400;
-    justify-content: flex-start;
+
   }
-  
-  .featureList {
-    display: flex;
+
+  .card {
+    max-width: 100%;
+    margin-top: 40px;
+  }
+
+  .cardContent {
+    max-width: 100%;
+    flex-wrap: wrap;
+    font-size: 16px;
+  }
+
+  .amenitiesContainer {
+    max-width: 100%;
+  }
+
+  .amenitiesGrid {
     flex-direction: column;
+    align-items: stretch;
+    gap: 0;
   }
-  
+
+  .amenitiesColumn {
+    width: 100%;
+  }
+  .includesGrid {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .includesColumn {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 320px) {
   .featureItem {
     font-family: Poppins, sans-serif;
-    margin-top: 15px;
+    /* margin-top: 15px; */
+    font-size: 18px;
   }
-  
-  .featureItem:first-child {
-    margin-top: 0;
-  }
-  
-  .amenitiesContainer {
-    align-self: center;
-    margin-top: 15px;
-    width: 100%;
-    max-width: 1477px;
-  }
-  
-  .amenitiesGrid {
-    gap: 10%;
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .amenitiesColumn {
-    display: flex;
-    flex-direction: column;
-    line-height: normal;
-    width: 33%;
-    margin-left: 0;
-  }
-  
-  .amenitiesList {
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
-    font-size: 20px;
-    color: #8c9094;
-    font-weight: 400;
-  }
-  
+
   .amenityItem {
     font-family: Poppins, sans-serif;
     margin-top: 24px;
+    font-size: 18px;
   }
-  
-  .amenityItem:first-child {
-    margin-top: 0;
-  }
-  
-  .includesGrid {
-    margin-left: 9%;
-    display: flex;
-    width: 100%;
-    max-width: 200%;
-    gap: 20px;
-  }
-  
-  .includesColumn {
-    flex-grow: 1;
-    flex-basis: auto;
-  }
-  
-  .includesList {
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
-    font-size: 20px;
-    color: #8c9094;
-    font-weight: 400;
-  }
-  
+
   .includeItem {
     font-family: Poppins, sans-serif;
     margin-top: 15px;
-    font-size: 15px;
-  }
-  
-  .includeItem:first-child {
-    margin-top: 0;
-  }
-  
-  .serviceArea {
-    color: #8c9094;
-    align-self: start;
-    flex-grow: 1;
-    flex-basis: auto;
-    font: 400 20px Poppins, sans-serif;
+    font-size: 18px;
   }
 
-  @media (max-width: 991px) {
-    .title {
-      max-width: 100%;
-      font-size: 20px;
-
-    }
-  
-    .card {
-      max-width: 100%;
-      margin-top: 40px;
-    }
-  
-    .cardHeader {
-      max-width: 100%;
-      /* padding: 0 20px; */
-      padding: 3px 28px;
-      font-size: 20px;
-      height: 40px;
-    }
-  
-    .cardContent {
-      max-width: 100%;
-      flex-wrap: wrap;
-      font-size: 16px;
-    }
-  
-    .amenitiesContainer {
-      max-width: 100%;
-    }
-  
-    .amenitiesGrid {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0;
-    }
-  
-    .amenitiesColumn {
-      width: 100%;
-    }
-  
-    .amenitiesList {
-      margin-top: 40px;
-      font-size: 16px;
-      margin-left: 20px;
-    }
-  
-    .includesGrid {
-      max-width: 100%;
-      flex-wrap: wrap;
-    }
-  
-    .includesColumn {
-      max-width: 100%;
-    }
-  
-    .includesList {
-      margin-top: 40px;
-      font-size: 16px;
-    }
-  }
-  @media only screen and (max-width: 320px) {
-    .featureItem {
-        font-family: Poppins, sans-serif;
-        /* margin-top: 15px; */
-        font-size: 18px;
-      }
-      .amenityItem {
-        font-family: Poppins, sans-serif;
-        margin-top: 24px;
-        font-size: 18px;
-      }
-      .includeItem {
-        font-family: Poppins, sans-serif;
-        margin-top: 15px;
-        font-size: 18px;
-      }
-      .container {
-        display: flex;
-        flex-direction: column;
-        padding: 0 0px;
-        /* margin: 25px; */
-      }
-      
+  .container {
+    padding: 0 0px;
+    margin-top: 20px;
   }
 
-  
+}
+
+@media only screen and (min-width: 360px) and (max-width: 480px) {
+  .container {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  .card{
+    width: 100%;
+    margin-top: 30px;
+    margin-left: 0px;
+  }
+  .cardHeader{
+    font-size: 18px;
+    padding: 15px 15px;
+  }
+  .featuresColumn, .includesColumn{
+    width: 100%;
+  }
+  .includesGrid{
+    flex-direction: column;
+    gap: 5px;
+  }
+}

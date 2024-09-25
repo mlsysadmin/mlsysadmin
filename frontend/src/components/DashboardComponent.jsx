@@ -26,7 +26,7 @@ import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import PropertySearchModal from "./modals/PropertySearchModal";
 
 import { MockData } from "../utils/ListingMockData";
-import CardCategory from "../utils/CardCategoryDashboard.utils";
+import {CardCategory} from "../utils/PropertyStaticData.utils";
 import FuenteCircle from "../asset/banners/fuente-circle.png";
 import AdvanceSearch from "../asset/icons/advanceSearch.png";
 import Search from "../asset/icons/Search.png";
@@ -36,13 +36,14 @@ import FooterComponent from "./layout/FooterComponent";
 import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
 import CertainFeatureMenu from "./custom/customsearch/certainfeature";
 import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
-import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
+import { GetPhotoLength, GetPhotoWithUrl } from "../utils/GetPhoto";
 import { Link, useLocation } from "react-router-dom";
 import { Select } from "antd";
 import { GetProvince } from "../api/Public/Location.api";
 
 import DefaultPropertyImage from '../asset/fallbackImage.png';
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
+import { CapitalizeString, GetPropertyTitle, isPastAMonth } from "../utils/StringFunctions.utils";
 
 const { Option } = Select;
 
@@ -59,7 +60,9 @@ const DashboardComponent = () => {
       img: DefaultPropertyImage,
       no_of_bathrooms: 0,
       lot: 0,
-      property_no: ''
+      property_no: '',
+      isFeatured: '',
+      sale_type: ''
     }
   ]);
 
@@ -73,30 +76,8 @@ const DashboardComponent = () => {
   const navigate = useNavigate();
   const handleCardClick = (id) => {
     // window.location.href = `/previewListing/${id}`;
-    navigate(`/previewListing/${id}`, { state: id });
+    navigate(`/previewListing/?id=${id}`, { state: id });
   };
-
-  function isPastAMonth(date) {
-    if (!date) {
-      return false
-    }
-
-    function getDaysInMonth(year, month) {
-      return new Date(year, month + 1, 0).getDate();
-    }
-
-    const today = new Date();
-    const creationDate = new Date('2024-09-10');
-
-    const timeDifference = today - creationDate; // difference in milliseconds
-    
-    const daysDifference = timeDifference / (1000 * 3600 * 24);
-
-    console.log("isNew",daysDifference, getDaysInMonth(today.getFullYear(), today.getMonth()));
-    
-    return daysDifference > getDaysInMonth(today.getFullYear(), today.getMonth()); // Property is past 30 days created - true
-
-  }
 
   const propertiesBySaleStatus = useCallback(async () => {
     try {
@@ -110,24 +91,29 @@ const DashboardComponent = () => {
         
         const getLength = GetPhotoLength(item.id);
 
-        const image = GetPhotoFromDB(item.Photo);
+        const image = GetPhotoWithUrl(item.Photo);
 
         return {
           id: item.id,
-          title: `${item.ProjectName} - ${item.UnitName}`,
-          price: item.Price,
+          title: GetPropertyTitle(item.ProjectName, item.UnitName),
+          price: AmountFormatterGroup(item.Price),
           status: "New",
           pics: image ? getLength + 1 : getLength,
           img: image,
           no_of_bathrooms: item.BathRooms,
           lot: item.LotArea,
-          property_no: item.PropertyNo
+          property_no: item.PropertyNo,
+          isFeatured: "yes",
+          sale_type: CapitalizeString(item.SaleType),
+          no_of_beds: item.BedRooms,
+          // isFeatured: item.IsFeatured
         }
       });
 
       setPublicListing(await listing);
     } catch (error) {
-      console.log("ERROROR", error);
+      console.error("ERROROR", error);
+      setPublicListing([]);
     }
   }, [])
 
@@ -347,7 +333,7 @@ const DashboardComponent = () => {
                 <>
                   <p>Discover new homes around you</p>
                   <div className="see-all-new-listing-dashboard">
-                    <a href="/all" style={{ color: "#8C9094" }}>
+                    <a href="/new" style={{ color: "#8C9094" }}>
                       See All
                     </a>
                   </div>
@@ -366,7 +352,7 @@ const DashboardComponent = () => {
                 return (
                   <CardListingComponent
                     title={item.title}
-                    price={`PHP ${AmountFormatterGroup(item.price)}`}
+                    price={`PHP ${item.price}`}
                     status={item.status}
                     pics={item.pics}
                     img={item.img}
@@ -447,7 +433,11 @@ const DashboardComponent = () => {
               <h3>Featured Properties</h3>
             </div>
             <div className="featured--content">
-              <FeaturedPropertiesComponent />
+              {
+                publiclisting.length !== 0 ? (
+                   <FeaturedPropertiesComponent featuredListing={publiclisting}/>
+                ) : <></>
+              }
             </div>
             {/* </div> */}
             {/* </div> */}

@@ -37,7 +37,6 @@ const ListingSearch = () => {
 	const allProvince = async () => {
 		const dataProvince = await GetProvince();
 		setGetProvince(dataProvince);
-		console.log("province", dataProvince);
 	};
 
 	useEffect(() => {

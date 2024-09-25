@@ -20,7 +20,7 @@ const GetPublicListingByID = async (propertyNo) =>{
     try {
 
         const response = await IGOTSOLUTIONSAxiosInstance.get(`api/getPropertyById/${propertyNo}`);
-        const listingbyID = response.data;
+        const listingbyID = response;
         console.log("listing by id: ", listingbyID);
         return listingbyID;
         
@@ -30,6 +30,19 @@ const GetPublicListingByID = async (propertyNo) =>{
     }
 }
 
+const GetListingByRecordStatus = async (status) => {
+    try {
+        
+        const response = await IGOTSOLUTIONSAxiosInstance.get(`api/getPropertiesByRecordStatus/${status}`);
+        const listingByStatus = response;
+        console.log("listing by status: ", listingByStatus);
+        return listingByStatus;
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
 const GetPublicListingCount = async () => {
 	try {
         const response = await IGOTSOLUTIONSAxiosInstance.get(`/api/getPropertiesBySaleStatus/unsold`);
@@ -62,10 +75,10 @@ const GetPublicListingCount = async () => {
 //     }
 // }
 
-const GetUnitPhotos = async (unitId) => {
+const GetUnitPhotos = async (propertyId) => {
     try {
         
-        const response = await IGOTSOLUTIONSAxiosInstance.get(`api/getUnitPhotos/${unitId}`);
+        const response = await IGOTSOLUTIONSAxiosInstance.get(`api/getUnitPhotos/${propertyId}`);
 
         const unitPhotos = response;
 
@@ -83,5 +96,6 @@ export {
 	GetPublicListingByID,
 	GetPublicListingCount,
 	GetUnitPhotos,
+    GetListingByRecordStatus
 	// GetAllListing,
 };

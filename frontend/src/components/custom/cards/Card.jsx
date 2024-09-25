@@ -11,26 +11,24 @@ import ShortcutOutlinedIcon from '@mui/icons-material/ShortcutOutlined';
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 
 const Card = ({
-	loading,
-	status,
-	pics,
+	id,
 	title,
-	price,
-	features,
-	listingId,
-	no_of_bathrooms,
-	bed,
 	subtitle,
-	lot,
-	img,
-	handleClick,
+	price,
+	imgSrc,
+	beds,
+	baths,
+	size,
+	likes,
+	forsale,
+	handleClick
 }) => {
-	const isFeatured = status === "featured";
+	const isFeatured = forsale.toLowerCase() === "featured";
 	const [isHeartFilled, setIsHeartFilled] = useState(false);
 
 	const handleHeartClick = () => {
 		setIsHeartFilled(!isHeartFilled);
-	};
+	}
 	// const navigate = useNavigate();
 
 	// const handleCardClick = () => {
@@ -41,38 +39,37 @@ const Card = ({
 		<div className="card" style={{ cursor: "pointer" }}>
 			<div className="cardImage">
 				<img
-					src={img}
+					src={imgSrc}
 					alt={title}
 					className="card-img"
 					onClick={handleClick}
-					loading={loading}
 				/>
 				<p
 					className={isFeatured ? "featured" : ""}
 					style={{
 						color:
-							status === "New"
+							forsale === "New"
 								? "#ffffff"
-								: status === "For Sale"
-								? "#000000"
-								: status === "For Rent"
-								? "#000000"
-								: "White",
+								: forsale === "For Sale"
+									? "#000000"
+									: forsale === "For Rent"
+										? "#000000"
+										: "White",
 						backgroundColor:
-							status === "New"
+							forsale === "New"
 								? "var(--red)"
-								: status === "For Sale"
-								? "#ffffff"
-								: status === "For Rent"
-								? "#ffffff"
-								: "var(--red)",
+								: forsale === "For Sale"
+									? "#ffffff"
+									: forsale === "For Rent"
+										? "#ffffff"
+										: "var(--red)",
 					}}
 				>
-					{status}
+					{forsale}
 				</p>
 				<div className="likes">
 					<CameraAltIcon />
-					<b>{pics}</b>
+					<b>{likes}</b>
 				</div>
 				<div className="bottomicns">
 					<div className="icon" onClick={handleHeartClick}>
@@ -88,23 +85,22 @@ const Card = ({
 				<h4>{subtitle}</h4>
 				<div className="bot">
 					<div className="card-price-detail">
-						<p>{price}/month</p>
+						<p>{price}</p>
 					</div>
 					<div className="card-icons">
-						<p>
-							<span>
-								<BedOutlinedIcon />
+						<div className="card-icons--feature">
+							<BedOutlinedIcon />
+							<label id="bed-icon">{beds}</label>
+						</div>
+						<div className="card-icons--feature">
+							<ShowerOutlinedIcon />
+							<label htmlFor="">{baths}</label>
+						</div>
+						<div className="card-icons--feature">
+							<ShortcutOutlinedIcon />
+							<label htmlFor="">{size} SqM</label>
+						</div>
 
-								<label id="bed-icon">{bed}</label>
-								<ShowerOutlinedIcon />
-							</span>{" "}
-							{no_of_bathrooms}
-							<span></span>
-							<span>
-								<ShortcutOutlinedIcon />
-							</span>{" "}
-							{lot} SqM
-						</p>
 					</div>
 				</div>
 			</div>

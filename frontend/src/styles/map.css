@@ -1,6 +1,7 @@
 .property-on-map  .ant-spin-container .Brokerage-map-Container {
     height: 40vh;
-    width: 820px;
+    width: 100%;
+    /* width: 820px; */
     border-radius: 10px;
 }
 
@@ -10,8 +11,7 @@
     .property-on-map .ant-spin-container .Brokerage-map-Container {
         height: 30vh;
         width: 90vw;
-        margin-left: 10px;
-        border-radius: 10px;
+        margin-left: 0;
     }
 }
 
