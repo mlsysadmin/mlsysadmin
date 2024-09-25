@@ -1,7 +1,10 @@
 import React, { useEffect, useState, useCallback } from "react";
 import FeatureList from "./custom/custom.featureLists"; // Adjust the import path accordingly
 import AddFeature from "./custom/custom.featureLists";
-import { GetAllIndoorAmenities, GetAllOutdoorAmenities } from '../api/GetAllAmenities';
+import {
+	GetAllIndoorAmenities,
+	GetAllOutdoorAmenities,
+} from "../api/GetAllAmenities";
 import "../styles/listing-form.css";
 import axios from "axios";
 
@@ -11,27 +14,26 @@ const FeaturedComponents = ({ onComplete, setPropertyFields }) => {
 	const [indooramenities, setIndoorAmenities] = useState([]);
 	const [outdooramenities, setOutdoorAmenities] = useState([]);
 
-const toggleFeature = useCallback((feature, type) => {
-	if (type === "Indoor Features") {
-		setIndoorSelectedFeatures((prevSelectedFeatures) =>
-			prevSelectedFeatures.includes(feature)
-				? prevSelectedFeatures.filter((item) => item !== feature)
-				: [...prevSelectedFeatures, feature]
-		);
-	} else if (type === "Outdoor Features") {
-		setOutdoorSelectedFeatures((prevSelectedFeatures) =>
-			prevSelectedFeatures.includes(feature)
-				? prevSelectedFeatures.filter((item) => item !== feature)
-				: [...prevSelectedFeatures, feature]
-		);
-	}
-}, []);
-
+	const toggleFeature = useCallback((feature, type) => {
+		if (type === "Indoor Features") {
+			setIndoorSelectedFeatures((prevSelectedFeatures) =>
+				prevSelectedFeatures.includes(feature)
+					? prevSelectedFeatures.filter((item) => item !== feature)
+					: [...prevSelectedFeatures, feature]
+			);
+		} else if (type === "Outdoor Features") {
+			setOutdoorSelectedFeatures((prevSelectedFeatures) =>
+				prevSelectedFeatures.includes(feature)
+					? prevSelectedFeatures.filter((item) => item !== feature)
+					: [...prevSelectedFeatures, feature]
+			);
+		}
+	}, []);
 
 	const indoorAmenities = async () => {
 		const response = await GetAllIndoorAmenities();
 		setIndoorAmenities(response);
-		console.log("response", response);
+		// console.log("response", response);
 	};
 	useEffect(() => {
 		indoorAmenities();
@@ -41,20 +43,26 @@ const toggleFeature = useCallback((feature, type) => {
 	const outdoorAmenities = async () => {
 		const response = await GetAllOutdoorAmenities();
 		setOutdoorAmenities(response);
-		console.log("response", response);
+		// console.log("response", response);
 	};
 
 	useEffect(() => {
-		const featuresComplete =
-			indoorSelectedFeatures !== "" &&
-			outdoorSelectedFeatures !== "" &&
-			(indoorSelectedFeatures.length > 0 || outdoorSelectedFeatures.length > 0);
+	const featuresComplete =
+		(indoorSelectedFeatures.length > 0 || outdoorSelectedFeatures.length > 0);
 		if (featuresComplete) {
+			const indoorFeaturesWithType = indoorSelectedFeatures.map((feature) => ({
+				FeatureName: feature,
+				Type: "feature",
+			}));
+
+			const outdoorFeaturesWithType = outdoorSelectedFeatures.map(
+				(feature) => ({
+					FeatureName: feature,
+					Type: "feature", 
+				})
+			);
 			setPropertyFields({
-				amenities: {
-					indoor_features: indoorSelectedFeatures,
-					outdoor_features: outdoorSelectedFeatures,
-				},
+				Features: [...indoorFeaturesWithType, ...outdoorFeaturesWithType],
 			});
 			onComplete(true);
 		} else {
@@ -83,7 +91,9 @@ const toggleFeature = useCallback((feature, type) => {
 					toggleFeature={toggleFeature}
 				/>
 			</div>
-			<AddFeature  setPropertiesFields={setPropertyFields}/>
+			<AddFeature
+				setPropertyFields={setPropertyFields}
+			/>
 		</div>
 	);
 };
@@ -115,7 +125,5 @@ const FeaturesList = ({ title, features, selectedFeatures, toggleFeature }) => (
 		</div>
 	</div>
 );
-
- 
 
 export default FeaturedComponents;

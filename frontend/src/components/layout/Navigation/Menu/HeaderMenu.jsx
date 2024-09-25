@@ -54,6 +54,7 @@ const HeaderMenu = () => {
 	const fetchUserDetails = async () => {
 		try {
 			const response = await searchKyc(accountDetails.mobileNumber);
+
 			const respData = response.data.data;
 			console.log("API Response:", respData);
 			setUserDetails(respData);
@@ -68,28 +69,30 @@ const HeaderMenu = () => {
 	}, []);
 
 	const handleUserProfileClick = () => {
+		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
-		const redirectUrl = `${process.env.REACT_APP_REDIRECT_URL}`;
+		if (isMLWWSPresent && isAccountDetailsPresent) {
+			console.log("cookie",isMLWWSPresent);
+			console.log("tier", userDetails.tier.label);
+			if (userDetails?.tier?.label === "FULLY VERIFIED") {
+				window.location.href = "/listing";
+			} else if (userDetails?.tier?.label === "BUYER") {
+				console.log("User is a buyer and cannot list properties.");
+				setshowSearchPropertyModal(true);
+			} 
+		}
+		else {
+			window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(redirectUrl)}`
+		}
+		
+		// const redirectUrl =
+		// 	isCookiePresent(sessionCookieName) && isCookiePresent(accountCookieName)
+		// 		? "/listing"
+		// 		: process.env.REACT_APP_LOGIN_URL;
 
-		window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-			redirectUrl
-		)}`;
-
-		// if (userDetails.tier.label === "Buyer") {
-		// 	const redirectUrlbuyer = `${process.env.REACT_APP_REDIRECT_URL}/buyer-application-history`;
-		// 	window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-		// 		redirectUrlbuyer
-		// 	)}`;
-		// } else if (userDetails.tier.label === "Fully Verified") {
-		// 	const redirectUrlseller = `${process.env.REACT_APP_REDIRECT_URL}/clientmanagement`;
-		// 	window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-		// 		redirectUrlseller
-		// 	)}`;
-		// } else {
-		// 	window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-		// 		redirectUrl
-		// 	)}`;
-		// }
+		// window.location.href = `${
+		// 	process.env.REACT_APP_REDIRECT_URL
+		// }?redirect_url=${encodeURIComponent(redirectUrl)}`;
 	};
 	//modals
 	const [showModal, setShowModal] = useState(false);
@@ -293,9 +296,9 @@ const HeaderMenu = () => {
 				{showModal && <JoinTeam toggleModal={toggleModal} />}
 				<Row align={"middle"} className="menu-buttons">
 					{isMLWWSPresent ? (
-						userDetails.tier.label === "Buyer" ? (
+						userDetails?.tier.label === "Buyer" ? (
 							<UserLogInProfileDropdownBtn />
-						) : userDetails.tier.label === "Fully Verified" ? (
+						) : userDetails?.tier.label === "FULLY VERIFIED" ? (
 							<SellerLogInButtonDropdown />
 						) : (
 							<></>

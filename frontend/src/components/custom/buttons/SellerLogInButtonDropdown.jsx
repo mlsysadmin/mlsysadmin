@@ -126,7 +126,15 @@ const SellerLogInButtonDropdown = () => {
 									color: "white",
 								}}
 							>
-								LIST YOUR PROPERTY
+								<a
+									style={{
+										textDecoration: "none",
+										color: "white",
+									}}
+									href="/listing"
+								>
+									LIST YOUR PROPERTY
+								</a>
 							</button>
 						</l1>
 						<a

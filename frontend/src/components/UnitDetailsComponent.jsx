@@ -25,20 +25,20 @@ const UnitDetailsComponent = ({
 	propIdInputError,
 	setPropIdInputError,
 	setPropertyFields,
+	selectedPropertyTab,
 }) => {
-
-  const [price, setPrice] = useState("");
+	const [price, setPrice] = useState("");
 	const [discountedPrice, setDiscountedPrice] = useState("");
 	const [pricePerSqm, setPricePerSqm] = useState("");
 	const [furnishing, setFurnishing] = useState("");
-	const [classification, setClassification] = useState("");
+	const [Classification, setClassification] = useState("");
 	const [noOfBeds, setNoOfBeds] = useState(0);
 	const [noOfBathrooms, setNoOfBathrooms] = useState(0);
 	const [noOfFloors, setNoOfFloors] = useState(0);
-	const [parking, setParking] = useState(0);
+	const [Parking, setParking] = useState(0);
 	const [floorArea, setFloorArea] = useState("");
 	const [lotArea, setLotArea] = useState("");
-  const [propId, setPropId] = useState(null);
+	const [propId, setPropId] = useState(null);
 
 	const validateNumberInput = (value, setError) => {
 		if (isNaN(value)) {
@@ -58,12 +58,12 @@ const UnitDetailsComponent = ({
 			price.trim() !== "" &&
 			typeof selectedSellingPrice === "string" &&
 			selectedSellingPrice.trim() !== "" &&
-			typeof classification === "string" &&
-			classification.trim() !== "" &&
+			typeof Classification === "string" &&
+			Classification.trim() !== "" &&
 			noOfBeds !== null &&
 			noOfBathrooms !== null &&
 			noOfFloors !== null &&
-			parking !== null &&
+			Parking !== null &&
 			typeof floorArea === "string" &&
 			floorArea.trim() !== "" &&
 			typeof lotArea === "string" &&
@@ -73,19 +73,17 @@ const UnitDetailsComponent = ({
 
 		if (isFormComplete) {
 			setPropertyFields({
-				unit_details: {
-					price,
-					discounted_price: discountedPrice,
-					price_per_sqm: pricePerSqm,
-					furnishing: selectedSellingPrice,
-					classification,
-					no_of_beds: noOfBeds,
-					no_of_bathrooms: noOfBathrooms,
-					no_of_floors: noOfFloors,
-					parking,
-					floor_area: floorArea,
-					lot_area: lotArea,
-				},
+				Price: price,
+				DiscountedPrice: discountedPrice,
+				PricePerSqm: pricePerSqm,
+				Furnishing: selectedSellingPrice,
+				Classification,
+				BedRooms: noOfBeds,
+				BathRooms: noOfBathrooms,
+				NoOfFloor: noOfFloors,
+				Parking,
+				FloorArea: floorArea,
+				LotArea: lotArea,
 				propId,
 			});
 			onComplete(true);
@@ -97,17 +95,24 @@ const UnitDetailsComponent = ({
 		discountedPrice,
 		pricePerSqm,
 		selectedSellingPrice,
-		classification,
+		Classification,
 		noOfBeds,
 		noOfBathrooms,
 		noOfFloors,
-		parking,
+		Parking,
 		floorArea,
 		lotArea,
 		setPropertyFields,
 		onComplete,
 		propId,
 	]);
+
+
+const isPricePerSqmDisabled =  ![
+	"Lot",
+	"Commercial Land/Lot",
+	"Farm Lot",
+].includes(selectedPropertyTab);
 
 	return (
 		<div className="listing-unit-details">
@@ -204,7 +209,7 @@ const UnitDetailsComponent = ({
 								<div className="overlap-10">
 									<div className="parking-number">
 										<ParkingInputSlider
-											value={parking}
+											value={Parking}
 											onChange={(value) => setParking(Number(value))}
 										/>
 									</div>
@@ -273,7 +278,9 @@ const UnitDetailsComponent = ({
 											e.target.value,
 											setPricePerSqmInputError
 										);
+										
 									}}
+									disabled = { isPricePerSqmDisabled }
 								/>
 							</div>
 							{pricePerSqmInputError && (
@@ -328,7 +335,7 @@ const UnitDetailsComponent = ({
 											<div
 												key={tab}
 												className={`classification-tab ${
-													classification === tab ? "selected" : ""
+													Classification === tab ? "selected" : ""
 												}`}
 												onClick={() => handleClassificationClick(tab)}
 											>

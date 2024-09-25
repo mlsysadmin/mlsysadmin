@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/listing-form.css";
 
-const DescriptionDetailsComponent = ({ onComplete, setPropertyFields }) => {
+const DescriptionDetailsComponent = ({
+	onComplete,
+	setPropertyFields,
+	setIsFocused,
+}) => {
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [titleError, setTitleError] = useState("");
@@ -23,21 +27,26 @@ const DescriptionDetailsComponent = ({ onComplete, setPropertyFields }) => {
 		}
 	};
 
-
-
 	useEffect(() => {
-    	const isFormComplete =
-				!titleError && !descriptionError && title !== "" && description !== "";
+		const isFormComplete =
+			!titleError && !descriptionError && title !== "" && description !== "";
 		if (isFormComplete) {
-      setPropertyFields({
-        title : title,
-        description : description
-      })
-			onComplete(true); 
+			setPropertyFields({
+				UnitName: title,
+				Details: description,
+			});
+			onComplete(true);
 		} else {
-			onComplete(false); 
+			onComplete(false);
 		}
-	}, [titleError, descriptionError, title, description, onComplete]);
+	}, [
+		titleError,
+		descriptionError,
+		title,
+		description,
+		onComplete,
+		setPropertyFields,
+	]);
 
 	return (
 		<div className="descriptionDetails">
@@ -65,10 +74,10 @@ const DescriptionDetailsComponent = ({ onComplete, setPropertyFields }) => {
 				</div>
 				<div className="descriptionContent">
 					<textarea
-						name=""
-						id=""
 						placeholder="Enter Description"
 						value={description}
+						onFocus={() => setIsFocused(true)} 
+						onBlur={() => setIsFocused(false)} 
 						onChange={(e) => {
 							setDescription(e.target.value);
 							validateDescription(e.target.value);
