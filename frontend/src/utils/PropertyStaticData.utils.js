@@ -48,4 +48,30 @@ const CardCategory = [
 	// },
 ];
 
-export default CardCategory;
+const PropertyTypeCategory = [
+	"commercial",
+	"residential",
+	"industrial"
+]
+
+const PropertyType = [
+	"service office",
+	"shop",
+	"retail",
+	"commercial land",
+	"condominium",
+	"house & lot",
+	"lot",
+	"townhouse",
+	"warehouse",
+	"farm lot",
+	"hotel",
+	"resort"
+]
+
+export {
+	CardCategory,
+	PropertyType,
+	PropertyTypeCategory
+
+};

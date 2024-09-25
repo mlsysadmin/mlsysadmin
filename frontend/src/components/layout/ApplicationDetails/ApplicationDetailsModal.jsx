@@ -9,6 +9,8 @@ import {
 } from "../../../api/Public/Location.api";
 import OTPModal from "../../OTPModal";
 import { searchKyc } from "../../../api/Public/User.api";
+import SemiRoundBtn from "../../custom/buttons/SemiRoundBtn.custom";
+import { CloseOutlined } from "@ant-design/icons";
 
 const FileUploadGrid = ({ validateFiles }) => {
 	const [files, setFiles] = useState([null, null, null, null]);
@@ -71,7 +73,7 @@ const FileUploadGrid = ({ validateFiles }) => {
 	);
 };
 
-const ApplicationDetailModal = ({ visible, onClose }) => {
+const ApplicationDetailModal = ({ visible, onClose, setShowApplicationDetailModal }) => {
 	const [showOtpModal, setShowOtpModal] = useState(false);
 	const [formValues, setFormValues] = useState({
 		mobileNumber: "",
@@ -262,16 +264,25 @@ const handleInputChange = async (e) => {
 						alignItems: "center",
 						zIndex: 1000,
 						padding: "0px 0px 0px 0px",
-						overflowY: "auto",
+						overflowY: "scroll",
+						bottom: '50px'
 					}}
 				>
 					<div className="overlay" onClick={onClose}></div>
 					<div className="application-modal-container">
+						<div className="modal-header">
 						<h3 className="application-header">Application Details</h3>
+						<button className="close-button" onClick={() => setShowApplicationDetailModal(false)} style={{
+							backgroundColor: "transparent", border: 'none', fontSize: '15px', 
+							color: 'gray', cursor: 'pointer'
+						}}>
+							<CloseOutlined/>
+						</button>
+						</div>
 						<form onSubmit={handleSubmit} className="application-modal-content">
 							<div className="application-row">
 								<div className="application-first-row">
-									<div className="application-content">
+									<div className="application-content--mobile-number">
 										<p>Mobile Number</p>
 										<input
 											type="text"
@@ -398,7 +409,7 @@ const handleInputChange = async (e) => {
 									</div>
 								</div>
 								<div className="application-fourth-row">
-									<div className="application-content">
+									<div className="application-content--zipcode">
 										<p>Zipcode</p>
 										<input
 											type="text"
@@ -437,9 +448,13 @@ const handleInputChange = async (e) => {
 								<FileUploadGrid validateFiles={validateFiles} />
 							</div>
 							<div className="application-submitbtn">
-								<button type="submit" id="application-submitbtn">
+								{/* <button type="submit" id="application-submitbtn">
 									Submit
-								</button>
+								</button> */}
+								<SemiRoundBtn
+									label={'Submit'}
+									id="application-submitbtn"
+								/>
 							</div>
 						</form>
 					</div>

@@ -14,15 +14,27 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    height: 100vh;
+    display: none;
 }
 
 .application-modal-content {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    width: 90%;
+    /* width: 90%; */
     justify-content: center;
+    margin-top: 25px;
+}
+
+.application-content--mobile-number, .application-content--zipcode{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    font-size: 15px;
+}
+.application-content--zipcode{
+    width: 40%;
 }
 
 .application-content {
@@ -30,37 +42,41 @@
     flex-direction: column;
     gap: .5rem;
     font-size: 15px;
+    width: 100%;
 }
 
 .application-header {
-    width: 90%;
+    /* width: 90%;
     display: flex;
     color: #000;
-    align-items: flex-start;
+    align-items: flex-start; */
+    font-size: 20px;
 }
 
 .application-modal-container {
-    width: 100%;
+    /* width: 100%; */
     position: absolute;
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; 
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 650px;
-    gap: 1rem;
-    height: 820px;
+    width: 750px;
+    /* gap: 1rem; */
+    height: 850px;
     border-radius: 30px;
     z-index: 1000;
-    top: 100px;
+    top: 40px;
+    bottom: 50px;
+    padding: 30px 50px;
    
 }
 
 .application-row {
     display: flex;
     flex-direction: column;
-    gap: .5rem;
+    gap: 1rem;
 }
 
 .application-first-row {
@@ -68,24 +84,14 @@
     flex-direction: row;
 }
 
-.application-first-row .application-input {
-    width: 100%;
-}
-
 .application-second-row, .application-third-row, .application-fourth-row {
     display: flex;
-    flex-direction: row;
     width: 100%;
     gap: 1rem;
     justify-content: space-between;
 }
 
-.application-second-row {
-    align-items: center;
-    justify-content: center;
-}
-
-.application-third-row .application-select, .application-fourth-row .application-select {
+.application-fourth-row .application-select {
     width: 183px;
     padding: 0px 10px;
 }
@@ -93,11 +99,12 @@
 .application-input {
     width: 100%;
     height: 3rem;
-    border-radius: 10px;
-    border: 1px solid #8C9094;
+    border-radius: 8px;
+    border: 1px solid #8c909494;
     padding: 5%;
     color: #8C9094;
     font-size: 15px;
+    outline: none;
 }
 .application-input:disabled, .application-select:disabled{
     border: 1px solid #d9d9d9;
@@ -105,10 +112,11 @@
 }
 
 .application-select {
+    padding: 0px 10px;
     width: 100%;
     height: 3rem;
-    border-radius: 10px;
-    border: 1px solid #8C9094;
+    border-radius: 8px;
+    border: 1px solid #8c909494;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -116,30 +124,31 @@
     color: #8C9094;
     font-size: 15px;
     padding: 3px;
+    outline: none;
 }
 
 .address-input {
     display: flex;
     flex-direction: column;
-    width: 65%;
+    width: 80%;
     font-size: 15px;
     gap: .5rem;
 }
 
 #application-submitbtn {
     width: 20%;
-    background-color: #d90000;
+    background-color: var(--red);
     color: #fff;
     border-radius: 10px;
     height: 40px;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
-    width: 80px;
+    /* width: 80px; */
     border: none;
 }
 
 .application-submitbtn {
-    width: 90%;
+    /* width: 90%; */
     display: flex;
     justify-content: flex-end;
 }
@@ -203,9 +212,10 @@
 .grid-container .add-Button {
     position: relative;
     border-radius: 10px;
-    border: 1px solid #8C9094;
+    border: 1px solid #8c909494;
     height: 12vh;
     padding: 5px;
+    
     
 }
 .add-Button p{
@@ -221,6 +231,7 @@
     font-size: 24px;
     position: absolute;
     color: #000;
+    cursor: pointer;
 }
 
 .grid-item p {

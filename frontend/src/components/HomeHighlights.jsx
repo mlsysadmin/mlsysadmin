@@ -45,22 +45,23 @@ const includes = [
 	["Lanai", "Landscaped Garden", "Maid's Room", "Service Kitchen"],
 ];
 
-const HomeHighlights = ({ oneListing }) => {
+const HomeHighlights = ({ features, amenities, includes }) => {
 
-	const indoorFeatures = oneListing.listings.amenities.indoor_features;
-	const outdoorFeatures = oneListing.listings.amenities.outdoor_features;
+	// const indoorFeatures = oneListing.listings.amenities.indoor_features;
+	// const outdoorFeatures = oneListing.listings.amenities.outdoor_features;
 
-	const allFeatures = [...indoorFeatures, ...outdoorFeatures.flat()];
+	// const allFeatures = [...indoorFeatures, ...outdoorFeatures.flat()];
 
-	const amenities = oneListing.listings.amenities.custom_amenities.feature_name.map((amenity) => amenity);
-	const includes = oneListing.listings.amenities.custom_inclusion.inclusion_name.map((inclusions)=> inclusions);
+	// const amenities = oneListing.listings.amenities.custom_amenities.feature_name.map((amenity) => amenity);
+	// const includes = oneListing.listings.amenities.custom_inclusion.inclusion_name.map((inclusions)=> inclusions);
 
 	return (
 		<section className={styles.container}>
 			<h1 className={styles.title}>Home Highlights</h1>
-			<FeatureCard features={allFeatures} />
+			<FeatureCard features={features} />
 			<AmenitiesCard amenities={amenities} />
 			<IncludesCard includes={includes} />
+			
 		</section>
 	);
 };

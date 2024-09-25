@@ -7,7 +7,7 @@ import Shower from '../asset/icons/showerhead.png';
 import FilterIcon from '../asset/icons/slider.png';
 import CustomTag from './custom/tags/Tags.custom';
 import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
-import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
+import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
 import { CameraFilled, HeartFilled, HeartOutlined } from '@ant-design/icons';
 
 const CardListingComponent = ({ loading, status, pics, title, price, features, listingId, no_of_bathrooms, lot, img, handleClick }) => {

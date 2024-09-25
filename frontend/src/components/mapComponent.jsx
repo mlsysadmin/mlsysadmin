@@ -9,15 +9,18 @@ const MapComponent = ({ style, oneListing }) => {
   const [isLoaded, setIsLoaded] = useState(true);
   const [coordinates, setCoordinates] = useState([]);
   const [error, setError] = useState(null);
+
   useEffect(() => {
     const fetchCoordinates = async () => {
-      const formattedLocation = LocationFormatter(oneListing.listings.location);
+      const formattedLocation = oneListing.City;
+      // const formattedLocation = LocationFormatter(oneListing.City);
       try {
         const response = await fetch(
           `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
             formattedLocation
           )}&format=json&addressdetails=1`
         );
+
         const data = await response.json();
 
         if (data.length > 0) {
@@ -34,7 +37,7 @@ const MapComponent = ({ style, oneListing }) => {
     };
 
     fetchCoordinates();
-  }, [oneListing.listings.location]);
+  }, [oneListing.Location]);
 
   return (
     <>
@@ -64,8 +67,8 @@ const MapComponent = ({ style, oneListing }) => {
               <Circle
                 center={coordinates}
                 radius={1000}
-                color="rgb(4, 0, 217, 97%)"
-                fillColor="rgb(17 0 217 24%)"
+                color="#d90000"
+                fillColor="#d90000"
                 fillOpacity={0.3}
               />
             </MapContainer>

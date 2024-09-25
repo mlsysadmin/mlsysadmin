@@ -2,14 +2,17 @@
 	border: 1px solid #ddd;
 	border-radius: 20px;
 	margin: 10px;
-	width: calc(33% - 30px);
+	/* width: calc(33% - 30px); */
 	box-sizing: border-box;
+	width: 30%;
 }
 .card-container {
-	width: 92%;
+	/* width: 92%; */
 	display: flex;
 	flex-wrap: wrap;
-	margin: 10px 100px 10px 100px;
+	margin: 30px 100px 10px 100px;
+	/* justify-content: center; */
+	gap: 40px;
 }
 
 .card:hover {
@@ -29,17 +32,19 @@
 }
 
 .card-content {
-	padding: 10px;
+	/* padding: 10px; */
+	padding: 10px 20px 25px;
 }
 .card-content h3 {
-	margin: 0;
+	margin: 10px 0;
 	font-size: 18px;
 	color: #333333;
 	font-weight: 400;
+	text-wrap:wrap;
 }
 
 .card-content h4 {
-	margin-top: 10px;
+	margin-top: 25px;
 	font-size: 18px;
 	color: #8c9094;
 	font-weight: 400;
@@ -76,11 +81,15 @@
 	right: 10px;
 	border-radius: 10px;
 	color: #333333;
-	flex-direction: row;
 	background: #fff;
-	padding: 0.5% 2%;
+	padding: 0.7% 2%;
 	align-items: center;
 	justify-content: center;
+	gap: 3px;
+}
+
+.likes b {
+	font-size: 15px;
 }
 
 .bottomicns {
@@ -102,8 +111,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 35px;
-	height: 30px;
+	width: 39px;
+    height: 35px;
 	cursor: pointer;
 	
 }
@@ -115,24 +124,31 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	margin-top: 10px;
 }
 
-.bot span {
+.bot .card-icons label {
 	color: #333333;
 }
 .bot .css-i4bv87-MuiSvgIcon-root {
 	font-size: 20px;
 }
 
-.bot p {
+.bot .card-icons {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 	font-size: 17px;
 	font-weight: 350;
-	gap: 5px;
+	gap: 10px;
 	color: #333333;
+}
+
+.bot .card-icons .card-icons--feature{
+	display: flex;
+	align-items: center;
+	gap: 2px;
 }
 .bot .card-price-detail p {
 	color: #d90000;

@@ -1,7 +1,7 @@
 import { GetUnitPhotos } from "../api/GetAllPublicListings";
 import DefaultPropertyImage from '../asset/fallbackImage.png';
 
-const GetPhotoFromDB = (photoPath) => {
+const GetPhotoWithUrl = (photoPath) => {
   try {
     const url = process.env.REACT_APP_IGOT_API_URL;
 
@@ -15,9 +15,9 @@ const GetPhotoFromDB = (photoPath) => {
   }
 };
 
+// unitId = property id
 const GetPhotoLength = (unitId) => {
   try {
-    console.log(unitId);
     
     if (unitId) {
 
@@ -61,4 +61,4 @@ const GetAllPhoto = (oneListing) => {
   }
 };
 
-export { GetPhotoFromDB, GetPhotoLength, GetAllPhoto };
+export { GetPhotoWithUrl, GetPhotoLength, GetAllPhoto };

@@ -6,7 +6,9 @@ import property from "../images/Guest/property.png";
 import Pagination from "./custom/pagination/Pagination";
 import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout, SearchPropertiesSoration } from "../components";
 import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
-import {GetPhotoFromDB, GetPhotoLength} from "../utils/GetPhoto"
+import {GetPhotoWithUrl, GetPhotoLength} from "../utils/GetPhoto"
+import { AmountFormatterGroup } from "../utils/AmountFormatter";
+import { CapitalizeString } from "../utils/StringFunctions.utils";
 
 const AllComponent = () => {
   const navigate = useNavigate();
@@ -29,11 +31,11 @@ const AllComponent = () => {
     console.log("public listing:", dataresp)
 
   }
-// console.log( GetPhotoFromDB())
+// console.log( GetPhotoWithUrl())
 console.log( "getlength", GetPhotoLength())
 
   useEffect (() => {
-    // allPublicListing()
+    allPublicListing()
   }, [])
 
   const indexOfLastCard = currentPage * cardsPerPage;
@@ -54,17 +56,17 @@ console.log( "getlength", GetPhotoLength())
           {currentCards.map((data, index) => (
             <Card
             key={index}
-            id= {data.listings.listing_id}
-            title={data.listings.title}
-            price={`PHP${data.listings.unit_details.price}`}
-            imgSrc={GetPhotoFromDB(data.listings.photos.photo)}
-            beds={data.listings.unit_details.no_of_beds}
-            baths={data.listings.unit_details.no_of_bathrooms}
-            size={data.listings.unit_details.lot_area}
-            likes={GetPhotoLength(data.listings.photos.photo)}
-            forsale={data.listings.listing_type.listing_type}
-            subtitle={`${data.listings.property_type.subtype} ${data.listings.listing_type.listing_type}`}
-            handleClick={() => handleCardClick(data.listings.listing_id)}
+            id= {data.PropertyNo}
+            title={data.UnitName}
+            price={`PHP ${AmountFormatterGroup(data.Price)}`}
+            imgSrc={GetPhotoWithUrl(data.Photo)}
+            beds={data.BedRooms}
+            baths={data.BathRooms}
+            size={data.LotArea}
+            likes={0}
+            forsale={CapitalizeString(data.SaleType)}
+            subtitle={`${data.PropertyType} For ${CapitalizeString(data.SaleType)}`}
+            handleClick={() => handleCardClick(data.PropertyNo)}
             />
           ))}
         </div>

@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     background-color: #f7f7f7;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
     border-radius: 8px;
     overflow: hidden;
     width: 100%;
@@ -420,9 +420,6 @@
     font-size: 14px;
 }
 
-
-
-
 .includes h3{
   color: rgba(0, 0, 0, 0.74);
   /* margin: 5px; */
@@ -435,41 +432,40 @@
   color: #8C9094;
 }
 
-
-
 .property-on-map h3{
   color: black;
-  font-size: 30px;
-  margin: 20px;
+  /* font-size: 30px; */
+  /* margin: 20px; */
+  margin-bottom: 20px;
 }
 .property-on-map img{
   border-radius: 10px;
   max-width: 60vh;
 }
 .property-on-map {
-  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
 }
 
 /* .property-on-map h3 {
   font-size: 16px;
 } */
 
+.property-on-map, .view-similar-properties{
+  padding: 0 20px;
+}
+
 
 .view-features h3{
   color: rgba(0, 0, 0, 0.74);
   margin: 3px;
   margin-right: 20px;
-  
-  /* display: flex; */
-  /* justify-content: flex-start; */
 }
 
 
 .view-similar-properties button {
-  /* background-color: #fff; */
   border: 1px solid #D90000;
-  /* padding: 10px 20px; */
-  
   cursor: pointer;
   width: 126px;
   height: 53;
@@ -477,16 +473,10 @@
   text-align: center;
  justify-content: space-between;
 }
-.view-similar-properties{
-  margin: 1px;
-  margin-right: 10px;
-  /* gap: 10px; */
-  
-}
+
 .view-similar-properties h3{
   color: black;
-  font-size: 30px;
-  margin-left: 17px;
+  /* font-size: 30px; */
 }
 .view-similar-properties button.active {
   background-color: #c00;
@@ -555,14 +545,18 @@
     height: 100%;
     margin: 20px;
   }
+  .leftContent{
+    width: 70%;
+  }
    .right-side-container {
     flex: 2; 
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 4rem;
     margin-bottom: 20px;
     width: 100%;
-    margin: 50px;
+    /* margin: 50px; */
+    padding: 0 20px;
 } 
 
    
@@ -571,10 +565,10 @@
 .contact-us {
   /* background-color: #f8d7da; */
   border: 1px solid;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 105%;
+  width: 100%;
   height: auto;
   gap: 1rem;
 }
@@ -621,7 +615,7 @@
   height: 50%;
   resize: none;
   outline: none;
-  padding: 20px;
+  padding: 0px 0.55rem;
   overflow: hidden;
 }
 
@@ -638,13 +632,16 @@
 }
 
 .contact-input input,
-.contact-input textarea {
+.contact-input textarea, .contact-input input:focus {
   border-radius: 30px;
   padding: 0.5rem;
   border: none;
   background-color: #fff;
   width: 100%;
+  outline: none;
 }
+
+
 
 
 .calculator-field-term {
@@ -691,14 +688,15 @@
 
 .pi {
   font-size: 15px;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
+    margin-top: 4px;
 }
 
 .red-bar {
   width: 4px;
-  height: 25px;
+  height: 23px;
   background-color: #ff0000;
-  margin-right: 30px;
+  margin-right: 10px;
   margin-left: 18px;
   margin-bottom: 35px;
 }
@@ -718,21 +716,16 @@
     margin-bottom: 8px;
   }
   
-  .red-bar {
-    width: 4px;
-    height: 25px;
-    background-color: #ff0000;
-    margin-right: 30px;
-    margin-left: 18px;
-    margin-bottom: 35px;
+  .send-message-button, .ant-btn.ant-btn-lg.send-message-button:hover{
+    background-color: var(--red);
+    color: #fff;
+    border: var(--red);
   }
   
-  
-  .apply-button,
-  .send-message-button {
+  .apply-button {
     width: 100%;
     padding: 0.75rem;
-    background-color: #D90000;
+    background-color: var(--red);
     color: #fff;
     border: none;
     border-radius: 10px;
@@ -740,7 +733,7 @@
   }
   
   .apply-button {
-    background-color: #D90000;
+    background-color: var(--red);
     color: #fff;
     border: none;
     border-radius: 10px;
@@ -748,11 +741,6 @@
     font-size: 22px;
     font-weight: bold;
     text-transform: uppercase;
-  }
-  
-  .apply-button:hover,
-  .send-message-button:hover {
-    background-color: #c0392b;
   }
   
   .contact-input textarea {
@@ -874,8 +862,6 @@
   
 }
 .pl-for-sale {
-  /* margin-top: 570%; */
-  /* left: 20px; */
   background: white;
   color: black;
   padding: 7px 8px;
@@ -886,15 +872,10 @@
 
 }
 .preview-list-property-details {
-  /* margin-top: 10px;
-  margin-left: 20px; */
   position: absolute;
   top: 80%;
   left: 4%;
-  /* background-color: rgba(255, 255, 255, 0.8); */
  margin-bottom: 30%;
-/* padding: 20px 100px 10px 20px 100px; */
-  /* font-size: 20px; */
   color: #FFFFFF;
 }
 .preview-list-property-details h2 {
@@ -936,8 +917,6 @@
   width: 20%;
 }
 
-
-
 .icns{
   position: absolute;
   top: 92%;
@@ -975,49 +954,12 @@
   color: red;
 }
 
-
-/* calculator */
-
-
-/* .leftContent {
-  width: 100%;
-  height: 100%;
-  justify-content: flex-start;
-  margin: 20px;
-} */
-
-.contact-us {
-  display: flex;
-  gap: 1rem;
-  flex-direction: column;
-}
-
 .calculator h2,
 .contact-us h2 {
   color: black;
   margin-bottom: 1rem;
   font-weight: bold;
   font-size: 20px;
-}
-
-/* .calculator-input,
-.contact-input {
-  margin-bottom: 1rem;
-} */
-
-/* .contact-input {
-  background: white;
-  padding: 10px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-} */
-
-.contact-input textarea {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .contact-textarea {
@@ -1032,38 +974,6 @@
   align-items: center;
 }
 
-.contact-textarea textarea {
-  border: none;
-  background: transparent;
-  width: 100%;
-  height: 50%;
-  resize: none;
-  outline: none;
-  padding: 20px;
-  overflow: hidden;
-}
-
-.contact-textarea img {
-  width: 20px;
-  height: 20px;
-}
-
-.calculator-input label,
-.contact-input label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #8C9094;
-}
-
-
-/* .contact-input input,
-.contact-input textarea {
-  border-radius: 30px;
-  padding: 0.5rem;
-  border: none;
-  background-color: #fff;
-  width: 100%;
-} */
 .calculator-field i {
   margin-right: 0.5rem;
   color: #e74c3c;
@@ -1130,10 +1040,6 @@
   width: 100%;
 }
 
-
-
-
-
 .featured-properties {
   background-color: #f8d7da;
   padding: 1rem;
@@ -1142,59 +1048,6 @@
   width: 100%;
   height: 100%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-/* .commercial-property-rent h2 {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.commercial-property-rent {
-  background-color: #f8d7da;
-  padding: 1rem;
-  border-radius: 30px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.commercial-property-rent .image-container {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 56.25%;
-  overflow: hidden;
-}
-
-.commercial-property-rent .image-container img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  object-fit: cover;
-} */
-
-
-/* @media only screen and (max-width: 600px) {
-  .property-on-map {
-    width: 30%;
-  }
-  .property-on-map h3 {
-    font-size: 20px;
-  }
-} */
 
 .small-images{
   display: flex;
@@ -1211,13 +1064,8 @@
 }
 
 .view-similar-properties {
-  margin: 1px;
-  margin-right: 10px;
+  margin-top: 50px;
 }
-
-/* .view-similar-properties h3 {
-  color: black;
-} */
 
 .view-similar-properties button.active {
   background-color: #c00;
@@ -1226,17 +1074,6 @@
   text-align: center;
   gap: 10px;
 }
-
-/* .apply-button,
-.send-message-button {
-  background-color: #d90000;
-  color: #fff;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
- 
-  height: 40px;
-} */
 
 .apply-button:hover,
 .send-message-button:hover {
@@ -1248,922 +1085,28 @@
   background-color: #8c0000;
 }
 
-
-
-
-
-@media only screen and (max-width: 1024px) and (min-width:730px) {
-  .gallery {
-    grid-template-columns: 1fr;
- 
-    /* margin-left: auto; */
-    /* margin-right: 150px; */
-    width: 780px;
-    top: 8px;
-    position: relative;    
-    justify-items: center;
-  }
-  .all-images{
-    margin-right: 15px;
-  }
-  .galleryComponent{
-    position: relative;
-    height: 70vh;
-    width: 100%;
-  }
-  .image-container-large {
-    margin: 10px;
-    align-items: center;
-    margin-right: 80px;
-    
-  }
-
-  .small-images {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .small-image {
-    width: 370px;
-    max-width: 600px;
-    height: auto;
-    
-  }
- .backward{
-  margin-left: 5px;
-  top: 55%;
- 
- }
- .backward img{
-  width: 40px;
-  height: 40px;
-  top: 100px;
-
-  position: absolute;
- }
- .fanext{
-  
-  width: 40px;
-  height: 40px;
-  left: 800px;
- }
- .fanext .FontAwesomeIcon{
-  color: white;
-  font-size: 30px;
- }
-
-  .previewlist-property-info {
-    /* flex-direction: column; */
-    /* align-items: stretch; */
-    align-items: center;
-    margin-top: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    /* grid-row: auto; */
-  }
-
-  .property-info-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #f8dede; /* Adjust this color to match the image */
-    padding: 6px;
-    border-radius: 30px;
-    margin: 5px;
-    /* width: 170px; Adjust width as needed */
-    margin-top: 60px;
-    height: 130px;
-}
-.property-info-item span {
-  font-size: 18px;
-  font-weight: 600;
-  color: #333;
-  /* margin-top: 30px; */
+.view-similar-properties h3, .property-on-map h3{
+  font-size: 25px;
 }
 
-   
-  
-  .gallery .centered{
-    top: 35px;
-    left: 710px;
-    width: 150px;
-    height: 35px;
-    font-size: 16px;
-   
-
-  }
-  .previewlist-overview {
-    
-    align-items: center;
-    /* margin-left: 60px; */
-    margin-top: 25%;
-    }
-    
-    .previewlist-overview span {
-    font-weight: bold;
-    font-size: 20px;
-    }
-    .previewlist-overview p {
-    
-      font-size: 14px;
-      }
-    
-  .Listing-property-details {
-    width: 600px;
-    margin: 0;
-   
-  }
-  .Listing-property-details, td,th{
-    padding: 0.5rem;
-    font-size: 20px;  
-  }
-  .Description h3{
-    font-size: 24px;
-  }
-  .Description p{
-    margin-bottom: 1rem;
-    font-size: 20px;
-  }
-  .featuresamenites h3{
-    font-size: 24px;
-  }
-  .featuresamenites li{
-    font-size: 20px;
-  }
-  .includes h3{
-    font-size: 24px;
-  }
-  .includes li{
-    font-size: 22px;
-  }
-  .gallery .icns {
-    right: 30px;
-   bottom: 10px;
-    font-size: small;
-  
-  }
-  .icon-circle {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color: #1E1E1E;
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-  
-  }
-  .icon-circle img{
-    width: 25px;
-  }
-
- 
-  .view-features h3{
-    font-size: 24px;
-  }
-  
-
-  .feature-grid {
-  gap: 10px;
-   font-size: 20px;
-  }
-
-  
-
-  .view-similar-properties {
-    margin-left: auto;
-    margin: 0;
-  }
-  .preview-list-property-details{
-    display: flex;
-    flex-direction: column;
-    top: 350px;
-    left: 60px;
-    font-size: 20px;
-    
-  }
-  .preview-list-property-details .location{
-    font-size: 18px;
-    gap: .5rem;
-  }
-  .preview-list-property-details .location img{
-    width: 30px;
-    height: 30px;
-  }
-   
-  
-  .pl-for-sale{
-    width: 90px;
-    height: 28px;
-    padding: 0.2rem;
-    align-items: center;
-    font-size: 16px;
+.preview-mobile--action-btns{
+  display: none;
 }
 
-  .preview-list-property-details h2{
-    font-size: 20px;
-  }
-  .prev-next{
-    display: flex;
-    /* margin-right: 50%; */
-  }
-  .backward{
-    top: 110px;
-    left: 35px;
-
-}
-
-
-  .camera-info{
-    width: 750px;
-    grid-column: 1/ span 2;
-  }
-  .camera-info .photos{
-    font-size: 22px;
-    margin-bottom: 20px;
-  }
-  .camera-info .h2{
-    font-size: 0;
-  }
-  /* .property-on-map h3{
-    color: rgba(0, 0, 0, 0.74);
-    font-size: 22px;
-  }
-  .property-on-map img{
-    border-radius: 10px;
-    width: 65vh;
-    height: auto;
-  } */
-  .view-similar-properties{
-    margin-top: 10px;
-  }
-  .view-similar-properties h3{
-    font-size: 24px;
-  }
-  .view-listi-buttons{
-   gap: 2px;
-   font-size: large;
-  }
-  
-  .real-estate-listing-card .midContent{
-    flex-direction: column;
-
-  
- } 
-
- .calculator .contact-us, 
- .right-side-container {
-     width: 690px;
-     max-width: 720px;
-     margin-left: 7px;
-    
- }
- .right-side-container{
-  align-content: center;
-  width: 95%;
- }
- .calculator-field, .calculator-result, .contact-input textarea {
-  width: 315px;
-  max-width: 1000px;
-}
-.calculator-field, .calculator-result, .contact-input textarea span {
-font-size: 16px;
-}
-.slider-value {
-  font-size: 16px;
-
-  
-}
-.apply-button {
-  padding: 0.5rem;
-  font-size: 12px;
-}
-.send-message-button{
-  padding: 0.3rem;
-  font-size: 12px;
-  font-weight: bold;
-}
-.pi {
-  font-size: 18px;
-}
-.red-bar {
-  margin-right: 20px;
-  margin-left: 10px;
-}
-.previous-img
-  {
-    position: absolute;
-    /* top: 50%; */
-    transform: translateY(-495%);
-    cursor: pointer;
-  }
-  .next-img{
-   
-    /* top: 50%; */
-    transform: translateY(-480%);
-    cursor: pointer;
-  }
-  .small-image-icons{
-
-    margin-top: 90px;
-
-  display: flex;
-  gap: 10px;
- 
-  }
-  .property-label-featured{
-    background-color: red;
-    color: white;
-    border-radius: 10px;
-    padding: 2px;
-    font-size: 12px;
-  }
-  .property-label{
-    margin-top: 9px;
-  }
-  .property-labels {
-    left: 35px;
-    display: flex;
-    gap: 10px;
-}
-.property-label-for-sale{
-  font-size: 12px;
-  font-weight: bold;
-  background-color: white;
-  border-radius: 10px;
-}
-.property-label-featured{
-  font-size: 12px;
- 
-}
-}
-@media only screen and (max-width: 720px) and (min-width:320px) {
-
-
-  .galleryComponent {
-    position: relative;
-    height: 70vh;
-    width: 100%;
-  }
-
-  .image-container-large {
-    margin: 10px;
-    align-items: center;
-    margin-right: 80px;
-  }
-
-  .small-images {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .small-image {
-    width: 300px;
-    max-width: 170px;
-    height: auto;
-  }
-
-  .backward {
-    margin-left: 10px;
-  }
-
-  .backward img {
-    width: 30px;
-    height: 30px;
-  }
-
-  .fanext {
-    width: 30px;
-    height: 30px;
-    top: 50%;
-    left: 388px;
-  }
-
-  .fanext .FontAwesomeIcon {
-    color: white;
-    font-size: 30px;
-  }
-
-  .previewlist-property-info {
-    align-items: center;
-    margin-top: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .property-info-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #f8dede;
-    padding: 6px;
-    border-radius: 30px;
-    margin: 5px;
-    top: 30px;
-    height: 80px;
-  }
-
-  .property-info-item span {
-    font-size: 13px;
-    font-weight: 600;
-    color: #333;
-  }
-
-  .gallery .centered {
-    top: 25px;
-    left: 320px;
-    width: 105px;
-    height: 24px;
-    font-size: 12px;
-    padding: 0.3rem;
-  }
-
-  .previewlist-overview {
-    align-items: center;
-    margin-top: 110px;
-  }
-
-  .previewlist-overview span {
-    font-weight: bold;
-  }
-
-  .Listing-property-details {
-    width: 600px;
-    margin: 0;
-  }
-
-  .Listing-property-details, td, th {
-    padding: 0.5rem;
-    font-size: 12px;
-  }
-
-  .Description h3 {
-    font-size: 20px;
-  }
-
-  .Description p {
-    margin-bottom: 1rem;
-    font-size: 12px;
-  }
-
-  .featuresamenites h3 {
-    font-size: 20px;
-  }
-
-  .featuresamenites li {
-    font-size: 12px;
-  }
-
-  .includes h3 {
-    font-size: 20px;
-  }
-
-  .includes li {
-    font-size: 11.5px;
-  }
-
-  .gallery .icns {
-    left: 10%;
-    top: 5%;
-    font-size: small;
-  }
-
-  .icon-circle {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background-color: #1E1E1E;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .icon-circle img {
-    width: 15px;
-  }
-
-  .heart-icon .material-symbols-outlined {
-    font-size: 12px;
-    width: 10px;
-    height: 10px;
-  }
-
-  .view-features h3 {
-    font-size: 12px;
-  }
-
-  .feature-grid {
-    gap: 10px;
-    font-size: 12px;
-  }
-
-  .view-similar-properties {
-    margin-left: auto;
-    margin: 0;
-  }
-
-  .preview-list-property-details {
-    display: flex;
-    flex-direction: column;
-    top: 170px;
-    left: 50px;
-    font-size: small;
-  }
-
-  .preview-list-property-details .location {
-    font-size: 10px;
-    gap: .5rem;
-  }
-
-  .preview-list-property-details .location img {
-    width: 15px;
-    height: 15px;
-  }
-
-  .pl-for-sale {
-    width: 50px;
-    height: 20px;
-    padding: 0.3rem;
-    align-items: center;
-    font-size: 10px;
-  }
-
-  .preview-list-property-details h2 {
-    font-size: 10px;
-  }
-
-  .prev-next {
-    display: flex;
-  }
-
-  .backward {
-    top: 110px;
-    left: 35px;
-  }
-
-  .fanext {
-    top: 110px;
-    left: 389px;
-  }
-
-  .camera-info {
-    width: 350px;
-    grid-column: 1 / span 2;
-  }
-
-  .camera-info .photos {
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-
-  .camera-info .h2 {
-    font-size: 0;
-  }
-
-  /* .property-on-map h3 {
-    color: rgba(0, 0, 0, 0.74);
-    font-size: 20px;
-  }
-
-  .property-on-map img {
-    border-radius: 10px;
-    width: 50vh;
-    height: auto;
-  } */
-
-  .view-similar-properties {
-    margin: 0px;
-  }
-
-  .view-similar-properties h3 {
-    font-size: 20px;
-  }
-
-  .view-similar-properties .view-listi-buttons {
-    gap: 2px;
-  }
-
-  .real-estate-listing-card .midContent {
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .midContent{
+    margin: 10px 0px 0px;
+    padding: 0%;
     flex-direction: column;
   }
-
-  .calculator .contact-us,
-  .right-side-container {
-    width: 100%;
-    max-width: 720px;
-    margin-left: 7px;
-  }
-  .midContent {
-    display: flex;
-    flex-direction: row;
-    padding: 2%;
-    height: 100%;
-    margin: 0px;
-    /* padding: 5%; */
-}
-
-  .right-side-container {
-    align-content: center;
-  }
-
-  .calculator-field, .calculator-result, .contact-input textarea, .contact-input textarea {
-    width: 138px;
-    max-width: 150px;
-    font-size: 12px;
-  }
-  .calculator-result {
-
-    margin-top: 25px;
-  }
-
-
-  .slider-value {
-    font-size: 12px;
-  }
-
-  .apply-button {
-    padding: 0.5rem;
-    font-size: 12px;
-  }
-
-  .send-message-button {
-    padding: 0.3rem;
-    font-size: 12px;
-    font-weight: bold;
-  }
-
-  .pi {
-    font-size: 14px;
-  }
-
-  .red-bar {
-    margin-right: 20px;
-    margin-left: 10px;
-    height: 20px;
-  }
-
-  .previous-img {
-    position: absolute;
-    transform: translateY(-290%);
-    cursor: pointer;
-  }
-
-  .next-img {
-    position: absolute;
-    transform: translateY(-280%);
-    cursor: pointer;
-  }
-
-  .small-image-icons {
-    position: absolute;
-    top: 80px;
-
-    display: flex;
-    gap: 10px;
-  }
-
-  .property-label.featured {
-    margin-top: 9px;
-  }
-
-  .property-label {
-    margin-top: 9px;
-  }
-
-  .property-labels {
-    top: 75px;
-    left: 35px;
-    display: flex;
-    gap: 10px;
-  }
-  .result-amount {
-    display: flex;
-    font-size: 12px;
-    font-weight: bold;
-   
-  }
-}
-
-@media only screen and (max-width: 320px) {
-
-  
-
-  .previewlist-property-info {
-    align-items: center;
-    margin-top: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .property-info-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #f8dede;
-    padding: 6px;
-    border-radius: 30px;
-    margin: 5px;
-    width: 120px;
-    top: 30px;
-    height: 100px;
-  }
-
-  .property-info-item span {
-    font-size: 13px;
-    font-weight: 600;
-    color: #333;
-  }
-
-  .gallery .centered {
-    top: 25px;
-    left: 290px;
-    width: 110px;
-    height: 25px;
-    font-size: 12px;
-    padding: 0.3rem;
-  }
-
-  .previewlist-overview {
-    align-items: center;
-    margin-top: 110px;
-  }
-
-  .previewlist-overview span {
-    font-weight: bold;
-  }
-
-  .Listing-property-details {
-    width: 600px;
-    margin: 0;
-  }
-
-  .Listing-property-details, td, th {
-    padding: 0.5rem;
-    font-size: 12px;
-  }
-
-  .Description h3 {
-    font-size: 20px;
-  }
-
-  .Description p {
-    margin-bottom: 1rem;
-    font-size: 12px;
-  }
-
-  .featuresamenites h3 {
-    font-size: 20px;
-  }
-
-  .featuresamenites li {
-    font-size: 12px;
-  }
-
-  .includes h3 {
-    font-size: 20px;
-  }
-
-  .includes li {
-    font-size: 11.5px;
-  }
-
-  .gallery .icns {
-    left: 10%;
-    top: 5%;
-    font-size: small;
-  }
-
-  .icon-circle {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background-color: #1E1E1E;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .icon-circle img {
-    width: 15px;
-  }
-
-  .heart-icon .material-symbols-outlined {
-    font-size: 12px;
-    width: 10px;
-    height: 10px;
-  }
-
-  .view-features h3 {
-    font-size: 12px;
-  }
-
-  .feature-grid {
-    gap: 10px;
-    font-size: 12px;
-  }
-
-  .view-similar-properties {
-    margin-left: auto;
-    margin: 0;
-  }
-
-  .preview-list-property-details {
-    display: flex;
-    flex-direction: column;
-    top: 130px;
-    left: 50px;
-    font-size: small;
-  }
-
-  .preview-list-property-details .location {
-    font-size: 10px;
-    gap: .5rem;
-  }
-
-  .preview-list-property-details .location img {
-    width: 15px;
-    height: 15px;
-  }
-
-  .pl-for-sale {
-    width: 50px;
-    height: 20px;
-    padding: 0.3rem;
-    align-items: center;
-    font-size: 10px;
-    padding: 2px;
-  }
-
-  .preview-list-property-details h2 {
-    font-size: 10px;
-  }
-
-  .prev-next {
-    display: flex;
-  }
-
-  .backward {
-    top: 110px;
-    left: 35px;
-  }
-
-  .fanext {
-    top: 110px;
-    left: 342px;
-  }
-
-  .camera-info {
-    width: 350px;
-    grid-column: 1 / span 2;
-  }
-
-  .camera-info .photos {
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-
-  .camera-info .h2 {
-    font-size: 0;
-  }
-
-  .property-on-map h3 {
-    color: rgba(0, 0, 0, 0.74);
-    font-size: 18px;
-  }
-
-  .property-on-map img {
-    border-radius: 10px;
-    width: 50vh;
-    height: auto;
-  }
-
-  .view-similar-properties {
-    margin-top: 10px;
-  }
-
-  .view-similar-properties h3 {
-    font-size: 20px;
-  }
-
-  .view-similar-properties .view-listi-buttons {
-    gap: 2px;
-  }
-
-  .real-estate-listing-card .midContent {
-    flex-direction: column;
-  }
-
   .calculator .contact-us,
   .right-side-container {
     width: 90%;
-    /* max-width: 720px;
-    margin-left: 7px; */
   }
 
   .right-side-container {
-    align-content: center;
+    /* align-content: center; */
+    display: none;
   }
 
   .calculator-field, .calculator-result, .contact-input textarea {
@@ -2204,68 +1147,51 @@ font-size: 16px;
     margin-left: 10px;
     margin-bottom:120px;
   }
+  .first-row--about-property{
+    margin-top: 35px !important;
+  }
+  .second-row--description{
+    margin-top: 20px !important;
+  }
+  .property-on-map h3{
+    font-size: 20px;
+  }
+  .view-similar-properties h3, .property-on-map h3{
+    font-size: 20px;
+  }
+  .preview-mobile--action-btns{
+    display: flex;
+    gap: 10px;
+    padding: 0 20px;
+    justify-content: center;
+    flex-wrap: wrap;
 
- 
+  }
+  .preview-mobile--action-btns .preview--contact-us{
+    background-color: var(--red);
+    color: white;
+  }
+  .preview-mobile--action-btns .preview--calculator{
+    color: var(--red);
+  }
+  .preview-mobile--action-btns .preview--contact-us,
+  .preview-mobile--action-btns .preview--calculator{
+    border-color: var(--red);
+  }
+  .previewlist{
+    margin-bottom: 50px;
+  }
+  .leftContent{
+    width: 100%;
+  }
 }
 
-@media only screen and (min-width: 360px) and (max-width: 480px) {
-  .calculator .contact-us,
-  .right-side-container {
-    width: 90%;
-    /* max-width: 720px;
-    margin-left: 7px; */
-  }
-
-  .right-side-container {
-    align-content: center;
-  }
-
-  .calculator-field, .calculator-result, .contact-input textarea {
-    width: 138px;
-    max-width: 150px;
-  }
-
-  .calculator-field, .calculator-result, .contact-input textarea span {
-    font-size: 12px;
-  }
-  .calculator-result{
-    font-size: 8px;
+@media (min-width: 1180px) and (max-width: 1200px) {
+  .calculator, .contact-us {
     width: 95%;
-    /* height: 65px; */
-
-  }
-  .slider-value {
-    font-size: 12px;
-  }
-
-  .apply-button {
-    padding: 0.5rem;
-    font-size: 12px;
-  }
-
-  .send-message-button {
-    padding: 0.3rem;
-    font-size: 12px;
-    font-weight: bold;
-  }
-
-  .pi {
-    font-size: 10px;
-  }
-
-  .red-bar {
-    margin-right: 20px;
-    margin-left: 10px;
-    margin-bottom:120px;
   }
 }
 @media (min-width: 1025px) and (max-width: 1280px) {
-  .calculator .contact-us,
-  .right-side-container {
-    width: 90%;
-    /* max-width: 720px;
-    margin-left: 7px; */
-  }
 
   .right-side-container {
     align-content: center;
@@ -2277,14 +1203,9 @@ font-size: 16px;
   }
 
   .calculator-field, .calculator-result, .contact-input textarea span {
-    font-size: 12px;
+    font-size: 13px;
   }
-  .calculator-result{
-    font-size: 8px;
-    width: 95%;
-    /* height: 65px; */
 
-  }
   .slider-value {
     font-size: 12px;
   }
@@ -2305,7 +1226,7 @@ font-size: 16px;
   }
 
   .red-bar {
-    margin-right: 20px;
+    /* margin-right: 20px; */
     margin-left: 10px;
     margin-bottom:120px;
   }

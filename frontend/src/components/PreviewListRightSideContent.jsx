@@ -9,9 +9,10 @@ import chat from "../assets/icons/previewlisting/chatmessages.png";
 import call from "../assets/icons/previewlisting/callphone.png";
 import "../styles/previewListing.css";
 import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
-import { GetPhotoFromDB } from "../utils/GetPhoto";
+import { GetPhotoWithUrl } from "../utils/GetPhoto";
+import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 
-const PreviewListRightSideContent = () => {
+const PreviewListRightSideContent = ({oneListing}) => {
 
   const [homePrice, setHomePrice] = useState(500000); // Set default value
   const [downPayment, setDownPayment] = useState(100000); // Set default value
@@ -41,35 +42,35 @@ const PreviewListRightSideContent = () => {
     setShowApplicationDetailModal(false);
   };
 
-  const [publiclisting, setPublicListing] = useState([]);
+//   const [publiclisting, setPublicListing] = useState([]);
 
-  const allPublicListing = async () => {
-    const res = await GetPropertiesBySaleStatus();
-    const dataresp = res.data;
-    setPublicListing(dataresp);
-    console.log("public listing:", dataresp);
-  };
+//   const allPublicListing = async () => {
+//     const res = await GetPropertiesBySaleStatus();
+//     const dataresp = res.data;
+//     setPublicListing(dataresp);
+//     console.log("public listing:", dataresp);
+//   };
 
-  useEffect(() => {
-    allPublicListing();
-  }, []);
+//   useEffect(() => {
+//     allPublicListing();
+//   }, []);
 
-  const all = publiclisting.map((data) =>
-    GetPhotoFromDB(data.listings.photos.photo)
-  );
+//   const all = publiclisting.map((data) =>
+//     GetPhotoWithUrl(data.listings.photos.photo)
+//   );
 
-  console.log("this is all", all);
-  const [index, setIndex] = useState(0);
+//   console.log("this is all", all);
+//   const [index, setIndex] = useState(0);
 
-  const secImage = () => {
-    setIndex((prevIndex) => (prevIndex + 1) % publiclisting.length);
-  };
+//   const secImage = () => {
+//     setIndex((prevIndex) => (prevIndex + 1) % publiclisting.length);
+//   };
 
-  const firstImage = () => {
-    setIndex((prevIndex) =>
-      prevIndex - 1 < 0 ? publiclisting.length - 1 : prevIndex - 1
-    );
-  };
+//   const firstImage = () => {
+//     setIndex((prevIndex) =>
+//       prevIndex - 1 < 0 ? publiclisting.length - 1 : prevIndex - 1
+//     );
+//   };
 
   // Dropdown menu items for term selection
   const menu = (
@@ -252,14 +253,23 @@ const PreviewListRightSideContent = () => {
 				</div>
 				<div className="contact-textarea">
 					<img src={chat} alt="Chat" />
-					<textarea placeholder="I am interested in 5 Bedroom House for Rent in Maria Luisa Park"></textarea>
+					<textarea 
+						placeholder={`I am interested in ${oneListing.UnitName}`}
+						rows={2}
+					/>
 				</div>
-				<button className="send-message-button">Send Message</button>
+				<SemiRoundBtn
+					label={'Send Message'}
+					size={'large'}
+					className={'send-message-button'}
+				/>
+				{/* <button className="send-message-button">Send Message</button> */}
 			</div>
 			{showApplicationDetailModal && (
 				<ApplicationDetailModal
 					visible={showApplicationDetailModal}
 					onClose={handleCloseModal}
+					setShowApplicationDetailModal={setShowApplicationDetailModal}
 				/>
 			)}
 		</div>

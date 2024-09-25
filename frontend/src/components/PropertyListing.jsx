@@ -3,43 +3,60 @@ import styles from "../styles/ViewListing.module.css";
 import redcamera from "../assets/icons/previewlisting/redcamera.png";
 import viewlist from "../assets/images/viewlist.png";
 import CustomTag from "./custom/tags/Tags.custom";
-import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
+import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 
-import { GetPhotoFromDB, GetPhotoLength } from "../utils/GetPhoto";
+import { GetPhotoLength, GetPhotoWithUrl } from "../utils/GetPhoto";
 import {
   LeftOutlined,
   RightOutlined,
   HeartFilled,
   HeartOutlined,
 } from "@ant-design/icons";
+import DeafultFallbackImage from '../asset/Fallback2.png';
+import { CapitalizeString } from "../utils/StringFunctions.utils";
+import { AmountFormatterGroup } from "../utils/AmountFormatter";
 
 const PropertyListing = ({ oneListing }) => {
   // List of images for the carousel
 
-  const [publiclisting, setPublicListing] = useState([]);
+  const [unitPhotos, setUnitPhotos] = useState([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(1);
+  const [checked, setIsChecked] = useState(false);
+  const [likes, setLikes] = useState([]);
 
-  const allPublicListing = async () => {
-    const res = await GetPropertiesBySaleStatus();
-    const dataresp = res.data;
-    setPublicListing(dataresp);
-    console.log("public listing:", dataresp);
+  const UnitPhotos = async () => {
+    try {
+
+      const res = await GetUnitPhotos(oneListing.id);
+      const dataresp = res.data;
+      
+      if (dataresp.length == 0) {
+        let photo = oneListing.Photo
+
+        setUnitPhotos((prevState) => (
+          [...prevState, photo]
+        ));
+      }else{
+
+        setUnitPhotos([]);
+      }
+
+    } catch (error) {
+
+      setUnitPhotos([]);
+
+    }
   };
 
   useEffect(() => {
-    allPublicListing();
+    UnitPhotos();
   }, []);
 
-  const images = publiclisting.map((data) =>
-    GetPhotoFromDB(data.listings.photos.photo)
+  const images = unitPhotos.map((data) =>
+    GetPhotoWithUrl(data)
   );
-
-  console.log("this is all", images);
-  const [checked, setIsChecked] = useState(false);
-  const [likes, setLikes] = useState([]);
+  
   const handleChange = (isChecked, tag) => {
-    // console.log("tag", tag);
-    // console.log("check", isChecked);
-    // setIsChecked(isChecked);
 
     const id = tag._owner.memoizedProps.listingId;
 
@@ -52,7 +69,6 @@ const PropertyListing = ({ oneListing }) => {
     setIsChecked(isChecked);
   };
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(1);
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
@@ -72,37 +88,37 @@ const PropertyListing = ({ oneListing }) => {
     <article className={styles.propertyCard}>
       <img
         loading="lazy"
-        src={images[currentImageIndex]}
+        src={images[currentImageIndex] ? images[currentImageIndex] : DeafultFallbackImage}
         className={styles.backgroundImage}
         alt="Property background"
       />
       <div className={styles.logoImage}>
         <img src={redcamera} className={styles.cameraImage} alt="Camera Icon" />
         <span className={styles.number}>
-          {GetPhotoLength(oneListing.listings.photos.photo)}
+          {GetPhotoLength(oneListing.id) + images.length}
         </span>
       </div>
       <div className={styles.carouselControls}>
         <LeftOutlined
-          className={`${styles.leftIcon} ${
-            isPrevDisabled ? styles.disabled : ""
-          }`}
+          className={`${styles.leftIcon} ${isPrevDisabled ? styles.disabled : ""
+            }`}
           onClick={!isPrevDisabled ? prevImage : null}
         />
         <RightOutlined
-          className={`${styles.rightIcon} ${
-            isNextDisabled ? styles.disabled : ""
-          }`}
+          className={`${styles.rightIcon} ${isNextDisabled ? styles.disabled : ""
+            }`}
           onClick={!isNextDisabled ? nextImage : null}
         />
       </div>
       <div className={styles.infoContainer}>
         <div className={styles.statusPriceContainer}>
           <div className={styles.statusBadge}>
-            {oneListing.listings.listing_type.listing_type}
+            {
+              `For ${CapitalizeString(oneListing.SaleType)}`
+            }
           </div>
           <div className={styles.priceTag}>
-            PHP {oneListing.listings.unit_details.price}
+            PHP {AmountFormatterGroup(oneListing.Price)}
           </div>
         </div>
         <div className={styles.actionContainer}>
@@ -121,12 +137,6 @@ const PropertyListing = ({ oneListing }) => {
               checked={checked}
               handleChange={handleChange}
             />{" "}
-            {/* <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/0092cbb7221afbe64a740a834468c2dbcd416871a92c3642d9091fd0ade42c36?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5"
-              className={styles.saveIcon}
-              alt=""
-            /> */}
             <span
               className={styles.saveText}
               style={{
@@ -139,12 +149,6 @@ const PropertyListing = ({ oneListing }) => {
               Save
             </span>
           </button>
-          {/* <img
-						loading="lazy"
-						src="https://cdn.builder.io/api/v1/image/assets/TEMP/002645e41b4dcbbec7c8028574854f1415da76ea61da78f79880478f20aa6982?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5"
-						className={styles.moreOptionsIcon}
-						alt="More options"
-					/> */}
         </div>
       </div>
     </article>

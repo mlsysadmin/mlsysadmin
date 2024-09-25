@@ -37,12 +37,15 @@
     text-align: center;
 }
 #featured-properties .featured-property--content .ant-card{
-    width: 85%;
+    /* width: 85%; */
     margin: auto;
+    width: 320px;
+    height: 300px;
 }
 #featured-properties .featured-property--content .ant-card .ant-card-body{
     border-radius: 10px;
     box-shadow: 0 8px 10px -5px var(--bg-shadow);
+    height: 300px;
 }
 
 #featured-properties .featured-property--content h4{

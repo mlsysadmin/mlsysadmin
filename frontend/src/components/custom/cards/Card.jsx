@@ -11,31 +11,31 @@ import ShortcutOutlinedIcon from '@mui/icons-material/ShortcutOutlined';
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 
 const Card = ({
-  id,
-  title,
-  subtitle,
-  price,
-  imgSrc,
-  beds,
-  baths,
-  size,
-  likes,
-  forsale,
-  handleClick
+	id,
+	title,
+	subtitle,
+	price,
+	imgSrc,
+	beds,
+	baths,
+	size,
+	likes,
+	forsale,
+	handleClick
 }) => {
-  const isFeatured = forsale.toLowerCase() === "featured";
-  const [isHeartFilled, setIsHeartFilled] = useState(false);
-  
-  const handleHeartClick = () => {
-    setIsHeartFilled(!isHeartFilled);
-  }
-  // const navigate = useNavigate();
+	const isFeatured = forsale.toLowerCase() === "featured";
+	const [isHeartFilled, setIsHeartFilled] = useState(false);
 
-  // const handleCardClick = () => {
-  //   onClick(id);;
-  // };
+	const handleHeartClick = () => {
+		setIsHeartFilled(!isHeartFilled);
+	}
+	// const navigate = useNavigate();
 
-  return (
+	// const handleCardClick = () => {
+	//   onClick(id);;
+	// };
+
+	return (
 		<div className="card" style={{ cursor: "pointer" }}>
 			<div className="cardImage">
 				<img
@@ -51,18 +51,18 @@ const Card = ({
 							forsale === "New"
 								? "#ffffff"
 								: forsale === "For Sale"
-								? "#000000"
-								: forsale === "For Rent"
-								? "#000000"
-								: "White",
+									? "#000000"
+									: forsale === "For Rent"
+										? "#000000"
+										: "White",
 						backgroundColor:
 							forsale === "New"
 								? "var(--red)"
 								: forsale === "For Sale"
-								? "#ffffff"
-								: forsale === "For Rent"
-								? "#ffffff"
-								: "var(--red)",
+									? "#ffffff"
+									: forsale === "For Rent"
+										? "#ffffff"
+										: "var(--red)",
 					}}
 				>
 					{forsale}
@@ -85,23 +85,22 @@ const Card = ({
 				<h4>{subtitle}</h4>
 				<div className="bot">
 					<div className="card-price-detail">
-						<p>{price}/month</p>
+						<p>{price}</p>
 					</div>
 					<div className="card-icons">
-						<p>
-							<span>
-								<BedOutlinedIcon />
+						<div className="card-icons--feature">
+							<BedOutlinedIcon />
+							<label id="bed-icon">{beds}</label>
+						</div>
+						<div className="card-icons--feature">
+							<ShowerOutlinedIcon />
+							<label htmlFor="">{baths}</label>
+						</div>
+						<div className="card-icons--feature">
+							<ShortcutOutlinedIcon />
+							<label htmlFor="">{size} SqM</label>
+						</div>
 
-								<label id="bed-icon">{beds}</label>
-								<ShowerOutlinedIcon />
-							</span>{" "}
-							{baths}
-							<span></span>
-							<span>
-								<ShortcutOutlinedIcon />
-							</span>{" "}
-							{size} SqM
-						</p>
 					</div>
 				</div>
 			</div>

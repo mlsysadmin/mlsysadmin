@@ -188,7 +188,7 @@ const Routes = [
 				element: <SoldPropertyDetailsPage />,
 			},
 			{
-				path: "/previewListing/:new_id",
+				path: "/previewListing",
 				element: <PreviewListing />,
 			},
 			{
