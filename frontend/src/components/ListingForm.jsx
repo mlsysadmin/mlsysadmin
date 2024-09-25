@@ -58,15 +58,18 @@ export const ListingForm = () => {
 		}
 	};
 
+	// useEffect(()=>{
+	// 	fetchUserDetails();
+	// })
+
 	const [errors, setErrors] = useState({
-		0: false, 
+		0: false,
 		1: false,
 		2: false,
 		3: false,
 		4: false,
 		5: false,
 	});
-
 
 	const [propertyFields, setPropertyFields] = useState({
 		PropertyNo: "",
@@ -113,41 +116,38 @@ export const ListingForm = () => {
 		window.scrollTo(0, 0);
 	}, []);
 
-
-const handleStepComplete = (stepIndex, isComplete) => {
-	setCompletedSteps((prev) => {
-		if (prev[stepIndex] === isComplete) {
-			return prev;
-		}
-		return {
+	const handleStepComplete = (stepIndex, isComplete) => {
+		setCompletedSteps((prev) => {
+			if (prev[stepIndex] === isComplete) {
+				return prev;
+			}
+			return {
+				...prev,
+				[stepIndex]: isComplete,
+			};
+		});
+		setErrors((prev) => ({
 			...prev,
-			[stepIndex]: isComplete,
-		};
-	});
-	setErrors((prev) => ({
-		...prev,
-		[stepIndex]: !isComplete,
-	}));
+			[stepIndex]: !isComplete,
+		}));
 
-	if (isComplete && stepIndex === currentStep) {
-		const nextStep = currentStep + 1;
-		setCurrentStep(nextStep);
-		console.log("Current Step:", nextStep);
+		if (isComplete && stepIndex === currentStep) {
+			const nextStep = currentStep + 1;
+			setCurrentStep(nextStep);
+			console.log("Current Step:", nextStep);
 
-		// if (stepIndex === 5) {
-		// 	if (!isFocused) {
-		// 		window.scrollTo({ top: 0, behavior: "smooth" });
-		// 	}
+			// if (stepIndex === 5) {
+			// 	if (!isFocused) {
+			// 		window.scrollTo({ top: 0, behavior: "smooth" });
+			// 	}
 
-	 if (stepRefs.current[nextStep]) {
-			if (!isFocused) {
-				stepRefs.current[nextStep].scrollIntoView({ behavior: "smooth" });
+			if (stepRefs.current[nextStep]) {
+				if (!isFocused) {
+					stepRefs.current[nextStep].scrollIntoView({ behavior: "smooth" });
+				}
 			}
 		}
-	}
-};
-
-
+	};
 
 	const handleSellingPriceClick = (furnishing) => {
 		setSelectedSellingPrice(furnishing);
@@ -192,7 +192,6 @@ const handleStepComplete = (stepIndex, isComplete) => {
 				...propertyFields.AddedFeature,
 			];
 
-
 			for (const FeatureName of combinedFeatures) {
 				if (featureResponse.FeatureName === combinedFeatures.FeatureName) {
 					const addAddedFeaturePayload = {
@@ -217,7 +216,6 @@ const handleStepComplete = (stepIndex, isComplete) => {
 					allAddedFeaturePayloads.push(addAddedFeaturePayload);
 					// await AddAddedFeature(allAddedFeaturePayloads);
 				} else {
-					
 					const addFeaturePayload = {
 						FeatureName: FeatureName.FeatureName,
 						Type: FeatureName.Type,
@@ -292,8 +290,8 @@ const handleStepComplete = (stepIndex, isComplete) => {
 			}
 
 			const propertyNo = await GetPropertyNo();
-			
-			const propertyPhotos = propertyFields.Photo.map((photo)=> photo.file);
+
+			const propertyPhotos = propertyFields.Photo.map((photo) => photo.file);
 
 			const photosArray = propertyFields.Photo;
 			// const imagesPayload = {
@@ -302,30 +300,32 @@ const handleStepComplete = (stepIndex, isComplete) => {
 			// 	Photo: propertyPhotos,
 			// };
 
+			const Vendornumber = accountDetails.mobileNumber;
+			const existing = await GetVendorByNumber(Vendornumber);
+			console.log("VENDOR INFO", existing);
 
-			const imagePayload = new FormData() 
+			const imagePayload = new FormData();
 
 			imagePayload.append("PropertyNo", propertyNo);
-			imagePayload.append("MainPhoto", photosArray.length> 0 ? photosArray[0].file:null);
-			imagePayload.append("Photo", propertyPhotos[0]);
-			imagePayload.append("Photo", propertyPhotos[1]);
-			// imagePayload.append("Photo", propertyPhotos.file[0]);
+			imagePayload.append(
+				"MainPhoto",
+				photosArray.length > 0 ? photosArray[0].file : null
+			);
 
-			console.log("Photos payload:", imagePayload.getAll("MainPhoto"));
-			console.log("Photos payload:", imagePayload.getAll("Photo"));
-			
+			propertyPhotos.forEach((photo) => {
+				imagePayload.append("Photo", photo);
+				imagePayload.append("Filename", photo.name);
+			});
 
-			
 			const postFeatures = await handleFeatureChecking();
 
 			const updatedPropertyFields = {
 				...propertyFields,
 
-
 				postFeatures,
 				PropertyNo: propertyNo,
 				VendorId: generatedVendorId,
-				VendorName: vendorName,
+				VendorName: existing.VendorName,
 			};
 
 			console.log("Final listing data:", updatedPropertyFields);
@@ -339,7 +339,6 @@ const handleStepComplete = (stepIndex, isComplete) => {
 			}));
 
 			await savePropertyImages(imagePayload);
-
 		} catch (error) {
 			console.error("Failed to submit listing:", error.message);
 		}
