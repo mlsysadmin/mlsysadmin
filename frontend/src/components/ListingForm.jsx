@@ -24,6 +24,7 @@ import CustomMlFooter from "./custom/Custom.Mlfooter";
 import FooterComponent from "./layout/FooterComponent";
 import { getCookieData } from "../utils/CookieChecker";
 import { searchKyc } from "../api/Public/User.api";
+import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
 
 export const ListingForm = () => {
 	const [currentStep, setCurrentStep] = useState(0);
@@ -40,8 +41,10 @@ export const ListingForm = () => {
 	const [propIdInputError, setPropIdInputError] = useState("");
 	const [showSuccessfulMsgModal, setShowSuccessfulMsgModal] = useState(false);
 	const [userDetails, setUserDetails] = useState(null);
+	const [postedPropertyNo, setPostedPropertyNo] = useState(null);
 
 	const [vendorType, setVendorType] = useState("");
+	const [publiclisting, setPublicListing] = useState([]);
 	const [showVendorModal, setShowVendorModal] = useState(false);
 	const [tin, setTin] = useState("");
 
@@ -75,7 +78,7 @@ export const ListingForm = () => {
 		PropertyNo: "",
 		VendorId: "",
 		VendorName: "",
-		SellingType: "project selling",
+		SellingType: "brokerage",
 		ProjectId: "NA",
 		ProjectName: "NA",
 		City: "",
@@ -91,8 +94,8 @@ export const ListingForm = () => {
 		IsFeatured: "no",
 		VideoLink: null,
 		Details: "",
-		ListingOwnerId: "NA",
-		ListingOwnerName: "NA",
+		ListingOwnerId: "",
+		ListingOwnerName: "",
 		IsModel: "no",
 		FloorArea: "",
 		LotArea: "",
@@ -102,6 +105,7 @@ export const ListingForm = () => {
 		Classification: "",
 		PricePerSqm: "",
 		Parking: "",
+		RecordStatus:"pending",
 		NoOfFloor: "",
 		Country: "",
 		ProvinceState: "",
@@ -110,10 +114,25 @@ export const ListingForm = () => {
 		Photo: [],
 		Features: [],
 		AddedFeature: [],
+		Approver1Status: "Pending",
+		Approver2Status: "Pending",
+		Approver3Status: "Pending"
 	});
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
+	}, []);
+
+	const getAllPublicListings = async () => {
+		const response = await GetPropertiesBySaleStatus();
+		const data = response.data;
+
+		console.log("data", data)
+		setPublicListing(data);
+	};
+
+	useEffect(() => {
+		getAllPublicListings();
 	}, []);
 
 	const handleStepComplete = (stepIndex, isComplete) => {
@@ -163,7 +182,7 @@ export const ListingForm = () => {
 			if (vendorExists) {
 				setShowVendorModal(false);
 				await handleSubmit(vendorExists.VendorId);
-				setShowSuccessfulMsgModal(true);
+
 				console.log("Vendor Exist:", vendorExists.VendorId);
 			} else {
 				setShowVendorModal(true);
@@ -213,7 +232,7 @@ export const ListingForm = () => {
 							console.error(`Error adding feature: ${error.message}`);
 						}
 					});
-					allAddedFeaturePayloads.push(addAddedFeaturePayload);
+					// allAddedFeaturePayloads.push(addAddedFeaturePayload);
 					// await AddAddedFeature(allAddedFeaturePayloads);
 				} else {
 					const addFeaturePayload = {
@@ -255,7 +274,7 @@ export const ListingForm = () => {
 			console.log("All feature payloads:", AllAddFeaturePayload);
 
 			console.log("Features processed and posted successfully.");
-			return { allAddedFeaturePayloads, AllAddFeaturePayload };
+			// return { allAddedFeaturePayloads, AllAddFeaturePayload };
 		} catch (error) {
 			console.error("Error processing features:", error.message);
 		}
@@ -277,8 +296,8 @@ export const ListingForm = () => {
 					TIN: tin,
 					Email: userDetails.email,
 					ContactPerson: "",
-					RecordStatus: "",
-					VendorType: vendorType,
+					RecordStatus: "active",
+					VendorType: "homeowner",
 					AccessType: "public",
 					OtherInfo: "Hey Joe",
 					ListingOwnerId: "NA",
@@ -321,7 +340,8 @@ export const ListingForm = () => {
 
 			const updatedPropertyFields = {
 				...propertyFields,
-
+				ListingOwnerId:generatedVendorId ,
+				ListingOwnerName: existing.VendorName,
 				postFeatures,
 				PropertyNo: propertyNo,
 				VendorId: generatedVendorId,
@@ -331,7 +351,10 @@ export const ListingForm = () => {
 			console.log("Final listing data:", updatedPropertyFields);
 
 			const postData = await PostSellerListing(updatedPropertyFields);
-			console.log("Listing API Response:", postData);
+			setPostedPropertyNo(updatedPropertyFields);
+			console.log("this is the current post:", postedPropertyNo);
+			console.log("Listing API Response:", updatedPropertyFields);
+				console.log("propenumber:", updatedPropertyFields.PropertyNo);
 
 			setPropertyFields((prevFields) => ({
 				...prevFields,
@@ -339,6 +362,8 @@ export const ListingForm = () => {
 			}));
 
 			await savePropertyImages(imagePayload);
+
+			setShowSuccessfulMsgModal(true);
 		} catch (error) {
 			console.error("Failed to submit listing:", error.message);
 		}
@@ -355,8 +380,9 @@ export const ListingForm = () => {
 		setShowSuccessfulMsgModal(false);
 	};
 
+
 	const handlePreviewListing = (id) => {
-		navigate(`/previewListing/${id}`, { state: id });
+		navigate(`/previewListing/?id=${id}`, { state: id });
 	};
 
 	return (
@@ -617,7 +643,7 @@ export const ListingForm = () => {
 												</p>
 												<button
 													className="buttonkyc"
-													onClick={handlePreviewListing}
+													onClick={() => handlePreviewListing(postedPropertyNo.PropertyNo)}
 												>
 													Preview Listing
 												</button>
