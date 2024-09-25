@@ -52,13 +52,13 @@ const FeaturedComponents = ({ onComplete, setPropertyFields }) => {
 		if (featuresComplete) {
 			const indoorFeaturesWithType = indoorSelectedFeatures.map((feature) => ({
 				FeatureName: feature,
-				Type: "feature",
+				Type: "features",
 			}));
 
 			const outdoorFeaturesWithType = outdoorSelectedFeatures.map(
 				(feature) => ({
 					FeatureName: feature,
-					Type: "feature", 
+					Type: "features", 
 				})
 			);
 			setPropertyFields({

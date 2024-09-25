@@ -128,6 +128,7 @@ const PostSellerListing = async (propertyFields = {}) => {
 			SaleStatus,
 			BedRooms,
 			BathRooms,
+			RecordStatus,
 			IsFeatured,
 			VideoLink,
 			Details,
@@ -148,6 +149,9 @@ const PostSellerListing = async (propertyFields = {}) => {
 			Zipcode,
 			MapLocation,
 			AccessType,
+			Approver1Status,
+			Approver2Status,
+			Approver3Status,
 		} = propertyFields;
 
 		const PropertyNo = await GetPropertyNo();
@@ -167,6 +171,7 @@ const PostSellerListing = async (propertyFields = {}) => {
 			Price,
 			UnitName,
 			SaleType,
+			RecordStatus,
 			SaleStatus,
 			BedRooms,
 			BathRooms,
@@ -189,6 +194,9 @@ const PostSellerListing = async (propertyFields = {}) => {
 			Zipcode,
 			MapLocation,
 			AccessType,
+			Approver1Status,
+			Approver2Status,
+			Approver3Status,
 		};
 		console.log("Sending payload:", reqBody);
 
