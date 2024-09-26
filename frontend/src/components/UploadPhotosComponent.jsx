@@ -1,6 +1,7 @@
-import React, { useState,useEffect } from 'react';
-import { useDropzone } from 'react-dropzone';
-import Resizer from 'react-image-file-resizer';
+import React, { useState, useEffect } from "react";
+import { useDropzone } from "react-dropzone";
+import Resizer from "react-image-file-resizer";
+import WatermarkImg from "../asset/watermark.png";
 import "../styles/listing-form.css";
 
 const UploadPhotosComponent = ({ onComplete, setPropertyFields }) => {
@@ -8,6 +9,10 @@ const UploadPhotosComponent = ({ onComplete, setPropertyFields }) => {
 	const [uploadError, setUploadError] = useState(null);
 
 	const onDrop = (acceptedFiles) => {
+		if (uploadedPhotos.length + acceptedFiles.length >= 10) {
+			setUploadError("You can only upload a maximum of 10 images.");
+			return;
+		}
 		acceptedFiles.forEach((file) => {
 			if (validateFile(file)) {
 				Resizer.imageFileResizer(
@@ -18,7 +23,10 @@ const UploadPhotosComponent = ({ onComplete, setPropertyFields }) => {
 					100,
 					0,
 					(uri) => {
-						setUploadedPhotos((prev) => [...prev, { file, preview: uri, filename:file.name }]);
+						setUploadedPhotos((prev) => [
+							...prev,
+							{ file, preview: uri, filename: file.name },
+						]);
 					},
 					"base64"
 				);
@@ -26,9 +34,11 @@ const UploadPhotosComponent = ({ onComplete, setPropertyFields }) => {
 			}
 		});
 	};
-
+	const removePhoto = (index) => {
+		setUploadedPhotos((prev) => prev.filter((_, i) => i !== index));
+	};
 	const validateFile = (file) => {
-		const maxFileSize = 15 * 1024 * 1024; // 15 MB
+		const maxFileSize = 15 * 1024 * 1024;
 		const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
 
 		if (!allowedTypes.includes(file.type)) {
@@ -47,22 +57,20 @@ const UploadPhotosComponent = ({ onComplete, setPropertyFields }) => {
 	const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
 	useEffect(() => {
-    const now = new Date();
-    const phtOffset = 8 * 60; 
+		const now = new Date();
+		const phtOffset = 8 * 60;
 		const phtDate = new Date(now.getTime() + phtOffset * 60 * 1000);
-    const upload_date_time = phtDate.toISOString();
-    const complete = uploadedPhotos !== null && uploadedPhotos.length >= 1;
+		const upload_date_time = phtDate.toISOString();
+		const complete = uploadedPhotos !== null && uploadedPhotos.length >= 1 && uploadedPhotos.length <= 10;
 		if (complete) {
-      setPropertyFields({
-					Photo: uploadedPhotos,
-
+			setPropertyFields({
+				Photo: uploadedPhotos,
 			});
 			onComplete(true);
 		} else {
-			onComplete(false); 
+			onComplete(false);
 		}
 	}, [uploadedPhotos, onComplete]);
-
 
 	return (
 		<div className="uploadPhotos">
@@ -101,12 +109,53 @@ const UploadPhotosComponent = ({ onComplete, setPropertyFields }) => {
 					{uploadError && <p className="error">{uploadError}</p>}
 					<div className="DisplayUploadedPhotoHere">
 						{uploadedPhotos.map((photo, index) => (
-							<div key={index} className="image">
+							<div
+								key={index}
+								className="image"
+								style={{ position: "relative" }}
+							>
 								<img
 									src={photo.preview}
 									alt={`Uploaded preview ${index}`}
-									style={{ width: "200px", height: "160px" }}
+									style={{
+										width: "200px",
+										height: "160px",
+										objectFit: "cover",
+									}}
 								/>
+								{/* <img
+									src={WatermarkImg}
+									alt="Watermark"
+									style={{
+										position: "absolute",
+										top: "50%",
+										left: "50%",
+										transform: "translate(-50%, -50%)",
+										width: "50%",
+										opacity: 0.5,
+										pointerEvents: "none",
+									}}
+								/> */}
+
+								<button
+									onClick={() => removePhoto(index)}
+									style={{
+										position: "absolute",
+										top: "0px",
+										right: "0px",
+										background: "transparent",
+										color: "var(--red)",
+										border: "none",
+										borderRadius: "50%",
+										width: "25px",
+										height: "0px",
+										cursor: "pointer",
+										fontSize: "30px",
+										lineHeight: "5px",
+									}}
+								>
+									&times;
+								</button>
 							</div>
 						))}
 					</div>

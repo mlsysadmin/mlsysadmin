@@ -215,18 +215,17 @@ const PostSellerListing = async (propertyFields = {}) => {
 
 		console.log("Response received:", response);
 
-		if (response.status === 200) {
+		if (response.status === 200 || response.status === 201) {
 			console.log("Listing Data Posted Successfully");
 			return response.data;
-		}  else {
+		} else {
 			console.error("Error posting data:", response.statusText);
 			console.log("Error details:", {
 				status: response.status,
 				statusText: response.statusText,
 				headers: response.headers,
-				data: response.data, 
+				data: response.data,
 			});
-
 		}
 		} catch (error) {
 			console.error("Error occurred while posting listing:", error);
@@ -263,7 +262,7 @@ const AddVendor = async (vendorPayload) => {
 			config
 		);
 
-		if (response.status === 200) {
+		if (response.status === 200 || response.status === 201) {
 			console.log("Vendor posted successfully with VendorId:", VendorId);
 		} else {
 			console.error("Error posting data:", response.statusText);
@@ -285,7 +284,7 @@ const GetVendorId = async () => {
 			`/api/getControlLastNumber/VendorId`
 		);
 
-		if (response.status === 200) {
+		if (response.status === 200 || response.status === 201) {
 			console.log("Control Last Number retrieved successfully:", response.data);
 			return response.data;
 		} else {
@@ -348,14 +347,11 @@ const GetPropertyNo = async () => {
 			`/api/getControlLastNumber/PropertyNo`
 		);
 
-		if (response.status === 200) {
+		if (response.status === 200 || response.status === 201) {
 			console.log("Property Number retrieved successfully:", response.data);
 			return response.data;
 		} else {
-			console.error(
-				"Error retrieving Property Number:",
-				response.statusText
-			);
+			console.error("Error retrieving Property Number:", response.statusText);
 		}
 	} catch (error) {
 		console.error("Error getting Property Number:", error.message);
@@ -423,7 +419,7 @@ const AddAddedFeature = async (addadddedFeaturePayload) => {
 			config
 		);
 
-		if (response.status === 200) {
+		if (response.status === 200 || response.status === 201) {
 			console.log("Added feature successfully:", response);
 			return response;
 		} else {
@@ -463,7 +459,7 @@ const GetFeature = async () =>{
 		// console.log(resdata)
 
 
-		if (response.status === 200) {
+		if (response.status === 200 || response.status === 201) {
 			console.log("success");
 			return resdata;
 		} else {
@@ -499,13 +495,17 @@ const GetVendorByNumber= async (number) =>{
 			config
 		);
 
-		if (response === 200){
+		if (response.status === 200 || response.status === 201) {
 			console.log("success");
 			return response;
-		}
-		else{
+		} else {
 			console.log("Error:", response.status.text);
-			console.log("Error Details:", response.message, response.stack, response.response);
+			console.log(
+				"Error Details:",
+				response.message,
+				response.stack,
+				response.response
+			);
 		}
 return response.data;
 	}catch (error){

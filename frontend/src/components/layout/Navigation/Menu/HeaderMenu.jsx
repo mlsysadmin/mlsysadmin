@@ -11,6 +11,7 @@ import { getCookieData } from "../../../../utils/CookieChecker";
 import { searchKyc } from "../../../../api/Public/User.api";
 
 import JoinTeam from "../../../modals/JoinTeamModal";
+import WorkingOnItModal from "../../../modals/WorkingOnModal";
 import PropertySearchModal from "../../../modals/PropertySearchModal";
 import { isCookiePresent } from "../../../../utils/CookieChecker";
 import UserLogInProfileDropdownBtn from "../../../custom/buttons/BuyerLogInButtonDropdown";
@@ -277,23 +278,27 @@ const HeaderMenu = () => {
 						closeModal={closeModal}
 					/>
 				)} */}
-				{!isMLWWSPresent && (
-					<RoundBtn
-						type="primary"
-						className="menu-buttons"
-						style={{
-							color: "#D90000",
-							backgroundColor: "transparent",
-							border: "1px solid #d90000",
-							boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-							padding: "5px 5px",
-							cursor: "pointer",
-						}}
-						label="Join our Team"
-						onClick={handleJoinTeamClick}
-					/>
+				{(!isMLWWSPresent || userDetails?.tier.label === "buyer") &&
+					userDetails?.tier.label !== "FULLY VERIFIED" && (
+						<RoundBtn
+							type="primary"
+							className="menu-buttons"
+							style={{
+								color: "#D90000",
+								backgroundColor: "transparent",
+								border: "1px solid #d90000",
+								boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+								padding: "5px 5px",
+								cursor: "pointer",
+							}}
+							label="Join our Team"
+							onClick={handleJoinTeamClick}
+						/>
+					)}
+				{showModal && (
+					<WorkingOnItModal isOpen={showModal} onClose={toggleModal} />
 				)}
-				{showModal && <JoinTeam toggleModal={toggleModal} />}
+				{/* {showModal && <JoinTeam toggleModal={toggleModal} />} */}
 				<Row align={"middle"} className="menu-buttons">
 					{isMLWWSPresent ? (
 						userDetails?.tier.label === "Buyer" ? (

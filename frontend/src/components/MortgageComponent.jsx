@@ -1,9 +1,19 @@
 import React from "react";
+import { useState } from "react";
 import { HomeFilled, DollarOutlined } from "@ant-design/icons";
 import { FooterComponent, CustomMlFooter } from "../components";
 import "../styles/mortgage.css";
+import WorkingOnItModal from "./modals/WorkingOnModal";
 
 const MortgageComponent = () => {
+	const [showModal, setShowModal] = useState(false);
+	const handleButtonClick = () => {
+		console.log("Button clicked, showing modal");
+		setShowModal(true);
+	};
+	const toggleModal = () => {
+		setShowModal(!showModal);
+	};
 	return (
 		<div className="mortgageContent">
 			<div className="mortgage-title">
@@ -15,7 +25,7 @@ const MortgageComponent = () => {
 			<div className="mortBtn">
 				<div className="purchasebtn">
 					<HomeFilled id="home-icon" />
-					<a style={{ textDecoration: "none" }} href="/buy-a-home">
+					<a style={{ textDecoration: "none" }} onClick={handleButtonClick}>
 						<p style={{ color: "white" }}>
 							I want to{" "}
 							<span style={{ fontWeight: "bold", color: "white" }}>
@@ -27,7 +37,7 @@ const MortgageComponent = () => {
 				</div>
 				<div className="refinancebtn">
 					<DollarOutlined id="dollar-icon" />
-					<a style={{ textDecoration: "none" }} href="/refinance">
+					<a style={{ textDecoration: "none" }} onClick={handleButtonClick}>
 						<p style={{ color: "white" }}>
 							I want to{" "}
 							<span style={{ fontWeight: "bold", color: "white" }}>
@@ -37,6 +47,9 @@ const MortgageComponent = () => {
 						</p>
 					</a>
 				</div>
+				{showModal && (
+					<WorkingOnItModal isOpen={showModal} onClose={toggleModal} />
+				)}
 			</div>
 			<br />
 			<br />
