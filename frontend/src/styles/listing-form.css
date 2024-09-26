@@ -126,10 +126,10 @@
 }
 .DisplayUploadedPhotoHere{
   display: grid;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  gap: 1rem ;
+  justify-content: left;
+  align-items: left;
+  /* width: 100%; */
+  gap: 30px ;
   grid-template-columns: repeat(3,1fr);
 }
 .featureCards .features {

@@ -7,6 +7,7 @@ import mail from "../assets/icons/previewlisting/mailenvelope.png";
 import user from "../assets/icons/previewlisting/usercircle.png";
 import chat from "../assets/icons/previewlisting/chatmessages.png";
 import call from "../assets/icons/previewlisting/callphone.png";
+import WorkingOnItModal from "./modals/WorkingOnModal";
 import "../styles/previewListing.css";
 import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl } from "../utils/GetPhoto";
@@ -32,15 +33,21 @@ const PreviewListRightSideContent = ({oneListing}) => {
 
   const handleButtonClick = () => {
     console.log("Button clicked, showing modal");
+	setShowModal(true);
   
-    setShowApplicationDetailModal(true);
-      console.log(showApplicationDetailModal);
+    // setShowApplicationDetailModal(true);
+    //   console.log(showApplicationDetailModal);
   };
 
   const handleCloseModal = () => {
     console.log("Closing modal");
     setShowApplicationDetailModal(false);
   };
+  const [showModal, setShowModal] = useState(false);
+
+	const toggleModal = () => {
+		setShowModal(!showModal);
+	};
 
 //   const [publiclisting, setPublicListing] = useState([]);
 
@@ -253,24 +260,27 @@ const PreviewListRightSideContent = ({oneListing}) => {
 				</div>
 				<div className="contact-textarea">
 					<img src={chat} alt="Chat" />
-					<textarea 
+					<textarea
 						placeholder={`I am interested in ${oneListing.UnitName}`}
 						rows={2}
 					/>
 				</div>
 				<SemiRoundBtn
-					label={'Send Message'}
-					size={'large'}
-					className={'send-message-button'}
+					label={"Send Message"}
+					size={"large"}
+					className={"send-message-button"}
 				/>
 				{/* <button className="send-message-button">Send Message</button> */}
 			</div>
-			{showApplicationDetailModal && (
+			{/* {showApplicationDetailModal && (
 				<ApplicationDetailModal
 					visible={showApplicationDetailModal}
 					onClose={handleCloseModal}
 					setShowApplicationDetailModal={setShowApplicationDetailModal}
 				/>
+			)} */}
+			{showModal && (
+				<WorkingOnItModal isOpen={showModal} onClose={toggleModal} />
 			)}
 		</div>
 	);
