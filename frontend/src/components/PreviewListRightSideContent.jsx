@@ -12,6 +12,7 @@ import "../styles/previewListing.css";
 import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl } from "../utils/GetPhoto";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
+import { useNavigate } from "react-router-dom";
 
 const PreviewListRightSideContent = ({ oneListing }) => {
 	const [homePrice, setHomePrice] = useState(500000); // Set default value
@@ -30,12 +31,9 @@ const PreviewListRightSideContent = ({ oneListing }) => {
 	const [showApplicationDetailModal, setShowApplicationDetailModal] =
 		useState(false);
 
+	const navigate = useNavigate();
 	const handleButtonClick = () => {
-		console.log("Button clicked, showing modal");
-		setShowModal(true);
-
-		// setShowApplicationDetailModal(true);
-		//   console.log(showApplicationDetailModal);
+		navigate("/comingsoon");
 	};
 
 	const handleCloseModal = () => {
@@ -278,9 +276,9 @@ const PreviewListRightSideContent = ({ oneListing }) => {
 					setShowApplicationDetailModal={setShowApplicationDetailModal}
 				/>
 			)} */}
-			{showModal && (
+			{/* {showModal && (
 				<WorkingOnItModal isOpen={showModal} onClose={toggleModal} />
-			)}
+			)} */}
 		</div>
 	);
 };
