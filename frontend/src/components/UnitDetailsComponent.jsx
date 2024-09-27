@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import BedsInputSlider from "./Slider/BedSlider";
 import ParkingInputSlider from "./Slider/ParkingSlider";
 import BathroomInputSlider from "./Slider/BathroomsSlider";
@@ -6,7 +6,6 @@ import NoOfFloorsInputSlider from "./Slider/NoOfFloors";
 import "../styles/listing-form.css";
 import floorlogo from "../assets/images/floorlogo.png";
 import property from "../assets/property.png";
-
 
 const UnitDetailsComponent = ({
 	onComplete,
@@ -53,19 +52,37 @@ const UnitDetailsComponent = ({
 	};
 
 	useEffect(() => {
+		if (
+			["commercial land/lot", "lot", "farm lot"].includes(selectedPropertyTab)
+		) {
+			setFurnishing(null);
+			setClassification(null);
+			setParking(0);
+			setNoOfFloors(0);
+			setFloorArea(0);
+			setNoOfBeds(0);
+			setNoOfBathrooms(0);
+		}
+		const requiresAdditionalFields = ![
+			"commercial land/lot",
+			"lot",
+			"farm lot",
+		].includes(selectedPropertyTab);
+
 		const isFormComplete =
 			typeof price === "string" &&
 			price.trim() !== "" &&
-			typeof selectedSellingPrice === "string" &&
-			selectedSellingPrice.trim() !== "" &&
-			typeof Classification === "string" &&
-			Classification.trim() !== "" &&
-			noOfBeds !== null &&
-			noOfBathrooms !== null &&
-			noOfFloors !== null &&
-			Parking !== null &&
-			typeof floorArea === "string" &&
-			floorArea.trim() !== "" &&
+			(!requiresAdditionalFields ||
+				(typeof selectedSellingPrice === "string" &&
+					selectedSellingPrice.trim() !== "" &&
+					typeof Classification === "string" &&
+					Classification.trim() !== "" &&
+					noOfBeds !== null &&
+					noOfBathrooms !== null &&
+					noOfFloors !== null &&
+					Parking !== null &&
+					typeof floorArea === "string" &&
+					floorArea.trim() !== "")) &&
 			typeof lotArea === "string" &&
 			lotArea.trim() !== "" &&
 			typeof propId === "string" &&
@@ -76,7 +93,7 @@ const UnitDetailsComponent = ({
 				Price: price,
 				DiscountedPrice: discountedPrice,
 				PricePerSqm: pricePerSqm,
-				Furnishing: selectedSellingPrice,
+				Furnishing: furnishing,
 				Classification,
 				BedRooms: noOfBeds,
 				BathRooms: noOfBathrooms,
@@ -107,12 +124,17 @@ const UnitDetailsComponent = ({
 		propId,
 	]);
 
+	const isPricePerSqmDisabled = ![
+		"lot",
+		"commercial land/lot",
+		"farm lot",
+	].includes(selectedPropertyTab);
 
-const isPricePerSqmDisabled =  ![
-	"Lot",
-	"Commercial Land/Lot",
-	"Farm Lot",
-].includes(selectedPropertyTab);
+	const disabledPropertyFields = [
+		"lot",
+		"commercial land/lot",
+		"farm lot",
+	].includes(selectedPropertyTab);
 
 	return (
 		<div className="listing-unit-details">
@@ -162,7 +184,15 @@ const isPricePerSqmDisabled =  ![
 												className={`furnish-tab ${
 													selectedSellingPrice === tab ? "selected" : ""
 												}`}
-												onClick={() => handleSellingPriceClick(tab)}
+												onClick={() =>
+													!disabledPropertyFields &&
+													handleSellingPriceClick(tab)
+												}
+												style={{
+													cursor: disabledPropertyFields
+														? "not-allowed"
+														: "pointer",
+												}}
 											>
 												{tab}
 											</div>
@@ -186,6 +216,10 @@ const isPricePerSqmDisabled =  ![
 										<BedsInputSlider
 											value={noOfBeds}
 											onChange={(value) => setNoOfBeds(Number(value))}
+											disabled={disabledPropertyFields}
+											style={{
+												cursor: disabledPropertyFields ? "not-allowed" : "auto",
+											}}
 										/>
 									</div>
 									<img
@@ -211,6 +245,10 @@ const isPricePerSqmDisabled =  ![
 										<ParkingInputSlider
 											value={Parking}
 											onChange={(value) => setParking(Number(value))}
+											disabled={disabledPropertyFields}
+											style={{
+												cursor: disabledPropertyFields ? "not-allowed" : "auto",
+											}}
 										/>
 									</div>
 									<img
@@ -248,6 +286,10 @@ const isPricePerSqmDisabled =  ![
 										setFloorArea(e.target.value);
 										validateNumberInput(e.target.value, setFloorAreaInputError);
 									}}
+									disabled={disabledPropertyFields}
+									style={{
+										cursor: disabledPropertyFields ? "not-allowed" : "auto",
+									}}
 								/>
 								<div className="sqm-prefix">sqm</div>
 							</div>
@@ -278,9 +320,11 @@ const isPricePerSqmDisabled =  ![
 											e.target.value,
 											setPricePerSqmInputError
 										);
-										
 									}}
-									disabled = { isPricePerSqmDisabled }
+									disabled={isPricePerSqmDisabled}
+									style={{
+										cursor: isPricePerSqmDisabled ? "not-allowed" : "auto",
+									}}
 								/>
 							</div>
 							{pricePerSqmInputError && (
@@ -337,7 +381,15 @@ const isPricePerSqmDisabled =  ![
 												className={`classification-tab ${
 													Classification === tab ? "selected" : ""
 												}`}
-												onClick={() => handleClassificationClick(tab)}
+												onClick={() =>
+													!disabledPropertyFields &&
+													handleClassificationClick(tab)
+												}
+												style={{
+													cursor: disabledPropertyFields
+														? "not-allowed"
+														: "pointer",
+												}}
 											>
 												{tab}
 											</div>
@@ -361,6 +413,10 @@ const isPricePerSqmDisabled =  ![
 										<BathroomInputSlider
 											value={noOfBathrooms}
 											onChange={(value) => setNoOfBathrooms(Number(value))}
+											disabled={disabledPropertyFields}
+											style={{
+												cursor: disabledPropertyFields ? "not-allowed" : "auto",
+											}}
 										/>
 									</div>
 									<img
@@ -386,6 +442,10 @@ const isPricePerSqmDisabled =  ![
 										<NoOfFloorsInputSlider
 											value={noOfFloors}
 											onChange={(value) => setNoOfFloors(Number(value))}
+											disabled={disabledPropertyFields}
+											style={{
+												cursor: disabledPropertyFields ? "not-allowed" : "auto",
+											}}
 										/>
 									</div>
 									<img
@@ -452,7 +512,7 @@ const isPricePerSqmDisabled =  ![
 									className={`propid-input ${
 										propIdInputError ? "error-input" : ""
 									}`}
-									type="number"
+									type="text"
 									onChange={(e) => {
 										setPropId(e.target.value);
 										if (!e.target.value) {

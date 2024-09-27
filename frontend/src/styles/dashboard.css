@@ -8,7 +8,7 @@
 
   #dashboard .banner {
       /* background: linear-gradient(rgba(0, 0, 0, 0.7)), url('../asset/banners/dashboard-banner.png') !important; */
-      background: rgba(0, 0, 0, 0.496) url('../asset/banners/dashboard-banner.png') !important;
+      background: rgba(0, 0, 0, 0.4) url('../asset/banners/dashboard-banner.png') !important;
       background-repeat: no-repeat !important;
       background-size: cover !important;
       background-blend-mode: darken !important;

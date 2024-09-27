@@ -6,6 +6,7 @@ import bannerImg from "../asset/banners/house_car_LE_auto_x2-transformed.jpeg";
 import { Button, Radio } from "antd";
 import { FooterComponent, CustomMlFooter, MainLayout } from "../components";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
+import WorkingOnItModal from "./ComingSoonComponent";
 
 const SellComponent = () => {
 	const [value, setValue] = useState(1);
@@ -31,6 +32,14 @@ const SellComponent = () => {
 	const handleChange = (event) => {
 		setSelectedOption(event.target.value);
 	};
+	const [showModal, setShowModal] = useState(false);
+
+	const handleButtonClick = () => {
+		navigate("/comingsoon");
+	};
+	const toggleModal = () => {
+		setShowModal(!showModal);
+	};
 
 	return (
 		<div className="sell">
@@ -53,23 +62,23 @@ const SellComponent = () => {
 									</button>{" "}
 								</a> */}
 								<SemiRoundBtn
-									label={'Contact Us'}
+									label={"Contact Us"}
 									id="contactUs"
-									className={'sell--action-btn'}
-									handleClick={() => navigate({
-										pathname: "contact-us"
-									})}
+									className={"sell--action-btn"}
+									handleClick={handleButtonClick}
+									// handleClick={() => navigate({
+									// 	pathname: "contact-us"
+									// })}
 								/>
 								{/* <a onClick={handleSignIn}>
 									<button id="signIn" type="primary">
 										Sign In
 									</button>
-								</a> */}
-								{' '}
+								</a> */}{" "}
 								<SemiRoundBtn
-									label={'Sign In'}
+									label={"Sign In"}
 									id="signIn"
-									className={'sell--action-btn'}
+									className={"sell--action-btn"}
 									handleClick={() => handleSignIn}
 								/>
 							</div>
@@ -87,9 +96,9 @@ const SellComponent = () => {
 									the right solution for you. Your advertisement will be viewed.
 								</p>
 								<SemiRoundBtn
-									label={'List Your Property'}
+									label={"List Your Property"}
 									id="ListPropertybtn"
-									className={'sell--action-btn'}
+									className={"sell--action-btn"}
 									handleClick={() => handleSignIn}
 								/>
 							</div>
@@ -194,16 +203,21 @@ const SellComponent = () => {
 							</p>
 						</div>
 						<SemiRoundBtn
-							label={'Contact Us'}
+							label={"Contact Us"}
 							id="contactUs"
-							className={'sell--action-btn'}
-							handleClick={() => navigate({
-								pathname: "contact-us"
-							})}
+							className={"sell--action-btn"}
+							handleClick={() =>
+								navigate({
+									pathname: "contact-us",
+								})
+							}
 						/>
 					</div>
 				</div>
 			</div>
+			{showModal && (
+				<WorkingOnItModal onClose={toggleModal} isOpen={showModal} />
+			)}
 		</div>
 	);
 };

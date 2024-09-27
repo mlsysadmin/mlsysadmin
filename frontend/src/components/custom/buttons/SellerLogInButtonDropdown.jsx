@@ -4,10 +4,12 @@ import userProfileLogIn from "../../../assets/userProfileLogIn.png";
 import profileDropdown from "../../../assets/profileDropdown.png";
 import { getCookieData } from "../../../utils/CookieChecker";
 import { searchKyc } from "../../../api/Public/User.api";
+import { Alert } from "antd";
 
 const SellerLogInButtonDropdown = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [userDetails, setUserDetails] = useState(null);
+   const [sessionExpired, setSessionExpired] = useState(false);
 
   const accountDetails = getCookieData();
 	console.log("details:", accountDetails);
@@ -43,6 +45,20 @@ const SellerLogInButtonDropdown = () => {
 
 		window.location.href = "/";
 	};
+const SessionExpiredInitialization = () => {
+	setTimeout(() => {
+		setSessionExpired(true);
+		handleLogout();
+	}, 60000);
+};
+
+useEffect(() => {
+	SessionExpiredInitialization();
+	return () => {
+		clearTimeout();
+	};
+}, []);
+
   const firstName = accountDetails ? accountDetails.firstName : "User";
 	const lastNameInitial =
 		accountDetails && accountDetails.lastName
@@ -52,6 +68,7 @@ const SellerLogInButtonDropdown = () => {
 
   return (
 		<div style={{ position: "relative" }}>
+
 			<button
 				style={{
 					margin: "0px 0px 0px 10px",

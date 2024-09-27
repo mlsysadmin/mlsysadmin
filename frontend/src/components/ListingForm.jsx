@@ -24,6 +24,8 @@ import CustomMlFooter from "./custom/Custom.Mlfooter";
 import FooterComponent from "./layout/FooterComponent";
 import { getCookieData } from "../utils/CookieChecker";
 import { searchKyc } from "../api/Public/User.api";
+import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
+import AlertModal from "./modals/AlertModal";
 
 export const ListingForm = () => {
 	const [currentStep, setCurrentStep] = useState(0);
@@ -40,9 +42,13 @@ export const ListingForm = () => {
 	const [propIdInputError, setPropIdInputError] = useState("");
 	const [showSuccessfulMsgModal, setShowSuccessfulMsgModal] = useState(false);
 	const [userDetails, setUserDetails] = useState(null);
-
-	const [vendorType, setVendorType] = useState("");
+	const [postedPropertyNo, setPostedPropertyNo] = useState(null);
+	const [loadingModal, setShowLoadingModal] = useState(false);
+	const [publiclisting, setPublicListing] = useState([]);
+	const [showAlert, setShowAlert] = useState(true);
+	const [showAlertModal, setShowAlertModal] = useState(false);
 	const [showVendorModal, setShowVendorModal] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [tin, setTin] = useState("");
 
 	const accountDetails = getCookieData();
@@ -58,10 +64,6 @@ export const ListingForm = () => {
 		}
 	};
 
-	// useEffect(()=>{
-	// 	fetchUserDetails();
-	// })
-
 	const [errors, setErrors] = useState({
 		0: false,
 		1: false,
@@ -75,7 +77,7 @@ export const ListingForm = () => {
 		PropertyNo: "",
 		VendorId: "",
 		VendorName: "",
-		SellingType: "project selling",
+		SellingType: "brokerage",
 		ProjectId: "NA",
 		ProjectName: "NA",
 		City: "",
@@ -91,8 +93,8 @@ export const ListingForm = () => {
 		IsFeatured: "no",
 		VideoLink: null,
 		Details: "",
-		ListingOwnerId: "NA",
-		ListingOwnerName: "NA",
+		ListingOwnerId: "",
+		ListingOwnerName: "",
 		IsModel: "no",
 		FloorArea: "",
 		LotArea: "",
@@ -102,6 +104,7 @@ export const ListingForm = () => {
 		Classification: "",
 		PricePerSqm: "",
 		Parking: "",
+		RecordStatus: "pending",
 		NoOfFloor: "",
 		Country: "",
 		ProvinceState: "",
@@ -110,11 +113,35 @@ export const ListingForm = () => {
 		Photo: [],
 		Features: [],
 		AddedFeature: [],
+		Approver1Status: "Pending",
+		Approver2Status: "Pending",
+		Approver3Status: "Pending",
 	});
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
+
+	const handleError = (error) => {
+		if (error.status >= 400 && error.status <= 500) {
+			setShowAlert(true);
+			setShowAlertModal({
+				title: "Request Failed",
+				text: error.data.message || "Something went wrong",
+				subtitle: error.data.subtitle || "",
+				subLink: true,
+				isError: true,
+			});
+		} else {
+			setShowAlert(true);
+			setShowAlertModal({
+				title: "Error",
+				text: error.data.message || "An error occurred",
+				subTitle: "",
+				isError: true,
+			});
+		}
+	};
 
 	const handleStepComplete = (stepIndex, isComplete) => {
 		setCompletedSteps((prev) => {
@@ -136,11 +163,6 @@ export const ListingForm = () => {
 			setCurrentStep(nextStep);
 			console.log("Current Step:", nextStep);
 
-			// if (stepIndex === 5) {
-			// 	if (!isFocused) {
-			// 		window.scrollTo({ top: 0, behavior: "smooth" });
-			// 	}
-
 			if (stepRefs.current[nextStep]) {
 				if (!isFocused) {
 					stepRefs.current[nextStep].scrollIntoView({ behavior: "smooth" });
@@ -160,16 +182,23 @@ export const ListingForm = () => {
 			const vendorExists = await GetVendorByNumber(number);
 			console.log("vendorDetails", vendorExists);
 
-			if (vendorExists) {
+			// setShowLoadingModal({
+			// 	loading: true,
+			// 	text: "Just a moment",
+			// });
+
+		if (vendorExists) {
 				setShowVendorModal(false);
-				await handleSubmit(vendorExists.VendorId);
-				setShowSuccessfulMsgModal(true);
-				console.log("Vendor Exist:", vendorExists.VendorId);
+				// setIsSubmitting(true);
+				console.log("Vendor Exist:", vendorExists.data.VendorId);
+				await handleSubmit(vendorExists.data.VendorId);
+
+				console.log("Vendor Exist:", vendorExists.data.VendorId);
 			} else {
 				setShowVendorModal(true);
 			}
 		} catch (error) {
-			console.error("Error checking vendor existence:", error.message);
+			console.error("Error checking vendor existence:", error);
 		}
 	};
 
@@ -213,15 +242,11 @@ export const ListingForm = () => {
 							console.error(`Error adding feature: ${error.message}`);
 						}
 					});
-					allAddedFeaturePayloads.push(addAddedFeaturePayload);
-					// await AddAddedFeature(allAddedFeaturePayloads);
 				} else {
 					const addFeaturePayload = {
 						FeatureName: FeatureName.FeatureName,
 						Type: FeatureName.Type,
 					};
-
-					// console.log("added", addAddedFeaturePayload);
 
 					AllAddFeaturePayload.push(addFeaturePayload);
 
@@ -246,16 +271,11 @@ export const ListingForm = () => {
 							console.error(`Error adding feature: ${error.message}`);
 						}
 					});
-
-					// await AddFeature(AllAddFeaturePayload);
-					// await AddAddedFeature(allAddedFeaturePayloads);
 				}
 			}
-			console.log("All feature payloads:", allAddedFeaturePayloads);
-			console.log("All feature payloads:", AllAddFeaturePayload);
-
+			// console.log("All feature payloads:", allAddedFeaturePayloads);
+			// console.log("All feature payloads:", AllAddFeaturePayload);
 			console.log("Features processed and posted successfully.");
-			return { allAddedFeaturePayloads, AllAddFeaturePayload };
 		} catch (error) {
 			console.error("Error processing features:", error.message);
 		}
@@ -263,6 +283,9 @@ export const ListingForm = () => {
 
 	const handleSubmit = async (VendorId = null) => {
 		try {
+			setIsSubmitting(true);
+			
+			// console.log("modal", showAlertModal);
 			const generatedVendorId = VendorId || (await GetVendorId());
 
 			const vendorName = `${userDetails?.name.firstName} ${userDetails?.name.lastName}`;
@@ -277,8 +300,8 @@ export const ListingForm = () => {
 					TIN: tin,
 					Email: userDetails.email,
 					ContactPerson: "",
-					RecordStatus: "",
-					VendorType: vendorType,
+					RecordStatus: "active",
+					VendorType: "homeowner",
 					AccessType: "public",
 					OtherInfo: "Hey Joe",
 					ListingOwnerId: "NA",
@@ -294,11 +317,6 @@ export const ListingForm = () => {
 			const propertyPhotos = propertyFields.Photo.map((photo) => photo.file);
 
 			const photosArray = propertyFields.Photo;
-			// const imagesPayload = {
-			// 	PropertyNo: propertyNo,
-			// 	MainPhoto: photosArray.length > 0 ? photosArray[0].file : null,
-			// 	Photo: propertyPhotos,
-			// };
 
 			const Vendornumber = accountDetails.mobileNumber;
 			const existing = await GetVendorByNumber(Vendornumber);
@@ -313,15 +331,22 @@ export const ListingForm = () => {
 			);
 
 			propertyPhotos.forEach((photo) => {
-				imagePayload.append("Photo", photo);
-				imagePayload.append("Filename", photo.name);
+				imagePayload.append("Photo[]", photo);
+				imagePayload.append("FileName[]", photo.name);
 			});
+
+			imagePayload.getAll("Photo");
+			imagePayload.getAll("FileName");
+
+			console.log("image:", imagePayload.getAll("Photo"));
+			console.log("filename:", imagePayload.getAll("FileName"));
 
 			const postFeatures = await handleFeatureChecking();
 
 			const updatedPropertyFields = {
 				...propertyFields,
-
+				ListingOwnerId: generatedVendorId,
+				ListingOwnerName: existing.VendorName,
 				postFeatures,
 				PropertyNo: propertyNo,
 				VendorId: generatedVendorId,
@@ -331,7 +356,10 @@ export const ListingForm = () => {
 			console.log("Final listing data:", updatedPropertyFields);
 
 			const postData = await PostSellerListing(updatedPropertyFields);
-			console.log("Listing API Response:", postData);
+			setPostedPropertyNo(updatedPropertyFields);
+			console.log("this is the current post:", postedPropertyNo);
+			console.log("Listing API Response:", updatedPropertyFields);
+			console.log("propenumber:", updatedPropertyFields.PropertyNo);
 
 			setPropertyFields((prevFields) => ({
 				...prevFields,
@@ -339,8 +367,17 @@ export const ListingForm = () => {
 			}));
 
 			await savePropertyImages(imagePayload);
+setIsSubmitting(false);
+			setShowSuccessfulMsgModal(true);
+			
 		} catch (error) {
-			console.error("Failed to submit listing:", error.message);
+
+			if (error.status >= 400 && error.status <= 500){
+				return(error);
+			}else{
+				return(error);
+			}
+				// console.error("Failed to submit listing:", error);
 		}
 	};
 
@@ -355,9 +392,33 @@ export const ListingForm = () => {
 		setShowSuccessfulMsgModal(false);
 	};
 
+	const isFormComplete = Object.values(completedSteps).every(Boolean);
+
 	const handlePreviewListing = (id) => {
-		navigate(`/previewListing/${id}`, { state: id });
+		navigate(`/previewListing/?id=${id}`, { state: id });
 	};
+	const LoadingIcon = (
+		<div className="spinner-icon">
+			<svg viewBox="0 0 50 50" width="40" height="40">
+				<circle
+					cx="25"
+					cy="25"
+					r="20"
+					fill="none"
+					strokeWidth="4"
+					stroke="var(--red)"
+					strokeLinecap="round"
+				>
+					<animate
+						attributeName="stroke-dasharray"
+						values="0 100;100 100;100 0"
+						dur="3s"
+						repeatCount="indefinite"
+					/>
+				</circle>
+			</svg>
+		</div>
+	);
 
 	return (
 		<>
@@ -544,7 +605,15 @@ export const ListingForm = () => {
 								correct.
 							</p>
 							<div className="buttonSubmit">
-								<button type="submit" onClick={handleVendorSubmit}>
+								<button
+									type="submit"
+									onClick={handleVendorSubmit}
+									disabled={!isFormComplete}
+									style={{
+										backgroundColor: isFormComplete ? "var(--red)" : "gray",
+										cursor: isFormComplete ? "pointer" : "not-allowed",
+									}}
+								>
 									Submit Application
 								</button>
 								{/* TIN Modal */}
@@ -617,13 +686,62 @@ export const ListingForm = () => {
 												</p>
 												<button
 													className="buttonkyc"
-													onClick={handlePreviewListing}
+													onClick={() =>
+														handlePreviewListing(postedPropertyNo.PropertyNo)
+													}
 												>
 													Preview Listing
 												</button>
 											</div>
 										</div>
 									</div>
+								)}
+
+								{isSubmitting && (
+									<div
+										className="loading-modal"
+										style={{
+											position: "fixed",
+											top: "0",
+											left: "0",
+											width: "100%",
+											height: "100%",
+											display: "flex",
+											justifyContent: "center",
+											alignItems: "center",
+											backgroundColor: "rgba(0, 0, 0, 0.5)",
+											zIndex: "9999",
+										}}
+									>
+										<div
+											className="loading-spinner"
+											style={{
+												backgroundColor: "white",
+												padding: "10px",
+												borderRadius: "5px",
+												fontSize: "18px",
+												display: "flex",
+												width: "auto",
+												justifyContent: "center",
+												alignItems: "center",
+												flexDirection: "column",
+												margin: "5px",
+											}}
+										>
+											Creating...{LoadingIcon}
+										</div>
+									</div>
+								)}
+								{showAlert && (
+									<AlertModal
+										title={showAlertModal.title}
+										text={showAlertModal.text}
+										subtitle={
+											showAlertModal.subTitle ? showAlertModal.subTitle : ""
+										}
+										isError={showAlertModal.isError}
+										onClose={() => setShowAlert(false)}
+									/>
 								)}
 							</div>
 						</div>
