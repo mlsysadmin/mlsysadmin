@@ -45,19 +45,19 @@ const SellerLogInButtonDropdown = () => {
 
 		window.location.href = "/";
 	};
-const SessionExpiredInitialization = () => {
-	setTimeout(() => {
-		setSessionExpired(true);
-		handleLogout();
-	}, 60000);
-};
+// const SessionExpiredInitialization = () => {
+// 	setTimeout(() => {
+// 		setSessionExpired(true);
+// 		handleLogout();
+// 	}, 60000);
+// };
 
-useEffect(() => {
-	SessionExpiredInitialization();
-	return () => {
-		clearTimeout();
-	};
-}, []);
+// useEffect(() => {
+// 	SessionExpiredInitialization();
+// 	return () => {
+// 		clearTimeout();
+// 	};
+// }, []);
 
   const firstName = accountDetails ? accountDetails.firstName : "User";
 	const lastNameInitial =
