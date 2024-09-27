@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/All.css";
 import Card from "./custom/cards/Card";
 import property from "../images/Guest/property.png";
 import Pagination from "./custom/pagination/Pagination";
 import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout, SearchPropertiesSoration } from "../components";
-import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
+import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto"
 import { CapitalizeString, GetPropertyTitle, isPastAMonth } from "../utils/StringFunctions.utils";
 import NoListingAvailable from "./custom/custom.NoListingAvailable";
@@ -13,10 +13,14 @@ import NoListingAvailable from "./custom/custom.NoListingAvailable";
 import DefaultPropertyImage from "../asset/fallbackImage.png";
 import { GetAllListing } from "../api/GetAllPublicListings";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
+import NoDataAvailable from "./NoDataFoundComponent";
+import { capitalize } from "@mui/material";
 
 const AllComponent = () => {
 	const navigate = useNavigate();
+	const location = useLocation();
 	const [loading, setLoading] = useState(false);
+	const [saleType, setSaleType] = useState("sale");
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const cardsPerPage = 9;
@@ -34,49 +38,61 @@ const AllComponent = () => {
 			property_no: '',
 			isFeatured: '',
 			sale_type: '',
-			property_type: '',
-			no_of_beds: ''
+			no_of_beds: '',
+			property_type: ''
 		}
 	]);
 
-
-	const handleCardClick = (propertyNo) => {
-		console.log("id", propertyNo);
-		// window.location.href = `/previewListing/${id}`;
-		navigate(`/previewListing/?id=${propertyNo}`, { state: propertyNo });
+	const handleCardClick = (id) => {
+		navigate(`/previewListing/?id=${id}`, { state: id });
 	};
 
-	const getlistings = async () => {
+	const getlistings = async (sale_type) => {
 		try {
 			const res = await GetPropertiesBySaleStatus();
 
 			const dataresp = res.data;
 
-			const listing = dataresp.filter((listing) => !isPastAMonth(listing.created_at)).map((item, i) => {
+			if (dataresp.length == 0) {
+				setPublicListing([])
+			} else {
 
-				console.log('listing', item);
+				const listingRes = dataresp.filter((listing) => sale_type == 'all' ? 
+					["sale", "rent"].includes(listing.SaleType.toLowerCase()) : [sale_type].includes(listing.SaleType.toLowerCase())
+				);
 
-				const getLength = GetPhotoLength(item.id);
+				if (listingRes.length !== 0) {
+					const newListing = await Promise.all(listingRes.map(async (item, i) => {
 
-				const image = GetPhotoWithUrl(item.Photo);
+						const getPhotoGallery = await GetUnitPhotos(item.id);
 
-				return {
-					id: item.id,
-					title: GetPropertyTitle(item.ProjectName, item.UnitName),
-					price: AmountFormatterGroup(item.Price),
-					status: "New",
-					pics: image ? getLength + 1 : getLength,
-					img: image,
-					no_of_bathrooms: item.BathRooms,
-					lot: item.LotArea,
-					property_no: item.PropertyNo,
-					isFeatured: "yes",
-					sale_type: CapitalizeString(item.SaleType),
-					no_of_beds: item.BedRooms,
-					property_type: item.PropertyType
-					// isFeatured: item.IsFeatured
+						const gallery = getPhotoGallery.data;
+
+						const image = GetPhotoWithUrl(item.Photo);
+
+						return {
+							id: item.id,
+							title: CapitalizeString(GetPropertyTitle(item.ProjectName, item.UnitName)),
+							price: AmountFormatterGroup(item.Price),
+							status: `For ${CapitalizeString(item.SaleType)}`,
+							pics: image ? gallery.length + 1 : 0,
+							img: image,
+							no_of_bathrooms: item.BathRooms,
+							lot: item.LotArea,
+							property_no: item.PropertyNo,
+							isFeatured: item.IsFeatured,
+							sale_type: CapitalizeString(item.SaleType),
+							no_of_beds: item.BedRooms,
+							property_type: item.PropertyType
+						}
+					}))
+					setPublicListing(newListing);
+
+				} else {
+					setPublicListing([]);
 				}
-			});
+
+			}
 		} catch (error) {
 			console.error("Error fetching public listings:", error);
 			setPublicListing([]);
@@ -84,18 +100,29 @@ const AllComponent = () => {
 
 	}
 
-	// console.log( GetPhotoFromDB())
-	console.log("getlength", GetPhotoLength())
-
 	useEffect(() => {
 		// allPublicListing()
-		getlistings()
+		// getlistings()
+		const search = location.search;
+		console.log(search);
+
+		const queryParams = new URLSearchParams(search);
+		const getSaleType = queryParams.get("sale_type");
+		
+		if (queryParams.size !== 0) {
+
+			getlistings(getSaleType);
+			setSaleType(getSaleType);
+		} else {
+			getlistings('all');
+			setSaleType('all');
+		}
+
 	}, [])
 
 	const indexOfLastCard = currentPage * cardsPerPage;
 	const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-	const currentCards = publiclisting?.slice(indexOfFirstCard, indexOfLastCard);
-
+	const currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
 
 	const totalPages = Math.ceil(publiclisting?.length / cardsPerPage);
 	return (
@@ -104,30 +131,39 @@ const AllComponent = () => {
 				<ListingSearch />
 			</div>
 			<div className="all-page-container">
-				<span className="all-h1">For Sale/Rent</span>
-				<SearchPropertiesSoration />
-				<div className="card-container">
-					{currentCards.length > 0 ? (
-						currentCards.map((item, index) => (
-							<Card
-								title={item.title}
-								subtitle={`${CapitalizeString(item.property_type)} For ${CapitalizeString(item.sale_type)}`}
-								price={`PHP ${AmountFormatterGroup(item.price)}`}
-								status={item.sale_type}
-								pics={item.pics}
-								img={item.img}
-								no_of_bathrooms={item.no_of_bathrooms}
-								lot={item.lot}
-								bed={item.no_of_beds}
-								key={index}
-								loading={loading}
-								handleClick={() => handleCardClick(item.property_no)}
-							/>
-						))
-					) : (
-						<NoListingAvailable />
-					)}
-				</div>
+				<span className="all-h1">Properties For {capitalize(saleType)}</span>
+				{
+					currentCards.length !== 0 ? (
+						<>
+							<SearchPropertiesSoration properties_count={publiclisting.length} current_properties_count={currentCards.length}/>
+							<div className="card-container">
+								{
+									currentCards.map((data, index) => (
+										<Card
+											key={index}
+											id={data.id}
+											title={data.title}
+											price={`PHP ${data.price}`}
+											imgSrc={data.img}
+											beds={data.no_of_beds}
+											baths={data.no_of_bathrooms}
+											size={data.lot}
+											likes={data.pics}
+											forsale={data.status}
+											subtitle={`${CapitalizeString(data.property_type)} For ${CapitalizeString(data.sale_type)}`}
+											handleClick={() => handleCardClick(data.property_no)}
+										/>
+									))
+
+								}
+							</div>
+						</>
+					)
+						:
+						<NoDataAvailable
+							message={`No available properties for Rent/Sale`}
+						/>
+				}
 
 				{currentCards.length > 0 && (
 					<Pagination

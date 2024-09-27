@@ -7,10 +7,10 @@ const Dashboard = () => {
   return (
     <>
       <DashboardComponent />
-      <div id='dashboard-footer'>
+      {/* <div id='dashboard-footer'>
         <CustomMlFooter />
         <FooterComponent />
-      </div>
+      </div> */}
     </>
   )
 }

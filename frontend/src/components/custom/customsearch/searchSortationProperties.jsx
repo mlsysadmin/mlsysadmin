@@ -30,7 +30,7 @@ const SearchPropertiesSoration = ({ properties_count, current_properties_count }
 		<div className="search-sortation">
 			<div className="sort">
 				<span>
-					Showing {properties_count} out of {current_properties_count} entries{" "}
+					Showing {current_properties_count} out of {properties_count} entries{" "}
 				</span>
 			</div>
 			<div className="sort-div-class">

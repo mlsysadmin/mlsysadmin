@@ -1,15 +1,16 @@
 .custom-pagination {
   display: flex;
   justify-content: space-between;
-  padding:10px 100px 10px 100px;
+  padding:10px 110px 10px 110px;
   width: 100%;
+  margin: 30px 0 10px;
 }
 
 .custom-pagination .pagination-numbers span {
   margin: 0 5px;
   padding: 15px 25px;
   border: 1px solid #8C9094;
-  border-radius: 10px;
+  border-radius: 7px;
   cursor: pointer;
   background-color: transparent;
   color: #8C9094;

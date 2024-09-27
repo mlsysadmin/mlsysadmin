@@ -6,38 +6,32 @@ const GetPhotoWithUrl = (photoPath) => {
     const url = process.env.REACT_APP_IGOT_API_URL;
 
     if (photoPath) {
+      
       return `${url}/${photoPath}`;
     } else {
-      return DefaultPropertyImage;
+      
+      return null;
     }
   } catch (error) {
-    return DefaultPropertyImage;
+    return null;
   }
 };
 
 // unitId = property id
-const GetPhotoLength = (unitId) => {
+const GetPhotoLength = async (unitId) => {
   try {
     
     if (unitId) {
 
-      let photoLength = 0
-
-      GetUnitPhotos(unitId).then((data) => {
-        
-        photoLength = data.length;
-        
-      }).catch(err => {
-        photoLength = 0;
-      });
+      const photoLength = await GetUnitPhotos(unitId);
       
-      return photoLength;
+      return photoLength.data.data
 
     } else {
-      return 0;
+      return [];
     }
   } catch (error) {
-    return 0;
+    return [];
   }
 };
 

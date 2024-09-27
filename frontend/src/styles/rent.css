@@ -1,131 +1,147 @@
- *{
-  padding: 0;
-  margin: 0;
-}
+ * {
+ 	padding: 0;
+ 	margin: 0;
+ }
 
-.topbar{
-  display: flex;
-  justify-content: space-between;
-  align-self: start;
-  width: 100%;
-}
+ .topbar {
+ 	display: flex;
+ 	justify-content: space-between;
+ 	align-self: start;
+ 	width: 100%;
+ }
 
 
-.rentContainer{
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    font-weight: normal;
-}
-.rent{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: auto;
-  background-color: white;
-}
-.rent-h1{  
-  justify-content: left;
-  display: flex;
-  align-items: center;
- margin: 50px 0px 20px 120px;
-  font-size: 24px;
-  font-weight: bold;
-}
-.rentContent{
-  display: flex;
-  flex-direction: column;
-}
+ .rentContainer {
+ 	padding: 50px;
+ 	display: flex;
+ 	flex-direction: column;
+ 	justify-content: start;
+ 	font-weight: normal;
+ }
 
-@media screen and (min-width: 320px) and (max-width: 359px) {
-	.rentContainer {
-    display: flex;
-    flex-direction: column;
-	width: 100%;
-	padding: 0;
+ .rent {
+ 	display: flex;
+ 	flex-direction: column;
+ 	width: 100%;
+ 	height: auto;
+ 	/* background-color: white; */
+ }
 
-	}
-  .rentContainer .rent-h1 {
-		font-size: 22px;
-		margin: 20px 0px 20px 20px;
-	}
-}
-@media screen and (min-width: 360px) and (max-width: 480px) {
-	.rentContainer {
-    display: flex;
-    flex-direction: column;
-	width: 100%;
-	padding: 5px;
+ .rent-h1 {
+ 	justify-content: left;
+ 	display: flex;
+ 	align-items: center;
+ 	margin: 50px 0px 20px 120px;
+ 	font-size: 30px;
+ 	font-weight: bold;
+ }
 
-	}
-   .rentContainer .rent-h1 {
-		font-size: 22px;
-		margin: 20px 0px 20px 20px;
-	}
-}
-@media screen and (min-width: 481px) and (max-width: 768px) {
-	.rentContainer {
-    display: flex;
-    flex-direction: column;
-	width: 100%;
-	padding: 5px;
+ .rentContent {
+ 	display: flex;
+ 	flex-direction: column;
+ }
 
-	}
-   .rentContainer .rent-h1 {
-		font-size: 26px;
-		margin: 20px 0px 0px 20px;
-	}
-}
-@media screen and (min-width: 481px) and (max-width: 768px) {
-	.rentContainer {
-    display: flex;
-    flex-direction: column;
-	width: 100%;
-	padding: 5px;
+ @media screen and (min-width: 320px) and (max-width: 359px) {
+ 	.rentContainer {
+ 		display: flex;
+ 		flex-direction: column;
+ 		width: 100%;
+ 		padding: 0;
 
-	}
-   .rentContainer .rent-h1 {
-		font-size: 26px;
-		margin: 20px 0px 0px 20px;
-	}
-}
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-	.rentContainer {
-    display: flex;
-    flex-direction: column;
-	width: 100%;
-	padding: 5px;
+ 	}
 
-	}
-   .rentContainer .rent-h1 {
-		font-size: 26px;
-		margin: 20px 0px 0px 20px;
-	}
-}
-@media screen and (min-width: 1025px) and (max-width: 1200px) {
-	.rentContainer {
-    display: flex;
-    flex-direction: column;
-	width: 100%;
-	padding: 5px;
+ 	.rentContainer .rent-h1 {
+ 		font-size: 22px;
+ 		margin: 20px 0px 20px 20px;
+ 	}
+ }
 
-	}
-   .rentContainer .rent-h1 {
-		font-size: 26px;
-		margin: 20px 0px 0px 40px;
-	}
-}
-@media screen and (min-width: 1201px) and (max-width: 1400px) {
-  .rentContainer {
-    display: flex;
-    flex-direction: column;
-	width: 100%;
-	padding: 5px;
+ @media screen and (min-width: 360px) and (max-width: 480px) {
+ 	.rentContainer {
+ 		display: flex;
+ 		flex-direction: column;
+ 		width: 100%;
+ 		padding: 5px;
 
-	}
-   .rentContainer .rent-h1 {
-		font-size: 26px;
-		margin: 20px 0px 0px 40px;
-	}
-}
+ 	}
+
+ 	.rentContainer .rent-h1 {
+ 		font-size: 22px;
+ 		margin: 20px 0px 20px 20px;
+ 	}
+ }
+
+ @media screen and (min-width: 481px) and (max-width: 768px) {
+ 	.rentContainer {
+ 		display: flex;
+ 		flex-direction: column;
+ 		width: 100%;
+ 		padding: 5px;
+
+ 	}
+
+ 	.rentContainer .rent-h1 {
+ 		font-size: 26px;
+ 		margin: 20px 0px 0px 20px;
+ 	}
+ }
+
+ @media screen and (min-width: 481px) and (max-width: 768px) {
+ 	.rentContainer {
+ 		display: flex;
+ 		flex-direction: column;
+ 		width: 100%;
+ 		padding: 5px;
+
+ 	}
+
+ 	.rentContainer .rent-h1 {
+ 		font-size: 26px;
+ 		margin: 20px 0px 0px 20px;
+ 	}
+ }
+
+ @media screen and (min-width: 769px) and (max-width: 1024px) {
+ 	.rentContainer {
+ 		display: flex;
+ 		flex-direction: column;
+ 		width: 100%;
+ 		padding: 5px;
+
+ 	}
+
+ 	.rentContainer .rent-h1 {
+ 		font-size: 26px;
+ 		margin: 20px 0px 0px 20px;
+ 	}
+ }
+
+ @media screen and (min-width: 1025px) and (max-width: 1200px) {
+ 	.rentContainer {
+ 		display: flex;
+ 		flex-direction: column;
+ 		width: 100%;
+ 		padding: 5px;
+
+ 	}
+
+ 	.rentContainer .rent-h1 {
+ 		font-size: 26px;
+ 		margin: 20px 0px 0px 40px;
+ 	}
+ }
+
+ @media screen and (min-width: 1201px) and (max-width: 1400px) {
+ 	.rentContainer {
+ 		display: flex;
+ 		flex-direction: column;
+ 		width: 100%;
+ 		padding: 5px;
+
+ 	}
+
+ 	.rentContainer .rent-h1 {
+ 		font-size: 26px;
+ 		margin: 20px 0px 0px 40px;
+ 	}
+ }

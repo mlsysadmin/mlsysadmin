@@ -10,6 +10,7 @@ import MLBROKERAGEAxiosInstance from "../helper/axios";
 import {
   GetPropertiesBySaleStatus,
   GetPublicListingByID,
+  GetUnitPhotos,
 } from "../api/GetAllPublicListings";
 import { LocationFormatter } from "../utils/LocationDateFormatter";
 import { GetPhotoWithUrl, GetPhotoLength, GetAllPhoto } from "../utils/GetPhoto";
@@ -38,6 +39,8 @@ const PreviewListing = () => {
   const [features, setFeatures] = useState([]);
   const [amenities, setAmenities] = useState([]);
   const [includes, setIncludes] = useState([]);
+  const [unitPhotos, setUnitPhotos] = useState([]);
+
 
   // const features = [
   //   {
@@ -95,6 +98,23 @@ const PreviewListing = () => {
           } else {
 
             const features = await GetFeaturesByPropertyNo(dataresp.PropertyNo);
+            const photos = await UnitPhotos(dataresp.id);
+      
+            let photo = dataresp.Photo
+            console.log("photo", photo);
+            if (photos.length !== 0) {
+
+              let gallery = photos.map((item, i) => {
+                return item.Photo
+              });
+
+              gallery.push(photo);
+              
+              setUnitPhotos(gallery);
+
+            }else{
+              setUnitPhotos([photo]);
+            }
 
             const getFeatures = features.filter((item) => item.Type === "features");
             const getAmenities = features.filter((item) => item.Type === "amenities");
@@ -116,7 +136,7 @@ const PreviewListing = () => {
       }
     };
     getlistingByID();
-  }, [location.state]);
+  }, []);
 
   const GetFeaturesByPropertyNo = async (propertyNo) => {
     try {
@@ -132,6 +152,23 @@ const PreviewListing = () => {
     }
   }
 
+  const UnitPhotos = async (propertyId) => {
+    try {
+
+      console.log(propertyId);
+      
+      const res = await GetUnitPhotos(propertyId);
+      
+      return res.data;
+
+    } catch (error) {
+
+      setUnitPhotos([]);
+
+    }
+  };
+
+console.log("unitPhotos", unitPhotos);
 
   // if (oneListing) {
   //   console.log("Title:", oneListing.title);
@@ -188,7 +225,7 @@ const PreviewListing = () => {
               style={{ display: "flex", width: "100%", gap: "1rem" }}
             >
               <div className="real-estate-listing-card">
-                <PropertyListing oneListing={oneListing} />
+                <PropertyListing oneListing={oneListing} unitPhotos={unitPhotos}/>
                 {/* <div className="previewlist-overview">
               <span>OVERVIEW</span>
               <p>Property ID: {oneListing.listings.property_id}</p>
