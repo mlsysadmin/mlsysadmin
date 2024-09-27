@@ -11,7 +11,7 @@ import { getCookieData } from "../../../../utils/CookieChecker";
 import { searchKyc } from "../../../../api/Public/User.api";
 
 import JoinTeam from "../../../modals/JoinTeamModal";
-import WorkingOnItModal from "../../../modals/WorkingOnModal";
+import WorkingOnItModal from "../../../ComingSoonComponent";
 import PropertySearchModal from "../../../modals/PropertySearchModal";
 import { isCookiePresent } from "../../../../utils/CookieChecker";
 import UserLogInProfileDropdownBtn from "../../../custom/buttons/BuyerLogInButtonDropdown";
@@ -21,6 +21,7 @@ import TextBtn from "../../../custom/buttons/TextBtn.custom";
 import LoginModal from "../../../modals/loginmodal";
 import SellerLogInButtonDropdown from "../../../custom/buttons/SellerLogInButtonDropdown";
 import { colors } from "@mui/material";
+import UpgradeTierModal from "../../../modals/UpgradeTierModal";
 
 const HeaderMenu = () => {
 	const [currentMenu, setCurrent] = useState("");
@@ -43,10 +44,14 @@ const HeaderMenu = () => {
 	console.log("isMLWWSPresent:", isMLWWSPresent);
 	console.log("isAccountDetailsPresent:", isAccountDetailsPresent);
 
-	const [showSearchPropertyModal, setshowSearchPropertyModal] = useState(false);
+	const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
 	const closeModal = () => {
-		setshowSearchPropertyModal(false);
+		setShowUpgradeModal(false);
+	};
+
+	const openUpgradeModal = () => {
+		setShowUpgradeModal(true);
 	};
 
 	//get user DEtails
@@ -73,19 +78,23 @@ const HeaderMenu = () => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 		if (isMLWWSPresent && isAccountDetailsPresent) {
-			console.log("cookie",isMLWWSPresent);
+			console.log("cookie", isMLWWSPresent);
 			console.log("tier", userDetails.tier.label);
 			if (userDetails?.tier?.label === "FULLY VERIFIED") {
 				window.location.href = "/listing";
 			} else if (userDetails?.tier?.label === "BUYER") {
-				console.log("User is a buyer and cannot list properties.");
-				setshowSearchPropertyModal(true);
-			} 
+				console.log(
+					"User is a buyer and cannot list properties.",
+					showUpgradeModal
+				);
+				openUpgradeModal();
+			}
+		} else {
+			window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+				redirectUrl
+			)}`;
 		}
-		else {
-			window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(redirectUrl)}`
-		}
-		
+
 		// const redirectUrl =
 		// 	isCookiePresent(sessionCookieName) && isCookiePresent(accountCookieName)
 		// 		? "/listing"
@@ -102,7 +111,8 @@ const HeaderMenu = () => {
 		setShowModal(!showModal);
 	};
 	const handleJoinTeamClick = () => {
-		setShowModal(true);
+		// setShowModal(true);
+		navigate("/comingsoon");
 	};
 
 	useEffect(() => {
@@ -272,36 +282,34 @@ const HeaderMenu = () => {
 					label="List your Property"
 					onClick={handleUserProfileClick}
 				/>
-				{/* {showSearchPropertyModal && (
-					<PropertySearchModal
-						openModal={showSearchPropertyModal}
-						closeModal={closeModal}
-					/>
-				)} */}
-				{(!isMLWWSPresent || userDetails?.tier.label === "buyer") &&
-					userDetails?.tier.label !== "FULLY VERIFIED" && (
-						<RoundBtn
-							type="primary"
-							className="menu-buttons"
-							style={{
-								color: "#D90000",
-								backgroundColor: "transparent",
-								border: "1px solid #d90000",
-								boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-								padding: "5px 5px",
-								cursor: "pointer",
-							}}
-							label="Join our Team"
-							onClick={handleJoinTeamClick}
-						/>
-					)}
-				{showModal && (
-					<WorkingOnItModal isOpen={showModal} onClose={toggleModal} />
+				{showUpgradeModal && (
+					<UpgradeTierModal isVisible={showUpgradeModal} onClose={closeModal} />
 				)}
+				{/* {!isMLWWSPresent&&
+					( */}
+				<RoundBtn
+					type="primary"
+					className="menu-buttons"
+					style={{
+						color: "#D90000",
+						backgroundColor: "transparent",
+						border: "1px solid #d90000",
+						boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+						padding: "5px 5px",
+						cursor: "pointer",
+					}}
+					label="Join our Team"
+					onClick={handleJoinTeamClick}
+				/>
+				{/* )} */}
+				{/* {showModal && (
+					<WorkingOnItModal isOpen={showModal} onClose={toggleModal} />
+				)} */}
+
 				{/* {showModal && <JoinTeam toggleModal={toggleModal} />} */}
 				<Row align={"middle"} className="menu-buttons">
 					{isMLWWSPresent ? (
-						userDetails?.tier.label === "Buyer" ? (
+						userDetails?.tier.label === "BUYER" ? (
 							<UserLogInProfileDropdownBtn />
 						) : userDetails?.tier.label === "FULLY VERIFIED" ? (
 							<SellerLogInButtonDropdown />

@@ -248,7 +248,7 @@ const DashboardComponent = () => {
         <div className="banner">
           <div className="banner-content">
             <Col className="banner-title">
-              <h1>Find Your Dream Home</h1>
+              <h1>Discover Your Dream Home</h1>
             </Col>
             <Col className="banner-tags">
               <Tags />

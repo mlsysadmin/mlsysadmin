@@ -59,6 +59,7 @@ import {
 	DeniedMasterList,
 	ApprovedApplication,
 	SupportCreateListing,
+	ComingSoonPage,
 } from "../pages";
 import { ProtectedRoute, BuyerSellerProtectedRoute } from "./ProtectedRoute";
 import { PropertySearchModal } from "../components";
@@ -130,6 +131,10 @@ const Routes = [
 				path: "/listing",
 				element: <BuyerSellerProtectedRoute element={<ListingPage /> }/>
 				// element:<ListingPage/>,
+			},
+			{
+				path:"/comingsoon",
+				element:<ComingSoonPage/>
 			},
 			{
 				path: "/drafts",

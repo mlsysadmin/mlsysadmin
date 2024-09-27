@@ -4,6 +4,11 @@
 	padding: 10px 10px 10px 0px;
 }
 
+.custom-alert .ant-alert-icon {
+  color: red; 
+  font-size: 24px;
+  margin-right: 10px; 
+}
 .advance-searchdropdown {
 	display: flex;
 	flex-direction: column;

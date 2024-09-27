@@ -26,9 +26,9 @@ import SideBar from "./layout/Navigation/SideBar";
 import MainLayout from "./layout/layout.component";
 import AllComponent from "./Buyer.AllComponent";
 import FeaturedComponent from "./Buyer.FeaturedComponent";
+import WorkingOnItModal from "./ComingSoonComponent";
 
-
-//buttons 
+//buttons
 import BuyerLogInProfileDropdownBtn from "./custom/buttons/BuyerLogInButtonDropdown";
 import SellerLogInButtonDropdown from "./custom/buttons/SellerLogInButtonDropdown";
 //application details
@@ -61,15 +61,15 @@ import PropertySearchModal from "./modals/PropertySearchModal";
 //Application
 //  SUPPORT
 import ApplicationDetails from "./support/ApplicationDetails";
-import CancelledApplication from './custom/support/custom.CancelledApplication';
-import DisapprovedApplication from './custom/support/custom.DisapprovedApplicationMasterlist';
-import ListingDetails from './support/ListingDetails';
-import OpenApplication from './custom/support/custom.OpenApplicationMasterlist';
-import PendingApplication from './custom/support/custom.PendingApplicationMasterlist';
-import PreApprovalRequest from './custom/support/PreApprovalRequests';
-import PreApprovalRequestListing from './support/PreApprovalDetailsListing';
-import SupportComponent from './support/SupportDashboardComponent';
-import SignIn from './support/SignIn.component';
+import CancelledApplication from "./custom/support/custom.CancelledApplication";
+import DisapprovedApplication from "./custom/support/custom.DisapprovedApplicationMasterlist";
+import ListingDetails from "./support/ListingDetails";
+import OpenApplication from "./custom/support/custom.OpenApplicationMasterlist";
+import PendingApplication from "./custom/support/custom.PendingApplicationMasterlist";
+import PreApprovalRequest from "./custom/support/PreApprovalRequests";
+import PreApprovalRequestListing from "./support/PreApprovalDetailsListing";
+import SupportComponent from "./support/SupportDashboardComponent";
+import SignIn from "./support/SignIn.component";
 import CloseApplicationModal from "./custom/support/CloseApplicationModal";
 import SupportListingComponent from "./support/SupportListingComponent";
 
@@ -82,16 +82,16 @@ import ApplicationDetailModal from "./layout/ApplicationDetails/ApplicationDetai
 
 // MASTER
 import SupportPendingListingComponent from "./support/master/SupportPendingListingComponent";
-import SupportListingMasterListComponent from './support/master/SupportListingMasterlistComponent';
-import SupportDeniedMasterlistComponent from './support/master/SupportDeniedMasterlistComponent';
+import SupportListingMasterListComponent from "./support/master/SupportListingMasterlistComponent";
+import SupportDeniedMasterlistComponent from "./support/master/SupportDeniedMasterlistComponent";
 import SupportListingDetails from "./support/SupportListingDetails";
 
 // APPLICATION
-import SupportPendingApplicationComponent from './support/application/SupportPendingApplicationComponent';
-import SupportApprovedApplicationComponent from './support/application/SupportApprovedApplicationComponent';
-import SupportDeniedApplicationComponent from './support/application/SupportDeniedApplicationComponent';
-import SupportCancelledApplicationComponent from './support/application/SupportCancelledApplicationComponent';
-import SupportClosedApplicationComponent from './support/application/SupportClosedApplicationComponent';
+import SupportPendingApplicationComponent from "./support/application/SupportPendingApplicationComponent";
+import SupportApprovedApplicationComponent from "./support/application/SupportApprovedApplicationComponent";
+import SupportDeniedApplicationComponent from "./support/application/SupportDeniedApplicationComponent";
+import SupportCancelledApplicationComponent from "./support/application/SupportCancelledApplicationComponent";
+import SupportClosedApplicationComponent from "./support/application/SupportClosedApplicationComponent";
 
 import SupportPreApprovalListComponent from "./support/SupportPreApprovalListComponent";
 import ApprovalSectionComponent from "./support/ApprovalSectionComponent";
@@ -140,6 +140,7 @@ export {
 	ApplicationDetails,
 	CancelledApplication,
 	DisapprovedApplication,
+	WorkingOnItModal,
 	ListingDetails,
 	OpenApplication,
 	PendingApplication,
@@ -163,6 +164,6 @@ export {
 	ApprovalSectionComponent,
 	JoinTeam,
 	PropertySearchModal,
-  ViewListingComponent,
-  ApplicationHistory
+	ViewListingComponent,
+	ApplicationHistory,
 };

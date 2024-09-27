@@ -4,10 +4,15 @@ import userProfileLogIn from "../../../assets/userProfileLogIn.png";
 import profileDropdown from "../../../assets/profileDropdown.png";
 import { getCookieData } from "../../../utils/CookieChecker";
 import { searchKyc } from "../../../api/Public/User.api";
+import "../../../styles/custom.css";
+import { Alert } from "antd";
 
 const BuyerLogInProfileDropdownBtn = () => {
 	const [showDropdown, setShowDropdown] = useState(false);
 	const [userDetails, setUserDetails] = useState(null);
+
+	const [sessionExpired, setSessionExpired] = useState(false);
+	const [timeoutId, setTimeoutId] = useState(null);
 
 	const accountDetails = getCookieData();
 	console.log("details:", accountDetails);
@@ -16,7 +21,7 @@ const BuyerLogInProfileDropdownBtn = () => {
 	const fetchUserDetails = async () => {
 		try {
 			const response = await searchKyc(accountDetails.mobileNumber);
-			const respData = response.data.data
+			const respData = response.data.data;
 			console.log("API Response:", respData);
 			setUserDetails(respData);
 		} catch (error) {
@@ -25,24 +30,66 @@ const BuyerLogInProfileDropdownBtn = () => {
 	};
 
 	useEffect(() => {
-		fetchUserDetails();
-		console.log("user",userDetails)
+		// if (!sessionExpired && accountDetails && accountDetails?.mobileNumber) {
+			fetchUserDetails();
+		// }
 	}, []);
 
 	const handleButtonClick = () => {
 		setShowDropdown(!showDropdown);
 	};
 
-const handleLogout = () => {
-	document.cookie.split(";").forEach((cookie) => {
-		const [name] = cookie.split("=");
-		document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
-	});
+	const handleLogout = () => {
+		document.cookie.split(";").forEach((cookie) => {
+			const [name] = cookie.split("=");
+			document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+		});
 
-	window.location.href = "/";
-};
+		window.location.href = "/";
+	};
 
-	
+	// const SessionExpiredInitialization = () => {
+	// 	setSessionExpired(true);
+	// 	handleLogout();
+	// };
+
+	// const inactivityTimer = () => {
+	// 	if (timeoutId) {
+	// 		clearTimeout(timeoutId);
+	// 	}
+	// 	const newTimeOutId = setTimeout(() => {
+	// 		SessionExpiredInitialization();
+	// 	}, 60000); //timer 5 minutes
+	// 	setTimeoutId(newTimeOutId);
+	// };
+
+	// useEffect(() => {
+	// 	const activityEvents = [
+	// 		"click",
+	// 		"keypress",
+	// 		"mousemove",
+	// 		"scroll",
+	// 		"keydown",
+	// 	];
+
+	// 	activityEvents.forEach((event) => {
+	// 		window.addEventListener(event, inactivityTimer);
+	// 	});
+
+	// 	inactivityTimer();
+
+	// 	return () => {
+	// 		activityEvents.forEach((event) => {
+	// 			window.removeEventListener(event, inactivityTimer);
+	// 		});
+	// 		clearTimeout(timeoutId);
+	// 	};
+	// 	// SessionExpiredInitialization();
+	// 	// return () => {
+	// 	// 	clearTimeout();
+	// 	// };
+	// }, [timeoutId]);
+
 	const firstName = accountDetails ? accountDetails.firstName : "User";
 	const lastNameInitial =
 		accountDetails && accountDetails.lastName
@@ -51,9 +98,27 @@ const handleLogout = () => {
 
 	return (
 		<div style={{ position: "relative" }}>
+			{/* {sessionExpired && (
+				<Alert
+					message="Session Expired"
+					description="Your session has expired. You will be logged out."
+					type="error"
+					showIcon
+					style={{
+						marginBottom: "10px",
+						position: "absolute",
+						marginTop: "50px",
+						width: "300px",
+						padding: "10px",
+						justifyContent: "left",
+						alignItems: "left",
+						right: "700px",
+					}}
+				/>
+			)} */}
 			<button
 				style={{
-					margin: "0px 0px 0px 0px",
+					margin: "0px 0px 0px 20px",
 					cursor: "pointer",
 					backgroundColor: "#D90000",
 					color: "white",
