@@ -1,29 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import "../styles/rent.css";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "../styles/All.css";
+import {
+	CameraFilled,
+	HeartOutlined,
+	ControlOutlined,
+} from "@ant-design/icons";
 import Card from "./custom/cards/Card";
 import property from "../images/Guest/property.png";
 import Pagination from "./custom/pagination/Pagination";
-import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout, SearchPropertiesSoration } from "../components";
+import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout, SearchPropertiesSoration } from ".";
 import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
-import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto"
-import { CapitalizeString, GetPropertyTitle, isPastAMonth } from "../utils/StringFunctions.utils";
-import NoListingAvailable from "./custom/custom.NoListingAvailable";
-
-import DefaultPropertyImage from "../asset/fallbackImage.png";
-import { GetAllListing } from "../api/GetAllPublicListings";
+import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
+import { CapitalizeString, GetPropertyTitle } from "../utils/StringFunctions.utils";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
+import DefaultPropertyImage from '../asset/fallbackImage.png';
 import NoDataAvailable from "./NoDataFoundComponent";
-import { capitalize } from "@mui/material";
 
-const AllComponent = () => {
+const SaleComponent = () => {
+
 	const navigate = useNavigate();
 	const location = useLocation();
-	const [loading, setLoading] = useState(false);
-	const [saleType, setSaleType] = useState("sale");
-
-	const [currentPage, setCurrentPage] = useState(1);
-	const cardsPerPage = 9;
 
 	const [publiclisting, setPublicListing] = useState([
 		{
@@ -42,12 +40,15 @@ const AllComponent = () => {
 			property_type: ''
 		}
 	]);
+	const [propertyType, setPropertyType] = useState("house");
+	const [currentPage, setCurrentPage] = useState(1);
+	const cardsPerPage = 9;
 
 	const handleCardClick = (id) => {
 		navigate(`/previewListing/?id=${id}`, { state: id });
 	};
 
-	const getlistings = async (sale_type) => {
+	const allPublicListing = async (property_type) => {
 		try {
 			const res = await GetPropertiesBySaleStatus();
 
@@ -57,9 +58,11 @@ const AllComponent = () => {
 				setPublicListing([])
 			} else {
 
-				const listingRes = dataresp.filter((listing) => sale_type == 'all' ? 
-					["sale", "rent"].includes(listing.SaleType.toLowerCase()) : [sale_type].includes(listing.SaleType.toLowerCase())
-				);
+				console.log("sale", dataresp.filter((listing) => ["sale"].includes(listing.SaleType.toLowerCase())));
+
+				const listingRes = dataresp.filter((listing) =>
+					["sale"].includes(listing.SaleType.toLowerCase())
+					&&  listing.PropertyType.toLowerCase() == property_type.replace(/[-_]/g, " "));
 
 				if (listingRes.length !== 0) {
 					const newListing = await Promise.all(listingRes.map(async (item, i) => {
@@ -74,7 +77,7 @@ const AllComponent = () => {
 							id: item.id,
 							title: CapitalizeString(GetPropertyTitle(item.ProjectName, item.UnitName)),
 							price: AmountFormatterGroup(item.Price),
-							status: `For ${CapitalizeString(item.SaleType)}`,
+							status: "For Sale",
 							pics: image ? gallery.length + 1 : 0,
 							img: image,
 							no_of_bathrooms: item.BathRooms,
@@ -93,29 +96,27 @@ const AllComponent = () => {
 				}
 
 			}
+
 		} catch (error) {
-			console.error("Error fetching public listings:", error);
+			console.error("ERROROR", error);
 			setPublicListing([]);
 		}
-
 	}
 
 	useEffect(() => {
-		// allPublicListing()
-		// getlistings()
+
 		const search = location.search;
 		console.log(search);
 
 		const queryParams = new URLSearchParams(search);
-		const getSaleType = queryParams.get("sale_type");
-		
+		const getPropertyType = queryParams.get("property_type");
+
 		if (queryParams.size !== 0) {
 
-			getlistings(getSaleType);
-			setSaleType(getSaleType);
+			allPublicListing(getPropertyType);
+			setPropertyType(getPropertyType);
 		} else {
-			getlistings('all');
-			setSaleType('all');
+			allPublicListing("house");
 		}
 
 	}, [])
@@ -124,18 +125,20 @@ const AllComponent = () => {
 	const indexOfFirstCard = indexOfLastCard - cardsPerPage;
 	const currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
 
-	const totalPages = Math.ceil(publiclisting?.length / cardsPerPage);
+	const totalPages = Math.ceil(publiclisting.length / cardsPerPage);
+
 	return (
-		<div className="all-container">
-			<div className="all-searchcomponent">
+		<div className="rent">
+			<div className="topbar">
 				<ListingSearch />
 			</div>
-			<div className="all-page-container">
-				<span className="all-h1">Properties For {capitalize(saleType)}</span>
+			<div className="rentContainer">
+				<span className="rent-h1">Properties for Sale</span>
+
 				{
 					currentCards.length !== 0 ? (
 						<>
-							<SearchPropertiesSoration properties_count={publiclisting.length} current_properties_count={currentCards.length}/>
+							<SearchPropertiesSoration properties_count={publiclisting.length} current_properties_count={currentCards.length} />
 							<div className="card-container">
 								{
 									currentCards.map((data, index) => (
@@ -161,10 +164,9 @@ const AllComponent = () => {
 					)
 						:
 						<NoDataAvailable
-							message={`No available properties for Rent/Sale`}
+							message={`No available ${CapitalizeString(propertyType.replace(/[-_]/g, " "))} for rent`}
 						/>
 				}
-
 				{currentCards.length > 0 && (
 					<Pagination
 						currentPage={currentPage}
@@ -173,11 +175,11 @@ const AllComponent = () => {
 					/>
 				)}
 			</div>
-
 			<CustomMlFooter />
 			<FooterComponent />
+
 		</div>
 	);
-};
+}
 
-export default AllComponent;
+export default SaleComponent;

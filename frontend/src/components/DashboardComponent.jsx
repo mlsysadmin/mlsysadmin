@@ -26,7 +26,7 @@ import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import PropertySearchModal from "./modals/PropertySearchModal";
 
 import { MockData } from "../utils/ListingMockData";
-import {CardCategory} from "../utils/PropertyStaticData.utils";
+import { CardCategory } from "../utils/PropertyStaticData.utils";
 import FuenteCircle from "../asset/banners/fuente-circle.png";
 import AdvanceSearch from "../asset/icons/advanceSearch.png";
 import Search from "../asset/icons/Search.png";
@@ -35,7 +35,7 @@ import FooterComponent from "./layout/FooterComponent";
 
 import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
 import CertainFeatureMenu from "./custom/customsearch/certainfeature";
-import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
+import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 import { GetPhotoLength, GetPhotoWithUrl } from "../utils/GetPhoto";
 import { Link, useLocation } from "react-router-dom";
 import { Select } from "antd";
@@ -62,7 +62,8 @@ const DashboardComponent = () => {
       lot: 0,
       property_no: '',
       isFeatured: '',
-      sale_type: ''
+      sale_type: '',
+      no_of_beds: ''
     }
   ]);
 
@@ -85,32 +86,47 @@ const DashboardComponent = () => {
 
       const dataresp = res.data;
 
-      const listing = dataresp.filter((listing) => !isPastAMonth(listing.created_at)).map((item, i) => {
+      if (dataresp.length == 0) {
+        setPublicListing([])
+      } else {
 
-        console.log('listing', item);
-        
-        const getLength = GetPhotoLength(item.id);
+        const listingRes = dataresp.filter((listing) => !isPastAMonth(listing.created_at));
 
-        const image = GetPhotoWithUrl(item.Photo);
+        let listings = [];
 
-        return {
-          id: item.id,
-          title: GetPropertyTitle(item.ProjectName, item.UnitName),
-          price: AmountFormatterGroup(item.Price),
-          status: "New",
-          pics: image ? getLength + 1 : getLength,
-          img: image,
-          no_of_bathrooms: item.BathRooms,
-          lot: item.LotArea,
-          property_no: item.PropertyNo,
-          isFeatured: "yes",
-          sale_type: CapitalizeString(item.SaleType),
-          no_of_beds: item.BedRooms,
-          // isFeatured: item.IsFeatured
+        if (listingRes.length !== 0) {
+          listings = listingRes.slice(0, 3);
+        } else {
+          listings = dataresp.slice(0, 3)
         }
-      });
 
-      setPublicListing(await listing);
+        const newListing = await Promise.all(listings.map(async (item, i) => {
+
+          const getPhotoGallery = await GetUnitPhotos(item.id);
+
+          const gallery = getPhotoGallery.data;
+
+          const image = GetPhotoWithUrl(item.Photo);
+
+          return {
+            id: item.id,
+            title: CapitalizeString(GetPropertyTitle(item.ProjectName, item.UnitName)),
+            price: AmountFormatterGroup(item.Price),
+            status: "New",
+            pics: image ? gallery.length + 1 : 0,
+            img: image,
+            no_of_bathrooms: item.BathRooms,
+            lot: item.LotArea,
+            property_no: item.PropertyNo,
+            isFeatured: "yes",
+            sale_type: CapitalizeString(item.SaleType),
+            no_of_beds: item.BedRooms,
+            // isFeatured: item.IsFeatured
+          }
+        }))
+        setPublicListing(newListing);
+      }
+
     } catch (error) {
       console.error("ERROROR", error);
       setPublicListing([]);
@@ -135,13 +151,6 @@ const DashboardComponent = () => {
   useEffect(() => {
     // allProvinces();
   }, []);
-
-  // const newListings = publiclisting.filter(
-  //   (item) => item.SaleStatus === "unsold"
-  // );
-
-  // console.log("newListings", newListings);
-
 
   const url_Redirect = process.env.REACT_APP_LOGIN_URL;
   const handleUserProfileClick = () => {
@@ -169,12 +178,12 @@ const DashboardComponent = () => {
     {
       key: "for-sale",
       label: "For Sale",
-      link: "/all",
+      link: "/all/?sale_type=sale",
     },
     {
       key: "for-rent",
       label: "For Rent",
-      link: "/rent",
+      link: "/all/?sale_type=rent",
     },
     {
       key: "mortgage",
@@ -243,7 +252,7 @@ const DashboardComponent = () => {
   };
 
   return (
-    <div className="dashboard">
+    <div className="dashboard" style={{ display: 'flex', flexDirection: 'column' }}>
       <div id="dashboard">
         <div className="banner">
           <div className="banner-content">
@@ -347,7 +356,7 @@ const DashboardComponent = () => {
         {publiclisting.length > 0 && (
           <div className="listing-carousel-dashboard">
             {
-              publiclisting.slice(0, 3).map((item, i) => {
+              publiclisting.map((item, i) => {
 
                 return (
                   <CardListingComponent
@@ -391,6 +400,14 @@ const DashboardComponent = () => {
           <Row className="card--brokerage-category">
             <CardCategories />
           </Row>
+          <br />
+          <br />
+          <br />
+
+        </div>
+        <div className="section--3" style={{
+          backgroundColor: '#F7F7F7'
+        }}>
           <div className="discover--section-3">
             <div className="card--brokerage-inquire">
               {/* <div className="inquire-image">
@@ -412,7 +429,7 @@ const DashboardComponent = () => {
                   </div>
                   <div className="inquire--actions">
                     <SemiRoundBtn
-                      label={"Sign in to your ML Wallet Account"}
+                      label={"Sign in to your MCash Account"}
                       type={"default"}
                       className="sign-in--action action-btn"
                       size={"small"}
@@ -423,27 +440,31 @@ const DashboardComponent = () => {
               </div>
             </div>
           </div>
-          <br />
-          <br />
-          <br />
-          <div className="discover--section-4">
-            {/* <div className="card--brokerage-featured"> */}
-            {/* <div className="featured-container"> */}
-            <div className="featured--title">
-              <h3>Featured Properties</h3>
-            </div>
-            <div className="featured--content">
-              {
-                publiclisting.length !== 0 ? (
-                   <FeaturedPropertiesComponent featuredListing={publiclisting}/>
-                ) : <></>
-              }
-            </div>
-            {/* </div> */}
-            {/* </div> */}
-          </div>
         </div>
-
+        <div className="featured-list--section" style={{
+          backgroundColor: '#F7F7F7'
+        }}>
+          <Row className="discover-content featured">
+            <div className="discover-section--title featured--title">
+              <h2>Featured Properties</h2>
+            </div>
+          </Row>
+        </div>
+        <div className="discover--section-4" style={{
+          backgroundColor: '#F7F7F7'
+        }}>
+          {/* <div className="card--brokerage-featured"> */}
+          {/* <div className="featured-container"> */}
+          <div className="featured--content">
+            {
+              publiclisting.length !== 0 ? (
+                <FeaturedPropertiesComponent featuredListing={publiclisting} />
+              ) : <p style={{ textAlign: 'center', padding: '90px 0px 150px' }}>No Featured Properties Available</p>
+            }
+          </div>
+          {/* </div> */}
+          {/* </div> */}
+        </div>
         <div className="ratings" style={{
           textAlign: 'center'
         }}>
@@ -459,11 +480,13 @@ const DashboardComponent = () => {
       </div>
       <br />
       <br />
-      <br />
+      {/* <br /> */}
       <PropertySearchModal
         openModal={isPropSearchModalOpen}
         closeModal={handleModalClose}
       />
+      <CustomMlFooter />
+      <FooterComponent />
     </div>
   );
 };

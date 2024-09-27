@@ -39,9 +39,6 @@ const HeaderMenu = () => {
 
 	const login = process.env.REACT_APP_LOGIN_URL;
 
-	console.log("isMLWWSPresent:", isMLWWSPresent);
-	console.log("isAccountDetailsPresent:", isAccountDetailsPresent);
-
 	const [showSearchPropertyModal, setshowSearchPropertyModal] = useState(false);
 
 	const closeModal = () => {
@@ -56,7 +53,6 @@ const HeaderMenu = () => {
 			const response = await searchKyc(accountDetails.mobileNumber);
 
 			const respData = response.data.data;
-			console.log("API Response:", respData);
 			setUserDetails(respData);
 		} catch (error) {
 			console.error("Error fetching user details:", error);
@@ -64,20 +60,19 @@ const HeaderMenu = () => {
 	};
 
 	useEffect(() => {
-		fetchUserDetails();
-		console.log("user", userDetails);
+		if (isMLWWSPresent && isAccountDetailsPresent) {
+
+			fetchUserDetails();
+		}
 	}, []);
 
 	const handleUserProfileClick = () => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 		if (isMLWWSPresent && isAccountDetailsPresent) {
-			console.log("cookie",isMLWWSPresent);
-			console.log("tier", userDetails.tier.label);
 			if (userDetails?.tier?.label === "FULLY VERIFIED") {
 				window.location.href = "/listing";
 			} else if (userDetails?.tier?.label === "BUYER") {
-				console.log("User is a buyer and cannot list properties.");
 				setshowSearchPropertyModal(true);
 			} 
 		}
@@ -142,7 +137,6 @@ const HeaderMenu = () => {
 			sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(true);
 		} else {
-			console.log("menu", menu);
 			setCurrent(menu.key);
 			navigate({
 				pathname: menu.item.props.link,

@@ -5,24 +5,24 @@ const SubMenu = {
 		{
 			header: "Homes for rent",
 			submenu: [
-				{ sub: "House", link: "/rent" },
-				{ sub: "Condominium", link: "/condominium" },
-				{ sub: "Apartment", link: "/apartment" },
-				{ sub: "Townhouse", link: "/townhouse" },
+				{ sub: "House", link: "/rent/?property_type=house" },
+				{ sub: "Condominium", link: "/rent/?property_type=condominium" },
+				{ sub: "Apartment", link: "/rent/?property_type=apartment" },
+				{ sub: "Townhouse", link: "/rent/?property_type=townhouse" },
 			],
 		},
 		{
 			header: "Commercial for rent",
 			submenu: [
-				{ sub: "Office Space", link: "/office-space" },
-				{ sub: "Retail Spaces", link: "/retail-spaces" },
-				{ sub: "Serviced Office", link: "/service-office" },
-				{ sub: "Commercial Land/Office", link: "/commercial" },
+				{ sub: "Office Space", link: "/rent/?property_type=office-space" },
+				{ sub: "Retail Space", link: "/rent/?property_type=shop/retail" },
+				{ sub: "Service Office", link: "/rent/?property_type=service-office" },
+				{ sub: "Commercial Land/Office", link: "/rent/?property_type=commercial_land/office" },
 			],
 		},
 		{
 			header: "Industrial for rent",
-			submenu: [{ sub: "Warehouse", link: "/warehouse" }],
+			submenu: [{ sub: "Warehouse", link: "/rent/?property_type=warehouse" }],
 		},
 		{
 			header: "Rental Resources",
@@ -34,29 +34,29 @@ const SubMenu = {
 		{
 			header: "Homes for sale",
 			submenu: [
-				{ sub: "House and Lot", link: "/all" },
-				{ sub: "Condominium", link: "/condominium" },
-				{ sub: "Townhouse", link: "/townhouse" },
-				{ sub: "Land/Lot", link: "/lot" },
+				{ sub: "House and Lot", link: "/sale/?property_type=house-and-lot" },
+				{ sub: "Condominium", link: "/sale/?property_type=condominium" },
+				{ sub: "Townhouse", link: "/sale/?property_type=townhouse" },
+				{ sub: "Land/Lot", link: "/sale/?property_type=lot" },
 			],
 		},
 		{
-			header: "Commercial for rent",
+			header: "Commercial for sale",
 			submenu: [
-				{ sub: "Office Space", link: "/office-space" },
-				{ sub: "Retail Spaces", link: "/retail-space" },
-				{ sub: "Serviced Office", link: "/service-office" },
-				{ sub: "Commercial Land/Office", link: "/commercial" },
+				{ sub: "Office Space", link: "/sale/?property_type=office-space" },
+				{ sub: "Retail Spaces", link: "/sale/?property_type=shop/retail" },
+				{ sub: "Service Office", link: "/sale/?property_type=service-office" },
+				{ sub: "Commercial Land/Office", link: "/sale/?property_type=commercial-land/office" },
 			],
 		},
 		{
 			header: "Leisure Properties for Sale",
 			submenu: [
-				{ sub: "Hotel/Resort", link: "/hotel-and-resort" },
+				{ sub: "Hotel/Resort", link: "/sale/?property_type=hotel-and-resort" },
 				{
 					childSubMenu: {
 						header: "Agricultural for Sale",
-						submenu: [{ sub: "Farm Lot", link: "/farm-lot" }],
+						submenu: [{ sub: "Farm Lot", link: "/sale/?property_type=farm-lot" }],
 					},
 				},
 			],

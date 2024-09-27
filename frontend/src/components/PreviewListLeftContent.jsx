@@ -90,7 +90,7 @@ const PreviewListLeftContent = ({ label, value, oneListing }) => {
 		if (property_type.toLowerCase().includes('lot')) {
 			feature = feat.filter((item, i) => ["price per sqm"].includes(item.title.toLocaleLowerCase()))
 		} else {
-			feature = feat;
+			feature = feat.filter((item, i) => !["price per sqm"].includes(item.title.toLocaleLowerCase()));
 		}
 
 		setFeatures(feature);
@@ -101,7 +101,7 @@ const PreviewListLeftContent = ({ label, value, oneListing }) => {
 			<main className={styles.leftcontainer}>
 				<h1 className={styles.lefttitle}>
 					{
-						GetPropertyTitle(oneListing.ProjectName, oneListing.UnitName)
+						CapitalizeString(GetPropertyTitle(oneListing.ProjectName, oneListing.UnitName))
 					}
 				</h1>
 				<p className={styles.leftlocation}>
@@ -118,15 +118,10 @@ const PreviewListLeftContent = ({ label, value, oneListing }) => {
 						{
 							features.map((feature, index) => {
 
-								if (!feature.value) {
-									return;
-								} else {
+								return (
 
-									return (
-
-										<VLFeatureCard key={index} {...feature} />
-									)
-								}
+									<VLFeatureCard key={index} {...feature} />
+								)
 							})
 						}
 					</section>
@@ -157,7 +152,7 @@ const PreviewListLeftContent = ({ label, value, oneListing }) => {
 							</tr>
 							<tr>
 								<th>Listing Type</th>
-								<td>{oneListing.UnitName + " " + `For ${CapitalizeString(oneListing.SaleType)}`}</td>
+								<td>{CapitalizeString(oneListing.UnitName) + " " + `For ${CapitalizeString(oneListing.SaleType)}`}</td>
 								<th>Lot Area</th>
 								<td>{NotAvailableReturn(oneListing.LotArea)}</td>
 							</tr>

@@ -84,7 +84,6 @@ const GetUnitPhotos = async (propertyId) => {
 
         return unitPhotos;
         
-
     } catch (error) {
         console.log(error);
         return error

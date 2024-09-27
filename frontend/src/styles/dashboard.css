@@ -50,6 +50,7 @@
       border-radius: 30px;
       line-height: 30px;
       padding-inline: 13px;
+      font-size: 16px;
   }
 
   #dashboard .banner .banner-tags .menu-tags li::after {
@@ -151,6 +152,10 @@
       margin: auto;
   }
 
+  .dashboard .discover .discover-content .featured--title {
+      margin-top: 80px;
+  }
+
   .dashboard .discover .discover-content .discover-section--sub-title .section-2-title {
       display: flex;
       justify-content: space-between;
@@ -239,7 +244,7 @@
   }
 
   .dashboard .discover .discover--section-2 {
-      margin: 130px auto 50px auto;
+      margin: 130px auto 0px auto;
       width: 100%;
       height: auto;
       padding: 70px 20px;
@@ -332,7 +337,7 @@
   .dashboard .discover .discover--section-3 {
       /* background-color: #d9d9d9a1; */
       background-color: #D9D9D9;
-      margin: 180px auto 0px auto;
+      margin: 0px auto 0px auto;
       width: 1210px;
       /* width: 90%; */
       border-radius: 10px;
@@ -406,25 +411,13 @@
   }
 
   .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--content .inquire--actions {
-      /* text-align: center; */
-      /* margin: 60px 10px 10px 0px; */
       margin-top: 60px;
   }
-
-  /* .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--actions .action-btn {
-      border: 1px solid var(--red);
-      width: 200px;
-      font-weight: bold;
-      margin: 10px 15px;
-      padding-top: 23px;
-      padding-bottom: 23px;
-  } */
 
   .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--actions .contact-us--action.action-btn,
   .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--actions .contact-us--action.action-btn:hover {
       background-color: transparent;
       color: black;
-
   }
 
   .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire--actions .sign-in--action.action-btn {
@@ -439,21 +432,8 @@
 
   /* FEATURED PROPERTIES */
   .dashboard .discover .discover--section-4 {
-      /* background-color: #fff0f058; */
-      /* padding: 20px 0px; */
-      /* padding-bottom: 80px; */
-      /* height: auto;
-      margin: 50px auto;
-      justify-content: center;
-      align-content: center;
-      align-items: center;
-      gap: 50px; */
-      margin-top: 70px;
-  }
 
-  .dashboard .discover .discover--section-4 .featured--title {
-      width: 65%;
-      margin: auto;
+      margin-top: 0px;
   }
 
   .dashboard .discover .card--brokerage-featured {
@@ -598,6 +578,12 @@
       margin: 20px 0px 0px 30px;
       border-radius: 5px;
   }
+  /* @media screen and (min-width: 315px) and (max-width: 480px) {
+    .dashboard .discover .discover-content.featured{
+        width: 400px;
+        margin-top: 0;
+      }
+  } */
 
   @media screen and (min-width: 315px) and (max-width: 480px) {
 
@@ -616,7 +602,7 @@
       }
 
       .dashboard .discover .discover-content {
-          margin: 60px auto;
+          margin: 50px auto 0px;
       }
 
       .dashboard .discover .discover--section-3 .card--brokerage-inquire .inquire-image,
@@ -638,7 +624,7 @@
       }
 
       .dashboard .discover .discover--section-3 {
-          margin: 100px auto auto auto;
+          margin: 0px auto auto auto;
           width: 100%;
       }
 
@@ -711,17 +697,29 @@
           width: 300px;
           flex-direction: row;
       }
-      .dashboard .discover .discover-content .discover-section--sub-title .section-2-title .see-all-new-listing-dashboard{
-        display: none;
+      .dashboard .discover .discover-content.featured{
+        width: 350px;
+        margin-top: 0;
+        margin: 0px auto 0px;
       }
-      .listing-carousel-dashboard{
-        margin-top: 10px;
+
+      .dashboard .discover .discover-content .discover-section--sub-title .section-2-title .see-all-new-listing-dashboard {
+          display: none;
       }
-      .dashboard .discover .discover--section-4 .featured--title{
-        width: 100%;
+
+      .listing-carousel-dashboard {
+          margin-top: 10px;
       }
-      .listing-carousel-dashboard .carousel--see-all-btn{
-        display: flex !important;
+
+      .dashboard .discover .discover--section-4 .featured--title {
+          width: 100%;
+      }
+
+      .listing-carousel-dashboard .carousel--see-all-btn {
+          display: flex !important;
+      }
+      .section--3{
+        padding: 0px 20px
       }
 
   }
@@ -914,14 +912,21 @@
       .dashboard .discover .discover-content {
           width: 680px;
       }
-      .dashboard .discover .discover--section-2 .card--brokerage-category .overlay-content{
-        height: 50vh;
+
+      .dashboard .discover .discover--section-2 .card--brokerage-category .overlay-content {
+          height: 50vh;
       }
   }
 
   @media screen and (min-width: 1080px) and (max-width: 1239px) {
-      .dashboard .discover .discover-content {
+
+      .dashboard .discover .discover-content,
+      .dashboard .discover .discover--section-4 .featured--title {
           width: 1030px;
+      }
+
+      .dashboard .discover .discover--section-4 .featured--title {
+          margin: auto;
       }
   }
 
@@ -943,8 +948,9 @@
       .dashboard .discover .discover--section-3 {
           width: 90%;
       }
-      .dashboard .discover .discover--section-2 .card--brokerage-category .overlay-content{
-        height: 45vh;
+
+      .dashboard .discover .discover--section-2 .card--brokerage-category .overlay-content {
+          height: 45vh;
       }
 
   }
@@ -953,7 +959,18 @@
       .dashboard .discover .discover-content {
           width: 800px;
       }
-      .dashboard .discover .discover--section-2 .card--brokerage-category .overlay-content{
-        height: 45vh;
+
+      .dashboard .discover .discover--section-2 .card--brokerage-category .overlay-content {
+          height: 45vh;
+      }
+
+      .dashboard .discover .discover-content.featured {
+          width: 820px;
+      }
+  }
+
+  @media screen and (min-width: 1280px) and (max-width: 1800px) {
+      .dashboard .discover .discover-content.featured {
+          width: 1210px;
       }
   }

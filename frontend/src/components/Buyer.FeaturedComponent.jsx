@@ -7,31 +7,70 @@ import Pagination from "./custom/pagination/Pagination";
 import ListingSearch from "./custom/customsearch/custom.listingsearch";
 import SearchPropertiesSoration from "./custom/customsearch/searchSortationProperties";
 import { cardData } from "../utils/ListingMockData";
-import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
+import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
+import { CapitalizeString, GetPropertyTitle } from "../utils/StringFunctions.utils";
+import { AmountFormatterGroup } from "../utils/AmountFormatter";
+import NoDataAvailable from "./NoDataFoundComponent";
+import CustomMlFooter from "./custom/Custom.Mlfooter";
+import FooterComponent from "./layout/FooterComponent";
 
 
 const FeaturedComponent = () => {
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const cardsPerPage = 9;
-  const navigate = useNavigate();
+	const [currentPage, setCurrentPage] = useState(1);
+	const cardsPerPage = 9;
+	const navigate = useNavigate();
 	const [publiclisting, setPublicListing] = useState([]);
 
 	const handleCardClick = (id) => {
-		console.log("id", id);
-		// window.location.href = `/previewListing/${id}`;
-		navigate(`/previewListing/${id}`, { state: id });
+		navigate(`/previewListing/?id=${id}`, { state: id });
 	};
 
 	const allPublicListing = async () => {
 		const res = await GetPropertiesBySaleStatus();
+
 		const dataresp = res.data;
-		setPublicListing(dataresp);
-		console.log("public listing:", dataresp);
+
+		if (dataresp.length == 0) {
+			setPublicListing([])
+		} else {
+
+			const listingRes = dataresp.filter((listing) => listing.IsFeatured.toLowerCase() == "yes");
+
+			if (listingRes.length !== 0) {
+				const newListing = await Promise.all(listingRes.map(async (item, i) => {
+
+					const getPhotoGallery = await GetUnitPhotos(item.id);
+
+					const gallery = getPhotoGallery.data;
+
+					const image = GetPhotoWithUrl(item.Photo);
+
+					return {
+						id: item.id,
+						title: CapitalizeString(GetPropertyTitle(item.ProjectName, item.UnitName)),
+						price: AmountFormatterGroup(item.Price),
+						status: "For Sale",
+						pics: image ? gallery.length + 1 : 0,
+						img: image,
+						no_of_bathrooms: item.BathRooms,
+						lot: item.LotArea,
+						property_no: item.PropertyNo,
+						isFeatured: item.IsFeatured,
+						sale_type: CapitalizeString(item.SaleType),
+						no_of_beds: item.BedRooms,
+						property_type: item.PropertyType
+					}
+				}))
+				setPublicListing(newListing);
+
+			} else {
+				setPublicListing([]);
+			}
+
+		}
 	};
-	// console.log( GetPhotoWithUrl())
-	console.log("getlength", GetPhotoLength());
 
 	useEffect(() => {
 		allPublicListing();
@@ -42,46 +81,53 @@ const FeaturedComponent = () => {
 	const currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
 
 	const totalPages = Math.ceil(cardData.length / cardsPerPage);
-  return (
+	return (
 		<div className="feature-container">
 			<ListingSearch />
 			<div className="second-content">
 				<span className="feature-h1">Featured Properties</span>
-				<SearchPropertiesSoration />
-				<div className="card-container">
-					{currentCards.map((data, index) => (
-						<Card
-							key={index}
-							id={data.listings.listing_id}
-							title={data.listings.title}
-							price={`PHP${data.listings.unit_details.price}`}
-							imgSrc={GetPhotoWithUrl(data.listings.photos.photo)}
-							beds={data.listings.unit_details.no_of_beds}
-							baths={data.listings.unit_details.no_of_bathrooms}
-							size={data.listings.unit_details.lot_area}
-							likes={GetPhotoLength(data.listings.photos.photo)}
-							forsale={
-								data.listings.listing_type.listing_type === "For Sale" ||
-								data.listings.listing_type.listing_type === "For Rent"
-									? "Featured"
-									: data.listings.listing_type.listing_type
-							}
-							subtitle={`${data.listings.property_type.subtype} ${data.listings.listing_type.listing_type}`}
-							handleClick={() => handleCardClick(data.listings.listing_id)}
+				{
+					currentCards.length !== 0 ? (
+						<>
+							<SearchPropertiesSoration properties_count={publiclisting.length} current_properties_count={currentCards.length} />
+							<div className="card-container">
+								{
+									currentCards.map((data, index) => (
+										<Card
+											key={index}
+											id={data.id}
+											title={data.title}
+											price={`PHP ${data.price}`}
+											imgSrc={data.img}
+											beds={data.no_of_beds}
+											baths={data.no_of_bathrooms}
+											size={data.lot}
+											likes={data.pics}
+											forsale={data.status}
+											subtitle={`${CapitalizeString(data.property_type)} For ${CapitalizeString(data.sale_type)}`}
+											handleClick={() => handleCardClick(data.property_no)}
+										/>
+									))
+
+								}
+							</div>
+						</>
+					)
+						:
+						<NoDataAvailable
+							message={`No available featured properties`}
 						/>
-					))}
-				</div>
-				<Pagination
-					currentPage={currentPage}
-					totalPages={totalPages}
-					paginate={setCurrentPage}
-				/>
+				}
+				{currentCards.length > 0 && (
+					<Pagination
+						currentPage={currentPage}
+						totalPages={totalPages}
+						paginate={setCurrentPage}
+					/>
+				)}
 			</div>
-			<Pagination
-				currentPage={currentPage}
-				totalPages={totalPages}
-				paginate={setCurrentPage}
-			/>
+			<CustomMlFooter />
+			<FooterComponent />
 		</div>
 	);
 };

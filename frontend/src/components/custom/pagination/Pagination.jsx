@@ -22,7 +22,7 @@ const Pagination = ({ currentPage, totalPages, paginate }) => {
 				className={currentPage > 1 && totalPages > 1 ? "active" : "disabled"}
 			>
 				<ArrowLeftOutlined />
-				Back
+				Previous
 			</span>
 			<div className="pagination-numbers">
 				{pageNumbers.map((number) => (

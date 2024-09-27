@@ -61,7 +61,7 @@ import {
 	SupportCreateListing,
 } from "../pages";
 import { ProtectedRoute, BuyerSellerProtectedRoute } from "./ProtectedRoute";
-import { PropertySearchModal } from "../components";
+import { PropertySearchModal, SaleComponent } from "../components";
 
 
 
@@ -113,6 +113,10 @@ const Routes = [
 			{
 				path: "/rent",
 				element: <RentPage />,
+			},
+			{
+				path: "/sale",
+				element: <SaleComponent />,
 			},
 			{
 				path: "/sell",

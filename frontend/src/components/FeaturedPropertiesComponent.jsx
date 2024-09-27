@@ -26,8 +26,6 @@ const FeaturedPropertiesComponent = ({ featuredListing }) => {
     const screen_width = window.screen.width;
     const screen_height = window.screen.height;
 
-    console.log(window.screen);
-
     setScreenSize({
       width: screen_width,
       height: screen_height,
@@ -112,22 +110,20 @@ const FeaturedPropertiesComponent = ({ featuredListing }) => {
       setCardLength(cardList.length)
     }
 
-    console.log("cardlist", cardList);
-    
-    
     return (
       cardList.map((featured, i) => {
         // if (!featured.isFeatured) {
-          return (
-            <Col className="featured-property" key={i} span={8}>
-              <div className="featured-img">
-                <Image
-                  preview={false}
-                  src={featured.img}
-                />
-              </div>
-              <div className="featured-property--content">
-                <Card loading={false}>
+        return (
+          <Col className="featured-property" key={i} span={8}>
+            <div className="featured-img">
+              <Image
+                preview={false}
+                src={featured.img}
+              />
+            </div>
+            <div className="featured-property--content">
+              <Card loading={false}>
+                {/* <div className="card--content"> */}
                   <h4 className="featured-price">
                     PHP {featured.price}
                   </h4>
@@ -138,21 +134,45 @@ const FeaturedPropertiesComponent = ({ featuredListing }) => {
                   <div className="featured-features">
                     {<Features features={[featured]} />}
                   </div>
-                </Card>
-              </div>
-            </Col>
-          );
+                {/* </div> */}
+              </Card>
+            </div>
+          </Col>
+        );
         // }
         // return null;
       })
     )
   }
 
-  console.log(featuredListing);
-  
 
   return (
     <>
+    {
+        cardLength == 1 && (
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+          }}>
+            <SemiRoundBtn
+              label={'See all featured properties'}
+              style={{
+                borderColor: '#D90000',
+                color: '#D90000',
+                height: '38px',
+                fontWeight: '600',
+                border: 'none',
+                background: 'transparent',
+                textDecorationLine: 'underline'
+              }}
+              handleClick={() => navigate({
+                pathname: '/featured'
+              })}
+            />
+          </div>
+        )
+      }
+      <br />
       <Row
         id="featured-properties"
       // gutter={[16, { xs: 8, sm: 16, md: 32, lg: 150 }]}
@@ -169,27 +189,7 @@ const FeaturedPropertiesComponent = ({ featuredListing }) => {
         }
       </Row>
       <br />
-      {
-        cardLength == 1 && (
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}>
-            <SemiRoundBtn
-              label={'See all featured properties'}
-              style={{
-                borderColor: '#D90000',
-                color: '#D90000',
-                height: '38px',
-                fontWeight: '600'
-              }}
-              handleClick={() => navigate({
-                pathname: '/featured'
-              })}
-            />
-          </div>
-        )
-      }
+      
     </>
   );
 };
