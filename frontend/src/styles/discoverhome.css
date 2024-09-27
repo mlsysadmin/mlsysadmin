@@ -17,7 +17,8 @@
 }
 
 .discover-home .discover-overlap {
-    background-image: url(https://cdn.animaapp.com/projects/64e41d552340cba66b90f01a/releases/6667a47c52994fd7f44f8dff/img/image-120.png);
+    background-image: url('../asset/banners/discover_home_x2-transformed.jpeg');
+    /* background-image: url(https://cdn.animaapp.com/projects/64e41d552340cba66b90f01a/releases/6667a47c52994fd7f44f8dff/img/image-120.png); */
     background-size: 100% 100%;
     height: 892px;
     justify-content: center;

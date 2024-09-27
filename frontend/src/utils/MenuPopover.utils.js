@@ -98,7 +98,7 @@ const SubMenu = {
 		{
 			header: "Home Loan Guide",
 			submenu: [
-				{ sub: "Discover Home Loan", link: "https://mlhuillier.com/home-loan/" },
+				{ sub: "Discover Home Loan", link: "/discover-home" },
 				{ sub: "Loan Calculator", link: "/loan-calculator" },
 			],
 		},
@@ -144,7 +144,7 @@ const SubMenu = {
 		},
 		{
 			header: "Home Insurance Guide",
-			submenu: [{ sub: "Insurance Guide", link: "https://mlhuillier.com/insurance" }],
+			submenu: [{ sub: "Insurance Guide", link: "/insurance-guide" }],
 		},
 		{
 			header: "Other  ML Insurance Products ",

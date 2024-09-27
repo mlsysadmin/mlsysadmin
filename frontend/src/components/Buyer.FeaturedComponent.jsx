@@ -85,7 +85,7 @@ const FeaturedComponent = () => {
 		<div className="feature-container">
 			<ListingSearch />
 			<div className="second-content">
-				<span className="feature-h1">Featured Properties</span>
+				<h1 className="feature-h1">Featured Properties</h1>
 				{
 					currentCards.length !== 0 ? (
 						<>

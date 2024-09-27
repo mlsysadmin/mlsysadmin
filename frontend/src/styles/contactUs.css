@@ -13,10 +13,10 @@
   }
 
   .contactUsContainer .banner{
-    background-image: url('../asset/icons/contactBanner.png');
+    background-image: url('../asset/banners/house_car_LE_auto_x2-transformed.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 600px;
+    height: 800px;
     /* width: 100%;
     max-height: 70%; */
   }
@@ -202,7 +202,7 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    top:15%;
+    top:16%;
     position: absolute;
     background-color: #fff;
     width: 65%;

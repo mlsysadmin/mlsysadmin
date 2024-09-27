@@ -1,5 +1,5 @@
 import React from "react";
-import NodataAvailableImage from '../asset/noDataFound.jpg';
+import NodataAvailableImage from '../asset/noDataFound-bg.png';
 import '../styles/noDataAvailable.css';
 
 const NoDataAvailable = ({ message }) => {
