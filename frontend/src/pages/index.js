@@ -63,6 +63,7 @@ import CloseApplication from './support/ClosedApplication.page';
 import SupportApplicationOutlet from './support/SupportApplicationOutlet';
 import SupportListingOutlet from './support/SupportListingOutlet';
 import SupportOutlet from "./support/SupportOutlet.page";
+import ComingSoonPage from "./WorkingOnIt.page";
 
 export {
     ViewListingComponent,
@@ -81,6 +82,7 @@ export {
     Dashboard,
     HouseForRentPage,
     DiscoverHomePage,
+    ComingSoonPage,
     BuyAHomePage,
     RefinancePage,
     InsuranceGuidePage,

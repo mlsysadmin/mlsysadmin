@@ -6,7 +6,7 @@ import bannerImg from "../asset/icons/banner.png";
 import { Button, Radio } from "antd";
 import { FooterComponent, CustomMlFooter, MainLayout } from "../components";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
-import WorkingOnItModal from "./modals/WorkingOnModal";
+import WorkingOnItModal from "./ComingSoonComponent";
 
 const SellComponent = () => {
 	const [value, setValue] = useState(1);
@@ -32,14 +32,14 @@ const SellComponent = () => {
 	const handleChange = (event) => {
 		setSelectedOption(event.target.value);
 	};
-	const  [showModal, setShowModal] = useState(false);
+	const [showModal, setShowModal] = useState(false);
 
-	const handleButtonClick = () =>{
-		setShowModal(true);
-	}
-	const toggleModal = () =>{
+	const handleButtonClick = () => {
+		navigate("/comingsoon");
+	};
+	const toggleModal = () => {
 		setShowModal(!showModal);
-	}
+	};
 
 	return (
 		<div className="sell">

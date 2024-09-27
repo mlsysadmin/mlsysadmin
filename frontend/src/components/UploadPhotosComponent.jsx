@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import Resizer from "react-image-file-resizer";
 import WatermarkImg from "../asset/watermark.png";
+import { Watermark } from "antd";
 import "../styles/listing-form.css";
 
 const UploadPhotosComponent = ({ onComplete, setPropertyFields }) => {
@@ -120,7 +121,7 @@ const UploadPhotosComponent = ({ onComplete, setPropertyFields }) => {
 									style={{
 										width: "200px",
 										height: "160px",
-										objectFit: "cover",
+										// objectFit: "cover",
 									}}
 								/>
 								{/* <img
@@ -136,6 +137,19 @@ const UploadPhotosComponent = ({ onComplete, setPropertyFields }) => {
 										pointerEvents: "none",
 									}}
 								/> */}
+								<Watermark height={40} width={200} image={WatermarkImg}>
+									{/* <div
+										style={{
+											position: "absolute",
+											top: "50%",
+											left: "50%",
+											transform: "translate(-50%, -50%)",
+											width: "100%",
+											opacity: 0.5,
+											pointerEvents: "none",
+										}}
+									/> */}
+								</Watermark>
 
 								<button
 									onClick={() => removePhoto(index)}

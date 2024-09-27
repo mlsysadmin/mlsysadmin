@@ -7,91 +7,90 @@ import mail from "../assets/icons/previewlisting/mailenvelope.png";
 import user from "../assets/icons/previewlisting/usercircle.png";
 import chat from "../assets/icons/previewlisting/chatmessages.png";
 import call from "../assets/icons/previewlisting/callphone.png";
-import WorkingOnItModal from "./modals/WorkingOnModal";
+import WorkingOnItModal from "./ComingSoonComponent";
 import "../styles/previewListing.css";
 import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl } from "../utils/GetPhoto";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 
-const PreviewListRightSideContent = ({oneListing}) => {
+const PreviewListRightSideContent = ({ oneListing }) => {
+	const [homePrice, setHomePrice] = useState(500000); // Set default value
+	const [downPayment, setDownPayment] = useState(100000); // Set default value
+	const [term, setTerm] = useState(30); // State for term
+	const [stepsGap, setStepsGap] = useState(3); // Assume 3% as default interest rate
 
-  const [homePrice, setHomePrice] = useState(500000); // Set default value
-  const [downPayment, setDownPayment] = useState(100000); // Set default value
-  const [term, setTerm] = useState(30); // State for term
-  const [stepsGap, setStepsGap] = useState(3); // Assume 3% as default interest rate
+	const termInMonths = term * 12; // Convert term to months
 
-  const termInMonths = term * 12; // Convert term to months
+	// Calculate total home price with interest
+	const totalHomePrice = homePrice + homePrice * (stepsGap / 100);
 
-  // Calculate total home price with interest
-  const totalHomePrice = homePrice + homePrice * (stepsGap / 100);
+	// Calculate monthly payment
+	const monthlyPayment = (totalHomePrice - downPayment) / termInMonths;
 
-  // Calculate monthly payment
-  const monthlyPayment = (totalHomePrice - downPayment) / termInMonths
+	const [showApplicationDetailModal, setShowApplicationDetailModal] =
+		useState(false);
 
-  const [showApplicationDetailModal, setShowApplicationDetailModal] =
-    useState(false);
+	const handleButtonClick = () => {
+		console.log("Button clicked, showing modal");
+		setShowModal(true);
 
-  const handleButtonClick = () => {
-    console.log("Button clicked, showing modal");
-	setShowModal(true);
-  
-    // setShowApplicationDetailModal(true);
-    //   console.log(showApplicationDetailModal);
-  };
+		// setShowApplicationDetailModal(true);
+		//   console.log(showApplicationDetailModal);
+	};
 
-  const handleCloseModal = () => {
-    console.log("Closing modal");
-    setShowApplicationDetailModal(false);
-  };
-  const [showModal, setShowModal] = useState(false);
+	const handleCloseModal = () => {
+		console.log("Closing modal");
+		setShowApplicationDetailModal(false);
+	};
+	const [showModal, setShowModal] = useState(false);
 
 	const toggleModal = () => {
 		setShowModal(!showModal);
 	};
 
-//   const [publiclisting, setPublicListing] = useState([]);
+	//   const [publiclisting, setPublicListing] = useState([]);
 
-//   const allPublicListing = async () => {
-//     const res = await GetPropertiesBySaleStatus();
-//     const dataresp = res.data;
-//     setPublicListing(dataresp);
-//     console.log("public listing:", dataresp);
-//   };
+	//   const allPublicListing = async () => {
+	//     const res = await GetPropertiesBySaleStatus();
+	//     const dataresp = res.data;
+	//     setPublicListing(dataresp);
+	//     console.log("public listing:", dataresp);
+	//   };
 
-//   useEffect(() => {
-//     allPublicListing();
-//   }, []);
+	//   useEffect(() => {
+	//     allPublicListing();
+	//   }, []);
 
-//   const all = publiclisting.map((data) =>
-//     GetPhotoWithUrl(data.listings.photos.photo)
-//   );
+	//   const all = publiclisting.map((data) =>
+	//     GetPhotoWithUrl(data.listings.photos.photo)
+	//   );
 
-//   console.log("this is all", all);
-//   const [index, setIndex] = useState(0);
+	//   console.log("this is all", all);
+	//   const [index, setIndex] = useState(0);
 
-//   const secImage = () => {
-//     setIndex((prevIndex) => (prevIndex + 1) % publiclisting.length);
-//   };
+	//   const secImage = () => {
+	//     setIndex((prevIndex) => (prevIndex + 1) % publiclisting.length);
+	//   };
 
-//   const firstImage = () => {
-//     setIndex((prevIndex) =>
-//       prevIndex - 1 < 0 ? publiclisting.length - 1 : prevIndex - 1
-//     );
-//   };
+	//   const firstImage = () => {
+	//     setIndex((prevIndex) =>
+	//       prevIndex - 1 < 0 ? publiclisting.length - 1 : prevIndex - 1
+	//     );
+	//   };
 
-  // Dropdown menu items for term selection
-  const menu = (
-    <Menu onClick={(e) => setTerm(parseInt(e.key))}>
-      <Menu.Item key="30">30 Years Fixed</Menu.Item>
-      <Menu.Item key="25">25 Years Fixed</Menu.Item>
-      <Menu.Item key="20">20 Years Fixed</Menu.Item>
-      <Menu.Item key="15">15 Years Fixed</Menu.Item>
-      <Menu.Item key="10">10 Years Fixed</Menu.Item>
-      <Menu.Item key="5">5 Years Fixed</Menu.Item>
-    </Menu>
-  );
+	// Dropdown menu items for term selection
+	const menu = (
+		<Menu onClick={(e) => setTerm(parseInt(e.key))}>
+			<Menu.Item key="30">30 Years Fixed</Menu.Item>
+			<Menu.Item key="25">25 Years Fixed</Menu.Item>
+			<Menu.Item key="20">20 Years Fixed</Menu.Item>
+			<Menu.Item key="15">15 Years Fixed</Menu.Item>
+			<Menu.Item key="10">10 Years Fixed</Menu.Item>
+			<Menu.Item key="5">5 Years Fixed</Menu.Item>
+		</Menu>
+	);
 
-  return (
+	return (
 		<div className="right-side-container">
 			<div className="calculator">
 				<h2>Calculator</h2>

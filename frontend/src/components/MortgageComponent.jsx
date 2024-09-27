@@ -1,15 +1,19 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { HomeFilled, DollarOutlined } from "@ant-design/icons";
 import { FooterComponent, CustomMlFooter } from "../components";
 import "../styles/mortgage.css";
-import WorkingOnItModal from "./modals/WorkingOnModal";
+import WorkingOnItModal from "./ComingSoonComponent";
 
 const MortgageComponent = () => {
 	const [showModal, setShowModal] = useState(false);
+
+	const navigate = useNavigate();
 	const handleButtonClick = () => {
-		console.log("Button clicked, showing modal");
-		setShowModal(true);
+		// console.log("Button clicked, showing modal");
+		// setShowModal(true);
+		navigate("/comingsoon");
 	};
 	const toggleModal = () => {
 		setShowModal(!showModal);
