@@ -49,20 +49,24 @@
     /* padding-inline: 5px; */
     font-family: var(--font-family);
     font-weight: 500;
-    font-size: 13px;
+    font-size: 15px;
     margin-inline-end: 0px;
     text-transform: uppercase;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    line-height: 15px;
 }
 
 #card-listing .ant-card-body .listing-image .image-tag {
     display: flex;
     align-items: center;
     color: var(--red);
+    gap: 2px;
 }
 
 #card-listing .ant-card-body .listing-image .image-tag .anticon,
 #card-listing .ant-card-body .listing-image .image-tag p {
-    margin: auto 1.5px;
+    margin: 0 1.5px;
     color: #333333;
 }
 
@@ -84,7 +88,12 @@
     font-family: var(--font-family);
     background-color: #ffffff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    /* border-radius: 10px; */
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 
 }
 
@@ -105,10 +114,12 @@
     font-size: 12.5px;
 }
 
-#card-listing .ant-card-body .card-content .card-content--subtitle,
+#card-listing .ant-card-body .card-content .card-content--subtitle{
+    margin: 0px 5px 0px 5px;
+}
 #card-listing .ant-card-body .card-content .card-content--title {
-    margin: 10px 5px 5px 5px;
-
+    margin: 10px 5px 0px 5px;
+    height: 100px;
 }
 
 #card-listing .ant-card-body .card-content .card-content--subtitle .card-features,

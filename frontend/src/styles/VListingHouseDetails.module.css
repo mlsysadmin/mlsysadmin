@@ -71,7 +71,7 @@
 
 .leftctaButton {
   color: #d90000;
-  margin-top: 40px;
+  margin-top: 20px;
   /* width: 100%; */
   /* display: flex;
   align-items: flex-start; */
@@ -111,6 +111,7 @@
   width: 100%;
   padding: 15px;
   border: 1px solid #000;
+  max-width: 20%;
 }
 
 .featureTitle {
@@ -336,7 +337,8 @@
   }
   
   .leftctaButton {
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 15px;
   }
   
@@ -360,7 +362,7 @@
     width: 100%;
     padding: 15px;
     border: 1px solid #000;
- 
+    max-width: 100%;
   }
   
   .featureTitle {

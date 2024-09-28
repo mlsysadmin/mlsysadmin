@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/sell.css";
 import { Row, Col } from "antd";
-import bannerImg from "../asset/icons/banner.png";
+import bannerImg from "../asset/banners/house_car_LE_auto_x2-transformed.jpeg";
 import { Button, Radio } from "antd";
 import { FooterComponent, CustomMlFooter, MainLayout } from "../components";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";

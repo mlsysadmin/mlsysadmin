@@ -16,45 +16,14 @@ import DeafultFallbackImage from '../asset/Fallback2.png';
 import { CapitalizeString } from "../utils/StringFunctions.utils";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
 
-const PropertyListing = ({ oneListing }) => {
+const PropertyListing = ({ oneListing, unitPhotos }) => {
   // List of images for the carousel
-
-  const [unitPhotos, setUnitPhotos] = useState([]);
-  const [currentImageIndex, setCurrentImageIndex] = useState(1);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [checked, setIsChecked] = useState(false);
   const [likes, setLikes] = useState([]);
 
-  const UnitPhotos = async () => {
-    try {
 
-      const res = await GetUnitPhotos(oneListing.id);
-      const dataresp = res.data;
-      
-      if (dataresp.length == 0) {
-        let photo = oneListing.Photo
-
-        setUnitPhotos((prevState) => (
-          [...prevState, photo]
-        ));
-      }else{
-
-        setUnitPhotos([]);
-      }
-
-    } catch (error) {
-
-      setUnitPhotos([]);
-
-    }
-  };
-
-  useEffect(() => {
-    UnitPhotos();
-  }, []);
-
-  const images = unitPhotos.map((data) =>
-    GetPhotoWithUrl(data)
-  );
+  const images = unitPhotos;
   
   const handleChange = (isChecked, tag) => {
 
@@ -84,18 +53,29 @@ const PropertyListing = ({ oneListing }) => {
 
   const isPrevDisabled = images.length === 0 || currentImageIndex === 0;
 
+  const GetGalleryLength = async () => {
+    try {
+      const unitPhotos = GetUnitPhotos(oneListing.id);
+
+
+    }catch(err) {
+      console.log(err);
+    }
+    
+  }
+  
   return (
     <article className={styles.propertyCard}>
       <img
         loading="lazy"
-        src={images[currentImageIndex] ? images[currentImageIndex] : DeafultFallbackImage}
+        src={GetPhotoWithUrl(images[currentImageIndex]) ? GetPhotoWithUrl(images[currentImageIndex]) : DeafultFallbackImage}
         className={styles.backgroundImage}
         alt="Property background"
       />
       <div className={styles.logoImage}>
         <img src={redcamera} className={styles.cameraImage} alt="Camera Icon" />
         <span className={styles.number}>
-          {GetPhotoLength(oneListing.id) + images.length}
+          {  images.length }
         </span>
       </div>
       <div className={styles.carouselControls}>

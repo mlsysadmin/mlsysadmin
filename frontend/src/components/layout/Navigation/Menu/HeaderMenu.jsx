@@ -62,7 +62,6 @@ const HeaderMenu = () => {
 			const response = await searchKyc(accountDetails.mobileNumber);
 
 			const respData = response.data.data;
-			console.log("API Response:", respData);
 			setUserDetails(respData);
 		} catch (error) {
 			console.error("Error fetching user details:", error);
@@ -70,8 +69,10 @@ const HeaderMenu = () => {
 	};
 
 	useEffect(() => {
-		fetchUserDetails();
-		console.log("user", userDetails);
+		if (isMLWWSPresent && isAccountDetailsPresent) {
+
+			fetchUserDetails();
+		}
 	}, []);
 
 	const handleUserProfileClick = () => {
@@ -153,7 +154,6 @@ const HeaderMenu = () => {
 			sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(true);
 		} else {
-			console.log("menu", menu);
 			setCurrent(menu.key);
 			navigate({
 				pathname: menu.item.props.link,

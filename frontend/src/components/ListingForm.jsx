@@ -205,7 +205,6 @@ export const ListingForm = () => {
 	const handleFeatureChecking = async () => {
 		try {
 			const propertyNo = await GetPropertyNo();
-
 			const featureResponse = await GetFeature();
 			const existingFeatures = featureResponse.map(
 				(feature) => feature.FeatureName
@@ -214,72 +213,68 @@ export const ListingForm = () => {
 			console.log("Features before submission:", existingFeatures);
 
 			const allAddedFeaturePayloads = [];
-			const AllAddFeaturePayload = [];
+			const allAddFeaturePayloads = [];
 
 			const combinedFeatures = [
-				...propertyFields.Features,
-				...propertyFields.AddedFeature,
+				...new Map(
+					[...propertyFields.Features, ...propertyFields.AddedFeature].map(
+						(item) => [item.FeatureName, item]
+					)
+				).values(),
 			];
 
-			for (const FeatureName of combinedFeatures) {
-				if (featureResponse.FeatureName === combinedFeatures.FeatureName) {
-					const addAddedFeaturePayload = {
-						PropertyNo: propertyNo,
-						FeatureName: FeatureName.FeatureName,
-						Type: FeatureName.Type,
-					};
-					allAddedFeaturePayloads.push(addAddedFeaturePayload);
+			for (const feature of combinedFeatures) {
+				const addAddedFeaturePayload = {
+					PropertyNo: propertyNo,
+					FeatureName: feature.FeatureName,
+					Type: feature.Type,
+				};
 
-					console.log("existing features:", allAddedFeaturePayloads);
-
-					allAddedFeaturePayloads.forEach(async (addadddedFeaturePayload) => {
-						try {
-							await AddAddedFeature(addadddedFeaturePayload);
-							console.log(
-								`Feature with prop number successfully: ${addadddedFeaturePayload.FeatureName}`
-							);
-						} catch (error) {
-							console.error(`Error adding feature: ${error.message}`);
-						}
-					});
-				} else {
+				if (!existingFeatures.includes(feature.FeatureName)) {
 					const addFeaturePayload = {
-						FeatureName: FeatureName.FeatureName,
-						Type: FeatureName.Type,
+						FeatureName: feature.FeatureName,
+						Type: feature.Type,
 					};
 
-					AllAddFeaturePayload.push(addFeaturePayload);
-
-					AllAddFeaturePayload.forEach(async (featurePayload) => {
-						try {
-							await AddFeature(featurePayload);
-							console.log(
-								`Feature added successfully: ${featurePayload.FeatureName}`
-							);
-						} catch (error) {
-							console.error(`Error adding feature: ${error.message}`);
-						}
-					});
-
-					allAddedFeaturePayloads.forEach(async (addadddedFeaturePayload) => {
-						try {
-							await AddAddedFeature(addadddedFeaturePayload);
-							console.log(
-								`Feature with prop number successfully: ${addadddedFeaturePayload.FeatureName}`
-							);
-						} catch (error) {
-							console.error(`Error adding feature: ${error.message}`);
-						}
-					});
+					allAddFeaturePayloads.push(addFeaturePayload);
+					allAddedFeaturePayloads.push(addAddedFeaturePayload);
+				} else {
+					allAddedFeaturePayloads.push(addAddedFeaturePayload);
 				}
 			}
-			// console.log("All feature payloads:", allAddedFeaturePayloads);
-			// console.log("All feature payloads:", AllAddFeaturePayload);
+
+			await Promise.all(
+				allAddFeaturePayloads.map(async (payload) => {
+					try {
+						await AddFeature(payload);
+						console.log(
+							`New feature added successfully: ${payload.FeatureName}`
+						);
+					} catch (error) {
+						console.error(`Error adding new feature: ${error.message}`);
+					}
+				})
+			);
+
+			await Promise.all(
+				allAddedFeaturePayloads.map(async (payload) => {
+					try {
+						await AddAddedFeature(payload);
+						console.log(
+							`Feature with PropertyNo added successfully: ${payload.FeatureName}`
+						);
+					} catch (error) {
+						console.error(`Error adding feature to property: ${error.message}`);
+					}
+				})
+			);
+
 			console.log("Features processed and posted successfully.");
 		} catch (error) {
 			console.error("Error processing features:", error.message);
 		}
 	};
+
 
 	const handleSubmit = async (VendorId = null) => {
 		try {
