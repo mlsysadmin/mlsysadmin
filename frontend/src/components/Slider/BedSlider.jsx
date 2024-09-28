@@ -5,7 +5,7 @@ const BedInputSlider = ({value, onChange}) => {
   
 
   return (
-    <div>
+    <div className="bed-form-group">
       <div className="beds-value">
         <input
           id="beds-input"

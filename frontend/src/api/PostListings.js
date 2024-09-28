@@ -363,9 +363,9 @@ const GetPropertyNo = async () => {
 	}
 };
 
-const AddFeature = async (featurePayload) => {
+const AddFeature = async (payload) => {
 	try {
-		console.log("New feature:", featurePayload);
+		console.log("New feature:", payload);
 
 		const config = {
 			headers: {
@@ -376,7 +376,7 @@ const AddFeature = async (featurePayload) => {
 
 		const response = await IGOTSOLUTIONSAxiosInstance.post(
 			`/api/addFeature`,
-			featurePayload,
+			payload,
 			config
 		);
 
@@ -402,9 +402,9 @@ const AddFeature = async (featurePayload) => {
 	}
 };
 
-const AddAddedFeature = async (addadddedFeaturePayload) => {
+const AddAddedFeature = async (payload) => {
 	try {
-		console.log("With Property Number:", addadddedFeaturePayload);
+		console.log("With Property Number:", payload);
 
 		const config = {
 			headers: {
@@ -415,7 +415,7 @@ const AddAddedFeature = async (addadddedFeaturePayload) => {
 
 		const response = await IGOTSOLUTIONSAxiosInstance.post(
 			`/api/addAddedFeature`,
-			addadddedFeaturePayload,
+			payload,
 			config
 		);
 

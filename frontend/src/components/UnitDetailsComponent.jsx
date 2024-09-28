@@ -343,7 +343,7 @@ const UnitDetailsComponent = ({
 						</div>
 						<div className="listing-unit-input-group">
 							<label className="text-wrapper-38" htmlFor="disc-selling-price">
-								What is the discounted selling price of the unit?
+								What is the selling unit discounted price ?
 							</label>
 							<div className="input-container">
 								<div className="currency-prefix">PHP</div>
