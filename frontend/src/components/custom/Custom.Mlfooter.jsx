@@ -17,10 +17,11 @@ const CustomMlFooter = () => {
 							<img src={mllogo} alt="ML Logo" className="logo-ml" />
 							<div className="customer-care">
 								<CustomerServiceFilled style={{ color: "#ff2800" }} />
-								<span>customercare@mlhuillier.com</span>
+								<span>properties@mlhuillier.com</span>
 							</div>
 							<div className="firstcol-icons">
 								<FacebookFilled className="social-icon" />
+								
 								<TwitterCircleFilled className="social-icon" />
 								<InstagramFilled className="social-icon" />
 								<YoutubeOutlined className="social-icon" />

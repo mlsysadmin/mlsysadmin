@@ -31,6 +31,7 @@
     padding-inline: 13px;
     margin: 0 5px;
     font-family: var(--font-family);
+     transition: none !important ;
 }
 
 .header--menu.ant-menu .ant-menu-item-selected,
@@ -39,21 +40,26 @@
 .header--menu.ant-menu .ant-menu-item:hover,
 .header--menu.ant-menu .ant-menu-item-selected .rent-menu--btn
 {
-    background: var(--red);
-    color: white;
+    /* background: var(--red); */
+    color: var(--red);
     border-radius: 10px;
     font-family: var(--font-family);
+    font-weight: bold;
+    transform: scale(1.05); 
+    transition: transform 0.2s ease-in-out;
 }
 
 .header--menu.ant-menu .ant-menu-item:not(.ant-menu-item-selected):hover{
-    color: white;
+    color: var(--red);
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
 }
 
 .header--menu.ant-menu .ant-menu-item-selected::after, 
 .header--menu.ant-menu .ant-menu-item-active::after,
 .header--menu.ant-menu .ant-menu-item:hover
 .header--menu.ant-menu li::after{
-    border-bottom: none;
+    border-bottom: none !important;
 }
 
 .rent-menu--btn.ant-btn{
