@@ -22,7 +22,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 1rem;
+	gap: 22px;
 	padding: 10px;
 }
 
@@ -43,6 +43,7 @@
 	display: flex;
 	align-items: center;
 	border-radius: 3px;
+	flex-direction: row;
 }
 .advance-searchdropdown .slider-container .range-container .range-input {
 	border: none;
@@ -79,7 +80,7 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	width: 80%;
+	width: 76%;
 	gap: 0.6rem;
 	border: 1px solid #8c9094;
 	border-radius: 3px;
@@ -212,7 +213,7 @@ listing search */
 }
 
 .searh-custom-slider {
-	width: 85%;
+	width: 80%;
 	padding: 5px;
 }
 .input-field,
@@ -535,9 +536,9 @@ listing search */
 		position: absolute;
 	}
 	.advance-searchdropdown .custom-range-button {
-		width: 100%;
+		/* width: 100%; */
 		margin-top: 870px;
-		margin-left: 270px;
+		margin-left: 50px;
 		position: absolute;
 	}
 	.unavailableListings{
@@ -1522,6 +1523,42 @@ listing search */
 		display: flex;
 		flex-wrap: wrap;
 		width: 90%;
+	}
+	.advance-searchdropdown {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		/* justify-content: center;
+		align-items: center; */
+		gap: 10px;
+		width: 100%;
+		margin-top: 0px;
+	}
+	.advance-searchdropdown .slider-container .range-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		margin-top: 0px;
+		gap: 10px;
+	}
+	.advance-searchdropdown .advance-search-group1 {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		padding: 5px;
+		align-items: center;
+		padding-right: 20px;
+	}
+}
+@media screen and (min-width: 1201px) and (max-width: 1400px) {
+	.first-content {
+		margin-left: 20px;
+	}
+	.first-content .sub-content1 {
+		display: flex;
+		flex-wrap: wrap;
 	}
 	.advance-searchdropdown {
 		display: flex;

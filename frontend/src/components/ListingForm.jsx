@@ -492,6 +492,7 @@ setIsSubmitting(false);
 											display: "flex",
 											justifyContent: "left",
 											marginBottom: "10px",
+											marginLeft: "10px",
 										}}
 									>
 										Please fill in the missing values.
@@ -736,6 +737,27 @@ setIsSubmitting(false);
 										}
 										isError={showAlertModal.isError}
 										onClose={() => setShowAlert(false)}
+										overlayStyle={{
+											position: "fixed",
+											top: "0",
+											left: "0",
+											right: "0",
+											bottom: "0",
+											backgroundColor: "rgba(0, 0, 0, 0.5)",
+											display: "flex",
+											alignItems: "center",
+											justifyContent: "center",
+										}}
+										contentStyle={{
+											backgroundColor: "white",
+											padding: "20px",
+											borderRadius: "20px",
+											width: "90%",
+											maxWidth: "400px",
+											position: "relative",
+											textAlign: "center",
+											margin: "10px",
+										}}
 									/>
 								)}
 							</div>

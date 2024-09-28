@@ -70,34 +70,34 @@
 
 .modal-actions .confirm-pending {
   background-color: #F68721;
-  border: 1px solid #F68721; /* Yellow border for Cancel button */
+  border: 1px solid #F68721; 
   color: #fff;
 }
 
 .modal-actions .confirm-disapprove {
   background-color: red;
-  border: 1px solid red; /* Red border for Cancel button */
+  border: 1px solid red; 
   color: #fff;
 }
 
 .modal-actions .confirm-approve {
   background-color: green;
-  border: 1px solid green; /* Green border for Cancel button */
+  border: 1px solid green; 
   color: #fff;
 }
 
 .modal-actions .cancel-pending {
-  border: 1px solid #F68721; /* Yellow border for Cancel button */
+  border: 1px solid #F68721; 
 }
 
 .modal-actions .cancel-disapprove {
-  border: 1px solid red; /* Red border for Cancel button */
+  border: 1px solid red; 
 }
 .modal-actions .cancel-create-listing{
   border: #EA4335 1px solid;
 }
 .modal-actions .cancel-approve {
-  border: 1px solid green; /* Green border for Cancel button */
+  border: 1px solid green; 
 }
 .modal-title {
   font-size: 28px;
@@ -106,7 +106,7 @@
 }
 
 .title-pending {
-  color: #f68721; /* Orange */
+  color: #f68721;
 }
 
 .title-disapprove {
@@ -125,7 +125,7 @@
 
 .modal-actions .confirm-create-listing {
   background-color: #EA4335;
-  border: 1px solid #EA4335; /* Red border for Confirm button */
+  border: 1px solid #EA4335; 
   color: #fff;
 }
 

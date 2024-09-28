@@ -103,46 +103,50 @@ const ListingSearch = () => {
 							/>
 						</div>
 						<div className="range-container">
-							<p className="range-border">
-								MIN{" "}
-								{isCustomRange ? (
-									<span className="range-prefix">
-										PHP
-										<input
-											type="text"
-											value={priceRange[0]}
-											onChange={handleMinChange}
-											className="range-input"
-										/>
-									</span>
-								) : (
-									<b style={{ color: "#f60000" }}>
-										PHP{priceRange[0].toLocaleString()}
-									</b>
-								)}
-							</p>
-							<p className="range-border">
-								MAX{" "}
-								{isCustomRange ? (
-									<span className="range-prefix">
-										PHP
-										<input
-											type="text"
-											value={priceRange[1]}
-											onChange={handleMaxChange}
-											className="range-input"
-										/>
-									</span>
-								) : (
-									<b style={{ color: "#f60000" }}>
-										PHP{priceRange[1].toLocaleString()}
-									</b>
-								)}
-							</p>
-								<SettingOutlined
-									className="custom-range-button"
-									onClick={handleCustomRangeClick}
-								/>
+							<div className="range-border">
+								<p>
+									MIN &nbsp;
+									{isCustomRange ? (
+										<span className="range-prefix">
+											PHP
+											<input
+												type="text"
+												value={priceRange[0]}
+												onChange={handleMinChange}
+												className="range-input"
+											/>
+										</span>
+									) : (
+										<b style={{ color: "#f60000" }}>
+											PHP{priceRange[0].toLocaleString()}
+										</b>
+									)}
+								</p>
+							</div>
+							<div className="range-border">
+								<p>
+									MAX &nbsp;
+									{isCustomRange ? (
+										<span className="range-prefix">
+											PHP
+											<input
+												type="text"
+												value={priceRange[1]}
+												onChange={handleMaxChange}
+												className="range-input"
+											/>
+										</span>
+									) : (
+										<b style={{ color: "#f60000" }}>
+											PHP{priceRange[1].toLocaleString()}
+										</b>
+									)}
+								</p>
+							</div>
+							<SettingOutlined
+								className="custom-range-button"
+								onClick={handleCustomRangeClick}
+							/>
 						</div>
 					</div>
 					<div className="subcontent-inputs-2">
@@ -168,12 +172,13 @@ const ListingSearch = () => {
 							visible={iscertainFeatureOpen}
 							onVisibleChange={handleCertainFeatureClick}
 						>
-							<Button
+							<select
 								className="select-field"
 								onClick={handleCertainFeatureClick}
 							>
-								Features <CaretDownOutlined />
-							</Button>
+								<option value="Features">Features</option>
+								<CaretDownOutlined />
+							</select>
 						</Dropdown>
 					</div>
 				</div>
