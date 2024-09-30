@@ -114,18 +114,17 @@ const FeaturedPropertiesComponent = ({ featuredListing }) => {
       cardList.map((featured, i) => {
         // if (!featured.isFeatured) {
         return (
-          <Col className="featured-property" key={i} span={8}>
+          <Col className="featured-property" key={i}>
             <div className="featured-img">
-              <Image
-                preview={false}
+              <img
+                // preview={false}
                 src={featured.img}
               />
             </div>
             <div className="featured-property--content">
               <Card loading={false}>
-                {/* <div className="card--content"> */}
                   <h4 className="featured-price">
-                    PHP {featured.price}
+                    PHP {featured.price} {featured.sale_type?.toLowerCase() == 'rent' ? 'month' : ''}
                   </h4>
                   <p className="featured-title">{featured.title}</p>
                   <p className="featured-listing-type">
@@ -134,7 +133,6 @@ const FeaturedPropertiesComponent = ({ featuredListing }) => {
                   <div className="featured-features">
                     {<Features features={[featured]} />}
                   </div>
-                {/* </div> */}
               </Card>
             </div>
           </Col>

@@ -1,0 +1,62 @@
+  /* SKELETON */
+  .skeleton--card-listing, 
+  .skeleton--card-listing .skeleton--card-img .ant-skeleton-image {
+      width: 380px;
+  }
+
+  .skeleton--card-listing .skeleton--card-img {
+      height: 180px !important;
+    }
+
+  .skeleton--card-listing .ant-skeleton-title{
+    height: 20px !important;
+  }
+  .skeleton--features{
+    display: flex;
+    justify-content: space-between;
+  }
+  .skeleton--card-price{
+    width: 150px;
+  }
+
+  .skeleton--feature-items{
+    display: flex;
+    
+  }
+  .skeleton--card-feature{
+    margin: 0 7px;
+  }
+  
+  /* FEATURES */
+  .skeleton--feature-price{
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+  }
+  .skeleton--feature-title{
+    width: 250px;
+    margin: 25px 0 15px;
+  }
+  .skeleton--feature-sale_type{
+    width: 150px;
+
+  }
+  .skeleton--feature-items{
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 1500px) {
+    .skeleton--card-listing {
+        width: 300px;
+        margin-bottom: 15px;
+    }
+    .skeleton--card-listing .skeleton--card-img .ant-skeleton-image{
+
+        width: 300px;
+    }
+    .skeleton--card-listing .skeleton--card-img {
+        height: 130px !important;
+      }
+  }

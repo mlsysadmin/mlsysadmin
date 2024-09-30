@@ -30,7 +30,7 @@ const HeaderContainer = ({ showDrawer, screenSize }) => {
           src={BrokerageLogo}
           alt="logo"
           style={{ 
-            width: "150px", 
+            width: "180px", 
             // height: "60px" 
           }}
           // width={140}
