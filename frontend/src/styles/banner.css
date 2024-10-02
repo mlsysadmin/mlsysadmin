@@ -3,7 +3,7 @@
   border-radius: 30px;
   padding: 20px; /* Adjust padding to match design */
   text-align: center;
-  width: calc(100% - 40px); /* Adjust width to accommodate margin */
+width: 1500px;
   
   display: flex;
   flex-direction: column;
@@ -22,4 +22,33 @@
 .listing-banner p {
   color: white;
   font-size: 16px;
+}
+@media  screen and (min-width:320px) and (max-width:480px){
+  .listing-banner h1{
+    font-size: 22px;
+  }
+  .listing-banner p {
+  font-size: 15px;
+}
+.listing-banner{
+ 		width: auto;
+		padding: 20px 10px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+    margin:10px;
+}
+	
+} 
+@media  screen and (min-width:481px) and (max-width:1400px){
+  .listing-banner{
+ 		width: auto;
+		padding: 20px 5px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+    margin:20px;
+}
 }

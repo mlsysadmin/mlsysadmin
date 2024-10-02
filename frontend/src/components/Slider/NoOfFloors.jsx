@@ -4,7 +4,7 @@ import React, { useState } from "react";
 const NoOfFloorsInputSlider = ({value, onChange}) => {
 
   return (
-		<div>
+		<div className="no-floor-group">
 			<div className="no-of-floors-value">
 				<input
 					id="no-of-floors-input"

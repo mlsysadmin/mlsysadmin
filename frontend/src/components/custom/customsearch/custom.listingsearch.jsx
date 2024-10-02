@@ -75,13 +75,15 @@ const ListingSearch = () => {
 						))}
 					</select>
 					<select className="select-field" placeholder="Property Type">
-						<option value="residential">Property Type</option>
+						<option value="">Property Type</option>
 						<option value="residential">Residential</option>
 						<option value="commercial">Commercial</option>
 						<option value="land">Land</option>
 					</select>
 					<select className="select-field" placeholder="Listing Type">
-						<option value="residential"> Listing Type</option>
+						<option value="" >
+							 Listing Type
+						</option>
 						<option value="for-sale">For Sale</option>
 						<option value="for-rent">For Rent</option>
 					</select>
@@ -152,17 +154,17 @@ const ListingSearch = () => {
 					<div className="subcontent-inputs-2">
 						<input className="input-field" placeholder="Enter Lot Area" />
 						<select className="select-field" placeholder="Bedrooms">
-							<option value="residential">Bedrooms</option>
+							<option value="">Bedrooms</option>
 							<option value="commercial">1</option>
 							<option value="land">2</option>
 						</select>
 						<select className="select-field" placeholder="Bathrooms">
-							<option value="residential">Bathrooms</option>
+							<option value="">Bathrooms</option>
 							<option value="commercial">1</option>
 							<option value="land">2</option>
 						</select>
 						<select className="select-field" placeholder="Garage/Parking ">
-							<option value="residential">Garage/Parking </option>
+							<option value="">Garage/Parking </option>
 							<option value="commercial">1</option>
 							<option value="land">2</option>
 						</select>
