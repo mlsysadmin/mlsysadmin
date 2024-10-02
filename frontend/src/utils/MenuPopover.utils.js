@@ -17,7 +17,10 @@ const SubMenu = {
 				{ sub: "Office Space", link: "/rent/?property_type=office-space" },
 				{ sub: "Retail Space", link: "/rent/?property_type=shop/retail" },
 				{ sub: "Service Office", link: "/rent/?property_type=service-office" },
-				{ sub: "Commercial Land/Office", link: "/rent/?property_type=commercial_land/office" },
+				{
+					sub: "Commercial Land/Office",
+					link: "/rent/?property_type=commercial_land/office",
+				},
 			],
 		},
 		{
@@ -26,7 +29,7 @@ const SubMenu = {
 		},
 		{
 			header: "Rental Resources",
-			submenu: [{ sub: "List my home for rent", link: "/add-list" }],
+			submenu: [{ sub: "List my home for rent", link: "/listing" }],
 		},
 	],
 
@@ -46,7 +49,10 @@ const SubMenu = {
 				{ sub: "Office Space", link: "/sale/?property_type=office-space" },
 				{ sub: "Retail Spaces", link: "/sale/?property_type=shop/retail" },
 				{ sub: "Service Office", link: "/sale/?property_type=service-office" },
-				{ sub: "Commercial Land/Office", link: "/sale/?property_type=commercial-land/office" },
+				{
+					sub: "Commercial Land/Office",
+					link: "/sale/?property_type=commercial-land/office",
+				},
 			],
 		},
 		{
@@ -56,7 +62,9 @@ const SubMenu = {
 				{
 					childSubMenu: {
 						header: "Agricultural for Sale",
-						submenu: [{ sub: "Farm Lot", link: "/sale/?property_type=farm-lot" }],
+						submenu: [
+							{ sub: "Farm Lot", link: "/sale/?property_type=farm-lot" },
+						],
 					},
 				},
 			],
@@ -85,7 +93,10 @@ const SubMenu = {
 								nationwide. You may visit our
 							</span>
 							<p>
-								<a href="https://mlhuillier.com/home-loan/" className="redirect">
+								<a
+									href="https://mlhuillier.com/home-loan/"
+									className="redirect"
+								>
 									Home Loan Dashboard <RightOutlined />
 								</a>
 							</p>
@@ -108,7 +119,10 @@ const SubMenu = {
 				{ sub: "Refinance your home", link: "/refinance" },
 				{ sub: "Learn more about mortgage process", link: "/" },
 				{ sub: "Car Loan", link: "https://mlhuillier.com/car-loan" },
-				{ sub: "Quick Cash Loan", link: "https://mlhuillier.com/quick-cash-loans" },
+				{
+					sub: "Quick Cash Loan",
+					link: "https://mlhuillier.com/quick-cash-loans",
+				},
 				{ sub: "Pensioner's Loan", link: "/" },
 			],
 		},
@@ -132,7 +146,10 @@ const SubMenu = {
 								<br /> a wide range of risks & threats. <br /> You may visit our
 							</span>
 							<p>
-								<a href="https://webinsurance.mlhuillier.com/" className="redirect">
+								<a
+									href="https://webinsurance.mlhuillier.com/"
+									className="redirect"
+								>
 									Home Insurance Dashboard <RightOutlined />
 								</a>
 							</p>
@@ -149,9 +166,15 @@ const SubMenu = {
 		{
 			header: "Other  ML Insurance Products ",
 			submenu: [
-				{ sub: "Personal Accident Insurance", link: "https://webinsurance.mlhuillier.com/personal-accident-insurance" },
+				{
+					sub: "Personal Accident Insurance",
+					link: "https://webinsurance.mlhuillier.com/personal-accident-insurance",
+				},
 				{ sub: "Auto Insurance", link: "/mortgage-process" },
-				{ sub: "Dengue RX Insurance", link: "https://webinsurance.mlhuillier.com/medical-reimbursement" },
+				{
+					sub: "Dengue RX Insurance",
+					link: "https://webinsurance.mlhuillier.com/medical-reimbursement",
+				},
 				{ sub: "Medicare Plus Insurance", link: "/quick-cash-loan" },
 				{ sub: "Global Travel Protect Insurance", link: "/pension-loan" },
 				{ sub: "OFW Balik Manggagawa Insurance", link: "/pension-loan" },
@@ -191,7 +214,10 @@ const SubMenu = {
 				</>
 			),
 			submenu: [
-				{ sub: "Quick Cash Loans", link: "https://mlhuillier.com/quick-cash-loans/" },
+				{
+					sub: "Quick Cash Loans",
+					link: "https://mlhuillier.com/quick-cash-loans/",
+				},
 				{ sub: "Car Loan", link: "https://mlhuillier.com/car-loan/" },
 				{ sub: "Home Loan", link: "https://mlhuillier.com/home-loan/" },
 				{ sub: "Kwarta Padala", link: "https://mlhuillier.com/kwarta-padala/" },
@@ -201,7 +227,10 @@ const SubMenu = {
 			header: "",
 			submenu: [
 				{ sub: "ML Wallet ", link: "https://mlhuillier.com/ml-wallet/" },
-				{ sub: "ML Payroll Pro", link: "https://mlhuillier.com/ml-payroll-pro/" },
+				{
+					sub: "ML Payroll Pro",
+					link: "https://mlhuillier.com/ml-payroll-pro/",
+				},
 				{ sub: "ML Express", link: "https://mlhuillier.com/ml-express/" },
 				{ sub: "Money Changer", link: "https://mlhuillier.com/money-changer/" },
 			],
@@ -212,7 +241,10 @@ const SubMenu = {
 				{ sub: "Jewelry ", link: "https://mlhuillier.com/jewelry/" },
 				{ sub: "Insurance", link: "https://mlhuillier.com/insurance/" },
 				{ sub: "ML Moves", link: "https://mlhuillier.com/ml-moves/" },
-				{ sub: "Telco, Gaming & TV Loading", link: "https://mlhuillier.com/telco-gaming-and-tv-loading/" },
+				{
+					sub: "Telco, Gaming & TV Loading",
+					link: "https://mlhuillier.com/telco-gaming-and-tv-loading/",
+				},
 			],
 		},
 		{

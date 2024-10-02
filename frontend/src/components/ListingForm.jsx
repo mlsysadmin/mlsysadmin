@@ -205,7 +205,6 @@ export const ListingForm = () => {
 	const handleFeatureChecking = async () => {
 		try {
 			const propertyNo = await GetPropertyNo();
-
 			const featureResponse = await GetFeature();
 			const existingFeatures = featureResponse.map(
 				(feature) => feature.FeatureName
@@ -214,72 +213,68 @@ export const ListingForm = () => {
 			console.log("Features before submission:", existingFeatures);
 
 			const allAddedFeaturePayloads = [];
-			const AllAddFeaturePayload = [];
+			const allAddFeaturePayloads = [];
 
 			const combinedFeatures = [
-				...propertyFields.Features,
-				...propertyFields.AddedFeature,
+				...new Map(
+					[...propertyFields.Features, ...propertyFields.AddedFeature].map(
+						(item) => [item.FeatureName, item]
+					)
+				).values(),
 			];
 
-			for (const FeatureName of combinedFeatures) {
-				if (featureResponse.FeatureName === combinedFeatures.FeatureName) {
-					const addAddedFeaturePayload = {
-						PropertyNo: propertyNo,
-						FeatureName: FeatureName.FeatureName,
-						Type: FeatureName.Type,
-					};
-					allAddedFeaturePayloads.push(addAddedFeaturePayload);
+			for (const feature of combinedFeatures) {
+				const addAddedFeaturePayload = {
+					PropertyNo: propertyNo,
+					FeatureName: feature.FeatureName,
+					Type: feature.Type,
+				};
 
-					console.log("existing features:", allAddedFeaturePayloads);
-
-					allAddedFeaturePayloads.forEach(async (addadddedFeaturePayload) => {
-						try {
-							await AddAddedFeature(addadddedFeaturePayload);
-							console.log(
-								`Feature with prop number successfully: ${addadddedFeaturePayload.FeatureName}`
-							);
-						} catch (error) {
-							console.error(`Error adding feature: ${error.message}`);
-						}
-					});
-				} else {
+				if (!existingFeatures.includes(feature.FeatureName)) {
 					const addFeaturePayload = {
-						FeatureName: FeatureName.FeatureName,
-						Type: FeatureName.Type,
+						FeatureName: feature.FeatureName,
+						Type: feature.Type,
 					};
 
-					AllAddFeaturePayload.push(addFeaturePayload);
-
-					AllAddFeaturePayload.forEach(async (featurePayload) => {
-						try {
-							await AddFeature(featurePayload);
-							console.log(
-								`Feature added successfully: ${featurePayload.FeatureName}`
-							);
-						} catch (error) {
-							console.error(`Error adding feature: ${error.message}`);
-						}
-					});
-
-					allAddedFeaturePayloads.forEach(async (addadddedFeaturePayload) => {
-						try {
-							await AddAddedFeature(addadddedFeaturePayload);
-							console.log(
-								`Feature with prop number successfully: ${addadddedFeaturePayload.FeatureName}`
-							);
-						} catch (error) {
-							console.error(`Error adding feature: ${error.message}`);
-						}
-					});
+					allAddFeaturePayloads.push(addFeaturePayload);
+					allAddedFeaturePayloads.push(addAddedFeaturePayload);
+				} else {
+					allAddedFeaturePayloads.push(addAddedFeaturePayload);
 				}
 			}
-			// console.log("All feature payloads:", allAddedFeaturePayloads);
-			// console.log("All feature payloads:", AllAddFeaturePayload);
+
+			await Promise.all(
+				allAddFeaturePayloads.map(async (payload) => {
+					try {
+						await AddFeature(payload);
+						console.log(
+							`New feature added successfully: ${payload.FeatureName}`
+						);
+					} catch (error) {
+						console.error(`Error adding new feature: ${error.message}`);
+					}
+				})
+			);
+
+			await Promise.all(
+				allAddedFeaturePayloads.map(async (payload) => {
+					try {
+						await AddAddedFeature(payload);
+						console.log(
+							`Feature with PropertyNo added successfully: ${payload.FeatureName}`
+						);
+					} catch (error) {
+						console.error(`Error adding feature to property: ${error.message}`);
+					}
+				})
+			);
+
 			console.log("Features processed and posted successfully.");
 		} catch (error) {
 			console.error("Error processing features:", error.message);
 		}
 	};
+
 
 	const handleSubmit = async (VendorId = null) => {
 		try {
@@ -423,9 +418,7 @@ setIsSubmitting(false);
 	return (
 		<>
 			<div className="listing-ContentContainer">
-				<div>
 					<ListingBanner />
-				</div>
 				<div className="listing-application">
 					<div className="listing-steps">
 						<ListingSteps
@@ -459,6 +452,7 @@ setIsSubmitting(false);
 											justifyContent: "left",
 											marginBottom: "10px",
 										}}
+										className="error-m"
 									>
 										Please fill in the missing values.
 									</div>
@@ -497,7 +491,9 @@ setIsSubmitting(false);
 											display: "flex",
 											justifyContent: "left",
 											marginBottom: "10px",
+											marginLeft: "10px",
 										}}
+										className="error-m"
 									>
 										Please fill in the missing values.
 									</div>
@@ -522,6 +518,7 @@ setIsSubmitting(false);
 											justifyContent: "left",
 											marginBottom: "10px",
 										}}
+										className="error-m"
 									>
 										Please fill in the missing values.
 									</div>
@@ -547,6 +544,7 @@ setIsSubmitting(false);
 											justifyContent: "left",
 											marginBottom: "10px",
 										}}
+										className="error-m"
 									>
 										Please fill in the missing values.
 									</div>
@@ -595,6 +593,7 @@ setIsSubmitting(false);
 											justifyContent: "left",
 											marginBottom: "10px",
 										}}
+										className="error-m"
 									>
 										Please fill in the missing values.
 									</div>
@@ -619,11 +618,11 @@ setIsSubmitting(false);
 								{/* TIN Modal */}
 								{showVendorModal && (
 									<div
-										className="modal-overlay"
+										className="vendor-modal-overlay"
 										onClick={() => setShowVendorModal(false)}
 									>
 										<div
-											className="modal-content"
+											className="vendor-modal-content"
 											onClick={(e) => e.stopPropagation()}
 											style={{
 												display: "flex",
@@ -669,14 +668,14 @@ setIsSubmitting(false);
 								{/* Success Modal */}
 								{showSuccessfulMsgModal && (
 									<div
-										className="modal-overlay"
+										className="success-modal-overlay"
 										onClick={() => setShowSuccessfulMsgModal(false)}
 									>
 										<div
-											className="modal-content"
+											className="success-modal-content-body"
 											onClick={(e) => e.stopPropagation()}
 										>
-											<h2 className="modalsuccess-header">
+											<h2 className="modal-success-header">
 												Successfully Submitted!
 											</h2>
 											<div className="success-details">
@@ -699,7 +698,7 @@ setIsSubmitting(false);
 
 								{isSubmitting && (
 									<div
-										className="loading-modal"
+										className="post-loading-modal"
 										style={{
 											position: "fixed",
 											top: "0",
@@ -714,7 +713,7 @@ setIsSubmitting(false);
 										}}
 									>
 										<div
-											className="loading-spinner"
+											className="post-loading-spinner"
 											style={{
 												backgroundColor: "white",
 												padding: "10px",
@@ -732,7 +731,7 @@ setIsSubmitting(false);
 										</div>
 									</div>
 								)}
-								{showAlert && (
+								{/* {showAlert && (
 									<AlertModal
 										title={showAlertModal.title}
 										text={showAlertModal.text}
@@ -740,9 +739,31 @@ setIsSubmitting(false);
 											showAlertModal.subTitle ? showAlertModal.subTitle : ""
 										}
 										isError={showAlertModal.isError}
+										className="alert-"
 										onClose={() => setShowAlert(false)}
+										overlayStyle={{
+											position: "fixed",
+											top: "0",
+											left: "0",
+											right: "0",
+											bottom: "0",
+											backgroundColor: "rgba(0, 0, 0, 0.5)",
+											display: "flex",
+											alignItems: "center",
+											justifyContent: "center",
+										}}
+										contentStyle={{
+											backgroundColor: "white",
+											padding: "20px",
+											borderRadius: "20px",
+											width: "90%",
+											maxWidth: "400px",
+											position: "relative",
+											textAlign: "center",
+											margin: "10px",
+										}}
 									/>
-								)}
+								)} */}
 							</div>
 						</div>
 					</div>

@@ -3,28 +3,37 @@ import "../styles/loancalculator.css";
 import Ellipse1 from "../asset/icons/Ellipse 148.png";
 import Ellipse2 from "../asset/icons/Ellipse 149.png";
 import Ellipse3 from "../asset/icons/Ellipse 151.png";
-import { Slider, Button } from "antd";
+import { Slider, Button, Menu, Dropdown, Select } from "antd";
 import MultiRangeSlider from "multi-range-slider-react";
 import { FooterComponent, CustomMlFooter } from "../components";
 
 const LoanCalculatorComponent = () => {
 	const [values, setValues] = useState({ min: 30, max: 60 });
-	const [price1, setPrice1] = useState(100);
+	const [price1, setPrice1] = useState(0);
+	const [inputValue, setInputValue] = useState(0);
 	const [percentage2, setPercentage2] = useState(0);
 	const [price2, setPrice2] = useState(0);
-	const [selectedOption, setSelectedOption] = useState("30-year fixed");
+	const [selectedOption, setSelectedOption] = useState(30);
 
-	const minPrice = 100;
-	const maxPrice = 250000;
+	const minPrice = 0;
+	const maxPrice = 100000000;
 	const maxPercentage = 100;
 
 	const onPriceChange1 = (value) => {
 		setPrice1(value);
 	};
 
+	// const totalmonths = selectedOption
+	// const monthlyPayment = ;
+
+	const handleInputChange = (e) => {
+		const value = e.target.value.replace('%', '');
+    	setInputValue(value);
+	};
+
 	const onPercentageChange2 = (value) => {
 		setPercentage2(value);
-		setPrice2((value / 100) * maxPrice);
+		setPrice2(price1 * (value/100));
 	};
 
 	const onChangeComplete = (value) => {
@@ -45,12 +54,24 @@ const LoanCalculatorComponent = () => {
 
 	const resetValues = () => {
 		// Reset all values to their initial states
-		setPrice1(100);
+		setPrice1(0);
 		setPercentage2(0);
 		setPrice2(0);
 		setValues({ min: 30, max: 60 });
 		setSelectedOption("30-year fixed");      
 	};
+
+		const menu = (
+		<Menu onClick={(e) => setSelectedOption(parseInt(e.key))}>
+			<Menu.Item key="30">30 Years Fixed</Menu.Item>
+			<Menu.Item key="25">25 Years Fixed</Menu.Item>
+			<Menu.Item key="20">20 Years Fixed</Menu.Item>
+			<Menu.Item key="15">15 Years Fixed</Menu.Item>
+			<Menu.Item key="10">10 Years Fixed</Menu.Item>
+			<Menu.Item key="5">5 Years Fixed</Menu.Item>
+		</Menu>
+	);
+
 
 	return (
 		<div className="mort-container">
@@ -72,12 +93,20 @@ const LoanCalculatorComponent = () => {
 									The amount you plan to offer for a home.
 								</p>
 								<div className="price-display">
-									<p className="price-container-1">PHP {price1}</p>
+									<p className="price-container-1">
+										PHP &nbsp;
+										{Array.isArray(price1) && price1.length === 2
+											? `${price1[0]?.toLocaleString() || 0} - ${
+													price1[1]?.toLocaleString() || 0
+											  }`
+											: price1?.toLocaleString() || 0}
+									</p>
 								</div>
 								<Slider
 									value={price1}
 									min={minPrice}
 									max={maxPrice}
+									step={500000}
 									onChange={onPriceChange1}
 									onAfterChange={onChangeComplete}
 								/>
@@ -86,8 +115,16 @@ const LoanCalculatorComponent = () => {
 								<span className="Label">Down payment</span>
 								<p className="sub-label">Cash you can pay when you close.</p>
 								<div className="price-percentage-container">
-									<p className="price-container">PHP {price2}</p>
-									<p className="price-percentage"> {percentage2.toFixed(2)}%</p>
+									<p className="price-container">
+										{" "}
+										PHP &nbsp;
+										{Array.isArray(price2) && price2.length === 2
+											? `${price2[0]?.toLocaleString() || 0} - ${
+													price2[1]?.toLocaleString() || 0
+											  }`
+											: price2?.toLocaleString() || 0}
+									</p>
+									<p className="price-percentage"> {percentage2}%</p>
 								</div>
 								<Slider
 									value={percentage2}
@@ -100,32 +137,42 @@ const LoanCalculatorComponent = () => {
 							<div>
 								<h3 className="payment">Where are you buying?</h3>
 								<p className="payment-desc">Enter your desired location</p>
-                <input type="text" className="input-infos" placeholder="City, neighborhood, or zip code" />
+								<input
+									type="text"
+									className="input-infos"
+									placeholder="City, neighborhood, or zip code"
+								/>
 							</div>
 							<div>
 								<h3 className="payment">Loan type</h3>
 								<p className="payment-desc">
 									Affects interest rates. 30 or 15 year loans are standard
 								</p>
-								<div className="year-loans">
-									<div id="dropdown">
-										<select
-											value={selectedOption}
-											onChange={handleDropdownChange}
-										>
-											<option value="30-year fixed">30-year fixed</option>
-											<option value="15-year fixed">15-year fixed</option>
-										</select>
-										<p className="dropdown-btn"></p>
-									</div>
-								</div>
+							
+									<Select
+										value={selectedOption}
+										className="year-loans"
+										onChange={(value) => setSelectedOption(value)}
+				
+										dropdownMatchSelectWidth={true} // Dropdown matches the select width
+									>
+										<Select.Option value={5} >5 Years Fixed</Select.Option>
+										<Select.Option value={10}>10 Years Fixed</Select.Option>
+										<Select.Option value={15}>15 Years Fixed</Select.Option>
+									</Select>
 							</div>
-							<div>
+							<div className="mortgage-interest-group">
 								<h3 className="payment">Mortgage interest rate</h3>
-								<p className="payment-desc">
+								<span className="payment-desc">
 									Varies depending on lender and credit score.
-								</p>
-								<p className="input-infos">7.123 %</p>
+								</span>
+								<input
+									className="input-infos"
+									placeholder="0%"
+									type="text"
+									value={inputValue ? `${inputValue}%` : ""}
+									onChange={handleInputChange}
+								></input>
 							</div>
 						</div>
 					</div>
@@ -141,7 +188,9 @@ const LoanCalculatorComponent = () => {
 									<div className="mort-range">
 										<div>
 											<h2>PHP11,154.89 per month</h2>
-											<p className="year-percentage">30-year fixed, 7.123 %</p>
+											<p className="year-percentage">
+												{selectedOption}, {inputValue} %
+											</p>
 										</div>
 										<MultiRangeSlider
 											min={0}

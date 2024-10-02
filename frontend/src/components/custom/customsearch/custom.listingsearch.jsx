@@ -75,13 +75,15 @@ const ListingSearch = () => {
 						))}
 					</select>
 					<select className="select-field" placeholder="Property Type">
-						<option value="residential">Property Type</option>
+						<option value="">Property Type</option>
 						<option value="residential">Residential</option>
 						<option value="commercial">Commercial</option>
 						<option value="land">Land</option>
 					</select>
 					<select className="select-field" placeholder="Listing Type">
-						<option value="residential"> Listing Type</option>
+						<option value="" >
+							 Listing Type
+						</option>
 						<option value="for-sale">For Sale</option>
 						<option value="for-rent">For Rent</option>
 					</select>
@@ -103,62 +105,66 @@ const ListingSearch = () => {
 							/>
 						</div>
 						<div className="range-container">
-							<p className="range-border">
-								MIN{" "}
-								{isCustomRange ? (
-									<span className="range-prefix">
-										PHP
-										<input
-											type="text"
-											value={priceRange[0]}
-											onChange={handleMinChange}
-											className="range-input"
-										/>
-									</span>
-								) : (
-									<b style={{ color: "#f60000" }}>
-										PHP{priceRange[0].toLocaleString()}
-									</b>
-								)}
-							</p>
-							<p className="range-border">
-								MAX{" "}
-								{isCustomRange ? (
-									<span className="range-prefix">
-										PHP
-										<input
-											type="text"
-											value={priceRange[1]}
-											onChange={handleMaxChange}
-											className="range-input"
-										/>
-									</span>
-								) : (
-									<b style={{ color: "#f60000" }}>
-										PHP{priceRange[1].toLocaleString()}
-									</b>
-								)}
-							</p>
-								<SettingOutlined
-									className="custom-range-button"
-									onClick={handleCustomRangeClick}
-								/>
+							<div className="range-border">
+								<p>
+									MIN &nbsp;
+									{isCustomRange ? (
+										<span className="range-prefix">
+											PHP
+											<input
+												type="text"
+												value={priceRange[0]}
+												onChange={handleMinChange}
+												className="range-input"
+											/>
+										</span>
+									) : (
+										<b style={{ color: "#f60000" }}>
+											PHP{priceRange[0].toLocaleString()}
+										</b>
+									)}
+								</p>
+							</div>
+							<div className="range-border">
+								<p>
+									MAX &nbsp;
+									{isCustomRange ? (
+										<span className="range-prefix">
+											PHP
+											<input
+												type="text"
+												value={priceRange[1]}
+												onChange={handleMaxChange}
+												className="range-input"
+											/>
+										</span>
+									) : (
+										<b style={{ color: "#f60000" }}>
+											PHP{priceRange[1].toLocaleString()}
+										</b>
+									)}
+								</p>
+							</div>
+							<SettingOutlined
+								className="custom-range-button"
+								onClick={handleCustomRangeClick}
+							/>
 						</div>
 					</div>
 					<div className="subcontent-inputs-2">
 						<input className="input-field" placeholder="Enter Lot Area" />
 						<select className="select-field" placeholder="Bedrooms">
-							<option value="residential">Bedrooms</option>
+							<option value="">Bedrooms</option>
 							<option value="commercial">1</option>
 							<option value="land">2</option>
 						</select>
 						<select className="select-field" placeholder="Bathrooms">
-							<option value="residential">Bathrooms</option>
+							<option value="">Bathrooms</option>
 							<option value="commercial">1</option>
 							<option value="land">2</option>
 						</select>
 						<select className="select-field" placeholder="Garage/Parking ">
-							<option value="residential">Garage/Parking </option>
+							<option value="">Garage/Parking </option>
 							<option value="commercial">1</option>
 							<option value="land">2</option>
 						</select>
@@ -168,12 +174,13 @@ const ListingSearch = () => {
 							visible={iscertainFeatureOpen}
 							onVisibleChange={handleCertainFeatureClick}
 						>
-							<Button
+							<select
 								className="select-field"
 								onClick={handleCertainFeatureClick}
 							>
-								Features <CaretDownOutlined />
-							</Button>
+								<option value="Features">Features</option>
+								<CaretDownOutlined />
+							</select>
 						</Dropdown>
 					</div>
 				</div>
