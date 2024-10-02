@@ -101,7 +101,7 @@ const PreviewListLeftContent = ({ label, value, oneListing }) => {
 			<main className={styles.leftcontainer}>
 				<h1 className={styles.lefttitle}>
 					{
-						CapitalizeString(GetPropertyTitle(oneListing.ProjectName, oneListing.UnitName))
+						CapitalizeString(oneListing.UnitName)
 					}
 				</h1>
 				<p className={styles.leftlocation}>

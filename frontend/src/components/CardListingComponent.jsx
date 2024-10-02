@@ -22,7 +22,6 @@ const CardListingComponent = ({ loading, status, pics, title, price, features, l
 
     }
 
-
     const ImageTag = () => (
         <div className='image-tag'>
             <CameraFilled />
@@ -107,7 +106,7 @@ const CardListingComponent = ({ loading, status, pics, title, price, features, l
                 loading={loading}
             >
                 <div className="listing-image">
-                    <img src={img} className="image"
+                    <img src={img} className="property-img"
                         onClick={handleClick}></img>
                     <div className="tags">
                         <CustomTag

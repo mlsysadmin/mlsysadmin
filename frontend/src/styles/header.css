@@ -9,6 +9,7 @@
     height: auto;
     justify-content: space-between;
     font-family: var(--font-family);
+    flex-direction: row;
 }
 .ant-menu-overflow{
     flex-wrap: wrap;
