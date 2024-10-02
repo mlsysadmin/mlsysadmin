@@ -4,7 +4,8 @@ import mllogo from "../../asset/icons/mllogo.png";
 import applestore from "../../asset/icons/applestore.png";
 import gplaystore from "../../asset/icons/gplaystore.png";
 import huaweistore from "../../asset/icons/huaweistore.png";
-import { FacebookFilled, TwitterCircleFilled, YoutubeOutlined, InstagramFilled, CustomerServiceFilled } from '@ant-design/icons';
+import emailIcon from  "../../asset/icons/email.png"
+import { FacebookFilled, TwitterCircleFilled, YoutubeOutlined, InstagramFilled, CustomerServiceFilled, TikTokOutlined } from '@ant-design/icons';
 import "../../styles/custom.mlfooter.css";
 
 
@@ -16,15 +17,20 @@ const CustomMlFooter = () => {
 						<Col span={8} className="col-footer-name">
 							<img src={mllogo} alt="ML Logo" className="logo-ml" />
 							<div className="customer-care">
-								<CustomerServiceFilled style={{ color: "#ff2800" }} />
-								<span>properties@mlhuillier.com</span>
+								<div className="customer-care-icon">
+									<img src={emailIcon} alt="email" className="emailLogo"></img>
+								</div>
+								<div className="customer-care-label">
+									<span>properties@mlhuillier.com</span>
+								</div>
 							</div>
 							<div className="firstcol-icons">
 								<FacebookFilled className="social-icon" />
-								
+
 								<TwitterCircleFilled className="social-icon" />
 								<InstagramFilled className="social-icon" />
 								<YoutubeOutlined className="social-icon" />
+								<TikTokOutlined className="social-icon" />
 							</div>
 						</Col>
 						<Col className="col-footer-name" span={5}>

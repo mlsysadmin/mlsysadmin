@@ -26,7 +26,18 @@ const PreviewListRightSideContent = ({ oneListing }) => {
 	const totalHomePrice = homePrice + homePrice * (stepsGap / 100);
 
 	// Calculate monthly payment
-	const monthlyPayment = (totalHomePrice - downPayment) / termInMonths;
+	// const monthlyPayment = (totalHomePrice - downPayment) / termInMonths;
+
+	const monthlyInterest = (stepsGap/100) / 12;
+	console.log("monthly:", monthlyInterest)
+	const totalMonths = term * 12;
+
+	const loanValue = homePrice - downPayment;
+	const monthlyPayment =
+		loanValue *
+		((monthlyInterest * Math.pow((1 + monthlyInterest), totalMonths)) /
+			(Math.pow((1 + monthlyInterest), totalMonths) -
+			1));
 
 	const [showApplicationDetailModal, setShowApplicationDetailModal] =
 		useState(false);
@@ -108,7 +119,14 @@ const PreviewListRightSideContent = ({ oneListing }) => {
 									}}
 								/>
 								<Dropdown overlay={menu} trigger={["click", "hover"]}>
-									<span style={{ cursor: "pointer" }}>{term} Years Fixed</span>
+									<select
+										style={{ cursor: "pointer" }}
+										className="year-term-options"
+									>
+										<option className="year-term-options">
+											{term} Years Fixed
+										</option>
+									</select>
 								</Dropdown>
 							</div>
 						</div>
@@ -228,7 +246,7 @@ const PreviewListRightSideContent = ({ oneListing }) => {
 							strokeColor="#D90000"
 						/>
 						<div className="calculator-result">
-							<p className="pi">Principle and Interest</p>
+							<p className="pi">Principal and Interest</p>
 							<div className="result-amount">
 								<span className="red-bar"></span>
 								PHP {monthlyPayment.toFixed(2)}

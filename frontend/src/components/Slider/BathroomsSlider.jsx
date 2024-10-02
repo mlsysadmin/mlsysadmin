@@ -4,7 +4,7 @@ import React, { useState } from "react";
 const BathroomInputSlider = ({value, onChange}) => {
 
   return (
-    <div>
+    <div className="bathroom-group">
       <div className="bathroom-value">
         <input
           id="bathroom-input"

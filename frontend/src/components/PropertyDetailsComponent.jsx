@@ -118,7 +118,7 @@ const PropertyDetailsComponent = ({ onComplete, setPropertyFields }) => {
 								</div>
 							</div>
 						</div>
-						<div className="listing-note">
+						{/* <div className="listing-note">
 							<p>
 								To help home buyers better, we only accept these 3 types of
 								listing.
@@ -145,7 +145,7 @@ const PropertyDetailsComponent = ({ onComplete, setPropertyFields }) => {
 									video guide.
 								</p>
 							</ul>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>

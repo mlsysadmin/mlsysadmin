@@ -418,9 +418,7 @@ setIsSubmitting(false);
 	return (
 		<>
 			<div className="listing-ContentContainer">
-				<div>
 					<ListingBanner />
-				</div>
 				<div className="listing-application">
 					<div className="listing-steps">
 						<ListingSteps
@@ -454,6 +452,7 @@ setIsSubmitting(false);
 											justifyContent: "left",
 											marginBottom: "10px",
 										}}
+										className="error-m"
 									>
 										Please fill in the missing values.
 									</div>
@@ -494,6 +493,7 @@ setIsSubmitting(false);
 											marginBottom: "10px",
 											marginLeft: "10px",
 										}}
+										className="error-m"
 									>
 										Please fill in the missing values.
 									</div>
@@ -518,6 +518,7 @@ setIsSubmitting(false);
 											justifyContent: "left",
 											marginBottom: "10px",
 										}}
+										className="error-m"
 									>
 										Please fill in the missing values.
 									</div>
@@ -543,6 +544,7 @@ setIsSubmitting(false);
 											justifyContent: "left",
 											marginBottom: "10px",
 										}}
+										className="error-m"
 									>
 										Please fill in the missing values.
 									</div>
@@ -591,6 +593,7 @@ setIsSubmitting(false);
 											justifyContent: "left",
 											marginBottom: "10px",
 										}}
+										className="error-m"
 									>
 										Please fill in the missing values.
 									</div>
@@ -615,11 +618,11 @@ setIsSubmitting(false);
 								{/* TIN Modal */}
 								{showVendorModal && (
 									<div
-										className="modal-overlay"
+										className="vendor-modal-overlay"
 										onClick={() => setShowVendorModal(false)}
 									>
 										<div
-											className="modal-content"
+											className="vendor-modal-content"
 											onClick={(e) => e.stopPropagation()}
 											style={{
 												display: "flex",
@@ -665,14 +668,14 @@ setIsSubmitting(false);
 								{/* Success Modal */}
 								{showSuccessfulMsgModal && (
 									<div
-										className="modal-overlay"
+										className="success-modal-overlay"
 										onClick={() => setShowSuccessfulMsgModal(false)}
 									>
 										<div
-											className="modal-content"
+											className="success-modal-content-body"
 											onClick={(e) => e.stopPropagation()}
 										>
-											<h2 className="modalsuccess-header">
+											<h2 className="modal-success-header">
 												Successfully Submitted!
 											</h2>
 											<div className="success-details">
@@ -695,7 +698,7 @@ setIsSubmitting(false);
 
 								{isSubmitting && (
 									<div
-										className="loading-modal"
+										className="post-loading-modal"
 										style={{
 											position: "fixed",
 											top: "0",
@@ -710,7 +713,7 @@ setIsSubmitting(false);
 										}}
 									>
 										<div
-											className="loading-spinner"
+											className="post-loading-spinner"
 											style={{
 												backgroundColor: "white",
 												padding: "10px",
@@ -728,7 +731,7 @@ setIsSubmitting(false);
 										</div>
 									</div>
 								)}
-								{showAlert && (
+								{/* {showAlert && (
 									<AlertModal
 										title={showAlertModal.title}
 										text={showAlertModal.text}
@@ -736,6 +739,7 @@ setIsSubmitting(false);
 											showAlertModal.subTitle ? showAlertModal.subTitle : ""
 										}
 										isError={showAlertModal.isError}
+										className="alert-"
 										onClose={() => setShowAlert(false)}
 										overlayStyle={{
 											position: "fixed",
@@ -759,7 +763,7 @@ setIsSubmitting(false);
 											margin: "10px",
 										}}
 									/>
-								)}
+								)} */}
 							</div>
 						</div>
 					</div>
