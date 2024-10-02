@@ -44,7 +44,10 @@
     }
 
     .rating .rate{
-        margin: 20px 50px;
+        margin: 20px 40px;
+    }
+    .rating .rate p{
+        font-size: 14px;
     }
 }
 
@@ -60,7 +63,7 @@
     }
 }
 
-@media screen and (min-width: 801px) and (max-width: 1024px) {
+@media screen and (min-width: 801px) and (max-width: 1600px) {
     .rating .rate{
         margin: 20px 80px;
     }

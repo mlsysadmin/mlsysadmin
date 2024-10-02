@@ -13,7 +13,8 @@ const CardCategory = [
 		decription: `Explore a diverse range of properties, from cozy starter homes to 
         luxurious estates and everything in between. Whatever your preferences and budget, 
         we have options to suit your needs.`,
-		buttonTitle: "Browse Home",
+		buttonTitle: "Browse Homes",
+		link: '/all'
 	},
 	{
 		icon: Sell,
@@ -21,6 +22,7 @@ const CardCategory = [
 		category: "Sell",
 		decription: `Our platform is designed to expedite the selling process, saving you time and effort.`,
 		buttonTitle: "See your options",
+		link: '/sell'
 	},
 	{
 		icon: Rent,
@@ -29,13 +31,14 @@ const CardCategory = [
 		decription: `Discover your dream rental property today! Let us help you find the 
         perfect place to live your best life!`,
 		buttonTitle: "Find rentals",
+		link: '/all/?sale_type=rent'
 	},
 	// {
 	// 	icon: Rent,
 	// 	image: image,
 	// 	category: "Rent",
 	// 	decription: `Discover your dream rental property today! Let us help you find the 
-    //     perfect place to live your best life!`,
+	//     perfect place to live your best life!`,
 	// 	buttonTitle: "Find rentals",
 	// },
 	// {
@@ -43,7 +46,7 @@ const CardCategory = [
 	// 	image: image,
 	// 	category: "Rent",
 	// 	decription: `Discover your dream rental property today! Let us help you find the 
-    //     perfect place to live your best life!`,
+	//     perfect place to live your best life!`,
 	// 	buttonTitle: "Find rentals",
 	// },
 ];
@@ -69,9 +72,58 @@ const PropertyType = [
 	"resort"
 ]
 
+const PropertyTypes = [
+	{
+		key: "commercial",
+		label: <span>Commercial</span>,
+		title: "Commercial",
+		options: [
+			{ label: "Service Office", value: "service-office" },
+			{ label: "Shop/Retail", value: "shop/retail" },
+			{ label: "Commercial Land/Lot", value: "commercial-land/office" },
+		],
+	},
+	{
+		key: "residential",
+		label: <span>Residential</span>,
+		title: "Residential",
+		options: [
+			{ label: "Condominium", value: "condominium" },
+			{ label: "House & Lot", value: "house-and-lot" },
+			{ label: "Townhouse", value: "townhouse" },
+		],
+	},
+	{
+		key: "industrial",
+		label: <span>Industrial</span>,
+		title: "Industrial",
+		options: [
+			{ label: "Warehouse", value: "warehouse" },
+			{ label: "Farm Lot", value: "farm-lot" },
+			{ label: "Hotel/Resort", value: "hotel-and-resort" },
+		]
+	}
+]
+
+const ListingTypes = [
+	{
+		label: "For Rent",
+		value: "rent",
+	},
+	{
+		label: "For Sale",
+		value: "sale",
+	},
+	{
+		label: "Pre-Selling",
+		value: "pre-selling",
+	}
+]
+
 export {
 	CardCategory,
 	PropertyType,
-	PropertyTypeCategory
-
+	PropertyTypeCategory,
+	PropertyTypes,
+	ListingTypes
 };

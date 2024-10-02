@@ -79,7 +79,7 @@ const NewPageComponent = () => {
 
 					return {
 						id: item.id,
-						title: CapitalizeString(GetPropertyTitle(item.ProjectName, item.UnitName)),
+						title: CapitalizeString(item.UnitName),
 						price: AmountFormatterGroup(item.Price),
 						status: "New",
 						pics: image ? gallery.length + 1 : 0,
