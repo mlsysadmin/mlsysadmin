@@ -52,10 +52,11 @@
 .insurance-guide-content-two {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 2000px;
     /* flex-wrap:wrap; */
     /* justify-content: space-between; */
     align-items: center;
+    justify-content: center;
 }
 
 .insurance-guide-inboxes {
@@ -134,6 +135,7 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
+    padding:20px;
 }
 
 .insurance-guide-content-three span {
@@ -147,16 +149,17 @@
 
 .insurance-guide-content-three-input {
     position: relative;
-    width: 50%;
+    width: 1200px;
 }
 
 .insurance-guide-content-three-input input {
-    height: 50px;
+    height: 60px;
     width: 100%;
     border: 1px solid var(--red);
     border-radius: 10px;
     font-size: 18px;
     padding-right: 20px;
+    padding: 20px
 }
 
 .insurance-guide-content-three-input button {
@@ -314,7 +317,7 @@
     
     .insurance-guide-content-one img {
         width: 100%;
-        margin: 0px 0px 0px 10px;
+        margin: 0px 0px 0px 0px;
     }
     .insurance-guide-content-two {
         display: flex;
@@ -356,22 +359,24 @@
     }
     
     .insurance-guide-tagline-two {
-        width: 100%;
+        width: 300px;
         display: flex;
         flex-wrap: wrap;
         margin: 0px;
+        justify-content: center;
+        align-items: center;
     }
     
     .insurance-guide-tagline-two span {
         font-size: 24px;
-        margin: 0px 0px 0px 30px;
+        margin: 0px 0px 0px 0px;
         width: 100%;
     }
     
     .insurance-guide-tagline-two p {
         font-size: 16px;
         width: 100%;
-        margin: 30px 0px 0px 30px;
+        margin: 30px 0px 0px 10px;
         /* width: 50%; */
     }
     .insurance-guide-content-three {

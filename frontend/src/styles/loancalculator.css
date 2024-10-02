@@ -320,7 +320,7 @@
 .ant-slider-horizontal .ant-slider-step{
    height: 15px;
 }
-.mort-content-1 .ant-slider-track, .ant-slider .ant-slider-handle::before{
+.mort-content-1 .ant-slider-track, .mort-content-1 .ant-slider .ant-slider-handle::before{
 	background-color:var(--red);
   height: 15px;
   border-radius: 20px;
@@ -348,13 +348,16 @@ display: none;
     box-shadow: 0 0 0 2px var(--red);
     outline: 0px solid transparent;
 }
+.calc-container .ant-slider .ant-slider-track{
+background-color: var(--red);
+}
 .mort-content-1 .ant-slider .ant-slider-handle{
     /* box-shadow: 0 0 0 2px var(--red); */
     outline: 0px solid transparent;
     height: 15px;
 }
 
-.mort-content-1 .ant-slider .ant-slider-track:hover{
+.mort-content-1 .ant-slider .ant-slider-track:focus::after{
 	background-color:var(--red);
   outline: none;
   box-shadow: none;
