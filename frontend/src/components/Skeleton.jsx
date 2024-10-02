@@ -3,9 +3,9 @@ import React from "react";
 
 const CardSkeleton = () => {
     return (
-        <div className="skeleton--card-listing">
+        <div className="skeleton--card-listing" id="card-listing">
             <Skeleton.Image
-                className="skeleton--card-img"
+                className="skeleton--card-img property-img"
                 active
             />
             <br />
@@ -45,37 +45,39 @@ const CardSkeleton = () => {
 }
 const FeaturesSkeleton = () => {
     return (
-        <div className="skeleton--card-listing" id="skeleton--feature-listing">
-            <Skeleton.Image
-                className="skeleton--card-img"
-                active
-            />
-            <Skeleton
-                paragraph={false}
-                className="skeleton--feature-title"
-            />
-            <br />
-            <Skeleton
-                paragraph={false}
-                className="skeleton--feature-sale_type"
-            />
-            <br />
-            <br />
-            <div className="skeleton--feature-items">
-                {
-                    Array(3).fill(null).map((_, i) => (
-                        <Skeleton.Avatar
-                            active
-                            paragraph={false}
-                            className="skeleton--card-feature"
-                            shape="square"
-                        />
-                    ))
-                }
+        <div className="featured-property" id="skeleton--feature-listing">
+            <div>
+                <Skeleton.Image
+                    className="skeleton--feature-img featured-img"
+                    active
+                />
+                <Skeleton
+                    paragraph={false}
+                    className="skeleton--feature-title"
+                />
+                <br />
+                <Skeleton
+                    paragraph={false}
+                    className="skeleton--feature-sale_type"
+                />
+                <br />
+                <br />
+                <div className="skeleton--feature-items">
+                    {
+                        Array(3).fill(null).map((_, i) => (
+                            <Skeleton.Avatar
+                                active
+                                paragraph={false}
+                                className="skeleton--card-feature"
+                                shape="square"
+                            />
+                        ))
+                    }
+                </div>
+                <br />
+                <br />
+                <br />
             </div>
-            <br />
-            <br />
-            <br />
         </div>
     )
 }

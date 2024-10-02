@@ -284,7 +284,12 @@
   } */
 @media screen and (min-width: 800px) and (max-width: 919px) {
     #card-listing .ant-card-body {
-        width: 275px !important;
+        width: 270px !important;
+    }
+    #card-listing .ant-card-body .card-content{
+        gap: 10px;
+        padding: 10px 13px !important;
+        height: 140px;
     }
     #card-listing .ant-card-body .card-content .card-content--title h4{
         font-size: 15px;
@@ -375,10 +380,10 @@
     }
     #card-listing .ant-card-body .card-content .card-content--title,
     #card-listing .ant-card-body .card-content .card-content--subtitle{
-        margin: 10px 0px 0px;
+        margin: 5px 0px 0px;
     }
     #card-listing .ant-card-body .card-content .card-content--title{
-        height: 90px;
+        height: 70px;
     }
     #card-listing .ant-card-body .card-content .card-content--title h4{
         font-size: 16px;

@@ -49,7 +49,7 @@ const FeaturedComponent = () => {
 
 					return {
 						id: item.id,
-						title: CapitalizeString(GetPropertyTitle(item.ProjectName, item.UnitName)),
+						title: CapitalizeString(item.UnitName),
 						price: AmountFormatterGroup(item.Price),
 						status: "For Sale",
 						pics: image ? gallery.length + 1 : 0,

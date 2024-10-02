@@ -1006,14 +1006,14 @@
 
   @media screen and (min-width: 870px) and (max-width: 969px) {
       .dashboard .discover .discover-content {
-          width: 860px;
+          width: 860px !important;
           justify-content: center;
       }
       .dashboard .discover .discover--section-3{
         width: 90%;
       }
       .listing-carousel-dashboard{
-        gap: 30px;
+        gap: 25px;
       }
   }
 

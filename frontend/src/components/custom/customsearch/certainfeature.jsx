@@ -3,28 +3,28 @@ import "../../../styles/custom.css";
 import { GetAllAmenities, GetAllIndoorAmenities, GetAllOutdoorAmenities } from "../../../api/GetAllAmenities";
 
 const CertainFeatureMenu = () => {
-	const[IndoorAm, setIndoorAm] = useState([]);
+	const [IndoorAm, setIndoorAm] = useState([]);
 	const [OutdoorAm, setOutdoorAm] = useState([]);
 
-	const indoorF = async () =>{
+	const indoorF = async () => {
 		const resIndoor = await GetAllIndoorAmenities();
 		// const indoorDatas = resIndoor;
 		setIndoorAm(resIndoor)
-		console.log("all amenities", resIndoor);
+		// console.log("all amenities", resIndoor);
 	}
-	useEffect (() =>{
-		indoorF();
-	},[]);
+	useEffect(() => {
+		// indoorF();
+	}, []);
 
-		const outdoorF = async () => {
-			const resIndoor = await GetAllOutdoorAmenities();
-			// const indoorDatas = resIndoor;
-			 setOutdoorAm(resIndoor);
-			console.log("all amenities", resIndoor);
-		};
-		useEffect(() => {
-			outdoorF();
-		});
+	const outdoorF = async () => {
+		const resIndoor = await GetAllOutdoorAmenities();
+		// const indoorDatas = resIndoor;
+		setOutdoorAm(resIndoor);
+		// console.log("all amenities", resIndoor);
+	};
+	useEffect(() => {
+		// outdoorF();
+	});
 
 	// 	"Badminton Court",
 	// 	"Balcony",

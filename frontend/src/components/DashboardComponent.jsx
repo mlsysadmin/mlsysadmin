@@ -28,7 +28,7 @@ import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import PropertySearchModal from "./modals/PropertySearchModal";
 
 import { MockData } from "../utils/ListingMockData";
-import { CardCategory } from "../utils/PropertyStaticData.utils";
+import { CardCategory, ListingTypes, PropertyTypes } from "../utils/PropertyStaticData.utils";
 import FuenteCircle from "../asset/banners/fuente-circle.png";
 import AdvanceSearch from "../asset/icons/advanceSearch.png";
 import Search from "../asset/icons/Search.png";
@@ -67,12 +67,14 @@ const DashboardComponent = () => {
       property_no: '',
       isFeatured: '',
       sale_type: '',
-      no_of_beds: ''
+      no_of_beds: '',
+      city:''
     }
   ]);
 
   const [isAdvanceSearchOpen, setAdvanceSearchOpen] = useState(false);
   const [iscertainFeatureOpen, setcertainFeatureOpen] = useState(false);
+  const [filterLocation, setFilterLocation] = useState([]);
 
   const handleCertainFeatureClick = () => {
     setcertainFeatureOpen(!iscertainFeatureOpen);
@@ -95,26 +97,27 @@ const DashboardComponent = () => {
       } else {
 
         const listingRes = dataresp.filter((listing) => !isPastAMonth(listing.created_at));
-
+        
         let listings = [];
-
+        
         if (listingRes.length !== 0) {
           listings = listingRes.slice(0, 3);
         } else {
           listings = dataresp.slice(0, 3)
         }
-
+        
         const newListing = await Promise.all(listings.map(async (item, i) => {
-
+          
           const getPhotoGallery = await GetUnitPhotos(item.id);
-
+          
           const gallery = getPhotoGallery.data;
-
+          
           const image = GetPhotoWithUrl(item.Photo);
-
+          console.log("dsfd", item);
+          
           return {
             id: item.id,
-            title: CapitalizeString(GetPropertyTitle(item.ProjectName, item.UnitName)),
+            title: CapitalizeString(item.UnitName),
             price: AmountFormatterGroup(item.Price),
             status: "New",
             pics: image ? gallery.length + 1 : 0,
@@ -126,8 +129,10 @@ const DashboardComponent = () => {
             sale_type: CapitalizeString(item.SaleType),
             no_of_beds: item.BedRooms,
             // isFeatured: item.IsFeatured
+            city: item.City
           }
         }))
+        FillLocationFilter(dataresp);
         setPublicListing(newListing);
         setLoading(false)
       }
@@ -152,6 +157,25 @@ const DashboardComponent = () => {
       console.error("Error fetching provinces:", error);
     }
   };
+
+  const FillLocationFilter = (listings) => {
+    try {
+      const distinctCity = listings.filter((value, index, self) =>
+        index === self.findIndex((t) => t.City === value.City)).map((item, i) => {
+          return {
+            label: item.City.toLowerCase().includes("city") ? item.City : `${item.City.toUpperCase()} CITY`,
+            value: item.City.toLocaleLowerCase()
+          }
+        }).sort((a, b) => a.value.localeCompare(b.value))
+        console.log("distinctCity", distinctCity)
+        
+      setFilterLocation(distinctCity);
+
+    } catch (error) {
+      console.log("location", error);
+      return;
+    }
+  }
 
   useEffect(() => {
     // allProvinces();
@@ -230,6 +254,7 @@ const DashboardComponent = () => {
                 label={item.buttonTitle}
                 size={'middle'}
                 className={'button-card-class'}
+                handleClick={() => navigate(item.link)}
               />
             </div>
           </Card>
@@ -257,6 +282,46 @@ const DashboardComponent = () => {
     setIsPropSearchModalOpen(false);
   };
 
+  const [screenSize, setScreenSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  const handleShowFeatures = useCallback(() => {
+    const screen_width = window.screen.width;
+    const screen_height = window.screen.height;
+
+    setScreenSize({
+      width: screen_width,
+      height: screen_height,
+    });
+  }, [setScreenSize])
+
+  useEffect(() => {
+    window.addEventListener("resize", handleShowFeatures);
+
+    // return () => window.addEventListener("resize", handleShowNav);
+  }, [])
+
+  const FeatureSkeleton = () => {
+    let arrLength = 0;
+    if (screenSize.width <= 600) {
+      arrLength = 1;
+    } else {
+      arrLength = 3
+    }
+
+    return Array(arrLength).fill(null).map((_, i) => {
+      return (
+        <FeaturesSkeleton />
+      )
+    })
+  }
+
+  const handleSearchClick = () => {
+    navigate('/all')
+  }
+
   return (
     <div className="dashboard" style={{ display: 'flex', flexDirection: 'column' }}>
       <div id="dashboard">
@@ -280,20 +345,23 @@ const DashboardComponent = () => {
                   </Col>
                   <Col span={4} className="col-field">
                     <RoundSelect
+                      options={filterLocation}
                       placeholder="Location"
                       size="middle"
                       classname="card-item field"
                       suffixIcon={<CaretDownOutlined />}
                     >
-                      {getProvince.map((province, index) => (
+
+                      {/* {getProvince.map((province, index) => (
                         <Select.Option key={index} value={province.name}>
                           {province.name}
                         </Select.Option>
-                      ))}
+                      ))} */}
                     </RoundSelect>
                   </Col>
                   <Col span={4} className="col-field">
                     <RoundSelect
+                      options={PropertyTypes}
                       placeholder="Property Type"
                       size="middle"
                       classname="card-item field"
@@ -302,6 +370,7 @@ const DashboardComponent = () => {
                   </Col>
                   <Col span={4} className="col-field">
                     <RoundSelect
+                      options={ListingTypes}
                       placeholder="Listing Type"
                       size="middle"
                       classname="card-item field"
@@ -330,15 +399,16 @@ const DashboardComponent = () => {
                       <RoundBtn
                         label={"Search"}
                         className="search round-btn"
-                        icon={
-                          <img
-                            src={Search}
-                            className="search-icon"
-                            style={{ fontWeight: "900" }}
-                            width={20}
-                          />
-                        }
+                        // icon={
+                        //   <img
+                        //     src={Search}
+                        //     className="search-icon"
+                        //     style={{ fontWeight: "900" }}
+                        //     width={20}
+                        //   />
+                        // }
                         classname="card-item"
+                        onClick={() => handleSearchClick()}
                       />
                     </Row>
                   </Col>
@@ -421,7 +491,7 @@ const DashboardComponent = () => {
               {
                 Array(3).fill(null).map((_, i) => {
                   return (
-                    <CardSkeleton/>
+                    <CardSkeleton />
                   )
                 })
               }
@@ -491,23 +561,20 @@ const DashboardComponent = () => {
           {/* <div className="featured-container"> */}
           <div className="featured--content">
             {
-              loading ? 
-              <div id="featured-properties"
-              style={{
-                display: 'flex',
-              }}>
-              {
-                Array(3).fill(null).map((_, i) => {
-                  return (
-                    <FeaturesSkeleton/>
-                  )
-                })
-              }
-            </div>
-              :
-              publiclisting.length !== 0 ? (
+              !loading ? publiclisting.length !== 0 ? (
                 <FeaturedPropertiesComponent featuredListing={publiclisting} />
               ) : <p style={{ textAlign: 'center', padding: '90px 0px 150px' }}>No Featured Properties Available</p>
+                :
+                <div id="featured-properties"
+                  style={{
+                    display: 'flex',
+                    flexWrap: 'wrap'
+                  }}>
+                  {
+                    FeatureSkeleton()
+                  }
+                </div>
+
             }
           </div>
           {/* </div> */}
