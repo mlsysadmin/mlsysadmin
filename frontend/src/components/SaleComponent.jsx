@@ -14,6 +14,7 @@ import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout, SearchPrope
 import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
 import { CapitalizeString, GetPropertyTitle } from "../utils/StringFunctions.utils";
+import { CardSkeleton } from "./Skeleton";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import DefaultPropertyImage from '../asset/fallbackImage.png';
 import NoDataAvailable from "./NoDataFoundComponent";
@@ -22,6 +23,7 @@ const SaleComponent = () => {
 
 	const navigate = useNavigate();
 	const location = useLocation();
+	const [loading, setLoading] = useState(true);
 
 	const [publiclisting, setPublicListing] = useState([
 		{
@@ -90,9 +92,11 @@ const SaleComponent = () => {
 						}
 					}))
 					setPublicListing(newListing);
+					setLoading(false);
 
 				} else {
 					setPublicListing([]);
+					setLoading(false);
 				}
 
 			}
@@ -100,6 +104,7 @@ const SaleComponent = () => {
 		} catch (error) {
 			console.error("ERROROR", error);
 			setPublicListing([]);
+			setLoading(false);
 		}
 	}
 
@@ -128,57 +133,75 @@ const SaleComponent = () => {
 	const totalPages = Math.ceil(publiclisting.length / cardsPerPage);
 
 	return (
-		<div className="rent">
-			<div className="topbar">
-				<ListingSearch />
-			</div>
-			<div className="rentContainer">
-				<span className="rent-h1">Properties for Sale</span>
-
-				{
-					currentCards.length !== 0 ? (
-						<>
-							<SearchPropertiesSoration properties_count={publiclisting.length} current_properties_count={currentCards.length} />
-							<div className="card-container">
-								{
-									currentCards.map((data, index) => (
-										<Card
-											key={index}
-											id={data.id}
-											title={data.title}
-											price={`PHP ${data.price}`}
-											imgSrc={data.img}
-											beds={data.no_of_beds}
-											baths={data.no_of_bathrooms}
-											size={data.lot}
-											likes={data.pics}
-											forsale={data.status}
-											subtitle={`${CapitalizeString(data.property_type)} For ${CapitalizeString(data.sale_type)}`}
-											handleClick={() => handleCardClick(data.property_no)}
-										/>
-									))
-
-								}
-							</div>
-						</>
-					)
-						:
-						<NoDataAvailable
-							message={`No available ${CapitalizeString(propertyType.replace(/[-_]/g, " "))} for rent`}
-						/>
-				}
-				{currentCards.length > 0 && (
-					<Pagination
-						currentPage={currentPage}
-						totalPages={totalPages}
-						paginate={setCurrentPage}
+		<>
+			<div className="rent">
+				<div className="topbar">
+					<ListingSearch />
+				</div>
+				<div className="rentContainer">
+					<span className="rent-h1">Properties for Sale</span>
+					<SearchPropertiesSoration
+						properties_count={publiclisting.length}
+						current_properties_count={currentCards.length}
 					/>
-				)}
+					{!loading ? (
+						currentCards.length !== 0 ? (
+							<div className="card-container">
+								{currentCards.map((data, index) => (
+									<Card
+										key={index}
+										id={data.id}
+										title={data.title}
+										price={`PHP ${data.price}`}
+										imgSrc={data.img}
+										beds={data.no_of_beds}
+										baths={data.no_of_bathrooms}
+										size={data.lot}
+										likes={data.pics}
+										forsale={data.status}
+										subtitle={`${CapitalizeString(
+											data.property_type
+										)} For ${CapitalizeString(data.sale_type)}`}
+										handleClick={() => handleCardClick(data.property_no)}
+									/>
+								))}
+							</div>
+						) : (
+							<NoDataAvailable
+								message={`No available ${CapitalizeString(
+									propertyType.replace(/[-_]/g, " ")
+								)} for rent`}
+							/>
+						)
+					) : (
+						<div
+							className="card-skeleton-loading"
+							style={{
+								display: "flex",
+								justifyContent: "center",
+								gap: "20px",
+							}}
+						>
+							{Array(3)
+								.fill(null)
+								.map((_, i) => (
+									<CardSkeleton key={i} />
+								))}
+						</div>
+					)}
+
+					{currentCards.length > 0 && (
+						<Pagination
+							currentPage={currentPage}
+							totalPages={totalPages}
+							paginate={setCurrentPage}
+						/>
+					)}
+				</div>
 			</div>
 			<CustomMlFooter />
 			<FooterComponent />
-
-		</div>
+		</>
 	);
 }
 

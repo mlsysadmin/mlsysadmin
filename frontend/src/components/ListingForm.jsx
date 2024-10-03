@@ -26,6 +26,7 @@ import { getCookieData } from "../utils/CookieChecker";
 import { searchKyc } from "../api/Public/User.api";
 import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
 import AlertModal from "./modals/AlertModal";
+import PreviewLoadingModal from "./modals/PreviewLoadingModal";
 
 export const ListingForm = () => {
 	const [currentStep, setCurrentStep] = useState(0);
@@ -350,7 +351,7 @@ export const ListingForm = () => {
 
 			console.log("Final listing data:", updatedPropertyFields);
 
-			const postData = await PostSellerListing(updatedPropertyFields);
+			// const postData = await PostSellerListing(updatedPropertyFields);
 			setPostedPropertyNo(updatedPropertyFields);
 			console.log("this is the current post:", postedPropertyNo);
 			console.log("Listing API Response:", updatedPropertyFields);
@@ -358,7 +359,7 @@ export const ListingForm = () => {
 
 			setPropertyFields((prevFields) => ({
 				...prevFields,
-				...postData,
+				// ...postData,
 			}));
 
 			await savePropertyImages(imagePayload);
@@ -697,39 +698,7 @@ setIsSubmitting(false);
 								)}
 
 								{isSubmitting && (
-									<div
-										className="post-loading-modal"
-										style={{
-											position: "fixed",
-											top: "0",
-											left: "0",
-											width: "100%",
-											height: "100%",
-											display: "flex",
-											justifyContent: "center",
-											alignItems: "center",
-											backgroundColor: "rgba(0, 0, 0, 0.5)",
-											zIndex: "9999",
-										}}
-									>
-										<div
-											className="post-loading-spinner"
-											style={{
-												backgroundColor: "white",
-												padding: "10px",
-												borderRadius: "5px",
-												fontSize: "18px",
-												display: "flex",
-												width: "auto",
-												justifyContent: "center",
-												alignItems: "center",
-												flexDirection: "column",
-												margin: "5px",
-											}}
-										>
-											Creating...{LoadingIcon}
-										</div>
-									</div>
+									<PreviewLoadingModal/>
 								)}
 								{/* {showAlert && (
 									<AlertModal

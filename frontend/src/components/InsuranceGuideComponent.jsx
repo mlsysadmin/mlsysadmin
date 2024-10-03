@@ -22,15 +22,15 @@ const InsuranceGuideComponent = () => {
   const accordionData = [
     {
       label: 'What are the insurance plans offered by M Lhuillier?',
-      answer: 'M Lhuillier offers the following insurance plans...'
+      answer: 'M Lhuillier offers the following insurance plans: Medical Insurance, Vehicle Insurance and Health Insurance. '
     },
     {
       label: 'What are the requirements for insurance plans?',
-      answer: 'The requirements for M Lhuillier insurance plans include...'
+      answer: 'There are several requirements for each insurance plan offered by Mlhuillier. For more information please visit mlhuillier.com website.'
     },
     {
       label: 'How can I claim the insurance?',
-      answer: 'To claim the insurance, you need to...'
+      answer: 'To claim the insurance, you need to visit to the nearest branch or any Mlhuillier branch.'
     }
   ];
   return (
