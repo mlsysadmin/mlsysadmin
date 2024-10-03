@@ -3,7 +3,7 @@ import { useState } from "react";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
 import FooterComponent from "./layout/FooterComponent";
 import MainLayout from "./layout/layout.component";
-import { Slider, Progress, Menu, Dropdown } from "antd";
+import { Slider, Progress, Menu, Select } from "antd";
 import iconcalcu from "../assets/icons/previewlisting/calculatorsign.png";
 import { DownOutlined } from "@ant-design/icons";
 import homeicon from "../asset/icons/homeicon.png";
@@ -105,14 +105,14 @@ const DiscoverHomeComponent = () => {
 							<div className="discover-upper-btn">
 								<div className="buy-a-home">
 									<div className="buy-home-text">
-										<a href="/buy-a-home">
+										<a href="/comingsoon">
 											<span>Buy a Home</span>
 										</a>
 									</div>
 								</div>
 								<div className="refinance-a-home">
 									<div className="refinance-btn">
-										<a href="/refinance">
+										<a href="/comingsoon">
 											<span>Refinance a Home</span>
 										</a>
 									</div>
@@ -216,23 +216,22 @@ const DiscoverHomeComponent = () => {
 											src={iconcalcu}
 											alt="Iconcalcu"
 											style={{
-												height: "15px",
-												width: "15px",
-												margin: "10px",
+												height: "25px",
+												width: "25px",
 												color: "black",
 											}}
 										/>
 										<div className="loan-term-value">
-											<Dropdown overlay={menu} trigger={["click", "hover"]}>
-												<select
-													style={{ cursor: "pointer" }}
-													className="year-term-options"
-												>
-													<option className="year-term-options">
-														{yearFixed} Years Fixed
-													</option>
-												</select>
-											</Dropdown>
+											<Select
+												value={yearFixed}
+												className="year-term-options"
+												onChange={(value) => setyearFixed(value)}
+												dropdownMatchSelectWidth={true} // Dropdown matches the select width
+											>
+												<Select.Option value={5}>5 Years Fixed</Select.Option>
+												<Select.Option value={10}>10 Years Fixed</Select.Option>
+												<Select.Option value={15}>15 Years Fixed</Select.Option>
+											</Select>
 										</div>
 
 										{/* <img
@@ -260,7 +259,11 @@ const DiscoverHomeComponent = () => {
 							</div>
 						</div>
 						<div className="mortgage-btn-group">
-							<div className="compute-mortgage" onClick={computeMortgage} style={{cursor:"pointer"}}>
+							<div
+								className="compute-mortgage"
+								onClick={computeMortgage}
+								style={{ cursor: "pointer" }}
+							>
 								<span>Compute Mortgage</span>
 							</div>
 							<div className="getpre-approvedbtn">

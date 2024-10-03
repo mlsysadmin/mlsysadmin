@@ -10,15 +10,29 @@ import {
 import Card from "./custom/cards/Card";
 import property from "../images/Guest/property.png";
 import Pagination from "./custom/pagination/Pagination";
-import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout, SearchPropertiesSoration } from "../components";
-import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
+import {
+	FooterComponent,
+	CustomMlFooter,
+	ListingSearch,
+	MainLayout,
+	SearchPropertiesSoration,
+} from "../components";
+import {
+	GetPropertiesBySaleStatus,
+	GetUnitPhotos,
+} from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
-import { CapitalizeString, GetPropertyTitle } from "../utils/StringFunctions.utils";
+import {
+	CapitalizeString,
+	GetPropertyTitle,
+} from "../utils/StringFunctions.utils";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
-import DefaultPropertyImage from '../asset/fallbackImage.png';
+import DefaultPropertyImage from "../asset/fallbackImage.png";
+import { CardSkeleton } from "./Skeleton";
 import NoDataAvailable from "./NoDataFoundComponent";
 
 const RentComponent = () => {
+	const [loading, setLoading] = useState(true);
 
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -33,12 +47,12 @@ const RentComponent = () => {
 			img: DefaultPropertyImage,
 			no_of_bathrooms: 0,
 			lot: 0,
-			property_no: '',
-			isFeatured: '',
-			sale_type: '',
-			no_of_beds: '',
-			property_type: ''
-		}
+			property_no: "",
+			isFeatured: "",
+			sale_type: "",
+			no_of_beds: "",
+			property_type: "",
+		},
 	]);
 	const [propertyType, setPropertyType] = useState("house");
 	const [currentPage, setCurrentPage] = useState(1);
@@ -55,58 +69,63 @@ const RentComponent = () => {
 			const dataresp = res.data;
 
 			if (dataresp.length == 0) {
-				setPublicListing([])
+				setPublicListing([]);
 			} else {
+				console.log(
+					"rent",
+					dataresp.filter((item) =>
+						["rent"].includes(item.SaleType.toLowerCase())
+					)
+				);
 
-				console.log("rent", dataresp.filter((item) => ["rent"].includes(item.SaleType.toLowerCase())));
-
-				const listingRes = dataresp.filter((listing) =>
-					["rent"].includes(listing.SaleType.toLowerCase()) &&
-					property_type.toLowerCase() == listing.PropertyType.toLowerCase() &&
-					listing.PropertyType.replace('/', " ").includes(property_type)
+				const listingRes = dataresp.filter(
+					(listing) =>
+						["rent"].includes(listing.SaleType.toLowerCase()) &&
+						property_type.toLowerCase() == listing.PropertyType.toLowerCase() &&
+						listing.PropertyType.replace("/", " ").includes(property_type)
 				);
 
 				if (listingRes.length !== 0) {
-					const newListing = await Promise.all(listingRes.map(async (item, i) => {
+					const newListing = await Promise.all(
+						listingRes.map(async (item, i) => {
+							const getPhotoGallery = await GetUnitPhotos(item.id);
 
-						const getPhotoGallery = await GetUnitPhotos(item.id);
+							const gallery = getPhotoGallery.data;
 
-						const gallery = getPhotoGallery.data;
+							const image = GetPhotoWithUrl(item.Photo);
 
-						const image = GetPhotoWithUrl(item.Photo);
-
-						return {
-							id: item.id,
-							title: CapitalizeString(item.UnitName),
-							price: AmountFormatterGroup(item.Price),
-							status: "For Rent",
-							pics: image ? gallery.length + 1 : 0,
-							img: image,
-							no_of_bathrooms: item.BathRooms,
-							lot: item.LotArea,
-							property_no: item.PropertyNo,
-							isFeatured: item.IsFeatured,
-							sale_type: CapitalizeString(item.SaleType),
-							no_of_beds: item.BedRooms,
-							property_type: item.PropertyType
-						}
-					}))
+							return {
+								id: item.id,
+								title: CapitalizeString(item.UnitName),
+								price: AmountFormatterGroup(item.Price),
+								status: "For Rent",
+								pics: image ? gallery.length + 1 : 0,
+								img: image,
+								no_of_bathrooms: item.BathRooms,
+								lot: item.LotArea,
+								property_no: item.PropertyNo,
+								isFeatured: item.IsFeatured,
+								sale_type: CapitalizeString(item.SaleType),
+								no_of_beds: item.BedRooms,
+								property_type: item.PropertyType,
+							};
+						})
+					);
 					setPublicListing(newListing);
-
+					setLoading(false);
 				} else {
 					setPublicListing([]);
+					setLoading(false);
 				}
-
 			}
-
 		} catch (error) {
 			console.error("ERROROR", error);
 			setPublicListing([]);
+			setLoading(false);
 		}
-	}
+	};
 
 	useEffect(() => {
-
 		const search = location.search;
 		console.log(search);
 
@@ -114,14 +133,12 @@ const RentComponent = () => {
 		const getPropertyType = queryParams.get("property_type");
 
 		if (queryParams.size !== 0) {
-
 			allPublicListing(getPropertyType);
 			setPropertyType(getPropertyType);
 		} else {
 			allPublicListing("house");
 		}
-
-	}, [])
+	}, []);
 
 	const indexOfLastCard = currentPage * cardsPerPage;
 	const indexOfFirstCard = indexOfLastCard - cardsPerPage;
@@ -136,39 +153,55 @@ const RentComponent = () => {
 			</div>
 			<div className="rentContainer">
 				<span className="rent-h1">Properties for Rent</span>
-
-				{
+				<SearchPropertiesSoration
+					properties_count={publiclisting.length}
+					current_properties_count={currentCards.length}
+				/>
+				{!loading ? (
 					currentCards.length !== 0 ? (
-						<>
-							<SearchPropertiesSoration properties_count={publiclisting.length} current_properties_count={currentCards.length} />
-							<div className="card-container">
-								{
-									currentCards.map((data, index) => (
-										<Card
-											key={index}
-											id={data.id}
-											title={data.title}
-											price={`PHP ${data.price}`}
-											imgSrc={data.img}
-											beds={data.no_of_beds}
-											baths={data.no_of_bathrooms}
-											size={data.lot}
-											likes={data.pics}
-											forsale={data.status}
-											subtitle={`${CapitalizeString(data.property_type)} For ${CapitalizeString(data.sale_type)}`}
-											handleClick={() => handleCardClick(data.property_no)}
-										/>
-									))
-
-								}
-							</div>
-						</>
-					)
-						:
+						<div className="card-container">
+							{currentCards.map((data, index) => (
+								<Card
+									key={index}
+									id={data.id}
+									title={data.title}
+									price={`PHP ${data.price}`}
+									imgSrc={data.img}
+									beds={data.no_of_beds}
+									baths={data.no_of_bathrooms}
+									size={data.lot}
+									likes={data.pics}
+									forsale={data.status}
+									subtitle={`${CapitalizeString(
+										data.property_type
+									)} For ${CapitalizeString(data.sale_type)}`}
+									handleClick={() => handleCardClick(data.property_no)}
+								/>
+							))}
+						</div>
+					) : (
 						<NoDataAvailable
-							message={`No available ${CapitalizeString(propertyType.replace(/[-_]/g, " "))} for rent`}
+							message={`No available ${CapitalizeString(
+								propertyType.replace(/[-_]/g, " ")
+							)} for rent`}
 						/>
-				}
+					)
+				) : (
+					<div
+						className="card-skeleton-loading"
+						style={{
+							display: "flex",
+							justifyContent: "center",
+							gap: "20px",
+						}}
+					>
+						{Array(3)
+							.fill(null)
+							.map((_, i) => (
+								<CardSkeleton key={i} />
+							))}
+					</div>
+				)}
 				<Pagination
 					currentPage={currentPage}
 					totalPages={totalPages}
@@ -177,9 +210,8 @@ const RentComponent = () => {
 			</div>
 			<CustomMlFooter />
 			<FooterComponent />
-
 		</div>
 	);
-}
+};
 
 export default RentComponent;
