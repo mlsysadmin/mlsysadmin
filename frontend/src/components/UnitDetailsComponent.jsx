@@ -338,7 +338,7 @@ const UnitDetailsComponent = ({
 					{/* Discounted Selling Price */}
 					<div className="form-group">
 						<div className="text-wrapper-37">
-							<p>Discounted <br/>Selling Price</p>
+							<p>Discounted Selling Price</p>
 						</div>
 						<div className="listing-unit-input-group">
 							<label className="text-wrapper-38" htmlFor="disc-selling-price">
