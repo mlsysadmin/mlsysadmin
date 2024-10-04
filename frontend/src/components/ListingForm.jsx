@@ -57,7 +57,6 @@ export const ListingForm = () => {
 		try {
 			const response = await searchKyc(accountDetails.mobileNumber);
 			const respData = response.data.data;
-			console.log("API Response:", respData);
 			setUserDetails(respData);
 		} catch (error) {
 			console.error("Error fetching user details:", error);
@@ -161,7 +160,6 @@ export const ListingForm = () => {
 		if (isComplete && stepIndex === currentStep) {
 			const nextStep = currentStep + 1;
 			setCurrentStep(nextStep);
-			console.log("Current Step:", nextStep);
 
 			if (stepRefs.current[nextStep]) {
 				if (!isFocused) {
@@ -178,10 +176,7 @@ export const ListingForm = () => {
 	const handleVendorSubmit = async () => {
 		try {
 
-			console.log("dsfdfg", accountDetails);
-
 			if (Object.keys(accountDetails).length !== 0) {
-				console.log("dsfdgfj");
 
 				let number = accountDetails.mobileNumber;
 
@@ -197,10 +192,8 @@ export const ListingForm = () => {
 					if (vendorExists) {
 						setShowVendorModal(false);
 						// setIsSubmitting(true);
-						console.log("Vendor Exist:", vendorExists.data.VendorId);
 						await handleSubmit(vendorExists.data.VendorId);
 
-						console.log("Vendor Exist:", vendorExists.data.VendorId);
 					} else {
 						setShowVendorModal(true);
 					}
@@ -230,8 +223,6 @@ export const ListingForm = () => {
 			const existingFeatures = featureResponse.map(
 				(feature) => feature.FeatureName
 			);
-
-			console.log("Features before submission:", existingFeatures);
 
 			const allAddedFeaturePayloads = [];
 			const allAddFeaturePayloads = [];
@@ -290,7 +281,6 @@ export const ListingForm = () => {
 				})
 			);
 
-			console.log("Features processed and posted successfully.");
 		} catch (error) {
 			console.error("Error processing features:", error.message);
 		}
@@ -373,9 +363,6 @@ export const ListingForm = () => {
 
 			const postData = await PostSellerListing(updatedPropertyFields);
 			setPostedPropertyNo(updatedPropertyFields);
-			console.log("this is the current post:", postedPropertyNo);
-			console.log("Listing API Response:", updatedPropertyFields);
-			console.log("propenumber:", updatedPropertyFields.PropertyNo);
 
 			setPropertyFields((prevFields) => ({
 				...prevFields,
