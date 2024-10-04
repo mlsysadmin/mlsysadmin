@@ -40,7 +40,6 @@ const HeaderMenu = () => {
 	const [userDetails, setUserDetails] = useState(null);
 
 	const login = process.env.REACT_APP_LOGIN_URL;
-
 	console.log("isMLWWSPresent:", isMLWWSPresent);
 	console.log("isAccountDetailsPresent:", isAccountDetailsPresent);
 
@@ -70,7 +69,6 @@ const HeaderMenu = () => {
 
 	useEffect(() => {
 		if (isMLWWSPresent && isAccountDetailsPresent) {
-
 			fetchUserDetails();
 		}
 	}, []);
@@ -123,24 +121,12 @@ const HeaderMenu = () => {
 	}, [setCurrent]);
 
 	const handleMenuOnClick = (menu) => {
-		if (menu.key === "rent") {
-			setbuyPopUpOpen(false);
-			sethomeLoanPopUpOpen(false);
-			sethomeInsurancePopUpOpen(false);
-			setotherServicesPopUpOpen(false);
-			setrentPopUpOpen(true);
-		} else if (menu.key === "buy") {
-			setrentPopUpOpen(false);
-			sethomeLoanPopUpOpen(false);
-			sethomeInsurancePopUpOpen(false);
-			setotherServicesPopUpOpen(false);
-			setbuyPopUpOpen(true);
-		} else if (menu.key === "home-loan") {
-			setrentPopUpOpen(false);
-			setbuyPopUpOpen(false);
-			sethomeInsurancePopUpOpen(false);
-			setotherServicesPopUpOpen(false);
-			sethomeLoanPopUpOpen(true);
+		if (menu.key === "sell") {
+			navigate("/sell");
+		} else if (menu.key === "new") {
+			navigate("/new");
+		} else if (menu.key === "contact") {
+			navigate("/contact-us");
 		} else if (menu.key === "home-insurance") {
 			setrentPopUpOpen(false);
 			setbuyPopUpOpen(false);
@@ -164,6 +150,33 @@ const HeaderMenu = () => {
 			sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(false);
 		}
+	};
+
+	const handleMenuHover = (menuKey) => {
+		setbuyPopUpOpen(false);
+		sethomeLoanPopUpOpen(false);
+		sethomeInsurancePopUpOpen(false);
+		setotherServicesPopUpOpen(false);
+		setrentPopUpOpen(false);
+
+		if (menuKey === "rent") {
+			setrentPopUpOpen(true);
+		} else if (menuKey === "buy") {
+			setbuyPopUpOpen(true);
+		} else if (menuKey === "home-loan") {
+			sethomeLoanPopUpOpen(true);
+		} else if (menuKey === "home-insurance") {
+			sethomeInsurancePopUpOpen(true);
+		} else if (menuKey === "other-services") {
+			setotherServicesPopUpOpen(true);
+		}
+	};
+	const handleMouseLeave = () => {
+		setbuyPopUpOpen(false);
+		sethomeLoanPopUpOpen(false);
+		sethomeInsurancePopUpOpen(false);
+		setotherServicesPopUpOpen(false);
+		setrentPopUpOpen(false);
 	};
 
 	const RentMenuPopContent = <MenuPopupContent submenu={SubMenu.rent} />;
@@ -249,6 +262,8 @@ const HeaderMenu = () => {
 		key: item.key,
 		label: item.label,
 		link: item.link,
+		onMouseEnter: () => handleMenuHover(item.key),
+		onMouseLeave: () => handleMenuHover(item.key),
 	}));
 
 	return (
@@ -263,6 +278,7 @@ const HeaderMenu = () => {
 					flexWrap: "wrap",
 				}}
 				id="menu-wrapper"
+				onMouseLeave={handleMouseLeave}
 			>
 				<Menu
 					mode="horizontal"

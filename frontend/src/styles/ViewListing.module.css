@@ -483,7 +483,7 @@
   height: 15px; /* Adjust as needed */
 }
 
-.logoImage {
+.logoImage{
   /* aspect-ratio: 2; */
   object-fit: auto;
   width: 55px;
@@ -500,6 +500,9 @@
   border-radius: 50%;
   background-color: #fff;
   z-index: 3;
+}
+.ViewListing_saveButton__ej8wX  .anticon .anticon-heart svg{
+  font-size: 12px;
 }
 .number {
   color: #d90000;
@@ -548,6 +551,13 @@
 .saveButton {
   border-radius: 10px;
   margin-bottom: 5px;
+  padding: 0px;
+}
+.circle-tags.heart{
+   font-size: 50px !important;
+}
+.ant-tag .ant-tag-checkable {
+  font-size: 50px !important;
 }
 
 .saveButton .ant-tag.heart{
