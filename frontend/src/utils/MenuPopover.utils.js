@@ -213,6 +213,7 @@ const SubMenu = {
 					</span>
 				</>
 			),
+
 			submenu: [
 				{
 					sub: "Quick Cash Loans",
@@ -224,7 +225,16 @@ const SubMenu = {
 			],
 		},
 		{
-			header: "",
+			header: (
+				<>
+					<span>{""}</span>
+					<br />
+					<br />
+					<span>{""}</span>
+					<br />
+				</>
+			),
+
 			submenu: [
 				{ sub: "ML Wallet ", link: "https://mlhuillier.com/ml-wallet/" },
 				{
@@ -236,7 +246,15 @@ const SubMenu = {
 			],
 		},
 		{
-			header: "",
+			header: (
+				<>
+					<span>{""}</span>
+					<br />
+					<br />
+					<span>{""}</span>
+					<br />
+				</>
+			),
 			submenu: [
 				{ sub: "Jewelry ", link: "https://mlhuillier.com/jewelry/" },
 				{ sub: "Insurance", link: "https://mlhuillier.com/insurance/" },
@@ -248,7 +266,16 @@ const SubMenu = {
 			],
 		},
 		{
-			header: "Online Services",
+			header: (
+				<>
+					<span>{""}</span>
+					<br />
+					<br />
+					<br/>
+					<span style={{paddingTop:"30px"}}>Online Services</span>
+					<br />
+				</>
+			),
 			submenu: [
 				{ sub: "Shop Online", link: "https://shop.mlhuillier.com/" },
 				{ sub: "Buy Eload", link: "https://mlweb.mlhuillier.com/eload" },

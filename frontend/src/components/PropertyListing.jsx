@@ -22,6 +22,7 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
   const [checked, setIsChecked] = useState(false);
   const [likes, setLikes] = useState([]);
 
+ const isSmallScreen = window.innerWidth <= 768; 
 
   const images = unitPhotos;
   
@@ -106,11 +107,11 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
             <CustomTag
               tagLabel={checked ? <HeartFilled /> : <HeartOutlined />}
               style={{
-                fontSize: "23px",
-                fontSize: "23px",
+                fontSize: isSmallScreen ? "25px" : "30px",
+                // fontSize: "30px",
                 color: "var(--red)",
                 backgroundColor: checked ? "transparent" : "",
-                padding: "0px 0px 0px 5px",
+                padding:"0px 0px 0px 5px",
               }}
               className="circle-tags heart"
               checkable={true}
@@ -121,7 +122,7 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
               className={styles.saveText}
               style={{
                 color: "var(--red",
-                fontSize: "18px",
+                fontSize: "24px",
                 padding: "0px 10px 0px 0px",
                 fontWeight: "600",
               }}
