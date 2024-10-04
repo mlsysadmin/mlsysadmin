@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/comingsoon.css";
+import BrokerageLogo from "../assets/BrokerageLogo.png";
 
 const WorkingOnItModal = () => {
 
@@ -94,20 +95,30 @@ const WorkingOnItModal = () => {
 	return (
 		<div className="coming-soon">
 			<div className="content">
-				<h1>Feature Coming Soon!</h1>
-				<span>
+				<div className="img-logo-coming-soon">
+					<img
+						src={BrokerageLogo}
+						style={{ width: "150px", height: "60px" }}
+					></img>
+					<div className="feature-coming-soon-title">
+						<h1>Feature Coming Soon!</h1>
+					</div>
+				</div>
+
+				{/* <span>
 					We’re diligently working to bring this feature to you. It will be
 					available shortly, so please check back later.
-				</span>
+				</span> */}
 
 				<div className="working-on-it-info">
-					<h2>Need Help?</h2>
+					{/* <h2>Need Help?</h2> */}
 					<span>
 						If you have any questions, feel free to contact our support team at
 						<a href="mailto:properties@mlhuillier.com">
 							{" "}
 							properties@mlhuillier.com
 						</a>{" "}
+						<br />
 						or call us at
 						<span style={{ fontWeight: "bold" }}> 380 3000, local 11569.</span>
 					</span>

@@ -19,6 +19,8 @@ import HomeHighlights from "./HomeHighlights";
 import NotFoundComponent from "./Errors/NotFoundComponent";
 import { GetAllFeaturesByPropertyNo } from "../api/GetAllAmenities";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
+import Loading from "./modals/LoadingModal";
+import PreviewLoadingModal from "./modals/PreviewLoadingModal";
 
 const PreviewListing = () => {
 
@@ -39,37 +41,8 @@ const PreviewListing = () => {
   const [features, setFeatures] = useState([]);
   const [amenities, setAmenities] = useState([]);
   const [includes, setIncludes] = useState([]);
+  const [isLoading, setIsLoading] = useState(true); 
   const [unitPhotos, setUnitPhotos] = useState([]);
-
-
-  // const features = [
-  //   {
-  //     title: "Bedrooms",
-  //     iconSrc:
-  //       "https://cdn.builder.io/api/v1/image/assets/TEMP/ffa0b4ae5294fab32f04e2df5bccc9e215b962c4a23b87baa3b3a4f9d11a3bf0?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
-  //     value: "5",
-  //   },
-  //   {
-  //     title: "Bathrooms",
-  //     iconSrc:
-  //       "https://cdn.builder.io/api/v1/image/assets/TEMP/372723378f9151c6cced3d234ccf4d85735cb0c5bd16df4ca6bac2adaf6189fb?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
-  //     value: "5",
-  //   },
-  //   {
-  //     title: "Garage",
-  //     iconSrc:
-  //       "https://cdn.builder.io/api/v1/image/assets/TEMP/a17243275d0fedc1a93dbce25cd9571671d11f482871f3219644e3e5fe1afa72?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
-  //     value: "3",
-  //   },
-  //   {
-  //     title: "Area",
-  //     iconSrc:
-  //       "https://cdn.builder.io/api/v1/image/assets/TEMP/c279a46ede99c04710deb1142ac34bf9008c0ed800284e2cdc230b0e6a25fc86?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5&&apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
-  //     value: "300 SqM",
-  //   },
-  //   { title: "Price per SqM", iconSrc: "", value: "" },
-  // ];
-
   const term = 30;
   const termInMonths = term * 12;
 
@@ -82,58 +55,60 @@ const PreviewListing = () => {
 
   useEffect(() => {
     const getlistingByID = async () => {
+      setIsLoading(true);
       try {
+				const search = location.search;
+				const params = new URLSearchParams(search);
+				const id = params.get("id");
 
-        const search = location.search;
-        const params = new URLSearchParams(search);
-        const id = params.get('id');
+				if (params.size != 0 && id) {
+					const onelistingdata = await GetPublicListingByID(id);
+					const dataresp = onelistingdata.data;
 
-        if (params.size != 0 && id) {
+					if (Object.keys(dataresp).length === 0) {
+						setOneListing(null);
+					} else {
+						const features = await GetFeaturesByPropertyNo(dataresp.PropertyNo);
+						const photos = await UnitPhotos(dataresp.id);
 
-          const onelistingdata = await GetPublicListingByID(id);
-          const dataresp = onelistingdata.data;
+						let photo = dataresp.Photo;
+						console.log("photo", photo);
+						if (photos.length !== 0) {
+							let gallery = photos.map((item, i) => {
+								return item.Photo;
+							});
 
-          if (Object.keys(dataresp).length === 0) {
-            setOneListing(null);
-          } else {
+							gallery.push(photo);
 
-            const features = await GetFeaturesByPropertyNo(dataresp.PropertyNo);
-            const photos = await UnitPhotos(dataresp.id);
-      
-            let photo = dataresp.Photo
-            console.log("photo", photo);
-            if (photos.length !== 0) {
+							setUnitPhotos(gallery);
+						} else {
+							setUnitPhotos([photo]);
+						}
 
-              let gallery = photos.map((item, i) => {
-                return item.Photo
-              });
+						const getFeatures = features.filter(
+							(item) => item.Type === "features"
+						);
+						const getAmenities = features.filter(
+							(item) => item.Type === "amenities"
+						);
+						const getIncludes = features.filter(
+							(item) => item.Type === "includes"
+						);
 
-              gallery.push(photo);
-              
-              setUnitPhotos(gallery);
-
-            }else{
-              setUnitPhotos([photo]);
-            }
-
-            const getFeatures = features.filter((item) => item.Type === "features");
-            const getAmenities = features.filter((item) => item.Type === "amenities");
-            const getIncludes = features.filter((item) => item.Type === "includes");
-
-            setOneListing(dataresp);
-            setFeatures(getFeatures);
-            setAmenities(getAmenities);
-            setIncludes(getIncludes);
-
-          }
-        } else {
-          setOneListing(null);
-        }
-
-      } catch (error) {
-        console.log(error);
-        setOneListing(null);
-      }
+						setOneListing(dataresp);
+						setFeatures(getFeatures);
+						setAmenities(getAmenities);
+						setIncludes(getIncludes);
+					}
+				} else {
+					setOneListing(null);
+				}
+			} catch (error) {
+				console.log(error);
+				setOneListing(null);
+			} finally {
+				setIsLoading(false);
+			}
     };
     getlistingByID();
   }, []);
@@ -214,38 +189,47 @@ console.log("unitPhotos", unitPhotos);
   };
 
   return (
-    <>
-      {
-        oneListing ?
-          <div className="previewlist">
-            {/* <Navigation /> */}
-
-            <div
-              className="contentContainer"
-              style={{ display: "flex", width: "100%", gap: "1rem" }}
-            >
-              <div className="real-estate-listing-card">
-                <PropertyListing oneListing={oneListing} unitPhotos={unitPhotos}/>
-                {/* <div className="previewlist-overview">
-              <span>OVERVIEW</span>
-              <p>Property ID: {oneListing.listings.property_id}</p>
-            </div> */}
-                <div className="midContent">
-                  <PreviewListLeftContent oneListing={oneListing} />
-                  <PreviewListRightSideContent oneListing={oneListing} />
-                </div>
-                <HomeHighlights features={features} amenities={amenities} includes={includes} />
-              </div>
-            </div>
-            <div className="preview-mobile--action-btns">
-              <SemiRoundBtn label={'Send us a message'} className="preview--contact-us"/>
-              <SemiRoundBtn label={'Try our calculator'} className="preview--calculator"/>
-            </div>
-          </div>
-          : <NotFoundComponent />
-      }
-    </>
-  );
+		<>
+			{isLoading ? (
+				<PreviewLoadingModal/>
+			) : oneListing ? (
+				<div className="previewlist">
+					<div
+						className="contentContainer"
+						style={{ display: "flex", width: "100%", gap: "1rem" }}
+					>
+						<div className="real-estate-listing-card">
+							<PropertyListing
+								oneListing={oneListing}
+								unitPhotos={unitPhotos}
+							/>
+							<div className="midContent">
+								<PreviewListLeftContent oneListing={oneListing} />
+								<PreviewListRightSideContent oneListing={oneListing} />
+							</div>
+							<HomeHighlights
+								features={features}
+								amenities={amenities}
+								includes={includes}
+							/>
+						</div>
+					</div>
+					<div className="preview-mobile--action-btns">
+						<SemiRoundBtn
+							label={"Send us a message"}
+							className="preview--contact-us"
+						/>
+						<SemiRoundBtn
+							label={"Try our calculator"}
+							className="preview--calculator"
+						/>
+					</div>
+				</div>
+			) : (
+				<NotFoundComponent />
+			)}
+		</>
+	);
 };
 
 export default PreviewListing;

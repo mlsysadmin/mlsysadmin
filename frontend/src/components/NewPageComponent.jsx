@@ -9,6 +9,7 @@ import SortDropdown from "../components/SortDropdownComponent"; // Ensure this p
 import { Dropdown, Menu, Space } from "antd";
 import { CaretDownOutlined } from "@ant-design/icons";
 import { cardData } from "../utils/ListingMockData";
+import { CardSkeleton } from "./Skeleton";
 
 import property from "../images/Guest/property.png";
 import ListingSearch from "./custom/customsearch/custom.listingsearch";
@@ -37,6 +38,8 @@ const NewPageComponent = () => {
 			property_type: ''
 		}
 	]);
+const [loading, setLoading] = useState(true);
+console.log("loading", loading);
 
 	const handleCardClick = (id) => {
 		navigate(`/previewListing/?id=${id}`, { state: id });
@@ -50,60 +53,70 @@ const NewPageComponent = () => {
 			const dataresp = res.data;
 
 			if (dataresp.length == 0) {
-				setPublicListing([])
+				setPublicListing([]);
 			} else {
+				console.log(
+					"sale, rent",
+					dataresp.filter((item) =>
+						["sale", "rent"].includes(item.SaleType.toLowerCase())
+					)
+				);
 
-				console.log("sale, rent", dataresp.filter((item) => ["sale", "rent"].includes(item.SaleType.toLowerCase())));
-
-
-				const listingRes = dataresp.filter((listing) => !isPastAMonth(listing.created_at) && ["sale", "rent"].includes(listing.SaleType.toLowerCase()));
+				const listingRes = dataresp.filter(
+					(listing) =>
+						!isPastAMonth(listing.created_at) &&
+						["sale", "rent"].includes(listing.SaleType.toLowerCase())
+				);
 
 				let listings = [];
 
 				console.log(listingRes);
-				
 
-				if (listingRes.length !== 0) {
-					listings = listingRes
+				if (listingRes?.length !== 0) {
+					listings = listingRes;
 				} else {
-					listings = dataresp
+					listings = dataresp;
 				}
 
-				const newListing = await Promise.all(listings.map(async (item, i) => {
+				const newListing = await Promise.all(
+					listings.map(async (item, i) => {
+						const getPhotoGallery = await GetUnitPhotos(item.id);
 
-					const getPhotoGallery = await GetUnitPhotos(item.id);
+						const gallery = getPhotoGallery.data;
 
-					const gallery = getPhotoGallery.data;
+						const image = GetPhotoWithUrl(item.Photo);
 
-					const image = GetPhotoWithUrl(item.Photo);
-
-					return {
-						id: item.id,
-						title: CapitalizeString(item.UnitName),
-						price: AmountFormatterGroup(item.Price),
-						status: "New",
-						pics: image ? gallery.length + 1 : 0,
-						img: image,
-						no_of_bathrooms: item.BathRooms,
-						lot: item.LotArea,
-						property_no: item.PropertyNo,
-						isFeatured: item.IsFeatured,
-						sale_type: CapitalizeString(item.SaleType),
-						no_of_beds: item.BedRooms,
-						property_type: item.PropertyType
-					}
-				}))
+						return {
+							id: item.id,
+							title: CapitalizeString(item.UnitName),
+							price: AmountFormatterGroup(item.Price),
+							status: "New",
+							pics: image ? gallery.length + 1 : 0,
+							img: image,
+							no_of_bathrooms: item.BathRooms,
+							lot: item.LotArea,
+							property_no: item.PropertyNo,
+							isFeatured: item.IsFeatured,
+							sale_type: CapitalizeString(item.SaleType),
+							no_of_beds: item.BedRooms,
+							property_type: item.PropertyType,
+						};
+					})
+				);
 				setPublicListing(newListing);
+				setLoading(false);
 			}
-
 		} catch (error) {
 			console.error("ERROROR", error);
 			setPublicListing([]);
-		}
+			setLoading(false);
+			// setLoading(false);
+		} 
 	};
 
 	useEffect(() => {
 		allPublicListing();
+		
 	}, []);
 
 	const [currentPage, setCurrentPage] = useState(1);
@@ -113,7 +126,7 @@ const NewPageComponent = () => {
 	const indexOfFirstCard = indexOfLastCard - cardsPerPage;
 	console.log(indexOfFirstCard, indexOfLastCard);
 
-	const currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
+	const currentCards = publiclisting?.slice(indexOfFirstCard, indexOfLastCard);
 
 	const totalPages = Math.ceil(publiclisting.length / cardsPerPage);
 
@@ -124,11 +137,14 @@ const NewPageComponent = () => {
 					<ListingSearch />
 					<div className="second-content">
 						<h1 className="new-page-label">New Properties For Sale/Rent</h1>
-						<SearchPropertiesSoration properties_count={publiclisting.length} current_properties_count={currentCards.length} />
-						<div className="card-container">
-							{currentCards.map((data, index) => {
-
-								return (
+						<SearchPropertiesSoration
+							properties_count={publiclisting.length}
+							current_properties_count={currentCards.length}
+						/>
+						{!loading ? currentCards.length > 0 && (
+							<div className="card-container">
+								
+								{currentCards.map((data, index) => (
 									<Card
 										key={index}
 										id={data.id}
@@ -140,13 +156,34 @@ const NewPageComponent = () => {
 										size={data.lot}
 										likes={data.pics}
 										forsale={data.status}
-										subtitle={`${CapitalizeString(data.property_type)} For ${CapitalizeString(data.sale_type)}`}
+										subtitle={`${CapitalizeString(
+											data.property_type
+										)} For ${CapitalizeString(data.sale_type)}`}
 										handleClick={() => handleCardClick(data.property_no)}
 									/>
-								)
-							}
-							)}
-						</div>
+									
+								))}
+							</div>
+
+								
+						) : (
+							<div
+									className="card-skeleton-loading"
+									style={{
+										display: "flex",
+										justifyContent: "center",
+										gap: "20px",
+									}}
+								>
+									{Array(3)
+										.fill(null)
+										.map((_, i) => {
+											return <CardSkeleton />;
+										})}
+								</div>
+							
+						)}
+
 						<Pagination
 							currentPage={currentPage}
 							totalPages={totalPages}

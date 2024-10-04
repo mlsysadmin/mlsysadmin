@@ -61,16 +61,6 @@ const LoanCalculatorComponent = () => {
 		setSelectedOption("30-year fixed");      
 	};
 
-		const menu = (
-		<Menu onClick={(e) => setSelectedOption(parseInt(e.key))}>
-			<Menu.Item key="30">30 Years Fixed</Menu.Item>
-			<Menu.Item key="25">25 Years Fixed</Menu.Item>
-			<Menu.Item key="20">20 Years Fixed</Menu.Item>
-			<Menu.Item key="15">15 Years Fixed</Menu.Item>
-			<Menu.Item key="10">10 Years Fixed</Menu.Item>
-			<Menu.Item key="5">5 Years Fixed</Menu.Item>
-		</Menu>
-	);
 
 
 	return (
@@ -189,7 +179,7 @@ const LoanCalculatorComponent = () => {
 										<div>
 											<h2>PHP11,154.89 per month</h2>
 											<p className="year-percentage">
-												{selectedOption}, {inputValue} %
+												{selectedOption} years fixed, {inputValue} %
 											</p>
 										</div>
 										<MultiRangeSlider
