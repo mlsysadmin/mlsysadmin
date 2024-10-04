@@ -108,7 +108,7 @@ const SellerLogInButtonDropdown = () => {
 						padding: "10px",
 						borderRadius: "5px",
 						minWidth: "200px",
-						zIndex: "1",
+						zIndex: "999",
 						display: "flex",
 						flexDirection: "column",
 						gap: "10px",
@@ -154,7 +154,7 @@ const SellerLogInButtonDropdown = () => {
 								</a>
 							</button>
 						</l1>
-						<a
+						{/* <a
 							style={{
 								color: "white",
 							}}
@@ -176,7 +176,7 @@ const SellerLogInButtonDropdown = () => {
 							}}
 						>
 							<li>Client Management</li>
-						</a>
+						</a> */}
 						<a
 							style={{
 								color: "white",
