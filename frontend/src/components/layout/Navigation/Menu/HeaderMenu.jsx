@@ -293,7 +293,7 @@ const HeaderMenu = () => {
 					style={{
 						background: "#D90000",
 						boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-						margin: "0px 15px 0px 0px",
+						margin: "0px 0px 0px 0px",
 					}}
 					label="List your Property"
 					onClick={handleUserProfileClick}
@@ -303,20 +303,23 @@ const HeaderMenu = () => {
 				)}
 				{/* {!isMLWWSPresent&&
 					( */}
-				<RoundBtn
-					type="primary"
-					className="menu-buttons"
-					style={{
-						color: "#D90000",
-						backgroundColor: "transparent",
-						border: "1px solid #d90000",
-						boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-						padding: "5px 5px",
-						cursor: "pointer",
-					}}
-					label="Join our Team"
-					onClick={handleJoinTeamClick}
-				/>
+				{!isMLWWSPresent && (
+			<RoundBtn
+				type="primary"
+				className="menu-buttons"
+				style={{
+					color: "#D90000",
+					backgroundColor: "transparent",
+					border: "1px solid #d90000",
+					boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+					padding: "5px 5px",
+					cursor: "pointer",
+					margin:"0px 0px 0px 10px"
+				}}
+				label="Join our Team"
+				onClick={handleJoinTeamClick}
+			/>
+		)}
 				{/* )} */}
 				{/* {showModal && (
 					<WorkingOnItModal isOpen={showModal} onClose={toggleModal} />

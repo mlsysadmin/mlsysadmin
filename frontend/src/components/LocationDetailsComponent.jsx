@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Circle, useMap } from "react-leaflet";
-import 'leaflet/dist/leaflet.css';
+import "leaflet/dist/leaflet.css";
 import "../styles/listing-form.css";
 import { GetCities, GetProvince, GetCountry } from "../api/Public/Location.api";
-import  "../styles/ViewListing.module.css";
-
-
-
+import "../styles/ViewListing.module.css";
 
 const MapUpdater = ({ position }) => {
 	const map = useMap();
@@ -18,16 +15,15 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 	const [getCountry, setGetCountry] = useState([]);
 	const [selectedCountry, setSelectedCountry] = useState("");
 	const [getProvince, setGetProvince] = useState([]);
-	const [selectedProvince, setSelectedProvince] = useState(""); 
+	const [selectedProvince, setSelectedProvince] = useState("");
 	const [getCities, setGetCities] = useState([]);
-	const [selectedCity, setSelectedCity] = useState(""); 
+	const [selectedCity, setSelectedCity] = useState("");
 	const [subdivision, setSubdivision] = useState("");
 	const [zipcode, setZipcode] = useState("");
 	const [address, setAddress] = useState("");
-	const [radius, setRadius] = useState(500); 
+	const [radius, setRadius] = useState(500);
 	const [filteredCities, setFilteredCities] = useState([]);
-	const [position, setPosition] = useState([10.3414, 123.9125]); 
-
+	const [position, setPosition] = useState([10.3414, 123.9125]);
 
 	const allCountries = async () => {
 		const datares = await GetCountry();
@@ -46,24 +42,25 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 		setGetProvince(dataresprovince);
 		// console.log("These are provinces:", dataresprovince);
 	};
-	
- const handleProvinceChange = (province) => {
-		setSelectedProvince(province);
-		console.log("Selected Province:", province); 
 
-		const provinceData = getProvince.find((p) => p.name === province);
+	const handleProvinceChange = (province) => {
+		setSelectedProvince(province);
+		console.log("Selected Province:", province);
+
+		const provinceData = getProvince.find((p) => p.name.charAt(0).toUpperCase() +
+									p.name.slice(1).toLowerCase() === province);
 		if (provinceData) {
 			const provinceId = provinceData.addressL1Id;
 			const filtered = getCities.filter((city) => {
-				// console.log("Checking city:", city.name); 
-				return city.addressL1Id === provinceId; 
+				// console.log("Checking city:", city.name);
+				return city.addressL1Id === provinceId;
 			});
-			// console.log("Filtered cities:", filtered); 
+			// console.log("Filtered cities:", filtered);
 			setFilteredCities(filtered);
 		} else {
-			setFilteredCities([]); 
+			setFilteredCities([]);
 		}
- };
+	};
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -80,14 +77,14 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 		const { name, value } = e.target;
 		switch (name) {
 			case "country":
-				setSelectedCountry(value); 
+				setSelectedCountry(value);
 				break;
 			case "province":
 				setSelectedProvince(value);
 				break;
 			case "city":
-				setSelectedCity(value); 
-				 handleMapLocationChange(value);
+				setSelectedCity(value);
+				handleMapLocationChange(value);
 				break;
 			case "zipcode":
 				setZipcode(value);
@@ -100,24 +97,23 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 		}
 	};
 
+	const handleMapLocationChange = async (city) => {
+		try {
+			const response = await fetch(
+				`https://nominatim.openstreetmap.org/search?format=json&q=${city}`
+			);
+			const data = await response.json();
 
-	 const handleMapLocationChange = async (city) => {
-			try {
-				const response = await fetch(
-					`https://nominatim.openstreetmap.org/search?format=json&q=${city}`
-				);
-				const data = await response.json();
-
-				if (data && data.length > 0) {
-					const { lat, lon } = data[0];
-					setPosition([parseFloat(lat), parseFloat(lon)]);
-				} else {
-					console.log("No results found for this location");
-				}
-			} catch (error) {
-				console.error("Error fetching geocode data: ", error);
+			if (data && data.length > 0) {
+				const { lat, lon } = data[0];
+				setPosition([parseFloat(lat), parseFloat(lon)]);
+			} else {
+				console.log("No results found for this location");
 			}
-		};
+		} catch (error) {
+			console.error("Error fetching geocode data: ", error);
+		}
+	};
 
 	useEffect(() => {
 		const isComplete =
@@ -130,8 +126,8 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 				ProvinceState: selectedProvince,
 				Country: selectedCountry,
 				Zipcode: zipcode,
-				MapLocation: selectedCity, 
-				Location: address, 
+				MapLocation: selectedCity,
+				Location: address,
 			});
 		}
 	}, [
@@ -159,10 +155,19 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 						value={selectedCountry}
 						onChange={handleAddressChange}
 					>
-						<option value="">Select Country</option>
+						<option value="" disabled selected hidden>
+							Select Country
+						</option>
 						{getCountry.map((country, index) => (
-							<option key={index} value={country.name}>
-								{country.name}
+							<option
+								key={index}
+								value={
+									country.name.charAt(0).toUpperCase() +
+									country.name.slice(1).toLowerCase()
+								}
+							>
+								{country.name.charAt(0).toUpperCase() +
+									country.name.slice(1).toLowerCase()}
 							</option>
 						))}
 					</select>
@@ -179,10 +184,19 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 						onChange={(e) => handleProvinceChange(e.target.value)}
 						// onChange={handleAddressChange}
 					>
-						<option value="">Select Province</option>
+						<option value="" disabled selected hidden>
+							Select Province
+						</option>
 						{getProvince.map((province, index) => (
-							<option key={index} value={province.name}>
-								{province.name}
+							<option
+								key={index}
+								value={
+									province.name.charAt(0).toUpperCase() +
+									province.name.slice(1).toLowerCase()
+								}
+							>
+								{province.name.charAt(0).toUpperCase() +
+									province.name.slice(1).toLowerCase()}
 							</option>
 						))}
 					</select>
@@ -198,10 +212,19 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 						value={selectedCity}
 						onChange={handleAddressChange}
 					>
-						<option value="">Select City</option>
+						<option value="" disabled selected hidden>
+							Select City
+						</option>
 						{filteredCities.map((city, index) => (
-							<option key={index} value={city.name}>
-								{city.name}
+							<option
+								key={index}
+								value={
+									city.name.charAt(0).toUpperCase() +
+									city.name.slice(1).toLowerCase()
+								}
+							>
+								{city.name.charAt(0).toUpperCase() +
+									city.name.slice(1).toLowerCase()}
 							</option>
 						))}
 					</select>
@@ -254,6 +277,5 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 		</div>
 	);
 };
-
 
 export default LocationDetailsComponent;

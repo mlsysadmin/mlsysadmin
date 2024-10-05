@@ -41,6 +41,7 @@
 .specificationTable th, .specificationTable td {
   padding: 10px;
   text-align: left;
+  font-size: 16px;
 }
 
 .specificationTable th {
@@ -108,10 +109,10 @@
   flex-direction: column;
   color: #1e1e1e;
   white-space: nowrap;
-  width: 100%;
+  width: 200px;
   padding: 15px;
   border: 1px solid #000;
-  max-width: 20%;
+  /* max-width: 20%; */
 }
 
 .featureTitle {
@@ -407,4 +408,10 @@
     display: block;
   }
  
+}
+@media screen  and (min-width: 1024px) {
+.VListingHouseDetails_featureCard__ZDxzL{
+  width:300px !important;
+}
+  
 }

@@ -101,7 +101,7 @@ const UnitDetailsComponent = ({
 				Parking,
 				FloorArea: floorArea,
 				LotArea: lotArea,
-				propId,
+				PropertyIdNo: propId,
 			});
 			onComplete(true);
 		} else {
@@ -136,6 +136,17 @@ const UnitDetailsComponent = ({
 		"farm lot",
 	].includes(selectedPropertyTab);
 
+	const formatPricenumber = () =>{
+		if (!price) return "";
+		return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+		const formatdiscountedPricenumber = () => {
+			if (!discountedPrice) return "";
+			return discountedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		};
+	const removeCommas = (price) => {
+		return price.replace(/,/g, "");
+	};
 	return (
 		<div className="listing-unit-details">
 			<div className="listing-unit-details-label">Unit Details</div>
@@ -155,10 +166,14 @@ const UnitDetailsComponent = ({
 									className={`price-input ${
 										priceInputError ? "error-input" : ""
 									}`}
-									type="number"
+									type="text"
+									value={formatPricenumber(price)}
 									onChange={(e) => {
-										setPrice(e.target.value);
-										validateNumberInput(e.target.value, setPriceInputError);
+										const rawValue = removeCommas(e.target.value);
+										if (!isNaN(rawValue)) {
+											setPrice(rawValue);
+										}
+										validateNumberInput(rawValue, setPriceInputError);
 									}}
 								/>
 							</div>
@@ -338,7 +353,10 @@ const UnitDetailsComponent = ({
 					{/* Discounted Selling Price */}
 					<div className="form-group">
 						<div className="text-wrapper-37">
-							<p>Discounted <br/>Selling Price</p>
+							<p>
+								Discounted <br />
+								Selling Price
+							</p>
 						</div>
 						<div className="listing-unit-input-group">
 							<label className="text-wrapper-38" htmlFor="disc-selling-price">
@@ -351,10 +369,14 @@ const UnitDetailsComponent = ({
 									className={`disc-price-input ${
 										discPriceInputError ? "error-input" : ""
 									}`}
-									type="number"
+									type="text"
+									value={formatdiscountedPricenumber(discountedPrice)}
 									onChange={(e) => {
-										setDiscountedPrice(e.target.value);
-										validateNumberInput(e.target.value, setDiscPriceInputError);
+										const rawValue = removeCommas(e.target.value);
+										if (!isNaN(rawValue)) {
+											setDiscountedPrice(rawValue);
+										}
+										validateNumberInput(rawValue, setDiscPriceInputError);
 									}}
 								/>
 							</div>
@@ -493,10 +515,10 @@ const UnitDetailsComponent = ({
 
 					{/* Property ID Number */}
 					<div className="form-group">
-						<div className="text-wrapper-37">Property ID No</div>
+						<div className="text-wrapper-37">House/Lot Number</div>
 						<div className="listing-unit-input-group">
 							<label className="text-wrapper-38" htmlFor="prop-id">
-								What is the property ID number?
+								What is the house or lot number?
 							</label>
 							<div className="propid-input-container">
 								<div className="propid-logo">

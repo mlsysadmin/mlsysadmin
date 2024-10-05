@@ -67,7 +67,7 @@ const ListingSearch = () => {
 				<div className="subcontent-inputs-1">
 					<input className="input-field" placeholder="Enter keyword" />
 					<select className="select-field" placeholder="Location">
-						<option value="">Location</option>
+						<option value="" disabled selected hidden>Location</option>
 						{getProvince?.map((province, index) => (
 							<option key={index} value={province.name}>
 								{province.name}
@@ -75,15 +75,13 @@ const ListingSearch = () => {
 						))}
 					</select>
 					<select className="select-field" placeholder="Property Type">
-						<option value="">Property Type</option>
+						<option value="" disabled selected hidden>Property Type</option>
 						<option value="residential">Residential</option>
 						<option value="commercial">Commercial</option>
 						<option value="land">Land</option>
 					</select>
 					<select className="select-field" placeholder="Listing Type">
-						<option value="" >
-							 Listing Type
-						</option>
+						<option value="" disabled selected hidden>Listing Type</option>
 						<option value="for-sale">For Sale</option>
 						<option value="for-rent">For Rent</option>
 					</select>
@@ -154,33 +152,38 @@ const ListingSearch = () => {
 					<div className="subcontent-inputs-2">
 						<input className="input-field" placeholder="Enter Lot Area" />
 						<select className="select-field" placeholder="Bedrooms">
-							<option value="">Bedrooms</option>
-							<option value="commercial">1</option>
-							<option value="land">2</option>
+							<option value="" disabled selected hidden>
+								Bedrooms
+							</option>
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
 						</select>
 						<select className="select-field" placeholder="Bathrooms">
-							<option value="">Bathrooms</option>
-							<option value="commercial">1</option>
-							<option value="land">2</option>
+							<option value="" disabled selected hidden>
+								Bathrooms
+							</option>
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
 						</select>
 						<select className="select-field" placeholder="Garage/Parking ">
-							<option value="">Garage/Parking </option>
-							<option value="commercial">1</option>
-							<option value="land">2</option>
+							<option value="" disabled selected hidden>
+								Garage/Parking{" "}
+							</option>
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
 						</select>
 						<Dropdown
-							overlay={<CertainFeatureMenu />}
+							overlay={<CertainFeatureMenu />} // The content of the dropdown
 							trigger={["click"]}
 							visible={iscertainFeatureOpen}
 							onVisibleChange={handleCertainFeatureClick}
 						>
-							<select
-								className="select-field"
-								onClick={handleCertainFeatureClick}
-							>
-								<option value="Features">Features</option>
-								<CaretDownOutlined />
-							</select>
+							<div className="select-field">
+								<span style={{ margin: "5px 0px 0px 0px" }}>Features</span>
+							</div>
 						</Dropdown>
 					</div>
 				</div>

@@ -5,11 +5,14 @@ import profileDropdown from "../../../assets/profileDropdown.png";
 import { getCookieData } from "../../../utils/CookieChecker";
 import { searchKyc } from "../../../api/Public/User.api";
 import { Alert } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const SellerLogInButtonDropdown = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [userDetails, setUserDetails] = useState(null);
    const [sessionExpired, setSessionExpired] = useState(false);
+
+   const navigate = useNavigate();
 
   const accountDetails = getCookieData();
 	console.log("details:", accountDetails);
@@ -35,6 +38,9 @@ const SellerLogInButtonDropdown = () => {
   const handleButtonClick = () => {
     setShowDropdown(!showDropdown);
   };
+  	const handleJoinTeamClick = () => {
+			navigate("/comingsoon");
+	};
 
 
   const handleLogout = () => {
@@ -68,7 +74,6 @@ const SellerLogInButtonDropdown = () => {
 
   return (
 		<div style={{ position: "relative" }}>
-
 			<button
 				style={{
 					margin: "0px 0px 0px 10px",
@@ -126,14 +131,35 @@ const SellerLogInButtonDropdown = () => {
 							cursor: "pointer",
 						}}
 					>
+						{/* <li>
+							{firstName} {lastNameInitial}
+						</li> */}
 						<li>
-							{accountDetails.firstName} &nbsp;
-							{accountDetails.lastName}
+							<a
+								style={{
+									textDecoration: "none",
+									color: "white",
+								}}
+								href="/listing"
+							>
+								List Your Property
+							</a>
 						</li>
-						<li>{accountDetails.email}</li>
-						<li>{userDetails.tier.label} TIER</li>
-						<li>───────────────────</li>
-						<l1>
+						<li>
+							<a
+								style={{
+									textDecoration: "none",
+									color: "white",
+								}}
+								href="/comingsoon"
+							>
+								Join Our Team
+							</a>
+						</li>
+						{/* <li>{accountDetails.email}</li> */}
+						{/* <li>{userDetails.tier.label} TIER</li> */}
+						{/* <li>───────────────────</li> */}
+						{/* <l1>
 							<button
 								style={{
 									minWidth: "200px",
@@ -153,7 +179,7 @@ const SellerLogInButtonDropdown = () => {
 									LIST YOUR PROPERTY
 								</a>
 							</button>
-						</l1>
+						</l1> */}
 						{/* <a
 							style={{
 								color: "white",

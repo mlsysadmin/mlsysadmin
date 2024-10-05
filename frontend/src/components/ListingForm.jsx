@@ -105,6 +105,7 @@ export const ListingForm = () => {
 		Classification: "",
 		PricePerSqm: "",
 		Parking: "",
+		PropertyIdNo:"",
 		RecordStatus: "pending",
 		NoOfFloor: "",
 		Country: "",
@@ -342,11 +343,11 @@ export const ListingForm = () => {
 			const updatedPropertyFields = {
 				...propertyFields,
 				ListingOwnerId: generatedVendorId,
-				ListingOwnerName: existing.VendorName,
+				ListingOwnerName: existing.data.VendorName,
 				postFeatures,
 				PropertyNo: propertyNo,
 				VendorId: generatedVendorId,
-				VendorName: existing.VendorName,
+				VendorName: existing.data.VendorName,
 			};
 
 			console.log("Final listing data:", updatedPropertyFields);
