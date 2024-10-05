@@ -117,7 +117,7 @@ const PreviewListLeftContent = ({ label, value, oneListing }) => {
 					<section className={styles.leftfeatureGrid}>
 						{
 							features.map((feature, index) => {
-
+console.log("feature", features);
 								return (
 
 									<VLFeatureCard key={index} {...feature} />
