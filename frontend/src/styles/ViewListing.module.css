@@ -130,6 +130,7 @@
     gap: 14px;
     margin-left: 3%;
     /* margin-top: 5%; */
+    align-items: center;
   }
   .statusBadge, .priceTag, .saveButton, .logoImage{
     border-radius: 10px !important;

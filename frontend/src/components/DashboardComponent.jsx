@@ -68,7 +68,8 @@ const DashboardComponent = () => {
       isFeatured: '',
       sale_type: '',
       no_of_beds: '',
-      city:''
+      city: '',
+      property_type: ''
     }
   ]);
 
@@ -97,24 +98,24 @@ const DashboardComponent = () => {
       } else {
 
         const listingRes = dataresp.filter((listing) => !isPastAMonth(listing.created_at));
-        
+
         let listings = [];
-        
+
         if (listingRes.length !== 0) {
           listings = listingRes.slice(0, 3);
         } else {
           listings = dataresp.slice(0, 3)
         }
-        
+
         const newListing = await Promise.all(listings.map(async (item, i) => {
-          
+
           const getPhotoGallery = await GetUnitPhotos(item.id);
-          
+
           const gallery = getPhotoGallery.data;
-          
+
           const image = GetPhotoWithUrl(item.Photo);
           console.log("dsfd", item);
-          
+
           return {
             id: item.id,
             title: CapitalizeString(item.UnitName),
@@ -129,6 +130,7 @@ const DashboardComponent = () => {
             sale_type: CapitalizeString(item.SaleType),
             no_of_beds: item.BedRooms,
             // isFeatured: item.IsFeatured
+            property_type: item.PropertyType,
             city: item.City
           }
         }))
@@ -140,6 +142,7 @@ const DashboardComponent = () => {
     } catch (error) {
       console.error("ERROROR", error);
       setPublicListing([]);
+      setLoading(false);
     }
   }, [])
 
@@ -149,26 +152,17 @@ const DashboardComponent = () => {
 
   const [getProvince, setGetProvince] = useState([]);
 
-  const allProvinces = async () => {
-    try {
-      const dataprovince = await GetProvince();
-      setGetProvince(dataprovince);
-    } catch (error) {
-      console.error("Error fetching provinces:", error);
-    }
-  };
-
   const FillLocationFilter = (listings) => {
     try {
       const distinctCity = listings.filter((value, index, self) =>
         index === self.findIndex((t) => t.City === value.City)).map((item, i) => {
           return {
-            label: item.City.toLowerCase().includes("city") ? item.City : `${item.City.toUpperCase()} CITY`,
+            label: item.City.toLowerCase().includes("city") ? CapitalizeString(item.City.toLowerCase()) : `${CapitalizeString(item.City.toLowerCase())} City`,
             value: item.City.toLocaleLowerCase()
           }
         }).sort((a, b) => a.value.localeCompare(b.value))
-        console.log("distinctCity", distinctCity)
-        
+      console.log("distinctCity", distinctCity)
+
       setFilterLocation(distinctCity);
 
     } catch (error) {
@@ -176,10 +170,6 @@ const DashboardComponent = () => {
       return;
     }
   }
-
-  useEffect(() => {
-    // allProvinces();
-  }, []);
 
   const url_Redirect = process.env.REACT_APP_LOGIN_URL;
   const handleUserProfileClick = () => {
@@ -318,9 +308,53 @@ const DashboardComponent = () => {
     })
   }
 
+  const [searchParams, setSearchParams] = useState([]);
+  const [keywordSearch, setKeywordSearch] = useState();
+
   const handleSearchClick = () => {
+    console.log('sea', keywordSearch)
+    console.log("search", searchParams);
+    let params = "";
+    
+    // searchParams.forEach((item, key) => {
+
+    //   if (key == 0) {
+    //     params += `${item.name}=${item.value}`
+    //   }else{
+    //     params += `&${item.name}=${item.value}`
+    //   }
+    // })
+    
+    // navigate(`/all/?search=true&${params}`);
     navigate('/all')
+
   }
+
+  const onSelectionChange = (value, name) => {
+    console.log(`Selected ${name}: ${value}`);
+    SetParamsAllField(name, value)
+  }
+
+  const SetParamsAllField = (name, value) => {
+    setSearchParams((prevSearchParams) => {
+      const existingParamIndex = prevSearchParams.findIndex((param) => param.name === name);
+      if (existingParamIndex !== -1) {
+        prevSearchParams[existingParamIndex].value = value;
+      } else {
+        prevSearchParams.push({ name, value });
+      }
+      return [...prevSearchParams];
+    });
+  }
+
+  const onInputChange = (e) => {
+    setKeywordSearch(e.target.value);
+  }
+
+  const onInputBlur = () => {
+    SetParamsAllField('keyword', keywordSearch)
+  }
+
 
   return (
     <div className="dashboard" style={{ display: 'flex', flexDirection: 'column' }}>
@@ -341,6 +375,9 @@ const DashboardComponent = () => {
                       placeholder="Enter keyword"
                       size="middle"
                       classname="card-item field"
+                      value={keywordSearch}
+                      onInputChange={(e) => onInputChange(e, 'keyword')}
+                      onInputBlur={onInputBlur}
                     />
                   </Col>
                   <Col span={4} className="col-field">
@@ -350,6 +387,8 @@ const DashboardComponent = () => {
                       size="middle"
                       classname="card-item field"
                       suffixIcon={<CaretDownOutlined />}
+                      value={searchParams['location']}
+                      onSelectionChange={(e) => onSelectionChange(e, 'location')}
                     >
 
                       {/* {getProvince.map((province, index) => (
@@ -361,6 +400,8 @@ const DashboardComponent = () => {
                   </Col>
                   <Col span={4} className="col-field">
                     <RoundSelect
+                      value={searchParams['property_type']}
+                      onSelectionChange={(e) => onSelectionChange(e, 'property_type')}
                       options={PropertyTypes}
                       placeholder="Property Type"
                       size="middle"
@@ -375,6 +416,8 @@ const DashboardComponent = () => {
                       size="middle"
                       classname="card-item field"
                       suffixIcon={<CaretDownOutlined />}
+                      value={searchParams['listing_type']}
+                      onSelectionChange={(e) => onSelectionChange(e, 'listing_type')}
                     />
                   </Col>
                   <Col span={4} className="col-field">
@@ -458,6 +501,9 @@ const DashboardComponent = () => {
                       lot={item.lot}
                       key={i}
                       loading={loading}
+                      subtitle={`${CapitalizeString(
+                        item.property_type
+                      )} For ${CapitalizeString(item.sale_type)}`}
                       handleClick={() => handleCardClick(item.property_no)}
                     />
                   );

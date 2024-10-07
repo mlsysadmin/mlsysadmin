@@ -24,6 +24,7 @@ import {
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
 import {
 	CapitalizeString,
+	FillLocationFilter,
 	GetPropertyTitle,
 } from "../utils/StringFunctions.utils";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
@@ -52,11 +53,14 @@ const RentComponent = () => {
 			sale_type: "",
 			no_of_beds: "",
 			property_type: "",
+			city:''
 		},
 	]);
 	const [propertyType, setPropertyType] = useState("house");
 	const [currentPage, setCurrentPage] = useState(1);
 	const cardsPerPage = 9;
+const [filterLocation, setFilterLocation] = useState([]);
+
 
 	const handleCardClick = (id) => {
 		navigate(`/previewListing/?id=${id}`, { state: id });
@@ -108,9 +112,12 @@ const RentComponent = () => {
 								sale_type: CapitalizeString(item.SaleType),
 								no_of_beds: item.BedRooms,
 								property_type: item.PropertyType,
+								city:item.City
 							};
 						})
 					);
+					const location = FillLocationFilter(newListing);
+					setFilterLocation(location);
 					setPublicListing(newListing);
 					setLoading(false);
 				} else {
@@ -149,7 +156,7 @@ const RentComponent = () => {
 	return (
 		<div className="rent">
 			<div className="topbar">
-				<ListingSearch />
+				<ListingSearch location={filterLocation}/>
 			</div>
 			<div className="rentContainer">
 				<span className="rent-h1">Properties for Rent</span>

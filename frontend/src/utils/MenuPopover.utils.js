@@ -5,7 +5,7 @@ const SubMenu = {
 		{
 			header: "Homes for rent",
 			submenu: [
-				{ sub: "House", link: "/rent/?property_type=house" },
+				{ sub: "House and Lot", link: "/rent/?property_type=house-and-lot" },
 				{ sub: "Condominium", link: "/rent/?property_type=condominium" },
 				{ sub: "Apartment", link: "/rent/?property_type=apartment" },
 				{ sub: "Townhouse", link: "/rent/?property_type=townhouse" },
@@ -182,107 +182,100 @@ const SubMenu = {
 		},
 	],
 	otherServices: [
-		{
-			header: (
-				<>
-					<span>
-						<a
-							style={{
-								color: "var(--red)",
-								fontSize: "13px",
-								textDecoration: "underline",
-							}}
-							href="/?openModal=true"
-						>
-							Begin Your Property Search Today with Our Help!
-						</a>
-					</span>
-					<br />
-					<br />
-					<span>
-						<a
-							style={{
-								color: "#000000",
-								fontSize: "13px",
-								fontWeight: "bold",
-								margin: "0px 0px 0px 0px",
-							}}
-						>
-							Learn more about our Products and Services
-						</a>
-					</span>
-				</>
-			),
+        {
+            header: (
+                <>
+                    <span>
+                        <a
+                            style={{
+                                color: "var(--red)",
+                                fontSize: "13px",
+                                textDecoration: "underline",
+                            }}
+                            href="/?openModal=true"
+                        >
+                            Begin Your Property Search Today with Our Help!
+                        </a>
+                    </span>
+                    <br />
+                    <br />
+                    <span>
+                        <a
+                            style={{
+                                color: "#000000",
+                                fontSize: "13px",
+                                fontWeight: "bold",
+                                margin: "0px 0px 0px 0px",
+                            }}
+                        >
+                            Learn more about our Products and Services
+                        </a>
+                    </span>
+                </>
+            ),
 
-			submenu: [
-				{
-					sub: "Quick Cash Loans",
-					link: "https://mlhuillier.com/quick-cash-loans/",
-				},
-				{ sub: "Car Loan", link: "https://mlhuillier.com/car-loan/" },
-				{ sub: "Home Loan", link: "https://mlhuillier.com/home-loan/" },
-				{ sub: "Kwarta Padala", link: "https://mlhuillier.com/kwarta-padala/" },
-			],
-		},
-		{
-			header: (
-				<>
-					<span>{""}</span>
-					<br />
-					<br />
-					<span>{""}</span>
-					<br />
-				</>
-			),
+            submenu: [
+                {
+                    sub: "Quick Cash Loans",
+                    link: "https://mlhuillier.com/quick-cash-loans/",
+                },
+                { sub: "Car Loan", link: "https://mlhuillier.com/car-loan/" },
+                { sub: "Home Loan", link: "https://mlhuillier.com/home-loan/" },
+                { sub: "Kwarta Padala", link: "https://mlhuillier.com/kwarta-padala/" },
+            ],
+        },
+        {
+            header: (
+                <>
+                    <div className="otherServices-col-2" style={{ marginTop: "70px" }}>
+                        {""}
+                    </div>
+                </>
+            ),
 
-			submenu: [
-				{ sub: "ML Wallet ", link: "https://mlhuillier.com/ml-wallet/" },
-				{
-					sub: "ML Payroll Pro",
-					link: "https://mlhuillier.com/ml-payroll-pro/",
-				},
-				{ sub: "ML Express", link: "https://mlhuillier.com/ml-express/" },
-				{ sub: "Money Changer", link: "https://mlhuillier.com/money-changer/" },
-			],
-		},
-		{
-			header: (
-				<>
-					<span>{""}</span>
-					<br />
-					<br />
-					<span>{""}</span>
-					<br />
-				</>
-			),
-			submenu: [
-				{ sub: "Jewelry ", link: "https://mlhuillier.com/jewelry/" },
-				{ sub: "Insurance", link: "https://mlhuillier.com/insurance/" },
-				{ sub: "ML Moves", link: "https://mlhuillier.com/ml-moves/" },
-				{
-					sub: "Telco, Gaming & TV Loading",
-					link: "https://mlhuillier.com/telco-gaming-and-tv-loading/",
-				},
-			],
-		},
-		{
-			header: (
-				<>
-					<span>{""}</span>
-					<br />
-					<br />
-					<br/>
-					<span style={{paddingTop:"30px"}}>Online Services</span>
-					<br />
-				</>
-			),
-			submenu: [
-				{ sub: "Shop Online", link: "https://shop.mlhuillier.com/" },
-				{ sub: "Buy Eload", link: "https://mlweb.mlhuillier.com/eload" },
-				{ sub: "Pay Bills", link: "https://mlweb.mlhuillier.com/bills-pay" },
-			],
-		},
-	],
+            submenu: [
+                { sub: "ML Wallet ", link: "https://mlhuillier.com/ml-wallet/" },
+                {
+                    sub: "ML Payroll Pro",
+                    link: "https://mlhuillier.com/ml-payroll-pro/",
+                },
+                { sub: "ML Express", link: "https://mlhuillier.com/ml-express/" },
+                { sub: "Money Changer", link: "https://mlhuillier.com/money-changer/" },
+            ],
+        },
+        {
+            header: (
+                <>
+                    <div className="otherServices-col-2" style={{ marginTop: "70px" }}>
+                        {""}
+                    </div>
+                </>
+            ),
+            submenu: [
+                { sub: "Jewelry ", link: "https://mlhuillier.com/jewelry/" },
+                { sub: "Insurance", link: "https://mlhuillier.com/insurance/" },
+                { sub: "ML Moves", link: "https://mlhuillier.com/ml-moves/" },
+                {
+                    sub: "Telco, Gaming & TV Loading",
+                    link: "https://mlhuillier.com/telco-gaming-and-tv-loading/",
+                },
+            ],
+        },
+        {
+            header: (
+                <>
+                    <div className="otherServices-col-2" style={{ marginTop: "85px" }}>
+                        Online Services
+                    </div>
+                </>
+            ),
+            submenu: [
+                { sub: "Shop Online", link: "https://shop.mlhuillier.com/" },
+                { sub: "Buy Eload", link: "https://mlweb.mlhuillier.com/eload" },
+                { sub: "Pay Bills", link: "https://mlweb.mlhuillier.com/bills-pay" },
+            ],
+        },
+    ],
 };
 
 export { SubMenu };

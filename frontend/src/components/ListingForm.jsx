@@ -205,7 +205,7 @@ export const ListingForm = () => {
 			} else {
 				console.error("user is not logged in");
 
-				// navigate(`${process.env.REACT_APP_LOGIN}?redirect=${process.env.REACT_APP_REDIRECT_URL}/listing`)
+				navigate(`${process.env.REACT_APP_LOGIN}?redirect=${process.env.REACT_APP_REDIRECT_URL}/listing`)
 				
 			}
 

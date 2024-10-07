@@ -1,7 +1,7 @@
 import { Popover } from 'antd'
 import React from 'react'
 
-const MenuPopup = ({ label, popUpOpen, handleOpenChange, content, title }) => {
+const MenuPopup = ({ label, popUpOpen, handleOpenChange, content, title, menuKey }) => {
   return (
     <Popover
         placement="bottomLeft"
@@ -10,6 +10,7 @@ const MenuPopup = ({ label, popUpOpen, handleOpenChange, content, title }) => {
         title={title}
         trigger="click"
         open={popUpOpen}
+        key={menuKey}
         // onOpenChange={handleOpenChange}
         >
         <div type='text' className={`rent-menu--btn`}>{label}</div>

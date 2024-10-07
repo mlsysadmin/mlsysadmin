@@ -33,6 +33,7 @@ const HeaderContainer = ({ showDrawer, screenSize }) => {
             width: "180px", 
             // height: "60px" 
           }}
+          className='brokerage-logo--img'
           // width={140}
           // height={55}
         />

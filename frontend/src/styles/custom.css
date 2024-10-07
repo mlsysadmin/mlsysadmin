@@ -1,4 +1,9 @@
-.advance-searchdropdown span {
+.subcontent-inputs-1 .select-field .ant-select-arrow,
+.subcontent-inputs-2 .select-field .ant-select-arrow {
+	color: var(--red) !important;
+}
+
+.advance-searchdropdown .advance-search-group1 span {
 	font-size: 16px;
 	color: #444444;
 	padding: 10px 10px 10px 0px;
@@ -63,6 +68,7 @@
 	font-size: inherit;
 	color: #f60000;
 	font-weight: bold;
+	padding: 0;
 }
 .advance-searchdropdown .custom-range-button {
 	border: none;
@@ -248,11 +254,17 @@ listing search */
 	justify-content: space-between;
 	padding: 0px 20px;
 	background-image: none;
+	outline: none;
 }
 .subcontent-inputs-1 .select-field, .subcontent-inputs-2 .select-field {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
+}
+
+.subcontent-inputs-1 .select-field .ant-select-selector,
+.subcontent-inputs-2 .select-field .ant-select-selector{
+	border: none;
 }
 
 .subcontent-inputs-1 .input-field::placeholder {
@@ -264,10 +276,10 @@ listing search */
 	color: black;
 	padding: 5px;
 }
-
-.subcontent-inputs-1 .select-field .ant-select-arrow {
-	color: red !important;
+.advance-searchdropdown .subcontent-inputs-2 .select-field span{
+	padding: 0;
 }
+
 .subcontent-inputs-1  .select-field .ant-select-dropdown {
 	background-color: red !important;
 	color: white !important;
@@ -515,7 +527,7 @@ listing search */
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px 30px;
+  padding: 40px 30px 20px;
 }
 .success-details{
 	display: flex;
@@ -1627,6 +1639,12 @@ width: 75%;
         margin-top: 0px;
         gap: 10px;
     }
+}
+@media screen and (min-width: 315px) and (max-width: 500px) {
+
+	.features-list {
+		flex-direction: column;
+	}
 }
 
 

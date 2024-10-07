@@ -40,8 +40,6 @@ const HeaderMenu = () => {
 	const [userDetails, setUserDetails] = useState(null);
 
 	const login = process.env.REACT_APP_LOGIN_URL;
-	console.log("isMLWWSPresent:", isMLWWSPresent);
-	console.log("isAccountDetailsPresent:", isAccountDetailsPresent);
 
 	const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
@@ -71,7 +69,7 @@ const HeaderMenu = () => {
 		if (isMLWWSPresent && isAccountDetailsPresent) {
 			fetchUserDetails();
 		}
-	}, []);
+	}, [isMLWWSPresent, isAccountDetailsPresent]);
 
 	const handleUserProfileClick = () => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
@@ -115,10 +113,12 @@ const HeaderMenu = () => {
 	};
 
 	useEffect(() => {
-		const path = location.pathname.replace("/", "");
+		// const path = location.pathname.replace("/", "");
 
-		setCurrent(path);
-	}, [setCurrent]);
+		// setCurrent(path);
+		console.log("path", location);
+		
+	}, [location]);
 
 	const handleMenuOnClick = (menu) => {
 		if (menu.key === "sell") {
@@ -140,7 +140,6 @@ const HeaderMenu = () => {
 			sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(true);
 		} else {
-			setCurrent(menu.key);
 			navigate({
 				pathname: menu.item.props.link,
 			});
@@ -150,6 +149,9 @@ const HeaderMenu = () => {
 			sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(false);
 		}
+		console.log("menu", menu);
+		
+		setCurrent(menu.key);
 	};
 
 	const handleMenuHover = (menuKey) => {
@@ -199,6 +201,7 @@ const HeaderMenu = () => {
 			popUpOpen={rentPopUpOpen}
 			label={"Rent"}
 			content={RentMenuPopContent}
+			menuKey={'rent'}
 		/>
 	);
 	const BuyMenu = () => (
@@ -208,6 +211,7 @@ const HeaderMenu = () => {
 			popUpOpen={buyPopUpOpen}
 			label={"Buy"}
 			content={BuyMenuPopContent}
+			menuKey={'sale'}
 		/>
 	);
 
@@ -218,6 +222,7 @@ const HeaderMenu = () => {
 			popUpOpen={homeLoanPopUpOpen}
 			label={"Home Loan"}
 			content={HomeLoanMenuPopContent}
+			menuKey={'home-loan'}
 		/>
 	);
 	const HomeInsuranceMenu = () => (
@@ -227,10 +232,12 @@ const HeaderMenu = () => {
 			popUpOpen={homeInsurancePopUpOpen}
 			label={"Home Insurance"}
 			content={HomeInsuranceMenuPopContent}
+			menuKey={'home-insurance'}
 		/>
 	);
 	const OtherServicesMenu = () => (
 		<MenuPopup
+		menuKey={'other-services'}
 			// handleOpenChange={handleBuyOpenChange}
 			title={"Other Services"}
 			popUpOpen={otherServicesPopUpOpen}

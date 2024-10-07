@@ -16,7 +16,7 @@ import ListingSearch from "./custom/customsearch/custom.listingsearch";
 import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
-import { CapitalizeString, GetPropertyTitle, isPastAMonth } from "../utils/StringFunctions.utils";
+import { CapitalizeString, FillLocationFilter, GetPropertyTitle, isPastAMonth } from "../utils/StringFunctions.utils";
 import DefaultPropertyImage from '../asset/fallbackImage.png';
 
 const NewPageComponent = () => {
@@ -35,10 +35,12 @@ const NewPageComponent = () => {
 			isFeatured: '',
 			sale_type: '',
 			no_of_beds: '',
-			property_type: ''
+			property_type: '',
+			city: ''
 		}
 	]);
 const [loading, setLoading] = useState(true);
+const [filterLocation, setFilterLocation] = useState([]);
 console.log("loading", loading);
 
 	const handleCardClick = (id) => {
@@ -100,9 +102,12 @@ console.log("loading", loading);
 							sale_type: CapitalizeString(item.SaleType),
 							no_of_beds: item.BedRooms,
 							property_type: item.PropertyType,
+							city: item.City
 						};
 					})
 				);
+				const location = FillLocationFilter(newListing);
+				setFilterLocation(location);
 				setPublicListing(newListing);
 				setLoading(false);
 			}
@@ -134,7 +139,7 @@ console.log("loading", loading);
 		<div className="newpage">
 			<div className="newpage-container">
 				<div className="newpage-contents">
-					<ListingSearch />
+					<ListingSearch location={filterLocation}/>
 					<div className="second-content">
 						<h1 className="new-page-label">New Properties For Sale/Rent</h1>
 						<SearchPropertiesSoration

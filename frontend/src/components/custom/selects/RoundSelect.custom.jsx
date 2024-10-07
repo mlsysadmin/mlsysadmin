@@ -9,6 +9,8 @@ const RoundSelect = ({
 	classname,
 	suffixIcon,
 	children,
+	value,
+	onSelectionChange
 }) => {
 	return (
 		<Select
@@ -18,6 +20,8 @@ const RoundSelect = ({
 			style={style}
 			className={classname}
 			suffixIcon={suffixIcon}
+			value={value}
+			onChange={onSelectionChange}
 		>
       {children}
     </Select>

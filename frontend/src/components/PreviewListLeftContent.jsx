@@ -12,44 +12,11 @@ import { PropertyTypeCategory } from "../utils/PropertyStaticData.utils";
 
 
 const PreviewListLeftContent = ({ label, value, oneListing }) => {
-	// const features = [
-	// 	{
-	// 		title: "Bedrooms",
-	// 		iconSrc:
-	// 			"https://cdn.builder.io/api/v1/image/assets/TEMP/ffa0b4ae5294fab32f04e2df5bccc9e215b962c4a23b87baa3b3a4f9d11a3bf0?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
-	// 		value: "5",
-	// 	},
-	// 	{
-	// 		title: "Bathrooms",
-	// 		iconSrc:
-	// 			"https://cdn.builder.io/api/v1/image/assets/TEMP/372723378f9151c6cced3d234ccf4d85735cb0c5bd16df4ca6bac2adaf6189fb?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
-	// 		value: "5",
-	// 	},
-	// 	{
-	// 		title: "Garage",
-	// 		iconSrc:
-	// 			"https://cdn.builder.io/api/v1/image/assets/TEMP/a17243275d0fedc1a93dbce25cd9571671d11f482871f3219644e3e5fe1afa72?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
-	// 		value: "3",
-	// 	},
-	// 	{ title: "Area", iconSrc: area, value: "300 SqM" },
-	// 	{ title: "Price per SqM", iconSrc: "", value: "PHP400,000" },
-	// ];
+
 	const navigate = useNavigate();
 	const handleButtonClick = () => {
 		navigate('/mortgage');
 	};
-	// const specifications = {
-	//   propertyId: '123456789',
-	//   listingType: 'House for Sale',
-	//   furnishing: 'Furnished',
-	//   bedroom: '5 Beds',
-	//   bathroom: '5 Bath',
-	//   floorArea: '300 SqM',
-	//   lotArea: '300 SqM',
-	//   pricePerSqM: 'PHP400,000',
-	//   noOfFloors: '3 Floors',
-	//   carParking: '3 Cars'
-	// };
 
 	const [features, setFeatures] = useState([]);
 
@@ -80,16 +47,20 @@ const PreviewListLeftContent = ({ label, value, oneListing }) => {
 				title: "Garage",
 				iconSrc:
 					"https://cdn.builder.io/api/v1/image/assets/TEMP/a17243275d0fedc1a93dbce25cd9571671d11f482871f3219644e3e5fe1afa72?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
-				value: "",
+				value: oneListing.Parking,
 			},
 			{ title: "Area", iconSrc: area, value: oneListing.LotArea },
-			{ title: "Price per SqM", iconSrc: "", value: "" }
+			{ title: "Price per SqM", iconSrc: "", value: `PHP ${oneListing.PricePerSqm}` }
 		]
 		let feature = [];
+		console.log("type", property_type, property_type.toLowerCase().includes('lot') || property_type.toLowerCase().includes('house'));
+		
 
-		if (property_type.toLowerCase().includes('lot')) {
+		if (property_type.toLowerCase().includes('lot') && !property_type.toLowerCase().includes('house')) {
 			feature = feat.filter((item, i) => ["price per sqm"].includes(item.title.toLocaleLowerCase()))
-		} else {
+		} else if (property_type.toLowerCase().includes('lot') && property_type.toLowerCase().includes('house')) {
+			feature = feat;
+		}else{
 			feature = feat.filter((item, i) => !["price per sqm"].includes(item.title.toLocaleLowerCase()));
 		}
 
@@ -118,10 +89,12 @@ const PreviewListLeftContent = ({ label, value, oneListing }) => {
 						{
 							features.map((feature, index) => {
 
-								return (
+								if (feature.value) {
+									return (
 
-									<VLFeatureCard key={index} {...feature} />
-								)
+										<VLFeatureCard key={index} {...feature} />
+									)
+								}
 							})
 						}
 					</section>
@@ -145,14 +118,14 @@ const PreviewListLeftContent = ({ label, value, oneListing }) => {
 					<table className={styles.specificationTable}>
 						<tbody>
 							<tr>
-								<th>Property ID</th>
-								<td>{oneListing.PropertyNo}</td>
+								<th>Property Type</th>
+								<td>{CapitalizeString(oneListing.PropertyType)}</td>
 								<th>Floor Area</th>
 								<td>{NotAvailableReturn(oneListing.FloorArea)}</td>
 							</tr>
 							<tr>
 								<th>Listing Type</th>
-								<td>{CapitalizeString(oneListing.UnitName) + " " + `For ${CapitalizeString(oneListing.SaleType)}`}</td>
+								<td>{`For ${CapitalizeString(oneListing.SaleType)}`}</td>
 								<th>Lot Area</th>
 								<td>{NotAvailableReturn(oneListing.LotArea)}</td>
 							</tr>

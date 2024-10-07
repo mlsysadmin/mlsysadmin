@@ -7,7 +7,7 @@ import Pagination from "./custom/pagination/Pagination";
 import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout, SearchPropertiesSoration } from "../components";
 import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto"
-import { CapitalizeString, GetPropertyTitle, isPastAMonth } from "../utils/StringFunctions.utils";
+import { CapitalizeString, FillLocationFilter, GetPropertyTitle, isPastAMonth } from "../utils/StringFunctions.utils";
 import NoListingAvailable from "./custom/custom.NoListingAvailable";
 
 import DefaultPropertyImage from "../asset/fallbackImage.png";
@@ -39,9 +39,11 @@ const AllComponent = () => {
 			isFeatured: '',
 			sale_type: '',
 			no_of_beds: '',
-			property_type: ''
+			property_type: '',
+			city: ''
 		}
 	]);
+	const [filterLocation, setFilterLocation] = useState([]);
 
 	const handleCardClick = (id) => {
 		navigate(`/previewListing/?id=${id}`, { state: id });
@@ -57,7 +59,7 @@ const AllComponent = () => {
 				setPublicListing([])
 			} else {
 
-				const listingRes = dataresp.filter((listing) => sale_type == 'all' ? 
+				const listingRes = dataresp.filter((listing) => sale_type == 'all' ?
 					["sale", "rent"].includes(listing.SaleType.toLowerCase()) : [sale_type].includes(listing.SaleType.toLowerCase())
 				);
 
@@ -83,10 +85,15 @@ const AllComponent = () => {
 							isFeatured: item.IsFeatured,
 							sale_type: CapitalizeString(item.SaleType),
 							no_of_beds: item.BedRooms,
-							property_type: item.PropertyType
+							property_type: item.PropertyType,
+							city: item.City
 						}
 					}))
+					const location = FillLocationFilter(newListing);
+					setFilterLocation(location);
 					setPublicListing(newListing);
+					console.log("location", location);
+					
 
 				} else {
 					setPublicListing([]);
@@ -96,6 +103,7 @@ const AllComponent = () => {
 		} catch (error) {
 			console.error("Error fetching public listings:", error);
 			setPublicListing([]);
+			
 		}
 
 	}
@@ -108,11 +116,24 @@ const AllComponent = () => {
 
 		const queryParams = new URLSearchParams(search);
 		const getSaleType = queryParams.get("sale_type");
-		
-		if (queryParams.size !== 0) {
 
-			getlistings(getSaleType);
-			setSaleType(getSaleType);
+		const isSearch = queryParams.keys().find(el => el === "search");
+
+		if (queryParams.size !== 0) {
+			if (isSearch) {
+				console.log("dsfsdgd", typeof queryParams.get('search'));
+
+				if (queryParams.get('search')) {
+					console.log(queryParams);
+
+					getlistings(getSaleType);
+					setSaleType(getSaleType);
+				}
+			} else {
+				getlistings(getSaleType);
+				setSaleType(getSaleType);
+			}
+
 		} else {
 			getlistings('all');
 			setSaleType('Rent/Sale');
@@ -128,14 +149,14 @@ const AllComponent = () => {
 	return (
 		<div className="all-container">
 			<div className="all-searchcomponent">
-				<ListingSearch />
+				<ListingSearch location={filterLocation}/>
 			</div>
 			<div className="all-page-container">
 				<span className="all-h1">Properties For {capitalize(saleType)}</span>
 				{
 					currentCards.length !== 0 ? (
 						<>
-							<SearchPropertiesSoration properties_count={publiclisting.length} current_properties_count={currentCards.length}/>
+							<SearchPropertiesSoration properties_count={publiclisting.length} current_properties_count={currentCards.length} />
 							<div className="card-container">
 								{
 									currentCards.map((data, index) => (
