@@ -81,7 +81,7 @@ const SidebarMenu = ({setOpenDrawer}) => {
         },
         { label: "Buy", key: "buy", children: SubMenuChild(SubMenu.buy), link: '/buy' },
         { label: "Home Loan", key: "home-loan", children: SubMenuChild(SubMenu.homeLoan) },
-        { label: "Home Insurance", key: "home-insurance", children: SubMenuChild(SubMenu.homeInsurance) },
+        { label: "Home Insurance", key: "home-insurance" ,link:'/insurance-guide' },
         { label: "Other Services", key: "other-services", children: SubMenuChild(SubMenu.otherServices) },
         { label: "Contact", key: "contact", link: '/contact-us' },
     ]

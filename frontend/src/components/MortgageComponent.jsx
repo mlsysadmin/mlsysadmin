@@ -27,7 +27,11 @@ const MortgageComponent = () => {
 				</p>
 			</div>
 			<div className="mortBtn">
-				<div className="purchasebtn">
+				<div
+					className="purchasebtn"
+					onClick={handleButtonClick}
+					style={{ cursor: "pointer" }}
+				>
 					<HomeFilled id="home-icon" />
 					<a style={{ textDecoration: "none" }} onClick={handleButtonClick}>
 						<p style={{ color: "white" }}>
@@ -39,7 +43,11 @@ const MortgageComponent = () => {
 						</p>
 					</a>
 				</div>
-				<div className="refinancebtn">
+				<div
+					className="refinancebtn"
+					onClick={handleButtonClick}
+					style={{ cursor: "pointer" }}
+				>
 					<DollarOutlined id="dollar-icon" />
 					<a style={{ textDecoration: "none" }} onClick={handleButtonClick}>
 						<p style={{ color: "white" }}>

@@ -10,6 +10,7 @@ import "../../styles/custom.mlfooter.css";
 
 
 const CustomMlFooter = () => {
+	
     return (
 			<div className="third-content-footer">
 				<div className="third-cont">
@@ -25,30 +26,89 @@ const CustomMlFooter = () => {
 								</div>
 							</div>
 							<div className="firstcol-icons">
-								<FacebookFilled className="social-icon" />
-
-								<TwitterCircleFilled className="social-icon" />
-								<InstagramFilled className="social-icon" />
-								<YoutubeOutlined className="social-icon" />
-								<TikTokOutlined className="social-icon" />
+								<a href="https://www.facebook.com/mlhuillier.official">
+									<FacebookFilled className="social-icon" />
+								</a>
+								<a href="https://x.com/KaMLhuillier">
+									<TwitterCircleFilled className="social-icon" />
+								</a>
+								<a href="https://www.instagram.com/mlhuillier_official/">
+									<InstagramFilled className="social-icon" />
+								</a>
+								<a href="https://www.youtube.com/user/MLhuillierInc">
+									<YoutubeOutlined className="social-icon" />
+								</a>
+								<a href="https://www.tiktok.com/@mlhuillier_official?_t=8qMqwVMOiXY&_r=1">
+									<TikTokOutlined className="social-icon" />
+								</a>
 							</div>
 						</Col>
 						<Col className="col-footer-name" span={5}>
 							<div className="col-title">Quick Links</div>
 							<div className="col-cont">
-								<div>Online Services</div>
-								<div>Products & Services</div>
-								<div>About Us</div>
-								<div>Careers</div>
+								<div>
+									<a
+										href="https://mlhuillier.com/"
+										style={{ textDecoration: "none", color: "#4F4F4F" }}
+									>
+										Online Services
+									</a>
+								</div>
+								<div>
+									<a
+										href="https://mlhuillier.com/quick-cash-loans/"
+										style={{ textDecoration: "none", color: "#4F4F4F" }}
+									>
+										Products & Services
+									</a>
+								</div>
+								<div>
+									<a
+										href="https://mlhuillier.com/about-m-lhuillier-financial-services/"
+										style={{ textDecoration: "none", color: "#4F4F4F" }}
+									>
+										About Us
+									</a>
+								</div>
+								<div>
+									<a
+										href="https://webcareers.mlhuillier.com/"
+										style={{ textDecoration: "none", color: "#4F4F4F" }}
+									>
+										Careers
+									</a>
+								</div>
 							</div>
 						</Col>
 						<Col className="col-footer-name" span={5}>
 							<div className="col-title">Support</div>
 							<div className="col-cont">
-								<div>FAQs</div>
-								<div>Contact Us</div>
-								<div>Privacy Notice</div>
-								<div>Terms and Conditions</div>
+								<div>
+									<a
+										href=""
+										style={{ textDecoration: "none", color: "#4F4F4F" }}
+									>
+										FAQs
+									</a>
+								</div>
+								<div>
+									<a style={{ textDecoration: "none", color: "#4F4F4F" }}>
+										Contact Us
+									</a>
+								</div>
+								<div>
+									<a
+										href="https://mlhuillier.com/privacy-notice/"
+										style={{ textDecoration: "none", color: "#4F4F4F" }}
+									>
+										Privacy Notice
+									</a>
+								</div>
+								<div>
+									<a style={{ textDecoration: "none", color: "#4F4F4F" }}>
+										Terms and Conditions
+									</a>
+								</div>
 							</div>
 						</Col>
 						<Col span={5} className="col-footer-name">
@@ -56,14 +116,20 @@ const CustomMlFooter = () => {
 							<div className="last-col-icons">
 								<div>
 									{" "}
-									<img src={applestore} alt="Apple App Store" />
+									<a href="https://apps.apple.com/ph/app/ml-wallet/id962204987">
+										<img src={applestore} alt="Apple App Store" />
+									</a>
 								</div>
 								<div>
 									{" "}
-									<img src={gplaystore} alt="Google Play Store" />
+									<a href="https://play.google.com/store/apps/details?id=com.mlhuillier.mlwallet">
+										<img src={gplaystore} alt="Google Play Store" />
+									</a>
 								</div>
 								<div>
-									<img src={huaweistore} alt="App Gallery" />
+									<a href="https://appgallery.huawei.com/app/C102221791?source=qrCodeShare&referrer=PCWebAG&callType=SHARE&shareTo=qrcode&shareFrom=appmarket&reportEventLabel=appdetailpage">
+										<img src={huaweistore} alt="App Gallery" />
+									</a>
 								</div>
 							</div>
 						</Col>
