@@ -579,7 +579,7 @@ const DashboardComponent = () => {
                   </div>
                   <div className="inquire--actions">
                     <SemiRoundBtn
-                      label={"Sign in to your MCash Account"}
+                      label={"Sign in to your ML Wallet Account"}
                       type={"default"}
                       className="sign-in--action action-btn"
                       size={"small"}
