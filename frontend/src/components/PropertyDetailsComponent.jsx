@@ -17,10 +17,10 @@ const PropertyDetailsComponent = ({ onComplete, setPropertyFields }) => {
 		}
 	}, [selectedPropertyTab, selectedListingTab, onComplete, setPropertyFields]);
 
-    const handlePropertyTabClick = (tab) => {
+	const handlePropertyTabClick = (tab) => {
 		setSelectedPropertyTab(tab);
 
-     };
+	};
 
 	const handleListingTabClick = (tab) => {
 		setSelectedListingTab(tab);
@@ -46,9 +46,8 @@ const PropertyDetailsComponent = ({ onComplete, setPropertyFields }) => {
 										(tab) => (
 											<div
 												key={tab}
-												className={`tab ${
-													selectedPropertyTab === tab ? "selected" : ""
-												}`}
+												className={`tab ${selectedPropertyTab === tab ? "selected" : ""
+													}`}
 												onClick={() => handlePropertyTabClick(tab)}
 											>
 												{tab}
@@ -62,12 +61,11 @@ const PropertyDetailsComponent = ({ onComplete, setPropertyFields }) => {
 							<div className="tab-label">Residential</div>
 							<div className="tab-wrapper">
 								<div className="tabs">
-									{["Condominium", "House and Lot","Lot", "Townhouse"].map((tab) => (
+									{["Condominium", "House and Lot", "Lot", "Townhouse"].map((tab) => (
 										<div
 											key={tab}
-											className={`tab ${
-												selectedPropertyTab === tab ? "selected" : ""
-											}`}
+											className={`tab ${selectedPropertyTab === tab ? "selected" : ""
+												}`}
 											onClick={() => handlePropertyTabClick(tab)}
 										>
 											{tab}
@@ -83,9 +81,8 @@ const PropertyDetailsComponent = ({ onComplete, setPropertyFields }) => {
 									{["Warehouse", "Farm Lot", "Hotel/Resort"].map((tab) => (
 										<div
 											key={tab}
-											className={`tab ${
-												selectedPropertyTab === tab ? "selected" : ""
-											}`}
+											className={`tab ${selectedPropertyTab === tab ? "selected" : ""
+												}`}
 											onClick={() => handlePropertyTabClick(tab)}
 										>
 											{tab}
@@ -101,15 +98,18 @@ const PropertyDetailsComponent = ({ onComplete, setPropertyFields }) => {
 						<div className="label"> Listing Type </div>
 					</div>
 					<div className="listing-tab-container">
+						{/* <label className="text-wrapper-38" htmlFor="classification">
+							What is the Listing Type?
+						</label> */}
 						<div className="tab-category">
+						<div className="tab-label" style={{ color: '#8b8f94', fontWeight: '400' }}>What is the Listing Type?</div>
 							<div className="listing-tab-wrapper">
 								<div className="listing-tabs">
 									{["Rent", "Sale", "Pre-Selling"].map((tab) => (
 										<div
 											key={tab}
-											className={`tab ${
-												selectedListingTab === tab ? "selected" : ""
-											}`}
+											className={`tab ${selectedListingTab === tab ? "selected" : ""
+												}`}
 											onClick={() => handleListingTabClick(tab)}
 										>
 											{tab}

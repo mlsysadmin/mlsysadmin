@@ -353,14 +353,11 @@ const UnitDetailsComponent = ({
 					{/* Discounted Selling Price */}
 					<div className="form-group">
 						<div className="text-wrapper-37">
-							<p>
-								Discounted <br />
-								Selling Price
-							</p>
+							<p>Discounted Selling Price</p>
 						</div>
 						<div className="listing-unit-input-group">
 							<label className="text-wrapper-38" htmlFor="disc-selling-price">
-								What is the selling unit discounted price ?
+								What is the selling unit discounted price?
 							</label>
 							<div className="input-container">
 								<div className="currency-prefix">PHP</div>
@@ -396,7 +393,7 @@ const UnitDetailsComponent = ({
 							<div className="tab-category">
 								<div className="tab-wrapper">
 									<div className="classification-tabs">
-										{["BrandNew", "Retail"].map((tab) => (
+										{["Brand New", "Retail"].map((tab) => (
 											<div
 												key={tab}
 												className={`classification-tab ${

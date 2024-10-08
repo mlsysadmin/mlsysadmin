@@ -117,6 +117,7 @@
 
 .featureTitle {
   font-family: Poppins, sans-serif;
+  text-wrap: wrap;
 }
 
 .featureContent {

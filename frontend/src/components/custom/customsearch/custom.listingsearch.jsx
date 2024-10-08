@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Button, Input, Select, Slider, Dropdown} from "antd";
+import { Button, Input, Select, Slider, Dropdown } from "antd";
 
-import { CaretDownOutlined,SettingOutlined } from "@ant-design/icons";
+import { CaretDownOutlined, SettingOutlined } from "@ant-design/icons";
 import "../../../styles/custom.css";
 import CertainFeatureMenu from "./certainfeature";
 import { GetProvince } from "../../../api/Public/Location.api";
+import RoundSelect from "../selects/RoundSelect.custom";
+import { ListingTypes, PropertyTypes } from "../../../utils/PropertyStaticData.utils";
 
-const ListingSearch = () => {
+const ListingSearch = ({
+	setSearchFilters,
+	location
+}) => {
 	const { Option } = Select;
 	const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
 	const [iscertainFeatureOpen, setcertainFeatureOpen] = useState(false);
@@ -30,8 +35,8 @@ const ListingSearch = () => {
 	};
 
 	const handleMaxChange = (e) => {
-		 const value = e.target.value === "" ? "" : parseInt(e.target.value, 10);
-			setPriceRange([priceRange[0], value]);
+		const value = e.target.value === "" ? "" : parseInt(e.target.value, 10);
+		setPriceRange([priceRange[0], value]);
 	};
 
 	const allProvince = async () => {
@@ -61,31 +66,67 @@ const ListingSearch = () => {
 		setBedValue(Number(event.target.value));
 	};
 
+	const handleSearch = () => {
+		setSearchFilters()
+	}
+	const SelectNum = () => {
+
+		const arr = new Array(20).fill("");
+
+		const newArr = arr.map((_, i) => {
+			return {
+				label: i + 1,
+				value: i + 1
+			}
+		})
+
+		console.log("newArr", newArr);
+
+		return newArr;
+	}
+
 	return (
 		<div className="first-content">
 			<div className="sub-content1">
 				<div className="subcontent-inputs-1">
 					<input className="input-field" placeholder="Enter keyword" />
-					<select className="select-field" placeholder="Location">
-						<option value="" disabled selected hidden>Location</option>
-						{getProvince?.map((province, index) => (
-							<option key={index} value={province.name}>
-								{province.name}
+					{/* <select className="select-field" placeholder="Location">
+						<option value="">Location</option>
+						{location?.map((province, index) => (
+							<option key={index} value={province.value}>
+								{province.label}
 							</option>
 						))}
-					</select>
-					<select className="select-field" placeholder="Property Type">
-						<option value="" disabled selected hidden>Property Type</option>
+					</select> */}
+					<RoundSelect
+						options={location}
+						classname={'select-field'}
+						placeholder={'Location'}
+						suffixIcon={<CaretDownOutlined />} />
+					{/* <select className="select-field" placeholder="Property Type">
+						<option value="">Property Type</option>
 						<option value="residential">Residential</option>
 						<option value="commercial">Commercial</option>
 						<option value="land">Land</option>
-					</select>
-					<select className="select-field" placeholder="Listing Type">
-						<option value="" disabled selected hidden>Listing Type</option>
+					</select> */}
+					<RoundSelect
+						options={PropertyTypes}
+						classname={'select-field'}
+						placeholder={'Property Type'}
+						suffixIcon={<CaretDownOutlined />} />
+					{/* <select className="select-field" placeholder="Listing Type">
+						<option value="" >
+							 Listing Type
+						</option>
 						<option value="for-sale">For Sale</option>
 						<option value="for-rent">For Rent</option>
-					</select>
-					<Button className="right-button">Search</Button>
+					</select> */}
+					<RoundSelect
+						options={ListingTypes}
+						classname={'select-field'}
+						placeholder={'Listing Type'}
+						suffixIcon={<CaretDownOutlined />} />
+					<Button className="right-button" onClick={() => handleSearch()}>Search</Button>
 				</div>
 				<div className="advance-searchdropdown">
 					<div className="slider-container">
@@ -151,30 +192,36 @@ const ListingSearch = () => {
 					</div>
 					<div className="subcontent-inputs-2">
 						<input className="input-field" placeholder="Enter Lot Area" />
-						<select className="select-field" placeholder="Bedrooms">
-							<option value="" disabled selected hidden>
-								Bedrooms
-							</option>
-							<option value="0">0</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-						</select>
-						<select className="select-field" placeholder="Bathrooms">
-							<option value="" disabled selected hidden>
-								Bathrooms
-							</option>
-							<option value="0">0</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
+						{/* <select className="select-field" placeholder="Bedrooms">
+							<option value="">Bedrooms</option>
+							<option value="commercial">1</option>
+							<option value="land">2</option>
+						</select> */}
+						<RoundSelect
+							options={SelectNum()}
+							classname={'select-field'}
+							placeholder={'Bedrooms'}
+							suffixIcon={<CaretDownOutlined />} />
+						<RoundSelect
+							options={SelectNum()}
+							classname={'select-field'}
+							placeholder={'Bathrooms'}
+							suffixIcon={<CaretDownOutlined />} />
+						<RoundSelect
+							options={SelectNum()}
+							classname={'select-field'}
+							placeholder={'Garage/Parking'}
+							suffixIcon={<CaretDownOutlined />} />
+						{/* <select className="select-field" placeholder="Bathrooms">
+							<option value="">Bathrooms</option>
+							<option value="commercial">1</option>
+							<option value="land">2</option>
 						</select>
 						<select className="select-field" placeholder="Garage/Parking ">
-							<option value="" disabled selected hidden>
-								Garage/Parking{" "}
-							</option>
-							<option value="0">0</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-						</select>
+							<option value="">Garage/Parking </option>
+							<option value="commercial">1</option>
+							<option value="land">2</option>
+						</select> */}
 						<Dropdown
 							overlay={<CertainFeatureMenu />} // The content of the dropdown
 							trigger={["click"]}

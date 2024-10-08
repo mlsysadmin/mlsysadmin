@@ -88,18 +88,31 @@ const Card = ({
 						<p>{price}</p>
 					</div>
 					<div className="card-icons">
-						<div className="card-icons--feature">
-							<BedOutlinedIcon />
-							<label id="bed-icon">{beds}</label>
-						</div>
-						<div className="card-icons--feature">
-							<ShowerOutlinedIcon />
-							<label htmlFor="">{baths}</label>
-						</div>
-						<div className="card-icons--feature">
-							<ShortcutOutlinedIcon />
-							<label htmlFor="">{size} SqM</label>
-						</div>
+						{
+							beds > 0 && (
+								<div className="card-icons--feature">
+									<BedOutlinedIcon />
+									<label id="bed-icon">{beds}</label>
+								</div>
+							)
+						}
+
+						{
+							baths > 0 && (
+								<div className="card-icons--feature">
+									<ShowerOutlinedIcon />
+									<label htmlFor="">{baths}</label>
+								</div>
+							)
+						}
+						{
+							size > 0 && (
+								<div className="card-icons--feature">
+									<ShortcutOutlinedIcon />
+									<label htmlFor="">{size} SqM</label>
+								</div>
+							)
+						}
 
 					</div>
 				</div>

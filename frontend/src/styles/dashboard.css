@@ -111,15 +111,16 @@
   #dashboard .banner .banner-content .banner-search .card-item.field .ant-select-selector,
   #dashboard .banner .banner-content .banner-search .card-item.field.ant-input {
       border-radius: 5px !important;
-      /* border:1px solid var(--mute-gray); */
+      border:1px solid #d9d9d9 !important;
       color: var(--mute-gray);
   }
 
   #dashboard .banner .banner-content .banner-search .card-item.field,
   #dashboard .banner .banner-content .banner-search .card-item.field .ant-select-selector,
   #dashboard .banner .banner-content .banner-search .card-item.field.ant-input {
-      height: 50px;
-
+    height: 50px;
+    font-family: var(--font-family);
+    
   }
 
   #dashboard .banner .banner-content .banner-search .card-item.field .ant-select-selector:focus,
@@ -605,6 +606,10 @@
   .search-container {
       justify-content: center;
       gap: 15px;
+  }
+
+  .col-field .ant-btn.card-item{
+    justify-content: space-between;
   }
 
   @media screen and (min-width: 315px) and (max-width: 480px) {

@@ -10,7 +10,7 @@ const UploadPhotosComponent = ({ onComplete, setPropertyFields }) => {
 	const [uploadError, setUploadError] = useState(null);
 
 	const onDrop = (acceptedFiles) => {
-		if (uploadedPhotos.length + acceptedFiles.length >= 10) {
+		if (uploadedPhotos.length + acceptedFiles.length >= 11) {
 			setUploadError("You can only upload a maximum of 10 images.");
 			return;
 		}
@@ -119,7 +119,7 @@ const UploadPhotosComponent = ({ onComplete, setPropertyFields }) => {
 									src={photo.preview}
 									alt={`Uploaded preview ${index}`}
 									style={{
-										width: "200px",
+										width: "250px",
 										height: "160px",
 										// objectFit: "cover",
 									}}
@@ -153,20 +153,7 @@ const UploadPhotosComponent = ({ onComplete, setPropertyFields }) => {
 
 								<button
 									onClick={() => removePhoto(index)}
-									style={{
-										position: "absolute",
-										top: "0px",
-										right: "0px",
-										background: "transparent",
-										color: "var(--red)",
-										border: "none",
-										borderRadius: "50%",
-										width: "25px",
-										height: "0px",
-										cursor: "pointer",
-										fontSize: "30px",
-										lineHeight: "5px",
-									}}
+									className="remove--image-btn"
 								>
 									&times;
 								</button>

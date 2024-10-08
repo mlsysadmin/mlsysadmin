@@ -163,3 +163,18 @@
         padding: 15px 0px;
     }
 }
+@media screen and (min-width: 1098px) and (max-width: 1375px) {
+    .header.header.ant-layout-header .ml-logo{
+        margin-left: 10px !important;
+    }
+    .header a img.brokerage-logo--img{
+        width: 135px !important;
+    }
+    #menu-wrapper ul.ant-menu-horizontal{
+        font-size: 15px;
+    }
+    .header--menu.ant-menu li{
+        padding-inline: 8px;
+        font-size: 15px;
+    }
+}

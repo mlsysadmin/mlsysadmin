@@ -35,7 +35,7 @@ const SellComponent = () => {
 	const [showModal, setShowModal] = useState(false);
 
 	const handleButtonClick = () => {
-		navigate("/comingsoon");
+		navigate("/contact-us");
 	};
 	const toggleModal = () => {
 		setShowModal(!showModal);
