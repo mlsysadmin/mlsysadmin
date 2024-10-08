@@ -13,7 +13,7 @@ const CertainFeatureMenu = () => {
 		// console.log("all amenities", resIndoor);
 	}
 	useEffect(() => {
-		// indoorF();
+		indoorF();
 	}, []);
 
 	const outdoorF = async () => {
@@ -23,7 +23,7 @@ const CertainFeatureMenu = () => {
 		// console.log("all amenities", resIndoor);
 	};
 	useEffect(() => {
-		// outdoorF();
+		outdoorF();
 	});
 
 	// 	"Badminton Court",

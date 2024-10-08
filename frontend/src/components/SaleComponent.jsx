@@ -13,7 +13,7 @@ import Pagination from "./custom/pagination/Pagination";
 import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout, SearchPropertiesSoration } from ".";
 import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
-import { CapitalizeString, GetPropertyTitle } from "../utils/StringFunctions.utils";
+import { CapitalizeString, FillLocationFilter, GetPropertyTitle } from "../utils/StringFunctions.utils";
 import { CardSkeleton } from "./Skeleton";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import DefaultPropertyImage from '../asset/fallbackImage.png';
@@ -39,12 +39,15 @@ const SaleComponent = () => {
 			isFeatured: '',
 			sale_type: '',
 			no_of_beds: '',
-			property_type: ''
+			property_type: '',
+			city: ''
 		}
 	]);
 	const [propertyType, setPropertyType] = useState("house");
 	const [currentPage, setCurrentPage] = useState(1);
 	const cardsPerPage = 9;
+const [filterLocation, setFilterLocation] = useState([]);
+
 
 	const handleCardClick = (id) => {
 		navigate(`/previewListing/?id=${id}`, { state: id });
@@ -64,7 +67,7 @@ const SaleComponent = () => {
 
 				const listingRes = dataresp.filter((listing) =>
 					["sale"].includes(listing.SaleType.toLowerCase())
-					&&  listing.PropertyType.toLowerCase() == property_type.replace(/[-_]/g, " "));
+					&& listing.PropertyType.toLowerCase() == property_type.replace(/[-_]/g, " "));
 
 				if (listingRes.length !== 0) {
 					const newListing = await Promise.all(listingRes.map(async (item, i) => {
@@ -88,9 +91,12 @@ const SaleComponent = () => {
 							isFeatured: item.IsFeatured,
 							sale_type: CapitalizeString(item.SaleType),
 							no_of_beds: item.BedRooms,
-							property_type: item.PropertyType
+							property_type: item.PropertyType,
+							city: item.City
 						}
 					}))
+					const location = FillLocationFilter(newListing);
+					setFilterLocation(location);
 					setPublicListing(newListing);
 					setLoading(false);
 
@@ -136,7 +142,7 @@ const SaleComponent = () => {
 		<>
 			<div className="rent">
 				<div className="topbar">
-					<ListingSearch />
+					<ListingSearch location={filterLocation}/>
 				</div>
 				<div className="rentContainer">
 					<span className="rent-h1">Properties for Sale</span>

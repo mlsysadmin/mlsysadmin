@@ -46,9 +46,30 @@ function isPastAMonth(date) {
 
 }
 
+const FillLocationFilter = (listings) => {
+  
+  try {
+    const distinctCity = listings.filter((value, index, self) =>
+      index === self.findIndex((t) => t.city === value.city)).map((item, i) => {
+        return {
+          label: item.city.toLowerCase().includes("city") ? `${CapitalizeString(item.city.toLowerCase().replace('city', ""))}City` : `${CapitalizeString(item.city.toLowerCase())} City`,
+          value: item.city.toLocaleLowerCase().replace('city', "").trim()
+        }
+      }).sort((a, b) => a.value.localeCompare(b.value))
+
+    // setFilterLocation(distinctCity);
+    return distinctCity;
+
+  } catch (error) {
+    console.log("location", error);
+    return [];
+  }
+}
+
 export {
     CapitalizeString,
     NotAvailableReturn,
     isPastAMonth,
-    GetPropertyTitle
+    GetPropertyTitle,
+    FillLocationFilter
 }

@@ -100,7 +100,7 @@ const FeaturedComponents = ({ onComplete, setPropertyFields }) => {
 
 const FeaturesList = ({ title, features, selectedFeatures, toggleFeature }) => (
 	<div className="featureCards">
-		<h2>{title}</h2>
+		<h3>{title}</h3>
 		<div className="features">
 			{features?.map((feature, index) => (
 				<div key={index}>

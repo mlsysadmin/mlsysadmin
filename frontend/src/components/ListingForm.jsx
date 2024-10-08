@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import {
 	PostSellerListing,
@@ -58,7 +58,6 @@ export const ListingForm = () => {
 		try {
 			const response = await searchKyc(accountDetails.mobileNumber);
 			const respData = response.data.data;
-			console.log("API Response:", respData);
 			setUserDetails(respData);
 		} catch (error) {
 			console.error("Error fetching user details:", error);
@@ -163,7 +162,6 @@ export const ListingForm = () => {
 		if (isComplete && stepIndex === currentStep) {
 			const nextStep = currentStep + 1;
 			setCurrentStep(nextStep);
-			console.log("Current Step:", nextStep);
 
 			if (stepRefs.current[nextStep]) {
 				if (!isFocused) {
@@ -171,37 +169,53 @@ export const ListingForm = () => {
 				}
 			}
 		}
-	};
+	}
 
 	const handleSellingPriceClick = (furnishing) => {
 		setSelectedSellingPrice(furnishing);
 	};
 
 	const handleVendorSubmit = async () => {
-		const number = accountDetails.mobileNumber;
-
 		try {
-			const vendorExists = await GetVendorByNumber(number);
-			console.log("vendorDetails", vendorExists);
 
-			// setShowLoadingModal({
-			// 	loading: true,
-			// 	text: "Just a moment",
-			// });
+			if (Object.keys(accountDetails).length !== 0) {
 
-		if (vendorExists) {
-				setShowVendorModal(false);
-				// setIsSubmitting(true);
-				console.log("Vendor Exist:", vendorExists.data.VendorId);
-				await handleSubmit(vendorExists.data.VendorId);
+				let number = accountDetails.mobileNumber;
 
-				console.log("Vendor Exist:", vendorExists.data.VendorId);
+				try {
+					const vendorExists = await GetVendorByNumber(number);
+					console.log("vendorDetails", vendorExists);
+
+					// setShowLoadingModal({
+					// 	loading: true,
+					// 	text: "Just a moment",
+					// });
+
+					if (vendorExists) {
+						setShowVendorModal(false);
+						// setIsSubmitting(true);
+						await handleSubmit(vendorExists.data.VendorId);
+
+					} else {
+						setShowVendorModal(true);
+					}
+				} catch (error) {
+					console.error("Error checking vendor existence:", error);
+				}
+
 			} else {
-				setShowVendorModal(true);
+				console.error("user is not logged in");
+
+				navigate(`${process.env.REACT_APP_LOGIN}?redirect=${process.env.REACT_APP_REDIRECT_URL}/listing`)
+				
 			}
+
+
 		} catch (error) {
-			console.error("Error checking vendor existence:", error);
+			console.log("errr", error);
+
 		}
+
 	};
 
 	const handleFeatureChecking = async () => {
@@ -211,8 +225,6 @@ export const ListingForm = () => {
 			const existingFeatures = featureResponse.map(
 				(feature) => feature.FeatureName
 			);
-
-			console.log("Features before submission:", existingFeatures);
 
 			const allAddedFeaturePayloads = [];
 			const allAddFeaturePayloads = [];
@@ -271,7 +283,6 @@ export const ListingForm = () => {
 				})
 			);
 
-			console.log("Features processed and posted successfully.");
 		} catch (error) {
 			console.error("Error processing features:", error.message);
 		}
@@ -281,7 +292,7 @@ export const ListingForm = () => {
 	const handleSubmit = async (VendorId = null) => {
 		try {
 			setIsSubmitting(true);
-			
+
 			// console.log("modal", showAlertModal);
 			const generatedVendorId = VendorId || (await GetVendorId());
 
@@ -354,9 +365,6 @@ export const ListingForm = () => {
 
 			const postData = await PostSellerListing(updatedPropertyFields);
 			setPostedPropertyNo(updatedPropertyFields);
-			console.log("this is the current post:", postedPropertyNo);
-			console.log("Listing API Response:", updatedPropertyFields);
-			console.log("propenumber:", updatedPropertyFields.PropertyNo);
 
 			setPropertyFields((prevFields) => ({
 				...prevFields,
@@ -364,17 +372,17 @@ export const ListingForm = () => {
 			}));
 
 			await savePropertyImages(imagePayload);
-setIsSubmitting(false);
+			setIsSubmitting(false);
 			setShowSuccessfulMsgModal(true);
-			
+
 		} catch (error) {
 
-			if (error.status >= 400 && error.status <= 500){
-				return(error);
-			}else{
-				return(error);
+			if (error.status >= 400 && error.status <= 500) {
+				return (error);
+			} else {
+				return (error);
 			}
-				// console.error("Failed to submit listing:", error);
+			// console.error("Failed to submit listing:", error);
 		}
 	};
 
@@ -420,7 +428,7 @@ setIsSubmitting(false);
 	return (
 		<>
 			<div className="listing-ContentContainer">
-					<ListingBanner />
+				<ListingBanner />
 				<div className="listing-application">
 					<div className="listing-steps">
 						<ListingSteps
@@ -446,7 +454,7 @@ setIsSubmitting(false);
 									onComplete={(completed) => handleStepComplete(0, completed)}
 									setPropertyFields={setPropertyDataFields}
 								/>
-								{errors[0] && currentStep === 0 && (
+								{/* {errors[0] && currentStep === 0 && (
 									<div
 										style={{
 											color: "red",
@@ -458,7 +466,7 @@ setIsSubmitting(false);
 									>
 										Please fill in the missing values.
 									</div>
-								)}
+								)} */}
 							</div>
 							<div
 								ref={(el) => (stepRefs.current[1] = el)}
@@ -486,7 +494,7 @@ setIsSubmitting(false);
 									setPropertyFields={setPropertyDataFields}
 									selectedPropertyTab={propertyFields.PropertyType}
 								/>
-								{errors[1] && currentStep === 1 && (
+								{/* {errors[1] && currentStep === 1 && (
 									<div
 										style={{
 											color: "red",
@@ -499,7 +507,7 @@ setIsSubmitting(false);
 									>
 										Please fill in the missing values.
 									</div>
-								)}
+								)} */}
 							</div>
 							<div
 								ref={(el) => (stepRefs.current[2] = el)}
@@ -512,7 +520,7 @@ setIsSubmitting(false);
 									onComplete={(completed) => handleStepComplete(2, completed)}
 									setPropertyFields={setPropertyDataFields}
 								/>
-								{errors[2] && currentStep === 2 && (
+								{/* {errors[2] && currentStep === 2 && (
 									<div
 										style={{
 											color: "red",
@@ -524,7 +532,7 @@ setIsSubmitting(false);
 									>
 										Please fill in the missing values.
 									</div>
-								)}
+								)} */}
 							</div>
 							<div
 								ref={(el) => (stepRefs.current[3] = el)}
@@ -538,7 +546,7 @@ setIsSubmitting(false);
 									setPropertyFields={setPropertyDataFields}
 									setIsFocused={setIsFocused}
 								/>
-								{errors[3] && currentStep === 3 && (
+								{/* {errors[3] && currentStep === 3 && (
 									<div
 										style={{
 											color: "red",
@@ -550,7 +558,7 @@ setIsSubmitting(false);
 									>
 										Please fill in the missing values.
 									</div>
-								)}
+								)} */}
 							</div>
 							<div
 								ref={(el) => (stepRefs.current[4] = el)}
@@ -563,7 +571,7 @@ setIsSubmitting(false);
 									onComplete={(completed) => handleStepComplete(4, completed)}
 									setPropertyFields={setPropertyDataFields}
 								/>
-								{errors[4] && currentStep === 4 && (
+								{/* {errors[4] && currentStep === 4 && (
 									<div
 										style={{
 											color: "red",
@@ -574,7 +582,7 @@ setIsSubmitting(false);
 									>
 										Please fill in the missing values.
 									</div>
-								)}
+								)} */}
 							</div>
 							<div
 								ref={(el) => (stepRefs.current[5] = el)}
@@ -587,7 +595,7 @@ setIsSubmitting(false);
 									onComplete={(completed) => handleStepComplete(5, completed)}
 									setPropertyFields={setPropertyDataFields}
 								/>
-								{errors[5] && currentStep === 5 && (
+								{/* {errors[5] && currentStep === 5 && (
 									<div
 										style={{
 											color: "red",
@@ -599,9 +607,9 @@ setIsSubmitting(false);
 									>
 										Please fill in the missing values.
 									</div>
-								)}
+								)} */}
 							</div>
-							<p style={{ fontWeight: "500" }}>
+							<p style={{ fontWeight: "500" }} className="aggreement">
 								By proceeding, I agree and review that all information are
 								correct.
 							</p>

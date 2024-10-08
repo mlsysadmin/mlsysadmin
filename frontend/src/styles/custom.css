@@ -1,4 +1,9 @@
-.advance-searchdropdown span {
+.subcontent-inputs-1 .select-field .ant-select-arrow,
+.subcontent-inputs-2 .select-field .ant-select-arrow {
+	color: var(--red) !important;
+}
+
+.advance-searchdropdown .advance-search-group1 span {
 	font-size: 16px;
 	color: #444444;
 	padding: 10px 10px 10px 0px;
@@ -63,6 +68,7 @@
 	font-size: inherit;
 	color: #f60000;
 	font-weight: bold;
+	padding: 0;
 }
 .advance-searchdropdown .custom-range-button {
 	border: none;
@@ -236,6 +242,9 @@ listing search */
 		center;
 	background-size: 14px;
 }
+.select-field.ant-select .ant-select-selection-placeholder{
+	color: black !important;
+}
 .subcontent-inputs-1 .input-field,
 .subcontent-inputs-2 .input-field {
 	margin: 0 10px;
@@ -251,6 +260,7 @@ listing search */
 	justify-content: space-between;
 	padding: 0px 20px;
 	background-image: none;
+	outline: none;
 }
 .subcontent-inputs-1 .select-field,
 .subcontent-inputs-2 .select-field ,
@@ -264,6 +274,11 @@ listing search */
 	font-size: 15px;
 }
 
+.subcontent-inputs-1 .select-field .ant-select-selector,
+.subcontent-inputs-2 .select-field .ant-select-selector{
+	border: none;
+}
+
 .subcontent-inputs-1 .input-field::placeholder {
 	color: black;
 	padding: 5px;
@@ -273,11 +288,11 @@ listing search */
 	color: black;
 	padding: 5px;
 }
-
-.subcontent-inputs-1 .select-field .ant-select-arrow {
-	color: red !important;
+.advance-searchdropdown .subcontent-inputs-2 .select-field span{
+	padding: 0;
 }
-.subcontent-inputs-1 .select-field .ant-select-dropdown {
+
+.subcontent-inputs-1  .select-field .ant-select-dropdown {
 	background-color: red !important;
 	color: white !important;
 }
@@ -1670,3 +1685,11 @@ listing search */
 		gap: 10px;
 	}
 }
+@media screen and (min-width: 315px) and (max-width: 500px) {
+
+	.features-list {
+		flex-direction: column;
+	}
+}
+
+

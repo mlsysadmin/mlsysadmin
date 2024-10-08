@@ -38,6 +38,7 @@
 .second-content h1 {
 	font-size: 30px;
 	margin: 0px 0px 20px 120px;
+	padding: 0 110px;
 }
 .new-page-label {
 	position: relative;

@@ -10,7 +10,10 @@ import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
 import { CameraFilled, HeartFilled, HeartOutlined } from '@ant-design/icons';
 
-const CardListingComponent = ({ loading, status, pics, title, price, features, listingId, no_of_bathrooms, lot, img, handleClick }) => {
+const CardListingComponent = ({ 
+    loading, status, pics, title, price, features, 
+    listingId, no_of_bathrooms, lot, img, handleClick, subtitle 
+}) => {
     const [publiclisting, setPublicListing] = useState([])
     const [checked, setIsChecked] = useState(false);
     const [likes, setLikes] = useState([]);
@@ -132,6 +135,9 @@ const CardListingComponent = ({ loading, status, pics, title, price, features, l
                     onClick={handleClick}>
                     <div className="card-content--title">
                         <h4>{title}</h4>
+                    </div>
+                    <div className="card-content--sub">
+                        <h5>{subtitle}</h5>
                     </div>
                     <Row className="card-content--subtitle">
                         <p className="price">{price}</p>
