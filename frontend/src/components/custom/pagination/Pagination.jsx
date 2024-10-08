@@ -1,15 +1,17 @@
 import React from "react";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import "../../../styles/Pagination.css";
 
 const Pagination = ({ currentPage, totalPages, paginate }) => {
+	// Ensure currentPage and totalPages are valid numbers
+	const validCurrentPage = Math.max(1, Math.min(currentPage, totalPages));
+	const validTotalPages = totalPages > 0 ? totalPages : 1;
+
 	const pageNumbers = [];
 
-	// Determine which page numbers to show
-	const startPage = Math.max(1, currentPage - 1);
-	const endPage = Math.min(totalPages, startPage + 2);
+	// Logic to determine which page numbers to display
+	const startPage = Math.max(1, validCurrentPage);
+	const endPage = Math.min(validTotalPages, startPage + 1); // Only display two pages at a time
 
 	for (let i = startPage; i <= endPage; i++) {
 		pageNumbers.push(i);
@@ -17,33 +19,35 @@ const Pagination = ({ currentPage, totalPages, paginate }) => {
 
 	return (
 		<div className="custom-pagination">
-			<span
-				onClick={() => paginate(currentPage - 1)}
-				className={currentPage > 1 && totalPages > 1 ? "active" : "disabled"}
+			<div
+				onClick={() => paginate(validCurrentPage - 1)}
+				className={`prev ${validCurrentPage > 1 ? "active" : "disabled"}`}
 			>
 				<ArrowLeftOutlined />
-				Previous
-			</span>
+				<label>Previous</label>
+			</div>
+
 			<div className="pagination-numbers">
 				{pageNumbers.map((number) => (
 					<span
 						key={number}
 						onClick={() => paginate(number)}
-						className={currentPage === number ? "active" : ""}
+						className={validCurrentPage === number ? "active" : ""}
 					>
 						{number}
 					</span>
 				))}
 			</div>
-			<span
-				onClick={() => paginate(currentPage + 1)}
-				className={
-					currentPage < totalPages && totalPages > 1 ? "active" : "disabled"
-				}
+
+			<div
+				onClick={() => paginate(validCurrentPage + 1)}
+				className={`next ${
+					validCurrentPage < validTotalPages ? "active" : "disabled"
+				}`}
 			>
-				Next
+				<label>Next</label>
 				<ArrowRightOutlined />
-			</span>
+			</div>
 		</div>
 	);
 };

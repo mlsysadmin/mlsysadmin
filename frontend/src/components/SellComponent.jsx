@@ -79,7 +79,7 @@ const SellComponent = () => {
 									label={"Sign In"}
 									id="signIn"
 									className={"sell--action-btn"}
-									handleClick={() => handleSignIn}
+									handleClick={handleSignIn}
 								/>
 							</div>
 						</div>
