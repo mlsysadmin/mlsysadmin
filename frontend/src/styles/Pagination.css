@@ -4,8 +4,8 @@
 	align-items: center;
 	gap: 470px;
 	width: 100%;
-	margin: auto;
-	margin-top: 20px;
+	/* margin: auto; */
+	margin-top: 50px;
 }
 .custom-pagination .pagination-numbers span {
 	margin: 0 5px;
@@ -110,7 +110,7 @@
 @media screen and (min-width: 360px) and (max-width: 400px) {
 		.custom-pagination {
 		width: 100%;
-		gap: 70px;
+		gap: 90px;
 	}
 
 	.custom-pagination span {
@@ -234,8 +234,8 @@
 }
 @media screen and (min-width: 1201px) and (max-width: 1400px) {
 	.custom-pagination {
-		margin-bottom: 20px;
-    width: 90%;
+	margin-bottom: 20px;
+    width: 97%;
     justify-content: space-between;
     gap: 0px;
 	}

@@ -428,6 +428,9 @@ listing search */
 	height: 500px;
 	overflow-y: auto;
 }
+.certain-feature-menu-container:hover {
+color: #fff;
+}
 
 .show-all-container span {
 	font-size: 16px;
@@ -651,8 +654,9 @@ listing search */
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding: 10px;
-		height: 960px;
+		/* padding: 10px; */
+		padding-bottom: 100px;
+		/* height: 960px; */
 		width: 90%;
 	}
 	.first-content .subcontent-inputs-1 {
@@ -752,8 +756,8 @@ listing search */
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding: 10px;
-		height: 960px;
+		/* padding: 10px; */
+	    padding-bottom: 100px;
 		width: 90%;
 	}
 	.first-content .subcontent-inputs-1 {
@@ -847,8 +851,9 @@ listing search */
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding: 10px;
-		height: 960px;
+		padding-bottom: 100px;
+		/* padding: 10px; */
+		/* height: 960px; */
 		width: 90%;
 	}
 	.first-content .subcontent-inputs-1 {
@@ -939,8 +944,9 @@ listing search */
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		padding: 10px;
-		height: 960px;
+		/* padding: 10px;
+		height: 960px; */
+		padding-bottom: 100px;
 		width: 90%;
 	}
 	.first-content .subcontent-inputs-1 {
@@ -999,7 +1005,7 @@ listing search */
 		margin-left: 270px;
 	}
 	.advance-searchdropdown .custom-range-button {
-		margin-top: 870px;
+		margin-top: 880px;
 		margin-left: 120px;
 		position: absolute;
 	}
@@ -1578,13 +1584,213 @@ listing search */
 		margin-top: 70px;
 	}
 }
-@media screen and (min-width:610px) and (max-width:801px)
+@media screen and (min-width: 610px) and (max-width: 619px) {
+	.first-content {
+		margin-left: 15px;
+		height: 500px;
+
+	}
+	.first-content .sub-content1 {
+		display: flex;
+		/* flex-wrap: wrap; */
+		flex-direction: row;
+		margin-left: 5px;
+		padding: 25px;
+	}
+	.subcontent-inputs-1 {
+		display: flex;
+		flex-direction: row;
+		/* flex-wrap: wrap; */
+		width: 100%;
+		gap: 10px;
+	}
+	.subcontent-inputs-1 .input-field,
+	.subcontent-inputs-1 .select-field {
+		margin: 0px;
+		padding: 10px;
+		width: calc(53% - 21px);
+		/* width: 200px; */
+	}
+	.advance-searchdropdown {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		/* justify-content: center;
+		align-items: center; */
+		gap: 10px;
+		width: 100%;
+		margin-top: 0px;
+	}
+	.advance-searchdropdown .slider-container {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		padding: 0px;
+	}
+
+	.advance-searchdropdown .slider-container .range-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		margin-top: 0px;
+		gap: 10px;
+	}
+	.advance-searchdropdown .advance-search-group1 {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		padding: 10px;
+		align-items: center;
+		padding-right: 20px;
+	}
+	.subcontent-inputs-2 {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		/* width: 100%; */
+		gap: 10px;
+	}
+	.subcontent-inputs-1 .right-button {
+		margin-top: 420px;
+		display: flex;
+		height: 40px;
+		position: absolute;
+		margin-left: 420px;
+	}
+	.subcontent-inputs-2 .input-field,
+	.subcontent-inputs-2 .select-field{
+		margin: 0px;
+		padding: 10px;
+		/* width:calc(50%-30px); */
+		width: calc(53% - 21px);
+	}
+		.subcontent-inputs-2 .select-field-features{
+		/* margin: 0px 8px; */
+		padding: 10px;
+		margin: 0px;
+		width: 100%;
+	}
+	.subcontent-inputs-2 .select-field[type="button"] {
+		width: 100%;
+	}
+	.unavailableListings {
+		font-size: 15px;
+		position: absolute;
+		margin-left: 0px;
+		padding-bottom: 20px;
+		margin-top: 70px;
+	}
+}
+@media screen and (min-width: 620px) and (max-width: 725px) {
+	.first-content {
+		margin-left: 15px;
+		height: 400px;
+
+	}
+	.first-content .sub-content1 {
+		display: flex;
+		/* flex-wrap: wrap; */
+		flex-direction: row;
+		margin-left: 5px;
+		padding: 25px;
+	}
+	.subcontent-inputs-1 {
+		display: flex;
+		flex-direction: row;
+		/* flex-wrap: wrap; */
+		width: 100%;
+		gap: 10px;
+	}
+	.subcontent-inputs-1 .input-field,
+	.subcontent-inputs-1 .select-field {
+		margin: 0px;
+		padding: 10px;
+		/* width: calc(51% - 10px); */
+		/* width: 200px; */
+	}
+	.advance-searchdropdown {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		/* justify-content: center;
+		align-items: center; */
+		gap: 10px;
+		width: 100%;
+		margin-top: 0px;
+	}
+	.advance-searchdropdown .slider-container {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		padding: 0px;
+	}
+
+	.advance-searchdropdown .slider-container .range-container {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		margin-top: 0px;
+		gap: 10px;
+	}
+	.advance-searchdropdown .advance-search-group1 {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		padding: 10px;
+		align-items: center;
+		padding-right: 20px;
+	}
+	.subcontent-inputs-2 {
+		display: flex;
+		flex-direction: row;
+		/* flex-wrap: wrap; */
+		width: 100%;
+		gap: 10px;
+	}
+	.subcontent-inputs-1 .right-button {
+		margin-top: 290px;
+		display: flex;
+		height: 40px;
+		position: absolute;
+		margin-left: 450px;
+	}
+	.subcontent-inputs-2 .input-field,
+	.subcontent-inputs-2 .select-field{
+		margin: 0px;
+		padding: 10px;
+		/* width:calc(50%-30px); */
+		/* width: calc(53% - 21px); */
+	}
+		.subcontent-inputs-2 .select-field-features{
+		/* margin: 0px 8px; */
+		padding: 10px;
+		margin: 0px;
+		width: 100%;
+	}
+	.subcontent-inputs-2 .select-field[type="button"] {
+		width: 100%;
+	}
+	.unavailableListings {
+		font-size: 15px;
+		position: absolute;
+		margin-left: 0px;
+		padding-bottom: 20px;
+		margin-top: 70px;
+	}
+}
+@media screen and (min-width:726px) and (max-width:801px)
  {
 	.subcontent-inputs-1 .select-field,
 .subcontent-inputs-2 .select-field , .subcontent-inputs-2 .select-field-features{
 	background-image: none;
 }
+
 }
+
 @media screen and (min-width: 610px) and (max-width: 1024px) {
 	.first-content {
 		margin-left: 15px;
@@ -1596,7 +1802,7 @@ listing search */
 	}
 	.advance-searchdropdown {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		flex-wrap: wrap;
 		/* justify-content: center;
 		align-items: center; */

@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import TuneIcon from "@mui/icons-material/Tune";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import BedOutlinedIcon from '@mui/icons-material/BedOutlined';
-import ShowerOutlinedIcon from '@mui/icons-material/ShowerOutlined';
-import ShortcutOutlinedIcon from '@mui/icons-material/ShortcutOutlined';
+import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
+import ShowerOutlinedIcon from "@mui/icons-material/ShowerOutlined";
+import ShortcutOutlinedIcon from "@mui/icons-material/ShortcutOutlined";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 
 const Card = ({
@@ -21,14 +21,14 @@ const Card = ({
 	size,
 	likes,
 	forsale,
-	handleClick
+	handleClick,
 }) => {
 	const isFeatured = forsale.toLowerCase() === "featured";
 	const [isHeartFilled, setIsHeartFilled] = useState(false);
 
 	const handleHeartClick = () => {
 		setIsHeartFilled(!isHeartFilled);
-	}
+	};
 	// const navigate = useNavigate();
 
 	// const handleCardClick = () => {
@@ -51,18 +51,18 @@ const Card = ({
 							forsale === "New"
 								? "#ffffff"
 								: forsale === "For Sale"
-									? "#000000"
-									: forsale === "For Rent"
-										? "#000000"
-										: "White",
+								? "#000000"
+								: forsale === "For Rent"
+								? "#000000"
+								: "White",
 						backgroundColor:
 							forsale === "New"
 								? "var(--red)"
 								: forsale === "For Sale"
-									? "#ffffff"
-									: forsale === "For Rent"
-										? "#ffffff"
-										: "var(--red)",
+								? "#ffffff"
+								: forsale === "For Rent"
+								? "#ffffff"
+								: "var(--red)",
 					}}
 				>
 					{forsale}
@@ -81,39 +81,35 @@ const Card = ({
 				</div>
 			</div>
 			<div className="card-content" onClick={handleClick}>
-				<h3>{title}</h3>
-				<h4>{subtitle}</h4>
+				<div className="card-listing-title-public">
+					<h3>{title}</h3>
+				</div>
+				<div className="card-listing-subtitle-public">
+					<h4>{subtitle}</h4>
+				</div>
+
 				<div className="bot">
-					<div className="card-price-detail">
 						<p>{price}</p>
-					</div>
 					<div className="card-icons">
-						{
-							beds > 0 && (
-								<div className="card-icons--feature">
-									<BedOutlinedIcon />
-									<label id="bed-icon">{beds}</label>
-								</div>
-							)
-						}
+						{beds > 0 && (
+							<div className="card-icons--feature">
+								<BedOutlinedIcon />
+								<label id="bed-icon">{beds}</label>
+							</div>
+						)}
 
-						{
-							baths > 0 && (
-								<div className="card-icons--feature">
-									<ShowerOutlinedIcon />
-									<label htmlFor="">{baths}</label>
-								</div>
-							)
-						}
-						{
-							size > 0 && (
-								<div className="card-icons--feature">
-									<ShortcutOutlinedIcon />
-									<label htmlFor="">{size} SqM</label>
-								</div>
-							)
-						}
-
+						{baths > 0 && (
+							<div className="card-icons--feature">
+								<ShowerOutlinedIcon />
+								<label htmlFor="">{baths}</label>
+							</div>
+						)}
+						{size > 0 && (
+							<div className="card-icons--feature">
+								<ShortcutOutlinedIcon />
+								<label htmlFor="">{size} SqM</label>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>

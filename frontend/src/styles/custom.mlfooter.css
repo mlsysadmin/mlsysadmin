@@ -1,5 +1,5 @@
 .third-content-footer {
-  background: linear-gradient(180deg in oklab, #efefefd4, white);
+  background: linear-gradient(180deg in oklab, #ffeded, white);
   color: white;
   width: 100%;
   display: flex;
@@ -64,7 +64,7 @@
   width: 18px;
   height: 16px;
 }
-.customer-care span{
+.customer-care span {
   color:#4F4F4F;
   font-size: 16px;
 }
