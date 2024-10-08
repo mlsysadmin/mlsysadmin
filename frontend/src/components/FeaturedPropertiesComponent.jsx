@@ -63,35 +63,26 @@ const FeaturedPropertiesComponent = ({ featuredListing }) => {
 
           return (
             <div className="feature" key={i}>
-              <div className="feature-items" key={i}>
+              <div className="feature-items--featured" key={i}>
                 {lot > 0 && (
-                  <div className="feature-item">
+                  <div className="feature-item--featured">
+                    <img src={sqm} alt="area-icon" className="featured-item--img" />
                     <p>{lot}</p>
-                    <div className="feature-icon">
-                      <img src={sqm} alt="area-icon" width={27} />
-                    </div>
                   </div>
                 )}
                 {no_of_bathrooms > 0 && (
-                  <div className="feature-item">
+                  <div className="feature-item--featured">
+                    <img src={shower} alt="bathroom-icon" className="featured-item--img" />
                     <p>{no_of_bathrooms}</p>
-                    <div className="feature-icon">
-                      <img src={shower} alt="bathroom-icon" width={27} />
-                    </div>
                   </div>
                 )}
                 {no_of_beds > 0 && (
-                  <div className="feature-item">
+                  <div className="feature-item--featured">
+                    <img src={bed} alt="bed-icon" className="featured-item--img" />
                     <p>{no_of_beds}</p>
-                    <div className="feature-icon">
-                      <img src={bed} alt="bed-icon" width={27} />
-                    </div>
                   </div>
                 )}
               </div>
-              {features.length > 1 && i < features.length - 1 && (
-                <Divider type="vertical" className="featured-divider" />
-              )}
             </div>
           );
         })}
@@ -123,16 +114,16 @@ const FeaturedPropertiesComponent = ({ featuredListing }) => {
             </div>
             <div className="featured-property--content">
               <Card loading={false}>
-                  <h4 className="featured-price">
-                    PHP {featured.price} {featured.sale_type?.toLowerCase() == 'rent' ? 'month' : ''}
-                  </h4>
-                  <p className="featured-title">{featured.title}</p>
-                  <p className="featured-listing-type">
-                    {`For ${featured.sale_type}`}
-                  </p>
-                  <div className="featured-features">
-                    {<Features features={[featured]} />}
-                  </div>
+                <h4 className="featured-price">
+                  PHP {featured.price} {featured.sale_type?.toLowerCase() == 'rent' ? 'month' : ''}
+                </h4>
+                <p className="featured-title">{featured.title}</p>
+                <p className="featured-listing-type">
+                  {`For ${featured.sale_type}`}
+                </p>
+                <div className="featured-features">
+                  {<Features features={[featured]} />}
+                </div>
               </Card>
             </div>
           </Col>
@@ -146,7 +137,7 @@ const FeaturedPropertiesComponent = ({ featuredListing }) => {
 
   return (
     <>
-    {
+      {
         cardLength == 1 && (
           <div style={{
             display: 'flex',
@@ -187,7 +178,7 @@ const FeaturedPropertiesComponent = ({ featuredListing }) => {
         }
       </Row>
       <br />
-      
+
     </>
   );
 };
