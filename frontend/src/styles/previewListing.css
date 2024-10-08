@@ -617,6 +617,7 @@
   outline: none;
   padding: 0px 0.55rem;
   overflow: hidden;
+  font-size: 16px;
 }
 
 .contact-textarea img {
@@ -639,6 +640,8 @@
   background-color: #fff;
   width: 100%;
   outline: none;
+  font-size: 16px;
+
 }
 
 
@@ -722,11 +725,15 @@
     font-size: 15px;
     margin-bottom: 8px;
   }
+  .send-message-button span{
+    font-size: 18px;
+  }
   
   .send-message-button, .ant-btn.ant-btn-lg.send-message-button:hover{
     background-color: var(--red);
     color: #fff;
     border: var(--red);
+
   }
   
   .apply-button {

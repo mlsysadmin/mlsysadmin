@@ -67,9 +67,7 @@ const DescriptionDetailsComponent = ({
 					{titleError && <div className="error">{titleError}</div>}
 					<p className="example">
 						If there are important details that we weren't able to ask, you can
-						specify it here.
-						<br />
-						Please note: links and contact info entered will be removed.
+						specify it here. Please note: links and contact info entered will be removed.
 					</p>
 				</div>
 				<div className="descriptionContent">
@@ -86,7 +84,6 @@ const DescriptionDetailsComponent = ({
 					></textarea>
 					{descriptionError && <div className="error">{descriptionError}</div>}
 					<p className="example">Here's a nice, simple and concise example:</p>
-					<br />
 					<p className="example">
 						This semi-furnished unit for sale in Quezon City is an ideal space
 						for young professionals or starting families. The Project is near

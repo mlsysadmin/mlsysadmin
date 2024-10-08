@@ -200,7 +200,7 @@ const ListingSearch = ({
 						<RoundSelect
 							options={SelectNum()}
 							classname={'select-field'}
-							placeholder={'Listing Type'}
+							placeholder={'Bedrooms'}
 							suffixIcon={<CaretDownOutlined />} />
 						<RoundSelect
 							options={SelectNum()}
@@ -223,18 +223,14 @@ const ListingSearch = ({
 							<option value="land">2</option>
 						</select> */}
 						<Dropdown
-							overlay={<CertainFeatureMenu />}
+							overlay={<CertainFeatureMenu />} // The content of the dropdown
 							trigger={["click"]}
 							visible={iscertainFeatureOpen}
 							onVisibleChange={handleCertainFeatureClick}
 						>
-							<select
-								className="select-field"
-								onClick={handleCertainFeatureClick}
-							>
-								<option value="Features">Features</option>
-								<CaretDownOutlined />
-							</select>
+							<div className="select-field">
+								<span style={{ margin: "5px 0px 0px 0px" }}>Features</span>
+							</div>
 						</Dropdown>
 					</div>
 				</div>
