@@ -2,6 +2,7 @@ import React from "react";
 import "../../../styles/Card.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Tooltip } from "antd";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import TuneIcon from "@mui/icons-material/Tune";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -25,9 +26,14 @@ const Card = ({
 }) => {
 	const isFeatured = forsale.toLowerCase() === "featured";
 	const [isHeartFilled, setIsHeartFilled] = useState(false);
+	const [showTooltip, setShowTooltip] = useState(false);
 
 	const handleHeartClick = () => {
 		setIsHeartFilled(!isHeartFilled);
+			if (!isHeartFilled) {
+				setShowTooltip(true);
+				setTimeout(() => setShowTooltip(false), 800);
+			}
 	};
 	// const navigate = useNavigate();
 
@@ -72,7 +78,13 @@ const Card = ({
 					<b>{likes}</b>
 				</div>
 				<div className="bottomicns">
-					<div className="icon" onClick={handleHeartClick}>
+					<div className="icon" onClick={handleHeartClick} style={{display:"flex", flexDirection:"column"}}>
+						<Tooltip
+							color="var(--red)"
+							title="Added to favorites"
+							visible={showTooltip}
+							placement="top"
+						></Tooltip>
 						{isHeartFilled ? <HeartFilled /> : <HeartOutlined />}
 					</div>
 					{/* <div className="icon">
@@ -89,7 +101,7 @@ const Card = ({
 				</div>
 
 				<div className="bot">
-						<p>{price}</p>
+					<p>{price}</p>
 					<div className="card-icons">
 						{beds > 0 && (
 							<div className="card-icons--feature">

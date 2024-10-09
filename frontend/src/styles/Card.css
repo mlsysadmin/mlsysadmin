@@ -20,6 +20,14 @@
 .card:hover {
 	transform: scale(1.01);
 }
+.card-skeleton-loading {
+	/* width: 92%; */
+	display: flex;
+	flex-wrap: wrap;
+	margin: 30px 100px 10px 100px;
+	/* justify-content: center; */
+	gap: 40px;
+}
 
 .card-img {
 	width: 100%;
@@ -852,14 +860,14 @@
 		width: 1500px;
 		display: flex;
 		flex-wrap: wrap;
-		/* flex-direction: row; */
+	
 		margin: auto ;
 		justify-content: flex-start;
-		/* align-items: center; */
+
 		padding-top: 20px;
 		padding-left: 100px;
 		gap: 25px;
-		/* margin-left: 50px; */
+	
 	}
 	.card-container .card {
 		width: 400px;
