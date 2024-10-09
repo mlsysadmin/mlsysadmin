@@ -221,7 +221,7 @@ const HeaderMenu = () => {
 			// handleOpenChange={handleBuyOpenChange}
 			title={""}
 			popUpOpen={homeLoanPopUpOpen}
-			label={"Home Loan"}
+			label={"Loans"}
 			content={HomeLoanMenuPopContent}
 			menuKey={'home-loan'}
 		/>
@@ -248,10 +248,10 @@ const HeaderMenu = () => {
 	);
 
 	const MenuItems = [
-		{ label: "Sell", key: "sell", link: "/sell" },
 		{ label: "New", key: "new", link: "/new" },
-		{ label: <RentMenu />, key: "rent" },
+		{ label: "Sell", key: "sell", link: "/sell" },
 		{ label: <BuyMenu />, key: "buy" },
+		{ label: <RentMenu />, key: "rent" },
 		{ label: <HomeLoanMenu />, key: "home-loan" },
 		{
 			// label: <HomeInsuranceMenu />,

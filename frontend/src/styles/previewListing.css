@@ -1113,9 +1113,15 @@
     padding: 0%;
     flex-direction: column;
   }
+  .saveText {
+  display: none;
+}
   .calculator .contact-us,
   .right-side-container {
     width: 90%;
+  }
+  .circle-tags-heart{
+    font-size: 14px;
   }
 
   .right-side-container {

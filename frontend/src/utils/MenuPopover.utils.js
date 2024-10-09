@@ -107,26 +107,21 @@ const SubMenu = {
 			],
 		},
 		{
-			header: "Home Loan Guide",
+			header: "Mortgage Loan",
 			submenu: [
 				{ sub: "Discover Home Loan", link: "/discover-home" },
 				{ sub: "Loan Calculator", link: "/loan-calculator" },
-				{ sub: "Refinance your home", link: "/refinance" },
 			],
 		},
-		// {
-		// 	header: "Explore more options",
-		// 	submenu: [
-		// 		{ sub: "Refinance your home", link: "/refinance" },
-		// 		{ sub: "Learn more about mortgage process", link: "/" },
-		// 		{ sub: "Car Loan", link: "https://mlhuillier.com/car-loan" },
-		// 		{
-		// 			sub: "Quick Cash Loan",
-		// 			link: "https://mlhuillier.com/quick-cash-loans",
-		// 		},
-		// 		{ sub: "Pensioner's Loan", link: "/" },
-		// 	],
-		// },
+		{
+			header: "Get Pre-Approved",
+			submenu: [
+				// { sub: "Mortgage", link: "/mortgage" },
+
+				{ sub: "Refinance your home", link: "/mortgage" },
+				{ sub: "Buy A Home", link: "/comingsoon" },
+			],
+		},
 	],
 	// homeInsurance: [
 	// 	{
@@ -191,7 +186,8 @@ const SubMenu = {
 						<>
 							<span>
 								<a
-									href="/?openModal=true"
+									// href="/?openModal=true"
+									href="/comingsoon"
 									style={{
 										color: "var(--red)",
 										textDecoration: "none",
