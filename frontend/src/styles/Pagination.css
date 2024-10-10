@@ -1,161 +1,260 @@
 .custom-pagination {
-  display: flex;
-  justify-content: space-between;
-  padding:10px 110px 10px 110px;
-  width: 100%;
-  margin: 30px 0 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 470px;
+	width: 100%;
+	/* margin: auto; */
+	margin-top: 50px;
 }
-
 .custom-pagination .pagination-numbers span {
-  margin: 0 5px;
-  padding: 15px 25px;
-  border: 1px solid #8C9094;
-  border-radius: 7px;
-  cursor: pointer;
-  background-color: transparent;
-  color: #8C9094;
+	margin: 0 5px;
+	padding: 10px 15px 10px 15px;
+	border: 1px solid #8c9094;
+	border-radius: 7px;
+	cursor: pointer;
+	background-color: transparent;
+	color: #8c9094;
+	font-size: 16px;
 }
-.custom-pagination span {
-  margin: 0 5px;
-  padding: 10px;
-  /* border-color: #8C9094; */
-  border: 1px solid #E8E7E6;
-  border-radius: 5px;
-  cursor:not-allowed;
-  background-color: transparent;
-  color: #E8E7E6;
-  font-weight: 300;
-  font-size: 22px;
+.custom-pagination .next,
+.custom-pagination .prev {
+	padding: 10px;
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	border: 1px solid #e8e7e6;
+	border-radius: 5px;
+	cursor: not-allowed;
+	background-color: transparent;
+	color: #e8e7e6;
+	font-weight: 300;
+	font-size: 18px;
+	width: 120px;
+	height: 50px;
 }
-.custom-pagination span.active{
-  border: 1px solid #8C9094;
-  background-color: transparent;
-  color: #8C9094;
-  cursor: pointer;
+.custom-pagination .next.active,
+.custom-pagination .prev.active {
+	border: 1px solid #8c9094;
+	background-color: transparent;
+	color: #8c9094;
+	cursor: pointer;
 }
 
-.custom-pagination span .anticon{
-  border: none;
+.custom-pagination label .anticon {
+	border: none;
 }
 
 .custom-pagination .pagination-numbers span.active {
-  background-color: #8C9094;
-  color: white;
-  border-color: #8C9094;
+	background-color: #8c9094;
+	color: white;
+	border-color: #8c9094;
 }
-
 
 .pagination-numbers {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
-
-.custom-pagination .pagination-numbers span:first-child,
-.custom-pagination .pagination-numbers span:last-child {
-  border: none;
-  font-size: 22px;
-  display: flex;
-  align-items: center;
+.custom-pagination .pagination-numbers div:first-child,
+.custom-pagination .pagination-numbers div:last-child {
+	border: none;
+	font-size: 22px;
+	display: flex;
+	align-items: center;
 }
 .disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-  pointer-events: none;
+	cursor: not-allowed;
+	opacity: 0.5;
+	pointer-events: none;
 }
 
-@media only screen and (min-width: 320px) and (max-width: 359px){
-.custom-pagination {
-  padding:0px;
-  margin-bottom: 20px;
-}
-.custom-pagination span {
-  margin: 0 5px;
-  padding: 5px;
-  font-weight: 300;
-  font-size: 15px;
-}
-.custom-pagination .pagination-numbers span {
-  margin: 0 5px;
-  padding: 5px 10px;
-}
+@media only screen and (min-width: 320px) and (max-width: 359px) {
+	.custom-pagination {
+		width: 100%;
+		gap: 70px;
+	}
+
+	.custom-pagination span {
+		padding: 5px;
+		font-size: 15px;
+	}
+	.custom-pagination .next,
+	.custom-pagination .prev {
+		padding: 0px;
+		width: 30px;
+    height: 40px;
+	}
+	.custom-pagination .next.active,
+	.custom-pagination .prev.active,
+	.custom-pagination .next.disabled,
+	.custom-pagination .prev.disabled {
+    padding: 0px;
+	}
+
+	.custom-pagination .pagination-numbers span {
+		margin: 0 5px;
+		padding: 5px 10px;
+	}
+
+	.custom-pagination .prev label,
+	.custom-pagination .next label {
+		display: none;
+	}
+
+	.custom-pagination .anticon {
+		margin-left: 0;
+	}
 }
 
-@media screen and (min-width:360px) and (max-width: 480px){
-.custom-pagination {
-  padding:0px;
-  margin-bottom: 20px;
-}
-.custom-pagination span {
-  margin: 0 5px;
-  padding: 5px;
-  font-weight: 300;
-  font-size: 15px;
-}
-.custom-pagination .pagination-numbers span {
-  margin: 0 5px;
-  padding: 5px 10px;
-}
+@media screen and (min-width: 360px) and (max-width: 400px) {
+		.custom-pagination {
+		width: 100%;
+		gap: 90px;
+	}
+
+	.custom-pagination span {
+		padding: 5px;
+		font-size: 15px;
+	}
+	.custom-pagination .next,
+	.custom-pagination .prev {
+		padding: 0px;
+		width: 30px;
+    height: 40px;
+	}
+	.custom-pagination .next.active,
+	.custom-pagination .prev.active,
+	.custom-pagination .next.disabled,
+	.custom-pagination .prev.disabled {
+    padding: 0px;
+	}
+
+	.custom-pagination .pagination-numbers span {
+		margin: 0 5px;
+		padding: 5px 10px;
+	}
+
+	.custom-pagination .prev label,
+	.custom-pagination .next label {
+		display: none;
+	}
+
+	.custom-pagination .anticon {
+		margin-left: 0;
+	}
 }
 
+@media screen and (min-width: 401px) and (max-width: 480px) {
+		.custom-pagination {
+		width: 100%;
+		gap: 85px;
+	}
+
+	.custom-pagination span {
+		padding: 5px;
+		font-size: 15px;
+	}
+	.custom-pagination .next,
+	.custom-pagination .prev {
+		padding: 0px;
+		width: 30px;
+    height: 40px;
+	}
+  .custom-pagination .prev label,
+	.custom-pagination .next label {
+		display: none;
+	}
+}
 @media screen and (min-width: 481px) and (max-width: 768px) {
-.custom-pagination {
-  padding:0px;
-  margin-bottom: 20px;
-}
-.custom-pagination span {
-  margin: 0 5px;
-  padding: 10px;
-  font-weight: 300;
-  font-size: 15px;
-}
-.custom-pagination .pagination-numbers span {
-  margin: 0 5px;
-  padding: 10px 15px;
-}
+	.custom-pagination {
+		gap: 0px;
+    justify-content: space-between;
+    width: 80%;
+    margin-bottom: 20px;
+	}
+
+  .custom-pagination .next,
+	.custom-pagination .prev {
+		padding: 0px;
+		width: 80px;
+    height: 40px;
+	}
+	.custom-pagination .next.active,
+	.custom-pagination .prev.active,
+	.custom-pagination .next.disabled,
+	.custom-pagination .prev.disabled {
+    padding: 0px;
+    width: 40px;
+	}
+	.custom-pagination span {
+		/* margin: 20px 0px; */
+		padding: 5px;
+		font-size: 15px;
+	}
+	.custom-pagination .pagination-numbers span {
+		margin: 0 5px;
+		padding: 10px 15px;
+	}
+  .custom-pagination .prev label,
+	.custom-pagination .next label {
+		display: none;
+	}
 }
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-.custom-pagination {
-  padding:0px;
-  margin-bottom: 20px;
-}
-.custom-pagination span {
-  margin: 0 5px;
-  padding: 10px;
-  font-size: 15px;
-}
-.custom-pagination .pagination-numbers span {
-  margin: 0 5px;
-  padding: 15px 20px;
-}
+	.custom-pagination {
+		gap: 220px;
+		margin: 50px 0px;
+	}
+	.custom-pagination span {
+		/* margin: 20px 0px; */
+		padding: 5px;
+		font-size: 18px;
+	}
+	.custom-pagination .pagination-numbers span {
+		margin: 0 5px;
+		padding: 15px 20px;
+	}
 }
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
-.custom-pagination {
-  padding:0px;
-  margin-bottom: 20px;
-}
-.custom-pagination span {
-  margin: 10px 30px;
-  padding: 5px;
-  font-size: 18px;
-}
-.custom-pagination .pagination-numbers span {
-  margin: 0 10px;
-   padding: 15px 20px;
-}
+	.custom-pagination {
+		gap: 270px;
+		margin: 50px 0px;
+	}
+	.custom-pagination span {
+		/* margin: 20px 0px; */
+		padding: 5px;
+		font-size: 18px;
+	}
+
+	.custom-pagination .pagination-numbers span {
+		margin: 0 10px;
+		padding: 15px 20px;
+	}
 }
 @media screen and (min-width: 1201px) and (max-width: 1400px) {
-.custom-pagination {
-  padding:0px;
-  margin-bottom: 20px;
-}
-.custom-pagination span {
-   margin: 10px 30px;
-  padding: 5px;
-  font-weight: 300;
-  font-size: 18px;
-}
-.custom-pagination .pagination-numbers span {
-  padding: 15px 20px;
-}
+	.custom-pagination {
+	margin-bottom: 20px;
+    width: 97%;
+    justify-content: space-between;
+    gap: 0px;
+	}
+	.custom-pagination span {
+		padding: 0px;
+		font-weight: 300;
+		font-size: 16px;
+	}
+	.custom-pagination .pagination-numbers span {
+		padding: 15px 20px;
+	}
+  .custom-pagination .next, .custom-pagination .prev{
+    gap: 0px;
+    width: 110px;
+    font-size: 18px;
+  }
+    .custom-pagination label{
+    gap: 0px;
+    width: 110px;
+    font-size: 18px;
+  }
 }
