@@ -152,7 +152,17 @@
 .menu-submenu--child .sub-info a.redirect{
     color: var(--red);
 }
-
+@media screen and (min-width: 315px) and (max-width: 359px) {
+    .header.header.ant-layout-header .ml-logo{
+        margin-left: 0 !important;
+    }
+    .header.ant-layout-header{
+        padding: 15px 13px;
+    }
+    .header.header.ant-layout-header .ml-logo a img{
+        width: 150px !important;
+    }
+}
 
 @media screen and (min-width: 360px) and (max-width: 480px) {
     .ant-popover{
@@ -161,6 +171,9 @@
     }
     .header.ant-layout-header{
         padding: 15px 0px;
+    }
+    .header.header.ant-layout-header .ml-logo{
+        margin-left: 15px !important;
     }
 }
 @media screen and (min-width: 1098px) and (max-width: 1375px) {
