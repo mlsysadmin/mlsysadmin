@@ -12,7 +12,8 @@ const MapComponent = ({ style, oneListing }) => {
 
   useEffect(() => {
     const fetchCoordinates = async () => {
-      const formattedLocation = oneListing.City;
+      const formattedLocation = oneListing.MapLocation;
+      console.log("formattedLocation", formattedLocation);
       // const formattedLocation = LocationFormatter(oneListing.City);
       try {
         const response = await fetch(

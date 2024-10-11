@@ -43,10 +43,17 @@ const HeaderMenu = () => {
 
 	const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
-	const closeModal = () => {
+	const showLogin = () => {
+		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
+		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 		setShowUpgradeModal(false);
+		window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+			redirectUrl
+		)}`;
 	};
-
+	const closeModal = () => {
+		setShowUpgradeModal(false)
+	};
 	const openUpgradeModal = () => {
 		setShowUpgradeModal(true);
 	};
@@ -87,9 +94,10 @@ const HeaderMenu = () => {
 				openUpgradeModal();
 			}
 		} else {
-			window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-				redirectUrl
-			)}`;
+			// window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+			// 	redirectUrl
+			// )}`;
+			setShowUpgradeModal(true);
 		}
 
 		// const redirectUrl =
@@ -117,6 +125,7 @@ const HeaderMenu = () => {
 
 		// setCurrent(path);
 		console.log("path", location);
+		
 	}, [location]);
 
 	const handleMenuOnClick = (menu) => {
@@ -168,7 +177,7 @@ const HeaderMenu = () => {
 			setotherServicesPopUpOpen(false);
 		}
 		console.log("menu", menu);
-
+		
 		setCurrent(menu.key);
 	};
 
@@ -219,7 +228,7 @@ const HeaderMenu = () => {
 			popUpOpen={rentPopUpOpen}
 			label={"Rent"}
 			content={RentMenuPopContent}
-			menuKey={"rent"}
+			menuKey={'rent'}
 		/>
 	);
 	const BuyMenu = () => (
@@ -229,7 +238,7 @@ const HeaderMenu = () => {
 			popUpOpen={buyPopUpOpen}
 			label={"Buy"}
 			content={BuyMenuPopContent}
-			menuKey={"sale"}
+			menuKey={'sale'}
 		/>
 	);
 
@@ -240,7 +249,7 @@ const HeaderMenu = () => {
 			popUpOpen={homeLoanPopUpOpen}
 			label={"Loans"}
 			content={HomeLoanMenuPopContent}
-			menuKey={"home-loan"}
+			menuKey={'home-loan'}
 		/>
 	);
 	// const HomeInsuranceMenu = () => (
@@ -255,7 +264,7 @@ const HeaderMenu = () => {
 	// );
 	const OtherServicesMenu = () => (
 		<MenuPopup
-			menuKey={"other-services"}
+		menuKey={'other-services'}
 			// handleOpenChange={handleBuyOpenChange}
 			title={"Other Services"}
 			popUpOpen={otherServicesPopUpOpen}
@@ -325,7 +334,11 @@ const HeaderMenu = () => {
 					onClick={handleUserProfileClick}
 				/>
 				{showUpgradeModal && (
-					<UpgradeTierModal isVisible={showUpgradeModal} onClose={closeModal} />
+					<UpgradeTierModal
+						isVisible={showUpgradeModal}
+						onClose={closeModal}
+						showLogin={showLogin}
+					/>
 				)}
 				{/* {!isMLWWSPresent&&
 					( */}
