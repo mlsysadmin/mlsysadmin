@@ -7,50 +7,52 @@ import { Slider, Progress, Menu, Select } from "antd";
 import iconcalcu from "../assets/icons/previewlisting/calculatorsign.png";
 import { DownOutlined } from "@ant-design/icons";
 import homeicon from "../asset/icons/homeicon.png";
+import { homeloanFaqs, mortgageFaqs } from "../utils/FaqsData";
 import dollaricon from "../asset/icons/dollar-icon.png";
 import "../styles/discoverhome.css";
+import Title from "antd/es/skeleton/Title";
 
 const DiscoverHomeComponent = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
-  const [monthlyPayment, setMonthlyPayment] = useState(0);
-  const [HomepriceRange, setHomePriceRange] = useState([100000]);
-  const [DppriceRange, setDpHomePriceRange] = useState([10000]);
-  const [yearFixed, setyearFixed ] = useState(30);
-  const [interestRate, setInterestRate] = useState(0);
+	const [activeIndex, setActiveIndex] = useState(null);
+	const [monthlyPayment, setMonthlyPayment] = useState(0);
+	const [HomepriceRange, setHomePriceRange] = useState([100000]);
+	const [DppriceRange, setDpHomePriceRange] = useState([10000]);
+	const [yearFixed, setyearFixed] = useState(30);
+	const [interestRate, setInterestRate] = useState(0);
 
-  const handleHomePriceRangeChange = (values) => {
-    setHomePriceRange(values);
-  };
-  const handleDpPriceRange = (values) => {
-    setDpHomePriceRange(values);
-  };
-  const handleInterestRateChange = (values) => {
-    setInterestRate(values);
-  };
-  const toggleAccordion = (index) => {
-    setActiveIndex(index === activeIndex ? null : index);
-  };
+	const handleHomePriceRangeChange = (values) => {
+		setHomePriceRange(values);
+	};
+	const handleDpPriceRange = (values) => {
+		setDpHomePriceRange(values);
+	};
+	const handleInterestRateChange = (values) => {
+		setInterestRate(values);
+	};
+	const toggleAccordion = (index) => {
+		setActiveIndex(index === activeIndex ? null : index);
+	};
 
-  const handleSelectOptionChange = (e) =>{
-	setyearFixed(e.target.value)
-  }
-  
-  const computeMortgage = () => {
-    const dpPriceRange = DppriceRange[0];
-    const homePriceRange = HomepriceRange[0];
-    const interestRateDecimal = interestRate / 100;
+	const handleSelectOptionChange = (e) => {
+		setyearFixed(e.target.value);
+	};
 
-    const monthlyInterestRate = interestRateDecimal / 12;
-    const loanAmount = homePriceRange - dpPriceRange;
-    const numberOfPayments = yearFixed * 12;
-    const totalMonthlyPayment =
-      loanAmount *
-      ((monthlyInterestRate *
-        Math.pow(1 + monthlyInterestRate, numberOfPayments)) /
-        (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1));
+	const computeMortgage = () => {
+		const dpPriceRange = DppriceRange[0];
+		const homePriceRange = HomepriceRange[0];
+		const interestRateDecimal = interestRate / 100;
 
-    setMonthlyPayment(totalMonthlyPayment.toFixed(2));
-  };
+		const monthlyInterestRate = interestRateDecimal / 12;
+		const loanAmount = homePriceRange - dpPriceRange;
+		const numberOfPayments = yearFixed * 12;
+		const totalMonthlyPayment =
+			loanAmount *
+			((monthlyInterestRate *
+				Math.pow(1 + monthlyInterestRate, numberOfPayments)) /
+				(Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1));
+
+		setMonthlyPayment(totalMonthlyPayment.toFixed(2));
+	};
 	const menu = (
 		<Menu onClick={(e) => setyearFixed(parseInt(e.key))}>
 			<Menu.Item key="30">30 Years Fixed</Menu.Item>
@@ -61,35 +63,12 @@ const DiscoverHomeComponent = () => {
 			<Menu.Item key="5">5 Years Fixed</Menu.Item>
 		</Menu>
 	);
+	const faqsloandata = {
+		mortgage: { faqs: mortgageFaqs, Title: "Mortgage" },
+		homeloan: { faqs: homeloanFaqs, Title: "Home Loan" },
+	};
 
-  const accordionData = [
-    {
-      label: "How much do you need to put down on a house?",
-      answer:
-        "The down payment required for a house can vary, but typically it ranges from 3% to 20% of the home's purchase price. The exact amount you'll need to put down depends on the type of mortgage loan you're getting and your financial situation.",
-    },
-    {
-      label: "How do I choose a mortgage lender?",
-      answer:
-        "When choosing a mortgage lender, you should consider factors like interest rates, fees, customer service, and the lender's reputation. It's a good idea to shop around and compare offers from multiple lenders to find the best fit for your needs.",
-    },
-    {
-      label: "How much mortgage can I afford?",
-      answer:
-        "The amount of mortgage you can afford depends on your income, debts, credit score, and other financial factors. Lenders typically recommend that your monthly mortgage payment, including taxes and insurance, should not exceed 28% of your gross monthly income.",
-    },
-    {
-      label: "What is mortgage pre-qualification?",
-      answer:
-        "Mortgage pre-qualification is the process of getting an estimate of the loan amount you may be able to qualify for based on your financial information. This can help you understand your budget and bargaining power when shopping for a home.",
-    },
-    {
-      label: "How do I qualify to buy a home?",
-      answer:
-        "To qualify to buy a home, you typically need a stable income, a good credit score, and a down payment. Lenders will also consider your debt-to-income ratio, employment history, and assets when determining your eligibility for a mortgage loan.",
-    },
-  ];
-  return (
+	return (
 		<div className="discover-home-container">
 			<div className="discover-home">
 				<div className="discover-home-content">
@@ -434,39 +413,46 @@ const DiscoverHomeComponent = () => {
 			<div className="faqs-container">
 				<div className="faqs-content">
 					<h2>Most-asked morgage questions</h2>
-					<div className="discover-questions">
-						{accordionData.map((item, index) => (
-							<div key={index}>
-								<div
-									className="dropdown-label"
-									onClick={() => toggleAccordion(index)}
-									style={{
-										backgroundColor:
-											activeIndex === index ? "#ffffff" : "white",
-										display: activeIndex === index ? "flex" : "flex",
-										flexDirection: activeIndex === index ? "column" : "row",
-									}}
-								>
-									{item.label}
-									<DownOutlined
-										style={{
-											color: "#D90000",
-											transform:
-												activeIndex === index ? "rotate(180deg)" : "none",
-										}}
-									/>
-									{activeIndex === index && (
+					{Object.keys(faqsloandata).map((category, i) => {
+						const {faqs, Title} = faqsloandata[category];
+						return (
+							<div className="discover-questions" key = {i}> 
+							<br/>
+								<h2>{Title}</h2>
+								{faqs.map((item, index) => (
+									<div key={index}>
 										<div
-											className="dropdown-content"
-											style={{ height: "auto", fontWeight: "100px" }}
+											className="dropdown-label"
+											onClick={() => toggleAccordion(index)}
+											style={{
+												backgroundColor:
+													activeIndex === index ? "#ffffff" : "white",
+												display: activeIndex === index ? "flex" : "flex",
+												flexDirection: activeIndex === index ? "column" : "row",
+											}}
 										>
-											{item.answer}
+											{item.question}
+											<DownOutlined
+												style={{
+													color: "rgb(164, 161, 161, 27%)",
+													transform:
+														activeIndex === index ? "rotate(180deg)" : "none",
+												}}
+											/>
+											{activeIndex === index && (
+												<div
+													className="dropdown-content"
+													style={{ height: "auto", fontWeight: "100px" }}
+												>
+													{item.answer}
+												</div>
+											)}
 										</div>
-									)}
-								</div>
+									</div>
+								))}
 							</div>
-						))}
-					</div>
+						);
+					})}
 				</div>
 			</div>
 			<CustomMlFooter />

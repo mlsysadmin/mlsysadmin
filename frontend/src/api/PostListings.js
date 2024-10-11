@@ -116,6 +116,7 @@ const PostSellerListing = async (propertyFields = {}) => {
 	try {
 		const {
 			VendorName,
+			PropertyNo,
 			SellingType,
 			ProjectId,
 			ProjectName,
@@ -150,13 +151,14 @@ const PostSellerListing = async (propertyFields = {}) => {
 			Zipcode,
 			MapLocation,
 			AccessType,
+			VendorId,
 			Approver1Status,
 			Approver2Status,
 			Approver3Status,
 		} = propertyFields;
 
-		const PropertyNo = await GetPropertyNo();
-		const VendorId = await GetVendorId();
+		// const PropertyNo = await GetPropertyNo();
+		// const VendorId = await GetVendorId();
 
 		const reqBody = {
 			PropertyNo,

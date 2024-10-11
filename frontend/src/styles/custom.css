@@ -690,10 +690,17 @@ listing search */
 	.subcontent-inputs-1 .input-field {
 		padding: 0px 0px 0px 10px;
 	}
+	.subcontent-inputs-2 .input-field{
+		padding: 0px 0px 0px 13px;
+	}
+
 	.subcontent-inputs-1 .select-field,
 	.subcontent-inputs-2 .select-field,
 	.subcontent-inputs-2 .select-field-features {
-		padding: 0px 15px 0px 15px;
+		padding: 3px;
+	}
+	.subcontent-inputs-2  .select-field-features {
+		padding: 10px 15px 0px 15px;
 	}
 	.advance-searchdropdown {
 		display: flex;
@@ -724,7 +731,7 @@ listing search */
 		width: 100%;
 		display: flex;
 		flex-direction: row;
-		padding: 15px;
+		padding: 13px;
 		align-items: center;
 		padding-right: 20px;
 	}
