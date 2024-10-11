@@ -108,8 +108,8 @@ const HeaderMenu = () => {
 		setShowModal(!showModal);
 	};
 	const handleJoinTeamClick = () => {
-		// setShowModal(true);
-		navigate("/comingsoon");
+		setShowModal(true);
+		// navigate("/comingsoon");
 	};
 
 	useEffect(() => {
@@ -334,7 +334,7 @@ const HeaderMenu = () => {
 					<WorkingOnItModal isOpen={showModal} onClose={toggleModal} />
 				)} */}
 
-				{/* {showModal && <JoinTeam toggleModal={toggleModal} />} */}
+				{showModal && <JoinTeam toggleModal={toggleModal} />}
 				<Row align={"middle"} className="menu-buttons">
 					{isMLWWSPresent ? (
 						userDetails?.tier.label === "BUYER" ? (
