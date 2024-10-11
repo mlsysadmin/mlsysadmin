@@ -117,7 +117,6 @@ const HeaderMenu = () => {
 
 		// setCurrent(path);
 		console.log("path", location);
-		
 	}, [location]);
 
 	const handleMenuOnClick = (menu) => {
@@ -140,6 +139,24 @@ const HeaderMenu = () => {
 			sethomeLoanPopUpOpen(false);
 			// sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(true);
+		} else if (menu.key === "rent") {
+			setrentPopUpOpen(true);
+			setbuyPopUpOpen(false);
+			sethomeLoanPopUpOpen(false);
+			// sethomeInsurancePopUpOpen(false);
+			setotherServicesPopUpOpen(false);
+		} else if (menu.key === "buy") {
+			setrentPopUpOpen(false);
+			setbuyPopUpOpen(true);
+			sethomeLoanPopUpOpen(false);
+			// sethomeInsurancePopUpOpen(false);
+			setotherServicesPopUpOpen(false);
+		} else if (menu.key === "home-loan") {
+			setrentPopUpOpen(false);
+			setbuyPopUpOpen(false);
+			sethomeLoanPopUpOpen(true);
+			// sethomeInsurancePopUpOpen(false);
+			setotherServicesPopUpOpen(false);
 		} else {
 			navigate({
 				pathname: menu.item.props.link,
@@ -151,7 +168,7 @@ const HeaderMenu = () => {
 			setotherServicesPopUpOpen(false);
 		}
 		console.log("menu", menu);
-		
+
 		setCurrent(menu.key);
 	};
 
@@ -202,7 +219,7 @@ const HeaderMenu = () => {
 			popUpOpen={rentPopUpOpen}
 			label={"Rent"}
 			content={RentMenuPopContent}
-			menuKey={'rent'}
+			menuKey={"rent"}
 		/>
 	);
 	const BuyMenu = () => (
@@ -212,7 +229,7 @@ const HeaderMenu = () => {
 			popUpOpen={buyPopUpOpen}
 			label={"Buy"}
 			content={BuyMenuPopContent}
-			menuKey={'sale'}
+			menuKey={"sale"}
 		/>
 	);
 
@@ -223,7 +240,7 @@ const HeaderMenu = () => {
 			popUpOpen={homeLoanPopUpOpen}
 			label={"Loans"}
 			content={HomeLoanMenuPopContent}
-			menuKey={'home-loan'}
+			menuKey={"home-loan"}
 		/>
 	);
 	// const HomeInsuranceMenu = () => (
@@ -238,7 +255,7 @@ const HeaderMenu = () => {
 	// );
 	const OtherServicesMenu = () => (
 		<MenuPopup
-		menuKey={'other-services'}
+			menuKey={"other-services"}
 			// handleOpenChange={handleBuyOpenChange}
 			title={"Other Services"}
 			popUpOpen={otherServicesPopUpOpen}
@@ -313,22 +330,22 @@ const HeaderMenu = () => {
 				{/* {!isMLWWSPresent&&
 					( */}
 				{!isMLWWSPresent && (
-			<RoundBtn
-				type="primary"
-				className="menu-buttons"
-				style={{
-					color: "#D90000",
-					backgroundColor: "transparent",
-					border: "1px solid #d90000",
-					boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-					padding: "5px 5px",
-					cursor: "pointer",
-					margin:"0px 0px 0px 10px"
-				}}
-				label="Join our Team"
-				onClick={handleJoinTeamClick}
-			/>
-		)}
+					<RoundBtn
+						type="primary"
+						className="menu-buttons"
+						style={{
+							color: "#D90000",
+							backgroundColor: "transparent",
+							border: "1px solid #d90000",
+							boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+							padding: "5px 5px",
+							cursor: "pointer",
+							margin: "0px 0px 0px 10px",
+						}}
+						label="Join our Team"
+						onClick={handleJoinTeamClick}
+					/>
+				)}
 				{/* )} */}
 				{/* {showModal && (
 					<WorkingOnItModal isOpen={showModal} onClose={toggleModal} />
