@@ -49,6 +49,7 @@ import MortgageComponent from "./MortgageComponent";
 import RentComponent from "./RentComponent";
 import SaleComponent from "./SaleComponent";
 import SellComponent from "./SellComponent";
+import FaqsComponent from "./FAQsComponent";
 import CardListingComponent from "./CardListingComponent";
 import AllPropertiesComponent from "./AllPropertiesComponent";
 import { ShowDetailsProcessing } from "./ShowDetailsProcessing";
@@ -167,5 +168,6 @@ export {
 	PropertySearchModal,
 	ViewListingComponent,
 	ApplicationHistory,
-	SaleComponent
+	SaleComponent,
+	FaqsComponent,
 };

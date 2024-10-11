@@ -60,6 +60,7 @@ import {
 	ApprovedApplication,
 	SupportCreateListing,
 	ComingSoonPage,
+	FaqsPage,
 } from "../pages";
 import { ProtectedRoute, BuyerSellerProtectedRoute } from "./ProtectedRoute";
 import { PropertySearchModal, SaleComponent } from "../components";
@@ -133,8 +134,8 @@ const Routes = [
 			},
 			{
 				path: "/listing",
-				element: <BuyerSellerProtectedRoute element={<ListingPage /> }/>
-				// element:<ListingPage/>,
+				// element: <BuyerSellerProtectedRoute element={<ListingPage /> }/>
+				element:<ListingPage/>,
 			},
 			{
 				path:"/comingsoon",
@@ -210,6 +211,10 @@ const Routes = [
 					<BuyerSellerProtectedRoute element={<ApplicationHistoryPage />} />
 					// <ApplicationHistoryPage />
 				),
+			},
+			{
+				path:"/faqs",
+				element:<FaqsPage/>
 			},
 		],
 	},

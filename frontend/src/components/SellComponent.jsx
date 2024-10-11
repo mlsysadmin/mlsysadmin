@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/sell.css";
-import { Row, Col } from "antd";
+import { DownOutlined } from "@ant-design/icons";
 import bannerImg from "../asset/banners/house_car_LE_auto_x2-transformed.jpeg";
 import { Button, Radio } from "antd";
 import { FooterComponent, CustomMlFooter, MainLayout } from "../components";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import WorkingOnItModal from "./ComingSoonComponent";
+import { buyFaqs, sellFaqs } from "../utils/FaqsData";
 
 const SellComponent = () => {
+	const [activeIndex, setActiveIndex] = useState(null);
 	const [value, setValue] = useState(1);
 
 	const onChange = (e) => {
@@ -26,7 +28,13 @@ const SellComponent = () => {
 			window.location.href = url_Redirect;
 		}
 	};
-
+	const toggleFaq = (index) => {
+		if (activeIndex === index) {
+			setActiveIndex(null);
+		} else {
+			setActiveIndex(index);
+		}
+	};
 	const [selectedOption, setSelectedOption] = useState("");
 
 	const handleChange = (event) => {
@@ -41,6 +49,11 @@ const SellComponent = () => {
 		setShowModal(!showModal);
 	};
 
+	const SellBUyFaqs = {
+		sell: { faqs: sellFaqs, title: "Sell" },
+		buy: { faqs: buyFaqs, title: "Rent" },
+	};
+	const combinedFaqs = [...sellFaqs, ...buyFaqs];
 	return (
 		<div className="sell">
 			<div className="sell-container">
@@ -79,7 +92,7 @@ const SellComponent = () => {
 									label={"Sign In"}
 									id="signIn"
 									className={"sell--action-btn"}
-									handleClick={() => handleSignIn}
+									handleClick={handleSignIn}
 								/>
 							</div>
 						</div>
@@ -202,16 +215,51 @@ const SellComponent = () => {
 								home, we{"'"}re here to talk through your options.
 							</p>
 						</div>
-						<SemiRoundBtn
-							label={"Contact Us"}
-							id="contactUs"
-							className={"sell--action-btn"}
-							handleClick={() =>
-								navigate({
-									pathname: "contact-us",
-								})
-							}
-						/>
+						<div className="sell-component-faqs">
+							<div className="sell-component-faqs-content">
+								{Object.keys(SellBUyFaqs).map((category, i) => {
+									const { faqs, title } = SellBUyFaqs[category];
+									return (
+										<div className="sell-component-faqs-questions" key={i} >
+											
+											<h2>{title}</h2>
+											{faqs.map((item, index) => (
+												<div className="sell-buy-faqs"key={index}>
+													<div
+														className="sell-faqs-dropdown"
+														onClick={() => toggleFaq(index)}
+														style={{
+															display: activeIndex === index ? "flex" : "flex",
+															flexDirection:
+																activeIndex === index ? "column" : "row",
+														}}
+													>
+														{item.question}
+														<DownOutlined
+															style={{
+																color: "rgb(164, 161, 161, 27%)",
+																transform:
+																	activeIndex === index
+																		? "rotate(180deg)"
+																		: "none",
+															}}
+														/>
+														{activeIndex === index && (
+															<div
+																className="sell-faqs-dropdown-content"
+																style={{ height: "auto", fontWeight: "100px" }}
+															>
+																{item.answer}
+															</div>
+														)}
+													</div>
+												</div>
+											))}
+										</div>
+									);
+								})}
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

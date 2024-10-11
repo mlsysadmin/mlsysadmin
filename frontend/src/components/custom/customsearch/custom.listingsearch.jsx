@@ -226,7 +226,7 @@ const ListingSearch = ({
 							visible={iscertainFeatureOpen}
 							onVisibleChange={handleCertainFeatureClick}
 						>
-							<div className="select-field">
+							<div className="select-field-features">
 								<span style={{ margin: "5px 0px 0px 0px" }}>Features</span>
 							</div>
 						</Dropdown>

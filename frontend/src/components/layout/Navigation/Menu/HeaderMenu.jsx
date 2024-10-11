@@ -128,16 +128,17 @@ const HeaderMenu = () => {
 		} else if (menu.key === "contact") {
 			navigate("/contact-us");
 		} else if (menu.key === "home-insurance") {
-			setrentPopUpOpen(false);
-			setbuyPopUpOpen(false);
-			sethomeLoanPopUpOpen(false);
-			setotherServicesPopUpOpen(false);
-			sethomeInsurancePopUpOpen(true);
+			// setrentPopUpOpen(false);
+			// setbuyPopUpOpen(false);
+			// sethomeLoanPopUpOpen(false);
+			// setotherServicesPopUpOpen(false);
+			// sethomeInsurancePopUpOpen(true);
+			navigate("/insurance-guide");
 		} else if (menu.key === "other-services") {
 			setrentPopUpOpen(false);
 			setbuyPopUpOpen(false);
 			sethomeLoanPopUpOpen(false);
-			sethomeInsurancePopUpOpen(false);
+			// sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(true);
 		} else {
 			navigate({
@@ -146,7 +147,7 @@ const HeaderMenu = () => {
 			setrentPopUpOpen(false);
 			setbuyPopUpOpen(false);
 			sethomeLoanPopUpOpen(false);
-			sethomeInsurancePopUpOpen(false);
+			// sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(false);
 		}
 		console.log("menu", menu);
@@ -157,7 +158,7 @@ const HeaderMenu = () => {
 	const handleMenuHover = (menuKey) => {
 		setbuyPopUpOpen(false);
 		sethomeLoanPopUpOpen(false);
-		sethomeInsurancePopUpOpen(false);
+		// sethomeInsurancePopUpOpen(false);
 		setotherServicesPopUpOpen(false);
 		setrentPopUpOpen(false);
 
@@ -176,7 +177,7 @@ const HeaderMenu = () => {
 	const handleMouseLeave = () => {
 		setbuyPopUpOpen(false);
 		sethomeLoanPopUpOpen(false);
-		sethomeInsurancePopUpOpen(false);
+		// sethomeInsurancePopUpOpen(false);
 		setotherServicesPopUpOpen(false);
 		setrentPopUpOpen(false);
 	};
@@ -220,21 +221,21 @@ const HeaderMenu = () => {
 			// handleOpenChange={handleBuyOpenChange}
 			title={""}
 			popUpOpen={homeLoanPopUpOpen}
-			label={"Home Loan"}
+			label={"Loans"}
 			content={HomeLoanMenuPopContent}
 			menuKey={'home-loan'}
 		/>
 	);
-	const HomeInsuranceMenu = () => (
-		<MenuPopup
-			// handleOpenChange={handleBuyOpenChange}
-			title={""}
-			popUpOpen={homeInsurancePopUpOpen}
-			label={"Home Insurance"}
-			content={HomeInsuranceMenuPopContent}
-			menuKey={'home-insurance'}
-		/>
-	);
+	// const HomeInsuranceMenu = () => (
+	// 	<MenuPopup
+	// 		// handleOpenChange={handleBuyOpenChange}
+	// 		title={""}
+	// 		popUpOpen={homeInsurancePopUpOpen}
+	// 		label={"Home Insurance"}
+	// 		content={HomeInsuranceMenuPopContent}
+	// 		menuKey={'home-insurance'}
+	// 	/>
+	// );
 	const OtherServicesMenu = () => (
 		<MenuPopup
 		menuKey={'other-services'}
@@ -247,15 +248,16 @@ const HeaderMenu = () => {
 	);
 
 	const MenuItems = [
-		{ label: "Sell", key: "sell", link: "/sell" },
 		{ label: "New", key: "new", link: "/new" },
-		{ label: <RentMenu />, key: "rent" },
+		{ label: "Sell", key: "sell", link: "/sell" },
 		{ label: <BuyMenu />, key: "buy" },
+		{ label: <RentMenu />, key: "rent" },
 		{ label: <HomeLoanMenu />, key: "home-loan" },
 		{
-			label: <HomeInsuranceMenu />,
+			// label: <HomeInsuranceMenu />,
+			label: "Home Insurance",
 			key: "home-insurance",
-			link: "/home-insurance",
+			link: "/insurance-guide",
 		},
 		{
 			label: <OtherServicesMenu />,

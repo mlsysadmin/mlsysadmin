@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/ViewListing.module.css";
 import redcamera from "../assets/icons/previewlisting/redcamera.png";
+import { Tooltip } from "antd";
 import viewlist from "../assets/images/viewlist.png";
 import CustomTag from "./custom/tags/Tags.custom";
 import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
@@ -21,23 +22,28 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [checked, setIsChecked] = useState(false);
   const [likes, setLikes] = useState([]);
+  const [showTooltip, setShowTooltip] = useState(false);
 
  const isSmallScreen = window.innerWidth <= 768; 
 
   const images = unitPhotos;
   
   const handleChange = (isChecked, tag) => {
+		const id = tag._owner.memoizedProps.listingId;
 
-    const id = tag._owner.memoizedProps.listingId;
+		const nextSelectedTags =
+			isChecked && !likes.includes(id)
+				? [...likes, id]
+				: likes.filter((t) => t !== id);
 
-    const nextSelectedTags =
-      isChecked && !likes.includes(id)
-        ? [...likes, id]
-        : likes.filter((t) => t !== id);
+		setLikes(nextSelectedTags);
+		setIsChecked(isChecked);
 
-    setLikes(nextSelectedTags);
-    setIsChecked(isChecked);
-  };
+		if (isChecked) {
+			setShowTooltip(true);
+			setTimeout(() => setShowTooltip(false), 800);
+		}
+	};
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
@@ -103,6 +109,11 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
           </div>
         </div>
         <div className={styles.actionContainer}>
+           <Tooltip
+           color="var(--red)"
+            title="Added to favorites" 
+            visible={showTooltip} 
+          ></Tooltip>
           <button className={styles.saveButton}>
             <CustomTag
               tagLabel={checked ? <HeartFilled /> : <HeartOutlined />}
@@ -113,7 +124,7 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
                 backgroundColor: checked ? "transparent" : "",
                 padding:"0px 0px 0px 5px",
               }}
-              className="circle-tags heart"
+              className="circle-tags-heart"
               checkable={true}
               checked={checked}
               handleChange={handleChange}

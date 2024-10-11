@@ -71,7 +71,7 @@ const SubMenu = {
 		},
 		{
 			header: "Resources",
-			submenu: [{ sub: "Buyers Guide", link: "/buyer-guide" }],
+			submenu: [{ sub: "Buyers Guide", link: "/faqs#buyref" }],
 		},
 	],
 	homeLoan: [
@@ -107,175 +107,103 @@ const SubMenu = {
 			],
 		},
 		{
-			header: "Home Loan Guide",
+			header: "Mortgage Loan",
 			submenu: [
 				{ sub: "Discover Home Loan", link: "/discover-home" },
 				{ sub: "Loan Calculator", link: "/loan-calculator" },
 			],
 		},
 		{
-			header: "Explore more options",
+			header: "Get Pre-Approved",
 			submenu: [
-				{ sub: "Refinance your home", link: "/refinance" },
-				{ sub: "Learn more about mortgage process", link: "/" },
-				{ sub: "Car Loan", link: "https://mlhuillier.com/car-loan" },
-				{
-					sub: "Quick Cash Loan",
-					link: "https://mlhuillier.com/quick-cash-loans",
-				},
-				{ sub: "Pensioner's Loan", link: "/" },
+				// { sub: "Mortgage", link: "/mortgage" },
+
+				{ sub: "Refinance your home", link: "/mortgage" },
+				{ sub: "Buy A Home", link: "/comingsoon" },
 			],
 		},
 	],
-	homeInsurance: [
+	// homeInsurance: [
+	// 	{
+	// 		header: (
+	// 			<>
+	// 				<HomeOutlined style={{ fontSize: "18px", color: "black" }} />
+	// 				<span style={{ padding: "0 5px", color: "black", fontSize: "15px" }}>
+	// 					Apply for a home insurance?
+	// 				</span>
+	// 			</>
+	// 		),
+	// 		submenu: [
+	// 			{
+	// 				sub_info_insurance: (
+	// 					<div className="sub-info">
+	// 						<span>
+	// 							Get insured today! Safeguard <br /> your home and property from{" "}
+	// 							<br /> a wide range of risks & threats. <br /> You may visit our
+	// 						</span>
+	// 						<p>
+	// 							<a
+	// 								href="https://webinsurance.mlhuillier.com/"
+	// 								className="redirect"
+	// 							>
+	// 								Home Insurance Dashboard <RightOutlined />
+	// 							</a>
+	// 						</p>
+	// 					</div>
+	// 				),
+	// 				link: "https://webinsurance.mlhuillier.com/",
+	// 			},
+	// 		],
+	// 	},
+	// 	{
+	// 		header: "Home Insurance Guide",
+	// 		submenu: [{ sub: "Insurance Guide", link: "/insurance-guide" }],
+	// 	},
+	// 	{
+	// 		header: "Other  ML Insurance Products ",
+	// 		submenu: [
+	// 			{
+	// 				sub: "Personal Accident Insurance",
+	// 				link: "https://webinsurance.mlhuillier.com/personal-accident-insurance",
+	// 			},
+	// 			{ sub: "Auto Insurance", link: "/mortgage-process" },
+	// 			{
+	// 				sub: "Dengue RX Insurance",
+	// 				link: "https://webinsurance.mlhuillier.com/medical-reimbursement",
+	// 			},
+	// 			{ sub: "Medicare Plus Insurance", link: "/quick-cash-loan" },
+	// 			{ sub: "Global Travel Protect Insurance", link: "/pension-loan" },
+	// 			{ sub: "OFW Balik Manggagawa Insurance", link: "/pension-loan" },
+	// 		],
+	// 	},
+	// ],
+	otherServices: [
 		{
-			header: (
-				<>
-					<HomeOutlined style={{ fontSize: "18px", color: "black" }} />
-					<span style={{ padding: "0 5px", color: "black", fontSize: "15px" }}>
-						Apply for a home insurance?
-					</span>
-				</>
-			),
+			header: "",
 			submenu: [
 				{
 					sub_info_insurance: (
-						<div className="sub-info">
+						<>
 							<span>
-								Get insured today! Safeguard <br /> your home and property from{" "}
-								<br /> a wide range of risks & threats. <br /> You may visit our
-							</span>
-							<p>
 								<a
-									href="https://webinsurance.mlhuillier.com/"
-									className="redirect"
+									// href="/?openModal=true"
+									href="/comingsoon"
+									style={{
+										color: "var(--red)",
+										textDecoration: "none",
+										fontSize: "14px",
+									}}
 								>
-									Home Insurance Dashboard <RightOutlined />
+									Begin Your Property Search Today with Our Help!
 								</a>
-							</p>
-						</div>
+							</span>
+						</>
 					),
-					link: "https://webinsurance.mlhuillier.com/",
+					link: "",
 				},
-			],
-		},
-		{
-			header: "Home Insurance Guide",
-			submenu: [{ sub: "Insurance Guide", link: "/insurance-guide" }],
-		},
-		{
-			header: "Other  ML Insurance Products ",
-			submenu: [
-				{
-					sub: "Personal Accident Insurance",
-					link: "https://webinsurance.mlhuillier.com/personal-accident-insurance",
-				},
-				{ sub: "Auto Insurance", link: "/mortgage-process" },
-				{
-					sub: "Dengue RX Insurance",
-					link: "https://webinsurance.mlhuillier.com/medical-reimbursement",
-				},
-				{ sub: "Medicare Plus Insurance", link: "/quick-cash-loan" },
-				{ sub: "Global Travel Protect Insurance", link: "/pension-loan" },
-				{ sub: "OFW Balik Manggagawa Insurance", link: "/pension-loan" },
 			],
 		},
 	],
-	otherServices: [
-        {
-            header: (
-                <>
-                    <span>
-                        <a
-                            style={{
-                                color: "var(--red)",
-                                fontSize: "13px",
-                                textDecoration: "underline",
-                            }}
-                            href="/?openModal=true"
-                        >
-                            Begin Your Property Search Today with Our Help!
-                        </a>
-                    </span>
-                    <br />
-                    <br />
-                    <span>
-                        <a
-                            style={{
-                                color: "#000000",
-                                fontSize: "13px",
-                                fontWeight: "bold",
-                                margin: "0px 0px 0px 0px",
-                            }}
-                        >
-                            Learn more about our Products and Services
-                        </a>
-                    </span>
-                </>
-            ),
-
-            submenu: [
-                {
-                    sub: "Quick Cash Loans",
-                    link: "https://mlhuillier.com/quick-cash-loans/",
-                },
-                { sub: "Car Loan", link: "https://mlhuillier.com/car-loan/" },
-                { sub: "Home Loan", link: "https://mlhuillier.com/home-loan/" },
-                { sub: "Kwarta Padala", link: "https://mlhuillier.com/kwarta-padala/" },
-            ],
-        },
-        {
-            header: (
-                <>
-                    <div className="otherServices-col-2" style={{ marginTop: "70px" }}>
-                        {""}
-                    </div>
-                </>
-            ),
-
-            submenu: [
-                { sub: "ML Wallet ", link: "https://mlhuillier.com/ml-wallet/" },
-                {
-                    sub: "ML Payroll Pro",
-                    link: "https://mlhuillier.com/ml-payroll-pro/",
-                },
-                { sub: "ML Express", link: "https://mlhuillier.com/ml-express/" },
-                { sub: "Money Changer", link: "https://mlhuillier.com/money-changer/" },
-            ],
-        },
-        {
-            header: (
-                <>
-                    <div className="otherServices-col-2" style={{ marginTop: "70px" }}>
-                        {""}
-                    </div>
-                </>
-            ),
-            submenu: [
-                { sub: "Jewelry ", link: "https://mlhuillier.com/jewelry/" },
-                { sub: "Insurance", link: "https://mlhuillier.com/insurance/" },
-                { sub: "ML Moves", link: "https://mlhuillier.com/ml-moves/" },
-                {
-                    sub: "Telco, Gaming & TV Loading",
-                    link: "https://mlhuillier.com/telco-gaming-and-tv-loading/",
-                },
-            ],
-        },
-        {
-            header: (
-                <>
-                    <div className="otherServices-col-2" style={{ marginTop: "85px" }}>
-                        Online Services
-                    </div>
-                </>
-            ),
-            submenu: [
-                { sub: "Shop Online", link: "https://shop.mlhuillier.com/" },
-                { sub: "Buy Eload", link: "https://mlweb.mlhuillier.com/eload" },
-                { sub: "Pay Bills", link: "https://mlweb.mlhuillier.com/bills-pay" },
-            ],
-        },
-    ],
 };
 
 export { SubMenu };
