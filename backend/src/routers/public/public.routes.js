@@ -5,7 +5,7 @@ const PUBLIC_ROUTER = express.Router();
 
 const { GetProvince, GetCities, GetCountries } = require("../../controllers/public/location.controller");
 const { GetAllMasterListings, GetMasterListingDetails } = require("../../controllers/public/listing.contoller");
-const { SendInquiry, SendMessage } = require("../../controllers/email/ContactEmail.controller");
+const { SendInquiry, SendMessage } = require("../../controllers/email/contactEmail.controller");
 
 PUBLIC_ROUTER.get('/get/provinces', GetProvince);
 PUBLIC_ROUTER.get('/get/cities', GetCities);
