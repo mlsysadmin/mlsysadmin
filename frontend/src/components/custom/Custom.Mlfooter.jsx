@@ -85,7 +85,7 @@ const CustomMlFooter = () => {
 							<div className="col-cont">
 								<div>
 									<a
-										href=""
+										href="/faqs"
 										style={{ textDecoration: "none", color: "#4F4F4F" }}
 									>
 										FAQs
