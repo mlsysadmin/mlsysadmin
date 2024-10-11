@@ -12,7 +12,11 @@ import {
   Dropdown,
   Skeleton,
 } from "antd";
-import { CaretDownOutlined, DotChartOutlined, SearchOutlined } from "@ant-design/icons";
+import {
+  CaretDownOutlined,
+  DotChartOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "../styles/dashboard.css";
@@ -28,7 +32,11 @@ import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import PropertySearchModal from "./modals/PropertySearchModal";
 
 import { MockData } from "../utils/ListingMockData";
-import { CardCategory, ListingTypes, PropertyTypes } from "../utils/PropertyStaticData.utils";
+import {
+  CardCategory,
+  ListingTypes,
+  PropertyTypes,
+} from "../utils/PropertyStaticData.utils";
 import FuenteCircle from "../asset/banners/fuente-circle.png";
 import AdvanceSearch from "../asset/icons/advanceSearch.png";
 import Search from "../asset/icons/Search.png";
@@ -37,15 +45,22 @@ import FooterComponent from "./layout/FooterComponent";
 
 import CustomAdvanceSearch from "./custom/customsearch/custom.advancesearch";
 import CertainFeatureMenu from "./custom/customsearch/certainfeature";
-import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
+import {
+  GetPropertiesBySaleStatus,
+  GetUnitPhotos,
+} from "../api/GetAllPublicListings";
 import { GetPhotoLength, GetPhotoWithUrl } from "../utils/GetPhoto";
 import { Link, useLocation } from "react-router-dom";
 import { Select } from "antd";
 import { GetProvince } from "../api/Public/Location.api";
 
-import DefaultPropertyImage from '../asset/fallbackImage.png';
+import DefaultPropertyImage from "../asset/fallbackImage.png";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
-import { CapitalizeString, GetPropertyTitle, isPastAMonth } from "../utils/StringFunctions.utils";
+import {
+  CapitalizeString,
+  GetPropertyTitle,
+  isPastAMonth,
+} from "../utils/StringFunctions.utils";
 import { CardSkeleton, FeaturesSkeleton } from "./Skeleton";
 
 const { Option } = Select;
@@ -64,16 +79,22 @@ const DashboardComponent = () => {
       img: DefaultPropertyImage,
       no_of_bathrooms: 0,
       lot: 0,
-      property_no: '',
-      isFeatured: '',
-      sale_type: '',
-      no_of_beds: '',
-      city: '',
-      property_type: ''
-    }
+      property_no: "",
+      isFeatured: "",
+      sale_type: "",
+      no_of_beds: "",
+      city: "",
+      property_type: "",
+    },
   ]);
 
   const [isAdvanceSearchOpen, setAdvanceSearchOpen] = useState(false);
+  const [checkFeatures, setCheckFeatures] = useState([]);
+
+  useEffect(() => {
+    SetParamsAllField("features", checkFeatures);
+  }, [checkFeatures]);
+
   const [iscertainFeatureOpen, setcertainFeatureOpen] = useState(false);
   const [filterLocation, setFilterLocation] = useState([]);
 
@@ -83,7 +104,7 @@ const DashboardComponent = () => {
 
   const navigate = useNavigate();
   const handleCardClick = (id) => {
-    // window.location.href = `/previewListing/${id}`;
+    // window.location.hasdref = `/previewListing/${id}`;
     navigate(`/previewListing/?id=${id}`, { state: id });
   };
 
@@ -94,57 +115,58 @@ const DashboardComponent = () => {
       const dataresp = res.data;
 
       if (dataresp.length == 0) {
-        setPublicListing([])
+        setPublicListing([]);
       } else {
-
-        const listingRes = dataresp.filter((listing) => !isPastAMonth(listing.created_at));
+        const listingRes = dataresp.filter(
+          (listing) => !isPastAMonth(listing.created_at)
+        );
 
         let listings = [];
 
         if (listingRes.length !== 0) {
           listings = listingRes.slice(0, 3);
         } else {
-          listings = dataresp.slice(0, 3)
+          listings = dataresp.slice(0, 3);
         }
 
-        const newListing = await Promise.all(listings.map(async (item, i) => {
+        const newListing = await Promise.all(
+          listings.map(async (item, i) => {
+            const getPhotoGallery = await GetUnitPhotos(item.id);
 
-          const getPhotoGallery = await GetUnitPhotos(item.id);
+            const gallery = getPhotoGallery.data;
 
-          const gallery = getPhotoGallery.data;
+            const image = GetPhotoWithUrl(item.Photo);
+            console.log("dsfd", item);
 
-          const image = GetPhotoWithUrl(item.Photo);
-          console.log("dsfd", item);
-
-          return {
-            id: item.id,
-            title: CapitalizeString(item.UnitName),
-            price: AmountFormatterGroup(item.Price),
-            status: "New",
-            pics: image ? gallery.length + 1 : 0,
-            img: image,
-            no_of_bathrooms: item.BathRooms,
-            lot: item.LotArea,
-            property_no: item.PropertyNo,
-            isFeatured: "yes",
-            sale_type: CapitalizeString(item.SaleType),
-            no_of_beds: item.BedRooms,
-            // isFeatured: item.IsFeatured
-            property_type: item.PropertyType,
-            city: item.City
-          }
-        }))
+            return {
+              id: item.id,
+              title: CapitalizeString(item.UnitName),
+              price: AmountFormatterGroup(item.Price),
+              status: "New",
+              pics: image ? gallery.length + 1 : 0,
+              img: image,
+              no_of_bathrooms: item.BathRooms,
+              lot: item.LotArea,
+              property_no: item.PropertyNo,
+              isFeatured: "yes",
+              sale_type: CapitalizeString(item.SaleType),
+              no_of_beds: item.BedRooms,
+              // isFeatured: item.IsFeatured
+              property_type: item.PropertyType,
+              city: item.City,
+            };
+          })
+        );
         FillLocationFilter(dataresp);
         setPublicListing(newListing);
-        setLoading(false)
+        setLoading(false);
       }
-
     } catch (error) {
       console.error("ERROROR", error);
       setPublicListing([]);
       setLoading(false);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     propertiesBySaleStatus();
@@ -154,22 +176,26 @@ const DashboardComponent = () => {
 
   const FillLocationFilter = (listings) => {
     try {
-      const distinctCity = listings.filter((value, index, self) =>
-        index === self.findIndex((t) => t.City === value.City)).map((item, i) => {
+      const distinctCity = listings
+        .filter(
+          (value, index, self) =>
+            index === self.findIndex((t) => t.City === value.City)
+        )
+        .map((item, i) => {
           return {
-            label: item.City.toLowerCase().includes("city") ? CapitalizeString(item.City.toLowerCase()) : `${CapitalizeString(item.City.toLowerCase())} City`,
-            value: item.City.toLocaleLowerCase()
-          }
-        }).sort((a, b) => a.value.localeCompare(b.value))
-      console.log("distinctCity", distinctCity)
-
+            label: item.City.toLowerCase().includes("city")
+              ? CapitalizeString(item.City.toLowerCase())
+              : `${CapitalizeString(item.City.toLowerCase())} City`,
+            value: item.City.toLocaleLowerCase(),
+          };
+        })
+        .sort((a, b) => a.value.localeCompare(b.value));
       setFilterLocation(distinctCity);
-
     } catch (error) {
       console.log("location", error);
       return;
     }
-  }
+  };
 
   const url_Redirect = process.env.REACT_APP_LOGIN_URL;
   const handleUserProfileClick = () => {
@@ -236,14 +262,12 @@ const DashboardComponent = () => {
               </div> */}
               <div className="overlay-title">{item.category}</div>
               <div className="overlay-description">
-                <p>
-                  {item.decription}
-                </p>
+                <p>{item.decription}</p>
               </div>
               <SemiRoundBtn
                 label={item.buttonTitle}
-                size={'middle'}
-                className={'button-card-class'}
+                size={"middle"}
+                className={"button-card-class"}
                 handleClick={() => navigate(item.link)}
               />
             </div>
@@ -285,79 +309,153 @@ const DashboardComponent = () => {
       width: screen_width,
       height: screen_height,
     });
-  }, [setScreenSize])
+  }, [setScreenSize]);
 
   useEffect(() => {
     window.addEventListener("resize", handleShowFeatures);
 
     // return () => window.addEventListener("resize", handleShowNav);
-  }, [])
+  }, []);
 
   const FeatureSkeleton = () => {
     let arrLength = 0;
     if (screenSize.width <= 600) {
       arrLength = 1;
     } else {
-      arrLength = 3
+      arrLength = 3;
     }
 
-    return Array(arrLength).fill(null).map((_, i) => {
-      return (
-        <FeaturesSkeleton />
-      )
-    })
-  }
+    return Array(arrLength)
+      .fill(null)
+      .map((_, i) => {
+        return <FeaturesSkeleton />;
+      });
+  };
 
   const [searchParams, setSearchParams] = useState([]);
   const [keywordSearch, setKeywordSearch] = useState();
 
   const handleSearchClick = () => {
-    console.log('sea', keywordSearch)
+    console.log("sea", keywordSearch);
     console.log("search", searchParams);
     let params = "";
-    
-    // searchParams.forEach((item, key) => {
 
-    //   if (key == 0) {
-    //     params += `${item.name}=${item.value}`
-    //   }else{
-    //     params += `&${item.name}=${item.value}`
-    //   }
-    // })
-    
-    // navigate(`/all/?search=true&${params}`);
-    navigate('/all')
+    searchParams.forEach((item, key) => {
+      console.log("item: ", item);
 
-  }
+      if (key == 0) {
+        if (item.name === "features") {
+          const indoorFeatures = item.value.filter(
+            (feature) => feature.name === "indoor"
+          );
+          const outdoorFeatures = item.value.filter(
+            (feature) => feature.name === "outdoor"
+          );
+
+          if (indoorFeatures.length > 0) {
+            const indoorValues = indoorFeatures
+              .map((feature) => feature.value)
+              .join(",");
+            params += `&indoor=${indoorValues}`;
+          }
+
+          if (outdoorFeatures.length > 0) {
+            const outdoorValues = outdoorFeatures
+              .map((feature) => feature.value)
+              .join(",");
+            if (params.length > 0) {
+              params += `&outdoor=${outdoorValues}`;
+            } else {
+              params += `&outdoor=${outdoorValues}`;
+            }
+          }
+        } else {
+          params += `${item.name}=${item.value}`;
+        }
+      } else {
+        if (item.name === "features") {
+          const indoorFeatures = item.value.filter(
+            (feature) => feature.name === "indoor"
+          );
+          const outdoorFeatures = item.value.filter(
+            (feature) => feature.name === "outdoor"
+          );
+
+          if (indoorFeatures.length > 0) {
+            const indoorValues = indoorFeatures
+              .map((feature) => feature.value)
+              .join(",");
+            params += `&indoor=${indoorValues}`;
+          }
+
+          if (outdoorFeatures.length > 0) {
+            const outdoorValues = outdoorFeatures
+              .map((feature) => feature.value)
+              .join(",");
+            if (params.length > 0) {
+              params += `&outdoor=${outdoorValues}`;
+            } else {
+              params += `&outdoor=${outdoorValues}`;
+            }
+          }
+        } else {
+          params += `&${item.name}=${item.value}`;
+        }
+      }
+    });
+    console.log("params: ", params);
+
+    navigate(`/all/?search=true&${params}`);
+    // navigate('/all')
+  };
 
   const onSelectionChange = (value, name) => {
     console.log(`Selected ${name}: ${value}`);
-    SetParamsAllField(name, value)
-  }
+    SetParamsAllField(name, value);
+  };
 
   const SetParamsAllField = (name, value) => {
     setSearchParams((prevSearchParams) => {
-      const existingParamIndex = prevSearchParams.findIndex((param) => param.name === name);
+      const existingParamIndex = prevSearchParams.findIndex(
+        (param) => param.name === name
+      );
       if (existingParamIndex !== -1) {
-        prevSearchParams[existingParamIndex].value = value;
+        if (
+          (name === "keyword" && keywordSearch === "") ||
+          (name === "features" && checkFeatures.length === 0)
+        ) {
+          prevSearchParams.splice(existingParamIndex, 1);
+        } else {
+          prevSearchParams[existingParamIndex].value = value;
+        }
       } else {
-        prevSearchParams.push({ name, value });
+        if (
+          (name === "keyword" && keywordSearch === "") ||
+          (name === "features" && checkFeatures.length === 0)
+        ) {
+          prevSearchParams.splice(existingParamIndex, 1);
+        } else {
+          prevSearchParams.push({ name, value });
+        }
       }
+      console.log("prevSearchParams: ", prevSearchParams);
       return [...prevSearchParams];
     });
-  }
+  };
 
   const onInputChange = (e) => {
     setKeywordSearch(e.target.value);
-  }
+  };
 
   const onInputBlur = () => {
-    SetParamsAllField('keyword', keywordSearch)
-  }
-
+    SetParamsAllField("keyword", keywordSearch);
+  };
 
   return (
-    <div className="dashboard" style={{ display: 'flex', flexDirection: 'column' }}>
+    <div
+      className="dashboard"
+      style={{ display: "flex", flexDirection: "column" }}
+    >
       <div id="dashboard">
         <div className="banner">
           <div className="banner-content">
@@ -376,7 +474,7 @@ const DashboardComponent = () => {
                       size="middle"
                       classname="card-item field"
                       value={keywordSearch}
-                      onInputChange={(e) => onInputChange(e, 'keyword')}
+                      onInputChange={(e) => onInputChange(e, "keyword")}
                       onInputBlur={onInputBlur}
                     />
                   </Col>
@@ -387,10 +485,11 @@ const DashboardComponent = () => {
                       size="middle"
                       classname="card-item field"
                       suffixIcon={<CaretDownOutlined />}
-                      value={searchParams['location']}
-                      onSelectionChange={(e) => onSelectionChange(e, 'location')}
+                      value={searchParams["location"]}
+                      onSelectionChange={(e) =>
+                        onSelectionChange(e, "location")
+                      }
                     >
-
                       {/* {getProvince.map((province, index) => (
                         <Select.Option key={index} value={province.name}>
                           {province.name}
@@ -400,8 +499,10 @@ const DashboardComponent = () => {
                   </Col>
                   <Col span={4} className="col-field">
                     <RoundSelect
-                      value={searchParams['property_type']}
-                      onSelectionChange={(e) => onSelectionChange(e, 'property_type')}
+                      value={searchParams["property_type"]}
+                      onSelectionChange={(e) =>
+                        onSelectionChange(e, "property_type")
+                      }
                       options={PropertyTypes}
                       placeholder="Property Type"
                       size="middle"
@@ -416,14 +517,20 @@ const DashboardComponent = () => {
                       size="middle"
                       classname="card-item field"
                       suffixIcon={<CaretDownOutlined />}
-                      value={searchParams['listing_type']}
-                      onSelectionChange={(e) => onSelectionChange(e, 'listing_type')}
+                      value={searchParams["listing_type"]}
+                      onSelectionChange={(e) =>
+                        onSelectionChange(e, "listing_type")
+                      }
                     />
                   </Col>
                   <Col span={4} className="col-field">
                     <Dropdown
                       classname="card-item field"
-                      overlay={<CertainFeatureMenu />}
+                      overlay={
+                        <CertainFeatureMenu
+                          setCheckFeatures={setCheckFeatures}
+                        />
+                      }
                       trigger={["click"]}
                       visible={iscertainFeatureOpen}
                       onVisibleChange={handleCertainFeatureClick}
@@ -484,67 +591,66 @@ const DashboardComponent = () => {
             </div>
           </div>
         </Row>
-        {
-          !loading ? publiclisting.length > 0 && (
+        {!loading ? (
+          publiclisting.length > 0 && (
             <div className="listing-carousel-dashboard">
-              {
-                publiclisting.map((item, i) => {
-
-                  return (
-                    <CardListingComponent
-                      title={item.title}
-                      price={`PHP ${item.price}`}
-                      status={item.status}
-                      pics={item.pics}
-                      img={item.img}
-                      no_of_bathrooms={item.no_of_bathrooms}
-                      lot={item.lot}
-                      key={i}
-                      loading={loading}
-                      subtitle={`${CapitalizeString(
-                        item.property_type
-                      )} For ${CapitalizeString(item.sale_type)}`}
-                      handleClick={() => handleCardClick(item.property_no)}
-                    />
-                  );
-                })
-              }
+              {publiclisting.map((item, i) => {
+                return (
+                  <CardListingComponent
+                    title={item.title}
+                    price={`PHP ${item.price}`}
+                    status={item.status}
+                    pics={item.pics}
+                    img={item.img}
+                    no_of_bathrooms={item.no_of_bathrooms}
+                    lot={item.lot}
+                    key={i}
+                    loading={loading}
+                    subtitle={`${CapitalizeString(
+                      item.property_type
+                    )} For ${CapitalizeString(item.sale_type)}`}
+                    handleClick={() => handleCardClick(item.property_no)}
+                  />
+                );
+              })}
               <div
                 style={{
-                  display: 'none',
-                  justifyContent: 'center',
+                  display: "none",
+                  justifyContent: "center",
                 }}
-                className="carousel--see-all-btn">
+                className="carousel--see-all-btn"
+              >
                 <SemiRoundBtn
-                  label={'See all new properties'}
+                  label={"See all new properties"}
                   style={{
-                    borderColor: '#D90000',
-                    color: '#D90000',
-                    height: '38px',
-                    fontWeight: '600'
+                    borderColor: "#D90000",
+                    color: "#D90000",
+                    height: "38px",
+                    fontWeight: "600",
                   }}
-                  handleClick={() => navigate({
-                    pathname: '/new',
-                  })}
+                  handleClick={() =>
+                    navigate({
+                      pathname: "/new",
+                    })
+                  }
                 />
               </div>
             </div>
-          ) : (
-            <div className="listing-carousel-dashboard"
-              style={{
-                display: 'flex',
-              }}>
-              {
-                Array(3).fill(null).map((_, i) => {
-                  return (
-                    <CardSkeleton />
-                  )
-                })
-              }
-            </div>
           )
-
-        }
+        ) : (
+          <div
+            className="listing-carousel-dashboard"
+            style={{
+              display: "flex",
+            }}
+          >
+            {Array(3)
+              .fill(null)
+              .map((_, i) => {
+                return <CardSkeleton />;
+              })}
+          </div>
+        )}
         <div className="discover--section-2">
           <h3>Helping you buy, rent and sell in Real Estate</h3>
           <Row className="card--brokerage-category">
@@ -553,11 +659,13 @@ const DashboardComponent = () => {
           <br />
           <br />
           <br />
-
         </div>
-        <div className="section--3" style={{
-          backgroundColor: '#F7F7F7'
-        }}>
+        <div
+          className="section--3"
+          style={{
+            backgroundColor: "#F7F7F7",
+          }}
+        >
           <div className="discover--section-3">
             <div className="card--brokerage-inquire">
               {/* <div className="inquire-image">
@@ -591,44 +699,56 @@ const DashboardComponent = () => {
             </div>
           </div>
         </div>
-        <div className="featured-list--section" style={{
-          backgroundColor: '#F7F7F7'
-        }}>
+        <div
+          className="featured-list--section"
+          style={{
+            backgroundColor: "#F7F7F7",
+          }}
+        >
           <Row className="discover-content featured">
             <div className="discover-section--title featured--title">
               <h2>Featured Properties</h2>
             </div>
           </Row>
         </div>
-        <div className="discover--section-4" style={{
-          backgroundColor: '#F7F7F7'
-        }}>
+        <div
+          className="discover--section-4"
+          style={{
+            backgroundColor: "#F7F7F7",
+          }}
+        >
           {/* <div className="card--brokerage-featured"> */}
           {/* <div className="featured-container"> */}
           <div className="featured--content">
-            {
-              !loading ? publiclisting.length !== 0 ? (
+            {!loading ? (
+              publiclisting.length !== 0 ? (
                 <FeaturedPropertiesComponent featuredListing={publiclisting} />
-              ) : <p style={{ textAlign: 'center', padding: '90px 0px 150px' }}>No Featured Properties Available</p>
-                :
-                <div id="featured-properties"
-                  style={{
-                    display: 'flex',
-                    flexWrap: 'wrap'
-                  }}>
-                  {
-                    FeatureSkeleton()
-                  }
-                </div>
-
-            }
+              ) : (
+                <p style={{ textAlign: "center", padding: "90px 0px 150px" }}>
+                  No Featured Properties Available
+                </p>
+              )
+            ) : (
+              <div
+                id="featured-properties"
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                }}
+              >
+                {FeatureSkeleton()}
+              </div>
+            )}
           </div>
           {/* </div> */}
           {/* </div> */}
         </div>
-        <div className="ratings" style={{
-          textAlign: 'center'
-        }}>
+        <div
+          className="ratings"
+          style={{
+            textAlign: "center",
+          }}
+        >
           <div className="rating-container">
             <div className="rating--title">
               <h3>What Our Clients are Saying?</h3>

@@ -80,8 +80,6 @@ const ListingSearch = ({
 			}
 		})
 
-		console.log("newArr", newArr);
-
 		return newArr;
 	}
 
