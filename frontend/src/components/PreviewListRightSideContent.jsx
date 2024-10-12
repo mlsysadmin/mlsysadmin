@@ -136,19 +136,10 @@ const PreviewListRightSideContent = ({ oneListing }) => {
   };
   const handleContactClick = async () => {
     try {
-      console.log("I AM WORKING!");
-
       const values = Object.values(contact);
-      console.log("values: ", values);
-
       const keys = Object.keys(contact);
-      console.log("keys: ", keys);
-
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      console.log("emailRegex: ", emailRegex);
       if (values.includes("")) {
-        console.log("Why I am EMTPY?");
-        console.log('values.includes(""): ', values.includes(""));
         openNotificationWithIcon(
           "warning",
           `Required Field`,
@@ -165,15 +156,10 @@ const PreviewListRightSideContent = ({ oneListing }) => {
         );
       } else {
         setLoading(true);
-
         const sendEmailMessage = await SendEmailInquiry(contact);
-
-        console.log("response", sendEmailMessage);
-
         if (Object.keys(sendEmailMessage).length == 0) {
           throw new Error("error while sending a message");
         }
-
         openNotificationWithIcon(
           "success",
           `Message Sent`,

@@ -102,7 +102,7 @@ const HeaderMenu = () => {
 		// }?redirect_url=${encodeURIComponent(redirectUrl)}`;
 	};
 	//modals
-	const [showModal, setShowModal] = useState(false);
+	const [showModal, setShowModal] = useState(true);
 
 	const toggleModal = () => {
 		setShowModal(!showModal);
