@@ -92,6 +92,7 @@ const DashboardComponent = () => {
   const [checkFeatures, setCheckFeatures] = useState([]);
 
   useEffect(() => {
+    console.log("checkFeatures", checkFeatures);
     SetParamsAllField("features", checkFeatures);
   }, [checkFeatures]);
 
@@ -171,8 +172,6 @@ const DashboardComponent = () => {
   useEffect(() => {
     propertiesBySaleStatus();
   }, []);
-
-  const [getProvince, setGetProvince] = useState([]);
 
   const FillLocationFilter = (listings) => {
     try {
@@ -336,12 +335,9 @@ const DashboardComponent = () => {
   const [keywordSearch, setKeywordSearch] = useState();
 
   const handleSearchClick = () => {
-    console.log("sea", keywordSearch);
-    console.log("search", searchParams);
     let params = "";
 
     searchParams.forEach((item, key) => {
-      console.log("item: ", item);
 
       if (key == 0) {
         if (item.name === "features") {
@@ -410,7 +406,6 @@ const DashboardComponent = () => {
   };
 
   const onSelectionChange = (value, name) => {
-    console.log(`Selected ${name}: ${value}`);
     SetParamsAllField(name, value);
   };
 
@@ -421,7 +416,7 @@ const DashboardComponent = () => {
       );
       if (existingParamIndex !== -1) {
         if (
-          (name === "keyword" && keywordSearch === "") ||
+          (name === "keyword" && value === "") ||
           (name === "features" && checkFeatures.length === 0)
         ) {
           prevSearchParams.splice(existingParamIndex, 1);
@@ -430,7 +425,7 @@ const DashboardComponent = () => {
         }
       } else {
         if (
-          (name === "keyword" && keywordSearch === "") ||
+          (name === "keyword" && value === "") ||
           (name === "features" && checkFeatures.length === 0)
         ) {
           prevSearchParams.splice(existingParamIndex, 1);
@@ -517,9 +512,9 @@ const DashboardComponent = () => {
                       size="middle"
                       classname="card-item field"
                       suffixIcon={<CaretDownOutlined />}
-                      value={searchParams["listing_type"]}
+                      value={searchParams["sale_type"]}
                       onSelectionChange={(e) =>
-                        onSelectionChange(e, "listing_type")
+                        onSelectionChange(e, "sale_type")
                       }
                     />
                   </Col>

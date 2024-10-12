@@ -86,7 +86,9 @@ const UnitDetailsComponent = ({
 			typeof lotArea === "string" &&
 			lotArea.trim() !== "" &&
 			typeof propId === "string" &&
+			pricePerSqm.trim() !== "" &&
 			propId.trim() !== "";
+			
 
 		if (isFormComplete) {
 			setPropertyFields({
