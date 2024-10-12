@@ -112,19 +112,20 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 	};
 
 	const MenuItems = [
-		{ label: "Sell", key: "sell", link: "/sell" },
 		{ label: "New", key: "new", link: "/new" },
-		{
-			label: "Rent",
-			key: "rent",
-			children: SubMenuChild(SubMenu.rent),
-		},
+		{ label: "Sell", key: "sell", link: "/sell" },
 		{
 			label: "Buy",
 			key: "buy",
 			children: SubMenuChild(SubMenu.buy),
 			link: "/buy",
 		},
+		{
+			label: "Rent",
+			key: "rent",
+			children: SubMenuChild(SubMenu.rent),
+		},
+
 		{
 			label: "Home Loan",
 			key: "home-loan",
