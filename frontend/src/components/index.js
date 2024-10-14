@@ -98,6 +98,8 @@ import SupportClosedApplicationComponent from "./support/application/SupportClos
 import SupportPreApprovalListComponent from "./support/SupportPreApprovalListComponent";
 import ApprovalSectionComponent from "./support/ApprovalSectionComponent";
 
+import SearchListingComponent from "./SearchListingComponent";
+
 export {
 	ActiveListingDetails,
 	ShowDetailsProcessing,
@@ -170,4 +172,5 @@ export {
 	ApplicationHistory,
 	SaleComponent,
 	FaqsComponent,
+	SearchListingComponent
 };

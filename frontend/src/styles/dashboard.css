@@ -87,7 +87,7 @@
   }
 
   #dashboard .banner .banner-content .banner-search .ant-card .ant-card-body {
-      padding: 20px 24px;
+      padding: 20px 0px;
   }
 
   #dashboard :where(.css-dev-only-do-not-override-1uq9j6g).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
@@ -146,6 +146,7 @@
       color: white;
       background-color: var(--red);
       height: 50px;
+      width: 100%;
       font-size: 14px;
   }
 

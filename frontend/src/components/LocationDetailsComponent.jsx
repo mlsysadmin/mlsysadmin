@@ -13,7 +13,7 @@ const MapUpdater = ({ position }) => {
 
 const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 	const [getCountry, setGetCountry] = useState([]);
-	const [selectedCountry, setSelectedCountry] = useState("");
+	const [selectedCountry, setSelectedCountry] = useState("Philippines");
 	const [getProvince, setGetProvince] = useState([]);
 	const [selectedProvince, setSelectedProvince] = useState("");
 	const [getCities, setGetCities] = useState([]);
@@ -25,11 +25,11 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 	const [filteredCities, setFilteredCities] = useState([]);
 	const [position, setPosition] = useState([10.3414, 123.9125]);
 
-	const allCountries = async () => {
-		const datares = await GetCountry();
-		setGetCountry(datares);
-		// console.log("These are countries:", datares);
-	};
+	// const allCountries = async () => {
+	// 	const datares = await GetCountry();
+	// 	setGetCountry(datares);
+	// 	// console.log("These are countries:", datares);
+	// };
 
 	const allCities = async () => {
 		const datarescities = await GetCities();
@@ -64,7 +64,7 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				await Promise.all([allCountries(), allCities(), allProvince()]);
+				await Promise.all([allCities(), allProvince()]);
 			} catch (error) {
 				console.error("Error fetching data:", error);
 			}
@@ -84,7 +84,7 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 				break;
 			case "city":
 				setSelectedCity(value);
-				handleMapLocationChange(value);
+				 handleMapLocationChange(value, selectedProvince);
 				break;
 			case "zipcode":
 				setZipcode(value);
@@ -97,16 +97,19 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 		}
 	};
 
-	const handleMapLocationChange = async (city) => {
+	const handleMapLocationChange = async (city, province) => {
 		try {
+			const maploc = `${city}, ${province}`
+
 			const response = await fetch(
-				`https://nominatim.openstreetmap.org/search?format=json&q=${city}`
+				`https://nominatim.openstreetmap.org/search?format=json&q=${maploc}`
 			);
 			const data = await response.json();
 
 			if (data && data.length > 0) {
 				const { lat, lon } = data[0];
 				setPosition([parseFloat(lat), parseFloat(lon)]);
+				console.log("position:", position);
 			} else {
 				console.log("No results found for this location");
 			}
@@ -126,7 +129,7 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 				ProvinceState: selectedProvince,
 				Country: selectedCountry,
 				Zipcode: zipcode,
-				MapLocation: selectedCity,
+				MapLocation: `${selectedCity}, ${selectedProvince}`,
 				Location: address,
 			});
 		}
@@ -154,11 +157,15 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 						className="location-form-inputs"
 						value={selectedCountry}
 						onChange={handleAddressChange}
+						style={{ backgroundColor: "rgb(164,161,161, 27%)" }}
 					>
-						<option value="" disabled selected hidden>
+						{/* <option value="" disabled selected hidden>
 							Select Country
+						</option> */}
+						<option value="Philippines" disabled>
+							Philippines
 						</option>
-						{getCountry.map((country, index) => (
+						{/* {getCountry.map((country, index) => (
 							<option
 								key={index}
 								value={
@@ -169,7 +176,7 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 								{country.name.charAt(0).toUpperCase() +
 									country.name.slice(1).toLowerCase()}
 							</option>
-						))}
+						))} */}
 					</select>
 				</div>
 				<div className="location-form-groups">

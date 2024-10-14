@@ -71,7 +71,7 @@ const SubMenu = {
 		},
 		{
 			header: "Resources",
-			submenu: [{ sub: "Buyers Guide", link: "/buyer-guide" }],
+			submenu: [{ sub: "Buyers Guide", link: "/faqs#buyref" }],
 		},
 	],
 	homeLoan: [

@@ -43,10 +43,17 @@ const HeaderMenu = () => {
 
 	const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
-	const closeModal = () => {
+	const showLogin = () => {
+		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
+		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 		setShowUpgradeModal(false);
+		window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+			redirectUrl
+		)}`;
 	};
-
+	const closeModal = () => {
+		setShowUpgradeModal(false)
+	};
 	const openUpgradeModal = () => {
 		setShowUpgradeModal(true);
 	};
@@ -75,8 +82,6 @@ const HeaderMenu = () => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 		if (isMLWWSPresent && isAccountDetailsPresent) {
-			console.log("cookie", isMLWWSPresent);
-			console.log("tier", userDetails.tier.label);
 			if (userDetails?.tier?.label === "FULLY VERIFIED") {
 				window.location.href = "/listing";
 			} else if (userDetails?.tier?.label === "BUYER") {
@@ -87,9 +92,10 @@ const HeaderMenu = () => {
 				openUpgradeModal();
 			}
 		} else {
-			window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-				redirectUrl
-			)}`;
+			// window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+			// 	redirectUrl
+			// )}`;
+			setShowUpgradeModal(true);
 		}
 
 		// const redirectUrl =
@@ -112,13 +118,13 @@ const HeaderMenu = () => {
 		// navigate("/comingsoon");
 	};
 
-	useEffect(() => {
-		// const path = location.pathname.replace("/", "");
+	// useEffect(() => {
+	// 	// const path = location.pathname.replace("/", "");
 
-		// setCurrent(path);
-		console.log("path", location);
+	// 	// setCurrent(path);
+	// 	// console.log("path", location);
 		
-	}, [location]);
+	// }, [location]);
 
 	const handleMenuOnClick = (menu) => {
 		if (menu.key === "sell") {
@@ -140,6 +146,24 @@ const HeaderMenu = () => {
 			sethomeLoanPopUpOpen(false);
 			// sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(true);
+		} else if (menu.key === "rent") {
+			setrentPopUpOpen(true);
+			setbuyPopUpOpen(false);
+			sethomeLoanPopUpOpen(false);
+			// sethomeInsurancePopUpOpen(false);
+			setotherServicesPopUpOpen(false);
+		} else if (menu.key === "buy") {
+			setrentPopUpOpen(false);
+			setbuyPopUpOpen(true);
+			sethomeLoanPopUpOpen(false);
+			// sethomeInsurancePopUpOpen(false);
+			setotherServicesPopUpOpen(false);
+		} else if (menu.key === "home-loan") {
+			setrentPopUpOpen(false);
+			setbuyPopUpOpen(false);
+			sethomeLoanPopUpOpen(true);
+			// sethomeInsurancePopUpOpen(false);
+			setotherServicesPopUpOpen(false);
 		} else {
 			navigate({
 				pathname: menu.item.props.link,
@@ -150,7 +174,6 @@ const HeaderMenu = () => {
 			// sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(false);
 		}
-		console.log("menu", menu);
 		
 		setCurrent(menu.key);
 	};
@@ -308,27 +331,31 @@ const HeaderMenu = () => {
 					onClick={handleUserProfileClick}
 				/>
 				{showUpgradeModal && (
-					<UpgradeTierModal isVisible={showUpgradeModal} onClose={closeModal} />
+					<UpgradeTierModal
+						isVisible={showUpgradeModal}
+						onClose={closeModal}
+						showLogin={showLogin}
+					/>
 				)}
 				{/* {!isMLWWSPresent&&
 					( */}
 				{!isMLWWSPresent && (
-			<RoundBtn
-				type="primary"
-				className="menu-buttons"
-				style={{
-					color: "#D90000",
-					backgroundColor: "transparent",
-					border: "1px solid #d90000",
-					boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-					padding: "5px 5px",
-					cursor: "pointer",
-					margin:"0px 0px 0px 10px"
-				}}
-				label="Join our Team"
-				onClick={handleJoinTeamClick}
-			/>
-		)}
+					<RoundBtn
+						type="primary"
+						className="menu-buttons"
+						style={{
+							color: "#D90000",
+							backgroundColor: "transparent",
+							border: "1px solid #d90000",
+							boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+							padding: "5px 5px",
+							cursor: "pointer",
+							margin: "0px 0px 0px 10px",
+						}}
+						label="Join our Team"
+						onClick={handleJoinTeamClick}
+					/>
+				)}
 				{/* )} */}
 				{/* {showModal && (
 					<WorkingOnItModal isOpen={showModal} onClose={toggleModal} />

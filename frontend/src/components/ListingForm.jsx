@@ -194,9 +194,39 @@ export const ListingForm = () => {
 					if (vendorExists) {
 						setShowVendorModal(false);
 						// setIsSubmitting(true);
-						await handleSubmit(vendorExists.data.VendorId);
+						await handleSubmit(vendorExists.data.VendorId, vendorExists.data.VendorName);
 
 					} else {
+
+						const vendorName = `${userDetails?.name.firstName} ${userDetails?.name.lastName}`;
+						const generatedVendotId = await GetVendorId();
+						const vendorPayload = {
+							VendorId: generatedVendotId,
+							VendorName: vendorName,
+							Address: userDetails.addresses.current.otherAddress,
+							City: userDetails.addresses.current.addressL2Name,
+							ContactNo: userDetails.cellphoneNumber,
+							TIN: tin,
+							Email: userDetails.email,
+							ContactPerson: "",
+							RecordStatus: "active",
+							VendorType: "homeowner",
+							AccessType: "public",
+							OtherInfo: "Hey Joe",
+						};
+						console.log("Adding new vendor:", vendorPayload);
+
+						const addNewVendor = await AddVendor(vendorPayload);
+
+						if (addNewVendor) {
+							await handleSubmit(
+								addNewVendor.data.VendorId,
+								addNewVendor.data.VendorName
+							);
+						} else {
+							console.log(addNewVendor);
+						}
+
 						setShowVendorModal(true);
 					}
 				} catch (error) {
@@ -289,36 +319,36 @@ export const ListingForm = () => {
 	};
 
 
-	const handleSubmit = async (VendorId = null) => {
+	const handleSubmit = async (VendorId, VendorName) => {
 		try {
 			setIsSubmitting(true);
 
 			// console.log("modal", showAlertModal);
-			const generatedVendorId = VendorId || (await GetVendorId());
+			// const generatedVendorId = VendorId;
 
-			const vendorName = `${userDetails?.name.firstName} ${userDetails?.name.lastName}`;
+			// const vendorName = `${userDetails?.name.firstName} ${userDetails?.name.lastName}`;
 
-			if (!VendorId) {
-				const vendorPayload = {
-					VendorId: generatedVendorId,
-					VendorName: vendorName,
-					Address: userDetails.addresses.current.otherAddress,
-					City: userDetails.addresses.current.addressL2Name,
-					ContactNo: userDetails.cellphoneNumber,
-					TIN: tin,
-					Email: userDetails.email,
-					ContactPerson: "",
-					RecordStatus: "active",
-					VendorType: "homeowner",
-					AccessType: "public",
-					OtherInfo: "Hey Joe",
-					ListingOwnerId: "NA",
-					ListingOwnerName: "NA",
-				};
-				console.log("Adding new vendor:", vendorPayload);
+			// if (!VendorId) {
+			// 	const vendorPayload = {
+			// 		VendorId: generatedVendorId,
+			// 		VendorName: vendorName,
+			// 		Address: userDetails.addresses.current.otherAddress,
+			// 		City: userDetails.addresses.current.addressL2Name,
+			// 		ContactNo: userDetails.cellphoneNumber,
+			// 		TIN: tin,
+			// 		Email: userDetails.email,
+			// 		ContactPerson: "",
+			// 		RecordStatus: "active",
+			// 		VendorType: "homeowner",
+			// 		AccessType: "public",
+			// 		OtherInfo: "Hey Joe",
+			// 		ListingOwnerId: "NA",
+			// 		ListingOwnerName: "NA",
+			// 	};
+			// 	console.log("Adding new vendor:", vendorPayload);
 
-				await AddVendor(vendorPayload);
-			}
+			// 	await AddVendor(vendorPayload);
+			// }
 
 			const propertyNo = await GetPropertyNo();
 
@@ -353,12 +383,12 @@ export const ListingForm = () => {
 
 			const updatedPropertyFields = {
 				...propertyFields,
-				ListingOwnerId: generatedVendorId,
-				ListingOwnerName: existing.data.VendorName,
+				ListingOwnerId: VendorId,
+				ListingOwnerName: VendorName,
 				postFeatures,
 				PropertyNo: propertyNo,
-				VendorId: generatedVendorId,
-				VendorName: existing.data.VendorName,
+				VendorId: VendorId,
+				VendorName: VendorName,
 			};
 
 			console.log("Final listing data:", updatedPropertyFields);

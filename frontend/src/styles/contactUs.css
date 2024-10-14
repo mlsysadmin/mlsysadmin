@@ -187,7 +187,6 @@ hr {
   border: 1px solid red;
 }
 
-
 #submitbtn {
   background-color: #d90000;
   color: #fff;
@@ -288,21 +287,21 @@ hr {
 
 #customercare {
   display: flex;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 .phone-num {
   display: flex;
   flex-direction: row;
   gap: 4rem;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 #foreignContact {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 #foreignContact h4 {
@@ -320,11 +319,10 @@ hr {
   background-color: var(--red);
   border-radius: 5px;
   padding: 5%;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 1rem;
   font-weight: bold;
 }
-
 .contact-field .field-container {
   width: 100%;
   display: flex;
@@ -793,7 +791,6 @@ hr {
   }
 
   .contactUsContainer .banner {
-
     background-size: cover;
     background-repeat: no-repeat;
     height: 500px;
