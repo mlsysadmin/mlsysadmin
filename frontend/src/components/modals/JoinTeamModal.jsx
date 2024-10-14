@@ -157,7 +157,6 @@ const JoinTeam = ({ toggleModal }) => {
   };
 
   const handleValidation = () => {
-    console.log("Validating formData:", formData);
     // let formErrors = {};
     let isValid = true;
 
@@ -184,7 +183,12 @@ const JoinTeam = ({ toggleModal }) => {
       const isValid = handleValidation();
       const getControlLastNumber = await GetControlLastNumber("AgentId");
       const today = new Date();
-      const yyyyMMdd = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+      const yyyyMMdd =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate();
       console.log("getControlLastNumber: ", getControlLastNumber);
       if (getControlLastNumber && isValid && getControlLastNumber.data !== "") {
         const reqBody = {
@@ -243,8 +247,8 @@ const JoinTeam = ({ toggleModal }) => {
 
       //   const addAgent = await AddAgent();
     } catch (error) {
-      console.log("error: ",error);
-      
+      console.log("error: ", error);
+
       openNotificationWithIcon(
         "error",
         "Message Failed",
@@ -590,7 +594,6 @@ const JoinTeam = ({ toggleModal }) => {
                     />
                     Broker
                   </label>
-
                   <label>
                     <input
                       type="radio"
@@ -601,14 +604,19 @@ const JoinTeam = ({ toggleModal }) => {
                     />
                     Others
                     {formData.brokerQuestion === "others" && (
-                      <input
-                        type="text"
-                        id="othersBrokerQuestion"
-                        name="brokerQuestion"
-                        placeholder="Please specify"
-                        value={othersInputValue}
-                        onChange={handleInputOthers}
-                      />
+                      <div className="join-team-group">
+                        <input
+                          type="text"
+                          name="otherBrokerQuestion"
+                          id="othersBrokerQuestion"
+                          placeholder="Please specify"
+                          value={othersInputValue}
+                          onChange={handleInputOthers}
+                        />
+                        {errors.otherBrokerQuestion && (
+                          <p className="error">{errors.otherBrokerQuestion}</p>
+                        )}
+                      </div>
                     )}
                   </label>
                   {errors.brokerQuestion && (
