@@ -604,6 +604,7 @@ const DashboardComponent = () => {
                     subtitle={`${CapitalizeString(
                       item.property_type
                     )} For ${CapitalizeString(item.sale_type)}`}
+                    listingId={item.property_no}
                     handleClick={() => handleCardClick(item.property_no)}
                   />
                 );

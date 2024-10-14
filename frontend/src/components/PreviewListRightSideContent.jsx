@@ -134,21 +134,16 @@ const PreviewListRightSideContent = ({ oneListing }) => {
     }
     e.preventDefault();
   };
+  const handleLoanClick = () => {
+    navigate("/loan-calculator");
+
+  };
   const handleContactClick = async () => {
     try {
-      console.log("I AM WORKING!");
-
       const values = Object.values(contact);
-      console.log("values: ", values);
-
       const keys = Object.keys(contact);
-      console.log("keys: ", keys);
-
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      console.log("emailRegex: ", emailRegex);
       if (values.includes("")) {
-        console.log("Why I am EMTPY?");
-        console.log('values.includes(""): ', values.includes(""));
         openNotificationWithIcon(
           "warning",
           `Required Field`,
@@ -165,15 +160,10 @@ const PreviewListRightSideContent = ({ oneListing }) => {
         );
       } else {
         setLoading(true);
-
         const sendEmailMessage = await SendEmailInquiry(contact);
-
-        console.log("response", sendEmailMessage);
-
         if (Object.keys(sendEmailMessage).length == 0) {
           throw new Error("error while sending a message");
         }
-
         openNotificationWithIcon(
           "success",
           `Message Sent`,
@@ -200,7 +190,7 @@ const PreviewListRightSideContent = ({ oneListing }) => {
   return (
     <div className="right-side-container">
       {contextHolder}
-      <div className="calculator">
+      {/* <div className="calculator">
         <h2>Calculator</h2>
         <div className="calc">
           <div className="calculatorLeft">
@@ -356,7 +346,7 @@ const PreviewListRightSideContent = ({ oneListing }) => {
         <button className="apply-button" onClick={handleButtonClick}>
           APPLY NOW
         </button>
-      </div>
+      </div> */}
 
       <div className="contact-us">
         <h2>Contact Us</h2>
@@ -406,6 +396,13 @@ const PreviewListRightSideContent = ({ oneListing }) => {
           size={"large"}
           handleClick={handleContactClick}
           className={"send-message-button"}
+        />
+        <SemiRoundBtn
+          label={"Loan Calculator"}
+          size={"large"}
+          style={{backgroundColor:"white", color: "black", fontWeight: "bold", border: "black solid 1px"}}
+          handleClick={handleLoanClick}
+          className={"loan-calculator-button"}
         />
         {/* <button className="send-message-button">Send Message</button> */}
       </div>
