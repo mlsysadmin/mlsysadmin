@@ -9,8 +9,9 @@ import RoundSelect from "../selects/RoundSelect.custom";
 import { ListingTypes, PropertyTypes } from "../../../utils/PropertyStaticData.utils";
 
 const ListingSearch = ({
+	location,
+	searchParams,
 	setSearchFilters,
-	location
 }) => {
 	const { Option } = Select;
 	const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
@@ -83,11 +84,29 @@ const ListingSearch = ({
 		return newArr;
 	}
 
+	const ValueGreaterThanZeroOrNull = (val, type, name, isNum) => {
+		const falsy = ["", undefined, null, 0];
+
+		if (isNum) {
+			if (type == "input") {
+				return !falsy.includes(val) ? val : `Enter ${name}`;
+			}else if(type == "select"){
+				return !falsy.includes(val) ? val : `${name}`;
+			}
+		}else{
+			if (type == "input") {
+				return !falsy.includes(val) ? val : `Enter ${name}`;
+			}else if(type == "select"){
+				return !falsy.includes(val) ? val : `Select ${name}`;
+			}
+		}
+	}
+
 	return (
 		<div className="first-content">
 			<div className="sub-content1">
 				<div className="subcontent-inputs-1">
-					<input className="input-field" placeholder="Enter keyword" />
+					<input className="input-field" placeholder="Enter keyword" value={ValueGreaterThanZeroOrNull(searchParams.keyword, "input", "Keyword", false)}/>
 					{/* <select className="select-field" placeholder="Location">
 						<option value="">Location</option>
 						{location?.map((province, index) => (
@@ -100,7 +119,8 @@ const ListingSearch = ({
 						options={location}
 						classname={'select-field'}
 						placeholder={'Location'}
-						suffixIcon={<CaretDownOutlined />} />
+						suffixIcon={<CaretDownOutlined />}
+						value={ValueGreaterThanZeroOrNull(searchParams.location, "select", "Location", false)} />
 					{/* <select className="select-field" placeholder="Property Type">
 						<option value="">Property Type</option>
 						<option value="residential">Residential</option>
@@ -111,7 +131,8 @@ const ListingSearch = ({
 						options={PropertyTypes}
 						classname={'select-field'}
 						placeholder={'Property Type'}
-						suffixIcon={<CaretDownOutlined />} />
+						suffixIcon={<CaretDownOutlined />}
+						value={ValueGreaterThanZeroOrNull(searchParams.property_type, "select", "Property Type", false)} />
 					{/* <select className="select-field" placeholder="Listing Type">
 						<option value="" >
 							 Listing Type
@@ -123,7 +144,8 @@ const ListingSearch = ({
 						options={ListingTypes}
 						classname={'select-field'}
 						placeholder={'Listing Type'}
-						suffixIcon={<CaretDownOutlined />} />
+						suffixIcon={<CaretDownOutlined />}
+						value={ValueGreaterThanZeroOrNull(searchParams.sale_type, "select", "Listing Type", false)} />
 					<Button className="right-button" onClick={() => handleSearch()}>Search</Button>
 				</div>
 				<div className="advance-searchdropdown">
@@ -133,8 +155,10 @@ const ListingSearch = ({
 							<Slider
 								className="searh-custom-slider"
 								range
-								min={0}
-								max={100000000}
+								// min={0}
+								// max={100000000}
+								min={searchParams.price_min}
+								max={searchParams.price_max}
 								step={10000}
 								value={priceRange}
 								onChange={handleSliderChange}
@@ -189,7 +213,7 @@ const ListingSearch = ({
 						</div>
 					</div>
 					<div className="subcontent-inputs-2">
-						<input className="input-field" placeholder="Enter Lot Area" />
+						<input className="input-field" placeholder="Enter Lot Area"value={searchParams.lot_area} />
 						{/* <select className="select-field" placeholder="Bedrooms">
 							<option value="">Bedrooms</option>
 							<option value="commercial">1</option>
@@ -199,17 +223,20 @@ const ListingSearch = ({
 							options={SelectNum()}
 							classname={'select-field'}
 							placeholder={'Bedrooms'}
-							suffixIcon={<CaretDownOutlined />} />
+							suffixIcon={<CaretDownOutlined />}
+							value={ValueGreaterThanZeroOrNull(searchParams.bedrooms, "select", "Bedrooms", true)} />
 						<RoundSelect
 							options={SelectNum()}
 							classname={'select-field'}
 							placeholder={'Bathrooms'}
-							suffixIcon={<CaretDownOutlined />} />
+							suffixIcon={<CaretDownOutlined />}
+							value={ValueGreaterThanZeroOrNull(searchParams.bathrooms, "select", "Bathrooms", true)} />
 						<RoundSelect
 							options={SelectNum()}
 							classname={'select-field'}
 							placeholder={'Garage/Parking'}
-							suffixIcon={<CaretDownOutlined />} />
+							suffixIcon={<CaretDownOutlined />}
+							value={ValueGreaterThanZeroOrNull(searchParams.parking, "select", "Garage/Parking", true)} />
 						{/* <select className="select-field" placeholder="Bathrooms">
 							<option value="">Bathrooms</option>
 							<option value="commercial">1</option>

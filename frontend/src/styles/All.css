@@ -36,13 +36,17 @@
   /* align-items: flex-start; */
   /* gap: 300px; */
   width: 1500px;
-  margin: 50px auto 0;
+  margin: 30px auto 0;
   padding: 0px 110px;
 
   font-size: 30px;
   font-weight: bold;
 }
-
+.all-h1.breadcrumb--search{
+  font-size: 18px !important;
+  font-weight: 500;
+  margin: 40px auto 0;
+}
 /* .card {
     border: 1px solid #ddd;
     border-radius: 20px;

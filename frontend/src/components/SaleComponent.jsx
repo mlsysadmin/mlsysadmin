@@ -18,6 +18,7 @@ import { CardSkeleton } from "./Skeleton";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import DefaultPropertyImage from '../asset/fallbackImage.png';
 import NoDataAvailable from "./NoDataFoundComponent";
+import { Breadcrumb } from "antd";
 
 const SaleComponent = () => {
 
@@ -48,7 +49,26 @@ const SaleComponent = () => {
 	const cardsPerPage = 9;
 	const [filterLocation, setFilterLocation] = useState([]);
 	const [headerText, setHeaderText] = useState("House and Lot For Sale");
-
+	const [searchParams, setSearchParams] = useState({
+		location: "",
+		price_min: 0,
+		price_max: 100000000,
+		keyword: "",
+		property_type: "",
+		bedrooms: 0,
+		bathrooms: 0,
+		parking: 0,
+		sale_type: "",
+		lot_area: ""
+	});
+	const [breadCrumbItems, setBreadCrumbItems] = useState([
+		{
+			title: 'For Sale',
+		},
+		{
+			title: 'House and Lot',
+		},
+	]);
 
 	const handleCardClick = (id) => {
 		navigate(`/previewListing/?id=${id}`, { state: id });
@@ -128,6 +148,8 @@ const SaleComponent = () => {
 			allPublicListing(getPropertyType);
 			setPropertyType(getPropertyType);
 			setHeaderText(`${CapitalizeString(getPropertyType.replace(/[-_]/g, " "))} For Sale`);
+			setBreadCrumbItems([{ title: "For Sale" }, { title: CapitalizeString(getPropertyType.replace(/[-_]/g, " ")) }])
+
 		} else {
 			allPublicListing("house-and-lot");
 			setPropertyType("house-and-lot");
@@ -146,9 +168,13 @@ const SaleComponent = () => {
 		<>
 			<div className="rent">
 				<div className="topbar">
-					<ListingSearch location={filterLocation}/>
+					<ListingSearch location={filterLocation} searchParams={searchParams} setSearchFilters={setSearchParams} />
 				</div>
 				<div className="rentContainer">
+					<Breadcrumb
+						separator=">"
+						items={breadCrumbItems}
+						className="rent-h1 breadcrumb--search" />
 					<span className="rent-h1">{headerText}</span>
 					<SearchPropertiesSoration
 						properties_count={publiclisting.length}

@@ -401,7 +401,7 @@ const DashboardComponent = () => {
     });
     console.log("params: ", params);
 
-    navigate(`/all/?search=true&${params}`);
+    navigate(`/search/?${params}`);
     // navigate('/all')
   };
 

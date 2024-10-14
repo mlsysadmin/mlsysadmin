@@ -39,9 +39,20 @@ const NewPageComponent = () => {
 			city: ''
 		}
 	]);
-const [loading, setLoading] = useState(true);
-const [filterLocation, setFilterLocation] = useState([]);
-console.log("loading", loading);
+	const [loading, setLoading] = useState(true);
+	const [filterLocation, setFilterLocation] = useState([]);
+	const [searchParams, setSearchParams] = useState({
+		location: "",
+		price_min: 0,
+		price_max: 100000000,
+		keyword: "",
+		property_type: "",
+		bedrooms: 0,
+		bathrooms: 0,
+		parking: 0,
+		sale_type: "",
+		lot_area: ""
+	})
 
 	const handleCardClick = (id) => {
 		navigate(`/previewListing/?id=${id}`, { state: id });
@@ -67,7 +78,7 @@ console.log("loading", loading);
 				const listingRes = dataresp.filter(
 					(listing) =>
 						!isPastAMonth(listing.created_at) &&
-						["sale", "rent"].includes(listing.SaleType.toLowerCase())
+						["sale", "rent", "pre selling"].includes(listing.SaleType.toLowerCase())
 				);
 
 				let listings = [];
@@ -116,12 +127,12 @@ console.log("loading", loading);
 			setPublicListing([]);
 			setLoading(false);
 			// setLoading(false);
-		} 
+		}
 	};
 
 	useEffect(() => {
 		allPublicListing();
-		
+
 	}, []);
 
 	const [currentPage, setCurrentPage] = useState(1);
@@ -139,7 +150,7 @@ console.log("loading", loading);
 		<div className="newpage">
 			<div className="newpage-container">
 				<div className="newpage-contents">
-					<ListingSearch location={filterLocation}/>
+					<ListingSearch location={filterLocation} searchParams={searchParams} setSearchFilters={setSearchParams}/>
 					<div className="second-content">
 						<h1 className="new-page-label">New Properties For Sale/Rent</h1>
 						<SearchPropertiesSoration
@@ -148,7 +159,7 @@ console.log("loading", loading);
 						/>
 						{!loading ? currentCards.length > 0 && (
 							<div className="card-container">
-								
+
 								{currentCards.map((data, index) => (
 									<Card
 										key={index}
@@ -166,27 +177,27 @@ console.log("loading", loading);
 										)} For ${CapitalizeString(data.sale_type)}`}
 										handleClick={() => handleCardClick(data.property_no)}
 									/>
-									
+
 								))}
 							</div>
 
-								
+
 						) : (
 							<div
-									className="card-skeleton-loading"
-									style={{
-										display: "flex",
-										justifyContent: "center",
-										gap: "20px",
-									}}
-								>
-									{Array(3)
-										.fill(null)
-										.map((_, i) => {
-											return <CardSkeleton />;
-										})}
-								</div>
-							
+								className="card-skeleton-loading"
+								style={{
+									display: "flex",
+									justifyContent: "center",
+									gap: "20px",
+								}}
+							>
+								{Array(3)
+									.fill(null)
+									.map((_, i) => {
+										return <CardSkeleton />;
+									})}
+							</div>
+
 						)}
 
 						<Pagination

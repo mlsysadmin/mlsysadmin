@@ -50,6 +50,11 @@
 		margin: 0px auto;
 		padding: 0px 110px;
 }
+.rent-h1.breadcrumb--search{
+	font-size: 18px !important;
+	font-weight: 500;
+	margin: auto auto 20px;
+  }
 
 .rentContent {
 	display: flex;

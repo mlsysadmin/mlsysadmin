@@ -9,7 +9,7 @@ import SearchPropertiesSoration from "./custom/customsearch/searchSortationPrope
 import { cardData } from "../utils/ListingMockData";
 import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
-import { CapitalizeString, GetPropertyTitle } from "../utils/StringFunctions.utils";
+import { CapitalizeString, FillLocationFilter, GetPropertyTitle } from "../utils/StringFunctions.utils";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import NoDataAvailable from "./NoDataFoundComponent";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
@@ -22,6 +22,19 @@ const FeaturedComponent = () => {
 	const cardsPerPage = 9;
 	const navigate = useNavigate();
 	const [publiclisting, setPublicListing] = useState([]);
+	const [filterLocation, setFilterLocation] = useState([]);
+	const [searchParams, setSearchParams] = useState({
+		location: "",
+		price_min: 0,
+		price_max: 100000000,
+		keyword: "",
+		property_type: "",
+		bedrooms: 0,
+		bathrooms: 0,
+		parking: 0,
+		sale_type: "",
+		lot_area: ""
+	})
 
 	const handleCardClick = (id) => {
 		navigate(`/previewListing/?id=${id}`, { state: id });
@@ -63,6 +76,8 @@ const FeaturedComponent = () => {
 						property_type: item.PropertyType
 					}
 				}))
+				const location = FillLocationFilter(newListing);
+				setFilterLocation(location);
 				setPublicListing(newListing);
 
 			} else {
@@ -83,7 +98,7 @@ const FeaturedComponent = () => {
 	const totalPages = Math.ceil(cardData.length / cardsPerPage);
 	return (
 		<div className="feature-container">
-			<ListingSearch />
+			<ListingSearch location={filterLocation}  searchParams={searchParams} setSearchFilters={setSearchParams}/>
 			<div className="second-content">
 				<h1 className="feature-h1">Featured Properties</h1>
 				{
