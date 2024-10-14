@@ -81,13 +81,14 @@ const CardListingComponent = ({
         //   );
     }
 
-    const handleChange = (isChecked, tag) => {
+    const handleChange = (isChecked, tag, listingId) => {
 
         // console.log("tag", tag);
         // console.log("check", isChecked);
         // setIsChecked(isChecked);
-
-        const id = tag._owner.memoizedProps.listingId;
+		console.log(tag, listingId);
+		
+        const id = listingId;
 
         const nextSelectedTags = isChecked && !likes.includes(id) ?
             [...likes, id]
@@ -144,6 +145,7 @@ const CardListingComponent = ({
 								checkable={true}
 								checked={checked}
 								handleChange={handleChange}
+								listingId={listingId}
 							/>{" "}
 							{/* <CustomTag tagLabel={<Filter />} className="circle-tags" /> */}
 						</div>

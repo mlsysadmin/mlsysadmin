@@ -401,7 +401,7 @@ const DashboardComponent = () => {
     });
     console.log("params: ", params);
 
-    navigate(`/all/?search=true&${params}`);
+    navigate(`/search/?${params}`);
     // navigate('/all')
   };
 
@@ -604,6 +604,7 @@ const DashboardComponent = () => {
                     subtitle={`${CapitalizeString(
                       item.property_type
                     )} For ${CapitalizeString(item.sale_type)}`}
+                    listingId={item.property_no}
                     handleClick={() => handleCardClick(item.property_no)}
                   />
                 );
