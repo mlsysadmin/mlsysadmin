@@ -51,9 +51,17 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 							textAlign: "center",
 						}}
 					>
-						Important Notice!
+						Important Notice
 					</h2>
-					<CloseOutlined onClick={onClose} style={{position:"absolute", right:"10px", top:"10px", fontSize:"18px"}}/>
+					<CloseOutlined
+						onClick={onClose}
+						style={{
+							position: "absolute",
+							right: "10px",
+							top: "10px",
+							fontSize: "18px",
+						}}
+					/>
 					<div
 						className="important-notice-content"
 						style={{
@@ -75,9 +83,9 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 							}}
 						>
 							<span style={{ fontSize: "18px", fontWeight: "bolder" }}>
-								You have two options:
+								How to list your property?
 							</span>
-
+							<p>You have two options:</p>
 							<ol>1. Upload your listing details on our website</ol>
 							<ol>
 								2. Visit nearest ML Branch and FLA will assist you with listing
@@ -110,7 +118,7 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 					</div>
 				</div>
 				<button
-				className="signin-button-upgrade"
+					className="signin-button-upgrade"
 					onClick={showLogin}
 					style={{
 						marginTop: "20px",
