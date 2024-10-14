@@ -31,6 +31,7 @@ import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import DefaultPropertyImage from "../asset/fallbackImage.png";
 import { CardSkeleton } from "./Skeleton";
 import NoDataAvailable from "./NoDataFoundComponent";
+import { Breadcrumb } from "antd";
 
 const RentComponent = () => {
 	const [loading, setLoading] = useState(true);
@@ -53,7 +54,7 @@ const RentComponent = () => {
 			sale_type: "",
 			no_of_beds: "",
 			property_type: "",
-			city:''
+			city: ''
 		},
 	]);
 	const [propertyType, setPropertyType] = useState("house-and-lot");
@@ -61,7 +62,26 @@ const RentComponent = () => {
 	const cardsPerPage = 9;
 	const [filterLocation, setFilterLocation] = useState([]);
 	const [headerText, setHeaderText] = useState("House and Lot For Sale");
-
+	const [searchParams, setSearchParams] = useState({
+		location: "",
+		price_min: 0,
+		price_max: 100000000,
+		keyword: "",
+		property_type: "",
+		bedrooms: 0,
+		bathrooms: 0,
+		parking: 0,
+		sale_type: "",
+		lot_area: ""
+	});
+	const [breadCrumbItems, setBreadCrumbItems] = useState([
+		{
+			title: 'For Rent',
+		},
+		{
+			title: 'House and Lot',
+		},
+	]);
 
 	const handleCardClick = (id) => {
 		navigate(`/previewListing/?id=${id}`, { state: id });
@@ -107,7 +127,7 @@ const RentComponent = () => {
 								sale_type: CapitalizeString(item.SaleType),
 								no_of_beds: item.BedRooms,
 								property_type: item.PropertyType,
-								city:item.City
+								city: item.City
 							};
 						})
 					);
@@ -136,10 +156,11 @@ const RentComponent = () => {
 		const getPropertyType = queryParams.get("property_type");
 
 		if (queryParams.size !== 0) {
-
+			
 			allPublicListing(getPropertyType);
 			setPropertyType(getPropertyType);
 			setHeaderText(`${CapitalizeString(getPropertyType.replace(/[-_]/g, " "))} For Rent`);
+			setBreadCrumbItems([{ title: "For Rent" }, { title: CapitalizeString(getPropertyType.replace(/[-_]/g, " ")) }])
 		} else {
 			allPublicListing("house-and-lot");
 			setPropertyType("house-and-lot");
@@ -157,10 +178,17 @@ const RentComponent = () => {
 	return (
 		<div className="rent">
 			<div className="topbar">
-				<ListingSearch location={filterLocation}/>
+				<ListingSearch location={filterLocation} searchParams={searchParams} setSearchFilters={setSearchParams} />
 			</div>
 			<div className="rentContainer">
-				<span className="rent-h1">{headerText}</span>
+				<Breadcrumb
+					separator=">"
+					items={breadCrumbItems}
+					className="rent-h1 breadcrumb--search" />
+				<span className="rent-h1">
+					{headerText}
+				</span>
+				{/* <span className="rent-h1">{headerText}</span> */}
 				<SearchPropertiesSoration
 					properties_count={publiclisting.length}
 					current_properties_count={currentCards.length}

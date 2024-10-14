@@ -91,7 +91,7 @@ const ListingSearch = ({
 			if (type == "input") {
 				return !falsy.includes(val) ? val : `Enter ${name}`;
 			}else if(type == "select"){
-				return !falsy.includes(val) ? val : `Select ${name}`;
+				return !falsy.includes(val) ? val : `${name}`;
 			}
 		}else{
 			if (type == "input") {
