@@ -134,6 +134,10 @@ const PreviewListRightSideContent = ({ oneListing }) => {
     }
     e.preventDefault();
   };
+  const handleLoanClick = () => {
+    navigate("/loan-calculator");
+
+  };
   const handleContactClick = async () => {
     try {
       const values = Object.values(contact);
@@ -186,7 +190,7 @@ const PreviewListRightSideContent = ({ oneListing }) => {
   return (
     <div className="right-side-container">
       {contextHolder}
-      <div className="calculator">
+      {/* <div className="calculator">
         <h2>Calculator</h2>
         <div className="calc">
           <div className="calculatorLeft">
@@ -342,7 +346,7 @@ const PreviewListRightSideContent = ({ oneListing }) => {
         <button className="apply-button" onClick={handleButtonClick}>
           APPLY NOW
         </button>
-      </div>
+      </div> */}
 
       <div className="contact-us">
         <h2>Contact Us</h2>
@@ -392,6 +396,13 @@ const PreviewListRightSideContent = ({ oneListing }) => {
           size={"large"}
           handleClick={handleContactClick}
           className={"send-message-button"}
+        />
+        <SemiRoundBtn
+          label={"Loan Calculator"}
+          size={"large"}
+          style={{backgroundColor:"white", color: "black", fontWeight: "bold", border: "black solid 1px"}}
+          handleClick={handleLoanClick}
+          className={"loan-calculator-button"}
         />
         {/* <button className="send-message-button">Send Message</button> */}
       </div>

@@ -279,7 +279,7 @@ const ContactUsComponent = () => {
                 <br /> We will answer all your question.
               </p>
             </div>
-            <div className="FAQs-field">
+            {/* <div className="FAQs-field">
               <input
                 type="text"
                 className="FAQs-email"
@@ -288,7 +288,7 @@ const ContactUsComponent = () => {
               <Button id="submitbtn" type="primary">
                 Submit
               </Button>
-            </div>
+            </div> */}
 
           </div>
         </div>
