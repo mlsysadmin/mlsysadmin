@@ -25,8 +25,8 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 				className="upgrade-modal-content"
 				style={{
 					backgroundColor: "white",
-					padding: "30px",
-					borderRadius: "8px",
+					padding: "40px",
+					borderRadius: "30px",
 					boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
 					display: "flex",
 					flexDirection: "column",
@@ -57,9 +57,9 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 						onClick={onClose}
 						style={{
 							position: "absolute",
-							right: "10px",
-							top: "10px",
-							fontSize: "18px",
+							right: "30px",
+							top: "30px",
+							fontSize: "16px",
 						}}
 					/>
 					<div
@@ -69,7 +69,7 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 							justifyContent: "flex-start",
 							alignItems: "flex-start",
 							flexDirection: "column",
-							gap: "20px",
+							gap: "10px",
 						}}
 					>
 						<div
@@ -82,12 +82,14 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 								textAlign: "left",
 							}}
 						>
-							<span style={{ fontSize: "18px", fontWeight: "bolder" }}>
+							<span style={{ fontSize: "15px", fontWeight: "bolder" }}>
 								How to list your property?
 							</span>
 							<p>You have two options:</p>
-							<ol>1. Upload your listing details on our website</ol>
-							<ol>
+							<ol style={{ fontSize: "14px" }}>
+								1. Upload your listing details on our website
+							</ol>
+							<ol style={{ fontSize: "14px" }}>
 								2. Visit nearest ML Branch and FLA will assist you with listing
 								your property.
 							</ol>
@@ -102,16 +104,20 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 								textAlign: "left",
 							}}
 						>
-							<span style={{ fontSize: "18px", fontWeight: "bolder" }}>
+							<span style={{ fontSize: "15px", fontWeight: "bolder" }}>
 								How to upload your listing on our website? 
 							</span>
 
-							<ol>1. Download and Install ML Wallet app.</ol>
-							<ol>2. Register and ensure your account is fully verified. </ol>
-							<ol>
+							<ol style={{ fontSize: "14px" }}>
+								1. Download and Install ML Wallet app.
+							</ol>
+							<ol style={{ fontSize: "14px" }}>
+								2. Register and ensure your account is fully verified. 
+							</ol>
+							<ol style={{ fontSize: "14px" }}>
 								3. If not, visit the nearest ML Branch to upgrade your account. 
 							</ol>
-							<ol>
+							<ol style={{ fontSize: "14px" }}>
 								4. Once approved, scan the QR Code on ML Website to login. 
 							</ol>
 						</div>
