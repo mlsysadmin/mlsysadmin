@@ -63,7 +63,7 @@ import {
 	FaqsPage,
 } from "../pages";
 import { ProtectedRoute, BuyerSellerProtectedRoute } from "./ProtectedRoute";
-import { PropertySearchModal, SaleComponent } from "../components";
+import { PropertySearchModal, SaleComponent, SearchListingComponent } from "../components";
 
 
 
@@ -216,6 +216,10 @@ const Routes = [
 				path:"/faqs",
 				element:<FaqsPage/>
 			},
+			{
+				path:"/search",
+				element:<SearchListingComponent/>
+			}
 		],
 	},
 	{

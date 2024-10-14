@@ -32,7 +32,7 @@ import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import NoDataAvailable from "./NoDataFoundComponent";
 import { capitalize } from "@mui/material";
 
-const AllComponent = () => {
+const SearchListingComponent = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [loading, setLoading] = useState(true);
@@ -190,87 +190,238 @@ const AllComponent = () => {
   //     setLoading(false);
   //   }
   // };
-	const getlistings = async (sale_type) => {
-		try {
-			const res = await GetPropertiesBySaleStatus();
 
-			const dataresp = res.data;
+  useEffect(() => {
+    // allPublicListing()
+    // getlistings()
+    const search = location.search;
 
-			if (dataresp.length == 0) {
-				setPublicListing([])
-			} else {
+    const queryParams = new URLSearchParams(search);
+    const isSearchParams = queryParams.get("search");
+    // const sale_type = queryParams.get("sale_type");
+    // const keyword = queryParams.get("keyword") ?? undefined;
+    // const city = queryParams.get("location") ?? undefined;
+    // const property_type = queryParams.get("property_type")?.replace(/-/g, " ") ?? undefined;
+    // const indoor = queryParams.get("indoor") ?? undefined;
+    // const outdoor = queryParams.get("outdoor") ?? undefined;
 
-				const listingRes = dataresp.filter((listing) => sale_type == 'all' ?
-					["sale", "rent", "pre-selling"].includes(listing.SaleType.toLowerCase()) : [sale_type].includes(listing.SaleType.toLowerCase())
-				);
+    const searchKeys = ['sale_type', 'keyword', 'property_type', 'location', 'indoor', 'outdoor'];
+    const searchParams = searchKeys
+      .filter((key, i) => queryParams.get(key) != undefined || queryParams.get(key) != null)
+      .map(item => {
+        return { [item]: queryParams.get(item) }
+      })
 
-				if (listingRes.length !== 0) {
-					const newListing = await Promise.all(listingRes.map(async (item, i) => {
+    if (isSearchParams && searchParams.length !== 0) {
+      // getlistings(
+      //   keyword,
+      //   city,
+      //   property_type,
+      //   sale_type,
+      //   indoor,
+      //   outdoor
+      // );
+      getlistings(true, searchParams);
+      setHeaderText('Search Properties')
+    } else {
+      if (!isSearchParams && queryParams.size !== 0) {
+        // getlistings(
+        //   keyword,
+        //   city,
+        //   property_type,
+        //   sale_type,
+        //   indoor,
+        //   outdoor
+        // );
+        // setSaleType(sale_type);
+      } else {
+        getlistings(false, "all");
+        // setSaleType("Rent/Sale");
+        setHeaderText(`All Properties for Rent/Sale`);
+      }
+    }
+  }, []);
 
-						const getPhotoGallery = await GetUnitPhotos(item.id);
+  const getlistings = async (isSearch, renderParams) => {
+    try {
 
-						const gallery = getPhotoGallery.data;
+      console.log(renderParams);
 
-						const image = GetPhotoWithUrl(item.Photo);
+      const res = await GetPropertiesBySaleStatus();
+      const dataresp = res.data;
 
-						return {
-							id: item.id,
-							title: CapitalizeString(item.UnitName),
-							price: AmountFormatterGroup(item.Price),
-							status: `For ${CapitalizeString(item.SaleType)}`,
-							pics: image ? gallery.length + 1 : 0,
-							img: image,
-							no_of_bathrooms: item.BathRooms,
-							lot: item.LotArea,
-							property_no: item.PropertyNo,
-							isFeatured: item.IsFeatured,
-							sale_type: CapitalizeString(item.SaleType),
-							no_of_beds: item.BedRooms,
-							property_type: item.PropertyType,
-							city: item.City
-						}
-					}))
-					const location = FillLocationFilter(newListing);
-					setFilterLocation(location);
-					setPublicListing(newListing);
-					console.log("location", location);
-					
+      if (dataresp.length !== 0) {
+        if (isSearch) {
+          const formattedListings = dataresp.map((listing) => {
+            return {
+              id: listing.id,
+              title: CapitalizeString(listing.UnitName),
+              price: AmountFormatterGroup(listing.Price),
+              status: `For ${CapitalizeString(listing.SaleType)}`,
+              pics: 0,
+              img: listing.Photo,
+              bathrooms: listing.BathRooms,
+              lot: listing.LotArea,
+              property_no: listing.PropertyNo,
+              isFeatured: listing.IsFeatured,
+              sale_type: CapitalizeString(listing.SaleType),
+              bedrooms: listing.BedRooms,
+              property_type: listing.PropertyType,
+              city: listing.City,
+              parking: listing.Parking,
+              location: listing.City
+            }
+          });
+          // console.log("DATA: ",  formattedListings);
 
-				} else {
-					setPublicListing([]);
-				}
+          const filteredListings = formattedListings.map((item, i) => {
 
-			}
-		} catch (error) {
-			console.error("Error fetching public listings:", error);
-			setPublicListing([]);
-			
-		}
+            // Get all keys from listings
+            const listingKeys = Object.keys(item);
 
-	}
+            // Get all keys from params
+            const paramsKeys = renderParams.flatMap(params => Object.keys(params));
 
-	useEffect(() => {
-		// allPublicListing()
-		// getlistings()
-		const search = location.search;
-		console.log(search);
+            // Matched keys from params and listing
+            const matchedKeys = listingKeys.filter(key => paramsKeys.includes(key));
 
-		const queryParams = new URLSearchParams(search);
-		const getSaleType = queryParams.get("sale_type");
+            const findParams = matchedKeys.map(key => {
 
-		if (queryParams.size !== 0) {
-			getlistings(getSaleType);
-			setSaleType(getSaleType);
+              let paramsVal = {};
+
+              renderParams.forEach((search, k) => {
+                if (Object.keys(search).includes(key)) {
+                  paramsVal[key] = search[key]
+                }
+              });
+              return paramsVal
+            });
+
+            
+
+            return { ...findParams }
+          });
+
+          console.log("filteredListings", filteredListings);
+
+        }
+      } else {
+        setPublicListing([]);
+        setLoading(false);
+      }
+
+      // if (dataresp.length == 0) {
+      //   setPublicListing([]);
+      // } else {
+      //   const features = [];
+      //   const propertyNos = dataresp.map((item) => item.PropertyNo);
+
+      //   const results = await Promise.all(
+      //     propertyNos.map((propertyNo) =>
+      //       GetAllFeaturesByPropertyNo(propertyNo)
+      //     )
+      //   );
+      //   const filteredFeatures = results.filter(
+      //     (resFeature) =>
+      //       resFeature && resFeature.data && resFeature.data.length > 0
+      //   );
+
+      //   filteredFeatures.forEach((resFeature) => {
+      //     const featureNames = resFeature.data.map(
+      //       (feature) => feature.FeatureName
+      //     );
+      //     features.push({
+      //       PropertyNo: resFeature.data[0].PropertyNo,
+      //       FeatureName: featureNames.join(", "),
+      //     });
+      //   });
+      //   const searchedFeatures = dataresp.filter((resp) =>
+      //     features.some((feature) => feature.PropertyNo === resp.PropertyNo)
+      //   );
+
+      //   const listingRes =
+      //     listingType === undefined || null
+      //       ? dataresp.filter((listing) =>
+      //         ["sale", "rent"].includes(listing.SaleType.toLowerCase())
+      //       )
+      //       : dataresp.filter((listing) => {
+      //         // console.log(
+      //         //   "searchedFeatures.some((feature) => feature.PropertyNo === listing.PropertyNo: ",
+      //         //   listing.PropertyNo.toLowerCase().includes(
+      //         //     searchedFeatures.some(
+      //         //       (feature) => feature.PropertyNo === listing.PropertyNo
+      //         //     )
+      //         //   )
+      //         // );
+
+      //         return keyword
+      //           ? listing.UnitName.toLowerCase().includes(
+      //             keyword.toLowerCase()
+      //           )
+      //           : whatLocation
+      //             ? listing.City.toLowerCase().includes(
+      //               whatLocation.toLowerCase()
+      //             )
+      //             : propertyType
+      //               ? listing.PropertyType.toLowerCase().includes(
+      //                 propertyType.toLowerCase()
+      //               )
+      //               : searchedFeatures
+      //                 ? searchedFeatures.some(
+      //                   (feature) => feature.PropertyNo === listing.PropertyNo
+      //                 )
+      //                 : listing.SaleType.toLowerCase().includes(
+      //                   listingType.toLowerCase()
+      //                 );
+      //       });
+      //   if (listingRes.length !== 0) {
+      //     const listings = await Promise.all(
+      //       listingRes.map(async (item, i) => {
+      //         const getPhotoGallery = await GetUnitPhotos(item.id);
+
+      //         const gallery = getPhotoGallery.data;
+
+      //         const image = GetPhotoWithUrl(item.Photo);
+
+      //         return {
+      //           id: item.id,
+      //           title: CapitalizeString(item.UnitName),
+      //           price: AmountFormatterGroup(item.Price),
+      //           status: `For ${CapitalizeString(item.SaleType)}`,
+      //           pics: image ? gallery.length + 1 : 0,
+      //           img: image,
+      //           bathrooms: item.BathRooms,
+      //           lot: item.LotArea,
+      //           property_no: item.PropertyNo,
+      //           isFeatured: item.IsFeatured,
+      //           sale_type: CapitalizeString(item.SaleType),
+      //           bedrooms: item.BedRooms,
+      //           property_type: item.PropertyType,
+      //           city: item.City,
+      //           parking: item.Parking,
+      //           location: item.City
+      //         };
+      //       })
+      //     );
+
+      //     const location = FillLocationFilter(listings);
+      //     setFilterLocation(location);
+      //     setPublicListing(listings);
+      //     setLoading(false);
+
+      //   } else {
+      //     setPublicListing([]);
+      //     setLoading(false);
+      //   }
+      // }
+      setPublicListing([])
       setLoading(false)
-      setHeaderText()
-		} else {
-			getlistings('all');
-			setSaleType('Rent/Sale');
+    } catch (error) {
+      console.error("Error fetching public listings:", error);
+      setPublicListing([]);
       setLoading(false);
-      setHeaderText('Properties for Rent > Sale > Pre-Selling')
-		}
-
-	}, [])
+    }
+  };
 
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
@@ -356,4 +507,4 @@ const AllComponent = () => {
 
 };
 
-export default AllComponent;
+export default SearchListingComponent;

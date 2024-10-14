@@ -56,10 +56,11 @@ const RentComponent = () => {
 			city:''
 		},
 	]);
-	const [propertyType, setPropertyType] = useState("house");
+	const [propertyType, setPropertyType] = useState("house-and-lot");
 	const [currentPage, setCurrentPage] = useState(1);
 	const cardsPerPage = 9;
-const [filterLocation, setFilterLocation] = useState([]);
+	const [filterLocation, setFilterLocation] = useState([]);
+	const [headerText, setHeaderText] = useState("House and Lot For Sale");
 
 
 	const handleCardClick = (id) => {
@@ -75,18 +76,12 @@ const [filterLocation, setFilterLocation] = useState([]);
 			if (dataresp.length == 0) {
 				setPublicListing([]);
 			} else {
-				console.log(
-					"rent",
-					dataresp.filter((item) =>
-						["rent"].includes(item.SaleType.toLowerCase())
-					)
-				);
 
 				const listingRes = dataresp.filter(
 					(listing) =>
 						["rent"].includes(listing.SaleType.toLowerCase()) &&
-						property_type.toLowerCase() == listing.PropertyType.toLowerCase() &&
-						listing.PropertyType.replace("/", " ").includes(property_type)
+						property_type.toLowerCase().replace(/[-_]/g, " ") == listing.PropertyType.toLowerCase() &&
+						listing.PropertyType.replace("/", " ").includes(property_type.replace(/[-_]/g, " "))
 				);
 
 				if (listingRes.length !== 0) {
@@ -133,6 +128,7 @@ const [filterLocation, setFilterLocation] = useState([]);
 	};
 
 	useEffect(() => {
+
 		const search = location.search;
 		console.log(search);
 
@@ -140,12 +136,17 @@ const [filterLocation, setFilterLocation] = useState([]);
 		const getPropertyType = queryParams.get("property_type");
 
 		if (queryParams.size !== 0) {
+
 			allPublicListing(getPropertyType);
 			setPropertyType(getPropertyType);
+			setHeaderText(`${CapitalizeString(getPropertyType.replace(/[-_]/g, " "))} For Rent`);
 		} else {
-			allPublicListing("house");
+			allPublicListing("house-and-lot");
+			setPropertyType("house-and-lot");
+			setHeaderText("House and Lot For Rent");
 		}
-	}, []);
+
+	}, [])
 
 	const indexOfLastCard = currentPage * cardsPerPage;
 	const indexOfFirstCard = indexOfLastCard - cardsPerPage;
@@ -159,7 +160,7 @@ const [filterLocation, setFilterLocation] = useState([]);
 				<ListingSearch location={filterLocation}/>
 			</div>
 			<div className="rentContainer">
-				<span className="rent-h1">Properties for Rent</span>
+				<span className="rent-h1">{headerText}</span>
 				<SearchPropertiesSoration
 					properties_count={publiclisting.length}
 					current_properties_count={currentCards.length}

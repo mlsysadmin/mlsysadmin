@@ -82,8 +82,6 @@ const HeaderMenu = () => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 		if (isMLWWSPresent && isAccountDetailsPresent) {
-			console.log("cookie", isMLWWSPresent);
-			console.log("tier", userDetails.tier.label);
 			if (userDetails?.tier?.label === "FULLY VERIFIED") {
 				window.location.href = "/listing";
 			} else if (userDetails?.tier?.label === "BUYER") {
@@ -116,17 +114,17 @@ const HeaderMenu = () => {
 		setShowModal(!showModal);
 	};
 	const handleJoinTeamClick = () => {
-		// setShowModal(true);
-		navigate("/comingsoon");
+		setShowModal(true);
+		// navigate("/comingsoon");
 	};
 
-	useEffect(() => {
-		// const path = location.pathname.replace("/", "");
+	// useEffect(() => {
+	// 	// const path = location.pathname.replace("/", "");
 
-		// setCurrent(path);
-		console.log("path", location);
+	// 	// setCurrent(path);
+	// 	// console.log("path", location);
 		
-	}, [location]);
+	// }, [location]);
 
 	const handleMenuOnClick = (menu) => {
 		if (menu.key === "sell") {
@@ -176,7 +174,6 @@ const HeaderMenu = () => {
 			// sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(false);
 		}
-		console.log("menu", menu);
 		
 		setCurrent(menu.key);
 	};
@@ -364,7 +361,7 @@ const HeaderMenu = () => {
 					<WorkingOnItModal isOpen={showModal} onClose={toggleModal} />
 				)} */}
 
-				{/* {showModal && <JoinTeam toggleModal={toggleModal} />} */}
+				{showModal && <JoinTeam toggleModal={toggleModal} />}
 				<Row align={"middle"} className="menu-buttons">
 					{isMLWWSPresent ? (
 						userDetails?.tier.label === "BUYER" ? (

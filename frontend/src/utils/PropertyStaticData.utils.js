@@ -80,7 +80,7 @@ const PropertyTypes = [
 		options: [
 			{ label: "Service Office", value: "service-office" },
 			{ label: "Shop/Retail", value: "shop/retail" },
-			{ label: "Commercial Land/Lot", value: "commercial-land/office" },
+			{ label: "Commercial Land/Lot", value: "commercial-land/lot" },
 		],
 	},
 	{
@@ -90,6 +90,7 @@ const PropertyTypes = [
 		options: [
 			{ label: "Condominium", value: "condominium" },
 			{ label: "House & Lot", value: "house-and-lot" },
+			{ label: "Lot", value: "lot" },
 			{ label: "Townhouse", value: "townhouse" },
 		],
 	},

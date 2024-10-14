@@ -56,7 +56,6 @@ const ContactUsComponent = () => {
   };
 
   const handleContactClick = async () => {
-
     try {
       const values = Object.values(contact);
       const keys = Object.keys(contact);
