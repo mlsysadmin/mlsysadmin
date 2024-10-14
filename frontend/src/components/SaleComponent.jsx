@@ -43,10 +43,11 @@ const SaleComponent = () => {
 			city: ''
 		}
 	]);
-	const [propertyType, setPropertyType] = useState("house");
+	const [propertyType, setPropertyType] = useState("house-and-lot");
 	const [currentPage, setCurrentPage] = useState(1);
 	const cardsPerPage = 9;
-const [filterLocation, setFilterLocation] = useState([]);
+	const [filterLocation, setFilterLocation] = useState([]);
+	const [headerText, setHeaderText] = useState("House and Lot For Sale");
 
 
 	const handleCardClick = (id) => {
@@ -126,8 +127,11 @@ const [filterLocation, setFilterLocation] = useState([]);
 
 			allPublicListing(getPropertyType);
 			setPropertyType(getPropertyType);
+			setHeaderText(`${CapitalizeString(getPropertyType.replace(/[-_]/g, " "))} For Sale`);
 		} else {
-			allPublicListing("house");
+			allPublicListing("house-and-lot");
+			setPropertyType("house-and-lot");
+			setHeaderText("House and Lot For Sale");
 		}
 
 	}, [])
@@ -145,7 +149,7 @@ const [filterLocation, setFilterLocation] = useState([]);
 					<ListingSearch location={filterLocation}/>
 				</div>
 				<div className="rentContainer">
-					<span className="rent-h1">Properties for Sale</span>
+					<span className="rent-h1">{headerText}</span>
 					<SearchPropertiesSoration
 						properties_count={publiclisting.length}
 						current_properties_count={currentCards.length}
