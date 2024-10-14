@@ -1,7 +1,6 @@
 .discover-home-container {
 	background-color: white;
 	width: 100%;
-	padding: 10px;
 }
 
 .discover-home {
@@ -1793,7 +1792,8 @@ h2 {
 	.mortgage-calc .mortgage-calc-cont {
 		display: flex;
 		flex-direction: row;
-		padding: 0px 20px 0px 20px;
+		padding: 0px 10px 0px 10px;
+		width: 95%;
 	}
 	.mortgage-calc .mortgage-cont1 {
 		margin: 10px 0px 30px 10px;
