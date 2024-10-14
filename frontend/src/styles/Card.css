@@ -1,7 +1,6 @@
 .card {
 	border: 1px solid #ddd;
 	border-radius: 20px;
-	margin-bottom: 25px;
 	/* margin: 10px; */
 	/* width: calc(33% - 30px); */
 	box-sizing: border-box;
@@ -702,17 +701,18 @@
 		display: flex;
 		/* flex-wrap: wrap; */
 		flex-direction: row;
-		margin: 10px 0px;
+		padding: 20px 50px;
 		justify-content: flex-start;
 	
 		align-items: flex-start;
 		gap: 30px;
+		margin: 0px;
 	}
-	.card-container{
+	/* .card-container{
 		padding-left: 100px;
-	}
+	} */
 	.card-container .card {
-		width: 350px;
+		width: 380px;
 	}
 	.card-container .card img {
 		border-radius: 10px 10px 0 0;
@@ -877,7 +877,6 @@
 
 		padding-top: 20px;
 		/* padding-left: 100px; */
-		gap: 25px;
 	
 	}
 	.card-container .card {
