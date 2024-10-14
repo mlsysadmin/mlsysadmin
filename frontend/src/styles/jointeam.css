@@ -21,6 +21,7 @@
   flex-direction: column;
 }
 .join-team-group input,
+.radio-button-broker-question input[type="text"],
 .join-team-group .ant-select {
   width: 200px;
   height: 40px;
@@ -28,6 +29,7 @@
   padding: 10px;
   border-radius: 5px;
   color: var(--mute-gray);
+  outline: none;
 }
 
 .join-team-group input:disabled,
@@ -95,7 +97,10 @@
   cursor: pointer;
   margin-right: 5px;
 }
-.radio-button-broker-question input[type="text"] {
+.radio-button-broker-question input[type="text"] { 
+  margin-left: 10px;
+}
+/*
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -107,7 +112,7 @@
   outline: none;
   cursor: pointer;
   margin-left: 10px;
-}
+} */
 
 .radio-button-broker-question input[type="radio"]:checked {
   background-color: #000000;
