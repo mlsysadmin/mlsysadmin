@@ -149,3 +149,9 @@
 	margin-right: 10px;
 }
 }
+@media screen and (min-width: 1401px) {
+	.search-sortation{
+		width: 1300px;
+		padding: 0px;
+	}
+}

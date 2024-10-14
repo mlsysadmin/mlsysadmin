@@ -18,7 +18,6 @@
     margin: 50px 0px 0px 0px;
     justify-content: space-between;
     /* align-items: center; */
-    gap: 100px;
     background-color: #FDFBFA;
 
 }
@@ -28,13 +27,14 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 0px 0px 0px 100px;
+    padding:0px 0px 0px 250px;
 }
 
 .insurance-guide-tagline span {
     color: var(--red);
     font-weight: bold;
     font-size: 30px;
+    width: 250px;
 }
 
 .insurance-guide-tagline p {
@@ -42,11 +42,11 @@
     display: flex;
     align-items: center;
     font-size: 20px;
+    width: 350px;
 }
 
 .insurance-guide-content-one img {
     width: 50%;
-    margin: 0px 0px 0px 100px;
 }
 
 .insurance-guide-content-two {
@@ -67,7 +67,7 @@
     align-items: center;
     flex-wrap: wrap;
     margin: 0px 0px 0px 50px;
-    gap: 100px;
+    gap: 50px;
 
 }
 
@@ -110,7 +110,6 @@
 }
 
 .insurance-guide-tagline-two {
-    width: 50%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -120,7 +119,6 @@
     font-size: 30px;
     color: #444444;
     margin: 0px 0px 0px 200px;
-    width: 50%;
 }
 
 .insurance-guide-tagline-two p {
@@ -205,7 +203,7 @@
     /* background-color: rgb(217, 0, 0, 11%); */
     border: 1px solid #d90000;
     width: 350px;
-    height: 500px;
+    height: 400px;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -323,10 +321,12 @@
     
     .insurance-guide-tagline span {
         font-size: 20px;
+        width: 300px;
     }
     
     .insurance-guide-tagline p {
         font-size: 12px;
+        width: 300px;
     }
     
     .insurance-guide-content-one img {
@@ -429,7 +429,7 @@
     
     .insurance-header {
         font-size: 18px;
-        padding:0px 20px;
+        padding:0px 40px;
        
 
     }
@@ -446,7 +446,7 @@
     .travel-insurance-products,
     .auto-insurance-products {
         width: 80%;
-        height: 350px;
+        height: 400px;
         padding: 0px 0px 10px 0px;
     }
     
@@ -485,7 +485,7 @@
         margin: 20px 0px 0px 0px;
     }
     .insurance-guide-content-five .questions .dropdown-label{
-        font-size: 12px;
+        font-size: 14px;
     }
     .insurance-guide-content-five span {
         font-size: 18px;
@@ -520,11 +520,12 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        margin: 0px 10px 0px 0px;
+     padding:0px 0px 0px 0px;
     }
     
     .insurance-guide-tagline span {
         font-size: 20px;
+        width: 300px;
     }
     
     .insurance-guide-tagline p {
@@ -533,7 +534,7 @@
     
     .insurance-guide-content-one img {
         width: 100%;
-        margin: 0px 0px 0px 10px;
+        margin: 0px;
     }
     .insurance-guide-content-two {
         display: flex;
@@ -575,7 +576,6 @@
     }
     
     .insurance-guide-tagline-two {
-        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -585,14 +585,15 @@
     
     .insurance-guide-tagline-two span {
         font-size: 24px;
-        margin: 0px 0px 0px 60px;
-        width: 100%;
+        margin: 0px;
+        
     }
     
     .insurance-guide-tagline-two p {
         font-size: 14px;
         width: 80%;
         margin: 0px 0px 0px 0px;
+        padding-left: 20px;
 
     }
     .insurance-guide-content-three {
@@ -625,7 +626,7 @@
     
     .insurance-header {
         font-size: 18px;
-        margin: 0px 0px 0px 10px;
+        padding: 0px 0px 0px 50px;
 
     }
     
@@ -650,7 +651,7 @@
     }
     
     .other-insurance-products span {
-        font-size: 20px;
+        font-size: 14px;
     
     }
     
@@ -674,7 +675,7 @@
         margin: 20px 0px 0px 0px;
     }
     .insurance-guide-content-five .questions .dropdown-label{
-        font-size: 12px;
+        font-size: 14px;
     }
     .insurance-guide-content-five span {
         font-size: 18px;
@@ -710,17 +711,19 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding: 0px;
         /* align-items: flex-start; */
-        margin: 0px 10px 0px 0px;
+        /* margin: 0px 10px 0px 0px; */
     }
 
     .insurance-guide-tagline span {
         font-size: 22px;
-        margin: 0px 0px 0px 50px;
+        /* margin: 0px 0px 0px 50px; */
     }
 
     .insurance-guide-tagline p {
         font-size: 12px;
+        width: 250px;
       
     }
 
@@ -814,13 +817,15 @@
     }
     
     .insurance-header {
-        font-size: 22px;
-        margin: 0px 0px 0px 10px;
+       font-size: 22px;
+       padding-left: 40px;
 
     }
     
     .other-insurance-products {
         display: flex;
+        flex-wrap: wrap;
+        width: calc(33%-100px);
         flex-direction: row;
         gap: 50px;
         margin: 50px 0px 0px 0px;
@@ -831,7 +836,6 @@
     .health-insurance-products,
     .travel-insurance-products,
     .auto-insurance-products {
-        width: 80%;
         height: 430px;
         padding: 0px 0px 10px 0px;
     }
@@ -902,12 +906,11 @@
         justify-content: center;
         align-items: center;
         /* align-items: flex-start; */
-        margin: 0px 10px 0px 0px;
+        padding-left: 100px;
     }
 
     .insurance-guide-tagline span {
         font-size: 22px;
-        margin: 0px 0px 0px 50px;
     }
 
     .insurance-guide-tagline p {
@@ -930,6 +933,7 @@
         width: 100%;
         gap: 20px;
         margin: 0px;
+        
     }
     
     .home-insurance-inbox,
@@ -966,14 +970,15 @@
     
     .insurance-guide-tagline-two span {
         font-size: 24px;
-        margin: 20px 0px 0px 100px;
+        padding: 20px 0px 0px 10px;
         width: 100%;
     }
     
     .insurance-guide-tagline-two p {
         font-size: 16px;
         width: 100%;
-        margin: 10px 0px 0px 50px;
+        margin: 0px;
+        padding-left: 50px;
 
     }
     .insurance-guide-content-three {
@@ -1005,8 +1010,8 @@
     }
     
     .insurance-header {
-        font-size: 18px;
-        margin: 0px 0px 0px 10px;
+        font-size: 20px;
+         padding-left: 40px;
 
     }
     
@@ -1032,7 +1037,7 @@
     }
     
     .other-insurance-products span {
-        font-size: 20px;
+        font-size: 14px;
     
     }
     
@@ -1096,7 +1101,7 @@
 
     .insurance-guide-content-one img {
         width: 50%;
-        margin: 0px 0px 0px 10px;
+        margin: 0px;
     }
     .insurance-guide-content-two {
         display: flex;
@@ -1184,8 +1189,8 @@
     }
     
     .insurance-header {
-        font-size: 18px;
-        margin: 0px 0px 0px 10px;
+        font-size: 20px;
+        padding-left: 40px;
 
     }
     
@@ -1211,7 +1216,7 @@
     }
     
     .other-insurance-products span {
-        font-size: 20px;
+        font-size: 14px;
     
     }
     
@@ -1284,7 +1289,6 @@
     }
     
     .insurance-guide-inboxes {
-        width: 100%;
         gap: 20px;
         margin: 0px;
     }

@@ -39,19 +39,13 @@ const InsuranceGuideComponent = () => {
 				<div className="insurance-guide-content-one">
 					<div className="insurance-guide-tagline">
 						<span>
-							{" "}
-							Live your life <br />
+							Live your life
 							without worry.
 						</span>
 						<br />
 						<p>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Secure your home in uncertain
-							times.
-							<br />
-							&nbsp;&nbsp;ML Home Insurance will help you protect
-							<br />
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							Secure your home in uncertain
+							times. ML Home Insurance will help you protect
 							and guard your home.
 						</p>
 					</div>
@@ -96,26 +90,12 @@ const InsuranceGuideComponent = () => {
 					</div>
 					<div className="insurance-guide-tagline-two">
 						<span>
-							<b style={{ color: "#ff2800" }}>Choose an Insurance</b> <br />{" "}
+							<b>Choose an Insurance</b> <br />{" "}
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and let us worry <br />
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; about the rest.
 						</span>
 						<br />
 						<p>We’re here to help. Connect with M Lhuillier today!</p>
-					</div>
-				</div>
-				<div className="insurance-guide-content-three">
-					<span>Get Insured Today!</span>
-					<br />
-					<div className="insurance-guide-content-three-input">
-						<input
-							type="email"
-							placeholder="Enter your email address here"
-							style={{ padding: "0px 0px 0px 10px" }}
-						/>
-						<a href="/contact-us">
-							<button>Contact Us</button>
-						</a>
 					</div>
 				</div>
 				<div className="insurance-guide-content-four">
