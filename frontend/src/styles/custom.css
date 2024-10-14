@@ -428,9 +428,9 @@ listing search */
 	height: 500px;
 	overflow-y: auto;
 }
-.certain-feature-menu-container:hover {
+/* .certain-feature-menu-container:hover {
 	color: #fff;
-}
+} */
 
 .show-all-container span {
 	font-size: 16px;
