@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Input, Select, Slider, Dropdown } from "antd";
+import { Button, Input, Select, Slider, Dropdown, Tooltip } from "antd";
 
 import { CaretDownOutlined, SettingOutlined } from "@ant-design/icons";
 import "../../../styles/custom.css";
@@ -7,6 +7,7 @@ import CertainFeatureMenu from "./certainfeature";
 import { GetProvince } from "../../../api/Public/Location.api";
 import RoundSelect from "../selects/RoundSelect.custom";
 import { ListingTypes, PropertyTypes } from "../../../utils/PropertyStaticData.utils";
+import { CapitalizeString } from "../../../utils/StringFunctions.utils";
 
 const ListingSearch = ({
 	location,
@@ -90,14 +91,14 @@ const ListingSearch = ({
 		if (isNum) {
 			if (type == "input") {
 				return !falsy.includes(val) ? val : `Enter ${name}`;
-			}else if(type == "select"){
+			} else if (type == "select") {
 				return !falsy.includes(val) ? val : `${name}`;
 			}
-		}else{
+		} else {
 			if (type == "input") {
-				return !falsy.includes(val) ? val : `Enter ${name}`;
-			}else if(type == "select"){
-				return !falsy.includes(val) ? val : `Select ${name}`;
+				return !falsy.includes(val) ? CapitalizeString(val) : `Enter ${name}`;
+			} else if (type == "select") {
+				return !falsy.includes(val) ? CapitalizeString(val) : `Select ${name}`;
 			}
 		}
 	}
@@ -106,7 +107,7 @@ const ListingSearch = ({
 		<div className="first-content">
 			<div className="sub-content1">
 				<div className="subcontent-inputs-1">
-					<input className="input-field" placeholder="Enter keyword" value={ValueGreaterThanZeroOrNull(searchParams.keyword, "input", "Keyword", false)}/>
+					<input className="input-field" placeholder="Enter keyword" value={ValueGreaterThanZeroOrNull(searchParams.keyword, "input", "Keyword", false)} />
 					{/* <select className="select-field" placeholder="Location">
 						<option value="">Location</option>
 						{location?.map((province, index) => (
@@ -171,7 +172,7 @@ const ListingSearch = ({
 									MIN &nbsp;
 									{isCustomRange ? (
 										<span className="range-prefix">
-											PHP
+											<span style={{ marginRight: '2px' }}>PHP</span> 
 											<input
 												type="text"
 												value={priceRange[0]}
@@ -181,7 +182,7 @@ const ListingSearch = ({
 										</span>
 									) : (
 										<b style={{ color: "#f60000" }}>
-											PHP{priceRange[0].toLocaleString()}
+											PHP{' '}{priceRange[0].toLocaleString()}
 										</b>
 									)}
 								</p>
@@ -191,7 +192,7 @@ const ListingSearch = ({
 									MAX &nbsp;
 									{isCustomRange ? (
 										<span className="range-prefix">
-											PHP
+											<span style={{ marginRight: '2px' }}>PHP</span> 
 											<input
 												type="text"
 												value={priceRange[1]}
@@ -201,19 +202,21 @@ const ListingSearch = ({
 										</span>
 									) : (
 										<b style={{ color: "#f60000" }}>
-											PHP{priceRange[1].toLocaleString()}
+											PHP{' '}{priceRange[1].toLocaleString()}
 										</b>
 									)}
 								</p>
 							</div>
-							<SettingOutlined
-								className="custom-range-button"
-								onClick={handleCustomRangeClick}
-							/>
+							<Tooltip title="Custom Price Range" placement="topLeft">
+								<SettingOutlined
+									className="custom-range-button"
+									onClick={handleCustomRangeClick}
+								/>
+							</Tooltip>
 						</div>
 					</div>
 					<div className="subcontent-inputs-2">
-						<input className="input-field" placeholder="Enter Lot Area"value={searchParams.lot_area} />
+						<input className="input-field" placeholder="Enter Lot Area" value={searchParams.lot_area} />
 						{/* <select className="select-field" placeholder="Bedrooms">
 							<option value="">Bedrooms</option>
 							<option value="commercial">1</option>
@@ -254,7 +257,7 @@ const ListingSearch = ({
 							onVisibleChange={handleCertainFeatureClick}
 						>
 							<div className="select-field-features">
-								<span style={{ margin: "5px 0px 0px 0px" }}>Features</span>
+								<span>Features</span>
 							</div>
 						</Dropdown>
 					</div>

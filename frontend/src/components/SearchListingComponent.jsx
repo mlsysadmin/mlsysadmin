@@ -102,7 +102,6 @@ const SearchListingComponent = () => {
         const filtersearchKeys = searchKeys.filter((key, i) => queryParams.get(key) != undefined || queryParams.get(key) != null)
 
         for (let index = 0; index < Object.values(filtersearchKeys).length; index++) {
-            console.log(Object.values(filtersearchKeys));
 
             setSearchParams((prevState) => ({
                 ...prevState,
@@ -112,18 +111,17 @@ const SearchListingComponent = () => {
         }
 
         console.log("Search Query Params: ", searchQueryParams);
-        console.log("Search Params: ", searchParams);
 
-        if (isSearchParams && searchParams.length !== 0) {
-            getlistings(true, searchQueryParams);
+        if (searchParams.length !== 0) {
+            getlistings(searchQueryParams);
             setHeaderText('Search Properties');
         } else {
-            getlistings(false, searchParams);
+            getlistings(searchParams);
             setHeaderText('Search Properties');
         }
     }, [location]);
 
-    const getlistings = async (isSearch, renderParams) => {
+    const getlistings = async (renderParams) => {
         try {
 
             console.log(renderParams);
@@ -132,65 +130,89 @@ const SearchListingComponent = () => {
             const dataresp = res.data;
 
             if (dataresp.length !== 0) {
-                if (isSearch) {
-                    const formattedListings = dataresp.map((listing) => {
-                        return {
-                            id: listing.id,
-                            title: CapitalizeString(listing.UnitName),
-                            price: AmountFormatterGroup(listing.Price),
-                            status: `For ${CapitalizeString(listing.SaleType)}`,
-                            pics: 0,
-                            img: listing.Photo,
-                            bathrooms: listing.BathRooms,
-                            lot: listing.LotArea,
-                            property_no: listing.PropertyNo,
-                            isFeatured: listing.IsFeatured,
-                            sale_type: CapitalizeString(listing.SaleType),
-                            bedrooms: listing.BedRooms,
-                            property_type: listing.PropertyType,
-                            city: listing.City,
-                            parking: listing.Parking,
-                            location: listing.City
+                const formattedListings = dataresp.map((listing) => {
+                    return {
+                        id: listing.id,
+                        title: CapitalizeString(listing.UnitName),
+                        price: AmountFormatterGroup(listing.Price),
+                        status: `For ${CapitalizeString(listing.SaleType)}`,
+                        pics: 0,
+                        img: listing.Photo,
+                        bathrooms: listing.BathRooms,
+                        lot: listing.LotArea,
+                        property_no: listing.PropertyNo,
+                        isFeatured: listing.IsFeatured,
+                        sale_type: CapitalizeString(listing.SaleType),
+                        bedrooms: listing.BedRooms,
+                        property_type: listing.PropertyType,
+                        city: listing.City,
+                        parking: listing.Parking,
+                        location: listing.City
+                    }
+                });
+                // console.log("DATA: ",  formattedListings);
+
+                const listings = formattedListings.flatMap((item, i) => {
+
+                    // Get all keys from listings
+                    const listingKeys = Object.keys(item);
+
+                    // Get all keys from params
+                    const paramsKeys = Object.keys(renderParams);
+
+                    // Matched keys from params and listing
+                    const matchedKeys = listingKeys.filter(key => paramsKeys.includes(key));
+
+                    const findParams = matchedKeys.map(key => {
+                        if (renderParams[key].toLowerCase() == item[key].toLowerCase()) {
+                            return item;
                         }
                     });
-                    // console.log("DATA: ",  formattedListings);
 
-                    const filteredListings = formattedListings.map((item, i) => {
+                    return { ...findParams }
+                });
 
-                        // Get all keys from listings
-                        const listingKeys = Object.keys(item);
+                // Filter listing from undefined and distinct
+                const filteredListings = listings.map((l, k) => {
 
-                        // Get all keys from params
-                        const paramsKeys = renderParams.flatMap(params => Object.keys(params));
+                    const f = Object.keys(l);
 
-                        // Matched keys from params and listing
-                        const matchedKeys = listingKeys.filter(key => paramsKeys.includes(key));
+                    for (let index = 0; index < f.length; index++) {
+                        const element = f[index];
 
-                        const findParams = matchedKeys.map(key => {
+                        if (l[element] !== undefined) {
 
-                            let paramsVal = {};
+                            return l[element]
+                        }
+                    }
+                }).filter(fl => fl !== undefined).filter(
+                    (value, index, self) =>
+                        index === self.findIndex((t) => t.property_no === value.property_no)
+                );
 
-                            renderParams.forEach((search, k) => {
-                                if (Object.keys(search).includes(key)) {
-                                    paramsVal[key] = search[key]
-                                }
-                            });
-                            return paramsVal
-                        });
+                const finalFilteredListing = await Promise.all(
+                    filteredListings.map(async ffl => {
+                        const getPhotoGallery = await GetUnitPhotos(ffl.id);
 
-                        return { ...findParams }
-                    });
+                        const gallery = getPhotoGallery.data;
 
-                    console.log("filteredListings", filteredListings);
+                        const image = GetPhotoWithUrl(ffl.img);
 
-                }
-            } else {
-                setPublicListing([]);
+                        ffl['img'] = image;
+                        ffl['pics'] = image ? gallery.length + 1 : 0;
+
+                        return ffl;
+                    })
+                )
+
+                setPublicListing(finalFilteredListing)
                 setLoading(false);
-            }
+                console.log("filteredListings", filteredListings);
 
-            setPublicListing([])
-            setLoading(false)
+            } else {
+                setPublicListing([])
+                setLoading(false)
+            }
         } catch (error) {
             console.error("Error fetching public listings:", error);
             setPublicListing([]);
@@ -206,7 +228,7 @@ const SearchListingComponent = () => {
     return (
         <div className="all-container">
             <div className="all-searchcomponent">
-                <ListingSearch location={filterLocation} searchParams={searchParams} setSearchFilters={setSearchParams}/>
+                <ListingSearch location={filterLocation} searchParams={searchParams} setSearchFilters={setSearchParams} />
             </div>
             <div className="all-page-container">
                 <Breadcrumb
@@ -237,6 +259,7 @@ const SearchListingComponent = () => {
                                             size={data.lot}
                                             likes={data.pics}
                                             forsale={data.status}
+                                            isFeatured={data.isFeatured}
                                             subtitle={`${CapitalizeString(
                                                 data.property_type
                                             )} For ${CapitalizeString(data.sale_type)}`}
