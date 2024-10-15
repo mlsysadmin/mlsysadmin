@@ -39,6 +39,8 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 
 	const allProvince = async () => {
 		const dataresprovince = await GetProvince();
+		console.log("dataresprovince: ", dataresprovince);
+		
 		setGetProvince(dataresprovince);
 		// console.log("These are provinces:", dataresprovince);
 	};

@@ -26,55 +26,47 @@ const SidebarMenu = ({ setOpenDrawer }) => {
         key: menu.header,
         label: menu.header,
         type: "group",
-        children: menu.submenu?.map((sub, key) => {
-          // let childSub = sub.childSubMenu;
-          return Object.keys(sub).includes("childSubMenu")
-            ? {
-                key: sub.childSubMenu.header,
-                label: sub.childSubMenu.header,
-                link: sub.link,
-                type: "group",
-                children: Object.keys(sub).includes("childSubMenu")
-                  ? sub.childSubMenu.submenu.map((i, k) => {
-                      return {
-                        key: i.header,
-                        label: i.sub,
-                      };
-                    })
-                  : [],
-              }
-            : Object.keys(sub).includes("sub_info")
-            ? {
-                key: sub.sub_info,
-                label: "Home Loan Dashboard",
-                link: sub.link,
-              }
-            : Object.keys(sub).includes("sub_info_insurance")
-            ? {
-                key: sub.sub_info_insurance,
-                label: "Home Insurance Dashboard",
-                link: sub.link,
-              }
-            : {
-                key: sub.sub,
-                label: sub.sub,
-                link: sub.link,
-              };
-        }),
+        children: getSubMenuChildren(menu.submenu),
       };
     });
 
     return m;
   };
 
+  const getSubMenuChildren = (submenu) => {
+    return submenu.map((sub, key) => {
+      if (Object.keys(sub).includes("childSubMenu")) {
+        return {
+          key: sub.childSubMenu.header,
+          label: sub.childSubMenu.header,
+          type: "group",
+          children: getSubMenuChildren(sub.childSubMenu.submenu),
+        };
+      } else if (Object.keys(sub).includes("sub_info")) {
+        return {
+          key: sub.sub_info,
+          label: "Loan Dashboard",
+          link: sub.link,
+        };
+      } else if (Object.keys(sub).includes("sub_info_insurance")) {
+        return {
+          key: sub.sub_info_insurance,
+          label: "Home Insurance Dashboard",
+          link: sub.link,
+        };
+      } else {
+        return {
+          key: sub.sub,
+          label: sub.sub,
+          link: sub.link,
+        };
+      }
+    });
+  };
+
   const MenuItems = [
-    { label: "Sell", key: "sell", link: "/sell" },
     { label: "New", key: "new", link: "/new" },
-    {
-      label: "Rent",
-      key: "rent",
-      children: SubMenuChild(SubMenu.rent),
-    },
+    { label: "Sell", key: "sell", link: "/sell" },
     {
       label: "Buy",
       key: "buy",
@@ -82,7 +74,13 @@ const SidebarMenu = ({ setOpenDrawer }) => {
       link: "/buy",
     },
     {
-      label: "Home Loan",
+      label: "Rent",
+      key: "rent",
+      children: SubMenuChild(SubMenu.rent),
+    },
+
+    {
+      label: "Loan",
       key: "home-loan",
       children: SubMenuChild(SubMenu.homeLoan),
     },
@@ -125,19 +123,18 @@ const SidebarMenu = ({ setOpenDrawer }) => {
   return (
 		<>
 			{showModal && <JoinTeam toggleModal={toggleModal} />}
-
-			<Menu
-				style={{
-					width: 256,
-				}}
-				defaultSelectedKeys={["1"]}
-				defaultOpenKeys={["sub1"]}
-				items={items}
-				selectedKeys={[currentMenu]}
-				mode="inline"
-				className="sidebar-menu"
-				onClick={handleMenuOnClick}
-			/>
+      <Menu
+        style={{
+          width: 256,
+        }}
+        defaultSelectedKeys={["1"]}
+        defaultOpenKeys={["sub1"]}
+        items={items}
+        selectedKeys={[currentMenu]}
+        mode="inline"
+        className="sidebar-menu"
+        onClick={(menu) => handleMenuOnClick(menu)}
+      />
 
 			<Divider />
 
