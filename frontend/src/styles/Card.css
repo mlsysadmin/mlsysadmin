@@ -90,6 +90,10 @@
 	color: #fff;
 }
 
+.cardImage p.feature-tag {
+	top: 50px;
+}
+
 .card-content p {
 	margin: 5px 0;
 	color: #555;
