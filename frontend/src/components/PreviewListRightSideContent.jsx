@@ -400,7 +400,6 @@ const PreviewListRightSideContent = ({ oneListing }) => {
         <SemiRoundBtn
           label={"Loan Calculator"}
           size={"large"}
-          style={{backgroundColor:"white", color: "black", fontWeight: "bold", border: "black solid 1px"}}
           handleClick={handleLoanClick}
           className={"loan-calculator-button"}
         />
