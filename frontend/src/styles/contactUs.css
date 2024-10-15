@@ -44,10 +44,9 @@
   position: relative;
   margin-top: 18%;
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
   width: 100%;
-  padding-left: 350px;
   flex-direction: row;
   gap: 200px;
 }
@@ -260,10 +259,6 @@ hr {
   border: none;
 }
 
-#messageField {
-  /* display: flex; */
-  /* padding-bottom: 10%; */
-}
 
 .contactInfos {
   width: 36%;
@@ -886,9 +881,6 @@ hr {
     flex-direction: column;
   }
 
-  .contactUsContent{
-   
-  }
   .FAQs-container{
      gap: 40px;
      width: 80%;

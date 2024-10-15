@@ -147,7 +147,7 @@
       width: 270px;
     }
   }
-  @media screen and (min-width: 920px) and (max-width: 1500px) {
+  /* @media screen and (min-width: 920px) and (max-width: 1500px) {
     .skeleton--card-listing {
       width: 280px;
       margin-bottom: 55px;
@@ -160,4 +160,4 @@
     .skeleton--card-listing .skeleton--card-img {
       height: 130px !important;
     }
-  }
+  } */
