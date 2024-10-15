@@ -35,6 +35,7 @@ const CardSkeleton = () => {
                                 paragraph={false}
                                 className="skeleton--card-feature"
                                 shape="square"
+                                key={i}
                             />
                         ))
                     }
@@ -70,6 +71,7 @@ const FeaturesSkeleton = () => {
                                 paragraph={false}
                                 className="skeleton--card-feature"
                                 shape="square"
+                                key={i}
                             />
                         ))
                     }

@@ -121,9 +121,8 @@ const SidebarMenu = ({ setOpenDrawer }) => {
     // navigate("/comingsoon");
   };
   return (
-    <>
-      {showModal && <JoinTeam toggleModal={toggleModal} />}
-
+		<>
+			{showModal && <JoinTeam toggleModal={toggleModal} />}
       <Menu
         style={{
           width: 256,
@@ -137,60 +136,60 @@ const SidebarMenu = ({ setOpenDrawer }) => {
         onClick={(menu) => handleMenuOnClick(menu)}
       />
 
-      <Divider />
+			<Divider />
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gridGap: "10px",
-        }}
-      >
-        <div
-          style={{
-            gridRow: "1 / 3",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <RoundBtn
-            type="primary"
-            className="menu-buttons"
-            style={{
-              background: "#D90000",
-              fontFamily: '"Poppins", sans-serif',
-            }}
-            label="List your Property"
-          />
-          <RoundBtn
-            type="primary"
-            className="menu-buttons"
-            style={{
-              border: "#D90000 solid 1px",
-              background: "white",
-              color: "#D90000",
-              fontFamily: '"Poppins", sans-serif',
-            }}
-            label="Join our Team"
-            onClick={handleJoinTeamClick}
-          />
-        </div>
-        <Col
-          style={{
-            gridRow: "1 / 2",
-            alignSelf: "center",
-          }}
-          align="right"
-          className="menu-buttons"
-        >
-          <img
-            src={userProfile}
-            style={{ width: "30px", cursor: "pointer", marginTop: "40px" }}
-          ></img>
-        </Col>
-      </div>
-    </>
-  );
+			<div
+				style={{
+					display: "grid",
+					gridTemplateColumns: "1fr 1fr",
+					gridGap: "10px",
+				}}
+			>
+				<div
+					style={{
+						gridRow: "1 / 3",
+						display: "flex",
+						flexDirection: "column",
+					}}
+				>
+					<RoundBtn
+						type="primary"
+						className="menu-buttons"
+						style={{
+							background: "#D90000",
+							fontFamily: '"Poppins", sans-serif',
+						}}
+						label="List your Property"
+					/>
+					<RoundBtn
+						type="primary"
+						className="menu-buttons"
+						style={{
+							border: "#D90000 solid 1px",
+							background: "white",
+							color: "#D90000",
+							fontFamily: '"Poppins", sans-serif',
+						}}
+						label="Join our Team"
+						onClick={handleJoinTeamClick}
+					/>
+				</div>
+				<Col
+					style={{
+						gridRow: "1 / 2",
+						alignSelf: "center",
+					}}
+					align="right"
+					className="menu-buttons"
+				>
+					<img
+						src={userProfile}
+						style={{ width: "30px", cursor: "pointer", marginTop: "40px" }}
+					></img>
+				</Col>
+			</div>
+		</>
+	);
 };
 
 export default SidebarMenu;

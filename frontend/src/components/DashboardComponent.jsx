@@ -182,6 +182,7 @@ const DashboardComponent = () => {
         )
         .map((item, i) => {
           return {
+            key: i,
             label: item.City.toLowerCase().includes("city")
               ? CapitalizeString(item.City.toLowerCase())
               : `${CapitalizeString(item.City.toLowerCase())} City`,
@@ -189,6 +190,9 @@ const DashboardComponent = () => {
           };
         })
         .sort((a, b) => a.value.localeCompare(b.value));
+
+        console.log("distinctCity", distinctCity);
+        
       setFilterLocation(distinctCity);
     } catch (error) {
       console.log("location", error);
@@ -327,7 +331,7 @@ const DashboardComponent = () => {
     return Array(arrLength)
       .fill(null)
       .map((_, i) => {
-        return <FeaturesSkeleton />;
+        return <FeaturesSkeleton key={i}/>;
       });
   };
 
@@ -401,7 +405,7 @@ const DashboardComponent = () => {
     });
     console.log("params: ", params);
 
-    navigate(`/all/?search=true&${params}`);
+    navigate(`/search/?${params}`);
     // navigate('/all')
   };
 
@@ -643,7 +647,7 @@ const DashboardComponent = () => {
             {Array(3)
               .fill(null)
               .map((_, i) => {
-                return <CardSkeleton />;
+                return <CardSkeleton key={i}/>;
               })}
           </div>
         )}

@@ -23,17 +23,18 @@ const Card = ({
 	likes,
 	forsale,
 	handleClick,
+	isFeatured
 }) => {
-	const isFeatured = forsale.toLowerCase() === "featured";
+	// const isFeatured = forsale.toLowerCase() === "featured";
 	const [isHeartFilled, setIsHeartFilled] = useState(false);
 	const [showTooltip, setShowTooltip] = useState(false);
 
 	const handleHeartClick = () => {
 		setIsHeartFilled(!isHeartFilled);
-			if (!isHeartFilled) {
-				setShowTooltip(true);
-				setTimeout(() => setShowTooltip(false), 800);
-			}
+		if (!isHeartFilled) {
+			setShowTooltip(true);
+			setTimeout(() => setShowTooltip(false), 800);
+		}
 	};
 	// const navigate = useNavigate();
 
@@ -57,28 +58,31 @@ const Card = ({
 							forsale === "New"
 								? "#ffffff"
 								: forsale === "For Sale"
-								? "#000000"
-								: forsale === "For Rent"
-								? "#000000"
-								: "White",
+									? "#000000"
+									: forsale === "For Rent"
+										? "#000000"
+										: "White",
 						backgroundColor:
 							forsale === "New"
 								? "var(--red)"
 								: forsale === "For Sale"
-								? "#ffffff"
-								: forsale === "For Rent"
-								? "#ffffff"
-								: "var(--red)",
+									? "#ffffff"
+									: forsale === "For Rent"
+										? "#ffffff"
+										: "var(--red)",
 					}}
 				>
 					{forsale}
 				</p>
+				{
+					isFeatured ? <p className="featured feature-tag">Featured</p> : <></>
+				}
 				<div className="likes">
 					<CameraAltIcon />
 					<b>{likes}</b>
 				</div>
 				<div className="bottomicns">
-					<div className="icon" onClick={handleHeartClick} style={{display:"flex", flexDirection:"column"}}>
+					<div className="icon" onClick={handleHeartClick} style={{ display: "flex", flexDirection: "column" }}>
 						<Tooltip
 							color="var(--red)"
 							title="Added to favorites"

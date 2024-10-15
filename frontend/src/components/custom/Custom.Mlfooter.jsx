@@ -105,7 +105,12 @@ const CustomMlFooter = () => {
 									</a>
 								</div>
 								<div>
-									<a style={{ textDecoration: "none", color: "#4F4F4F" }}>
+									<a
+										// href="/documents/mlprop_TermsCondition.pdf"
+										// target="_blank"
+										//  rel="noopener noreferrer"
+										style={{ textDecoration: "none", color: "#4F4F4F" }}
+									>
 										Terms and Conditions
 									</a>
 								</div>

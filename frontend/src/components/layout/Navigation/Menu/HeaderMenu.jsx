@@ -107,6 +107,34 @@ const HeaderMenu = () => {
 		// 	process.env.REACT_APP_REDIRECT_URL
 		// }?redirect_url=${encodeURIComponent(redirectUrl)}`;
 	};
+	const handleProfileClick = () => {
+		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
+		const loginUrl = process.env.REACT_APP_LOGIN_URL;
+		if (isMLWWSPresent && isAccountDetailsPresent) {
+			if (userDetails?.tier?.label === "FULLY VERIFIED") {
+				window.location.href = "/listing";
+			} else if (userDetails?.tier?.label === "BUYER") {
+				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+					redirectUrl
+				)}`;
+			}
+		}else{
+			if (userDetails?.tier?.label === "BUYER") {
+				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+					redirectUrl
+				)}`;
+			}
+			else{
+				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+					redirectUrl
+			)}`; 
+
+			}
+				
+
+		} 
+
+	};
 	//modals
 	const [showModal, setShowModal] = useState(false);
 
@@ -364,18 +392,16 @@ const HeaderMenu = () => {
 				{showModal && <JoinTeam toggleModal={toggleModal} />}
 				<Row align={"middle"} className="menu-buttons">
 					{isMLWWSPresent ? (
-						userDetails?.tier.label === "BUYER" ? (
-							<UserLogInProfileDropdownBtn />
-						) : userDetails?.tier.label === "FULLY VERIFIED" ? (
+						userDetails?.tier.label === "FULLY VERIFIED" ? (
 							<SellerLogInButtonDropdown />
 						) : (
-							<></>
+							<></> 
 						)
 					) : (
 						<img
 							src={userProfile}
 							style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
-							onClick={handleUserProfileClick}
+							onClick={handleProfileClick}
 						/>
 					)}
 				</Row>

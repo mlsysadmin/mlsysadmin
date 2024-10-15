@@ -134,12 +134,12 @@ const Routes = [
 			},
 			{
 				path: "/listing",
-				// element: <BuyerSellerProtectedRoute element={<ListingPage /> }/>
-				element:<ListingPage/>,
+				element: <BuyerSellerProtectedRoute element={<ListingPage /> }/>
+				// element: <ListingPage />,
 			},
 			{
-				path:"/comingsoon",
-				element:<ComingSoonPage/>
+				path: "/comingsoon",
+				element: <ComingSoonPage />,
 			},
 			{
 				path: "/drafts",
@@ -202,8 +202,8 @@ const Routes = [
 				element: <PreviewListing />,
 			},
 			{
-				path:"/propertySearchmodal",
-				element:<PropertySearchModal/>
+				path: "/propertySearchmodal",
+				element: <PropertySearchModal />,
 			},
 			{
 				path: "/buyer-application-history",
@@ -213,13 +213,17 @@ const Routes = [
 				),
 			},
 			{
-				path:"/faqs",
-				element:<FaqsPage/>
+				path: "/faqs",
+				element: <FaqsPage />,
 			},
 			{
-				path:"/search",
-				element:<SearchListingComponent/>
-			}
+				path: "/search",
+				element: <SearchListingComponent />,
+			},
+			{
+				path: "/documents/mlprop_TermsCondition.pdf",
+
+			},
 		],
 	},
 	{
