@@ -9,6 +9,8 @@ import {
 import MapComponent from "./mapComponent";
 import area from "../assets/icons/previewlisting/area.png";
 import { useNavigate } from "react-router-dom";
+import HomeHighlights from "./HomeHighlights";
+
 import {
   CapitalizeString,
   GetPropertyTitle,
@@ -17,13 +19,20 @@ import {
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import { PropertyTypeCategory } from "../utils/PropertyStaticData.utils";
 
-const PreviewListLeftContent = ({ label, value, oneListing }) => {
+const PreviewListLeftContent = ({
+  label,
+  value,
+  oneListing,
+  features,
+  amenities,
+  includes,
+}) => {
   const navigate = useNavigate();
   const handleButtonClick = () => {
     navigate("/mortgage");
   };
 
-  const [features, setFeatures] = useState([]);
+  const [featuress, setFeaturess] = useState([]);
 
   useEffect(() => {
     if (oneListing) {
@@ -84,7 +93,7 @@ const PreviewListLeftContent = ({ label, value, oneListing }) => {
       );
     }
 
-    setFeatures(feature);
+    setFeaturess(feature);
   };
 
   return (
@@ -108,13 +117,10 @@ const PreviewListLeftContent = ({ label, value, oneListing }) => {
           label={"Loan Calculator"}
 		  className={"loaned-calculator-button"}
         /> */}
-        <div
-          style={{ marginTop: "50px" }}
-          className="first-row--about-property"
-        >
+        <div className="first-row--about-property">
           <h2 className={styles.leftsectionTitle}>About this property</h2>
           <section className={styles.leftfeatureGrid}>
-            {features.map((feature, index) => {
+            {featuress.map((feature, index) => {
               if (feature.value) {
                 return <VLFeatureCard key={index} {...feature} />;
               }
@@ -131,7 +137,7 @@ const PreviewListLeftContent = ({ label, value, oneListing }) => {
         <MapComponent oneListing={oneListing} />
       </div>
 
-      <div className="view-similar-properties">
+      <div className="web-view-similar-properties">
         <h3>Home Details</h3>
         <div className={styles.specificationContainer}>
           <h4 className={styles.specificationHeader}>Specification</h4>
@@ -171,6 +177,61 @@ const PreviewListLeftContent = ({ label, value, oneListing }) => {
           </table>
         </div>
       </div>
+      <div className="mobile-view-similar-properties">
+        <h3>Home Details</h3>
+        <div className={styles.specificationContainer}>
+          <h4 className={styles.specificationHeader}>Specification</h4>
+          <table className={styles.specificationTable}>
+            <tbody>
+              <tr>
+                <th>Property Type</th>
+                <td>{CapitalizeString(oneListing.PropertyType)}</td>
+              </tr>
+              <tr>
+                <th>Floor Area</th>
+                <td>{NotAvailableReturn(oneListing.FloorArea)}</td>
+              </tr>
+              <tr>
+                <th>Listing Type</th>
+                <td>{`For ${CapitalizeString(oneListing.SaleType)}`}</td>
+              </tr>
+              <tr>
+                <th>Lot Area</th>
+                <td>{NotAvailableReturn(oneListing.LotArea)}</td>
+              </tr>
+              <tr>
+                <th>Furnishing</th>
+                <td>{NotAvailableReturn(oneListing.Furnishing)}</td>
+              </tr>
+              <tr>
+                <th>Price per SqM</th>
+                <td>{NotAvailableReturn(oneListing.PricePerSqm)}</td>
+              </tr>
+              <tr>
+                <th>Bedroom</th>
+                <td>{NotAvailableReturn(oneListing.BedRooms)}</td>
+              </tr>
+              <tr>
+                <th>No of Floors</th>
+                <td>{NotAvailableReturn(oneListing.NoOfFloor)}</td>
+              </tr>
+              <tr>
+                <th>Bathroom</th>
+                <td>{NotAvailableReturn(oneListing.BathRooms)}</td>
+              </tr>
+              <tr>
+                <th>Car Parking</th>
+                <td>{NotAvailableReturn(oneListing.Parking)}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <HomeHighlights
+        features={features}
+        amenities={amenities}
+        includes={includes}
+      />
     </div>
   );
 };

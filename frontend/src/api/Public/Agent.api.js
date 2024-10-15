@@ -11,7 +11,7 @@ const AddAgent = async (reqBody) => {
 			},
 		};
     const response = await IGOTSOLUTIONSAxiosInstance.post(
-      `api/addAgent`,
+      `api/addAgentByAgent`,
       reqBody,
 			config
     );

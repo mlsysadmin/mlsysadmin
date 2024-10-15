@@ -246,7 +246,7 @@ input[type="file"] {
   display: none;
 }
 
-button {
+.join-team-submit-button {
   margin-top: 10px;
 }
 
@@ -267,7 +267,7 @@ button {
   color: #8c9094;
 }
 
-.submit-button {
+.join-team-submit-button {
   background-color: #d90000;
   color: #fff;
   border: none;
@@ -335,8 +335,9 @@ button {
   line-height: normal;
   margin-top: 15px;
 }
+
 @media only screen and (min-width: 554px) and (max-width: 1024px) {
-  .submit-button {
+  .join-team-submit-button {
     background-color: #d90000;
     color: #fff;
     border: none;
@@ -620,7 +621,7 @@ button {
     width: 100%;
   }
 
-  .submit-button {
+  .join-team-submit-button {
     background-color: #d90000;
     color: #fff;
     border: none;
@@ -698,7 +699,7 @@ button {
     width: 100%;
   }
 
-  .submit-button {
+  .join-team-submit-button {
     background-color: #d90000;
     color: #fff;
     border: none;
@@ -776,7 +777,7 @@ button {
     width: 100%;
   }
 
-  .submit-button {
+  .join-team-submit-button {
     background-color: #d90000;
     color: #fff;
     border: none;
@@ -854,7 +855,7 @@ button {
     width: 100%;
   }
 
-  .submit-button {
+  .join-team-submit-button {
     background-color: #d90000;
     color: #fff;
     border: none;
@@ -932,7 +933,7 @@ button {
     width: 100%;
   }
 
-  .submit-button {
+  .join-team-submit-button {
     background-color: #d90000;
     color: #fff;
     border: none;
@@ -1007,7 +1008,7 @@ button {
     flex-direction: column;
     width: 100%;
   }
-  .submit-button {
+  .join-team-submit-button {
     background-color: #d90000;
     color: #fff;
     border: none;
@@ -1085,7 +1086,7 @@ button {
     width: 100%;
   }
 
-  .submit-button {
+  .join-team-submit-button {
     background-color: #d90000;
     color: #fff;
     border: none;
@@ -1163,7 +1164,7 @@ button {
     width: 100%;
   }
 
-  .submit-button {
+  .join-team-submit-button {
     background-color: #d90000;
     color: #fff;
     border: none;
@@ -1241,7 +1242,7 @@ button {
     width: 100%;
   }
 
-  .submit-button {
+  .join-team-submit-button{
     background-color: #d90000;
     color: #fff;
     border: none;

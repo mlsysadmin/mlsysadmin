@@ -12,7 +12,7 @@
   width: 100%;
   font: 700 25px Poppins, sans-serif;
   /* margin: 10px; */
-  margin-left: 3%;
+  margin-top: 3%;
 }
 
 .card {
@@ -20,12 +20,11 @@
   display: flex;
   margin-top: 35px;
   /* width: 100%; */
-  width: 93%;
+  width: 100%;
   padding-bottom: 30px;
   flex-direction: column;
   /* border: 1px solid #f5f6f7; */
   border: 1px solid #e7e7e7;
-  margin-left: 3%;
 }
 
 .cardHeader {
@@ -47,7 +46,7 @@
 }
 
 .includesColumn, .amenitiesColumn, .featuresColumn{
-  width: 21%;
+  width: 100%;
 }
 
 .includesGrid, .cardContent, .amenitiesGrid{

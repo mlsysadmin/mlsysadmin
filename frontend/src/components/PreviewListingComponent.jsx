@@ -18,7 +18,6 @@ import {
   GetAllPhoto,
 } from "../utils/GetPhoto";
 import PropertyListing from "./PropertyListing";
-import HomeHighlights from "./HomeHighlights";
 import NotFoundComponent from "./Errors/NotFoundComponent";
 import { GetAllFeaturesByPropertyNo } from "../api/GetAllAmenities";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
@@ -200,16 +199,17 @@ const PreviewListing = () => {
                 unitPhotos={unitPhotos}
               />
               <div className="midContent">
-                <PreviewListLeftContent oneListing={oneListing} />
+                <PreviewListLeftContent
+                  oneListing={oneListing}
+                  features={features}
+                  amenities={amenities}
+                  includes={includes}
+                />
                 <div className="widerRightSideContent">
                   <PreviewListRightSideContent oneListing={oneListing} />
                 </div>
               </div>
-              <HomeHighlights
-                features={features}
-                amenities={amenities}
-                includes={includes}
-              />
+
               <div className="mobileRightSideContent">
                 <PreviewListRightSideContent oneListing={oneListing} />
               </div>

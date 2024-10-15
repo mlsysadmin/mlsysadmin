@@ -36,10 +36,10 @@ h4{
  .ref-prop-btn{
     border: 1px solid var(--red);
     width: 250px;
-    height: 70px;
+    height: 50px;
     border-radius:10px;
     background-color: white;
-    font-size: 18px;
+    font-size: 15px;
     margin: 20px 0px 0px 0px;
 }
 .refinance-property-group .ref-prop-btn.active,
@@ -54,10 +54,10 @@ h4{
 .refinance-property-group .refinance-property-group-two .ref-dropdown{
     border: 1px solid var(--red);
     width: 55%;
-    height: 70px;
+    height: 50px;
     border-radius:10px;
     background-color: white;
-    font-size: 18px;
+    font-size: 15px;
     justify-content: space-between;
     display: flex;
     align-items: center;
@@ -86,8 +86,8 @@ h4{
 .refinance-content  .refinance-details-group-six input,
 .refinance-content .refinance-property-group-five input{
     width:530px;
-    height: 55px;
-    font-size: 18px;
+    height: 50px;
+    font-size: 15px;
     border-radius: 10px;
     border: 1px solid var(--red);
     padding: 0px 0px 0px 20px;
@@ -452,7 +452,7 @@ background-color: var(--red);
   }
   .refinance-group-one{
     width: 100%;
-    margin: 20px 20px 0px 100px;
+    margin: 10px 10px 0px 10px;
   }
   .refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-vertical {
     display: flex;
