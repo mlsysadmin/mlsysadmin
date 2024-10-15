@@ -138,18 +138,17 @@ const LoanCalculatorComponent = () => {
 								<p className="payment-desc">
 									Affects interest rates. 30 or 15 year loans are standard
 								</p>
-							
-									<Select
-										value={selectedOption}
-										className="year-loans"
-										onChange={(value) => setSelectedOption(value)}
-				
-										dropdownMatchSelectWidth={true} // Dropdown matches the select width
-									>
-										<Select.Option value={5} >5 Years Fixed</Select.Option>
-										<Select.Option value={10}>10 Years Fixed</Select.Option>
-										<Select.Option value={15}>15 Years Fixed</Select.Option>
-									</Select>
+
+								<Select
+									value={selectedOption}
+									className="year-loans"
+									onChange={(value) => setSelectedOption(value)}
+									dropdownMatchSelectWidth={true} // Dropdown matches the select width
+								>
+									<Select.Option value={5}>5 Years Fixed</Select.Option>
+									<Select.Option value={10}>10 Years Fixed</Select.Option>
+									<Select.Option value={15}>15 Years Fixed</Select.Option>
+								</Select>
 							</div>
 							<div className="mortgage-interest-group">
 								<h3 className="payment">Mortgage interest rate</h3>
@@ -194,27 +193,42 @@ const LoanCalculatorComponent = () => {
 												boxShadow: "none",
 												padding: "15px 10px",
 											}}
-											barLeftColor="rgb(217, 0, 0, 26%)"
-											barInnerColor="rgb(70, 10, 10, 81%)"
-											barRightColor="#D90000"
-											thumbLeftColor="#d90000"
-											thumbRightColor="#d90000"
+											barLeftColor="#D90000"
+											barInnerColor="#ff6347"
+											barRightColor=" rgb(255,160,122)"
+											thumbLeftColor="#701c1c"
+											thumbRightColor="#701c1c"
 										/>
 										<div className="interest-values">
 											<div className="interest-description">
 												<div className="interest">
 													<p>
-														<img src={Ellipse1} alt="" /> Principal and Interest
+														<img
+															src={Ellipse1}
+															style={{ width: "15px", height: "15px" }}
+															alt=""
+														/>{" "}
+														Principal and Interest
 													</p>
 												</div>
 												<div className="interest">
 													<p>
-														<img src={Ellipse2} alt="" /> Property Taxes
+														<img
+															src={Ellipse2}
+															style={{ width: "15px", height: "15px" }}
+															alt=""
+														/>{" "}
+														Property Taxes
 													</p>
 												</div>
 												<div className="interest">
 													<p>
-														<img src={Ellipse3} alt="" /> Homeowners Insurance
+														<img
+															src={Ellipse3}
+															style={{ width: "15px", height: "15px" }}
+															alt=""
+														/>{" "}
+														Homeowners Insurance
 													</p>
 												</div>
 											</div>
