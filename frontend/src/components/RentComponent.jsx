@@ -131,7 +131,7 @@ const RentComponent = () => {
 							};
 						})
 					);
-					const location = FillLocationFilter(newListing);
+					const location = FillLocationFilter(dataresp);
 					setFilterLocation(location);
 					setPublicListing(newListing);
 					setLoading(false);
@@ -176,6 +176,7 @@ const RentComponent = () => {
 
 	}, [])
 
+	const [selectedSort, setSelectedSort] = useState("Most relevant");
 	const indexOfLastCard = currentPage * cardsPerPage;
 	const indexOfFirstCard = indexOfLastCard - cardsPerPage;
 	const currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
@@ -199,6 +200,8 @@ const RentComponent = () => {
 				<SearchPropertiesSoration
 					properties_count={publiclisting.length}
 					current_properties_count={currentCards.length}
+					selectedSort={selectedSort}
+                	setSelectedSort={setSelectedSort}
 				/>
 				{!loading ? (
 					currentCards.length !== 0 ? (

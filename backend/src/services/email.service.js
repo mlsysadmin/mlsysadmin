@@ -19,7 +19,7 @@ const MailTransporter = async () => {
             pass: process.env.EMAIL_PASSWORD,
             type: 'custom',
             method: 'EMAIL-CUSTOM-HANDLE'
-        }
+        },
     });
 
     // const handlebarOptions = {
@@ -54,13 +54,14 @@ const EmailTemplate = (filePath, data) => {
     }
 }
 
-const SendEmail = async (emailTemp, emailType) => {
+const SendEmail = async (emailTemp, emailType, references) => {
     
     let messageContent = {
         subject: `Brokerage Client: ${emailType}`,
         to: process.env.EMAIL_TO,
         from: `M Lhuillier Properties Realty & Brokerage <${process.env.EMAIL_FROM}>`,
         html: emailTemp,
+        references: references
     }
 
     const transporter = await MailTransporter();

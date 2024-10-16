@@ -75,7 +75,7 @@ const SearchListingComponent = () => {
     ]);
     const [searchParams, setSearchParams] = useState({
         location: "",
-        price_min: 0,
+        price_min: 1000,
         price_max: 100000000,
         keyword: "",
         property_type: "",
@@ -98,17 +98,23 @@ const SearchListingComponent = () => {
 
         let searchQueryParams = {};
 
-        const searchKeys = ['sale_type', 'keyword', 'property_type', 'location', 'indoor', 'outdoor'];
-        const filtersearchKeys = searchKeys.filter((key, i) => queryParams.get(key) != undefined || queryParams.get(key) != null)
+        const searchKeys = [
+            'sale_type', 'keyword', 'property_type',
+            'location', 'indoor', 'outdoor', 'price_min',
+            'price_max', 'bathrooms', 'bedrooms', 'parking'
+        ];
+        const filtersearchKeys = searchKeys.filter((key, i) => ![undefined, null, "null"].includes(queryParams.get(key)))
 
-        for (let index = 0; index < Object.values(filtersearchKeys).length; index++) {
+        console.log(filtersearchKeys);
 
+        filtersearchKeys.forEach((fsKey, i) => {
             setSearchParams((prevState) => ({
                 ...prevState,
-                [Object.values(filtersearchKeys)[index]]: queryParams.get(Object.values(filtersearchKeys)[index])
+                [fsKey]: queryParams.get(fsKey)
             }))
-            searchQueryParams[Object.values(filtersearchKeys)[index]] = queryParams.get(Object.values(filtersearchKeys)[index]);
-        }
+
+            searchQueryParams[fsKey] = queryParams.get(fsKey);
+        });
 
         console.log("Search Query Params: ", searchQueryParams);
         console.log("Search Params: ", searchParams);
@@ -124,6 +130,9 @@ const SearchListingComponent = () => {
 
     const getlistings = async (renderParams) => {
         try {
+
+            console.log('renderParams', renderParams);
+
 
             const res = await GetPropertiesBySaleStatus();
             const dataresp = res.data;
@@ -154,6 +163,9 @@ const SearchListingComponent = () => {
                 // CHECK LOCATION AND KEYWORD
                 const hasLocation = Object.hasOwn(renderParams, 'location');
                 const hasKeyword = Object.hasOwn(renderParams, 'keyword');
+
+                console.log("has", hasLocation);
+
 
                 let listingByLocation = [];
 
@@ -201,6 +213,8 @@ const SearchListingComponent = () => {
                 } else {
                     listingByLocation = formattedListings;
                 }
+
+                console.log("listingByLocation", listingByLocation);
 
 
                 // // Get listing that matches by params - excluding location || keyword
@@ -285,28 +299,34 @@ const SearchListingComponent = () => {
                 //     })
                 // )
                 let filteredListings = listingByLocation;
-                let feature = await Promise.all(
-                    listingByLocation.map(async lbl => {
-                        const getFeatures = await GetAllFeaturesByPropertyNo(lbl.property_no);
-
-                        lbl.features = getFeatures.data.map(feat => {
-                            return feat.FeatureName
-                        }).filter(
-                            (value, index, self) => index === self.findIndex((t) => t[index] === value[index]));
-
-                        return lbl
-                    }))
-
+                
 
                 const paramsKeys = Object.keys(renderParams);
                 if (paramsKeys.length > 0) {
-                    filteredListings = filteredListings.filter(listing =>
-                        paramsKeys.every(key =>
-                            renderParams[key].toLowerCase().replace(/[-_]/g, " ") === listing[key]?.toLowerCase().replace(/[-_]/g, " ")
-                        )
-                    );
-                }
+                    if ((renderParams['price_max'] && renderParams['price_min'])) {
+                        filteredListings = filteredListings.filter((pr) => {
 
+                            const max = parseInt(renderParams['price_max'], 10);
+                            const min = parseInt(renderParams['price_min'], 10);
+                            const price = parseInt(pr['price'], 10);
+
+                            return price >= min && price <= max
+                        })
+                        delete renderParams['price_max']
+                        delete renderParams['price_min']
+                    }
+                }
+                
+                // Get keys from the remaining render params
+                const remainingParams = Object.keys(renderParams);
+
+                // Filter listing from the rest search params
+                if (remainingParams.length > 0) {
+                    
+                    filteredListings = filteredListings.filter(listing =>
+                        remainingParams.every(key =>renderParams[key].toLowerCase().replace(/[-_]/g, " ") == listing[key]?.toLowerCase().replace(/[-_]/g, " "))
+                    )
+                }
 
                 // Get photo gallery and finalize listings
                 const finalFilteredListing = await Promise.all(
@@ -336,6 +356,8 @@ const SearchListingComponent = () => {
             setLoading(false);
         }
     };
+
+    const [selectedSort, setSelectedSort] = useState("Most relevant");
 
     const indexOfLastCard = currentPage * cardsPerPage;
     const indexOfFirstCard = indexOfLastCard - cardsPerPage;
@@ -386,6 +408,8 @@ const SearchListingComponent = () => {
                         <SearchPropertiesSoration
                             properties_count={publiclisting.length}
                             current_properties_count={currentCards.length}
+                            selectedSort={selectedSort}
+                            setSelectedSort={setSelectedSort}
                         />
                         {!loading ? (
                             currentCards.length !== 0 ? (

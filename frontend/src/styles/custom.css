@@ -306,8 +306,8 @@ listing search */
 	margin-right: auto;
 }
 
-.subcontent-inputs-1 .right-button {
-	background-color: var(--red);
+.subcontent-inputs-1 .right-button, .subcontent-inputs-1 .right-button.ant-btn:hover {
+	background-color: var(--red) !important;
 	color: white;
 	border-radius: 5px;
 	padding: 10px 25px;
@@ -320,6 +320,7 @@ listing search */
 	height: 55px;
 	width: 100px;
 	margin-top: 0px;
+	border-color: var(--red) !important;
 }
 
 .right-button:hover {

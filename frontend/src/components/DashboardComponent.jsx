@@ -119,7 +119,7 @@ const DashboardComponent = () => {
         setPublicListing([]);
       } else {
         const listingRes = dataresp.filter(
-          (listing) => !isPastAMonth(listing.created_at)
+          (listing) => !isPastAMonth(listing.created_at) && listing.PropertyType == "lot"
         );
 
         let listings = [];
@@ -339,7 +339,7 @@ const DashboardComponent = () => {
 
   useEffect(() => {
 		
-		console.log('searchParams', searchParams['location']);
+		console.log('searchParams', searchParams);
 		
 	},[searchParams])
   const handleSearchClick = () => {
@@ -418,17 +418,17 @@ const DashboardComponent = () => {
   };
 
   const SetParamsAllField = (name, value) => {
-    console.log("search", searchParams);
     
     setSearchParams((prevSearchParams) => {
       const existingParamIndex = prevSearchParams.findIndex(
         (param) => param.name === name
       );
-
+      
       if (existingParamIndex !== -1) {
         if (
           // (name === "keyword" && value === "") ||
-          (name === "keyword" && value.includes(null, undefined, "")) ||
+          (name === "keyword" && [null, undefined, ""].includes(value)) 
+          ||
           (name === "features" && checkFeatures.length === 0)
         ) {
           prevSearchParams.splice(existingParamIndex, 1);
@@ -437,9 +437,11 @@ const DashboardComponent = () => {
         }
       } else {
         if (
-          (name === "keyword" && value === "") ||
+          (name === "keyword" && [null, undefined, ""].includes(value)) 
+          ||
           (name === "features" && checkFeatures.length === 0)
         ) {
+          
           prevSearchParams.splice(existingParamIndex, 1);
         } else {
           prevSearchParams.push({ name, value });
@@ -613,6 +615,7 @@ const DashboardComponent = () => {
                     pics={item.pics}
                     img={item.img}
                     no_of_bathrooms={item.no_of_bathrooms}
+                    no_of_beds={item.no_of_beds}
                     lot={item.lot}
                     key={i}
                     loading={loading}
@@ -733,7 +736,7 @@ const DashboardComponent = () => {
           <div className="featured--content">
             {!loading ? (
               publiclisting.length !== 0 ? (
-                <FeaturedPropertiesComponent featuredListing={publiclisting} />
+                <FeaturedPropertiesComponent featuredListing={publiclisting} handleFeaturedClick={handleCardClick}/>
               ) : (
                 <p style={{ textAlign: "center", padding: "90px 0px 150px" }}>
                   No Featured Properties Available
