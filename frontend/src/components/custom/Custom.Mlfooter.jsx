@@ -142,8 +142,6 @@ const CustomMlFooter = () => {
 				</div>
 			</div>
 		);
-
-
 }
 
 export default CustomMlFooter

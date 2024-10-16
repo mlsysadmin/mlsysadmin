@@ -8,6 +8,7 @@ import area from "../assets/icons/previewlisting/area.png";
 import { useNavigate } from 'react-router-dom';
 import { CapitalizeString, GetPropertyTitle, NotAvailableReturn } from "../utils/StringFunctions.utils";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
+import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import { PropertyTypeCategory } from "../utils/PropertyStaticData.utils";
 
 
@@ -71,39 +72,36 @@ const PreviewListLeftContent = ({ label, value, oneListing }) => {
 		<div className="leftContent">
 			<main className={styles.leftcontainer}>
 				<h1 className={styles.lefttitle}>
-					{
-						CapitalizeString(oneListing.UnitName)
-					}
+					{CapitalizeString(oneListing.UnitName)}
 				</h1>
 				<p className={styles.leftlocation}>
-					{FormatLocation(oneListing.City, oneListing.ProvinceState, oneListing.Country)}
+					{FormatLocation(
+						oneListing.City,
+						oneListing.ProvinceState,
+						oneListing.Country
+					)}
 				</p>
 				<button className={styles.leftctaButton} onClick={handleButtonClick}>
 					Get Pre-Approved
 				</button>
 				<br />
-				<SemiRoundBtn label={'Apply Now'} className={styles.applyNowbtn} />
-				<div style={{ marginTop: '50px' }} className="first-row--about-property">
+				<SemiRoundBtn label={"Apply Now"} className={styles.applyNowbtn} />
+				<div
+					style={{ marginTop: "50px" }}
+					className="first-row--about-property"
+				>
 					<h2 className={styles.leftsectionTitle}>About this property</h2>
 					<section className={styles.leftfeatureGrid}>
-						{
-							features.map((feature, index) => {
-
-								if (feature.value) {
-									return (
-
-										<VLFeatureCard key={index} {...feature} />
-									)
-								}
-							})
-						}
+						{features.map((feature, index) => {
+							if (feature.value) {
+								return <VLFeatureCard key={index} {...feature} />;
+							}
+						})}
 					</section>
 				</div>
-				<div style={{ marginTop: '60px' }} className="second-row--description">
+				<div style={{ marginTop: "60px" }} className="second-row--description">
 					<h2 className={styles.leftdescriptionTitle}>Description</h2>
-					<p className={styles.leftdescriptionText}>
-						{oneListing.Details}
-					</p>
+					<p className={styles.leftdescriptionText}>{oneListing.Details}</p>
 				</div>
 			</main>
 			<div className="property-on-map">
@@ -127,13 +125,19 @@ const PreviewListLeftContent = ({ label, value, oneListing }) => {
 								<th>Listing Type</th>
 								<td>{`For ${CapitalizeString(oneListing.SaleType)}`}</td>
 								<th>Lot Area</th>
-								<td>{NotAvailableReturn(oneListing.LotArea)}</td>
+								<td>
+									{NotAvailableReturn(AmountFormatterGroup(oneListing.LotArea))}
+								</td>
 							</tr>
 							<tr>
 								<th>Furnishing</th>
 								<td>{NotAvailableReturn(oneListing.Furnishing)}</td>
 								<th>Price per SqM</th>
-								<td>{NotAvailableReturn(oneListing.PricePerSqm)}</td>
+								<td>
+									{NotAvailableReturn(
+										AmountFormatterGroup(oneListing.PricePerSqm)
+									)}
+								</td>
 							</tr>
 							<tr>
 								<th>Bedroom</th>

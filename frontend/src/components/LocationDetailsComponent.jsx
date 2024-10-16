@@ -153,6 +153,7 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 					<select
 						name="country"
 						id="country"
+						disabled
 						placeholder="Select Country"
 						className="location-form-inputs"
 						value={selectedCountry}
