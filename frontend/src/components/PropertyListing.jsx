@@ -28,8 +28,7 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
 
   const images = unitPhotos;
   
-  const handleChange = (isChecked, tag) => {
-		const id = tag._owner.memoizedProps.listingId;
+  const handleChange = (isChecked, tag, id) => {
 
 		const nextSelectedTags =
 			isChecked && !likes.includes(id)
@@ -128,6 +127,7 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
               checkable={true}
               checked={checked}
               handleChange={handleChange}
+              listingId={oneListing.PropertyNo}
             />{" "}
             <span
               className={styles.saveText}

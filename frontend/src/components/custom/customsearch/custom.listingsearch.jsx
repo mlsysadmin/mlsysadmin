@@ -8,17 +8,22 @@ import { GetProvince } from "../../../api/Public/Location.api";
 import RoundSelect from "../selects/RoundSelect.custom";
 import { ListingTypes, PropertyTypes } from "../../../utils/PropertyStaticData.utils";
 import { CapitalizeString } from "../../../utils/StringFunctions.utils";
+import { useNavigate } from "react-router-dom";
 
 const ListingSearch = ({
 	location,
 	searchParams,
 	setSearchFilters,
 }) => {
+
+	const navigate = useNavigate();
+
 	const { Option } = Select;
 	const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
 	const [iscertainFeatureOpen, setcertainFeatureOpen] = useState(false);
 	const [getProvince, setGetProvince] = useState([]);
 	const [isCustomRange, setIsCustomRange] = useState(false);
+	const [checkFeatures, setCheckFeatures] = useState([]);
 
 	const handleAdvancedSearchClick = () => {
 		setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
@@ -87,67 +92,201 @@ const ListingSearch = ({
 
 	const ValueGreaterThanZeroOrNull = (val, type, name, isNum) => {
 		const falsy = ["", undefined, null, 0];
+		// console.log("val", val);
+
 
 		if (isNum) {
 			if (type == "input") {
-				return !falsy.includes(val) ? val : `Enter ${name}`;
+				return !falsy.includes(val) ? val : ``;
 			} else if (type == "select") {
 				return !falsy.includes(val) ? val : `${name}`;
 			}
 		} else {
 			if (type == "input") {
-				return !falsy.includes(val) ? CapitalizeString(val) : `Enter ${name}`;
+				return !falsy.includes(val) ? CapitalizeString(val) : null;
 			} else if (type == "select") {
 				return !falsy.includes(val) ? CapitalizeString(val) : `Select ${name}`;
 			}
 		}
 	}
+	const [newSearchParams, setNewSearchParams] = useState();
+	const [keywordSearch, setKeywordSearch] = useState();
+
+	useEffect(() => {
+
+		console.log('newSearchParams', newSearchParams);
+		let params = {};
+		const keys = Object.keys(searchParams);
+
+		keys.forEach((key, i) => {
+			params[key] = searchParams[key]
+		})
+		setNewSearchParams(params);
+
+	}, [searchParams])
+
+	const HandleFieldChange = (e, name) => {
+		// const newArr = [...searchFilters];
+		SetParamsAllField(name, e.target.value)
+	}
+
+	const handleSearchClick = () => {
+		let params = "";
+
+		newSearchParams.forEach((item, key) => {
+
+			if (key == 0) {
+				if (item.name === "features") {
+					const indoorFeatures = item.value.filter(
+						(feature) => feature.name === "indoor"
+					);
+					const outdoorFeatures = item.value.filter(
+						(feature) => feature.name === "outdoor"
+					);
+
+					if (indoorFeatures.length > 0) {
+						const indoorValues = indoorFeatures
+							.map((feature) => feature.value)
+							.join(",");
+						params += `&indoor=${indoorValues}`;
+					}
+
+					if (outdoorFeatures.length > 0) {
+						const outdoorValues = outdoorFeatures
+							.map((feature) => feature.value)
+							.join(",");
+						if (params.length > 0) {
+							params += `&outdoor=${outdoorValues}`;
+						} else {
+							params += `&outdoor=${outdoorValues}`;
+						}
+					}
+				} else {
+					params += `${item.name}=${item.value}`;
+				}
+			} else {
+				if (item.name === "features") {
+					const indoorFeatures = item.value.filter(
+						(feature) => feature.name === "indoor"
+					);
+					const outdoorFeatures = item.value.filter(
+						(feature) => feature.name === "outdoor"
+					);
+
+					if (indoorFeatures.length > 0) {
+						const indoorValues = indoorFeatures
+							.map((feature) => feature.value)
+							.join(",");
+						params += `&indoor=${indoorValues}`;
+					}
+
+					if (outdoorFeatures.length > 0) {
+						const outdoorValues = outdoorFeatures
+							.map((feature) => feature.value)
+							.join(",");
+						if (params.length > 0) {
+							params += `&outdoor=${outdoorValues}`;
+						} else {
+							params += `&outdoor=${outdoorValues}`;
+						}
+					}
+				} else {
+					params += `&${item.name}=${item.value}`;
+				}
+			}
+		});
+		console.log("params: ", params);
+
+		navigate(`/search/?${params}`);
+		// navigate('/all')
+	};
+
+	const onSelectionChange = (value, name) => {
+		console.log(value, name);
+		
+		SetParamsAllField(name, value);
+	};
+
+	const SetParamsAllField = (name, value) => {
+
+		setNewSearchParams((prevState) => {
+			
+			return { ...prevState, [name]: value };
+		})
+		// setNewSearchParams((prevSearchParams) => {
+		// 	console.log("prev", prevSearchParams);
+
+		// 	const existingParamIndex = prevSearchParams.findIndex(
+		// 		(param) => param.name === name
+		// 	);
+
+		// 	if (existingParamIndex !== -1) {
+		// 		if (
+		// 			// (name === "keyword" && value === "") ||
+		// 			(name === "keyword" && value.includes(null, undefined, "")) ||
+		// 			(name === "features" && checkFeatures.length === 0)
+		// 		) {
+		// 			prevSearchParams.splice(existingParamIndex, 1);
+		// 		} else {
+		// 			prevSearchParams[existingParamIndex].value = value;
+		// 		}
+		// 	} else {
+		// 		if (
+		// 			(name === "keyword" && value === "") ||
+		// 			(name === "features" && checkFeatures.length === 0)
+		// 		) {
+		// 			prevSearchParams.splice(existingParamIndex, 1);
+		// 		} else {
+		// 			prevSearchParams.push({ name, value });
+		// 		}
+		// 	}
+		// 	console.log("prevSearchParams: ", prevSearchParams);
+		// 	return [...prevSearchParams];
+		// });
+	};
+
+	const onInputChange = (e) => {
+		setKeywordSearch(e.target.value);
+	};
+
+	const onInputBlur = () => {
+		SetParamsAllField("keyword", keywordSearch);
+	};
 
 	return (
 		<div className="first-content">
 			<div className="sub-content1">
 				<div className="subcontent-inputs-1">
-					<input className="input-field" placeholder="Enter keyword" value={ValueGreaterThanZeroOrNull(searchParams.keyword, "input", "Keyword", false)} />
-					{/* <select className="select-field" placeholder="Location">
-						<option value="">Location</option>
-						{location?.map((province, index) => (
-							<option key={index} value={province.value}>
-								{province.label}
-							</option>
-						))}
-					</select> */}
+					<input
+						className="input-field"
+						placeholder="Enter keyword"
+						value={ValueGreaterThanZeroOrNull(newSearchParams['keyword'], "input", "Keyword", false)}
+						onChange={(e) => HandleFieldChange(e, "keyword")}
+					/>
 					<RoundSelect
 						options={location}
 						classname={'select-field'}
 						placeholder={'Location'}
 						suffixIcon={<CaretDownOutlined />}
-						value={ValueGreaterThanZeroOrNull(searchParams.location, "select", "Location", false)} />
-					{/* <select className="select-field" placeholder="Property Type">
-						<option value="">Property Type</option>
-						<option value="residential">Residential</option>
-						<option value="commercial">Commercial</option>
-						<option value="land">Land</option>
-					</select> */}
+						value={ValueGreaterThanZeroOrNull(newSearchParams['location'], "select", "Location", false)} 
+						// value={newSearchParams['location']}
+						onSelectionChange={(e) => onSelectionChange(e, 'location')}
+					/>
 					<RoundSelect
 						options={PropertyTypes}
 						classname={'select-field'}
 						placeholder={'Property Type'}
 						suffixIcon={<CaretDownOutlined />}
-						value={ValueGreaterThanZeroOrNull(searchParams.property_type, "select", "Property Type", false)} />
-					{/* <select className="select-field" placeholder="Listing Type">
-						<option value="" >
-							 Listing Type
-						</option>
-						<option value="for-sale">For Sale</option>
-						<option value="for-rent">For Rent</option>
-					</select> */}
+						value={ValueGreaterThanZeroOrNull(newSearchParams["property_type"], "select", "Property Type", false)} 
+						onSelectionChange={(e) => onSelectionChange(e, 'property_type')}/>
 					<RoundSelect
 						options={ListingTypes}
 						classname={'select-field'}
 						placeholder={'Listing Type'}
 						suffixIcon={<CaretDownOutlined />}
-						value={ValueGreaterThanZeroOrNull(searchParams.sale_type, "select", "Listing Type", false)} />
-					<Button className="right-button" onClick={() => handleSearch()}>Search</Button>
+						value={ValueGreaterThanZeroOrNull(newSearchParams["sale_type"], "select", "Listing Type", false)}
+						onSelectionChange={(e) => onSelectionChange(e, 'sale_type')} />
+					<Button className="right-button" onClick={() => handleSearchClick}>Search</Button>
 				</div>
 				<div className="advance-searchdropdown">
 					<div className="slider-container">
@@ -158,8 +297,8 @@ const ListingSearch = ({
 								range
 								// min={0}
 								// max={100000000}
-								min={searchParams.price_min}
-								max={searchParams.price_max}
+								min={newSearchParams["price_min"]}
+								max={newSearchParams["price_max"]}
 								step={10000}
 								value={priceRange}
 								onChange={handleSliderChange}
@@ -172,7 +311,7 @@ const ListingSearch = ({
 									MIN &nbsp;
 									{isCustomRange ? (
 										<span className="range-prefix">
-											<span style={{ marginRight: '2px' }}>PHP</span> 
+											<span style={{ marginRight: '2px' }}>PHP</span>
 											<input
 												type="text"
 												value={priceRange[0]}
@@ -192,7 +331,7 @@ const ListingSearch = ({
 									MAX &nbsp;
 									{isCustomRange ? (
 										<span className="range-prefix">
-											<span style={{ marginRight: '2px' }}>PHP</span> 
+											<span style={{ marginRight: '2px' }}>PHP</span>
 											<input
 												type="text"
 												value={priceRange[1]}
@@ -216,45 +355,30 @@ const ListingSearch = ({
 						</div>
 					</div>
 					<div className="subcontent-inputs-2">
-						<input className="input-field" placeholder="Enter Lot Area" value={searchParams.lot_area} />
-						{/* <select className="select-field" placeholder="Bedrooms">
-							<option value="">Bedrooms</option>
-							<option value="commercial">1</option>
-							<option value="land">2</option>
-						</select> */}
+						<input className="input-field" placeholder="Enter Lot Area" value={newSearchParams["lot_area"]} />
 						<RoundSelect
 							options={SelectNum()}
 							classname={'select-field'}
 							placeholder={'Bedrooms'}
 							suffixIcon={<CaretDownOutlined />}
-							value={ValueGreaterThanZeroOrNull(searchParams.bedrooms, "select", "Bedrooms", true)} />
+							value={ValueGreaterThanZeroOrNull(newSearchParams["bedrooms"], "select", "Bedrooms", true)} />
 						<RoundSelect
 							options={SelectNum()}
 							classname={'select-field'}
 							placeholder={'Bathrooms'}
 							suffixIcon={<CaretDownOutlined />}
-							value={ValueGreaterThanZeroOrNull(searchParams.bathrooms, "select", "Bathrooms", true)} />
+							value={ValueGreaterThanZeroOrNull(newSearchParams["bathrooms"], "select", "Bathrooms", true)} />
 						<RoundSelect
 							options={SelectNum()}
 							classname={'select-field'}
 							placeholder={'Garage/Parking'}
 							suffixIcon={<CaretDownOutlined />}
-							value={ValueGreaterThanZeroOrNull(searchParams.parking, "select", "Garage/Parking", true)} />
-						{/* <select className="select-field" placeholder="Bathrooms">
-							<option value="">Bathrooms</option>
-							<option value="commercial">1</option>
-							<option value="land">2</option>
-						</select>
-						<select className="select-field" placeholder="Garage/Parking ">
-							<option value="">Garage/Parking </option>
-							<option value="commercial">1</option>
-							<option value="land">2</option>
-						</select> */}
+							value={ValueGreaterThanZeroOrNull(newSearchParams["parking"], "select", "Garage/Parking", true)} />
 						<Dropdown
-							overlay={<CertainFeatureMenu />} // The content of the dropdown
+							menu={<CertainFeatureMenu setCheckFeatures={setCheckFeatures} />} // The content of the dropdown
 							trigger={["click"]}
-							visible={iscertainFeatureOpen}
-							onVisibleChange={handleCertainFeatureClick}
+							open={iscertainFeatureOpen}
+							onOpenChange={handleCertainFeatureClick}
 						>
 							<div className="select-field-features">
 								<span>Features</span>

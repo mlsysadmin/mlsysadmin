@@ -74,9 +74,9 @@ const Card = ({
 				>
 					{forsale}
 				</p>
-				{
+				{/* {
 					isFeatured ? <p className="featured feature-tag">Featured</p> : <></>
-				}
+				} */}
 				<div className="likes">
 					<CameraAltIcon />
 					<b>{likes}</b>
@@ -86,7 +86,7 @@ const Card = ({
 						<Tooltip
 							color="var(--red)"
 							title="Added to favorites"
-							visible={showTooltip}
+							open={showTooltip}
 							placement="top"
 						></Tooltip>
 						{isHeartFilled ? <HeartFilled /> : <HeartOutlined />}

@@ -137,7 +137,6 @@ const DashboardComponent = () => {
             const gallery = getPhotoGallery.data;
 
             const image = GetPhotoWithUrl(item.Photo);
-            console.log("dsfd", item);
 
             return {
               id: item.id,
@@ -155,6 +154,7 @@ const DashboardComponent = () => {
               // isFeatured: item.IsFeatured
               property_type: item.PropertyType,
               city: item.City,
+              province: item.ProvinceState
             };
           })
         );
@@ -175,25 +175,24 @@ const DashboardComponent = () => {
 
   const FillLocationFilter = (listings) => {
     try {
-      const distinctCity = listings
+      const falsy = [null, undefined, ""];
+      
+      const distinctProvince = listings.filter(p => !falsy.includes(p.ProvinceState))
         .filter(
           (value, index, self) =>
-            index === self.findIndex((t) => t.City === value.City)
+            index === self.findIndex((t) => t.ProvinceState.toLowerCase() === value.ProvinceState.toLowerCase())
         )
         .map((item, i) => {
           return {
             key: i,
-            label: item.City.toLowerCase().includes("city")
-              ? CapitalizeString(item.City.toLowerCase())
-              : `${CapitalizeString(item.City.toLowerCase())} City`,
-            value: item.City.toLocaleLowerCase(),
+            label: CapitalizeString(item.ProvinceState.toLowerCase()),
+            value: item.ProvinceState.toLowerCase(),
           };
         })
         .sort((a, b) => a.value.localeCompare(b.value));
 
-        console.log("distinctCity", distinctCity);
         
-      setFilterLocation(distinctCity);
+      setFilterLocation(distinctProvince);
     } catch (error) {
       console.log("location", error);
       return;
@@ -338,11 +337,16 @@ const DashboardComponent = () => {
   const [searchParams, setSearchParams] = useState([]);
   const [keywordSearch, setKeywordSearch] = useState();
 
+  useEffect(() => {
+		
+		console.log('searchParams', searchParams['location']);
+		
+	},[searchParams])
   const handleSearchClick = () => {
     let params = "";
 
     searchParams.forEach((item, key) => {
-
+      
       if (key == 0) {
         if (item.name === "features") {
           const indoorFeatures = item.value.filter(
@@ -414,13 +418,17 @@ const DashboardComponent = () => {
   };
 
   const SetParamsAllField = (name, value) => {
+    console.log("search", searchParams);
+    
     setSearchParams((prevSearchParams) => {
       const existingParamIndex = prevSearchParams.findIndex(
         (param) => param.name === name
       );
+
       if (existingParamIndex !== -1) {
         if (
-          (name === "keyword" && value === "") ||
+          // (name === "keyword" && value === "") ||
+          (name === "keyword" && value.includes(null, undefined, "")) ||
           (name === "features" && checkFeatures.length === 0)
         ) {
           prevSearchParams.splice(existingParamIndex, 1);
@@ -440,6 +448,9 @@ const DashboardComponent = () => {
       console.log("prevSearchParams: ", prevSearchParams);
       return [...prevSearchParams];
     });
+
+    console.log("SetParamsAllField", searchParams);
+    
   };
 
   const onInputChange = (e) => {
