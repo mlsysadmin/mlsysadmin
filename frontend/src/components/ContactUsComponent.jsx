@@ -90,7 +90,9 @@ const ContactUsComponent = () => {
 
     } catch (error) {
       openNotificationWithIcon('error', 'Message Failed', "We're sorry, but your message couldn't be sent. We're already working on resolving the issue. Thank you for your patience!")
-    }
+	  setLoading(false);
+    
+	}
 
     // window.location.href = "https://www.google.com/maps/place/capoocan+Leyte"
   }

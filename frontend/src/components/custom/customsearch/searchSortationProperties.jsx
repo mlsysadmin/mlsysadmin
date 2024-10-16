@@ -5,36 +5,71 @@ import { CaretDownOutlined } from "@ant-design/icons";
 import { useState, useEffect } from "react";
 import {  GetPublicListingCount } from "../../../api/GetAllPublicListings";
 
-const SearchPropertiesSoration = ({ properties_count, current_properties_count }) => {
+const SearchPropertiesSoration = ({ properties_count, current_properties_count, setSelectedSort, selectedSort, HandleSort }) => {
 
-	const [selectedSort, setSelectedSort] = useState("Most relevant");
+	// const handleMenuClick = (e) => {
+	// 	setSelectedSort(e.key); // Update the selected sort option based on the clicked item
+	// };
+	const SortItems = [
+		{
+			key: "relevant",
+			label: "Most relevant",
+		},
+		{
+			key: "new",
+			label: "New Listings",
+		},
+		{
+			key: "old",
+			label: "Old Listings",
+		},
+		{
+			key: "price-asc",
+			label: "Highest Price",
+		},
+		{
+			key: "price-desc",
+			label: "Lowest Price",
+		},
+		{
+			key: "title-asc",
+			label: "Order Title A-Z",
+		},
+		{
+			key: "title-desc",
+			label: "Order Title Z-A",
+		}
+	]
 
-	const handleMenuClick = (e) => {
-		setSelectedSort(e.key); // Update the selected sort option based on the clicked item
-	};
+	// const menu = (
+	// 	<Menu onClick={HandleSort}>
+	// 		<Menu.Item key="relevant">Most relevant</Menu.Item>
+	// 		<Menu.Item key="new">New Listings</Menu.Item>
+	// 		<Menu.Item key="old">Old Listings</Menu.Item>
+	// 		<Menu.Item key="max">Highest Price</Menu.Item>
+	// 		<Menu.Item key="min">Lowest Price</Menu.Item>
+	// 		<Menu.Item key="ascending">Order Title A-Z</Menu.Item>
+	// 		<Menu.Item key="descending">Order Title Z-A</Menu.Item>
+	// 	</Menu>
+	// );
 
-	const menu = (
-		<Menu onClick={handleMenuClick}>
-			<Menu.Item key="Most relevant">Most relevant</Menu.Item>
-			<Menu.Item key="New Listings">New Listings</Menu.Item>
-			<Menu.Item key="Old Listings">Old Listings</Menu.Item>
-			<Menu.Item key="Highest Price">Highest Price</Menu.Item>
-			<Menu.Item key="Lowest Price">Lowest Price</Menu.Item>
-			<Menu.Item key="Order Title A-Z">Order Title A-Z</Menu.Item>
-			<Menu.Item key="Order Title Z-A">Order Title Z-A</Menu.Item>
-		</Menu>
-	);
+	const items = SortItems.map((item, index) => ({
+		key: item.key,
+		label: item.label,
+	}));
 
 
 	return (
-		<div className="search-sortation">
+		<div className="search-sortation" style={{ cursor: 'pointer' }}>
 			<div className="sort">
 				<span>
-					Showing {properties_count} out of {properties_count} entries{" "}
+					Showing {current_properties_count} out of {properties_count} entries{" "}
 				</span>
 			</div>
 			<div className="sort-div-class">
-				<Dropdown overlay={menu}>
+				<Dropdown 
+				// overlay={menu}
+				menu={{items, onClick: HandleSort}}>
 					<Space>
 						Sort: {selectedSort}
 						<CaretDownOutlined />

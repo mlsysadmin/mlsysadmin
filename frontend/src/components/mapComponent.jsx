@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Circle } from "react-leaflet";
+import { MapContainer, TileLayer, Circle, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { Spin } from "antd";
 import LoadingIcon from "../asset/icons/loading_bar.gif";
@@ -10,9 +10,16 @@ const MapComponent = ({ style, oneListing }) => {
   const [coordinates, setCoordinates] = useState([]);
   const [error, setError] = useState(null);
 
+  const MapUpdater = ({ position }) => {
+    const map = useMap();
+    map.setView(position, 13);
+    return null;
+  };
+
   useEffect(() => {
     const fetchCoordinates = async () => {
-      const formattedLocation = oneListing.MapLocation;
+      const formattedLocation = `${oneListing.City}, ${oneListing.ProvinceState}`;
+      // const formattedLocation = oneListing.MapLocation;
       console.log("formattedLocation", formattedLocation);
       // const formattedLocation = LocationFormatter(oneListing.City);
       try {
@@ -72,6 +79,7 @@ const MapComponent = ({ style, oneListing }) => {
                 fillColor="#d90000"
                 fillOpacity={0.3}
               />
+              <MapUpdater position={coordinates}/>
             </MapContainer>
           </>
         )}

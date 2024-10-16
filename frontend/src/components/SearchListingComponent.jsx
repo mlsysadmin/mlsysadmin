@@ -23,6 +23,7 @@ import {
     FillLocationFilter,
     GetPropertyTitle,
     isPastAMonth,
+    SortListings,
 } from "../utils/StringFunctions.utils";
 import NoListingAvailable from "./custom/custom.NoListingAvailable";
 
@@ -75,7 +76,7 @@ const SearchListingComponent = () => {
     ]);
     const [searchParams, setSearchParams] = useState({
         location: "",
-        price_min: 0,
+        price_min: 1000,
         price_max: 100000000,
         keyword: "",
         property_type: "",
@@ -83,7 +84,7 @@ const SearchListingComponent = () => {
         bathrooms: 0,
         parking: 0,
         sale_type: "",
-        lot_area: ""
+        lot_area: "",
     })
 
     const handleCardClick = (id) => {
@@ -98,19 +99,26 @@ const SearchListingComponent = () => {
 
         let searchQueryParams = {};
 
-        const searchKeys = ['sale_type', 'keyword', 'property_type', 'location', 'indoor', 'outdoor'];
-        const filtersearchKeys = searchKeys.filter((key, i) => queryParams.get(key) != undefined || queryParams.get(key) != null)
+        const searchKeys = [
+            'sale_type', 'keyword', 'property_type',
+            'location', 'indoor', 'outdoor', 'price_min',
+            'price_max', 'bathrooms', 'bedrooms', 'parking'
+        ];
+        const filtersearchKeys = searchKeys.filter((key, i) => ![undefined, null, "null"].includes(queryParams.get(key)))
 
-        for (let index = 0; index < Object.values(filtersearchKeys).length; index++) {
+        console.log(filtersearchKeys);
 
+        filtersearchKeys.forEach((fsKey, i) => {
             setSearchParams((prevState) => ({
                 ...prevState,
-                [Object.values(filtersearchKeys)[index]]: queryParams.get(Object.values(filtersearchKeys)[index])
+                [fsKey]: queryParams.get(fsKey)
             }))
-            searchQueryParams[Object.values(filtersearchKeys)[index]] = queryParams.get(Object.values(filtersearchKeys)[index]);
-        }
+
+            searchQueryParams[fsKey] = queryParams.get(fsKey);
+        });
 
         console.log("Search Query Params: ", searchQueryParams);
+        console.log("Search Params: ", searchParams);
 
         if (searchParams.length !== 0) {
             getlistings(searchQueryParams);
@@ -124,17 +132,18 @@ const SearchListingComponent = () => {
     const getlistings = async (renderParams) => {
         try {
 
-            console.log(renderParams);
+            console.log('renderParams', renderParams);
+
 
             const res = await GetPropertiesBySaleStatus();
             const dataresp = res.data;
 
             if (dataresp.length !== 0) {
-                const formattedListings = dataresp.map((listing) => {
+                const formattedListings = dataresp.filter(f => ![null, undefined, ""].includes(f.ProvinceState)).map((listing) => {
                     return {
                         id: listing.id,
                         title: CapitalizeString(listing.UnitName),
-                        price: AmountFormatterGroup(listing.Price),
+                        price: listing.Price,
                         status: `For ${CapitalizeString(listing.SaleType)}`,
                         pics: 0,
                         img: listing.Photo,
@@ -147,67 +156,196 @@ const SearchListingComponent = () => {
                         property_type: listing.PropertyType,
                         city: listing.City,
                         parking: listing.Parking,
-                        location: listing.City
+                        location: listing.ProvinceState
                     }
                 });
-                // console.log("DATA: ",  formattedListings);
+                FillLocationFilter(dataresp);
 
-                const listings = formattedListings.flatMap((item, i) => {
+                // CHECK LOCATION AND KEYWORD
+                const hasLocation = Object.hasOwn(renderParams, 'location');
+                const hasKeyword = Object.hasOwn(renderParams, 'keyword');
 
-                    // Get all keys from listings
-                    const listingKeys = Object.keys(item);
+                console.log("has", hasLocation);
 
-                    // Get all keys from params
-                    const paramsKeys = Object.keys(renderParams);
 
-                    // Matched keys from params and listing
-                    const matchedKeys = listingKeys.filter(key => paramsKeys.includes(key));
+                let listingByLocation = [];
 
-                    const findParams = matchedKeys.map(key => {
-                        if (renderParams[key].toLowerCase() == item[key].toLowerCase()) {
-                            return item;
+                const keywordMatched = (v) => Object.values(v).some((e, i) => e.toString().toLowerCase().includes(renderParams['keyword'].toLowerCase()));
+
+                if (hasLocation && hasKeyword) {
+                    const main = ['location', 'keyword'];
+
+                    formattedListings.forEach((fl) => {
+
+                        let byLoc = []
+                        if ((fl.location.toLowerCase() === renderParams['location'].toLowerCase())) {
+                            byLoc.push(fl);
                         }
+
+                        const bl = byLoc.filter(f => keywordMatched(f))
+
+                        listingByLocation.push(...bl);
                     });
 
-                    return { ...findParams }
-                });
+                    Object.values(main).forEach((fi, i) => {
 
-                // Filter listing from undefined and distinct
-                const filteredListings = listings.map((l, k) => {
+                        delete renderParams[fi];
+                    });
 
-                    const f = Object.keys(l);
+                } else if (!hasLocation && hasKeyword) {
+                    formattedListings.forEach((fl) => {
+                        // const keywordMatched = Object.values(fl).every(e => e.includes('condominium'.toLowerCase()));
 
-                    for (let index = 0; index < f.length; index++) {
-                        const element = f[index];
-
-                        if (l[element] !== undefined) {
-
-                            return l[element]
+                        if (keywordMatched) {
+                            listingByLocation.push(fl);
                         }
-                    }
-                }).filter(fl => fl !== undefined).filter(
-                    (value, index, self) =>
-                        index === self.findIndex((t) => t.property_no === value.property_no)
-                );
 
+                    });
+                } else if (hasLocation && !hasKeyword) {
+                    formattedListings.forEach((fl) => {
+
+                        if ((fl.location.toLowerCase() === renderParams['location'].toLowerCase())) {
+                            listingByLocation.push(fl);
+                        }
+
+                    });
+
+                    delete renderParams['location'];
+                } else {
+                    listingByLocation = formattedListings;
+                }
+
+                console.log("listingByLocation", listingByLocation);
+
+
+                // // Get listing that matches by params - excluding location || keyword
+                // const listings = listingByLocation.map((item, i, arr) => {
+
+                //     // Get all keys from params
+                //     const paramsKeys = Object.keys(renderParams);
+                //     // Get all keys from listings
+                //     const listingKeys = Object.keys(item);
+
+                //     if (paramsKeys.length !== 0) {
+
+                //         // Matched keys from params and listing
+                //         const matchedKeys = listingKeys.filter(key => paramsKeys.includes(key));
+
+                //         const findParams = matchedKeys.map(key => {
+                //             // console.log(key, renderParams[key].toLowerCase() === item[key].toLowerCase());
+
+                //             // console.log(key,renderParams[key].toLowerCase().replace(/[-_]/g, " "));
+
+                //             if (renderParams[key].toLowerCase().replace(/[-_]/g, " ") === item[key].toLowerCase()) {
+                //                 return item;
+                //             }
+
+                //         }).filter(v => v !== undefined);
+
+                //         console.log("findParams", findParams);
+
+                //         return { ...findParams }
+                //     } 
+                //     else {
+                //         console.log("dsdsfdfdg");
+
+                //         return item
+                //     }
+
+                // }).filter(v => Object.keys(v).length !== 0);
+
+                // console.log("lis", listings);
+
+                // let filteredListings;
+                // // Filter listing from undefined and distinct
+                // // const filteredListings = listings
+
+                // if (Object.keys(renderParams).length !== 0) {
+                //     filteredListings = listings
+                //         .map((l, k) => {
+
+                //             const f = Object.keys(l);
+
+                //             for (let index = 0; index < f.length; index++) {
+                //                 const element = f[index];
+
+                //                 if (l[element] !== undefined) {
+
+                //                     return l[element]
+                //                 }
+                //             }
+                //         }).filter(fl => fl !== undefined)
+                // }else{
+                //     filteredListings = listings.filter(fl => fl !== undefined).filter(
+                //         (value, index, self) =>
+                //             index === self.findIndex((t) => t.property_no === value.property_no)
+                //     );
+                // }
+
+                // console.log("filteredListings", filteredListings);
+
+                // const finalFilteredListing = await Promise.all(
+                //     filteredListings.map(async ffl => {
+                //         const getPhotoGallery = await GetUnitPhotos(ffl.id);
+
+                //         const gallery = getPhotoGallery.data;
+
+                //         const image = GetPhotoWithUrl(ffl.img);
+
+                //         ffl['img'] = image;
+                //         ffl['price'] = AmountFormatterGroup(ffl.price);
+                //         ffl['pics'] = image ? gallery.length + 1 : 0;
+
+                //         return ffl;
+                //     })
+                // )
+                let filteredListings = listingByLocation;
+                
+
+                const paramsKeys = Object.keys(renderParams);
+                if (paramsKeys.length > 0) {
+                    if ((renderParams['price_max'] && renderParams['price_min'])) {
+                        filteredListings = filteredListings.filter((pr) => {
+
+                            const max = parseInt(renderParams['price_max'], 10);
+                            const min = parseInt(renderParams['price_min'], 10);
+                            const price = parseInt(pr['price'], 10);
+
+                            return price >= min && price <= max
+                        })
+                        delete renderParams['price_max']
+                        delete renderParams['price_min']
+                    }
+                }
+                
+                // Get keys from the remaining render params
+                const remainingParams = Object.keys(renderParams);
+
+                // Filter listing from the rest search params
+                if (remainingParams.length > 0) {
+                    
+                    filteredListings = filteredListings.filter(listing =>
+                        remainingParams.every(key =>renderParams[key].toLowerCase().replace(/[-_]/g, " ") == listing[key]?.toLowerCase().replace(/[-_]/g, " "))
+                    )
+                }
+
+                // Get photo gallery and finalize listings
                 const finalFilteredListing = await Promise.all(
                     filteredListings.map(async ffl => {
                         const getPhotoGallery = await GetUnitPhotos(ffl.id);
-
                         const gallery = getPhotoGallery.data;
-
                         const image = GetPhotoWithUrl(ffl.img);
 
                         ffl['img'] = image;
+                        ffl['price'] = AmountFormatterGroup(ffl.price);
                         ffl['pics'] = image ? gallery.length + 1 : 0;
 
                         return ffl;
                     })
-                )
+                );
 
                 setPublicListing(finalFilteredListing)
                 setLoading(false);
-                console.log("filteredListings", filteredListings);
 
             } else {
                 setPublicListing([])
@@ -220,11 +358,50 @@ const SearchListingComponent = () => {
         }
     };
 
+    const [selectedSort, setSelectedSort] = useState("Most relevant");
+
     const indexOfLastCard = currentPage * cardsPerPage;
     const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-    const currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
+    let currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
 
-    const totalPages = Math.ceil(publiclisting?.length / cardsPerPage);
+	const totalPages = Math.ceil(publiclisting?.length / cardsPerPage);
+
+	const HandleSort = (e) => {
+
+		setSelectedSort(e.domEvent.target.innerText);
+		const sortKey = e.key;
+		let sortListing;
+
+		sortListing = SortListings(sortKey, sortListing, publiclisting);
+
+		currentCards = sortListing;
+	}
+
+    const FillLocationFilter = (listings) => {
+        try {
+            const falsy = [null, undefined, ""];
+
+            const distinctProvince = listings.filter(p => !falsy.includes(p.ProvinceState))
+                .filter(
+                    (value, index, self) =>
+                        index === self.findIndex((t) => t.ProvinceState.toLowerCase() === value.ProvinceState.toLowerCase())
+                )
+                .map((item, i) => {
+                    return {
+                        key: i,
+                        label: CapitalizeString(item.ProvinceState.toLowerCase()),
+                        value: item.ProvinceState.toLowerCase(),
+                    };
+                })
+                .sort((a, b) => a.value.localeCompare(b.value));
+
+
+            setFilterLocation(distinctProvince);
+        } catch (error) {
+            console.log("location", error);
+            return;
+        }
+    };
     return (
         <div className="all-container">
             <div className="all-searchcomponent">
@@ -243,6 +420,9 @@ const SearchListingComponent = () => {
                         <SearchPropertiesSoration
                             properties_count={publiclisting.length}
                             current_properties_count={currentCards.length}
+                            selectedSort={selectedSort}
+                            setSelectedSort={setSelectedSort}
+                            HandleSort={HandleSort}
                         />
                         {!loading ? (
                             currentCards.length !== 0 ? (
@@ -269,7 +449,7 @@ const SearchListingComponent = () => {
                                 </div>
                             ) : (
                                 <NoDataAvailable
-                                    message={`No available properties for Rent/Sale`}
+                                    message={`No Results Found`}
                                 />
                             )
                         ) : (
@@ -290,7 +470,7 @@ const SearchListingComponent = () => {
                         )}
                     </>
                 ) : (
-                    <NoDataAvailable message={`No available properties for Rent/Sale`} />
+                    <NoDataAvailable message={`No Results Found`} />
                 )}
 
                 {currentCards.length > 0 && (

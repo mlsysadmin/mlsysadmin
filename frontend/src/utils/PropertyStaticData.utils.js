@@ -69,7 +69,8 @@ const PropertyType = [
 	"warehouse",
 	"farm lot",
 	"hotel",
-	"resort"
+	"resort",
+	"apartment",
 ]
 
 const PropertyTypes = [
@@ -92,6 +93,7 @@ const PropertyTypes = [
 			{ label: "House & Lot", value: "house-and-lot" },
 			{ label: "Lot", value: "lot" },
 			{ label: "Townhouse", value: "townhouse" },
+			{ label: "Apartment", value: "apartment" },
 		],
 	},
 	{

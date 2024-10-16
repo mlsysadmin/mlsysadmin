@@ -23,7 +23,7 @@ module.exports = {
 
             const emailTemp = EmailTemplate(path, {...messageContent});
 
-            const sendInquiry = await SendEmail(emailTemp, 'Listing Inquiry');
+            const sendInquiry = await SendEmail(emailTemp, 'Listing Inquiry', payload.message);
 
             console.log(sendInquiry);
 
@@ -53,7 +53,7 @@ module.exports = {
 
             const emailTemp = EmailTemplate(templateName, {...messageContent});
 
-            const sendMessage = await SendEmail(emailTemp, 'Customer Inquiry');
+            const sendMessage = await SendEmail(emailTemp, 'Customer Inquiry', payload.message);
 
             console.log(sendMessage);
 

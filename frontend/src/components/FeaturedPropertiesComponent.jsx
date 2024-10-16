@@ -11,7 +11,7 @@ import bed from "../asset/icons/outlined-bed.png";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 
-const FeaturedPropertiesComponent = ({ featuredListing }) => {
+const FeaturedPropertiesComponent = ({ featuredListing, handleFeaturedClick }) => {
   const navigate = useNavigate();
   // const [featuredListing, setFeaturedList] = useState([]);
 
@@ -105,7 +105,7 @@ const FeaturedPropertiesComponent = ({ featuredListing }) => {
       cardList.map((featured, i) => {
         // if (!featured.isFeatured) {
         return (
-          <Col className="featured-property" key={i}>
+          <Col className="featured-property" key={i} onClick={() => handleFeaturedClick(featured.property_no)}>
             <div className="featured-img">
               <img
                 // preview={false}

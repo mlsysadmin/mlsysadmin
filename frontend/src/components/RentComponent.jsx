@@ -26,6 +26,7 @@ import {
 	CapitalizeString,
 	FillLocationFilter,
 	GetPropertyTitle,
+	SortListings,
 } from "../utils/StringFunctions.utils";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import DefaultPropertyImage from "../asset/fallbackImage.png";
@@ -131,7 +132,7 @@ const RentComponent = () => {
 							};
 						})
 					);
-					const location = FillLocationFilter(newListing);
+					const location = FillLocationFilter(dataresp);
 					setFilterLocation(location);
 					setPublicListing(newListing);
 					setLoading(false);
@@ -156,7 +157,7 @@ const RentComponent = () => {
 		const getPropertyType = queryParams.get("property_type");
 
 		if (queryParams.size !== 0) {
-			
+
 			let title = "";
 
 			getPropertyType.trim().replace(/[\/_-]/g, " ").split(' ').forEach((st) => {
@@ -176,11 +177,23 @@ const RentComponent = () => {
 
 	}, [])
 
+	const [selectedSort, setSelectedSort] = useState("Most relevant");
 	const indexOfLastCard = currentPage * cardsPerPage;
 	const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-	const currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
+	let currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
 
-	const totalPages = Math.ceil(publiclisting.length / cardsPerPage);
+	const totalPages = Math.ceil(publiclisting?.length / cardsPerPage);
+
+	const HandleSort = (e) => {
+
+		setSelectedSort(e.domEvent.target.innerText);
+		const sortKey = e.key;
+		let sortListing;
+
+		sortListing = SortListings(sortKey, sortListing, publiclisting);
+
+		currentCards = sortListing;
+	}
 
 	return (
 		<div className="rent">
@@ -199,6 +212,9 @@ const RentComponent = () => {
 				<SearchPropertiesSoration
 					properties_count={publiclisting.length}
 					current_properties_count={currentCards.length}
+					selectedSort={selectedSort}
+					setSelectedSort={setSelectedSort}
+					HandleSort={HandleSort}
 				/>
 				{!loading ? (
 					currentCards.length !== 0 ? (

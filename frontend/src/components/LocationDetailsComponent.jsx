@@ -153,7 +153,7 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 			.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
 			.join(" ");
 	};
-	
+
 	return (
 		<div className="location-details">
 			<div className="location-label">Location</div>
@@ -202,7 +202,7 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 						className="location-form-inputs"
 						value={selectedProvince}
 						onChange={(e) => handleProvinceChange(e.target.value)}
-						// onChange={handleAddressChange}
+					// onChange={handleAddressChange}
 					>
 						<option value="" disabled selected hidden>
 							Select Province
@@ -275,7 +275,9 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 							url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 							attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 						/>
-						<Circle center={position} radius={radius} />
+						<Circle center={position} radius={radius} color="#d90000"
+							fillColor="#d90000"
+							fillOpacity={0.3} />
 						<MapUpdater position={position} />
 					</MapContainer>
 				</div>

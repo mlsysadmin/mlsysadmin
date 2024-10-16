@@ -16,7 +16,7 @@ import ListingSearch from "./custom/customsearch/custom.listingsearch";
 import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
-import { CapitalizeString, FillLocationFilter, GetPropertyTitle, isPastAMonth } from "../utils/StringFunctions.utils";
+import { CapitalizeString, FillLocationFilter, GetPropertyTitle, isPastAMonth, SortByText, SortMaxPrice, SortPrice } from "../utils/StringFunctions.utils";
 import DefaultPropertyImage from '../asset/fallbackImage.png';
 
 const NewPageComponent = () => {
@@ -36,7 +36,8 @@ const NewPageComponent = () => {
 			sale_type: '',
 			no_of_beds: '',
 			property_type: '',
-			city: ''
+			city: '',
+			date: ""
 		}
 	]);
 	const [loading, setLoading] = useState(true);
@@ -51,7 +52,7 @@ const NewPageComponent = () => {
 		bathrooms: 0,
 		parking: 0,
 		sale_type: "",
-		lot_area: ""
+		lot_area: "",
 	})
 
 	const handleCardClick = (id) => {
@@ -68,12 +69,6 @@ const NewPageComponent = () => {
 			if (dataresp.length == 0) {
 				setPublicListing([]);
 			} else {
-				console.log(
-					"sale, rent",
-					dataresp.filter((item) =>
-						["sale", "rent"].includes(item.SaleType.toLowerCase())
-					)
-				);
 
 				const listingRes = dataresp.filter(
 					(listing) =>
@@ -82,8 +77,6 @@ const NewPageComponent = () => {
 				);
 
 				let listings = [];
-
-				console.log(listingRes);
 
 				if (listingRes?.length !== 0) {
 					listings = listingRes;
@@ -98,7 +91,7 @@ const NewPageComponent = () => {
 						const gallery = getPhotoGallery.data;
 
 						const image = GetPhotoWithUrl(item.Photo);
-
+						
 						return {
 							id: item.id,
 							title: CapitalizeString(item.UnitName),
@@ -113,11 +106,12 @@ const NewPageComponent = () => {
 							sale_type: CapitalizeString(item.SaleType),
 							no_of_beds: item.BedRooms,
 							property_type: item.PropertyType,
-							city: item.City
+							city: item.City,
+							date: item.created_at
 						};
 					})
 				);
-				const location = FillLocationFilter(newListing);
+				const location = FillLocationFilter(dataresp);
 				setFilterLocation(location);
 				setPublicListing(newListing);
 				setLoading(false);
@@ -137,25 +131,54 @@ const NewPageComponent = () => {
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const cardsPerPage = 9;
+	const [selectedSort, setSelectedSort] = useState("Most relevant");
 
 	const indexOfLastCard = currentPage * cardsPerPage;
 	const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-	console.log(indexOfFirstCard, indexOfLastCard);
 
-	const currentCards = publiclisting?.slice(indexOfFirstCard, indexOfLastCard);
+	let currentCards = publiclisting?.slice(indexOfFirstCard, indexOfLastCard);
 
 	const totalPages = Math.ceil(publiclisting.length / cardsPerPage);
 
+	const HandleSort = (e) => {
+		
+		setSelectedSort(e.domEvent.target.innerText);
+		const sortKey = e.key;
+		let sortListing;
+
+		if (sortKey == "price-asc") {
+			sortListing = publiclisting.sort((a, b) => SortPrice(b, a));
+		}else if (sortKey == "price-desc") {
+			sortListing = publiclisting.sort((a, b) => SortPrice(a, b));
+		}else if (sortKey == "new" || sortKey == "relevant") {
+			sortListing = publiclisting.sort((a, b) => SortByText(b.date, a.date));
+		}else if (sortKey == "old") {
+			sortListing = publiclisting.sort((a, b) => SortByText(a.date, b.date))
+		}else if (sortKey == "title-asc") {
+			sortListing = publiclisting.sort((a, b) => SortByText(a.title, b.title))
+		}else if (sortKey == "title-desc") {
+			sortListing = publiclisting.sort((a, b) => SortByText(b.title, a.title))
+		}else {
+			sortListing = publiclisting;
+		}
+		console.log("sort", sortListing);
+		
+
+		currentCards = sortListing;
+	}
 	return (
 		<div className="newpage">
 			<div className="newpage-container">
 				<div className="newpage-contents">
-					<ListingSearch location={filterLocation} searchParams={searchParams} setSearchFilters={setSearchParams}/>
+					<ListingSearch location={filterLocation} searchParams={searchParams} setSearchFilters={setSearchParams} />
 					<div className="second-content">
 						<h1 className="new-page-label">New Properties For Sale/Rent</h1>
 						<SearchPropertiesSoration
 							properties_count={publiclisting.length}
 							current_properties_count={currentCards.length}
+							selectedSort={selectedSort}
+							setSelectedSort={setSelectedSort}
+							HandleSort={HandleSort}
 						/>
 						{!loading ? currentCards.length > 0 && (
 							<div className="card-container">

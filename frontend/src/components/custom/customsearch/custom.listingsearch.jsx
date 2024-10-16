@@ -8,17 +8,38 @@ import { GetProvince } from "../../../api/Public/Location.api";
 import RoundSelect from "../selects/RoundSelect.custom";
 import { ListingTypes, PropertyTypes } from "../../../utils/PropertyStaticData.utils";
 import { CapitalizeString } from "../../../utils/StringFunctions.utils";
+import { useNavigate } from "react-router-dom";
 
 const ListingSearch = ({
 	location,
 	searchParams,
 	setSearchFilters,
 }) => {
+
+	const navigate = useNavigate();
+
 	const { Option } = Select;
 	const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
 	const [iscertainFeatureOpen, setcertainFeatureOpen] = useState(false);
 	const [getProvince, setGetProvince] = useState([]);
 	const [isCustomRange, setIsCustomRange] = useState(false);
+	const [checkFeatures, setCheckFeatures] = useState([]);
+	const [bedValue, setBedValue] = useState(0);
+	const [priceRange, setPriceRange] = useState([0, 100000000]);
+	const [newSearchParams, setNewSearchParams] = useState({});
+
+	useEffect(() => {
+
+		console.log('newSearchParams', newSearchParams);
+		let params = {};
+		const keys = Object.keys(searchParams);
+
+		keys.forEach((key, i) => {
+			params[key] = searchParams[key]
+		})
+		setNewSearchParams(params);
+
+	}, [searchParams])
 
 	const handleAdvancedSearchClick = () => {
 		setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
@@ -32,36 +53,25 @@ const ListingSearch = ({
 	};
 
 	const handleMinChange = (e) => {
-		const value = e.target.value === "" ? "" : parseInt(e.target.value, 10);
+		const value = e.target.value === "" ? 0 : parseInt(e.target.value, 10);
 		setPriceRange([value, priceRange[1]]);
+		SetParamsAllField('price_min', value);
 	};
 
 	const handleMaxChange = (e) => {
-		const value = e.target.value === "" ? "" : parseInt(e.target.value, 10);
+		const value = e.target.value === "" ? 0 : parseInt(e.target.value, 10);
+		console.log("value",  e.target.value);
+		
 		setPriceRange([priceRange[0], value]);
+		SetParamsAllField('price_max', value);
 	};
-
-	const allProvince = async () => {
-		const dataProvince = await GetProvince();
-		setGetProvince(dataProvince);
-	};
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				await allProvince();
-			} catch (error) {
-				console.log(error);
-			}
-		};
-		fetchData();
-	}, []);
-
-	const [bedValue, setBedValue] = useState(0);
-	const [priceRange, setPriceRange] = useState([0, 100000000]);
 
 	const handleSliderChange = (value) => {
+		console.log("value", value);
+		
 		setPriceRange(value);
+		SetParamsAllField('price_min', value[0]);
+		SetParamsAllField('price_max', value[1]);
 	};
 
 	const handlebedchange = (event) => {
@@ -77,8 +87,10 @@ const ListingSearch = ({
 
 		const newArr = arr.map((_, i) => {
 			return {
-				label: i + 1,
-				value: i + 1
+				// label: i + 1,
+				// value: i + 1
+				label: i,
+				value: i
 			}
 		})
 
@@ -90,64 +102,203 @@ const ListingSearch = ({
 
 		if (isNum) {
 			if (type == "input") {
-				return !falsy.includes(val) ? val : `Enter ${name}`;
+				return !falsy.includes(val) ? val : null;
 			} else if (type == "select") {
-				return !falsy.includes(val) ? val : `${name}`;
+				return !falsy.includes(val) ? val : null;
 			}
 		} else {
 			if (type == "input") {
-				return !falsy.includes(val) ? CapitalizeString(val) : `Enter ${name}`;
+				return !falsy.includes(val) ? CapitalizeString(val) : null;
 			} else if (type == "select") {
-				return !falsy.includes(val) ? CapitalizeString(val) : `Select ${name}`;
+				return !falsy.includes(val) ? CapitalizeString(val) : null;
 			}
 		}
 	}
+
+	const HandleFieldChange = (e, name) => {
+		SetParamsAllField(name, e.target.value);
+	}
+
+	const onInputBlur = (name, value) => {
+		SetParamsAllField(name, value);
+	};
+
+	const onSelectionChange = (value, name) => {
+		
+		SetParamsAllField(name, value);
+	};
+
+	const SetParamsAllField = (name, value) => {
+
+		setNewSearchParams((prevState) => {
+			return { ...prevState, [name]: value };
+		})
+		// setNewSearchParams((prevSearchParams) => {
+		// 	console.log("prev", prevSearchParams);
+
+		// 	const existingParamIndex = prevSearchParams.findIndex(
+		// 		(param) => param.name === name
+		// 	);
+
+		// 	if (existingParamIndex !== -1) {
+		// 		if (
+		// 			// (name === "keyword" && value === "") ||
+		// 			(name === "keyword" && value.includes(null, undefined, "")) ||
+		// 			(name === "features" && checkFeatures.length === 0)
+		// 		) {
+		// 			prevSearchParams.splice(existingParamIndex, 1);
+		// 		} else {
+		// 			prevSearchParams[existingParamIndex].value = value;
+		// 		}
+		// 	} else {
+		// 		if (
+		// 			(name === "keyword" && value === "") ||
+		// 			(name === "features" && checkFeatures.length === 0)
+		// 		) {
+		// 			prevSearchParams.splice(existingParamIndex, 1);
+		// 		} else {
+		// 			prevSearchParams.push({ name, value });
+		// 		}
+		// 	}
+		// 	console.log("prevSearchParams: ", prevSearchParams);
+		// 	return [...prevSearchParams];
+		// });
+	};
+
+	const handleSearchClick = () => {
+		let params = "";
+
+		Object.keys(newSearchParams).forEach((key, index, arr) => {
+
+			if (['keyword', 'location', 'property_type', 'sale_type', 'price_max', 
+				// 'price_min', 
+				'lot_area', 'bedrooms', 'bathrooms', 'parking', "outdoor", "indoor"].includes(key)) {
+				if (["", null, undefined, 0, "null"].includes(newSearchParams[key])) {
+					delete newSearchParams[key]
+				}
+			}else if (['price_min'].includes(key) && ["", null, undefined, 0,"null"].includes(newSearchParams[key])) {
+				if (["", null, undefined, 0, "null"].includes(newSearchParams['price_max'])) {
+					
+					delete newSearchParams[key]
+				}else{
+					newSearchParams[key] = 0
+				}
+			}
+		})
+
+		Object.keys(newSearchParams).forEach((key, i) => {
+			if (i == 0) {
+				params += `${key}=${newSearchParams[key]}`
+			}else{
+				params += `&${key}=${newSearchParams[key]}`
+			}
+		})
+
+		// newSearchParams.forEach((item, key) => {
+
+		// 	if (key == 0) {
+		// 		if (item.name === "features") {
+		// 			const indoorFeatures = item.value.filter(
+		// 				(feature) => feature.name === "indoor"
+		// 			);
+		// 			const outdoorFeatures = item.value.filter(
+		// 				(feature) => feature.name === "outdoor"
+		// 			);
+
+		// 			if (indoorFeatures.length > 0) {
+		// 				const indoorValues = indoorFeatures
+		// 					.map((feature) => feature.value)
+		// 					.join(",");
+		// 				params += `&indoor=${indoorValues}`;
+		// 			}
+
+		// 			if (outdoorFeatures.length > 0) {
+		// 				const outdoorValues = outdoorFeatures
+		// 					.map((feature) => feature.value)
+		// 					.join(",");
+		// 				if (params.length > 0) {
+		// 					params += `&outdoor=${outdoorValues}`;
+		// 				} else {
+		// 					params += `&outdoor=${outdoorValues}`;
+		// 				}
+		// 			}
+		// 		} else {
+		// 			params += `${item.name}=${item.value}`;
+		// 		}
+		// 	} else {
+		// 		if (item.name === "features") {
+		// 			const indoorFeatures = item.value.filter(
+		// 				(feature) => feature.name === "indoor"
+		// 			);
+		// 			const outdoorFeatures = item.value.filter(
+		// 				(feature) => feature.name === "outdoor"
+		// 			);
+
+		// 			if (indoorFeatures.length > 0) {
+		// 				const indoorValues = indoorFeatures
+		// 					.map((feature) => feature.value)
+		// 					.join(",");
+		// 				params += `&indoor=${indoorValues}`;
+		// 			}
+
+		// 			if (outdoorFeatures.length > 0) {
+		// 				const outdoorValues = outdoorFeatures
+		// 					.map((feature) => feature.value)
+		// 					.join(",");
+		// 				if (params.length > 0) {
+		// 					params += `&outdoor=${outdoorValues}`;
+		// 				} else {
+		// 					params += `&outdoor=${outdoorValues}`;
+		// 				}
+		// 			}
+		// 		} else {
+		// 			params += `&${item.name}=${item.value}`;
+		// 		}
+		// 	}
+		// });
+		console.log("params: ", params);
+		console.log("new: ", newSearchParams);
+
+		navigate(`/search/?${params}`);
+		// navigate('/all')
+	};
+
 
 	return (
 		<div className="first-content">
 			<div className="sub-content1">
 				<div className="subcontent-inputs-1">
-					<input className="input-field" placeholder="Enter keyword" value={ValueGreaterThanZeroOrNull(searchParams.keyword, "input", "Keyword", false)} />
-					{/* <select className="select-field" placeholder="Location">
-						<option value="">Location</option>
-						{location?.map((province, index) => (
-							<option key={index} value={province.value}>
-								{province.label}
-							</option>
-						))}
-					</select> */}
+					<input
+						className="input-field"
+						placeholder="Enter keyword"
+						value={ValueGreaterThanZeroOrNull(newSearchParams['keyword'], "input", "Keyword", false)}
+						onChange={(e) => HandleFieldChange(e, "keyword")}
+						// onBlur={(e) => onInputBlur(e,"keyword")}
+					/>
 					<RoundSelect
 						options={location}
 						classname={'select-field'}
 						placeholder={'Location'}
 						suffixIcon={<CaretDownOutlined />}
-						value={ValueGreaterThanZeroOrNull(searchParams.location, "select", "Location", false)} />
-					{/* <select className="select-field" placeholder="Property Type">
-						<option value="">Property Type</option>
-						<option value="residential">Residential</option>
-						<option value="commercial">Commercial</option>
-						<option value="land">Land</option>
-					</select> */}
+						value={ValueGreaterThanZeroOrNull(newSearchParams['location'], "select", "Location", false)} 
+						// value={newSearchParams['location']}
+						onSelectionChange={(e) => onSelectionChange(e, 'location')}
+					/>
 					<RoundSelect
 						options={PropertyTypes}
 						classname={'select-field'}
 						placeholder={'Property Type'}
 						suffixIcon={<CaretDownOutlined />}
-						value={ValueGreaterThanZeroOrNull(searchParams.property_type, "select", "Property Type", false)} />
-					{/* <select className="select-field" placeholder="Listing Type">
-						<option value="" >
-							 Listing Type
-						</option>
-						<option value="for-sale">For Sale</option>
-						<option value="for-rent">For Rent</option>
-					</select> */}
+						value={ValueGreaterThanZeroOrNull(newSearchParams["property_type"], "select", "Property Type", false)} 
+						onSelectionChange={(e) => onSelectionChange(e, 'property_type')}/>
 					<RoundSelect
 						options={ListingTypes}
 						classname={'select-field'}
 						placeholder={'Listing Type'}
 						suffixIcon={<CaretDownOutlined />}
-						value={ValueGreaterThanZeroOrNull(searchParams.sale_type, "select", "Listing Type", false)} />
-					<Button className="right-button" onClick={() => handleSearch()}>Search</Button>
+						value={ValueGreaterThanZeroOrNull(newSearchParams["sale_type"], "select", "Listing Type", false)}
+						onSelectionChange={(e) => onSelectionChange(e, 'sale_type')} />
+					<Button className="right-button" onClick={() => handleSearchClick()}>Search</Button>
 				</div>
 				<div className="advance-searchdropdown">
 					<div className="slider-container">
@@ -156,10 +307,10 @@ const ListingSearch = ({
 							<Slider
 								className="searh-custom-slider"
 								range
-								// min={0}
-								// max={100000000}
-								min={searchParams.price_min}
-								max={searchParams.price_max}
+								min={0}
+								max={100000000}
+								// min={priceRange[0]}
+								// max={priceRange[1]}
 								step={10000}
 								value={priceRange}
 								onChange={handleSliderChange}
@@ -172,12 +323,14 @@ const ListingSearch = ({
 									MIN &nbsp;
 									{isCustomRange ? (
 										<span className="range-prefix">
-											<span style={{ marginRight: '2px' }}>PHP</span> 
+											<span style={{ marginRight: '2px' }}>PHP</span>
 											<input
 												type="text"
 												value={priceRange[0]}
+												// value={newSearchParams['price_min']}
 												onChange={handleMinChange}
 												className="range-input"
+												// onBlur={() => onInputBlur('price_min', priceRange[0])}
 											/>
 										</span>
 									) : (
@@ -192,12 +345,14 @@ const ListingSearch = ({
 									MAX &nbsp;
 									{isCustomRange ? (
 										<span className="range-prefix">
-											<span style={{ marginRight: '2px' }}>PHP</span> 
+											<span style={{ marginRight: '2px' }}>PHP</span>
 											<input
 												type="text"
 												value={priceRange[1]}
+												// value={newSearchParams['price_max']}
 												onChange={handleMaxChange}
 												className="range-input"
+												// onBlur={() => onInputBlur('price_min', priceRange[1])}
 											/>
 										</span>
 									) : (
@@ -216,45 +371,38 @@ const ListingSearch = ({
 						</div>
 					</div>
 					<div className="subcontent-inputs-2">
-						<input className="input-field" placeholder="Enter Lot Area" value={searchParams.lot_area} />
-						{/* <select className="select-field" placeholder="Bedrooms">
-							<option value="">Bedrooms</option>
-							<option value="commercial">1</option>
-							<option value="land">2</option>
-						</select> */}
+						<input className="input-field" 
+						placeholder="Enter Lot Area" 
+						value={ValueGreaterThanZeroOrNull(newSearchParams["lot_area"], "input", "Lot Area", false)} 
+						onChange={(e) => HandleFieldChange(e, "lot_area")}
+						// onBlur={(e) => onInputBlur(e,"lot_area")}
+						/>
 						<RoundSelect
 							options={SelectNum()}
 							classname={'select-field'}
 							placeholder={'Bedrooms'}
 							suffixIcon={<CaretDownOutlined />}
-							value={ValueGreaterThanZeroOrNull(searchParams.bedrooms, "select", "Bedrooms", true)} />
+							value={ValueGreaterThanZeroOrNull(newSearchParams["bedrooms"], "select", "Bedrooms", true)}
+							onSelectionChange={(e) => onSelectionChange(e, 'bedrooms')} />
 						<RoundSelect
 							options={SelectNum()}
 							classname={'select-field'}
 							placeholder={'Bathrooms'}
 							suffixIcon={<CaretDownOutlined />}
-							value={ValueGreaterThanZeroOrNull(searchParams.bathrooms, "select", "Bathrooms", true)} />
+							value={ValueGreaterThanZeroOrNull(newSearchParams["bathrooms"], "select", "Bathrooms", true)}
+							onSelectionChange={(e) => onSelectionChange(e, 'bathrooms')} />
 						<RoundSelect
 							options={SelectNum()}
 							classname={'select-field'}
 							placeholder={'Garage/Parking'}
 							suffixIcon={<CaretDownOutlined />}
-							value={ValueGreaterThanZeroOrNull(searchParams.parking, "select", "Garage/Parking", true)} />
-						{/* <select className="select-field" placeholder="Bathrooms">
-							<option value="">Bathrooms</option>
-							<option value="commercial">1</option>
-							<option value="land">2</option>
-						</select>
-						<select className="select-field" placeholder="Garage/Parking ">
-							<option value="">Garage/Parking </option>
-							<option value="commercial">1</option>
-							<option value="land">2</option>
-						</select> */}
+							value={ValueGreaterThanZeroOrNull(newSearchParams["parking"], "select", "Garage/Parking", true)}
+							onSelectionChange={(e) => onSelectionChange(e, 'parking')} />
 						<Dropdown
-							overlay={<CertainFeatureMenu />} // The content of the dropdown
+							menu={<CertainFeatureMenu setCheckFeatures={setCheckFeatures} />} // The content of the dropdown
 							trigger={["click"]}
-							visible={iscertainFeatureOpen}
-							onVisibleChange={handleCertainFeatureClick}
+							open={iscertainFeatureOpen}
+							onOpenChange={handleCertainFeatureClick}
 						>
 							<div className="select-field-features">
 								<span>Features</span>

@@ -119,7 +119,7 @@ const DashboardComponent = () => {
         setPublicListing([]);
       } else {
         const listingRes = dataresp.filter(
-          (listing) => !isPastAMonth(listing.created_at)
+          (listing) => !isPastAMonth(listing.created_at) && listing.PropertyType == "lot"
         );
 
         let listings = [];
@@ -137,7 +137,6 @@ const DashboardComponent = () => {
             const gallery = getPhotoGallery.data;
 
             const image = GetPhotoWithUrl(item.Photo);
-            console.log("dsfd", item);
 
             return {
               id: item.id,
@@ -155,6 +154,7 @@ const DashboardComponent = () => {
               // isFeatured: item.IsFeatured
               property_type: item.PropertyType,
               city: item.City,
+              province: item.ProvinceState
             };
           })
         );
@@ -175,25 +175,24 @@ const DashboardComponent = () => {
 
   const FillLocationFilter = (listings) => {
     try {
-      const distinctCity = listings
+      const falsy = [null, undefined, ""];
+      
+      const distinctProvince = listings.filter(p => !falsy.includes(p.ProvinceState))
         .filter(
           (value, index, self) =>
-            index === self.findIndex((t) => t.City === value.City)
+            index === self.findIndex((t) => t.ProvinceState.toLowerCase() === value.ProvinceState.toLowerCase())
         )
         .map((item, i) => {
           return {
             key: i,
-            label: item.City.toLowerCase().includes("city")
-              ? CapitalizeString(item.City.toLowerCase())
-              : `${CapitalizeString(item.City.toLowerCase())} City`,
-            value: item.City.toLocaleLowerCase(),
+            label: CapitalizeString(item.ProvinceState.toLowerCase()),
+            value: item.ProvinceState.toLowerCase(),
           };
         })
         .sort((a, b) => a.value.localeCompare(b.value));
 
-        console.log("distinctCity", distinctCity);
         
-      setFilterLocation(distinctCity);
+      setFilterLocation(distinctProvince);
     } catch (error) {
       console.log("location", error);
       return;
@@ -338,11 +337,16 @@ const DashboardComponent = () => {
   const [searchParams, setSearchParams] = useState([]);
   const [keywordSearch, setKeywordSearch] = useState();
 
+  useEffect(() => {
+		
+		console.log('searchParams', searchParams);
+		
+	},[searchParams])
   const handleSearchClick = () => {
     let params = "";
 
     searchParams.forEach((item, key) => {
-
+      
       if (key == 0) {
         if (item.name === "features") {
           const indoorFeatures = item.value.filter(
@@ -414,13 +418,17 @@ const DashboardComponent = () => {
   };
 
   const SetParamsAllField = (name, value) => {
+    
     setSearchParams((prevSearchParams) => {
       const existingParamIndex = prevSearchParams.findIndex(
         (param) => param.name === name
       );
+      
       if (existingParamIndex !== -1) {
         if (
-          (name === "keyword" && value === "") ||
+          // (name === "keyword" && value === "") ||
+          (name === "keyword" && [null, undefined, ""].includes(value)) 
+          ||
           (name === "features" && checkFeatures.length === 0)
         ) {
           prevSearchParams.splice(existingParamIndex, 1);
@@ -429,9 +437,11 @@ const DashboardComponent = () => {
         }
       } else {
         if (
-          (name === "keyword" && value === "") ||
+          (name === "keyword" && [null, undefined, ""].includes(value)) 
+          ||
           (name === "features" && checkFeatures.length === 0)
         ) {
+          
           prevSearchParams.splice(existingParamIndex, 1);
         } else {
           prevSearchParams.push({ name, value });
@@ -440,6 +450,9 @@ const DashboardComponent = () => {
       console.log("prevSearchParams: ", prevSearchParams);
       return [...prevSearchParams];
     });
+
+    console.log("SetParamsAllField", searchParams);
+    
   };
 
   const onInputChange = (e) => {
@@ -602,6 +615,7 @@ const DashboardComponent = () => {
                     pics={item.pics}
                     img={item.img}
                     no_of_bathrooms={item.no_of_bathrooms}
+                    no_of_beds={item.no_of_beds}
                     lot={item.lot}
                     key={i}
                     loading={loading}
@@ -722,7 +736,7 @@ const DashboardComponent = () => {
           <div className="featured--content">
             {!loading ? (
               publiclisting.length !== 0 ? (
-                <FeaturedPropertiesComponent featuredListing={publiclisting} />
+                <FeaturedPropertiesComponent featuredListing={publiclisting} handleFeaturedClick={handleCardClick}/>
               ) : (
                 <p style={{ textAlign: "center", padding: "90px 0px 150px" }}>
                   No Featured Properties Available
