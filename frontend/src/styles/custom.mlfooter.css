@@ -305,7 +305,7 @@ flex-direction: row;
   display: flex;
   flex-direction: row;
   gap: 0px;
-  margin-left: 50px;
+  margin-left: 0px;
  }
 }
 
@@ -337,7 +337,7 @@ flex-direction: row;
 
 @media screen and (min-width: 1201px) and (max-width: 1400px) {
   .third-cont {
-    margin: 50px 0px 0px 100px;
+    margin:0px;
   }
   .customer-care {
     margin: 20px 0px 0px 20px;

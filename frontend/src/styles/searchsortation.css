@@ -143,6 +143,25 @@
 	font-size: 16px;
 }
 }
+@media screen and (min-width: 481px) and (max-width: 660px) {
+	.search-sortation{
+	padding:0px 0px 0px 0px !important;
+	width: 100%;
+}
+}
+@media screen and (min-width: 481px) and (max-width: 709px) {
+	.search-sortation{
+	padding:0px 40px 0px 20px;
+	width: 100%;
+}
+}
+@media screen and (min-width: 710px) and (max-width: 730px) {
+	.search-sortation{
+	padding:0px 0px 0px 0px;
+	width: 100%;
+}
+
+}
 @media screen and (min-width: 769px) and (max-width: 1024px) {
 	.search-sortation{
 	display: flex;
@@ -159,6 +178,7 @@
 }
 .search-sortation .sort-div-class{
 	font-size: 20px;
+	padding-right: 30px;
 }
 }
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
@@ -173,11 +193,18 @@
 
 .search-sortation  .sort span{
 	font-size: 20px;
-	margin-left: 40px;
+	padding-left: 35px;
 }
 .search-sortation .sort-div-class{
 	font-size: 20px;
-	margin-right: 10px;
+	padding-right: 25px;
+}
+
+}
+@media screen and (min-width: 1201px) and (max-width: 1399px) {
+.search-sortation  .sort span{
+	font-size: 20px;
+	padding-left: 40px !important;
 }
 
 }
@@ -193,7 +220,7 @@
 
 .search-sortation  .sort span{
 	font-size: 20px;
-	margin-left: 40px;
+	padding-left: 45px;
 }
 .search-sortation .sort-div-class{
 	font-size: 20px;
@@ -203,6 +230,16 @@
 @media screen and (min-width: 1401px) {
 	.search-sortation{
 		width: 1300px;
-		padding: 0px 10px;
+		padding: 0px 15px 0 0px;
 	}
+}
+@media screen and (min-width: 850px) and (max-width: 940px) {
+	.search-sortation{
+	padding:0px 40px 0px 25px !important;
+}
+}
+@media screen and (min-width: 851px) and (max-width: 939px) {
+    .search-sortation {
+        padding: 0px 40px 0px 5px !important;
+    }
 }
