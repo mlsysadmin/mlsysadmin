@@ -351,7 +351,14 @@ const JoinTeam = ({ toggleModal }) => {
       </div>
     );
   };
-
+  const formatCityLabel = (label) => {
+    return label
+      .split(" ")
+      .map((word) => {
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      })
+      .join(" ");
+  };
   return (
     <div className="join-modal-container">
       {contextHolder}
@@ -567,15 +574,8 @@ const JoinTeam = ({ toggleModal }) => {
                   >
                     <Option value="">Select City</Option>
                     {filteredCities?.map((city, index) => (
-                      <Option
-                        key={index}
-                        value={
-                          city.name.charAt(0).toUpperCase() +
-                          city.name.slice(1).toLowerCase()
-                        }
-                      >
-                        {city.name.charAt(0).toUpperCase() +
-                          city.name.slice(1).toLowerCase()}
+                      <Option key={index} value={formatCityLabel(city.name)}>
+                        {formatCityLabel(city.name)}
                       </Option>
                     ))}
                   </Select>
