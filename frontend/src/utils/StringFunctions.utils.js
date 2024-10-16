@@ -83,13 +83,33 @@ const FillLocationFilter = (listings) => {
 }
 
 const SortPrice = (a, b) => {
-  
+
   const parse = (num) => parseFloat(num.replace(/,/g, ''))
   return parse(a.price) - parse(b.price);
 }
 
 const SortByText = (a, b) => {
   return a > b ? 1 : -1;
+}
+
+const SortListings = (sortKey, sortListing, listings) => {
+  if (sortKey == "price-asc") {
+    sortListing = listings.sort((a, b) => SortPrice(b, a));
+  } else if (sortKey == "price-desc") {
+    sortListing = listings.sort((a, b) => SortPrice(a, b));
+  } else if (sortKey == "new" || sortKey == "relevant") {
+    sortListing = listings.sort((a, b) => SortByText(b.date, a.date));
+  } else if (sortKey == "old") {
+    sortListing = listings.sort((a, b) => SortByText(a.date, b.date))
+  } else if (sortKey == "title-asc") {
+    sortListing = listings.sort((a, b) => SortByText(a.title, b.title))
+  } else if (sortKey == "title-desc") {
+    sortListing = listings.sort((a, b) => SortByText(b.title, a.title))
+  } else {
+    sortListing = listings;
+  }
+
+  return sortListing
 }
 
 export {
@@ -99,5 +119,6 @@ export {
   GetPropertyTitle,
   FillLocationFilter,
   SortPrice,
-  SortByText
+  SortByText,
+  SortListings
 }

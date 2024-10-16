@@ -40,7 +40,7 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 	const allProvince = async () => {
 		const dataresprovince = await GetProvince();
 		console.log("dataresprovince: ", dataresprovince);
-		
+
 		setGetProvince(dataresprovince);
 		// console.log("These are provinces:", dataresprovince);
 	};
@@ -49,8 +49,11 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 		setSelectedProvince(province);
 		console.log("Selected Province:", province);
 
-		const provinceData = getProvince.find((p) => p.name.charAt(0).toUpperCase() +
-									p.name.slice(1).toLowerCase() === province);
+		const provinceData = getProvince.find(
+			(p) =>
+				p.name.charAt(0).toUpperCase() + p.name.slice(1).toLowerCase() ===
+				province
+		);
 		if (provinceData) {
 			const provinceId = provinceData.addressL1Id;
 			const filtered = getCities.filter((city) => {
@@ -86,7 +89,7 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 				break;
 			case "city":
 				setSelectedCity(value);
-				 handleMapLocationChange(value, selectedProvince);
+				handleMapLocationChange(value, selectedProvince);
 				break;
 			case "zipcode":
 				setZipcode(value);
@@ -101,7 +104,7 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 
 	const handleMapLocationChange = async (city, province) => {
 		try {
-			const maploc = `${city}, ${province}`
+			const maploc = `${city}, ${province}`;
 
 			const response = await fetch(
 				`https://nominatim.openstreetmap.org/search?format=json&q=${maploc}`
@@ -144,6 +147,13 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 		onComplete,
 	]);
 
+	const pascalTextFormatter = (text) => {
+		return text
+			.split(" ")
+			.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+			.join(" ");
+	};
+
 	return (
 		<div className="location-details">
 			<div className="location-label">Location</div>
@@ -155,6 +165,7 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 					<select
 						name="country"
 						id="country"
+						disabled
 						placeholder="Select Country"
 						className="location-form-inputs"
 						value={selectedCountry}
@@ -191,21 +202,14 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 						className="location-form-inputs"
 						value={selectedProvince}
 						onChange={(e) => handleProvinceChange(e.target.value)}
-						// onChange={handleAddressChange}
+					// onChange={handleAddressChange}
 					>
 						<option value="" disabled selected hidden>
 							Select Province
 						</option>
 						{getProvince.map((province, index) => (
-							<option
-								key={index}
-								value={
-									province.name.charAt(0).toUpperCase() +
-									province.name.slice(1).toLowerCase()
-								}
-							>
-								{province.name.charAt(0).toUpperCase() +
-									province.name.slice(1).toLowerCase()}
+							<option key={index} value={pascalTextFormatter(province.name)}>
+								{pascalTextFormatter(province.name)}
 							</option>
 						))}
 					</select>
@@ -225,15 +229,8 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 							Select City
 						</option>
 						{filteredCities.map((city, index) => (
-							<option
-								key={index}
-								value={
-									city.name.charAt(0).toUpperCase() +
-									city.name.slice(1).toLowerCase()
-								}
-							>
-								{city.name.charAt(0).toUpperCase() +
-									city.name.slice(1).toLowerCase()}
+							<option key={index} value={pascalTextFormatter(city.name)}>
+								{pascalTextFormatter(city.name)}
 							</option>
 						))}
 					</select>
@@ -278,7 +275,9 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 							url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 							attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 						/>
-						<Circle center={position} radius={radius} />
+						<Circle center={position} radius={radius} color="#d90000"
+							fillColor="#d90000"
+							fillOpacity={0.3} />
 						<MapUpdater position={position} />
 					</MapContainer>
 				</div>

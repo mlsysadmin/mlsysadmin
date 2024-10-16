@@ -273,7 +273,7 @@ const RefinanceComponent = () => {
 								>
 									{selectedDropdownOption ||
 										"Select your current interest rate"}
-									<span style={{ padding: "0px 10px 0px 0px", color: "red" }}>▼</span>
+									<span style={{ padding: "0px 15px 0px 0px", fontWeight: "200", color: "#8C9094" }}>v</span>
 								</button>
 							</Dropdown>
 						</div>

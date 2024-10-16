@@ -23,6 +23,7 @@ import {
     FillLocationFilter,
     GetPropertyTitle,
     isPastAMonth,
+    SortListings,
 } from "../utils/StringFunctions.utils";
 import NoListingAvailable from "./custom/custom.NoListingAvailable";
 
@@ -361,9 +362,20 @@ const SearchListingComponent = () => {
 
     const indexOfLastCard = currentPage * cardsPerPage;
     const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-    const currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
+    let currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
 
-    const totalPages = Math.ceil(publiclisting?.length / cardsPerPage);
+	const totalPages = Math.ceil(publiclisting?.length / cardsPerPage);
+
+	const HandleSort = (e) => {
+
+		setSelectedSort(e.domEvent.target.innerText);
+		const sortKey = e.key;
+		let sortListing;
+
+		sortListing = SortListings(sortKey, sortListing, publiclisting);
+
+		currentCards = sortListing;
+	}
 
     const FillLocationFilter = (listings) => {
         try {
@@ -410,6 +422,7 @@ const SearchListingComponent = () => {
                             current_properties_count={currentCards.length}
                             selectedSort={selectedSort}
                             setSelectedSort={setSelectedSort}
+                            HandleSort={HandleSort}
                         />
                         {!loading ? (
                             currentCards.length !== 0 ? (

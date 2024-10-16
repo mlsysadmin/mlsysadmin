@@ -43,6 +43,10 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
 			setTimeout(() => setShowTooltip(false), 800);
 		}
 	};
+  const handleSaveClick = () =>{
+    setShowTooltip(true);
+		setTimeout(() => setShowTooltip(false), 800);
+  }
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
@@ -137,6 +141,7 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
                 padding: "0px 10px 0px 0px",
                 fontWeight: "600",
               }}
+              onClick={handleSaveClick}
             >
               Save
             </span>

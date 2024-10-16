@@ -148,7 +148,6 @@ const NewPageComponent = () => {
 
 		if (sortKey == "price-asc") {
 			sortListing = publiclisting.sort((a, b) => SortPrice(b, a));
-			console.log("sort", sortListing)
 		}else if (sortKey == "price-desc") {
 			sortListing = publiclisting.sort((a, b) => SortPrice(a, b));
 		}else if (sortKey == "new" || sortKey == "relevant") {

@@ -23,6 +23,7 @@ import {
   FillLocationFilter,
   GetPropertyTitle,
   isPastAMonth,
+  SortListings,
 } from "../utils/StringFunctions.utils";
 import NoListingAvailable from "./custom/custom.NoListingAvailable";
 
@@ -173,9 +174,23 @@ const AllComponent = () => {
   const [selectedSort, setSelectedSort] = useState("Most relevant");
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
+  let currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
 
   const totalPages = Math.ceil(publiclisting?.length / cardsPerPage);
+
+  const HandleSort = (e) => {
+		
+		setSelectedSort(e.domEvent.target.innerText);
+		const sortKey = e.key;
+		let sortListing;
+
+    sortListing = SortListings(sortKey, sortListing, publiclisting);
+
+		console.log("sort", sortListing);
+		
+		currentCards = sortListing;
+	}
+
   return (
     <div className="all-container">
       <div className="all-searchcomponent">
@@ -196,7 +211,8 @@ const AllComponent = () => {
               properties_count={publiclisting.length}
               current_properties_count={currentCards.length}
               selectedSort={selectedSort}
-                	setSelectedSort={setSelectedSort}
+              setSelectedSort={setSelectedSort}
+              HandleSort={HandleSort}
             />
             {!loading ? (
               currentCards.length !== 0 ? (

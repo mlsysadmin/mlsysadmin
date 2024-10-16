@@ -13,7 +13,7 @@ import Pagination from "./custom/pagination/Pagination";
 import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout, SearchPropertiesSoration } from ".";
 import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
-import { CapitalizeString, FillLocationFilter, GetPropertyTitle } from "../utils/StringFunctions.utils";
+import { CapitalizeString, FillLocationFilter, GetPropertyTitle, SortListings } from "../utils/StringFunctions.utils";
 import { CardSkeleton } from "./Skeleton";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import DefaultPropertyImage from '../asset/fallbackImage.png';
@@ -168,9 +168,20 @@ const SaleComponent = () => {
 	const [selectedSort, setSelectedSort] = useState("Most relevant");
 	const indexOfLastCard = currentPage * cardsPerPage;
 	const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-	const currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
+	let currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
 
-	const totalPages = Math.ceil(publiclisting.length / cardsPerPage);
+	const totalPages = Math.ceil(publiclisting?.length / cardsPerPage);
+
+	const HandleSort = (e) => {
+
+		setSelectedSort(e.domEvent.target.innerText);
+		const sortKey = e.key;
+		let sortListing;
+
+		sortListing = SortListings(sortKey, sortListing, publiclisting);
+
+		currentCards = sortListing;
+	}
 
 	return (
 		<>
@@ -188,7 +199,8 @@ const SaleComponent = () => {
 						properties_count={publiclisting.length}
 						current_properties_count={currentCards.length}
 						selectedSort={selectedSort}
-                            setSelectedSort={setSelectedSort}
+                        setSelectedSort={setSelectedSort}
+						HandleSort={HandleSort}
 					/>
 					{!loading ? (
 						currentCards.length !== 0 ? (

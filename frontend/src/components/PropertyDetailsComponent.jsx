@@ -6,12 +6,14 @@ const PropertyDetailsComponent = ({ onComplete, setPropertyFields }) => {
 	const [selectedPropertyTab, setSelectedPropertyTab] = useState("");
 	const [selectedListingTab, setSelectedListingTab] = useState("");
 
+
+
 	useEffect(() => {
 		const isCompleted = selectedPropertyTab !== "" && selectedListingTab !== "";
 		onComplete(isCompleted);
 		if (isCompleted) {
 			setPropertyFields({
-				SaleType: selectedListingTab.toLowerCase(),
+				SaleType: selectedListingTab,
 				PropertyType: selectedPropertyTab.toLowerCase(),
 			});
 		}

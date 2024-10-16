@@ -88,7 +88,6 @@ const UnitDetailsComponent = ({
 			typeof propId === "string" &&
 			pricePerSqm.trim() !== "" &&
 			propId.trim() !== "";
-			
 
 		if (isFormComplete) {
 			setPropertyFields({
@@ -138,14 +137,23 @@ const UnitDetailsComponent = ({
 		"farm lot",
 	].includes(selectedPropertyTab);
 
-	const formatPricenumber = () =>{
+	const formatPricenumber = () => {
 		if (!price) return "";
 		return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	}
-		const formatdiscountedPricenumber = () => {
-			if (!discountedPrice) return "";
-			return discountedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		};
+	};
+	const formatdiscountedPricenumber = () => {
+		if (!discountedPrice) return "";
+		return discountedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	};
+	const formatpricePerSqm = () => {
+		if (!pricePerSqm) return "";
+		return pricePerSqm.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	};
+	const formatlotArea = () => {
+		if (!lotArea) return "";
+		return lotArea.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	};
+
 	const removeCommas = (price) => {
 		return price.replace(/,/g, "");
 	};
@@ -330,13 +338,14 @@ const UnitDetailsComponent = ({
 									className={`pricepersqm-input ${
 										pricePerSqmInputError ? "error-input" : ""
 									}`}
-									type="number"
+									type="text"
+									value={formatpricePerSqm(pricePerSqm)}
 									onChange={(e) => {
-										setPricePerSqm(e.target.value);
-										validateNumberInput(
-											e.target.value,
-											setPricePerSqmInputError
-										);
+										const rawValue = removeCommas(e.target.value);
+										if (!isNaN(rawValue)) {
+											setPricePerSqm(rawValue);
+										}
+										validateNumberInput(rawValue, setPricePerSqmInputError);
 									}}
 									disabled={isPricePerSqmDisabled}
 									style={{
@@ -498,10 +507,14 @@ const UnitDetailsComponent = ({
 									className={`lot-area-input ${
 										lotAreaInputError ? "error-input" : ""
 									}`}
-									type="number"
+									type="text"
+									value={formatlotArea(lotArea)}
 									onChange={(e) => {
-										setLotArea(e.target.value);
-										validateNumberInput(e.target.value, setLotAreaInputError);
+										const rawValue = removeCommas(e.target.value);
+										if (!isNaN(rawValue)) {
+											setLotArea(rawValue);
+										}
+										validateNumberInput(rawValue, setLotAreaInputError);
 									}}
 								/>
 								<div className="sqm-prefix">sqm</div>

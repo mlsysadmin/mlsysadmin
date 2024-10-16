@@ -232,8 +232,8 @@ const JoinTeam = ({ toggleModal }) => {
         if (addAgent) {
           openNotificationWithIcon(
             "success",
-            `Successfully Submitted`,
-            "Your Application was Submitted, Your application is under approvals, Please bare with us!."
+            `Successfully submitted`,
+            "Thank you for joining our team! We're excited to review it and will be in touch soon with the next steps."
           );
         } else {
           openNotificationWithIcon(
@@ -351,7 +351,14 @@ const JoinTeam = ({ toggleModal }) => {
       </div>
     );
   };
-
+  const formatCityLabel = (label) => {
+    return label
+      .split(" ")
+      .map((word) => {
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      })
+      .join(" ");
+  };
   return (
     <div className="join-modal-container">
       {contextHolder}
@@ -506,7 +513,18 @@ const JoinTeam = ({ toggleModal }) => {
               <div className="join-team-column-group">
                 <div className="join-team-group">
                   <span>Country</span>
-                  <Select
+                  <input
+                    type="text"
+                    name="country"
+                    value="Philippines"
+                    onChange={(value) =>
+                      handleInputChange({
+                        target: { name: "country", value },
+                      })
+                    }
+                    disabled
+                  />
+                  {/* <Select
                     name="country"
                     value="Philippines"
                     onChange={(value) =>
@@ -517,7 +535,7 @@ const JoinTeam = ({ toggleModal }) => {
                     disabled
                   >
                     <Option value="Philippines">Philippines</Option>
-                  </Select>
+                  </Select> */}
                   {errors.country && <p className="error">{errors.country}</p>}
                 </div>
                 <div className="join-team-group">
@@ -556,15 +574,8 @@ const JoinTeam = ({ toggleModal }) => {
                   >
                     <Option value="">Select City</Option>
                     {filteredCities?.map((city, index) => (
-                      <Option
-                        key={index}
-                        value={
-                          city.name.charAt(0).toUpperCase() +
-                          city.name.slice(1).toLowerCase()
-                        }
-                      >
-                        {city.name.charAt(0).toUpperCase() +
-                          city.name.slice(1).toLowerCase()}
+                      <Option key={index} value={formatCityLabel(city.name)}>
+                        {formatCityLabel(city.name)}
                       </Option>
                     ))}
                   </Select>

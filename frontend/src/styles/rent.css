@@ -74,8 +74,8 @@
 	.rentContainer .rent-h1 {
 		font-size: 22px;
 		position: relative;
-		margin-left: 20px;
-		padding: 30px 0px 0px 0px;
+		width: 100% !important;
+		padding: 20px 0px 20px 20px;
 		/* margin: 20px 0px 20px 20px; */
 	}
 	/* .rent {
@@ -96,8 +96,8 @@
 
 	.rentContainer .rent-h1 {
 		font-size: 22px;
-		margin: 20px 0px 20px 20px;
-			padding: 0px;
+		padding: 20px 0px 20px 20px;
+		width: 100% !important;
 	}
 	
 }
@@ -127,7 +127,8 @@
 
 	.rentContainer .rent-h1 {
 		font-size: 26px;
-		margin: 20px 0px 0px 20px;
+		padding: 20px 0px 0px 20px;
+		width: 100%;
 	}
 }
 
@@ -141,10 +142,17 @@
 
 	.rentContainer .rent-h1 {
 		font-size: 26px;
-		margin: 20px 0px 0px 20px;
+		padding: 20px 0px 0px 30px;
+		width: 100%;
 	}
 }
 
+@media screen and (min-width: 769px) and (max-width: 950px) {
+.rentContainer .rent-h1 {
+		padding: 20px 0px 0px 50px !important;
+		width: 100%;
+	}
+}
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
 	.rentContainer {
 		display: flex;
@@ -155,8 +163,17 @@
 
 	.rentContainer .rent-h1 {
 		font-size: 26px;
-		margin: 20px 0px 0px 40px;
+		padding: 20px 0px 0px 40px;
+		width: 100%;
 	}
+}
+@media screen and (min-width: 1100px) and (max-width: 1200px) {
+.rentContainer .rent-h1 {
+	padding: 20px 0px 0px 50px !important;
+	width: 100% !important;
+	}
+	
+
 }
 
 @media screen and (min-width: 1201px) and (max-width: 1400px) {
@@ -169,6 +186,15 @@
 
 	.rentContainer .rent-h1 {
 		font-size: 26px;
-		margin: 20px 0px 0px 40px;
+		padding: 20px 0px 0px 45px;
+		width: 1300px;
 	}
+}
+@media screen and (min-width: 1201px) and (max-width: 1399px) {
+.rentContainer .rent-h1 {
+	padding: 20px 0px 0px 75px !important;
+	width: 100%;
+	}
+	
+
 }
