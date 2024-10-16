@@ -90,7 +90,7 @@ const InsuranceGuideComponent = () => {
 					</div>
 					<div className="insurance-guide-tagline-two">
 						<span>
-							<b>Choose an Insurance</b> <br />{" "}
+							<b style={{color:"var(--red)"}}>Choose an Insurance</b> <br />{" "}
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and let us worry <br />
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; about the rest.
 						</span>

@@ -121,9 +121,8 @@ const SidebarMenu = ({ setOpenDrawer }) => {
     // navigate("/comingsoon");
   };
   return (
-    <>
-      {showModal && <JoinTeam toggleModal={toggleModal} />}
-
+		<>
+			{showModal && <JoinTeam toggleModal={toggleModal} />}
       <Menu
         style={{
           width: 256,
@@ -137,8 +136,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
         onClick={handleMenuOnClick}
       />
 
-      <Divider />
-
+			<Divider />
       <div
         style={{
           display: "grid",

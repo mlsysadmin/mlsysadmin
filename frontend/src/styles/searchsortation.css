@@ -53,24 +53,75 @@
 @media screen and (min-width:360px) and (max-width: 480px){
 	.search-sortation{
 	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+	flex-direction: column;
+	justify-content: flex-start;
 	width: 100%;
 	margin-top: 10px;
-	padding:0px 5px 0px 5px;
+	padding:0px 5px 0px 15px;
 }
 
 .search-sortation  .sort span{
-	font-size: 12px;
-	margin-left: 20px;
+	font-size: 14px;
+	margin-left: 0px;
 }
 .search-sortation  .sort {
 	width: 200px;
 }
 .search-sortation .sort-div-class{
-	font-size: 12px;
-	width: 150px;
-	padding-right: 10px;
+	font-size: 14px;
+	width: 200px;
+	padding-right: 0px;
+	justify-content: flex-start;
+}
+}
+@media screen and (min-width:380px) and (max-width: 388px){
+	.search-sortation{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	width: 100%;
+	margin-top: 10px;
+	padding:0px 5px 0px 20px;
+}
+}
+@media screen and (min-width:401px) and (max-width: 416px){
+	.search-sortation{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	width: 100%;
+	margin-top: 10px;
+	padding:0px 5px 0px 35px;
+}
+}
+@media screen and (min-width:417px) and (max-width: 426px){
+	.search-sortation{
+	padding:0px 5px 0px 40px;
+}
+}
+@media screen and (min-width:427px) and (max-width: 445px){
+	.search-sortation{
+	padding:0px 5px 0px 50px;
+}
+}
+@media screen and (min-width:445px) and (max-width: 465px){
+	.search-sortation{
+	padding:0px 5px 0px 60px;
+}
+}
+@media screen and (min-width:4465px) and (max-width: 480px){
+	.search-sortation{
+	padding:0px 5px 0px 70px;
+}
+}
+@media screen and (min-width:389px) and (max-width: 400px){
+	.search-sortation{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	width: 100%;
+	margin-top: 10px;
+	padding:0px 5px 0px 26px;
 }
 }
 
@@ -152,6 +203,6 @@
 @media screen and (min-width: 1401px) {
 	.search-sortation{
 		width: 1300px;
-		padding: 0px;
+		padding: 0px 10px;
 	}
 }

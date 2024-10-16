@@ -86,7 +86,6 @@ const CardListingComponent = ({
         // console.log("tag", tag);
         // console.log("check", isChecked);
         // setIsChecked(isChecked);
-
         const id = listingId;
 
         const nextSelectedTags = isChecked && !likes.includes(id) ?
