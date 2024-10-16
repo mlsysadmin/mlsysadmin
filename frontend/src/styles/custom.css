@@ -571,8 +571,7 @@ listing search */
 @media screen and (min-width: 320px) and (max-width: 359px) {
 	.first-content {
 		width: 100%;
-		margin-left: 5px;
-		margin-top: 20px;
+		margin: 20px 0px 0px 5px;
 	}
 	.first-content .sub-content1 {
 		display: flex;
@@ -1057,7 +1056,7 @@ listing search */
 
 @media screen and (min-width: 481px) and (max-width: 485px) {
 	.first-content {
-		margin-left: 15px;
+		margin:50px 0px 0px 10px;
 		height: 550px;
 	}
 	.first-content .sub-content1 {
@@ -1873,7 +1872,7 @@ listing search */
 }
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
 	.first-content {
-		margin-left: 20px;
+		margin: 50px 0px 0px 30px;
 	}
 	.first-content .sub-content1 {
 		display: flex;
@@ -1926,4 +1925,80 @@ listing search */
 	.features-list {
 		flex-direction: column;
 	}
+}
+@media screen and (min-width: 769px) and (max-width: 794px) {
+.subcontent-inputs-1 .right-button{
+	position: absolute ;
+	margin-left: 600px !important;
+	margin-top: 240px !important;
+	height: 40px;
+}
+.sub-content1{
+	height: 310px;
+	padding-left: 10px;
+	margin: 0px;
+}
+}
+@media screen and (min-width: 710px) and (max-width: 718px) {
+.subcontent-inputs-1 .right-button{
+	position: absolute ;
+	margin-left: 520px !important;
+	margin-top: 280px !important;
+	height: 40px;
+}
+.sub-content1{
+	height: 310px;
+	padding-left: 10px;
+	margin: 0px;
+}
+.first-content{
+	width: 100%;
+	margin: 50px 20px
+}
+}
+
+@media screen and (min-width: 710px) and (max-width: 742px) {
+.subcontent-inputs-1 .right-button{
+	position: absolute ;
+	margin-left: 560px;
+	margin-top: 230px;
+	height: 40px;
+}
+.sub-content1{
+	height: 310px;
+	padding-left: 10px;
+}
+}
+@media screen and (min-width: 742px) and (max-width: 768px) {
+.subcontent-inputs-1 .right-button{
+	position: absolute ;
+	margin-left: 580px !important;
+	margin-top: 240px !important;
+	height: 40px;
+}
+.sub-content1{
+	height: 310px;
+	padding-left: 10px;
+	margin: 0px;
+}
+.first-content{
+	margin: 50px 0px;
+}
+}
+@media screen and (min-width: 795px) and (max-width: 855px) {
+.subcontent-inputs-1 .right-button{
+	position: absolute ;
+	margin-left: 640px !important;
+	margin-top: 240px !important;
+	height: 40px;
+}
+.sub-content1{
+	height: 310px;
+	padding-left: 10px;
+	margin: 0px;
+}
+.first-content{
+	width: 100%;
+	margin: 50px 20px
+}
 }
