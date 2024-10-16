@@ -19,49 +19,51 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 
     setCurrent(path);
   }, [setCurrent]);
-
   const SubMenuChild = (submen) => {
     const m = submen.map((menu, index) => {
       return {
         key: menu.header,
         label: menu.header,
         type: "group",
-        children: getSubMenuChildren(menu.submenu),
+        children: menu.submenu?.map((sub, key) => {
+          // let childSub = sub.childSubMenu;
+          return Object.keys(sub).includes("childSubMenu")
+            ? {
+                key: sub.childSubMenu.header,
+                label: sub.childSubMenu.header,
+                link: sub.link,
+                type: "group",
+                children: Object.keys(sub).includes("childSubMenu")
+                  ? sub.childSubMenu.submenu.map((i, k) => {
+                      return {
+                        key: i.header,
+                        label: i.sub,
+                      };
+                    })
+                  : [],
+              }
+            : Object.keys(sub).includes("sub_info")
+            ? {
+                key: sub.sub_info,
+                label: "Loan Dashboard",
+                link: sub.link,
+              }
+            : Object.keys(sub).includes("sub_info_insurance")
+            ? {
+                key: sub.sub_info_insurance,
+                label: "Begin Your Property Search Today with Our Help!",
+                link: sub.link,
+              }
+            : {
+                key: sub.sub,
+                label: sub.sub,
+                link: sub.link,
+              };
+        }),
       };
     });
 
     return m;
-  };
-
-  const getSubMenuChildren = (submenu) => {
-    return submenu.map((sub, key) => {
-      if (Object.keys(sub).includes("childSubMenu")) {
-        return {
-          key: sub.childSubMenu.header,
-          label: sub.childSubMenu.header,
-          type: "group",
-          children: getSubMenuChildren(sub.childSubMenu.submenu),
-        };
-      } else if (Object.keys(sub).includes("sub_info")) {
-        return {
-          key: sub.sub_info,
-          label: "Loan Dashboard",
-          link: sub.link,
-        };
-      } else if (Object.keys(sub).includes("sub_info_insurance")) {
-        return {
-          key: sub.sub_info_insurance,
-          label: "Home Insurance Dashboard",
-          link: sub.link,
-        };
-      } else {
-        return {
-          key: sub.sub,
-          label: sub.sub,
-          link: sub.link,
-        };
-      }
-    });
   };
 
   const MenuItems = [
@@ -105,12 +107,10 @@ const SidebarMenu = ({ setOpenDrawer }) => {
   }));
 
   const handleMenuOnClick = (menu) => {
-    console.log("menu", menu);
     setCurrent(menu.key);
     setOpenDrawer(false);
-    navigate({
-      pathname: menu.item.props.link,
-    });
+    const link = menu.item.props.link; 
+    navigate(link);
   };
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => {
@@ -133,63 +133,61 @@ const SidebarMenu = ({ setOpenDrawer }) => {
         selectedKeys={[currentMenu]}
         mode="inline"
         className="sidebar-menu"
-        onClick={(menu) => handleMenuOnClick(menu)}
+        onClick={handleMenuOnClick}
       />
 
 			<Divider />
-
-			<div
-				style={{
-					display: "grid",
-					gridTemplateColumns: "1fr 1fr",
-					gridGap: "10px",
-				}}
-			>
-				<div
-					style={{
-						gridRow: "1 / 3",
-						display: "flex",
-						flexDirection: "column",
-					}}
-				>
-					<RoundBtn
-						type="primary"
-						className="menu-buttons"
-						style={{
-							background: "#D90000",
-							fontFamily: '"Poppins", sans-serif',
-						}}
-						label="List your Property"
-					/>
-					<RoundBtn
-						type="primary"
-						className="menu-buttons"
-						style={{
-							border: "#D90000 solid 1px",
-							background: "white",
-							color: "#D90000",
-							fontFamily: '"Poppins", sans-serif',
-						}}
-						label="Join our Team"
-						onClick={handleJoinTeamClick}
-					/>
-				</div>
-				<Col
-					style={{
-						gridRow: "1 / 2",
-						alignSelf: "center",
-					}}
-					align="right"
-					className="menu-buttons"
-				>
-					<img
-						src={userProfile}
-						style={{ width: "30px", cursor: "pointer", marginTop: "40px" }}
-					></img>
-				</Col>
-			</div>
-		</>
-	);
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gridGap: "10px",
+        }}
+      >
+        <div
+          style={{
+            gridRow: "1 / 3",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <RoundBtn
+            type="primary"
+            className="menu-buttons"
+            style={{
+              background: "#D90000",
+            }}
+            label="List your Property"
+          />
+          <RoundBtn
+            type="primary"
+            className="menu-buttons"
+            style={{
+              border: "#D90000 solid 1px",
+              background: "white",
+              marginTop: '10px',
+              color: "#D90000",
+            }}
+            label="Join our Team"
+            onClick={handleJoinTeamClick}
+          />
+        </div>
+        <Col
+          style={{
+            gridRow: "1 / 2",
+            alignSelf: "center",
+          }}
+          align="right"
+          className="menu-buttons"
+        >
+          <img
+            src={userProfile}
+            style={{ width: "30px", cursor: "pointer", marginTop: "40px" }}
+          ></img>
+        </Col>
+      </div>
+    </>
+  );
 };
 
 export default SidebarMenu;
