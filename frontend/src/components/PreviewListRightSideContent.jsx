@@ -136,13 +136,13 @@ const PreviewListRightSideContent = ({ oneListing }) => {
   };
   const handleLoanClick = () => {
     navigate("/loan-calculator");
-
   };
   const handleContactClick = async () => {
     try {
       const values = Object.values(contact);
       const keys = Object.keys(contact);
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
       if (values.includes("")) {
         openNotificationWithIcon(
           "warning",
@@ -351,7 +351,6 @@ const PreviewListRightSideContent = ({ oneListing }) => {
       <div className="contact-us">
         <h2>Contact Us</h2>
         <div className="contact-input">
-          <img src={user} alt="User" />
           <input
             type="text"
             placeholder="Name"
@@ -361,7 +360,6 @@ const PreviewListRightSideContent = ({ oneListing }) => {
           />
         </div>
         <div className="contact-input">
-          <img src={mail} alt="Mail" />
           <input
             type="email"
             placeholder="Email"
@@ -371,7 +369,6 @@ const PreviewListRightSideContent = ({ oneListing }) => {
           />
         </div>
         <div className="contact-input">
-          <img src={call} alt="Call" />
           <input
             type="text"
             placeholder="Phone Number"
@@ -382,7 +379,6 @@ const PreviewListRightSideContent = ({ oneListing }) => {
           />
         </div>
         <div className="contact-textarea">
-          <img src={chat} alt="Chat" />
           <textarea
             name="message"
             onChange={(e) => handleContactChange(e)}
@@ -400,7 +396,6 @@ const PreviewListRightSideContent = ({ oneListing }) => {
         <SemiRoundBtn
           label={"Loan Calculator"}
           size={"large"}
-          style={{backgroundColor:"white", color: "black", fontWeight: "bold", border: "black solid 1px"}}
           handleClick={handleLoanClick}
           className={"loan-calculator-button"}
         />

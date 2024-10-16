@@ -13,7 +13,7 @@ const MortgageComponent = () => {
 	const handleButtonClick = () => {
 		// console.log("Button clicked, showing modal");
 		// setShowModal(true);
-		navigate("/comingsoon");
+		navigate("/refinance");
 	};
 	const toggleModal = () => {
 		setShowModal(!showModal);

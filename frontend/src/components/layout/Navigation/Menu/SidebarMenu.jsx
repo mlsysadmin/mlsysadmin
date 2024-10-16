@@ -19,7 +19,6 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 
     setCurrent(path);
   }, [setCurrent]);
-
   const SubMenuChild = (submen) => {
     const m = submen.map((menu, index) => {
       return {
@@ -46,13 +45,13 @@ const SidebarMenu = ({ setOpenDrawer }) => {
             : Object.keys(sub).includes("sub_info")
             ? {
                 key: sub.sub_info,
-                label: "Home Loan Dashboard",
+                label: "Loan Dashboard",
                 link: sub.link,
               }
             : Object.keys(sub).includes("sub_info_insurance")
             ? {
                 key: sub.sub_info_insurance,
-                label: "Home Insurance Dashboard",
+                label: "Begin Your Property Search Today with Our Help!",
                 link: sub.link,
               }
             : {
@@ -68,13 +67,8 @@ const SidebarMenu = ({ setOpenDrawer }) => {
   };
 
   const MenuItems = [
-    { label: "Sell", key: "sell", link: "/sell" },
     { label: "New", key: "new", link: "/new" },
-    {
-      label: "Rent",
-      key: "rent",
-      children: SubMenuChild(SubMenu.rent),
-    },
+    { label: "Sell", key: "sell", link: "/sell" },
     {
       label: "Buy",
       key: "buy",
@@ -82,7 +76,13 @@ const SidebarMenu = ({ setOpenDrawer }) => {
       link: "/buy",
     },
     {
-      label: "Home Loan",
+      label: "Rent",
+      key: "rent",
+      children: SubMenuChild(SubMenu.rent),
+    },
+
+    {
+      label: "Loan",
       key: "home-loan",
       children: SubMenuChild(SubMenu.homeLoan),
     },
@@ -107,12 +107,10 @@ const SidebarMenu = ({ setOpenDrawer }) => {
   }));
 
   const handleMenuOnClick = (menu) => {
-    console.log("menu", menu);
     setCurrent(menu.key);
     setOpenDrawer(false);
-    navigate({
-      pathname: menu.item.props.link,
-    });
+    const link = menu.item.props.link; 
+    navigate(link);
   };
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => {
@@ -125,74 +123,71 @@ const SidebarMenu = ({ setOpenDrawer }) => {
   return (
 		<>
 			{showModal && <JoinTeam toggleModal={toggleModal} />}
-
-			<Menu
-				style={{
-					width: 256,
-				}}
-				defaultSelectedKeys={["1"]}
-				defaultOpenKeys={["sub1"]}
-				items={items}
-				selectedKeys={[currentMenu]}
-				mode="inline"
-				className="sidebar-menu"
-				onClick={handleMenuOnClick}
-			/>
+      <Menu
+        style={{
+          width: 256,
+        }}
+        defaultSelectedKeys={["1"]}
+        defaultOpenKeys={["sub1"]}
+        items={items}
+        selectedKeys={[currentMenu]}
+        mode="inline"
+        className="sidebar-menu"
+        onClick={handleMenuOnClick}
+      />
 
 			<Divider />
-
-			<div
-				style={{
-					display: "grid",
-					gridTemplateColumns: "1fr 1fr",
-					gridGap: "10px",
-				}}
-			>
-				<div
-					style={{
-						gridRow: "1 / 3",
-						display: "flex",
-						flexDirection: "column",
-					}}
-				>
-					<RoundBtn
-						type="primary"
-						className="menu-buttons"
-						style={{
-							background: "#D90000",
-							fontFamily: '"Poppins", sans-serif',
-						}}
-						label="List your Property"
-					/>
-					<RoundBtn
-						type="primary"
-						className="menu-buttons"
-						style={{
-							border: "#D90000 solid 1px",
-							background: "white",
-							color: "#D90000",
-							fontFamily: '"Poppins", sans-serif',
-						}}
-						label="Join our Team"
-						onClick={handleJoinTeamClick}
-					/>
-				</div>
-				<Col
-					style={{
-						gridRow: "1 / 2",
-						alignSelf: "center",
-					}}
-					align="right"
-					className="menu-buttons"
-				>
-					<img
-						src={userProfile}
-						style={{ width: "30px", cursor: "pointer", marginTop: "40px" }}
-					></img>
-				</Col>
-			</div>
-		</>
-	);
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gridGap: "10px",
+        }}
+      >
+        <div
+          style={{
+            gridRow: "1 / 3",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <RoundBtn
+            type="primary"
+            className="menu-buttons"
+            style={{
+              background: "#D90000",
+            }}
+            label="List your Property"
+          />
+          <RoundBtn
+            type="primary"
+            className="menu-buttons"
+            style={{
+              border: "#D90000 solid 1px",
+              background: "white",
+              marginTop: '10px',
+              color: "#D90000",
+            }}
+            label="Join our Team"
+            onClick={handleJoinTeamClick}
+          />
+        </div>
+        <Col
+          style={{
+            gridRow: "1 / 2",
+            alignSelf: "center",
+          }}
+          align="right"
+          className="menu-buttons"
+        >
+          <img
+            src={userProfile}
+            style={{ width: "30px", cursor: "pointer", marginTop: "40px" }}
+          ></img>
+        </Col>
+      </div>
+    </>
+  );
 };
 
 export default SidebarMenu;
