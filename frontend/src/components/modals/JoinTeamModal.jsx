@@ -232,8 +232,8 @@ const JoinTeam = ({ toggleModal }) => {
         if (addAgent) {
           openNotificationWithIcon(
             "success",
-            `Successfully Submitted`,
-            "Your Application was Submitted, Your application is under approvals, Please bare with us!."
+            `Successfully submitted`,
+            "Thank you for joining our team! We're excited to review it and will be in touch soon with the next steps."
           );
         } else {
           openNotificationWithIcon(
@@ -506,7 +506,18 @@ const JoinTeam = ({ toggleModal }) => {
               <div className="join-team-column-group">
                 <div className="join-team-group">
                   <span>Country</span>
-                  <Select
+                  <input
+                    type="text"
+                    name="country"
+                    value="Philippines"
+                    onChange={(value) =>
+                      handleInputChange({
+                        target: { name: "country", value },
+                      })
+                    }
+                    disabled
+                  />
+                  {/* <Select
                     name="country"
                     value="Philippines"
                     onChange={(value) =>
@@ -517,7 +528,7 @@ const JoinTeam = ({ toggleModal }) => {
                     disabled
                   >
                     <Option value="Philippines">Philippines</Option>
-                  </Select>
+                  </Select> */}
                   {errors.country && <p className="error">{errors.country}</p>}
                 </div>
                 <div className="join-team-group">
