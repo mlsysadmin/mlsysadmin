@@ -17,6 +17,7 @@ import {
   NotAvailableReturn,
 } from "../utils/StringFunctions.utils";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
+import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import { PropertyTypeCategory } from "../utils/PropertyStaticData.utils";
 
 const PreviewListLeftContent = ({
@@ -153,13 +154,13 @@ const PreviewListLeftContent = ({
                 <th>Listing Type</th>
                 <td>{`For ${CapitalizeString(oneListing.SaleType)}`}</td>
                 <th>Lot Area</th>
-                <td>{NotAvailableReturn(oneListing.LotArea)}</td>
+                <td>{NotAvailableReturn(AmountFormatterGroup(oneListing.LotArea))}</td>
               </tr>
               <tr>
                 <th>Furnishing</th>
                 <td>{NotAvailableReturn(oneListing.Furnishing)}</td>
                 <th>Price per SqM</th>
-                <td>{NotAvailableReturn(oneListing.PricePerSqm)}</td>
+                <td>{NotAvailableReturn(AmountFormatterGroup(oneListing.PricePerSqm))}</td>
               </tr>
               <tr>
                 <th>Bedroom</th>

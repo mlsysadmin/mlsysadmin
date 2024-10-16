@@ -44,6 +44,10 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
 			setTimeout(() => setShowTooltip(false), 800);
 		}
 	};
+  const handleSaveClick = () =>{
+    setShowTooltip(true);
+		setTimeout(() => setShowTooltip(false), 800);
+  }
 
   const nextImage = () => {
     setCurrentImageIndex((prevIndex) =>
@@ -72,79 +76,82 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
   }
   
   return (
-    <article className={styles.propertyCard}>
-      <img
-        loading="lazy"
-        src={GetPhotoWithUrl(images[currentImageIndex]) ? GetPhotoWithUrl(images[currentImageIndex]) : DeafultFallbackImage}
-        className={styles.backgroundImage}
-        alt="Property background"
-      />
-      <div className={styles.logoImage}>
-        <img src={redcamera} className={styles.cameraImage} alt="Camera Icon" />
-        <span className={styles.number}>
-          {  images.length }
-        </span>
-      </div>
-      <div className={styles.carouselControls}>
-        <LeftOutlined
-          className={`${styles.leftIcon} ${isPrevDisabled ? styles.disabled : ""
-            }`}
-          onClick={!isPrevDisabled ? prevImage : null}
-        />
-        <RightOutlined
-          className={`${styles.rightIcon} ${isNextDisabled ? styles.disabled : ""
-            }`}
-          onClick={!isNextDisabled ? nextImage : null}
-        />
-      </div>
-      <div className={styles.infoContainer}>
-        <div className={styles.statusPriceContainer}>
-          <div className={styles.statusBadge}>
-            {
-              `For ${CapitalizeString(oneListing.SaleType)}`
-            }
-          </div>
-          <div className={styles.priceTag}>
-            PHP {AmountFormatterGroup(oneListing.Price)}
-          </div>
-        </div>
-        <div className={styles.actionContainer}>
-           <Tooltip
-           color="var(--red)"
-            title="Added to favorites" 
-            visible={showTooltip} 
-          ></Tooltip>
-          <button className={styles.saveButton}>
-            <CustomTag
-              tagLabel={checked ? <HeartFilled /> : <HeartOutlined />}
-              style={{
-                fontSize: isSmallScreen ? "25px" : "30px",
-                // fontSize: "30px",
-                color: "var(--red)",
-                backgroundColor: checked ? "transparent" : "",
-                padding:"0px 0px 0px 5px",
-              }}
-              className="circle-tags-heart"
-              checkable={true}
-              checked={checked}
-              handleChange={handleChange}
-            />{" "}
-            <span
-              className={styles.saveText}
-              style={{
-                color: "var(--red",
-                fontSize: "24px",
-                padding: "0px 10px 0px 0px",
-                fontWeight: "600",
-              }}
-            >
-              Save
-            </span>
-          </button>
-        </div>
-      </div>
-    </article>
-  );
+		<article className={styles.propertyCard}>
+			<img
+				loading="lazy"
+				src={
+					GetPhotoWithUrl(images[currentImageIndex])
+						? GetPhotoWithUrl(images[currentImageIndex])
+						: DeafultFallbackImage
+				}
+				className={styles.backgroundImage}
+				alt="Property background"
+			/>
+			<div className={styles.logoImage}>
+				<img src={redcamera} className={styles.cameraImage} alt="Camera Icon" />
+				<span className={styles.number}>{images.length}</span>
+			</div>
+			<div className={styles.carouselControls}>
+				<LeftOutlined
+					className={`${styles.leftIcon} ${
+						isPrevDisabled ? styles.disabled : ""
+					}`}
+					onClick={!isPrevDisabled ? prevImage : null}
+				/>
+				<RightOutlined
+					className={`${styles.rightIcon} ${
+						isNextDisabled ? styles.disabled : ""
+					}`}
+					onClick={!isNextDisabled ? nextImage : null}
+				/>
+			</div>
+			<div className={styles.infoContainer}>
+				<div className={styles.statusPriceContainer}>
+					<div className={styles.statusBadge}>
+						{`For ${CapitalizeString(oneListing.SaleType)}`}
+					</div>
+					<div className={styles.priceTag}>
+						PHP {AmountFormatterGroup(oneListing.Price)}
+					</div>
+				</div>
+				<div className={styles.actionContainer}>
+					<Tooltip
+						color="var(--red)"
+						title="Added to favorites"
+						visible={showTooltip}
+					></Tooltip>
+					<button className={styles.saveButton}>
+						<CustomTag
+							tagLabel={checked ? <HeartFilled /> : <HeartOutlined />}
+							style={{
+								fontSize: isSmallScreen ? "25px" : "30px",
+								// fontSize: "30px",
+								color: "var(--red)",
+								backgroundColor: checked ? "transparent" : "",
+								padding: "0px 0px 0px 5px",
+							}}
+							className="circle-tags-heart"
+							checkable={true}
+							checked={checked}
+							handleChange={handleChange}
+						/>{" "}
+						<span
+							className={styles.saveText}
+							style={{
+								color: "var(--red",
+								fontSize: "24px",
+								padding: "0px 10px 0px 0px",
+								fontWeight: "600",
+							}}
+							onClick={handleSaveClick}
+						>
+							Save
+						</span>
+					</button>
+				</div>
+			</div>
+		</article>
+	);
 };
 
 export default PropertyListing;
