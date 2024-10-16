@@ -12,7 +12,7 @@
  .refinance-group-one{
   gap: 20px;
   width: 30%;
-  margin: 80px 0px 0px 700px;
+  margin: 80px 0px 0px  30%;
 }
 .refinance-content .refinance-property-group{
     display: flex;
@@ -34,7 +34,7 @@ h4{
     gap: 30px;
 }
  .ref-prop-btn{
-    border: 1px solid var(--red);
+    border: 1px solid var(--mute-gray);
     width: 250px;
     height: 50px;
     border-radius:10px;
@@ -52,7 +52,7 @@ h4{
 }
 
 .refinance-property-group .refinance-property-group-two .ref-dropdown{
-    border: 1px solid var(--red);
+    border: 1px solid var(--mute-gray);
     width: 55%;
     height: 50px;
     border-radius:10px;
@@ -89,7 +89,7 @@ h4{
     height: 50px;
     font-size: 15px;
     border-radius: 10px;
-    border: 1px solid var(--red);
+    border: 1px solid var(--mute-gray);
     padding: 0px 0px 0px 20px;
 }
 .refinance-content.ant-slider-track {
@@ -585,7 +585,7 @@ background-color: var(--red);
   }
   .refinance-group-one{
     width: 80%;
-    margin: 20px 20px 0px 70px;
+    margin: 60px 20px 0px 10%;
   }
 .refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-vertical {
     display: flex;
