@@ -19,7 +19,6 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 
     setCurrent(path);
   }, [setCurrent]);
-
   const SubMenuChild = (submen) => {
     const m = submen.map((menu, index) => {
       return {
@@ -46,13 +45,13 @@ const SidebarMenu = ({ setOpenDrawer }) => {
             : Object.keys(sub).includes("sub_info")
             ? {
                 key: sub.sub_info,
-                label: "Home Loan Dashboard",
+                label: "Loan Dashboard",
                 link: sub.link,
               }
             : Object.keys(sub).includes("sub_info_insurance")
             ? {
                 key: sub.sub_info_insurance,
-                label: "Home Insurance Dashboard",
+                label: "Begin Your Property Search Today with Our Help!",
                 link: sub.link,
               }
             : {
@@ -68,13 +67,8 @@ const SidebarMenu = ({ setOpenDrawer }) => {
   };
 
   const MenuItems = [
-    { label: "Sell", key: "sell", link: "/sell" },
     { label: "New", key: "new", link: "/new" },
-    {
-      label: "Rent",
-      key: "rent",
-      children: SubMenuChild(SubMenu.rent),
-    },
+    { label: "Sell", key: "sell", link: "/sell" },
     {
       label: "Buy",
       key: "buy",
@@ -82,7 +76,13 @@ const SidebarMenu = ({ setOpenDrawer }) => {
       link: "/buy",
     },
     {
-      label: "Home Loan",
+      label: "Rent",
+      key: "rent",
+      children: SubMenuChild(SubMenu.rent),
+    },
+
+    {
+      label: "Loan",
       key: "home-loan",
       children: SubMenuChild(SubMenu.homeLoan),
     },
@@ -107,12 +107,10 @@ const SidebarMenu = ({ setOpenDrawer }) => {
   }));
 
   const handleMenuOnClick = (menu) => {
-    console.log("menu", menu);
     setCurrent(menu.key);
     setOpenDrawer(false);
-    navigate({
-      pathname: menu.item.props.link,
-    });
+    const link = menu.item.props.link; 
+    navigate(link);
   };
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => {
@@ -123,9 +121,8 @@ const SidebarMenu = ({ setOpenDrawer }) => {
     // navigate("/comingsoon");
   };
   return (
-    <>
-      {showModal && <JoinTeam toggleModal={toggleModal} />}
-
+		<>
+			{showModal && <JoinTeam toggleModal={toggleModal} />}
       <Menu
         style={{
           width: 256,
@@ -136,10 +133,10 @@ const SidebarMenu = ({ setOpenDrawer }) => {
         selectedKeys={[currentMenu]}
         mode="inline"
         className="sidebar-menu"
+        onClick={handleMenuOnClick}
       />
 
-      <Divider />
-
+			<Divider />
       <div
         style={{
           display: "grid",
@@ -159,7 +156,6 @@ const SidebarMenu = ({ setOpenDrawer }) => {
             className="menu-buttons"
             style={{
               background: "#D90000",
-              fontFamily: '"Poppins", sans-serif',
             }}
             label="List your Property"
           />
@@ -169,8 +165,8 @@ const SidebarMenu = ({ setOpenDrawer }) => {
             style={{
               border: "#D90000 solid 1px",
               background: "white",
+              marginTop: '10px',
               color: "#D90000",
-              fontFamily: '"Poppins", sans-serif',
             }}
             label="Join our Team"
             onClick={handleJoinTeamClick}

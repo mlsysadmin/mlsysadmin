@@ -157,10 +157,17 @@ const RentComponent = () => {
 
 		if (queryParams.size !== 0) {
 			
+			let title = "";
+
+			getPropertyType.trim().replace(/[\/_-]/g, " ").split(' ').forEach((st) => {
+				title += CapitalizeString(st) + " ";
+			})
+			title.trim();
+
 			allPublicListing(getPropertyType);
 			setPropertyType(getPropertyType);
-			setHeaderText(`${CapitalizeString(getPropertyType.replace(/[-_]/g, " "))} For Rent`);
-			setBreadCrumbItems([{ title: "For Rent" }, { title: CapitalizeString(getPropertyType.replace(/[-_]/g, " ")) }])
+			setHeaderText(`${title} For Rent`);
+			setBreadCrumbItems([{ title: "For Rent" }, { title: title }])
 		} else {
 			allPublicListing("house-and-lot");
 			setPropertyType("house-and-lot");

@@ -13,12 +13,10 @@ import { notification } from "antd";
 const JoinTeam = ({ toggleModal }) => {
   const { Option } = Select;
   const [getCountry, setGetCountry] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState("");
   const [getProvince, setGetProvince] = useState([]);
   const [selectedProvince, setSelectedProvince] = useState("");
   const [filteredCities, setFilteredCities] = useState([]);
   const [getCities, setGetCities] = useState([]);
-  const [selectedCity, setSelectedCity] = useState("");
   const [api, contextHolder] = notification.useNotification();
 
   const [formData, setFormData] = useState({
@@ -168,6 +166,13 @@ const JoinTeam = ({ toggleModal }) => {
         isValid = false;
       }
     });
+    if (formData.mobileNumber) {
+      const cleanMobileNumber = formData.mobileNumber.replace(/[^0-9]/g, "");
+      if (cleanMobileNumber !== formData.mobileNumber) {
+        // mobileNumber contained letters
+        isValid = false;
+      }
+    }
 
     if (!formData.brokerQuestion) {
       // formErrors.brokerQuestion = "This field is required";
@@ -213,6 +218,7 @@ const JoinTeam = ({ toggleModal }) => {
           HasPanel: "-",
           IsFeatured: "-",
           Description: "-",
+          RecordStatus: "pending",
           PRCID: "-",
           PRCExpiryDate: yyyyMMdd,
           ReferredById: "-",
@@ -287,9 +293,6 @@ const JoinTeam = ({ toggleModal }) => {
     resetForm();
   };
   const handleProvinceChange = (province) => {
-    console.log("province: ", province);
-
-    setSelectedProvince(province);
     setFormData((prevFormData) => ({
       ...prevFormData,
       province: province,
@@ -312,6 +315,15 @@ const JoinTeam = ({ toggleModal }) => {
     } else {
       setFilteredCities([]);
     }
+  };
+  const handleKeyDownPhone = (e) => {
+    // const philippineNumberRegex = /^(09|\+639)\d{9}$/;
+    const philippineNumberRegex =
+      /^[0-9]*\.?[0-9]*$/.test(e.key) || e.key == "Backspace";
+    if (philippineNumberRegex) {
+      return;
+    }
+    e.preventDefault();
   };
   const Modal = ({ isVisible, onClose }) => {
     if (!isVisible) return null;
@@ -412,6 +424,8 @@ const JoinTeam = ({ toggleModal }) => {
                     placeholder="09"
                     value={formData.mobileNumber}
                     onChange={handleInputChange}
+                    onKeyDown={(e) => handleKeyDownPhone(e)}
+                    pattern="[0-9]*"
                   />
                   {errors.mobileNumber && (
                     <p className="error">{errors.mobileNumber}</p>
@@ -661,7 +675,7 @@ const JoinTeam = ({ toggleModal }) => {
                 correct.
               </span>
             </div>
-            <button onClick={handleSubmit} className="submit-button">
+            <button onClick={handleSubmit} className="join-team-submit-button">
               Submit Application
             </button>
           </div>

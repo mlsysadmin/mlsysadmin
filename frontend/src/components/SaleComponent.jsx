@@ -145,10 +145,17 @@ const SaleComponent = () => {
 
 		if (queryParams.size !== 0) {
 
+			let title = "";
+
+			getPropertyType.trim().replace(/[\/_-]/g, " ").split(' ').forEach((st) => {
+				title += CapitalizeString(st) + " ";
+			})
+			title.trim();
+
 			allPublicListing(getPropertyType);
 			setPropertyType(getPropertyType);
-			setHeaderText(`${CapitalizeString(getPropertyType.replace(/[-_]/g, " "))} For Sale`);
-			setBreadCrumbItems([{ title: "For Sale" }, { title: CapitalizeString(getPropertyType.replace(/[-_]/g, " ")) }])
+			setHeaderText(`${title} For Sale`);
+			setBreadCrumbItems([{ title: "For Sale" }, { title: title }])
 
 		} else {
 			allPublicListing("house-and-lot");

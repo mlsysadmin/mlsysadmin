@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/previewListing.css";
@@ -13,9 +12,12 @@ import {
   GetUnitPhotos,
 } from "../api/GetAllPublicListings";
 import { LocationFormatter } from "../utils/LocationDateFormatter";
-import { GetPhotoWithUrl, GetPhotoLength, GetAllPhoto } from "../utils/GetPhoto";
+import {
+  GetPhotoWithUrl,
+  GetPhotoLength,
+  GetAllPhoto,
+} from "../utils/GetPhoto";
 import PropertyListing from "./PropertyListing";
-import HomeHighlights from "./HomeHighlights";
 import NotFoundComponent from "./Errors/NotFoundComponent";
 import { GetAllFeaturesByPropertyNo } from "../api/GetAllAmenities";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
@@ -23,7 +25,6 @@ import Loading from "./modals/LoadingModal";
 import PreviewLoadingModal from "./modals/PreviewLoadingModal";
 
 const PreviewListing = () => {
-
   const url = process.env.REACT_APP_STORAGE_BUCKET_URL;
   const objectname = process.env.REACT_APP_OBJECT_NAME;
   const location = useLocation();
@@ -41,7 +42,7 @@ const PreviewListing = () => {
   const [features, setFeatures] = useState([]);
   const [amenities, setAmenities] = useState([]);
   const [includes, setIncludes] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); 
+  const [isLoading, setIsLoading] = useState(true);
   const [unitPhotos, setUnitPhotos] = useState([]);
   const term = 30;
   const termInMonths = term * 12;
@@ -57,93 +58,87 @@ const PreviewListing = () => {
     const getlistingByID = async () => {
       setIsLoading(true);
       try {
-				const search = location.search;
-				const params = new URLSearchParams(search);
-				const id = params.get("id");
+        const search = location.search;
+        const params = new URLSearchParams(search);
+        const id = params.get("id");
 
-				if (params.size != 0 && id) {
-					const onelistingdata = await GetPublicListingByID(id);
-					const dataresp = onelistingdata.data;
+        if (params.size != 0 && id) {
+          const onelistingdata = await GetPublicListingByID(id);
+          const dataresp = onelistingdata.data;
 
-					if (Object.keys(dataresp).length === 0) {
-						setOneListing(null);
-					} else {
-						const features = await GetFeaturesByPropertyNo(dataresp.PropertyNo);
-						const photos = await UnitPhotos(dataresp.id);
+          if (Object.keys(dataresp).length === 0) {
+            setOneListing(null);
+          } else {
+            const features = await GetFeaturesByPropertyNo(dataresp.PropertyNo);
+            const photos = await UnitPhotos(dataresp.id);
 
-						let photo = dataresp.Photo;
-						console.log("photo", photo);
-						if (photos.length !== 0) {
-							let gallery = photos.map((item, i) => {
-								return item.Photo;
-							});
+            let photo = dataresp.Photo;
+            console.log("photo", photo);
+            if (photos.length !== 0) {
+              let gallery = photos.map((item, i) => {
+                return item.Photo;
+              });
 
-							gallery.push(photo);
+              gallery.push(photo);
 
-							setUnitPhotos(gallery);
-						} else {
-							setUnitPhotos([photo]);
-						}
+              setUnitPhotos(gallery);
+            } else {
+              setUnitPhotos([photo]);
+            }
 
-						const getFeatures = features.filter(
-							(item) => item.Type === "features"
-						);
-						const getAmenities = features.filter(
-							(item) => item.Type === "amenities"
-						);
-						const getIncludes = features.filter(
-							(item) => item.Type === "includes"
-						);
+            const getFeatures = features.filter(
+              (item) => item.Type === "features"
+            );
+            const getAmenities = features.filter(
+              (item) => item.Type === "amenities"
+            );
+            const getIncludes = features.filter(
+              (item) => item.Type === "includes"
+            );
 
-						setOneListing(dataresp);
-						setFeatures(getFeatures);
-						setAmenities(getAmenities);
-						setIncludes(getIncludes);
-					}
-				} else {
-					setOneListing(null);
-				}
-			} catch (error) {
-				console.log(error);
-				setOneListing(null);
-			} finally {
-				setIsLoading(false);
-			}
+            setOneListing(dataresp);
+            setFeatures(getFeatures);
+            setAmenities(getAmenities);
+            setIncludes(getIncludes);
+          }
+        } else {
+          setOneListing(null);
+        }
+      } catch (error) {
+        console.log(error);
+        setOneListing(null);
+      } finally {
+        setIsLoading(false);
+      }
     };
     getlistingByID();
   }, []);
 
   const GetFeaturesByPropertyNo = async (propertyNo) => {
     try {
-
       const resFeatures = await GetAllFeaturesByPropertyNo(propertyNo);
 
       return resFeatures.data;
-
     } catch (error) {
-      console.log('Get Features: ', error);
+      console.log("Get Features: ", error);
 
-      return []
-    }
-  }
-
-  const UnitPhotos = async (propertyId) => {
-    try {
-
-      console.log(propertyId);
-      
-      const res = await GetUnitPhotos(propertyId);
-      
-      return res.data;
-
-    } catch (error) {
-
-      setUnitPhotos([]);
-
+      return [];
     }
   };
 
-console.log("unitPhotos", unitPhotos);
+  const UnitPhotos = async (propertyId) => {
+    try {
+      console.log(propertyId);
+
+      const res = await GetUnitPhotos(propertyId);
+
+      return res.data;
+    } catch (error) {
+      setUnitPhotos([]);
+    }
+  };
+
+  console.log("unitPhotos", unitPhotos);
 
   // if (oneListing) {
   //   console.log("Title:", oneListing.title);
@@ -189,47 +184,53 @@ console.log("unitPhotos", unitPhotos);
   };
 
   return (
-		<>
-			{isLoading ? (
-				<PreviewLoadingModal/>
-			) : oneListing ? (
-				<div className="previewlist">
-					<div
-						className="contentContainer"
-						style={{ display: "flex", width: "100%", gap: "1rem" }}
-					>
-						<div className="real-estate-listing-card">
-							<PropertyListing
-								oneListing={oneListing}
-								unitPhotos={unitPhotos}
-							/>
-							<div className="midContent">
-								<PreviewListLeftContent oneListing={oneListing} />
-								<PreviewListRightSideContent oneListing={oneListing} />
-							</div>
-							<HomeHighlights
-								features={features}
-								amenities={amenities}
-								includes={includes}
-							/>
-						</div>
-					</div>
-					<div className="preview-mobile--action-btns">
-						<SemiRoundBtn
-							label={"Send us a message"}
-							className="preview--contact-us"
-						/>
-						<SemiRoundBtn
-							label={"Try our calculator"}
-							className="preview--calculator"
-						/>
-					</div>
-				</div>
-			) : (
-				<NotFoundComponent />
-			)}
-		</>
-	);
+    <>
+      {isLoading ? (
+        <PreviewLoadingModal />
+      ) : oneListing ? (
+        <div className="previewlist">
+          <div
+            className="contentContainer"
+            style={{ display: "flex", width: "100%", gap: "1rem" }}
+          >
+            <div className="real-estate-listing-card">
+              <PropertyListing
+                oneListing={oneListing}
+                unitPhotos={unitPhotos}
+              />
+              <div className="midContent">
+                <PreviewListLeftContent
+                  oneListing={oneListing}
+                  features={features}
+                  amenities={amenities}
+                  includes={includes}
+                />
+                <div className="widerRightSideContent">
+                  <PreviewListRightSideContent oneListing={oneListing} />
+                </div>
+              </div>
+
+              <div className="mobileRightSideContent">
+                <PreviewListRightSideContent oneListing={oneListing} />
+              </div>
+            </div>
+          </div>
+          <div className="preview-mobile--action-btns">
+            <SemiRoundBtn
+              label={"Send us a message"}
+              className="preview--contact-us"
+            />
+            <SemiRoundBtn
+              label={"Try our calculator"}
+              className="preview--calculator"
+            />
+          </div>
+        </div>
+      ) : (
+        <NotFoundComponent />
+      )}
+    </>
+  );
 };
 
 export default PreviewListing;

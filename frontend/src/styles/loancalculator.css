@@ -307,13 +307,19 @@
   border-radius: 10px;
   background-color: #d90000;
   top: 5px;
+  border: none;
+
+}
+.multi-range-slider .bar-inner, .multi-range-slider .bar-left, .multi-range-slider .bar-right, .multi-range-slider .thumb::before{
+  border: none !important;
+  box-shadow: none !important;
 }
 .mort-container .multi-range-slider .bar{
   height: 15px;
   /* border-radius: 10px; */
 }
 .mort-content-1 .ant-slider-rail{
-	background-color: #8C9094;
+	background-color: #e9ebec;
   height: 15px;
   border-radius: 20px;
 }
