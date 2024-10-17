@@ -10,6 +10,8 @@ import JoinTeam from "../../../modals/JoinTeamModal";
 import { searchKyc } from "../../../../api/Public/User.api";
 import UpgradeTierModal from "../../../modals/UpgradeTierModal";
 import { isCookiePresent } from "../../../../utils/CookieChecker";
+import "../../../../styles/sellerdropdown.css";
+import SellerLogInButtonDropdown from "../../../custom/buttons/SellerLogInButtonDropdown";
 import { getCookieData } from "../../../../utils/CookieChecker";
 
 const SidebarMenu = ({ setOpenDrawer }) => {
@@ -39,6 +41,37 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 		window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
 			redirectUrl
 		)}`;
+	};
+	const deleteCookies = () => {
+		document.cookie.split(";").forEach((cookie) => {
+			const [name] = cookie.split("=");
+			document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+		});
+	};
+	useEffect(() => {
+		if (userDetails?.tier.label === "BUYER") {
+			setShowUpgradeModal(true);
+			deleteCookies();
+		}
+	}, [userDetails]);
+	const handleProfileClick = () => {
+		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
+		const loginUrl = process.env.REACT_APP_LOGIN_URL;
+		if (isMLWWSPresent && isAccountDetailsPresent) {
+			if (userDetails?.tier?.label === "FULLY VERIFIED") {
+				window.location.href = "/listing";
+			} else if (userDetails?.tier?.label === "BUYER") {
+				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+					redirectUrl
+				)}`;
+				deleteCookies();
+				showUpgradeModal(true);
+			}
+		} else {
+			window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+				redirectUrl
+			)}`;
+		}
 	};
 	const handleUserProfileClick = () => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
@@ -210,16 +243,24 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 			<Divider />
 			<div
 				style={{
-					display: "grid",
-					gridTemplateColumns: "1fr 1fr",
-					gridGap: "10px",
+					display:"flex",
+					flexDirection:"column",
+					gap:"20px"
+			
+					// display: "grid",
+					// gridTemplateColumns: "1fr 1fr",
+					// gridGap: "10px",
 				}}
 			>
 				<div
 					style={{
-						gridRow: "1 / 3",
+						// gridRow: "1 / 3",
 						display: "flex",
-						flexDirection: "column",
+						flexDirection: "row",
+						justifyContent:"center",
+						alignItems:"center",
+						width:"100%",
+						gap:"10px"
 					}}
 				>
 					<RoundBtn
@@ -240,29 +281,38 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 					)}
 					<RoundBtn
 						type="primary"
+						id = "join-team"
 						className="menu-buttons"
 						style={{
 							border: "#D90000 solid 1px",
 							background: "white",
-							marginTop: "10px",
+							marginTop: "0px",
 							color: "#D90000",
 						}}
 						label="Join our Team"
 						onClick={handleJoinTeamClick}
 					/>
 				</div>
-				<Col
-					style={{
-						gridRow: "1 / 2",
-						alignSelf: "center",
-					}}
-					align="right"
+				<Col 
 					className="menu-buttons"
 				>
-					<img
-						src={userProfile}
-						style={{ width: "30px", cursor: "pointer", marginTop: "40px" }}
-					></img>
+					{isMLWWSPresent ? (
+						userDetails?.tier.label === "FULLY VERIFIED" ? (
+							<SellerLogInButtonDropdown />
+						) : (
+							<img
+								src={userProfile}
+								style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
+								onClick={handleProfileClick}
+							/>
+						)
+					) : (
+						<img
+							src={userProfile}
+							style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
+							onClick={handleProfileClick}
+						/>
+					)}
 				</Col>
 			</div>
 		</>

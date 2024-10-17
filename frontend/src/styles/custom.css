@@ -236,12 +236,15 @@ listing search */
 	border: 1px solid #8c9094;
 	display: flex;
 	justify-content: space-between;
-	padding: 0px 10px;
+	padding: 0px;
 	box-sizing: border-box;
 	background: url("../asset/icons/dropdown-arrow.png") no-repeat right 15px
 		center;
 	background-size: 14px;
 	align-items: center;
+}
+.select-field-features span{
+	padding: 0px 10px;
 }
 .select-field.ant-select .ant-select-selection-placeholder {
 	color: black !important;
