@@ -29,6 +29,10 @@ const ListingSearch = ({
 	const [newSearchParams, setNewSearchParams] = useState({});
 
 	useEffect(() => {
+		SetParamsAllField('features', checkFeatures);
+	}, [])
+	
+	useEffect(() => {
 
 		console.log('newSearchParams', newSearchParams);
 		let params = {};
@@ -40,6 +44,7 @@ const ListingSearch = ({
 		setNewSearchParams(params);
 
 	}, [searchParams])
+
 
 	const handleAdvancedSearchClick = () => {
 		setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
@@ -60,15 +65,15 @@ const ListingSearch = ({
 
 	const handleMaxChange = (e) => {
 		const value = e.target.value === "" ? 0 : parseInt(e.target.value, 10);
-		console.log("value",  e.target.value);
-		
+		console.log("value", e.target.value);
+
 		setPriceRange([priceRange[0], value]);
 		SetParamsAllField('price_max', value);
 	};
 
 	const handleSliderChange = (value) => {
 		console.log("value", value);
-		
+
 		setPriceRange(value);
 		SetParamsAllField('price_min', value[0]);
 		SetParamsAllField('price_max', value[1]);
@@ -98,6 +103,7 @@ const ListingSearch = ({
 	}
 
 	const ValueGreaterThanZeroOrNull = (val, type, name, isNum) => {
+		
 		const falsy = ["", undefined, null, 0];
 
 		if (isNum) {
@@ -124,45 +130,45 @@ const ListingSearch = ({
 	};
 
 	const onSelectionChange = (value, name) => {
-		
+
 		SetParamsAllField(name, value);
 	};
 
 	const SetParamsAllField = (name, value) => {
 
-		setNewSearchParams((prevState) => {
-			return { ...prevState, [name]: value };
-		})
-		// setNewSearchParams((prevSearchParams) => {
-		// 	console.log("prev", prevSearchParams);
+		if (name !== "features") {
 
-		// 	const existingParamIndex = prevSearchParams.findIndex(
-		// 		(param) => param.name === name
-		// 	);
+			setNewSearchParams(prevParams => ({ ...prevParams, [name]: value }));
+		} else {
 
-		// 	if (existingParamIndex !== -1) {
-		// 		if (
-		// 			// (name === "keyword" && value === "") ||
-		// 			(name === "keyword" && value.includes(null, undefined, "")) ||
-		// 			(name === "features" && checkFeatures.length === 0)
-		// 		) {
-		// 			prevSearchParams.splice(existingParamIndex, 1);
-		// 		} else {
-		// 			prevSearchParams[existingParamIndex].value = value;
-		// 		}
-		// 	} else {
-		// 		if (
-		// 			(name === "keyword" && value === "") ||
-		// 			(name === "features" && checkFeatures.length === 0)
-		// 		) {
-		// 			prevSearchParams.splice(existingParamIndex, 1);
-		// 		} else {
-		// 			prevSearchParams.push({ name, value });
-		// 		}
-		// 	}
-		// 	console.log("prevSearchParams: ", prevSearchParams);
-		// 	return [...prevSearchParams];
-		// });
+			setNewSearchParams((prevSearchParams) => {
+				console.log("prev", prevSearchParams);
+
+				const existingParamIndex = prevSearchParams['features']
+
+				console.log("exist",  existingParamIndex);
+
+				
+				// if (existingParamIndex !== -1) {
+				// 	if ((name === "features" && checkFeatures.length === 0)) {
+				// 		prevSearchParams.splice(existingParamIndex, 1);
+				// 	} else {
+				// 		prevSearchParams[existingParamIndex].value = value;
+				// 	}
+				// } else {
+				// 	if (
+				// 		(name === "keyword" && value === "") ||
+				// 		(name === "features" && checkFeatures.length === 0)
+				// 	) {
+				// 		prevSearchParams.splice(existingParamIndex, 1);
+				// 	} else {
+				// 		prevSearchParams.push({ name, value });
+				// 	}
+				// }
+				// console.log("prevSearchParams: ", prevSearchParams);
+				// return [...prevSearchParams];
+			});
+		}
 	};
 
 	const handleSearchClick = () => {
@@ -170,17 +176,17 @@ const ListingSearch = ({
 
 		Object.keys(newSearchParams).forEach((key, index, arr) => {
 
-			if (['keyword', 'location', 'property_type', 'sale_type', 'price_max', 
+			if (['keyword', 'location', 'property_type', 'sale_type', 'price_max',
 				// 'price_min', 
 				'lot_area', 'bedrooms', 'bathrooms', 'parking', "outdoor", "indoor"].includes(key)) {
 				if (["", null, undefined, 0, "null"].includes(newSearchParams[key])) {
 					delete newSearchParams[key]
 				}
-			}else if (['price_min'].includes(key) && ["", null, undefined, 0,"null"].includes(newSearchParams[key])) {
+			} else if (['price_min'].includes(key) && ["", null, undefined, 0, "null"].includes(newSearchParams[key])) {
 				if (["", null, undefined, 0, "null"].includes(newSearchParams['price_max'])) {
-					
+
 					delete newSearchParams[key]
-				}else{
+				} else {
 					newSearchParams[key] = 0
 				}
 			}
@@ -189,7 +195,7 @@ const ListingSearch = ({
 		Object.keys(newSearchParams).forEach((key, i) => {
 			if (i == 0) {
 				params += `${key}=${newSearchParams[key]}`
-			}else{
+			} else {
 				params += `&${key}=${newSearchParams[key]}`
 			}
 		})
@@ -273,14 +279,14 @@ const ListingSearch = ({
 						placeholder="Enter keyword"
 						value={ValueGreaterThanZeroOrNull(newSearchParams['keyword'], "input", "Keyword", false)}
 						onChange={(e) => HandleFieldChange(e, "keyword")}
-						// onBlur={(e) => onInputBlur(e,"keyword")}
+					// onBlur={(e) => onInputBlur(e,"keyword")}
 					/>
 					<RoundSelect
 						options={location}
 						classname={'select-field'}
 						placeholder={'Location'}
 						suffixIcon={<CaretDownOutlined />}
-						value={ValueGreaterThanZeroOrNull(newSearchParams['location'], "select", "Location", false)} 
+						value={ValueGreaterThanZeroOrNull(newSearchParams['location'], "select", "Location", false)}
 						// value={newSearchParams['location']}
 						onSelectionChange={(e) => onSelectionChange(e, 'location')}
 					/>
@@ -289,8 +295,8 @@ const ListingSearch = ({
 						classname={'select-field'}
 						placeholder={'Property Type'}
 						suffixIcon={<CaretDownOutlined />}
-						value={ValueGreaterThanZeroOrNull(newSearchParams["property_type"], "select", "Property Type", false)} 
-						onSelectionChange={(e) => onSelectionChange(e, 'property_type')}/>
+						value={ValueGreaterThanZeroOrNull(newSearchParams["property_type"], "select", "Property Type", false)}
+						onSelectionChange={(e) => onSelectionChange(e, 'property_type')} />
 					<RoundSelect
 						options={ListingTypes}
 						classname={'select-field'}
@@ -330,7 +336,7 @@ const ListingSearch = ({
 												// value={newSearchParams['price_min']}
 												onChange={handleMinChange}
 												className="range-input"
-												// onBlur={() => onInputBlur('price_min', priceRange[0])}
+											// onBlur={() => onInputBlur('price_min', priceRange[0])}
 											/>
 										</span>
 									) : (
@@ -352,7 +358,7 @@ const ListingSearch = ({
 												// value={newSearchParams['price_max']}
 												onChange={handleMaxChange}
 												className="range-input"
-												// onBlur={() => onInputBlur('price_min', priceRange[1])}
+											// onBlur={() => onInputBlur('price_min', priceRange[1])}
 											/>
 										</span>
 									) : (
@@ -371,10 +377,10 @@ const ListingSearch = ({
 						</div>
 					</div>
 					<div className="subcontent-inputs-2">
-						<input className="input-field" 
-						placeholder="Enter Lot Area" 
-						value={ValueGreaterThanZeroOrNull(newSearchParams["lot_area"], "input", "Lot Area", false)} 
-						onChange={(e) => HandleFieldChange(e, "lot_area")}
+						<input className="input-field"
+							placeholder="Enter Lot Area"
+							value={ValueGreaterThanZeroOrNull(newSearchParams["lot_area"], "input", "Lot Area", false)}
+							onChange={(e) => HandleFieldChange(e, "lot_area")}
 						// onBlur={(e) => onInputBlur(e,"lot_area")}
 						/>
 						<RoundSelect

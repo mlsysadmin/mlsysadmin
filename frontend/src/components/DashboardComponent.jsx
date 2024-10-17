@@ -119,7 +119,8 @@ const DashboardComponent = () => {
         setPublicListing([]);
       } else {
         const listingRes = dataresp.filter(
-          (listing) => !isPastAMonth(listing.created_at) && listing.PropertyType == "lot"
+          (listing) => !isPastAMonth(listing.created_at) 
+          // && listing.PropertyType == "lot"
         );
 
         let listings = [];
@@ -575,7 +576,7 @@ const DashboardComponent = () => {
                     </Row>
                   </Col>
                 </Row>
-                {isAdvanceSearchOpen && <CertainFeatureMenu />}
+                {/* {isAdvanceSearchOpen && <CertainFeatureMenu />} */}
               </Card>
             </Col>
           </div>

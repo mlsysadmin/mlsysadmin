@@ -23,6 +23,7 @@ import {
 } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
 import {
+	CapitalizeEachWord,
 	CapitalizeString,
 	FillLocationFilter,
 	GetPropertyTitle,
@@ -240,9 +241,7 @@ const RentComponent = () => {
 						</div>
 					) : (
 						<NoDataAvailable
-							message={`No available ${CapitalizeString(
-								propertyType.replace(/[-_]/g, " ")
-							)} for rent`}
+							message={`No available ${CapitalizeEachWord(propertyType)} For Rent`}
 						/>
 					)
 				) : (
