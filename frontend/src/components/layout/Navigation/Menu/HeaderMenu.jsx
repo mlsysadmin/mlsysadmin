@@ -78,6 +78,23 @@ const HeaderMenu = () => {
 		}
 	}, [isMLWWSPresent, isAccountDetailsPresent]);
 
+
+	  const deleteCookies = () => {
+			document.cookie.split(";").forEach((cookie) => {
+				const [name] = cookie.split("=");
+				document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+			});
+
+	};
+	 useEffect(() => {
+			
+			if (userDetails?.tier.label === "BUYER") {
+			    setShowUpgradeModal(true);
+				deleteCookies()
+			}
+		}, [userDetails]);
+
+
 	const handleUserProfileClick = () => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
@@ -87,7 +104,7 @@ const HeaderMenu = () => {
 			} else if (userDetails?.tier?.label === "BUYER") {
 				console.log(
 					"User is a buyer and cannot list properties.",
-					showUpgradeModal
+					setShowUpgradeModal(true)
 				);
 				openUpgradeModal();
 			}
@@ -117,21 +134,14 @@ const HeaderMenu = () => {
 				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
 					redirectUrl
 				)}`;
+				deleteCookies();
+				showUpgradeModal(true);
 			}
+
 		}else{
-			if (userDetails?.tier?.label === "BUYER") {
-				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-					redirectUrl
-				)}`;
-			}
-			else{
 				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
 					redirectUrl
 			)}`; 
-
-			}
-				
-
 		} 
 
 	};
@@ -362,28 +372,27 @@ const HeaderMenu = () => {
 					<UpgradeTierModal
 						isVisible={showUpgradeModal}
 						onClose={closeModal}
-						showLogin={showLogin}
+						showLogin={handleProfileClick}
 					/>
 				)}
 				{/* {!isMLWWSPresent&&
 					( */}
-				{!isMLWWSPresent && (
-					<RoundBtn
-						type="primary"
-						className="menu-buttons"
-						style={{
-							color: "#D90000",
-							backgroundColor: "transparent",
-							border: "1px solid #d90000",
-							boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-							padding: "5px 5px",
-							cursor: "pointer",
-							margin: "0px 0px 0px 10px",
-						}}
-						label="Join our Team"
-						onClick={handleJoinTeamClick}
-					/>
-				)}
+				<RoundBtn
+					type="primary"
+					className="menu-buttons"
+					style={{
+						color: "#D90000",
+						backgroundColor: "transparent",
+						border: "1px solid #d90000",
+						boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+						padding: "5px 5px",
+						cursor: "pointer",
+						margin: "0px 0px 0px 10px",
+					}}
+					label="Join our Team"
+					onClick={handleJoinTeamClick}
+				/>
+
 				{/* )} */}
 				{/* {showModal && (
 					<WorkingOnItModal isOpen={showModal} onClose={toggleModal} />
@@ -395,7 +404,11 @@ const HeaderMenu = () => {
 						userDetails?.tier.label === "FULLY VERIFIED" ? (
 							<SellerLogInButtonDropdown />
 						) : (
-							<></> 
+							<img
+								src={userProfile}
+								style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
+								onClick={handleProfileClick}
+							/>
 						)
 					) : (
 						<img

@@ -72,6 +72,8 @@ const UnitDetailsComponent = ({
 		const isFormComplete =
 			typeof price === "string" &&
 			price.trim() !== "" &&
+			typeof discountedPrice === "string" &&
+			discountedPrice.trim() !== "" &&
 			(!requiresAdditionalFields ||
 				(typeof selectedSellingPrice === "string" &&
 					selectedSellingPrice.trim() !== "" &&
@@ -86,7 +88,7 @@ const UnitDetailsComponent = ({
 			typeof lotArea === "string" &&
 			lotArea.trim() !== "" &&
 			typeof propId === "string" &&
-			pricePerSqm.trim() !== "" &&
+			(isPricePerSqmDisabled || pricePerSqm.trim() !== "") &&
 			propId.trim() !== "";
 
 		if (isFormComplete) {

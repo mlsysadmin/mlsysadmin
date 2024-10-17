@@ -5,7 +5,9 @@ import profileDropdown from "../../../assets/profileDropdown.png";
 import { getCookieData } from "../../../utils/CookieChecker";
 import { searchKyc } from "../../../api/Public/User.api";
 import { Alert } from "antd";
+import "../../../styles/sellerdropdown.css";
 import { useNavigate } from "react-router-dom";
+
 
 const SellerLogInButtonDropdown = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -50,7 +52,7 @@ const SellerLogInButtonDropdown = () => {
 		});
 
 		window.location.href = "/";
-	};
+};
 // const SessionExpiredInitialization = () => {
 // 	setTimeout(() => {
 // 		setSessionExpired(true);
@@ -88,6 +90,7 @@ const SellerLogInButtonDropdown = () => {
 					alignItems: "center",
 				}}
 				onClick={handleButtonClick}
+				className="seller-button-dropdown"
 			>
 				<img
 					src={userProfileLogIn}
@@ -119,6 +122,7 @@ const SellerLogInButtonDropdown = () => {
 						gap: "10px",
 						justifyContent: "center",
 					}}
+					className="seller-drop-items"
 				>
 					<ul
 						style={{
