@@ -106,6 +106,7 @@ const CustomMlFooter = () => {
 								</div>
 								<div>
 									<a
+										href="/termsandcondition"
 										// href="/documents/mlprop_TermsCondition.pdf"
 										// target="_blank"
 										//  rel="noopener noreferrer"
