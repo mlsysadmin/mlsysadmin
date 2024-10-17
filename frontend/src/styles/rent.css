@@ -48,7 +48,7 @@
 		/* gap: 300px; */
 		width: 1500px;
 		margin: 0px auto;
-		padding: 0px 110px;
+		padding: 0px 100px;
 }
 .rent-h1.breadcrumb--search{
 	font-size: 18px !important;
@@ -146,13 +146,19 @@
 		width: 100%;
 	}
 }
-
-@media screen and (min-width: 769px) and (max-width: 950px) {
+@media screen and (min-width: 769px) and (max-width: 899px) {
 .rentContainer .rent-h1 {
-		padding: 20px 0px 0px 50px !important;
+		padding: 20px 0px 0px 25px !important;
 		width: 100%;
 	}
 }
+@media screen and (min-width: 900px) and (max-width: 950px) {
+.rentContainer .rent-h1 {
+		padding: 20px 0px 0px 30px !important;
+		width: 100%;
+	}
+}
+
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
 	.rentContainer {
 		display: flex;
@@ -169,7 +175,7 @@
 }
 @media screen and (min-width: 1100px) and (max-width: 1200px) {
 .rentContainer .rent-h1 {
-	padding: 20px 0px 0px 50px !important;
+	padding: 20px 0px 0px 40px !important;
 	width: 100% !important;
 	}
 	
@@ -192,9 +198,14 @@
 }
 @media screen and (min-width: 1201px) and (max-width: 1399px) {
 .rentContainer .rent-h1 {
-	padding: 20px 0px 0px 75px !important;
+	padding: 20px 0px 0px 80px !important;
 	width: 100%;
 	}
-	
-
+}
+@media screen and (min-width: 1401px) and (max-width: 1600px) {
+	.rentContainer .rent-h1 {
+		font-size: 26px;
+		padding: 20px 0px 0px 0px !important;
+		width: 1300px;
+	}
 }
