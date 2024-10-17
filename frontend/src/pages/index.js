@@ -65,6 +65,7 @@ import SupportApplicationOutlet from './support/SupportApplicationOutlet';
 import SupportListingOutlet from './support/SupportListingOutlet';
 import SupportOutlet from "./support/SupportOutlet.page";
 import ComingSoonPage from "./WorkingOnIt.page";
+import TermsandConditionPage from "./TermsCondition.page";
 
 export {
 	ViewListingComponent,
@@ -120,4 +121,5 @@ export {
 	ApprovedApplication,
 	SupportCreateListing,
 	FaqsPage,
+	TermsandConditionPage,
 };

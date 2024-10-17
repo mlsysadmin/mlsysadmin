@@ -61,6 +61,7 @@ import {
 	SupportCreateListing,
 	ComingSoonPage,
 	FaqsPage,
+	TermsandConditionPage,
 } from "../pages";
 import { ProtectedRoute, BuyerSellerProtectedRoute } from "./ProtectedRoute";
 import { PropertySearchModal, SaleComponent, SearchListingComponent } from "../components";
@@ -219,6 +220,10 @@ const Routes = [
 			{
 				path: "/search",
 				element: <SearchListingComponent />,
+			},
+			{
+				path: "/termsandcondition",
+				element:<TermsandConditionPage/>
 			},
 			{
 				path: "/documents/mlprop_TermsCondition.pdf",
