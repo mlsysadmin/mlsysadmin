@@ -7,12 +7,13 @@
   overflow: hidden;
   width: 100%;
 }
-.loan-calculator-button {
+.loan-calculator-button, .ant-btn.loan-calculator-button:hover{
   background-color: white;
-  color: black;
+  color: black !important;
   font-weight: bold;
-  border: black solid 1px;
+  border: black solid 1px !important;
 }
+
 .loaned-calculator-button {
   display: none;
 }
