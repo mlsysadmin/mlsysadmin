@@ -1254,12 +1254,25 @@ align-content: center;
 }
 
 @media (min-width: 1180px) and (max-width: 1200px) {
+
   .calculator,
   .contact-us {
     width: 95%;
   }
 }
 @media (min-width: 1025px) and (max-width: 1280px) {
+  .leftContent{
+    width: 60%;
+  }
+  .widerRightSideContent{
+    width: 50%;
+  }
+  .right-side-container{
+    margin-left: 3%;
+  }
+  .contact-us{
+    width: 100%;
+  }
   .right-side-container {
     align-content: center;
   }
@@ -1300,5 +1313,19 @@ align-content: center;
     /* margin-right: 20px; */
     margin-left: 10px;
     margin-bottom: 120px;
+  }
+}
+@media (min-width: 873px) and (max-width: 1024px) {
+  .leftContent{
+    width: 60%;
+  }
+  .widerRightSideContent{
+    width: 60%;
+  }
+  .right-side-container{
+    margin-left: 3%;
+  }
+  .contact-us{
+    width: 100%;
   }
 }

@@ -118,7 +118,7 @@ const PreviewListLeftContent = ({
           <h2 className={styles.leftsectionTitle}>About this property</h2>
           <section className={styles.leftfeatureGrid}>
             {featuress.map((feature, index) => {
-              if (feature.value) {
+              if (feature.value && feature.value !== "0") {
                 return <VLFeatureCard key={index} {...feature} />;
               }
             })}
