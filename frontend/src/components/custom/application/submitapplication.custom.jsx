@@ -34,7 +34,7 @@ const SubmitApplicationCustom = ({
 
 	return (
 		<div className="divs-btn-group">
-			<span style={{ fontSize: "18px", color: "#8C9094", width: "60%" }}>
+			<span style={{ fontSize: "18px", color: "#8C9094", width: "80%" }}>
 				By submitting, I agree my information may be shared and that I may be
 				contacted at this number including through emails. I agree to the
 				privacy policy and terms.
