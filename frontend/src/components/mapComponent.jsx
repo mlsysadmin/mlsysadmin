@@ -5,6 +5,7 @@ import { Spin } from "antd";
 import LoadingIcon from "../asset/icons/loading_bar.gif";
 import { LocationFormatter } from "../utils/LocationDateFormatter";
 import "../styles/map.css";
+import { CapitalizeString } from "../utils/StringFunctions.utils";
 const MapComponent = ({ style, oneListing }) => {
   const [isLoaded, setIsLoaded] = useState(true);
   const [coordinates, setCoordinates] = useState([]);
@@ -18,7 +19,7 @@ const MapComponent = ({ style, oneListing }) => {
 
   useEffect(() => {
     const fetchCoordinates = async () => {
-      const formattedLocation = `${oneListing.City}, ${oneListing.ProvinceState}`;
+      const formattedLocation = `${oneListing.City?.toLowerCase().includes('city') ? oneListing.City.replace('city', ''): oneListing.City}, ${CapitalizeString(oneListing.ProvinceState)}`;
       // const formattedLocation = oneListing.MapLocation;
       console.log("formattedLocation", formattedLocation);
       // const formattedLocation = LocationFormatter(oneListing.City);
@@ -28,16 +29,23 @@ const MapComponent = ({ style, oneListing }) => {
             formattedLocation
           )}&format=json&addressdetails=1`
         );
-
+        console.log("response", response);
+        
         const data = await response.json();
-
-        if (data.length > 0) {
+        console.log("data", data);
+        
+        if (data.length !== 0) {
+          console.log("dsfsf");
+          
           const { lat, lon } = data[0];
           setCoordinates([parseFloat(lat), parseFloat(lon)]);
         } else {
           setError("No results found");
+          setCoordinates([0, 0]);
         }
       } catch (err) {
+        console.log("errr", err);
+        
         setError("An error occurred");
       } finally {
         setIsLoaded(false);
@@ -62,7 +70,7 @@ const MapComponent = ({ style, oneListing }) => {
       >
         {!isLoaded && (
           <>
-            {error && <p>{error}</p>}
+            {error && <p style={{ color: 'red', fontSize: '15px', fontStyle: 'italic' }}>{error}</p>}
             <MapContainer
               center={coordinates}
               zoom={13}
