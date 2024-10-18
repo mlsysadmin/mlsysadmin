@@ -53,7 +53,7 @@ const UnitDetailsComponent = ({
 
 	useEffect(() => {
 		if (
-			["commercial land/lot", "lot", "farm lot"].includes(selectedPropertyTab)
+			["commercial land/lot", "lot", "farm lot", "service office", "shop/retail","warehouse", "hotel/resort"].includes(selectedPropertyTab)
 		) {
 			setFurnishing(null);
 			setClassification(null);
@@ -67,6 +67,10 @@ const UnitDetailsComponent = ({
 			"commercial land/lot",
 			"lot",
 			"farm lot",
+			"service office",
+			"shop/retail",
+			"warehouse",
+			"hotel/resort",
 		].includes(selectedPropertyTab);
 
 		const isFormComplete =
@@ -128,15 +132,23 @@ const UnitDetailsComponent = ({
 	]);
 
 	const isPricePerSqmDisabled = ![
-		"lot",
 		"commercial land/lot",
+		"lot",
 		"farm lot",
+		"service office",
+		"shop/retail",
+		"warehouse",
+		"hotel/resort",
 	].includes(selectedPropertyTab);
 
 	const disabledPropertyFields = [
-		"lot",
 		"commercial land/lot",
+		"lot",
 		"farm lot",
+		"service office",
+		"shop/retail",
+		"warehouse",
+		"hotel/resort",
 	].includes(selectedPropertyTab);
 
 	const formatPricenumber = () => {
