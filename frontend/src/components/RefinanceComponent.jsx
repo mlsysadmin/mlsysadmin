@@ -238,8 +238,6 @@ const RefinanceComponent = () => {
 					</Steps>
 				</div>
 				<br />
-				<br />
-				<br />
 				<div className="refinance-property-group" ref={PropertyGroupRef}>
 					<div className="refinance-property-group-one">
 						<h4>Property</h4>
@@ -313,7 +311,7 @@ const RefinanceComponent = () => {
 					<div className="refinance-property-group-five">
 						<span>What is the value of your home?</span>
 						<span className="estimate">(an estimate is fine)</span>
-						<div className="ref-btn-group-five">
+						<div className="ref-btn-group">
 							<input
 								className="amount-input-field-refinance"
 								placeholder="Amount"
@@ -469,15 +467,9 @@ const RefinanceComponent = () => {
 					</div>
 				</div>
 				<br />
-				<br />
-				<br />
 				<div className="refinance-wrap-up-group" ref={WrapUpGroupRef}>
 					<WrapUpDetails setWrapUpComplete={setIsWrapUpComplete} />
 				</div>
-				<br />
-				<br />
-				<br />
-				<br />
 				<br />
 				<SubmitApplicationCustom />
 				<div>
