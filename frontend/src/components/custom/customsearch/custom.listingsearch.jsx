@@ -31,7 +31,7 @@ const ListingSearch = ({
 	useEffect(() => {
 		SetParamsAllField('features', checkFeatures);
 	}, [])
-	
+
 	useEffect(() => {
 
 		console.log('newSearchParams', newSearchParams);
@@ -102,24 +102,24 @@ const ListingSearch = ({
 		return newArr;
 	}
 
-	const ValueGreaterThanZeroOrNull = (val, type, name, isNum) => {
+	// const ValueGreaterThanZeroOrNull = (val, type, name, isNum) => {
 		
-		const falsy = ["", undefined, null, 0];
+	// 	const falsy = ["", undefined, null, 0];
 
-		if (isNum) {
-			if (type == "input") {
-				return !falsy.includes(val) ? val : null;
-			} else if (type == "select") {
-				return !falsy.includes(val) ? val : null;
-			}
-		} else {
-			if (type == "input") {
-				return !falsy.includes(val) ? CapitalizeString(val) : null;
-			} else if (type == "select") {
-				return !falsy.includes(val) ? CapitalizeString(val) : null;
-			}
-		}
-	}
+	// 	if (isNum) {
+	// 		if (type == "input") {
+	// 			return !falsy.includes(val) ? val : null;
+	// 		} else if (type == "select") {
+	// 			return !falsy.includes(val) ? val : null;
+	// 		}
+	// 	} else {
+	// 		if (type == "input") {
+	// 			return !falsy.includes(val) ? CapitalizeString(val) : null;
+	// 		} else if (type == "select") {
+	// 			return !falsy.includes(val) ? CapitalizeString(val) : null;
+	// 		}
+	// 	}
+	// }
 
 	const HandleFieldChange = (e, name) => {
 		SetParamsAllField(name, e.target.value);
@@ -277,7 +277,7 @@ const ListingSearch = ({
 					<input
 						className="input-field"
 						placeholder="Enter keyword"
-						value={ValueGreaterThanZeroOrNull(newSearchParams['keyword'], "input", "Keyword", false)}
+						value={newSearchParams['keyword']}
 						onChange={(e) => HandleFieldChange(e, "keyword")}
 					// onBlur={(e) => onInputBlur(e,"keyword")}
 					/>
@@ -286,7 +286,7 @@ const ListingSearch = ({
 						classname={'select-field'}
 						placeholder={'Location'}
 						suffixIcon={<CaretDownOutlined />}
-						value={ValueGreaterThanZeroOrNull(newSearchParams['location'], "select", "Location", false)}
+						value={newSearchParams['location']}
 						// value={newSearchParams['location']}
 						onSelectionChange={(e) => onSelectionChange(e, 'location')}
 					/>
@@ -295,14 +295,15 @@ const ListingSearch = ({
 						classname={'select-field'}
 						placeholder={'Property Type'}
 						suffixIcon={<CaretDownOutlined />}
-						value={ValueGreaterThanZeroOrNull(newSearchParams["property_type"], "select", "Property Type", false)}
+						value={newSearchParams["property_type"]}
+						// value={ValueGreaterThanZeroOrNull(newSearchParams["property_type"], "select", "Property Type", false)}
 						onSelectionChange={(e) => onSelectionChange(e, 'property_type')} />
 					<RoundSelect
 						options={ListingTypes}
 						classname={'select-field'}
 						placeholder={'Listing Type'}
 						suffixIcon={<CaretDownOutlined />}
-						value={ValueGreaterThanZeroOrNull(newSearchParams["sale_type"], "select", "Listing Type", false)}
+						value={newSearchParams["sale_type"]}
 						onSelectionChange={(e) => onSelectionChange(e, 'sale_type')} />
 					<Button className="right-button" onClick={() => handleSearchClick()}>Search</Button>
 				</div>
@@ -379,7 +380,7 @@ const ListingSearch = ({
 					<div className="subcontent-inputs-2">
 						<input className="input-field"
 							placeholder="Enter Lot Area"
-							value={ValueGreaterThanZeroOrNull(newSearchParams["lot_area"], "input", "Lot Area", false)}
+							value={newSearchParams["lot_area"]}
 							onChange={(e) => HandleFieldChange(e, "lot_area")}
 						// onBlur={(e) => onInputBlur(e,"lot_area")}
 						/>
@@ -388,21 +389,21 @@ const ListingSearch = ({
 							classname={'select-field'}
 							placeholder={'Bedrooms'}
 							suffixIcon={<CaretDownOutlined />}
-							value={ValueGreaterThanZeroOrNull(newSearchParams["bedrooms"], "select", "Bedrooms", true)}
+							value={newSearchParams["bedrooms"]}
 							onSelectionChange={(e) => onSelectionChange(e, 'bedrooms')} />
 						<RoundSelect
 							options={SelectNum()}
 							classname={'select-field'}
 							placeholder={'Bathrooms'}
 							suffixIcon={<CaretDownOutlined />}
-							value={ValueGreaterThanZeroOrNull(newSearchParams["bathrooms"], "select", "Bathrooms", true)}
+							value={newSearchParams["bathrooms"]}
 							onSelectionChange={(e) => onSelectionChange(e, 'bathrooms')} />
 						<RoundSelect
 							options={SelectNum()}
 							classname={'select-field'}
 							placeholder={'Garage/Parking'}
 							suffixIcon={<CaretDownOutlined />}
-							value={ValueGreaterThanZeroOrNull(newSearchParams["parking"], "select", "Garage/Parking", true)}
+							value={newSearchParams["parking"]}
 							onSelectionChange={(e) => onSelectionChange(e, 'parking')} />
 						<Dropdown
 							menu={<CertainFeatureMenu setCheckFeatures={setCheckFeatures} />} // The content of the dropdown

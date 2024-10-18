@@ -415,6 +415,8 @@ const DashboardComponent = () => {
   };
 
   const onSelectionChange = (value, name) => {
+    console.log(value, name);
+    
     SetParamsAllField(name, value);
   };
 

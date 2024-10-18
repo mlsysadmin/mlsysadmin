@@ -66,16 +66,16 @@ const AllComponent = () => {
   const [filterLocation, setFilterLocation] = useState([]);
   const [headerText, setHeaderText] = useState('properties For Rent');
   const [searchParams, setSearchParams] = useState({
-    location: "",
-    price_min: 0,
+    location: null,
+    price_min: 1000,
     price_max: 100000000,
-    keyword: "",
-    property_type: "",
-    bedrooms: 0,
-    bathrooms: 0,
-    parking: 0,
-    sale_type: "",
-    lot_area: ""
+    keyword: null,
+    property_type: null,
+    bedrooms: null,
+    bathrooms: null,
+    parking: null,
+    sale_type: null,
+    lot_area: null,
   });
   const [breadCrumbItems, setBreadCrumbItems] = useState([
     {
@@ -162,12 +162,12 @@ const AllComponent = () => {
       setLoading(false);
       setBreadCrumbItems([{ title: "All", href: '/all' }, { title: `For ${CapitalizeString(getSaleType)}` }])
     } else {
-      
+
       getlistings('all');
       setSaleType('Rent/Sale/Pre-Selling');
       setHeaderText('Properties for Rent/Sale/Pre-Selling');
       setLoading(false);
-      const bread = [{title:"All", href: '/all'}, { title: "For Rent/For Sale/For Pre-Selling" }].map(sale => { return { title: sale.title, href: sale.href } });
+      const bread = [{ title: "All", href: '/all' }, { title: "For Rent/For Sale/For Pre-Selling" }].map(sale => { return { title: sale.title, href: sale.href } });
       setBreadCrumbItems(bread)
     }
   }, [])
@@ -179,17 +179,17 @@ const AllComponent = () => {
   const totalPages = Math.ceil(publiclisting?.length / cardsPerPage);
 
   const HandleSort = (e) => {
-		
-		setSelectedSort(e.domEvent.target.innerText);
-		const sortKey = e.key;
-		let sortListing;
+
+    setSelectedSort(e.domEvent.target.innerText);
+    const sortKey = e.key;
+    let sortListing;
 
     sortListing = SortListings(sortKey, sortListing, publiclisting);
 
-		console.log("sort", sortListing);
-		
-		currentCards = sortListing;
-	}
+    console.log("sort", sortListing);
+
+    currentCards = sortListing;
+  }
 
   return (
     <div className="all-container">
