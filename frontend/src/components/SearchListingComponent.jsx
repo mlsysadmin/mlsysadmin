@@ -75,16 +75,16 @@ const SearchListingComponent = () => {
         },
     ]);
     const [searchParams, setSearchParams] = useState({
-        location: "",
+        location: null,
         price_min: 1000,
         price_max: 100000000,
-        keyword: "",
-        property_type: "",
-        bedrooms: 0,
-        bathrooms: 0,
-        parking: 0,
-        sale_type: "",
-        lot_area: "",
+        keyword: null,
+        property_type: null,
+        bedrooms: null,
+        bathrooms: null,
+        parking: null,
+        sale_type: null,
+        lot_area: null,
     })
 
     const handleCardClick = (id) => {
@@ -128,7 +128,7 @@ const SearchListingComponent = () => {
             setHeaderText('Search Properties');
         }
     }, [location]);
-
+    
     const getlistings = async (renderParams) => {
         try {
 
@@ -170,7 +170,13 @@ const SearchListingComponent = () => {
 
                 let listingByLocation = [];
 
-                const keywordMatched = (v) => Object.values(v).some((e, i) => e.toString().toLowerCase().includes(renderParams['keyword'].toLowerCase()));
+                const keywordMatched = (v) => Object.values(v).some((e, i) => 
+                    e.toString()
+                        .toLowerCase()
+                        .replace(/[\/_-]/g, '')
+                    .includes(renderParams['keyword']
+                        .toLowerCase()
+                        .replace(/[\/_-]/g, '')));
 
                 if (hasLocation && hasKeyword) {
                     const main = ['location', 'keyword'];
@@ -193,14 +199,17 @@ const SearchListingComponent = () => {
                     });
 
                 } else if (!hasLocation && hasKeyword) {
+                    
                     formattedListings.forEach((fl) => {
+                        console.log("keywordMatched", keywordMatched(fl));
                         // const keywordMatched = Object.values(fl).every(e => e.includes('condominium'.toLowerCase()));
 
-                        if (keywordMatched) {
+                        if (keywordMatched(fl)) {
                             listingByLocation.push(fl);
                         }
 
                     });
+                    delete renderParams['keyword'];
                 } else if (hasLocation && !hasKeyword) {
                     formattedListings.forEach((fl) => {
 

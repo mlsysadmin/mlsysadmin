@@ -23,6 +23,7 @@ import {
 } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
 import {
+	CapitalizeEachWord,
 	CapitalizeString,
 	FillLocationFilter,
 	GetPropertyTitle,
@@ -64,16 +65,16 @@ const RentComponent = () => {
 	const [filterLocation, setFilterLocation] = useState([]);
 	const [headerText, setHeaderText] = useState("House and Lot For Sale");
 	const [searchParams, setSearchParams] = useState({
-		location: "",
-		price_min: 0,
-		price_max: 100000000,
-		keyword: "",
-		property_type: "",
-		bedrooms: 0,
-		bathrooms: 0,
-		parking: 0,
-		sale_type: "",
-		lot_area: ""
+		location: null,
+        price_min: 1000,
+        price_max: 100000000,
+        keyword: null,
+        property_type: null,
+        bedrooms: null,
+        bathrooms: null,
+        parking: null,
+        sale_type: null,
+        lot_area: null,
 	});
 	const [breadCrumbItems, setBreadCrumbItems] = useState([
 		{
@@ -97,12 +98,19 @@ const RentComponent = () => {
 			if (dataresp.length == 0) {
 				setPublicListing([]);
 			} else {
+				const removeSpecialChar = (ch) => {
+
+					return ch.toLowerCase().replace(/[_-]/g, " ");
+				}
+				console.log("data", dataresp.filter(
+					(listing) =>
+						["rent"].includes(listing.SaleType.toLowerCase())));
+
 
 				const listingRes = dataresp.filter(
 					(listing) =>
 						["rent"].includes(listing.SaleType.toLowerCase()) &&
-						property_type.toLowerCase().replace(/[-_]/g, " ") == listing.PropertyType.toLowerCase() &&
-						listing.PropertyType.replace("/", " ").includes(property_type.replace(/[-_]/g, " "))
+						listing.PropertyType.toLowerCase().replace(/[-_]/g, " ").includes(property_type.toLowerCase().replace(/[-_]/g, " "))
 				);
 
 				if (listingRes.length !== 0) {
@@ -240,9 +248,7 @@ const RentComponent = () => {
 						</div>
 					) : (
 						<NoDataAvailable
-							message={`No available ${CapitalizeString(
-								propertyType.replace(/[-_]/g, " ")
-							)} for rent`}
+							message={`No available ${CapitalizeEachWord(propertyType)} For Rent`}
 						/>
 					)
 				) : (

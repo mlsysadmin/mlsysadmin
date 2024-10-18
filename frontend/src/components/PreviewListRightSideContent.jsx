@@ -31,7 +31,6 @@ const PreviewListRightSideContent = ({ oneListing }) => {
   // const monthlyPayment = (totalHomePrice - downPayment) / termInMonths;
 
   const monthlyInterest = stepsGap / 100 / 12;
-  console.log("monthly:", monthlyInterest);
   const totalMonths = term * 12;
 
   const loanValue = homePrice - downPayment;
@@ -112,7 +111,11 @@ const PreviewListRightSideContent = ({ oneListing }) => {
 
   useEffect(() => {
     console.log("oneListing: ", oneListing);
-  }, []);
+    setContact((prev) => {
+      return { ...prev, listingTitle: oneListing.UnitName, propertyNo: oneListing.PropertyNo }
+    })
+  }, [oneListing]);
+
   const openNotificationWithIcon = (type, message, description) => {
     api[type]({
       message: message,
@@ -122,7 +125,6 @@ const PreviewListRightSideContent = ({ oneListing }) => {
     });
   };
   const handleContactChange = (e) => {
-    console.log("contact: ", contact);
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
   const handleKeyDownPhone = (e) => {
@@ -159,6 +161,7 @@ const PreviewListRightSideContent = ({ oneListing }) => {
           "Please provide a valid email address."
         );
       } else {
+        
         setLoading(true);
         const sendEmailMessage = await SendEmailInquiry(contact);
         if (Object.keys(sendEmailMessage).length == 0) {
@@ -174,6 +177,8 @@ const PreviewListRightSideContent = ({ oneListing }) => {
           email: "",
           message: "",
           phone: "",
+          propertyNo: oneListing.PropertyNo,
+          listingTitle: oneListing.UnitName
         });
         setLoading(false);
       }

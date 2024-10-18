@@ -14,12 +14,12 @@ const SubMenu = {
 		{
 			header: "Commercial for rent",
 			submenu: [
-				{ sub: "Office Space", link: "/rent/?property_type=office-space" },
+				{ sub: "Office Space", link: "/rent/?property_type=office" },
 				{ sub: "Retail Space", link: "/rent/?property_type=shop/retail" },
 				{ sub: "Service Office", link: "/rent/?property_type=service-office" },
 				{
-					sub: "Commercial Land/Office",
-					link: "/rent/?property_type=commercial_land/office",
+					sub: "Commercial Land/Lot",
+					link: "/rent/?property_type=commercial-land/lot",
 				},
 			],
 		},
@@ -46,12 +46,12 @@ const SubMenu = {
 		{
 			header: "Commercial for sale",
 			submenu: [
-				{ sub: "Office Space", link: "/sale/?property_type=office-space" },
+				{ sub: "Office Space", link: "/sale/?property_type=office" },
 				{ sub: "Retail Spaces", link: "/sale/?property_type=shop/retail" },
 				{ sub: "Service Office", link: "/sale/?property_type=service-office" },
 				{
-					sub: "Commercial Land/Office",
-					link: "/sale/?property_type=commercial-land/office",
+					sub: "Commercial Land/Lot",
+					link: "/sale/?property_type=commercial-land/lot",
 				},
 			],
 		},

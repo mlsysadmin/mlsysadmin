@@ -388,7 +388,7 @@ const DiscoverHomeComponent = () => {
 				</div>
 
 				<div className="content-4">
-					<a href="/buy-a-home">
+					<a href="/comingsoon">
 						<div className="purchase">
 							<div className="overlap-group">
 								<img src={homeicon} alt="home" />
@@ -398,7 +398,7 @@ const DiscoverHomeComponent = () => {
 							</div>
 						</div>
 					</a>
-					<a href="/refinance">
+					<a href="/comingsoon">
 						<div className="refinance">
 							<div className="overlap-group">
 								<img src={dollaricon} alt="dollar" />
