@@ -21,14 +21,12 @@ const FeatureCard = ({ features }) => {
 					<ul className={styles.featuresList}>
 						{
 							columnItems.map((feature, featureIndex) => {
-
 								return (
 									<li className={styles.featureItem} key={featureIndex}>{feature.FeatureName}</li>
 								)
 							})
-
 						}
-					</ul>
+					</ul> 
 				</div>
 			)
 		})
