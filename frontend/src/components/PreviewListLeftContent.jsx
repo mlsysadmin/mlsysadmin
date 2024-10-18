@@ -73,22 +73,18 @@ const PreviewListLeftContent = ({
       "type",
       property_type,
       property_type.toLowerCase().includes("lot") ||
-        property_type.toLowerCase().includes("house")
+      property_type.toLowerCase().includes("house")
     );
 
-    if (
-      property_type.toLowerCase().includes("lot") &&
-      !property_type.toLowerCase().includes("house")
-    ) {
+    if ((property_type.toLowerCase().includes("lot") && !property_type.toLowerCase().includes("house")) || property_type.toLowerCase().includes("office")) {
       feature = feat.filter((item, i) =>
-        ["price per sqm"].includes(item.title.toLocaleLowerCase())
+        ["price per sqm", 'area'].includes(item.title.toLocaleLowerCase())
       );
-    } else if (
-      property_type.toLowerCase().includes("lot") &&
-      property_type.toLowerCase().includes("house")
-    ) {
+    } 
+    else if (property_type.toLowerCase().includes("lot") && property_type.toLowerCase().includes("house")) {
       feature = feat;
-    } else {
+    } 
+    else {
       feature = feat.filter(
         (item, i) => !["price per sqm"].includes(item.title.toLocaleLowerCase())
       );

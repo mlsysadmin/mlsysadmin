@@ -112,6 +112,27 @@ const SortListings = (sortKey, sortListing, listings) => {
   return sortListing
 }
 
+const CapitalizeEachWord = (word) => {
+  let capitalizeEachWord = "";
+
+  if (word === undefined) {
+    capitalizeEachWord = "";
+  }else{
+    let w = ""
+    word.trim().replace(/[\/_-]/g, " ").split(' ').forEach((st) => {
+      w += CapitalizeString(st) + " ";
+    })
+
+    capitalizeEachWord = w
+  }
+  console.log(capitalizeEachWord);
+
+  capitalizeEachWord.trim();
+  
+  return capitalizeEachWord;
+
+}
+
 export {
   CapitalizeString,
   NotAvailableReturn,
@@ -120,5 +141,6 @@ export {
   FillLocationFilter,
   SortPrice,
   SortByText,
-  SortListings
+  SortListings,
+  CapitalizeEachWord
 }

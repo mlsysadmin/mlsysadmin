@@ -43,16 +43,16 @@ const NewPageComponent = () => {
 	const [loading, setLoading] = useState(true);
 	const [filterLocation, setFilterLocation] = useState([]);
 	const [searchParams, setSearchParams] = useState({
-		location: "",
-		price_min: 0,
-		price_max: 100000000,
-		keyword: "",
-		property_type: "",
-		bedrooms: 0,
-		bathrooms: 0,
-		parking: 0,
-		sale_type: "",
-		lot_area: "",
+		location: null,
+        price_min: 1000,
+        price_max: 100000000,
+        keyword: null,
+        property_type: null,
+        bedrooms: null,
+        bathrooms: null,
+        parking: null,
+        sale_type: null,
+        lot_area: null,
 	})
 
 	const handleCardClick = (id) => {

@@ -50,16 +50,16 @@ const SaleComponent = () => {
 	const [filterLocation, setFilterLocation] = useState([]);
 	const [headerText, setHeaderText] = useState("House and Lot For Sale");
 	const [searchParams, setSearchParams] = useState({
-		location: "",
-		price_min: 0,
-		price_max: 100000000,
-		keyword: "",
-		property_type: "",
-		bedrooms: 0,
-		bathrooms: 0,
-		parking: 0,
-		sale_type: "",
-		lot_area: ""
+		location: null,
+        price_min: 1000,
+        price_max: 100000000,
+        keyword: null,
+        property_type: null,
+        bedrooms: null,
+        bathrooms: null,
+        parking: null,
+        sale_type: null,
+        lot_area: null,
 	});
 	const [breadCrumbItems, setBreadCrumbItems] = useState([
 		{
@@ -84,12 +84,31 @@ const SaleComponent = () => {
 				setPublicListing([])
 			} else {
 
-				console.log("sale", dataresp.filter((listing) => ["sale"].includes(listing.SaleType.toLowerCase())));
+				const removeSpecialChar = (ch) => {
+					
+					return ch.toLowerCase().replace(/[-_]/g, " ");
+				}
+
+				console.log("remove", removeSpecialChar(property_type));
+				console.log("data", dataresp.filter(
+					(listing) =>
+						["sale"].includes(listing.SaleType.toLowerCase())));
 
 				const listingRes = dataresp.filter((listing) =>
 					["sale"].includes(listing.SaleType.toLowerCase())
-					&& listing.PropertyType.toLowerCase() == property_type.replace(/[-_]/g, " "));
+					&& 
+					listing.PropertyType.toLowerCase().replace(/[-_]/g, " ").includes(property_type.toLowerCase().replace(/[-_]/g, " "))
+				);
+				const lr = dataresp.filter((listing) =>
 
+						{
+							console.log(listing.PropertyType.toLowerCase().replace(/[-_]/g, " "));
+							console.log(property_type.toLowerCase().replace(/[-_]/g, " "));
+							
+						}
+					);
+				console.log("listingRes", listingRes);
+				
 				if (listingRes.length !== 0) {
 					const newListing = await Promise.all(listingRes.map(async (item, i) => {
 
@@ -151,7 +170,7 @@ const SaleComponent = () => {
 				title += CapitalizeString(st) + " ";
 			})
 			title.trim();
-
+			
 			allPublicListing(getPropertyType);
 			setPropertyType(getPropertyType);
 			setHeaderText(`${title} For Sale`);
