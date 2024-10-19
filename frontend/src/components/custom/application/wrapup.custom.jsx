@@ -208,7 +208,9 @@ const WrapUpDetails = ({ setWrapUpComplete }) => {
     <div className={wrapUpClassName}>
       <h3>Wrap Up</h3>
       <span className="protect-tagline">
+        <div className="SSl-Encryption">
         Your information is protected by SSL encryption.
+        </div>
       </span>
       <div className="prop-content2-wrap-up">
         <div className="mobile-address-group">

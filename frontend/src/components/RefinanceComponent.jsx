@@ -461,7 +461,7 @@ const RefinanceComponent = () => {
 						</p>
 						<div className="ref-btn-group-input">
 							<div className="ref-btn-group">
-								<input type="number" placeholder="City or zip code" />
+								<input type="text" placeholder="City or zip code" />
 							</div>
 						</div>
 					</div>

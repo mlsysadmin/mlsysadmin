@@ -315,13 +315,13 @@
     width: 100%;
   }
   .specificationHeader {
-    font-size: 17px;
+    font-size: 20px;
     padding: 8px;
   }
 
   .specificationTable th, .specificationTable td {
     padding: 8px;
-    font-size: 12px;
+    font-size: 18px;
   }
 
   .specificationTable th:first-child, .specificationTable td:first-child {
@@ -352,7 +352,7 @@
     grid-template-columns: 1fr 1fr;
     margin-top: 30px;
     font-size: 18px;
-    width: 10px;
+    width: 100%;
   }
   
   .featureCard {

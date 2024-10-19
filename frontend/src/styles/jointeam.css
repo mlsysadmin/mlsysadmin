@@ -138,6 +138,7 @@
   padding: 10px;
   border-radius: 5px;
   color: #8c9094;
+  font-size: 15px;
 }
 .broker-questions-review span {
   color: #000000;
@@ -335,8 +336,7 @@ input[type="file"] {
   line-height: normal;
   margin-top: 15px;
 }
-
-@media only screen and (min-width: 554px) and (max-width: 1024px) {
+@media only screen and (min-width: 576px) and (max-width: 1024px) {
   .join-team-submit-button {
     background-color: #d90000;
     color: #fff;
@@ -558,8 +558,7 @@ input[type="file"] {
     color: #8c9094;
   }
 }
-
-@media only screen and (min-width: 519px) and (max-width: 553px) {
+@media only screen and (min-width: 519px) and (max-width: 575px) {
   .radio-button-container {
     display: flex;
     justify-content: space-between;
@@ -637,6 +636,7 @@ input[type="file"] {
     font-weight: bold;
   }
 }
+
 @media only screen and (min-width: 498px) and (max-width: 518px) {
   .radio-button-container {
     display: flex;
