@@ -5,18 +5,21 @@ import profileDropdown from "../../../assets/profileDropdown.png";
 import { getCookieData } from "../../../utils/CookieChecker";
 import { searchKyc } from "../../../api/Public/User.api";
 import { Alert } from "antd";
+import JoinTeam from "../../modals/JoinTeamModal";
 import "../../../styles/sellerdropdown.css";
 import { useNavigate } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 
 const SellerLogInButtonDropdown = () => {
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [userDetails, setUserDetails] = useState(null);
-   const [sessionExpired, setSessionExpired] = useState(false);
+	const [showDropdown, setShowDropdown] = useState(false);
+	const [showModal, setShowModal] = useState(false);
+	const [userDetails, setUserDetails] = useState(null);
+	const [activeItem, setActiveItem] = useState(null);
+	const [sessionExpired, setSessionExpired] = useState(false);
 
-   const navigate = useNavigate();
+	const navigate = useNavigate();
 
-  const accountDetails = getCookieData();
+	const accountDetails = getCookieData();
 	console.log("details:", accountDetails);
 	console.log("mobile number", accountDetails.mobileNumber);
 
@@ -30,51 +33,52 @@ const SellerLogInButtonDropdown = () => {
 			console.error("Error fetching user details:", error);
 		}
 	};
-
-	useEffect(() => {
-		fetchUserDetails();
-		console.log("user", userDetails);
-	}, []);
-
-
-  const handleButtonClick = () => {
-    setShowDropdown(!showDropdown);
-  };
-  	const handleJoinTeamClick = () => {
-			navigate("/comingsoon");
+	const handleButtonClick = () => {
+		setShowDropdown(!showDropdown);
+	};
+	const toggleModal = () => {
+		setShowModal(!showModal);
+	};
+	const handleJoinTeamClick = () => {
+		setShowModal(true);
 	};
 
-
-  const handleLogout = () => {
+	const handleLogout = () => {
 		document.cookie.split(";").forEach((cookie) => {
 			const [name] = cookie.split("=");
 			document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
 		});
 
 		window.location.href = "/";
-};
-// const SessionExpiredInitialization = () => {
-// 	setTimeout(() => {
-// 		setSessionExpired(true);
-// 		handleLogout();
-// 	}, 60000);
-// };
+	};
 
-// useEffect(() => {
-// 	SessionExpiredInitialization();
-// 	return () => {
-// 		clearTimeout();
-// 	};
-// }, []);
+	const location = useLocation();
+	const isActive = (path) => location.pathname === path;
+	useEffect(() => {
+		fetchUserDetails();
+		console.log("user", userDetails);
+	}, []);
+	// const SessionExpiredInitialization = () => {
+	// 	setTimeout(() => {
+	// 		setSessionExpired(true);
+	// 		handleLogout();
+	// 	}, 60000);
+	// };
 
-  const firstName = accountDetails ? accountDetails.firstName : "User";
+	// useEffect(() => {
+	// 	SessionExpiredInitialization();
+	// 	return () => {
+	// 		clearTimeout();
+	// 	};
+	// }, []);
+
+	const firstName = accountDetails ? accountDetails.firstName : "User";
 	const lastNameInitial =
 		accountDetails && accountDetails.lastName
 			? accountDetails.lastName.charAt(0).toUpperCase() + "."
 			: "";
 
-
-  return (
+	return (
 		<div style={{ position: "relative" }}>
 			<button
 				style={{
@@ -112,7 +116,7 @@ const SellerLogInButtonDropdown = () => {
 						top: "40px",
 						right: "0",
 						backgroundColor: "rgba(0, 0, 0, .72)",
-						color: "white",
+						// color: "white",
 						padding: "10px",
 						borderRadius: "5px",
 						minWidth: "200px",
@@ -142,7 +146,9 @@ const SellerLogInButtonDropdown = () => {
 							<a
 								style={{
 									textDecoration: "none",
-									color: "white",
+									color: isActive("/listing") ? "#d90000" : "white",
+									fontWeight: isActive("/listing") ? "bold" : "",
+									cursor: "pointer",
 								}}
 								href="/listing"
 							>
@@ -153,13 +159,15 @@ const SellerLogInButtonDropdown = () => {
 							<a
 								style={{
 									textDecoration: "none",
-									color: "white",
+									color: showModal ? "#d90000" : "white",
+									cursor: "pointer",
 								}}
-								href="/comingsoon"
+								onClick={handleJoinTeamClick}
 							>
 								Join Our Team
 							</a>
 						</li>
+						{showModal && <JoinTeam toggleModal={toggleModal} />}
 						{/* <li>{accountDetails.email}</li> */}
 						{/* <li>{userDetails.tier.label} TIER</li> */}
 						{/* <li>───────────────────</li> */}
@@ -210,6 +218,7 @@ const SellerLogInButtonDropdown = () => {
 						<a
 							style={{
 								color: "white",
+								cursor: "pointer",
 							}}
 						>
 							<li onClick={handleLogout}>Logout</li>
