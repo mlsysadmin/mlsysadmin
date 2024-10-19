@@ -53,7 +53,7 @@ const UnitDetailsComponent = ({
 
 	useEffect(() => {
 		if (
-			["commercial land/lot", "lot", "farm lot", "service office", "shop/retail","warehouse", "hotel/resort"].includes(selectedPropertyTab)
+			["commercial land/lot", "lot", "farm lot", "service office", "office space", "shop/retail","warehouse", "hotel/resort"].includes(selectedPropertyTab)
 		) {
 			setFurnishing(null);
 			setClassification(null);
@@ -68,6 +68,7 @@ const UnitDetailsComponent = ({
 			"lot",
 			"farm lot",
 			"service office",
+			"office space",
 			"shop/retail",
 			"warehouse",
 			"hotel/resort",
@@ -136,6 +137,7 @@ const UnitDetailsComponent = ({
 		"lot",
 		"farm lot",
 		"service office",
+		"office space",
 		"shop/retail",
 		"warehouse",
 		"hotel/resort",
@@ -146,6 +148,7 @@ const UnitDetailsComponent = ({
 		"lot",
 		"farm lot",
 		"service office",
+		"office space",
 		"shop/retail",
 		"warehouse",
 		"hotel/resort",

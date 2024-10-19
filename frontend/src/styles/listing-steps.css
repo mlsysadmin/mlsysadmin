@@ -270,8 +270,8 @@
 
 @media screen and (min-width:320px) and (max-width:480px) {
   .listing-steps-container {
-    border: 1px solid #ff0000;
-    border-radius: 35px;
+    /* border: 1px solid #ff0000;
+    border-radius: 35px; */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -359,7 +359,7 @@
     margin-left: 5%;
   }
   .step-intro .p{
-    font-size: 25px !important;
+    font-size: 22px !important;
   }
 
 }
@@ -367,8 +367,8 @@
 @media only screen and (min-width:481px) and (max-width:768px) {
   .listing-steps-container {
     /* background-color: #fff0f0; */
-    border: 1px solid #ff0000;
-    border-radius: 35px;
+    /* border: 1px solid #ff0000; */
+    /* border-radius: 35px; */
     display: flex;
     flex-direction: column;
     align-items: flex-start;

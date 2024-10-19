@@ -52,7 +52,7 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 							fontSize: "18px",
 						}}
 					>
-						Important Notice
+						Property Listing Guide
 					</h2>
 					<CloseOutlined
 						onClick={onClose}
@@ -91,11 +91,12 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 							>
 								How to list your property?
 							</span>
-							<p>You have two options:</p>
+							<p>You have two options to list your property:</p>
 							<div
 								className="ol-group-upgrade"
 								style={{
 									lineHeight: "25px",
+									paddingLeft: "20px",
 								}}
 							>
 								<ol style={{ fontSize: "14px" }}>
@@ -115,15 +116,19 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 								justifyContent: "flex-start",
 								alignItems: "flex-start",
 								textAlign: "left",
+
+								flexWrap: "wrap",
 							}}
 						>
 							<span style={{ fontSize: "14px", fontWeight: "bolder" }}>
-								How to upload your listing on our website? 
+								How to Upload Your Listing on OurWebsite? 
 							</span>
+							<p>Follow these steps to upload your property listing online:</p>
 							<div
 								className="second-ol-group-upgrade"
 								style={{
 									lineHeight: "25px",
+									paddingLeft: "20px",
 								}}
 							>
 								<ol style={{ fontSize: "14px" }}>
@@ -131,13 +136,13 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 								</ol>
 								<ol style={{ fontSize: "14px" }}>
 									2. Register and ensure your account is fully verified. 
+									<p style={{ fontStyle: "italic", paddingLeft: "15px" }}>
+										Note: if your account isn’t verified, visit the nearest ML
+										Branch to upgrade it.
+									</p>
 								</ol>
 								<ol style={{ fontSize: "14px" }}>
-									3. If not, visit the nearest ML Branch to upgrade your
-									account. 
-								</ol>
-								<ol style={{ fontSize: "14px" }}>
-									4. Once approved, scan the QR Code on ML Website to login. 
+									3. Once approved, scan the QR Code on ML Website to login. 
 								</ol>
 							</div>
 						</div>

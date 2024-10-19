@@ -41,7 +41,7 @@ export const ListingForm = () => {
 	const [discPriceInputError, setDiscPriceInputError] = useState("");
 	const [lotAreaInputError, setLotAreaInputError] = useState("");
 	const [propIdInputError, setPropIdInputError] = useState("");
-	const [showSuccessfulMsgModal, setShowSuccessfulMsgModal] = useState(false);
+	const [showSuccessfulMsgModal, setShowSuccessfulMsgModal] = useState(true);
 	const [userDetails, setUserDetails] = useState(null);
 	const [postedPropertyNo, setPostedPropertyNo] = useState(null);
 	const [loadingModal, setShowLoadingModal] = useState(false);
@@ -624,6 +624,7 @@ export const ListingForm = () => {
 								<FeaturedComponents
 									onComplete={(completed) => handleStepComplete(5, completed)}
 									setPropertyFields={setPropertyDataFields}
+									selectedPropertyTab={propertyFields.PropertyType}
 								/>
 								{/* {errors[5] && currentStep === 5 && (
 									<div
@@ -736,9 +737,7 @@ export const ListingForm = () => {
 									</div>
 								)}
 
-								{isSubmitting && (
-									<PreviewLoadingModal/>
-								)}
+								{isSubmitting && <PreviewLoadingModal />}
 								{/* {showAlert && (
 									<AlertModal
 										title={showAlertModal.title}

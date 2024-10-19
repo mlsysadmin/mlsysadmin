@@ -191,15 +191,6 @@ const DiscoverHomeComponent = () => {
 								<div className="loan-term-frame">
 									<div className="loan-term-frame-title">Loan Term</div>
 									<div className="loan-term-frame-cont">
-										<img
-											src={iconcalcu}
-											alt="Iconcalcu"
-											style={{
-												height: "25px",
-												width: "25px",
-												color: "black",
-											}}
-										/>
 										<div className="loan-term-value">
 											<Select
 												value={yearFixed}
@@ -210,6 +201,7 @@ const DiscoverHomeComponent = () => {
 												<Select.Option value={5}>5 Years Fixed</Select.Option>
 												<Select.Option value={10}>10 Years Fixed</Select.Option>
 												<Select.Option value={15}>15 Years Fixed</Select.Option>
+												<Select.Option value={30}>30 Years Fixed</Select.Option>
 											</Select>
 										</div>
 
@@ -414,10 +406,10 @@ const DiscoverHomeComponent = () => {
 				<div className="faqs-content">
 					<h2>Most-asked morgage questions</h2>
 					{Object.keys(faqsloandata).map((category, i) => {
-						const {faqs, Title} = faqsloandata[category];
+						const { faqs, Title } = faqsloandata[category];
 						return (
-							<div className="discover-questions" key = {i}> 
-							<br/>
+							<div className="discover-questions" key={i}>
+								<br />
 								<h2>{Title}</h2>
 								{faqs.map((item, index) => (
 									<div key={index}>

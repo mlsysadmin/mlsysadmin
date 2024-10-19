@@ -44,7 +44,7 @@ const PropertyDetailsComponent = ({ onComplete, setPropertyFields }) => {
 							<div className="tab-label">Commercial</div>
 							<div className="tab-wrapper">
 								<div className="tabs">
-									{["Service Office", "Shop/Retail", "Commercial Land/Lot"].map(
+									{["Service Office", "Shop/Retail", "Commercial Land/Lot", "Office Space"].map(
 										(tab) => (
 											<div
 												key={tab}
