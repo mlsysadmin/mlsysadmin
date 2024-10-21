@@ -1,6 +1,10 @@
-
-
-@media screen and (max-width: 768px) {
+ .seller-drop-items li a:hover{
+   color: var(--red) !important;
+ }
+ .seller-drop-items li:hover{
+   color: var(--red) !important;
+ }
+@media screen and (max-width: 1024px) {
      .seller-button-dropdown{
         width:94% !important;
         display: flex;
@@ -10,8 +14,13 @@
      }
      .seller-drop-items{
            width:300px !important;
+           padding:10px 0px 10px 0px !important;
+           right: 10px;
      }
      #join-team{
         margin-top: 0px !important;
      }
+     .seller-drop-items li  {
+         font-size: 15px !important;
+      }
 }

@@ -10,6 +10,9 @@
 
 .side-bar--drawer .ant-drawer-header .ant-drawer-close{
     margin-top: 0px;
+    right: 0px;
+    /* display: none; */
+    position: absolute;
 }
 
 .side-bar--drawer .sidebar-menu.ant-menu.ant-menu-root.ant-menu-inline{

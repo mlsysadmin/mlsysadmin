@@ -41,7 +41,7 @@ export const ListingForm = () => {
 	const [discPriceInputError, setDiscPriceInputError] = useState("");
 	const [lotAreaInputError, setLotAreaInputError] = useState("");
 	const [propIdInputError, setPropIdInputError] = useState("");
-	const [showSuccessfulMsgModal, setShowSuccessfulMsgModal] = useState(true);
+	const [showSuccessfulMsgModal, setShowSuccessfulMsgModal] = useState(false);
 	const [userDetails, setUserDetails] = useState(null);
 	const [postedPropertyNo, setPostedPropertyNo] = useState(null);
 	const [loadingModal, setShowLoadingModal] = useState(false);
