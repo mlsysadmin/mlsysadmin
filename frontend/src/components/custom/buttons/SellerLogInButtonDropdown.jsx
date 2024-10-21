@@ -9,11 +9,13 @@ import JoinTeam from "../../modals/JoinTeamModal";
 import "../../../styles/sellerdropdown.css";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { isCookiePresent } from "../../../utils/CookieChecker";
 
 const SellerLogInButtonDropdown = () => {
 	const [showDropdown, setShowDropdown] = useState(false);
 	const [showModal, setShowModal] = useState(false);
 	const [userDetails, setUserDetails] = useState(null);
+	const [areCookiesPresent, setAreCookiesPresent] = useState(false);
 	const [activeItem, setActiveItem] = useState(null);
 	const [sessionExpired, setSessionExpired] = useState(false);
 
@@ -43,14 +45,14 @@ const SellerLogInButtonDropdown = () => {
 		setShowModal(true);
 	};
 
-	const handleLogout = () => {
-		document.cookie.split(";").forEach((cookie) => {
-			const [name] = cookie.split("=");
-			document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
-		});
+	// const handleLogout = () => {
+	// 	document.cookie.split(";").forEach((cookie) => {
+	// 		const [name] = cookie.split("=");
+	// 		document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+	// 	});
 
-		window.location.href = "/";
-	};
+	// 	window.location.href = "/";
+	// };
 
 	const location = useLocation();
 	const isActive = (path) => location.pathname === path;
@@ -71,6 +73,28 @@ const SellerLogInButtonDropdown = () => {
 	// 		clearTimeout();
 	// 	};
 	// }, []);
+
+	const sessionCookieName = process.env.REACT_APP_SESSION_COOKIE_NAME;
+	const accountCookieName = process.env.REACT_APP_ACCOUNT_COOKIE_NAME;
+
+	useEffect(() => {
+		const checkCookies = () => {
+			const isMLWWSPresent = isCookiePresent(sessionCookieName);
+			const isAccountDetailsPresent = isCookiePresent(accountCookieName);
+			setAreCookiesPresent(isMLWWSPresent || isAccountDetailsPresent);
+		};
+
+		checkCookies();
+	}, []);
+	const handleLogout = () => {
+		const deleteCookies = () => {
+			document.cookie = `${sessionCookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.mlhuillier.com`;
+			document.cookie = `${accountCookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.mlhuillier.com`;
+		};
+
+		deleteCookies();
+		window.location.href = "/";
+	};
 
 	const firstName = accountDetails ? accountDetails.firstName : "User";
 	const lastNameInitial =
@@ -215,14 +239,16 @@ const SellerLogInButtonDropdown = () => {
 						>
 							<li>Client Management</li>
 						</a> */}
-						<a
-							style={{
-								color: "white",
-								cursor: "pointer",
-							}}
-						>
-							<li onClick={handleLogout}>Logout</li>
-						</a>
+						{areCookiesPresent && (
+							<a
+								style={{
+									color: "white",
+									cursor: "pointer",
+								}}
+							>
+								<li onClick={handleLogout}>Logout</li>
+							</a>
+						)}
 						<li
 							style={{
 								color: "white",
