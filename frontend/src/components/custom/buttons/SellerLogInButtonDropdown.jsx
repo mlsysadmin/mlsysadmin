@@ -249,11 +249,11 @@ const SellerLogInButtonDropdown = () => {
 								<li onClick={handleLogout}>Logout</li>
 							</a>
 						)}
-						<li
+						{/* <li
 							style={{
 								color: "white",
 							}}
-						></li>
+						></li> */}
 					</ul>
 				</div>
 			)}

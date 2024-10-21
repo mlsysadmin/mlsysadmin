@@ -1,5 +1,9 @@
-
-
+ .seller-drop-items li a:hover{
+   color: var(--red) !important;
+ }
+ .seller-drop-items li:hover{
+   color: var(--red) !important;
+ }
 @media screen and (max-width: 1024px) {
      .seller-button-dropdown{
         width:94% !important;
