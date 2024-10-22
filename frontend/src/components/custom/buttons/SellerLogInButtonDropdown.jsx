@@ -9,6 +9,7 @@ import JoinTeam from "../../modals/JoinTeamModal";
 import "../../../styles/sellerdropdown.css";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import UserLogout from "../../../api/Logout";
 import { isCookiePresent } from "../../../utils/CookieChecker";
 
 const SellerLogInButtonDropdown = () => {
@@ -74,27 +75,15 @@ const SellerLogInButtonDropdown = () => {
 	// 	};
 	// }, []);
 
-	const sessionCookieName = process.env.REACT_APP_SESSION_COOKIE_NAME;
-	const accountCookieName = process.env.REACT_APP_ACCOUNT_COOKIE_NAME;
+const handleLogout = async() =>{
 
-	useEffect(() => {
-		const checkCookies = () => {
-			const isMLWWSPresent = isCookiePresent(sessionCookieName);
-			const isAccountDetailsPresent = isCookiePresent(accountCookieName);
-			setAreCookiesPresent(isMLWWSPresent || isAccountDetailsPresent);
-		};
+	const logout =  await UserLogout();
+	console.log("Logout Success:", logout);
+	return logout;
 
-		checkCookies();
-	}, []);
-	const handleLogout = () => {
-		const deleteCookies = () => {
-			document.cookie = `${sessionCookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.mlhuillier.com`;
-			document.cookie = `${accountCookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.mlhuillier.com`;
-		};
+}
 
-		deleteCookies();
-		window.location.href = "/";
-	};
+
 
 	const firstName = accountDetails ? accountDetails.firstName : "User";
 	const lastNameInitial =
@@ -239,7 +228,7 @@ const SellerLogInButtonDropdown = () => {
 						>
 							<li>Client Management</li>
 						</a> */}
-						{areCookiesPresent && (
+					
 							<a
 								style={{
 									color: "white",
@@ -248,7 +237,7 @@ const SellerLogInButtonDropdown = () => {
 							>
 								<li onClick={handleLogout}>Logout</li>
 							</a>
-						)}
+
 						{/* <li
 							style={{
 								color: "white",
