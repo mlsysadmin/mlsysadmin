@@ -1,5 +1,6 @@
-import React from "react";
-import { useState } from "react";
+import React, { useRef } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
 import FooterComponent from "./layout/FooterComponent";
 import MainLayout from "./layout/layout.component";
@@ -32,6 +33,20 @@ const DiscoverHomeComponent = () => {
 	const toggleAccordion = (index) => {
 		setActiveIndex(index === activeIndex ? null : index);
 	};
+
+	const calculatorRef = useRef(null);
+	const location = useLocation();
+	const scrollToSection = (sectionRef) => {
+		if (sectionRef?.current) {
+			sectionRef.current.scrollIntoView({ behavior: "smooth" });
+		}
+	};
+
+	useEffect(() => {
+		if (location.hash === "#calculator") {
+			scrollToSection(calculatorRef); // Scroll to calculator if URL has #calculator
+		}
+	}, [location]);
 
 	const handleSelectOptionChange = (e) => {
 		setyearFixed(e.target.value);
@@ -136,7 +151,7 @@ const DiscoverHomeComponent = () => {
 			<div className="mortgage-calc">
 				<div className="mortgage-calc-cont">
 					<div className="mortgage-cont1">
-						<div className="mortrange">
+						<div className="mortrange" ref={calculatorRef}>
 							<div className="mortgage-title-mort">Mortgage Calculator</div>
 							<div className="range-group">
 								<div className="home-price-frame">
