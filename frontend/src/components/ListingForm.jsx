@@ -49,8 +49,10 @@ export const ListingForm = () => {
 	const [showAlert, setShowAlert] = useState(true);
 	const [showAlertModal, setShowAlertModal] = useState(false);
 	const [showVendorModal, setShowVendorModal] = useState(false);
+	const [addedVendorId, setAddedVendorId] = useState();
+	const [addedVendorName, setAddedVendorName] = useState();
 	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [tin, setTin] = useState("");
+	const [tin, setTin] = useState(null);
 
 	const accountDetails = getCookieData();
 
@@ -58,6 +60,7 @@ export const ListingForm = () => {
 		try {
 			const response = await searchKyc(accountDetails.mobileNumber);
 			const respData = response.data.data;
+			console.log("respData", respData);
 			setUserDetails(respData);
 		} catch (error) {
 			console.error("Error fetching user details:", error);
@@ -104,7 +107,7 @@ export const ListingForm = () => {
 		Classification: "",
 		PricePerSqm: "",
 		Parking: "",
-		PropertyIdNo:"",
+		PropertyIdNo: "",
 		RecordStatus: "pending",
 		NoOfFloor: "",
 		Country: "",
@@ -121,6 +124,7 @@ export const ListingForm = () => {
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
+		fetchUserDetails();
 	}, []);
 
 	const handleError = (error) => {
@@ -169,7 +173,7 @@ export const ListingForm = () => {
 				}
 			}
 		}
-	}
+	};
 
 	const handleSellingPriceClick = (furnishing) => {
 		setSelectedSellingPrice(furnishing);
@@ -177,77 +181,106 @@ export const ListingForm = () => {
 
 	const handleVendorSubmit = async () => {
 		try {
-
 			if (Object.keys(accountDetails).length !== 0) {
-
 				let number = accountDetails.mobileNumber;
 
 				try {
 					const vendorExists = await GetVendorByNumber(number);
-					console.log("vendorDetails", vendorExists);
+					console.log("vendorDetails", vendorExists.data);
 
 					// setShowLoadingModal({
 					// 	loading: true,
 					// 	text: "Just a moment",
 					// });
 
-					if (vendorExists) {
+					if (Object.keys(vendorExists.data).length !== 0) {
 						setShowVendorModal(false);
 						// setIsSubmitting(true);
-						await handleSubmit(vendorExists.data.VendorId, vendorExists.data.VendorName);
-
+						await handleCreateProperty(
+							vendorExists.data.VendorId,
+							vendorExists.data.VendorName,
+						);
 					} else {
-
 						const vendorName = `${userDetails?.name.firstName} ${userDetails?.name.lastName}`;
 						const generatedVendotId = await GetVendorId();
-						const vendorPayload = {
-							VendorId: generatedVendotId,
-							VendorName: vendorName,
-							Address: userDetails.addresses.current.otherAddress,
-							City: userDetails.addresses.current.addressL2Name,
-							ContactNo: userDetails.cellphoneNumber,
-							TIN: tin,
-							Email: userDetails.email,
-							ContactPerson: "",
-							RecordStatus: "active",
-							VendorType: "homeowner",
-							AccessType: "public",
-							OtherInfo: "Hey Joe",
-						};
-						console.log("Adding new vendor:", vendorPayload);
-
-						const addNewVendor = await AddVendor(vendorPayload);
-
-						if (addNewVendor) {
-							await handleSubmit(
-								addNewVendor.data.VendorId,
-								addNewVendor.data.VendorName
-							);
-						} else {
-							console.log(addNewVendor);
-						}
-
+						setAddedVendorId(generatedVendotId);
+						setAddedVendorName(vendorName);
 						setShowVendorModal(true);
 					}
 				} catch (error) {
 					console.error("Error checking vendor existence:", error);
 				}
-
 			} else {
 				console.error("user is not logged in");
 
-				navigate(`${process.env.REACT_APP_LOGIN}?redirect=${process.env.REACT_APP_REDIRECT_URL}/listing`)
-				
+				navigate(
+					`${process.env.REACT_APP_LOGIN}?redirect=${process.env.REACT_APP_REDIRECT_URL}/listing`
+				);
 			}
-
-
 		} catch (error) {
 			console.log("errr", error);
-
 		}
-
 	};
 
+	const handleCreateProperty = async (VendorName, VendorId) => {
+		setShowVendorModal(false);
+		setIsSubmitting(true);
+		const propertyNo = await GetPropertyNo();
+
+		const propertyPhotos = propertyFields.Photo.map((photo) => photo.file);
+
+		const photosArray = propertyFields.Photo;
+
+		const Vendornumber = accountDetails.mobileNumber;
+		const existing = await GetVendorByNumber(Vendornumber);
+		console.log("VENDOR INFO", existing);
+
+		const imagePayload = new FormData();
+
+		imagePayload.append("PropertyNo", propertyNo);
+		imagePayload.append(
+			"MainPhoto",
+			photosArray.length > 0 ? photosArray[0].file : null
+		);
+
+		propertyPhotos.forEach((photo) => {
+			imagePayload.append("Photo[]", photo);
+			imagePayload.append("FileName[]", photo.name);
+		});
+
+		imagePayload.getAll("Photo");
+		imagePayload.getAll("FileName");
+
+		console.log("image:", imagePayload.getAll("Photo"));
+		console.log("filename:", imagePayload.getAll("FileName"));
+
+		const postFeatures = await handleFeatureChecking();
+
+		const updatedPropertyFields = {
+			...propertyFields,
+			ListingOwnerId: VendorId,
+			ListingOwnerName: VendorName,
+			postFeatures,
+			PropertyNo: propertyNo,
+			VendorId: VendorId,
+			VendorName: VendorName,
+		};
+
+		console.log("Final listing data:", updatedPropertyFields);
+
+		const postData = await PostSellerListing(updatedPropertyFields);
+		setPostedPropertyNo(updatedPropertyFields);
+
+		setPropertyFields((prevFields) => ({
+			...prevFields,
+			...postData,
+		}));
+
+		await savePropertyImages(imagePayload);
+
+		setIsSubmitting(false);
+		setShowSuccessfulMsgModal(true);
+	};
 	const handleFeatureChecking = async () => {
 		try {
 			const propertyNo = await GetPropertyNo();
@@ -312,16 +345,44 @@ export const ListingForm = () => {
 					}
 				})
 			);
-
 		} catch (error) {
 			console.error("Error processing features:", error.message);
 		}
 	};
 
-
-	const handleSubmit = async (VendorId, VendorName) => {
+	const handleSubmit = async () => {
 		try {
-			setIsSubmitting(true);
+			const falsyValue = [undefined, null, ""];
+			if (falsyValue.includes(tin)) {
+				alert("Tin required!");
+			} else {
+				const vendorPayload = {
+					VendorId: addedVendorId,
+					VendorName: addedVendorName,
+					Address: userDetails.addresses.current.otherAddress,
+					City: userDetails.addresses.current.addressL2Name,
+					ContactNo: userDetails.cellphoneNumber,
+					TIN: tin,
+					Email: userDetails.email,
+					ContactPerson: "",
+					RecordStatus: "active",
+					VendorType: "homeowner",
+					AccessType: "public",
+					OtherInfo: "Hey Joe",
+					ComRate: "10",
+				};
+				console.log("Adding new vendor:", vendorPayload);
+				alert("Vendor Added Successfully");
+
+				const addNewVendor = await AddVendor(vendorPayload);
+				if (addNewVendor) {
+					handleCreateProperty(addedVendorId, addedVendorName);
+				} else {
+					console.log(addNewVendor);
+				}
+			}
+
+		
 
 			// console.log("modal", showAlertModal);
 			// const generatedVendorId = VendorId;
@@ -349,68 +410,11 @@ export const ListingForm = () => {
 
 			// 	await AddVendor(vendorPayload);
 			// }
-
-			const propertyNo = await GetPropertyNo();
-
-			const propertyPhotos = propertyFields.Photo.map((photo) => photo.file);
-
-			const photosArray = propertyFields.Photo;
-
-			const Vendornumber = accountDetails.mobileNumber;
-			const existing = await GetVendorByNumber(Vendornumber);
-			console.log("VENDOR INFO", existing);
-
-			const imagePayload = new FormData();
-
-			imagePayload.append("PropertyNo", propertyNo);
-			imagePayload.append(
-				"MainPhoto",
-				photosArray.length > 0 ? photosArray[0].file : null
-			);
-
-			propertyPhotos.forEach((photo) => {
-				imagePayload.append("Photo[]", photo);
-				imagePayload.append("FileName[]", photo.name);
-			});
-
-			imagePayload.getAll("Photo");
-			imagePayload.getAll("FileName");
-
-			console.log("image:", imagePayload.getAll("Photo"));
-			console.log("filename:", imagePayload.getAll("FileName"));
-
-			const postFeatures = await handleFeatureChecking();
-
-			const updatedPropertyFields = {
-				...propertyFields,
-				ListingOwnerId: VendorId,
-				ListingOwnerName: VendorName,
-				postFeatures,
-				PropertyNo: propertyNo,
-				VendorId: VendorId,
-				VendorName: VendorName,
-			};
-
-			console.log("Final listing data:", updatedPropertyFields);
-
-			const postData = await PostSellerListing(updatedPropertyFields);
-			setPostedPropertyNo(updatedPropertyFields);
-
-			setPropertyFields((prevFields) => ({
-				...prevFields,
-				...postData,
-			}));
-
-			await savePropertyImages(imagePayload);
-			setIsSubmitting(false);
-			setShowSuccessfulMsgModal(true);
-
 		} catch (error) {
-
 			if (error.status >= 400 && error.status <= 500) {
-				return (error);
+				return error;
 			} else {
-				return (error);
+				return error;
 			}
 			// console.error("Failed to submit listing:", error);
 		}
@@ -689,7 +693,8 @@ export const ListingForm = () => {
 												<input
 													type="text"
 													id="tin"
-													value={tin} // Replace this with the state variable you use to store the TIN
+													value={tin}
+													// Replace this with the state variable you use to store the TIN
 													onChange={(e) => setTin(e.target.value)} // Replace setTin with your setter for TIN
 													placeholder="Enter TIN"
 													style={{ padding: "10px", width: "100%" }}
@@ -697,6 +702,7 @@ export const ListingForm = () => {
 											</div>
 
 											<button
+												disabled={!tin}
 												onClick={handleSubmit}
 												style={{ padding: "10px 50px", fontSize: "16px" }}
 											>

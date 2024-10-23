@@ -44,6 +44,7 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
 		}
 	};
   const handleSaveClick = () =>{
+    setIsChecked(true);
     setShowTooltip(true);
 		setTimeout(() => setShowTooltip(false), 800);
   }

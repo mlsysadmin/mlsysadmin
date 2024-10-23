@@ -10,7 +10,12 @@ const IGOTSOLUTIONSAxiosInstance = axios.create({
     // withCredentials: true
 });
 
+const MLBROKERAGELOGININSTANCE = axios.create({
+	baseURL: process.env.REACT_APP_REDIRECT_SYMPH_LOGIN,
+});
+
 export {
-    MLBROKERAGEAxiosInstance,
-    IGOTSOLUTIONSAxiosInstance
-}
+	MLBROKERAGEAxiosInstance,
+	IGOTSOLUTIONSAxiosInstance,
+	MLBROKERAGELOGININSTANCE,
+};

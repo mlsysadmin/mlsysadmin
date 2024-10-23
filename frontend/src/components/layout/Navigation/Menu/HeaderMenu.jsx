@@ -129,7 +129,7 @@ const HeaderMenu = () => {
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 		if (isMLWWSPresent && isAccountDetailsPresent) {
 			if (userDetails?.tier?.label === "FULLY VERIFIED") {
-				window.location.href = "/listing";
+				window.location.href = "/";
 			} else if (userDetails?.tier?.label === "BUYER") {
 				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
 					redirectUrl
