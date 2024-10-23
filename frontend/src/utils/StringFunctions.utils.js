@@ -9,6 +9,14 @@ const CapitalizeString = (word) => {
 
   return sliceConcat;
 }
+const CapitalizeStringwithSymbol = (str) => {
+	if (!str) return "";
+
+	return str
+		.split(/[\s/]+/)
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+		.join("/");
+};
 
 const NotAvailableReturn = (detail) => {
 
@@ -142,5 +150,6 @@ export {
   SortPrice,
   SortByText,
   SortListings,
+  CapitalizeStringwithSymbol,
   CapitalizeEachWord
 }

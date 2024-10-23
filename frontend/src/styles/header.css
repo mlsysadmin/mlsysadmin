@@ -20,6 +20,11 @@
     line-height: 40px;
     font-size: 16px;
 }
+.active-parent-menu-item{
+    color: var(--red);
+      font-weight: bold;
+
+}
 
 .header.header.ant-layout-header .ml-logo,
 .header.ant-layout-header ul,

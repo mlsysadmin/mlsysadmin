@@ -197,8 +197,8 @@ export const ListingForm = () => {
 						setShowVendorModal(false);
 						// setIsSubmitting(true);
 						await handleCreateProperty(
-							vendorExists.data.VendorId,
 							vendorExists.data.VendorName,
+							vendorExists.data.VendorId
 						);
 					} else {
 						const vendorName = `${userDetails?.name.firstName} ${userDetails?.name.lastName}`;
@@ -243,7 +243,7 @@ export const ListingForm = () => {
 			photosArray.length > 0 ? photosArray[0].file : null
 		);
 
-		propertyPhotos.forEach((photo) => {
+		propertyPhotos.slice(1).forEach((photo) => {
 			imagePayload.append("Photo[]", photo);
 			imagePayload.append("FileName[]", photo.name);
 		});
@@ -351,10 +351,12 @@ export const ListingForm = () => {
 	};
 
 	const handleSubmit = async () => {
+			setIsSubmitting(true);
 		try {
 			const falsyValue = [undefined, null, ""];
 			if (falsyValue.includes(tin)) {
-				alert("Tin required!");
+			
+				// alert("Tin required!");
 			} else {
 				const vendorPayload = {
 					VendorId: addedVendorId,
@@ -376,7 +378,7 @@ export const ListingForm = () => {
 
 				const addNewVendor = await AddVendor(vendorPayload);
 				if (addNewVendor) {
-					handleCreateProperty(addedVendorId, addedVendorName);
+					handleCreateProperty(addedVendorName,addedVendorId);
 				} else {
 					console.log(addNewVendor);
 				}

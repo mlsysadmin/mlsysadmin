@@ -13,6 +13,7 @@ import HomeHighlights from "./HomeHighlights";
 
 import {
   CapitalizeString,
+  CapitalizeStringwithSymbol,
   GetPropertyTitle,
   NotAvailableReturn,
 } from "../utils/StringFunctions.utils";
@@ -94,143 +95,149 @@ const PreviewListLeftContent = ({
   };
 
   return (
-    <div className="leftContent">
-      <main className={styles.leftcontainer}>
-        <h1 className={styles.lefttitle}>
-          {CapitalizeString(oneListing.UnitName)}
-        </h1>
-        <p className={styles.leftlocation}>
-          {FormatLocation(
-            oneListing.City,
-            oneListing.ProvinceState,
-            oneListing.Country
-          )}
-        </p>
-        <button className={styles.leftctaButton} onClick={handleButtonClick}>
-          Get Pre-Approved
-        </button>
-        <br />
-        {/* <SemiRoundBtn
+		<div className="leftContent">
+			<main className={styles.leftcontainer}>
+				<h1 className={styles.lefttitle}>
+					{CapitalizeString(oneListing.UnitName)}
+				</h1>
+				<p className={styles.leftlocation}>
+					{FormatLocation(
+						oneListing.City,
+						oneListing.ProvinceState,
+						oneListing.Country
+					)}
+				</p>
+				<button className={styles.leftctaButton} onClick={handleButtonClick}>
+					Get Pre-Approved
+				</button>
+				<br />
+				{/* <SemiRoundBtn
           label={"Loan Calculator"}
 		  className={"loaned-calculator-button"}
         /> */}
-        <div className="first-row--about-property">
-          <h2 className={styles.leftsectionTitle}>About this property</h2>
-          <section className={styles.leftfeatureGrid}>
-            {featuress.map((feature, index) => {
-              if (feature.value && feature.value !== "0") {
-                return <VLFeatureCard key={index} {...feature} />;
-              }
-            })}
-          </section>
-        </div>
-        <div style={{ marginTop: "60px" }} className="second-row--description">
-          <h2 className={styles.leftdescriptionTitle}>Description</h2>
-          <p className={styles.leftdescriptionText}>{oneListing.Details}</p>
-        </div>
-      </main>
-      <div className="property-on-map">
-        <h3>Location</h3>
-        <MapComponent oneListing={oneListing} />
-      </div>
+				<div className="first-row--about-property">
+					<h2 className={styles.leftsectionTitle}>About this property</h2>
+					<section className={styles.leftfeatureGrid}>
+						{featuress.map((feature, index) => {
+							if (feature.value && feature.value !== "0") {
+								return <VLFeatureCard key={index} {...feature} />;
+							}
+						})}
+					</section>
+				</div>
+				<div style={{ marginTop: "60px" }} className="second-row--description">
+					<h2 className={styles.leftdescriptionTitle}>Description</h2>
+					<p className={styles.leftdescriptionText}>{oneListing.Details}</p>
+				</div>
+			</main>
+			<div className="property-on-map">
+				<h3>Location</h3>
+				<MapComponent oneListing={oneListing} />
+			</div>
 
-      <div className="web-view-similar-properties">
-        <h3>Home Details</h3>
-        <div className={styles.specificationContainer}>
-          <h4 className={styles.specificationHeader}>Specification</h4>
-          <table className={styles.specificationTable}>
-            <tbody>
-              <tr>
-                <th>Property Type</th>
-                <td>{CapitalizeString(oneListing.PropertyType)}</td>
-                <th>Floor Area</th>
-                <td>{NotAvailableReturn(oneListing.FloorArea)}</td>
-              </tr>
-              <tr>
-                <th>Listing Type</th>
-                <td>{`For ${CapitalizeString(oneListing.SaleType)}`}</td>
-                <th>Lot Area</th>
-                <td>{NotAvailableReturn(AmountFormatterGroup(oneListing.LotArea))}</td>
-              </tr>
-              <tr>
-                <th>Furnishing</th>
-                <td>{NotAvailableReturn(oneListing.Furnishing)}</td>
-                <th>Price per SqM</th>
-                <td>{NotAvailableReturn(AmountFormatterGroup(oneListing.PricePerSqm))}</td>
-              </tr>
-              <tr>
-                <th>Bedroom</th>
-                <td>{NotAvailableReturn(oneListing.BedRooms)}</td>
-                <th>No of Floors</th>
-                <td>{NotAvailableReturn(oneListing.NoOfFloor)}</td>
-              </tr>
-              <tr>
-                <th>Bathroom</th>
-                <td>{NotAvailableReturn(oneListing.BathRooms)}</td>
-                <th>Car Parking</th>
-                <td>{NotAvailableReturn(oneListing.Parking)}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div className="mobile-view-similar-properties">
-        <h3>Home Details</h3>
-        <div className={styles.specificationContainer}>
-          <h4 className={styles.specificationHeader}>Specification</h4>
-          <table className={styles.specificationTable}>
-            <tbody>
-              <tr>
-                <th>Property Type</th>
-                <td>{CapitalizeString(oneListing.PropertyType)}</td>
-              </tr>
-              <tr>
-                <th>Floor Area</th>
-                <td>{NotAvailableReturn(oneListing.FloorArea)}</td>
-              </tr>
-              <tr>
-                <th>Listing Type</th>
-                <td>{`For ${CapitalizeString(oneListing.SaleType)}`}</td>
-              </tr>
-              <tr>
-                <th>Lot Area</th>
-                <td>{NotAvailableReturn(oneListing.LotArea)}</td>
-              </tr>
-              <tr>
-                <th>Furnishing</th>
-                <td>{NotAvailableReturn(oneListing.Furnishing)}</td>
-              </tr>
-              <tr>
-                <th>Price per SqM</th>
-                <td>{NotAvailableReturn(oneListing.PricePerSqm)}</td>
-              </tr>
-              <tr>
-                <th>Bedroom</th>
-                <td>{NotAvailableReturn(oneListing.BedRooms)}</td>
-              </tr>
-              <tr>
-                <th>No of Floors</th>
-                <td>{NotAvailableReturn(oneListing.NoOfFloor)}</td>
-              </tr>
-              <tr>
-                <th>Bathroom</th>
-                <td>{NotAvailableReturn(oneListing.BathRooms)}</td>
-              </tr>
-              <tr>
-                <th>Car Parking</th>
-                <td>{NotAvailableReturn(oneListing.Parking)}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <HomeHighlights
-        features={features}
-        amenities={amenities}
-        includes={includes}
-      />
-    </div>
-  );
+			<div className="web-view-similar-properties">
+				<h3>Home Details</h3>
+				<div className={styles.specificationContainer}>
+					<h4 className={styles.specificationHeader}>Specification</h4>
+					<table className={styles.specificationTable}>
+						<tbody>
+							<tr>
+								<th>Property Type</th>
+								<td>{CapitalizeString(oneListing.PropertyType)}</td>
+								<th>Floor Area</th>
+								<td>{NotAvailableReturn(oneListing.FloorArea)}</td>
+							</tr>
+							<tr>
+								<th>Listing Type</th>
+								<td>{`For ${CapitalizeString(oneListing.SaleType)}`}</td>
+								<th>Lot Area</th>
+								<td>
+									{NotAvailableReturn(AmountFormatterGroup(oneListing.LotArea))}
+								</td>
+							</tr>
+							<tr>
+								<th>Furnishing</th>
+								<td>{NotAvailableReturn(oneListing.Furnishing)}</td>
+								<th>Price per SqM</th>
+								<td>
+									{NotAvailableReturn(
+										AmountFormatterGroup(oneListing.PricePerSqm)
+									)}
+								</td>
+							</tr>
+							<tr>
+								<th>Bedroom</th>
+								<td>{NotAvailableReturn(oneListing.BedRooms)}</td>
+								<th>No of Floors</th>
+								<td>{NotAvailableReturn(oneListing.NoOfFloor)}</td>
+							</tr>
+							<tr>
+								<th>Bathroom</th>
+								<td>{NotAvailableReturn(oneListing.BathRooms)}</td>
+								<th>Car Parking</th>
+								<td>{NotAvailableReturn(oneListing.Parking)}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div className="mobile-view-similar-properties">
+				<h3>Home Details</h3>
+				<div className={styles.specificationContainer}>
+					<h4 className={styles.specificationHeader}>Specification</h4>
+					<table className={styles.specificationTable}>
+						<tbody>
+							<tr>
+								<th>Property Type</th>
+								<td>{CapitalizeStringwithSymbol(oneListing.PropertyType)}</td>
+							</tr>
+							<tr>
+								<th>Floor Area</th>
+								<td>{NotAvailableReturn(oneListing.FloorArea)}</td>
+							</tr>
+							<tr>
+								<th>Listing Type</th>
+								<td>{`For ${CapitalizeString(oneListing.SaleType)}`}</td>
+							</tr>
+							<tr>
+								<th>Lot Area</th>
+								<td>{NotAvailableReturn(oneListing.LotArea)}</td>
+							</tr>
+							<tr>
+								<th>Furnishing</th>
+								<td>{NotAvailableReturn(oneListing.Furnishing)}</td>
+							</tr>
+							<tr>
+								<th>Price per SqM</th>
+								<td>{NotAvailableReturn(oneListing.PricePerSqm)}</td>
+							</tr>
+							<tr>
+								<th>Bedroom</th>
+								<td>{NotAvailableReturn(oneListing.BedRooms)}</td>
+							</tr>
+							<tr>
+								<th>No of Floors</th>
+								<td>{NotAvailableReturn(oneListing.NoOfFloor)}</td>
+							</tr>
+							<tr>
+								<th>Bathroom</th>
+								<td>{NotAvailableReturn(oneListing.BathRooms)}</td>
+							</tr>
+							<tr>
+								<th>Car Parking</th>
+								<td>{NotAvailableReturn(oneListing.Parking)}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<HomeHighlights
+				features={features}
+				amenities={amenities}
+				includes={includes}
+			/>
+		</div>
+	);
 };
 
 export default PreviewListLeftContent;

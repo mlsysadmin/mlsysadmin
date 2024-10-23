@@ -595,8 +595,10 @@
   border: 0;
 }
 
-.rightIcon{
+.rightIcon, .leftIcon{
   margin-right: 0;
+  padding: 5px;
+  font-size: 18px;
 }
 
   
