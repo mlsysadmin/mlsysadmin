@@ -92,7 +92,7 @@ const handleLogout = async() =>{
 			: "";
 
 	return (
-		<div style={{ position: "relative" }}>
+		<div style={{ position: "relative" }} className="user-dropdown-group">
 			<button
 				style={{
 					margin: "0px 0px 0px 10px",
@@ -130,9 +130,9 @@ const handleLogout = async() =>{
 						right: "0",
 						backgroundColor: "rgba(0, 0, 0, .72)",
 						// color: "white",
-						padding: "10px",
+						padding: "10px 5px",
 						borderRadius: "5px",
-						minWidth: "200px",
+						width: "150px",
 						zIndex: "999",
 						display: "flex",
 						flexDirection: "column",

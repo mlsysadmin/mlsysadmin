@@ -270,6 +270,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 				>
 					<RoundBtn
 						type="primary"
+						id= "list-prop"
 						className="menu-buttons"
 						style={{
 							background: "#D90000",
