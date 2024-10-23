@@ -9,6 +9,9 @@
   width: 100%;
   height: auto;
 }
+.ref-btn-group .ref-prop-btn, .ref-btn-group-two .ref-prop-btn, .ref-btn-group-five .ref-prop-btn { 
+  color: var(--black);
+}
 .refinance-group-one {
   gap: 20px;
   width: 30%;
@@ -46,7 +49,7 @@ h4 {
 .refinance-property-group .ref-prop-btn:hover,
 .refinance-details-group .ref-prop-btn.active,
 .refinance-details-group .ref-prop-btn:hover {
-  background-color: var(--red);
+  background-color: var(--red) !important;
   color: #ffffff;
   cursor: pointer;
 }

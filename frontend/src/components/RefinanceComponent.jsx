@@ -267,7 +267,7 @@ const RefinanceComponent = () => {
 								<button
 									className="ref-dropdown"
 									onClick={handleDropdownOptionClick}
-									style={{ padding: "0px 0px 0px 20px" }}
+									style={{ padding: "0px 0px 0px 20px", color: "black" }}
 								>
 									{selectedDropdownOption ||
 										"Select your current interest rate"}
