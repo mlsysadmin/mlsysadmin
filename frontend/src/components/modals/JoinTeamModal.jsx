@@ -495,18 +495,40 @@ const JoinTeam = ({ toggleModal }) => {
                 </div>
                 <div className="join-team-group">
                   <span>Suffix</span>
-                  <Select
+
+                  <select
+                    id="suffix"
+                    className="join-our-team-selector"
+                    value={formData.suffix}
+                    onChange={
+                      (e) =>
+                        handleInputChange({
+                          target: { name: "suffix", value: e.target.value },
+                        }) // Corrected here
+                    }
+                    name="suffix"
+                    // onChange={handleAddressChange}
+                  >
+                    <option value="" disabled selected hidden>
+                      Select option
+                    </option>
+                    <option value="None">None</option>
+                    <option value="Jr.">Jr.</option>
+                    <option value="Sr.">Sr.</option>
+                  </select>
+
+                  {/* <Select
                     name="suffix"
                     value={formData.suffix}
                     onChange={(value) =>
                       handleInputChange({ target: { name: "suffix", value } })
                     }
                   >
-                    <Option value="">Select Option</Option>
-                    <Option value="None">None</Option>
-                    <Option value="Jr.">Jr.</Option>
-                    <Option value="Sr.">Sr.</Option>
-                  </Select>
+                    <option value="">Select option</option>
+                    <option value="None">None</option>
+                    <option value="Jr.">Jr.</option>
+                    <option value="Sr.">Sr.</option>
+                  </Select> */}
                   {errors.suffix && <p className="error">{errors.suffix}</p>}
                 </div>
               </div>
@@ -540,7 +562,7 @@ const JoinTeam = ({ toggleModal }) => {
                 </div>
                 <div className="join-team-group">
                   <span>Province/State</span>
-                  <Select
+                  {/* <Select
                     name="province"
                     value={formData.province}
                     onChange={(value) => handleProvinceChange(value)}
@@ -558,15 +580,41 @@ const JoinTeam = ({ toggleModal }) => {
                           province.name.slice(1).toLowerCase()}
                       </Option>
                     ))}
-                  </Select>
+                  </Select> */}
+                  <select
+                    id="province"
+                    className="join-our-team-selector"
+                    value={formData.province}
+                    onChange={(e) => handleProvinceChange(e.target.value)}
+                    name="province"
+                    // onChange={handleAddressChange}
+                  >
+                    <option value="" disabled selected hidden>
+                      Select Province
+                    </option>
+                    {getProvince?.map((province, index) => (
+                      <option
+                        key={index}
+                        style={{ maxHeight: "20px", overflowY: "auto" }}
+                        value={
+                          province.name.charAt(0).toUpperCase() +
+                          province.name.slice(1).toLowerCase()
+                        }
+                      >
+                        {province.name.charAt(0).toUpperCase() +
+                          province.name.slice(1).toLowerCase()}
+                      </option>
+                    ))}
+                  </select>
                   {errors.province && (
                     <p className="error">{errors.province}</p>
                   )}
                 </div>
                 <div className="join-team-group">
                   <span>City/Town</span>
-                  <Select
+                  {/* <Select
                     name="city"
+                    className="join-our-team-selector"
                     value={formData.city}
                     onChange={(value) =>
                       handleInputChange({ target: { name: "city", value } })
@@ -578,7 +626,42 @@ const JoinTeam = ({ toggleModal }) => {
                         {formatCityLabel(city.name)}
                       </Option>
                     ))}
-                  </Select>
+                  </Select> */}
+                  <select
+                    name="city"
+                    id="city"
+                    className="join-our-team-selector"
+                    value={formData.city}
+                    onChange={
+                      (e) =>
+                        handleInputChange({
+                          target: { name: "city", value: e.target.value },
+                        }) // Corrected here
+                    }
+                  >
+                    <option value="" disabled selected hidden>
+                      Select City
+                    </option>
+                    {filteredCities.map((city, index) => (
+                      <option
+                        key={index}
+                        value={
+                          city.name.charAt(0).toUpperCase() +
+                          city.name.slice(1).toLowerCase()
+                        }
+                      >
+                        {city.name.charAt(0).toUpperCase() +
+                          city.name.slice(1).toLowerCase()}
+                      </option>
+                    ))}
+
+                    {/* {filteredCities?.map((city, index) => (
+                      <Option key={index} value={formatCityLabel(city.name)}>
+                        {formatCityLabel(city.name)}
+                      </Option>
+                    ))} */}
+                  </select>
+
                   {errors.city && <p className="error">{errors.city}</p>}
                 </div>
                 <div className="join-team-group">
