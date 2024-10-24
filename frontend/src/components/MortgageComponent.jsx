@@ -10,10 +10,10 @@ const MortgageComponent = () => {
 	const [showModal, setShowModal] = useState(false);
 
 	const navigate = useNavigate();
-	const handleButtonClick = () => {
+	const handleButtonClick = (route) => {
 		// console.log("Button clicked, showing modal");
 		// setShowModal(true);
-		navigate("/refinance");
+		navigate(route);
 	};
 	const toggleModal = () => {
 		setShowModal(!showModal);
@@ -33,7 +33,7 @@ const MortgageComponent = () => {
 					style={{ cursor: "pointer" }}
 				>
 					<HomeFilled id="home-icon" />
-					<a style={{ textDecoration: "none" }} onClick={handleButtonClick}>
+					<a style={{ textDecoration: "none" }} onClick={() => handleButtonClick('/buy-a-home')}>
 						<p style={{ color: "white" }}>
 							I want to{" "}
 							<span style={{ fontWeight: "bold", color: "white" }}>
@@ -49,7 +49,7 @@ const MortgageComponent = () => {
 					style={{ cursor: "pointer" }}
 				>
 					<DollarOutlined id="dollar-icon" />
-					<a style={{ textDecoration: "none" }} onClick={handleButtonClick}>
+					<a style={{ textDecoration: "none" }} onClick={() => handleButtonClick('/refinance')}>
 						<p style={{ color: "white" }}>
 							I want to{" "}
 							<span style={{ fontWeight: "bold", color: "white" }}>

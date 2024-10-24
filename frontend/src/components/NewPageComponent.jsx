@@ -16,7 +16,7 @@ import ListingSearch from "./custom/customsearch/custom.listingsearch";
 import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
-import { CapitalizeString, FillLocationFilter, GetPropertyTitle, isPastAMonth, SortByText, SortMaxPrice, SortPrice } from "../utils/StringFunctions.utils";
+import { CapitalizeEachWord, CapitalizeString, FillLocationFilter, GetPropertyTitle, isPastAMonth, SortByText, SortMaxPrice, SortPrice } from "../utils/StringFunctions.utils";
 import DefaultPropertyImage from '../asset/fallbackImage.png';
 
 const NewPageComponent = () => {
@@ -64,7 +64,7 @@ const NewPageComponent = () => {
 		try {
 			const res = await GetPropertiesBySaleStatus();
 
-			const dataresp = res.data;
+			const dataresp = res;
 
 			if (dataresp.length == 0) {
 				setPublicListing([]);
@@ -195,7 +195,7 @@ const NewPageComponent = () => {
 										size={data.lot}
 										likes={data.pics}
 										forsale={data.status}
-										subtitle={`${CapitalizeString(
+										subtitle={`${CapitalizeEachWord(
 											data.property_type
 										)} For ${CapitalizeString(data.sale_type)}`}
 										handleClick={() => handleCardClick(data.property_no)}
