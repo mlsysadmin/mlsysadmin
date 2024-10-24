@@ -186,8 +186,8 @@ const SubMenu = {
 						<>
 							<span>
 								<a
-									// href="/?openModal=true"
-									href="/comingsoon"
+									href="/?openModal=true"
+									// href="/comingsoon"
 									style={{
 										color: "var(--red)",
 										textDecoration: "none",
