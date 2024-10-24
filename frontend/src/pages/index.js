@@ -23,6 +23,8 @@ import ListingsTable from "./ListingsTable.page";
 import Sidebar from "./DraftSidebar.page";
 import PreviewListing from "./PreviewListing.page";
 import ModalComponents from "./ModalComponents.page";
+import PropertySearchPage from "./PropertySearch.page";
+
 // import RegistrationModal from "./RegistrationModal.page";
 import LoginModal from "./LoginModal.page";
 import { ShowDetailsProcessing } from "../components";
@@ -122,4 +124,5 @@ export {
 	SupportCreateListing,
 	FaqsPage,
 	TermsandConditionPage,
+	PropertySearchPage
 };

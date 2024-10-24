@@ -160,7 +160,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 						: Object.keys(sub).includes("sub_info_insurance")
 						? {
 								key: sub.sub_info_insurance,
-								label: "Begin Your Property Search Today with Our Help!",
+								label: "Start Your Property Search Today!",
 								link: sub.link,
 						  }
 						: {

@@ -59,7 +59,7 @@ import { ActiveListingDetails } from "./MY Drafts/ActiveListingDetails";
 
 // modals
 import JoinTeam from "./modals/JoinTeamModal";
-import PropertySearchModal from "./modals/PropertySearchModal";
+import PropertySearch from "./PropertySearchModal";
 //Application
 //  SUPPORT
 import ApplicationDetails from "./support/ApplicationDetails";
@@ -169,7 +169,7 @@ export {
 	SupportListingDetails,
 	ApprovalSectionComponent,
 	JoinTeam,
-	PropertySearchModal,
+	PropertySearch,
 	ViewListingComponent,
 	ApplicationHistory,
 	SaleComponent,

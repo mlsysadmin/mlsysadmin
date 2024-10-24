@@ -119,7 +119,7 @@ const DashboardComponent = () => {
         setPublicListing([]);
       } else {
         const listingRes = dataresp.filter(
-          (listing) => !isPastAMonth(listing.created_at) 
+          (listing) => !isPastAMonth(listing.created_at)
           // && listing.PropertyType == "lot"
         );
 
@@ -155,7 +155,7 @@ const DashboardComponent = () => {
               // isFeatured: item.IsFeatured
               property_type: item.PropertyType,
               city: item.City,
-              province: item.ProvinceState
+              province: item.ProvinceState,
             };
           })
         );
@@ -177,11 +177,17 @@ const DashboardComponent = () => {
   const FillLocationFilter = (listings) => {
     try {
       const falsy = [null, undefined, ""];
-      
-      const distinctProvince = listings.filter(p => !falsy.includes(p.ProvinceState))
+
+      const distinctProvince = listings
+        .filter((p) => !falsy.includes(p.ProvinceState))
         .filter(
           (value, index, self) =>
-            index === self.findIndex((t) => t.ProvinceState.toLowerCase() === value.ProvinceState.toLowerCase())
+            index ===
+            self.findIndex(
+              (t) =>
+                t.ProvinceState.toLowerCase() ===
+                value.ProvinceState.toLowerCase()
+            )
         )
         .map((item, i) => {
           return {
@@ -192,7 +198,6 @@ const DashboardComponent = () => {
         })
         .sort((a, b) => a.value.localeCompare(b.value));
 
-        
       setFilterLocation(distinctProvince);
     } catch (error) {
       console.log("location", error);
@@ -206,7 +211,11 @@ const DashboardComponent = () => {
       window.location.href = url_Redirect;
     }
   };
-
+  const handleClickedGetFreeAssistance = () => {
+    if (url_Redirect) {
+      window.location.href = "/propertySearch";
+    }
+  };
   const tags = [
     {
       key: "all",
@@ -331,7 +340,7 @@ const DashboardComponent = () => {
     return Array(arrLength)
       .fill(null)
       .map((_, i) => {
-        return <FeaturesSkeleton key={i}/>;
+        return <FeaturesSkeleton key={i} />;
       });
   };
 
@@ -339,15 +348,12 @@ const DashboardComponent = () => {
   const [keywordSearch, setKeywordSearch] = useState();
 
   useEffect(() => {
-		
-		console.log('searchParams', searchParams);
-		
-	},[searchParams])
+    console.log("searchParams", searchParams);
+  }, [searchParams]);
   const handleSearchClick = () => {
     let params = "";
 
     searchParams.forEach((item, key) => {
-      
       if (key == 0) {
         if (item.name === "features") {
           const indoorFeatures = item.value.filter(
@@ -416,22 +422,20 @@ const DashboardComponent = () => {
 
   const onSelectionChange = (value, name) => {
     console.log(value, name);
-    
+
     SetParamsAllField(name, value);
   };
 
   const SetParamsAllField = (name, value) => {
-    
     setSearchParams((prevSearchParams) => {
       const existingParamIndex = prevSearchParams.findIndex(
         (param) => param.name === name
       );
-      
+
       if (existingParamIndex !== -1) {
         if (
           // (name === "keyword" && value === "") ||
-          (name === "keyword" && [null, undefined, ""].includes(value)) 
-          ||
+          (name === "keyword" && [null, undefined, ""].includes(value)) ||
           (name === "features" && checkFeatures.length === 0)
         ) {
           prevSearchParams.splice(existingParamIndex, 1);
@@ -440,11 +444,9 @@ const DashboardComponent = () => {
         }
       } else {
         if (
-          (name === "keyword" && [null, undefined, ""].includes(value)) 
-          ||
+          (name === "keyword" && [null, undefined, ""].includes(value)) ||
           (name === "features" && checkFeatures.length === 0)
         ) {
-          
           prevSearchParams.splice(existingParamIndex, 1);
         } else {
           prevSearchParams.push({ name, value });
@@ -455,7 +457,6 @@ const DashboardComponent = () => {
     });
 
     console.log("SetParamsAllField", searchParams);
-    
   };
 
   const onInputChange = (e) => {
@@ -664,7 +665,7 @@ const DashboardComponent = () => {
             {Array(3)
               .fill(null)
               .map((_, i) => {
-                return <CardSkeleton key={i}/>;
+                return <CardSkeleton key={i} />;
               })}
           </div>
         )}
@@ -715,8 +716,34 @@ const DashboardComponent = () => {
               </div>
             </div>
           </div>
+          <div className="manualSearchingDashboardDiv">
+            <div className="manual-searching-title">
+              <h3>Begin Your Property Search Today with Our Help!</h3>
+            </div>
+            <div className="manual-searching-desc">
+              <p>
+                Let us help you find the perfect place to call home! Whether
+                you're searching for a luxurious estate, commercial lot for your
+                business, or industrial lot, our team is dedicated to matching
+                you with the ideal property that suits your needs and
+                preferences.
+              </p>
+            </div>
+            <div className="manualSearch--actions">
+              <SemiRoundBtn
+                label={"Get Free Assistance"}
+                type={"default"}
+                className="manual-search-action action-btn"
+                size={"small"}
+                handleClick={() => {
+                  window.location.href = "/propertySearch/?dashboardClicked=true";
+                }}
+              />
+            </div>
+            <p></p>
+          </div>
         </div>
-        <div
+        {/* <div
           className="featured-list--section"
           style={{
             backgroundColor: "#F7F7F7",
@@ -734,12 +761,13 @@ const DashboardComponent = () => {
             backgroundColor: "#F7F7F7",
           }}
         >
-          {/* <div className="card--brokerage-featured"> */}
-          {/* <div className="featured-container"> */}
           <div className="featured--content">
             {!loading ? (
               publiclisting.length !== 0 ? (
-                <FeaturedPropertiesComponent featuredListing={publiclisting} handleFeaturedClick={handleCardClick}/>
+                <FeaturedPropertiesComponent
+                  featuredListing={publiclisting}
+                  handleFeaturedClick={handleCardClick}
+                />
               ) : (
                 <p style={{ textAlign: "center", padding: "90px 0px 150px" }}>
                   No Featured Properties Available
@@ -757,9 +785,8 @@ const DashboardComponent = () => {
               </div>
             )}
           </div>
-          {/* </div> */}
-          {/* </div> */}
         </div>
+        */}
         <div
           className="ratings"
           style={{
