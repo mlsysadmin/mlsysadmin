@@ -186,20 +186,21 @@ const SubMenu = {
 						<>
 							<span>
 								<a
-									href="/?openModal=true"
-									// href="/comingsoon"
+									// href="/?openModal=true"
+									href="/propertySearch"
+
 									style={{
 										color: "var(--red)",
 										textDecoration: "none",
 										fontSize: "14px",
 									}}
 								>
-									Begin Your Property Search Today with Our Help!
+									Start Your Property Search Today!
 								</a>
 							</span>
 						</>
 					),
-					link: "",
+					link: "/propertySearch",
 				},
 			],
 		},
