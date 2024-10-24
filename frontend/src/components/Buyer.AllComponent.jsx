@@ -19,6 +19,7 @@ import {
 import { GetAllFeaturesByPropertyNo } from "../api/GetAllAmenities";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
 import {
+  CapitalizeEachWord,
   CapitalizeString,
   FillLocationFilter,
   GetPropertyTitle,
@@ -91,7 +92,7 @@ const AllComponent = () => {
     try {
       const res = await GetPropertiesBySaleStatus();
 
-      const dataresp = res.data;
+      const dataresp = res;
 
       if (dataresp.length == 0) {
         setPublicListing([])
@@ -229,7 +230,7 @@ const AllComponent = () => {
                       size={data.lot}
                       likes={data.pics}
                       forsale={data.status}
-                      subtitle={`${CapitalizeString(
+                      subtitle={`${CapitalizeEachWord(
                         data.property_type
                       )} For ${CapitalizeString(data.sale_type)}`}
                       handleClick={() => handleCardClick(data.property_no)}

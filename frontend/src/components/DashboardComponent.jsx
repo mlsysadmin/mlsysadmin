@@ -57,6 +57,7 @@ import { GetProvince } from "../api/Public/Location.api";
 import DefaultPropertyImage from "../asset/fallbackImage.png";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import {
+  CapitalizeEachWord,
   CapitalizeString,
   GetPropertyTitle,
   isPastAMonth,
@@ -113,7 +114,7 @@ const DashboardComponent = () => {
     try {
       const res = await GetPropertiesBySaleStatus();
 
-      const dataresp = res.data;
+      const dataresp = res;
 
       if (dataresp.length == 0) {
         setPublicListing([]);
@@ -144,7 +145,7 @@ const DashboardComponent = () => {
               title: CapitalizeString(item.UnitName),
               price: AmountFormatterGroup(item.Price),
               status: "New",
-              pics: image ? gallery.length + 1 : 0,
+              pics: image ? gallery.length + 1 : 1,
               img: image,
               no_of_bathrooms: item.BathRooms,
               lot: item.LotArea,
@@ -218,11 +219,11 @@ const DashboardComponent = () => {
       label: "New Listing",
       link: "/new",
     },
-    {
-      key: "featured",
-      label: "Featured",
-      link: "/featured",
-    },
+    // {
+    //   key: "featured",
+    //   label: "Featured",
+    //   link: "/featured",
+    // },
     {
       key: "for-sale",
       label: "For Sale",
@@ -622,11 +623,12 @@ const DashboardComponent = () => {
                     lot={item.lot}
                     key={i}
                     loading={loading}
-                    subtitle={`${CapitalizeString(
+                    subtitle={`${CapitalizeEachWord(
                       item.property_type
                     )} For ${CapitalizeString(item.sale_type)}`}
                     listingId={item.property_no}
                     handleClick={() => handleCardClick(item.property_no)}
+                    sale_status={item.sale_type}
                   />
                 );
               })}

@@ -63,17 +63,6 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
     images.length === 0 || currentImageIndex === images.length - 1;
 
   const isPrevDisabled = images.length === 0 || currentImageIndex === 0;
-
-  const GetGalleryLength = async () => {
-    try {
-      const unitPhotos = GetUnitPhotos(oneListing.id);
-
-
-    }catch(err) {
-      console.log(err);
-    }
-    
-  }
   
   return (
     <article className={styles.propertyCard}>
@@ -109,7 +98,9 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
             }
           </div>
           <div className={styles.priceTag}>
-            PHP {AmountFormatterGroup(oneListing.Price)}
+            PHP {AmountFormatterGroup(oneListing.Price)} {
+              oneListing.SaleType.toLowerCase() == 'rent' ? '/ month' : ''
+            }
           </div>
         </div>
         <div className={styles.actionContainer}>

@@ -136,7 +136,7 @@ const SearchListingComponent = () => {
 
 
             const res = await GetPropertiesBySaleStatus();
-            const dataresp = res.data;
+            const dataresp = res;
 
             if (dataresp.length !== 0) {
                 const formattedListings = dataresp.filter(f => ![null, undefined, ""].includes(f.ProvinceState)).map((listing) => {
@@ -176,7 +176,8 @@ const SearchListingComponent = () => {
                         .replace(/[\/_-]/g, '')
                     .includes(renderParams['keyword']
                         .toLowerCase()
-                        .replace(/[\/_-]/g, '')));
+                        .replace(/[\/_-]/g, ''))
+                    );
 
                 if (hasLocation && hasKeyword) {
                     const main = ['location', 'keyword'];

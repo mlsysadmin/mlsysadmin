@@ -11,22 +11,17 @@ import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
 import { Tooltip } from "antd";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
 import { CameraFilled, HeartFilled, HeartOutlined } from '@ant-design/icons';
+import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
+import ShowerOutlinedIcon from "@mui/icons-material/ShowerOutlined";
+import ShortcutOutlined from "@mui/icons-material/ShortcutOutlined";
 
 const CardListingComponent = ({
 	loading, status, pics, title, price, features,
-	listingId, no_of_bathrooms, lot, img, handleClick, subtitle, no_of_beds
+	listingId, no_of_bathrooms, lot, img, handleClick, subtitle, no_of_beds, sale_status
 }) => {
-	const [publiclisting, setPublicListing] = useState([])
 	const [checked, setIsChecked] = useState(false);
 	const [likes, setLikes] = useState([]);
 	const [showTooltip, setShowTooltip] = useState(false);
-
-	const allPublicListing = async () => {
-		const res = await GetPropertiesBySaleStatus();
-		const dataresp = res.data
-		setPublicListing(dataresp);
-
-	}
 
 	const ImageTag = () => (
 		<div className='image-tag'>
@@ -84,9 +79,6 @@ const CardListingComponent = ({
 
 	const handleChange = (isChecked, tag, listingId) => {
 
-		// console.log("tag", tag);
-		// console.log("check", isChecked);
-		// setIsChecked(isChecked);
 		const id = listingId;
 
 		const nextSelectedTags = isChecked && !likes.includes(id) ?
@@ -157,19 +149,22 @@ const CardListingComponent = ({
 						<h5>{subtitle}</h5>
 					</div>
 					<Row className="card-content--subtitle">
-						<p className="price">{price}</p>
+						<p className="price">{price}{
+							sale_status.toLowerCase() == 'rent' ? '/month' : ''	
+						}</p>
 						<div className="card-features">
 							{/* <Features /> */}
 							{
 								parseInt(no_of_beds) > 0 && (
 									<div className="feature-content">
 										<>
-											< img
+											{/* < img
 												src={HotelBed}
 												alt="sqm"
 												className="feature-icon"
 												style={{ color: "#333333" }}
-											/>
+											/> */}
+											<BedOutlinedIcon/>
 											<p className="feature-detail">{no_of_beds}</p>
 										</>
 									</div>
@@ -179,12 +174,13 @@ const CardListingComponent = ({
 								parseInt(no_of_bathrooms) > 0 && (
 									<div className="feature-content">
 										<>
-											< img
-												src={Shower}
+											{/* < img
+												src={ShortcutOutlined}
 												alt="sqm"
 												className="feature-icon"
 												style={{ color: "#333333" }}
-											/>
+											/> */}
+											<ShowerOutlinedIcon/>
 											<p className="feature-detail">{no_of_bathrooms}</p>
 										</>
 									</div>
@@ -193,7 +189,8 @@ const CardListingComponent = ({
 							{
 								lot && (
 									<div className="feature-content">
-										<img src={Sqm} alt="sqm" className="feature-icon" />
+										{/* <img src={Sqm} alt="sqm" className="feature-icon" /> */}
+										<ShortcutOutlined/>
 										<p className="feature-detail">{lot} SqM</p>
 									</div>
 								)
