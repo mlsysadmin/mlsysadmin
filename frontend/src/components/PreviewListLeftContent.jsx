@@ -19,6 +19,11 @@ import {
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import { PropertyTypeCategory } from "../utils/PropertyStaticData.utils";
+import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
+import ShowerOutlinedIcon from "@mui/icons-material/ShowerOutlined";
+import ShortcutOutlinedIcon from "@mui/icons-material/ShortcutOutlined";
+import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
+import PhpOutlinedIcon from '@mui/icons-material/PhpOutlined';
 
 const PreviewListLeftContent = ({
   label,
@@ -45,27 +50,31 @@ const PreviewListLeftContent = ({
     const feat = [
       {
         title: "Bedrooms",
-        iconSrc:
-          "https://cdn.builder.io/api/v1/image/assets/TEMP/ffa0b4ae5294fab32f04e2df5bccc9e215b962c4a23b87baa3b3a4f9d11a3bf0?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
+        iconSrc: <BedOutlinedIcon/>,
+          // "https://cdn.builder.io/api/v1/image/assets/TEMP/ffa0b4ae5294fab32f04e2df5bccc9e215b962c4a23b87baa3b3a4f9d11a3bf0?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
         value: oneListing.BedRooms,
       },
       {
         title: "Bathrooms",
-        iconSrc:
-          "https://cdn.builder.io/api/v1/image/assets/TEMP/372723378f9151c6cced3d234ccf4d85735cb0c5bd16df4ca6bac2adaf6189fb?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
+        iconSrc: <ShowerOutlinedIcon/>,
+          // "https://cdn.builder.io/api/v1/image/assets/TEMP/372723378f9151c6cced3d234ccf4d85735cb0c5bd16df4ca6bac2adaf6189fb?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
         value: oneListing.BathRooms,
       },
       {
         title: "Garage",
-        iconSrc:
-          "https://cdn.builder.io/api/v1/image/assets/TEMP/a17243275d0fedc1a93dbce25cd9571671d11f482871f3219644e3e5fe1afa72?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
+        iconSrc: <DirectionsCarFilledOutlinedIcon/>,
+          // "https://cdn.builder.io/api/v1/image/assets/TEMP/a17243275d0fedc1a93dbce25cd9571671d11f482871f3219644e3e5fe1afa72?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
         value: oneListing.Parking,
       },
-      { title: "Area", iconSrc: area, value: oneListing.LotArea },
+      { 
+        title: "Area", 
+        // iconSrc: area,
+        iconSrc: <ShortcutOutlinedIcon/>, 
+        value: oneListing.LotArea },
       {
         title: "Price per SqM",
-        iconSrc: "",
-        value: `PHP ${oneListing.PricePerSqm}`,
+        iconSrc: <PhpOutlinedIcon/>,
+        value: `${oneListing.PricePerSqm}`,
       },
     ];
     let feature = [];
@@ -80,10 +89,10 @@ const PreviewListLeftContent = ({
       feature = feat.filter((item, i) =>
         ["price per sqm", 'area'].includes(item.title.toLocaleLowerCase())
       );
-    } 
+    }
     else if (property_type.toLowerCase().includes("lot") && property_type.toLowerCase().includes("house")) {
       feature = feat;
-    } 
+    }
     else {
       feature = feat.filter(
         (item, i) => !["price per sqm"].includes(item.title.toLocaleLowerCase())
@@ -224,11 +233,16 @@ const PreviewListLeftContent = ({
           </table>
         </div>
       </div>
-      <HomeHighlights
-        features={features}
-        amenities={amenities}
-        includes={includes}
-      />
+      {
+        features.length == 0 && amenities.length == 0 && includes.length == 0 ?
+           <></>
+        :
+          <HomeHighlights
+            features={features}
+            amenities={amenities}
+            includes={includes}
+          />
+      }
     </div>
   );
 };

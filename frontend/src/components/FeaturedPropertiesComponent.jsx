@@ -10,6 +10,9 @@ import shower from "../asset/icons/hotel-shower.png";
 import bed from "../asset/icons/outlined-bed.png";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
+import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
+import ShowerOutlinedIcon from "@mui/icons-material/ShowerOutlined";
+import ShortcutOutlined from "@mui/icons-material/ShortcutOutlined";
 
 const FeaturedPropertiesComponent = ({ featuredListing, handleFeaturedClick }) => {
   const navigate = useNavigate();
@@ -66,19 +69,22 @@ const FeaturedPropertiesComponent = ({ featuredListing, handleFeaturedClick }) =
               <div className="feature-items--featured" key={i}>
                 {lot > 0 && (
                   <div className="feature-item--featured">
-                    <img src={sqm} alt="area-icon" className="featured-item--img" />
+                    <ShortcutOutlined/>
+                    {/* <img src={sqm} alt="area-icon" className="featured-item--img" /> */}
                     <p>{lot}</p>
                   </div>
                 )}
                 {no_of_bathrooms > 0 && (
                   <div className="feature-item--featured">
-                    <img src={shower} alt="bathroom-icon" className="featured-item--img" />
+                    {/* <img src={shower} alt="bathroom-icon" className="featured-item--img" /> */}
+                    <ShowerOutlinedIcon/>
                     <p>{no_of_bathrooms}</p>
                   </div>
                 )}
                 {no_of_beds > 0 && (
                   <div className="feature-item--featured">
-                    <img src={bed} alt="bed-icon" className="featured-item--img" />
+                    {/* <img src={bed} alt="bed-icon" className="featured-item--img" /> */}
+                    <BedOutlinedIcon/>
                     <p>{no_of_beds}</p>
                   </div>
                 )}

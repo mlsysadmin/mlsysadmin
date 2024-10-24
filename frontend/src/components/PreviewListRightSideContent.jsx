@@ -120,8 +120,8 @@ const PreviewListRightSideContent = ({ oneListing }) => {
     api[type]({
       message: message,
       description: description,
-      placement: "top",
-      duration: type == "error" ? 4 : 3,
+      placement: "bottomRight",
+      duration: type == "error" ? 10 : 10,
     });
   };
   const handleContactChange = (e) => {
@@ -161,7 +161,7 @@ const PreviewListRightSideContent = ({ oneListing }) => {
           "Please provide a valid email address."
         );
       } else {
-        
+
         setLoading(true);
         const sendEmailMessage = await SendEmailInquiry(contact);
         if (Object.keys(sendEmailMessage).length == 0) {
@@ -186,7 +186,9 @@ const PreviewListRightSideContent = ({ oneListing }) => {
       openNotificationWithIcon(
         "error",
         "Message Failed",
-        "We're sorry, but your message couldn't be sent. We're already working on resolving the issue. Thank you for your patience!"
+        `We're sorry, but your message couldn't be sent. We're already working on resolving the issue. 
+        Please try again later, or for immediate assistance, contact us at properties@mlhuillier.com or 380 300, local 11569.
+        Thank you for your patience!`
       );
     }
 

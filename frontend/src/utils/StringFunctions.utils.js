@@ -119,7 +119,7 @@ const CapitalizeEachWord = (word) => {
     capitalizeEachWord = "";
   }else{
     let w = ""
-    word.trim().replace(/[\/_-]/g, " ").split(' ').forEach((st) => {
+    word.trim().replace(/[\_-]/g, " ").split(' ').forEach((st) => {
       w += CapitalizeString(st) + " ";
     })
 

@@ -88,7 +88,7 @@ const ListingSearch = ({
 	}
 	const SelectNum = () => {
 
-		const arr = new Array(20).fill("");
+		const arr = new Array(6).fill("");
 
 		const newArr = arr.map((_, i) => {
 			return {

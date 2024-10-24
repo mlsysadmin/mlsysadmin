@@ -6,7 +6,10 @@ const VLFeatureCard = ({ title, iconSrc, value }) => {
     <div className={styles.featureCard}>
       <div className={styles.featureTitle}>{title}</div>
       <div className={styles.featureContent}>
-        <img loading="lazy" src={iconSrc} alt="" className={styles.featureIcon} />
+        {/* <img loading="lazy" src={iconSrc} alt="" className={styles.featureIcon} /> */}
+        {
+          iconSrc
+        }
         <div className={styles.featureValue}>{value}</div>
       </div>
     </div>

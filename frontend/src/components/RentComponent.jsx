@@ -93,7 +93,7 @@ const RentComponent = () => {
 		try {
 			const res = await GetPropertiesBySaleStatus();
 
-			const dataresp = res.data;
+			const dataresp = res;
 
 			if (dataresp.length == 0) {
 				setPublicListing([]);
