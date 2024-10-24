@@ -9,7 +9,11 @@ const GetPropertiesBySaleStatus = async () =>{
     try {
         const response = await IGOTSOLUTIONSAxiosInstance.get(`/api/getPropertiesBySaleStatus/unsold`);
 
-        return response;
+        const isPublic = response.data.filter((d) => d.AccessType);
+
+        // console.log(isPublic);
+        
+        return isPublic;
         
     } catch (error) {
         console.log(error);

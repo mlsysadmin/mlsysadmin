@@ -19,7 +19,7 @@ const MapComponent = ({ style, oneListing }) => {
 
   useEffect(() => {
     const fetchCoordinates = async () => {
-      const formattedLocation = `${oneListing.City?.toLowerCase().includes('city') ? oneListing.City.replace('city', ''): oneListing.City}, ${CapitalizeString(oneListing.ProvinceState)}`;
+      const formattedLocation = `${oneListing.City?.toLowerCase().includes('city') ? oneListing.City.toLowerCase().replace('city', ''): oneListing.City}, ${CapitalizeString(oneListing.ProvinceState)}`;
       // const formattedLocation = oneListing.MapLocation;
       console.log("formattedLocation", formattedLocation);
       // const formattedLocation = LocationFormatter(oneListing.City);
