@@ -11,13 +11,6 @@
 	font-family: "Poppins", Helvetica;
 }
 
-.listing-steps {
-	/* flex: 1; */
-	/* border-style: solid; */
-	/* margin-left: 20px ; */
-	/* padding: 0px 20px; */
-}
-
 .CheckOutlined {
 	width: 30px;
 	height: 30px;
@@ -252,7 +245,6 @@
 	font-size: 16px;
 	font-weight: bold;
 	margin-right: 18px;
-	margin-bottom: 50px;
 }
 
 .aggreement{

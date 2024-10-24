@@ -137,7 +137,7 @@ const PreviewListRightSideContent = ({ oneListing }) => {
     e.preventDefault();
   };
   const handleLoanClick = () => {
-    navigate("/loan-calculator");
+    navigate("/discover-home#calculatorRef");
   };
   const handleContactClick = async () => {
     try {

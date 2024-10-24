@@ -267,7 +267,7 @@ const RefinanceComponent = () => {
 								<button
 									className="ref-dropdown"
 									onClick={handleDropdownOptionClick}
-									style={{ padding: "0px 0px 0px 20px" }}
+									style={{ padding: "0px 0px 0px 20px", color: "black" }}
 								>
 									{selectedDropdownOption ||
 										"Select your current interest rate"}
@@ -461,7 +461,7 @@ const RefinanceComponent = () => {
 						</p>
 						<div className="ref-btn-group-input">
 							<div className="ref-btn-group">
-								<input type="number" placeholder="City or zip code" />
+								<input type="text" placeholder="City or zip code" />
 							</div>
 						</div>
 					</div>

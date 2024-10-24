@@ -557,7 +557,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
 							</span>
 							<div className="prop-info-btn-group-details-input">
 								<input
-									type="number"
+									type="text"
 									placeholder="City or zip code"
 									style={{ padding: "0px 0px 0px 10px" }}
 								/>

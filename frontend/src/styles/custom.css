@@ -196,7 +196,7 @@ listing search */
 	width: 95%;
 	/* margin: 50px 0px 0px 50px; */
 	border-radius: 8px;
-	margin: 50px 45px
+	margin: 50px 45px;
 	/* padding-top: 40px; */
 }
 
@@ -243,7 +243,7 @@ listing search */
 	background-size: 14px;
 	align-items: center;
 }
-.select-field-features span{
+.select-field-features span {
 	padding: 0px 10px;
 }
 .select-field.ant-select .ant-select-selection-placeholder {
@@ -309,7 +309,8 @@ listing search */
 	margin-right: auto;
 }
 
-.subcontent-inputs-1 .right-button, .subcontent-inputs-1 .right-button.ant-btn:hover {
+.subcontent-inputs-1 .right-button,
+.subcontent-inputs-1 .right-button.ant-btn:hover {
 	background-color: var(--red) !important;
 	color: white;
 	border-radius: 5px;
@@ -663,6 +664,10 @@ listing search */
 	.subcontent-inputs-2 .select-field-features {
 		padding: 0px 15px 0px 15px;
 	}
+	.success-modal-content-body {
+		width: 90%;
+		font-size: 18px;
+	}
 }
 
 @media screen and (min-width: 360px) and (max-width: 420px) {
@@ -690,10 +695,18 @@ listing search */
 		gap: 5px;
 		flex-direction: column;
 	}
+	.success-modal-content-body {
+		width: 90%;
+		margin: 0px 10px;
+		text-align: center;
+	}
+	.modal-success-header {
+		font-size: 20px;
+	}
 	.subcontent-inputs-1 .input-field {
 		padding: 0px 0px 0px 10px;
 	}
-	.subcontent-inputs-2 .input-field{
+	.subcontent-inputs-2 .input-field {
 		padding: 0px 0px 0px 13px;
 	}
 
@@ -702,7 +715,7 @@ listing search */
 	.subcontent-inputs-2 .select-field-features {
 		padding: 3px;
 	}
-	.subcontent-inputs-2  .select-field-features {
+	.subcontent-inputs-2 .select-field-features {
 		padding: 10px 15px 0px 15px;
 	}
 	.advance-searchdropdown {
@@ -799,6 +812,14 @@ listing search */
 		align-items: center;
 		gap: 5px;
 		flex-direction: column;
+	}
+	.success-modal-content-body {
+		width: 90%;
+		margin: 0px 10px;
+		text-align: center;
+	}
+	.modal-success-header {
+		font-size: 20px;
 	}
 	.advance-searchdropdown {
 		display: flex;
@@ -897,6 +918,14 @@ listing search */
 		gap: 5px;
 		flex-direction: column;
 	}
+	.success-modal-content-body {
+		width: 90%;
+		margin: 0px 10px;
+		text-align: center;
+	}
+	.modal-success-header {
+		font-size: 20px;
+	}
 
 	.advance-searchdropdown {
 		display: flex;
@@ -989,6 +1018,14 @@ listing search */
 		gap: 5px;
 		flex-direction: column;
 	}
+	.success-modal-content-body {
+		width: 90%;
+		margin: 0px 10px;
+		text-align: center;
+	}
+	.modal-success-header {
+		font-size: 20px;
+	}
 	.advance-searchdropdown {
 		display: flex;
 		flex-direction: column;
@@ -1060,7 +1097,7 @@ listing search */
 
 @media screen and (min-width: 481px) and (max-width: 485px) {
 	.first-content {
-		margin:50px 0px 0px 10px;
+		margin: 50px 0px 0px 10px;
 		height: 550px;
 	}
 	.first-content .sub-content1 {
@@ -1075,6 +1112,14 @@ listing search */
 		flex-wrap: wrap;
 		width: 100%;
 		gap: 10px;
+	}
+	.success-modal-content-body {
+		width: 90%;
+		margin: 0px 10px;
+		text-align: center;
+	}
+	.modal-success-header {
+		font-size: 20px;
 	}
 	.subcontent-inputs-1 .input-field,
 	.subcontent-inputs-1 .select-field {
@@ -1168,6 +1213,14 @@ listing search */
 		flex-wrap: wrap;
 		width: 100%;
 		gap: 10px;
+	}
+	.success-modal-content-body {
+		width: 90%;
+		margin: 0px 10px;
+		text-align: center;
+	}
+	.modal-success-header {
+		font-size: 20px;
 	}
 	.subcontent-inputs-1 .input-field,
 	.subcontent-inputs-1 .select-field {
@@ -1931,78 +1984,78 @@ listing search */
 	}
 }
 @media screen and (min-width: 769px) and (max-width: 794px) {
-.subcontent-inputs-1 .right-button{
-	position: absolute ;
-	margin-left: 600px !important;
-	margin-top: 240px !important;
-	height: 40px;
-}
-.sub-content1{
-	height: 310px;
-	padding-left: 10px;
-	margin: 0px;
-}
+	.subcontent-inputs-1 .right-button {
+		position: absolute;
+		margin-left: 600px !important;
+		margin-top: 240px !important;
+		height: 40px;
+	}
+	.sub-content1 {
+		height: 310px;
+		padding-left: 10px;
+		margin: 0px;
+	}
 }
 @media screen and (min-width: 710px) and (max-width: 718px) {
-.subcontent-inputs-1 .right-button{
-	position: absolute ;
-	margin-left: 520px !important;
-	margin-top: 280px !important;
-	height: 40px;
-}
-.sub-content1{
-	height: 310px;
-	padding-left: 10px;
-	margin: 0px;
-}
-.first-content{
-	width: 100%;
-	margin: 50px 20px
-}
+	.subcontent-inputs-1 .right-button {
+		position: absolute;
+		margin-left: 520px !important;
+		margin-top: 280px !important;
+		height: 40px;
+	}
+	.sub-content1 {
+		height: 310px;
+		padding-left: 10px;
+		margin: 0px;
+	}
+	.first-content {
+		width: 100%;
+		margin: 50px 20px;
+	}
 }
 
 @media screen and (min-width: 710px) and (max-width: 742px) {
-.subcontent-inputs-1 .right-button{
-	position: absolute ;
-	margin-left: 560px;
-	margin-top: 230px;
-	height: 40px;
-}
-.sub-content1{
-	height: 310px;
-	padding-left: 10px;
-}
+	.subcontent-inputs-1 .right-button {
+		position: absolute;
+		margin-left: 560px;
+		margin-top: 230px;
+		height: 40px;
+	}
+	.sub-content1 {
+		height: 310px;
+		padding-left: 10px;
+	}
 }
 @media screen and (min-width: 742px) and (max-width: 768px) {
-.subcontent-inputs-1 .right-button{
-	position: absolute ;
-	margin-left: 580px !important;
-	margin-top: 240px !important;
-	height: 40px;
-}
-.sub-content1{
-	height: 310px;
-	padding-left: 10px;
-	margin: 0px;
-}
-.first-content{
-	margin: 50px 0px;
-}
+	.subcontent-inputs-1 .right-button {
+		position: absolute;
+		margin-left: 580px !important;
+		margin-top: 240px !important;
+		height: 40px;
+	}
+	.sub-content1 {
+		height: 310px;
+		padding-left: 10px;
+		margin: 0px;
+	}
+	.first-content {
+		margin: 50px 0px;
+	}
 }
 @media screen and (min-width: 795px) and (max-width: 855px) {
-.subcontent-inputs-1 .right-button{
-	position: absolute ;
-	margin-left: 640px !important;
-	margin-top: 240px !important;
-	height: 40px;
-}
-.sub-content1{
-	height: 310px;
-	padding-left: 10px;
-	margin: 0px;
-}
-.first-content{
-	width: 100%;
-	margin: 50px 20px
-}
+	.subcontent-inputs-1 .right-button {
+		position: absolute;
+		margin-left: 640px !important;
+		margin-top: 240px !important;
+		height: 40px;
+	}
+	.sub-content1 {
+		height: 310px;
+		padding-left: 10px;
+		margin: 0px;
+	}
+	.first-content {
+		width: 100%;
+		margin: 50px 20px;
+	}
 }

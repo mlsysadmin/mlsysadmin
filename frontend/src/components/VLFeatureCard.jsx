@@ -1,7 +1,20 @@
-import React from 'react';
-import styles from '../styles/VListingHouseDetails.module.css';
+import React, { useEffect, useState } from "react";
+import styles from "../styles/VListingHouseDetails.module.css";
 
 const VLFeatureCard = ({ title, iconSrc, value }) => {
+
+  // Function to format the value
+  const formatValue = (value) => {
+    const cleanedValue = value.replace(/[^0-9.]/g, "");
+    const numberValue = parseFloat(cleanedValue);
+    if (title === "Price per SqM") {
+      return `${new Intl.NumberFormat("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(numberValue)}`;
+    }
+    return value;
+  };
   return (
     <div className={styles.featureCard}>
       <div className={styles.featureTitle}>{title}</div>
@@ -10,7 +23,7 @@ const VLFeatureCard = ({ title, iconSrc, value }) => {
         {
           iconSrc
         }
-        <div className={styles.featureValue}>{value}</div>
+        <div className={styles.featureValue}>{formatValue(value)}</div>
       </div>
     </div>
   );
