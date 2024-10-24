@@ -95,9 +95,28 @@ const HeaderMenu = () => {
 		}, [userDetails]);
 
 
-	const handleUserProfileClick = () => {
-		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
-		const loginUrl = process.env.REACT_APP_LOGIN_URL;
+		useEffect(() => {
+			const currentPath = location.pathname;
+
+			if (currentPath.includes("/rent")) {
+				setCurrent("rent");
+			} else if (currentPath.includes("/sale")) {
+				setCurrent("buy");
+			} else if (currentPath.includes("/discover-home")) {
+				setCurrent("home-loan");
+			} else if (currentPath.includes("/loan-calculator")) {
+				setCurrent("home-loan");
+			} else if (currentPath.includes("/refinance")) {
+				setCurrent("home-loan");
+			} else if (currentPath.includes("/buy-a-home")) {
+				setCurrent("home-loan");
+			} else {
+				setCurrent("");
+			}
+		}, [location.pathname]);
+
+
+	const handleListPropertyClick = () => {
 		if (isMLWWSPresent && isAccountDetailsPresent) {
 			if (userDetails?.tier?.label === "FULLY VERIFIED") {
 				window.location.href = "/listing";
@@ -366,7 +385,7 @@ const HeaderMenu = () => {
 						margin: "0px 0px 0px 0px",
 					}}
 					label="List your Property"
-					onClick={handleUserProfileClick}
+					onClick={handleListPropertyClick}
 				/>
 				{showUpgradeModal && (
 					<UpgradeTierModal

@@ -52,6 +52,7 @@ export const ListingForm = () => {
 	const [addedVendorId, setAddedVendorId] = useState();
 	const [addedVendorName, setAddedVendorName] = useState();
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [submitTINDisabled,setIsSubmitTINDisabled] =  useState("");
 	const [tin, setTin] = useState(null);
 
 	const accountDetails = getCookieData();
@@ -127,25 +128,17 @@ export const ListingForm = () => {
 		fetchUserDetails();
 	}, []);
 
-	const handleError = (error) => {
-		if (error.status >= 400 && error.status <= 500) {
-			setShowAlert(true);
-			setShowAlertModal({
-				title: "Request Failed",
-				text: error.data.message || "Something went wrong",
-				subtitle: error.data.subtitle || "",
-				subLink: true,
-				isError: true,
-			});
-		} else {
-			setShowAlert(true);
-			setShowAlertModal({
-				title: "Error",
-				text: error.data.message || "An error occurred",
-				subTitle: "",
-				isError: true,
-			});
+	const [tinError, serTinError] = useState("");
+	const TinValidation = (inputTin) => {
+		const isNumericTin = /^\d+$/.test(inputTin);
+		if (!isNumericTin) {
+			return "TIN must contain only numbers.";
 		}
+		if (inputTin.length !== 9) {
+
+			return `TIN must be exactly 9 characters long.`;
+		}
+		return "";
 	};
 
 	const handleStepComplete = (stepIndex, isComplete) => {
@@ -180,6 +173,7 @@ export const ListingForm = () => {
 	};
 
 	const handleVendorSubmit = async () => {
+		setIsSubmitting(false);
 		try {
 			if (Object.keys(accountDetails).length !== 0) {
 				let number = accountDetails.mobileNumber;
@@ -187,7 +181,6 @@ export const ListingForm = () => {
 				try {
 					const vendorExists = await GetVendorByNumber(number);
 					console.log("vendorDetails", vendorExists.data);
-
 					// setShowLoadingModal({
 					// 	loading: true,
 					// 	text: "Just a moment",
@@ -195,6 +188,7 @@ export const ListingForm = () => {
 
 					if (Object.keys(vendorExists.data).length !== 0) {
 						setShowVendorModal(false);
+						console.log("Vendor Exist:", vendorExists.data);
 						// setIsSubmitting(true);
 						await handleCreateProperty(
 							vendorExists.data.VendorName,
@@ -205,7 +199,9 @@ export const ListingForm = () => {
 						const generatedVendotId = await GetVendorId();
 						setAddedVendorId(generatedVendotId);
 						setAddedVendorName(vendorName);
+						setIsSubmitting(false);
 						setShowVendorModal(true);
+
 					}
 				} catch (error) {
 					console.error("Error checking vendor existence:", error);
@@ -349,14 +345,22 @@ export const ListingForm = () => {
 			console.error("Error processing features:", error.message);
 		}
 	};
+  const handleInputTINChange = (e) => {
+		const inputTin = e.target.value;
+		setTin(inputTin); 
+		const validationMessage = TinValidation(inputTin); 
+		serTinError(validationMessage);
+		setIsSubmitTINDisabled(validationMessage !== ""); 
+	};
+
+
 
 	const handleSubmit = async () => {
-			setIsSubmitting(true);
+		setIsSubmitting(true);
 		try {
 			const falsyValue = [undefined, null, ""];
 			if (falsyValue.includes(tin)) {
-			
-				// alert("Tin required!");
+				alert("Tin required!");
 			} else {
 				const vendorPayload = {
 					VendorId: addedVendorId,
@@ -374,17 +378,14 @@ export const ListingForm = () => {
 					ComRate: "10",
 				};
 				console.log("Adding new vendor:", vendorPayload);
-				alert("Vendor Added Successfully");
 
 				const addNewVendor = await AddVendor(vendorPayload);
 				if (addNewVendor) {
-					handleCreateProperty(addedVendorName,addedVendorId);
+					handleCreateProperty(addedVendorName, addedVendorId);
 				} else {
 					console.log(addNewVendor);
 				}
 			}
-
-		
 
 			// console.log("modal", showAlertModal);
 			// const generatedVendorId = VendorId;
@@ -696,17 +697,32 @@ export const ListingForm = () => {
 													type="text"
 													id="tin"
 													value={tin}
-													// Replace this with the state variable you use to store the TIN
-													onChange={(e) => setTin(e.target.value)} // Replace setTin with your setter for TIN
-													placeholder="Enter TIN"
+													onChange={handleInputTINChange}
+													placeholder="Enter your 9 digit TIN"
 													style={{ padding: "10px", width: "100%" }}
 												/>
+												{tinError && (
+													<p
+														style={{
+															color: "var(--red)",
+															marginTop: "5px",
+															fontSize: "14px",
+														}}
+													>
+														{tinError}
+													</p>
+												)}
 											</div>
 
 											<button
-												disabled={!tin}
+												disabled={submitTINDisabled}
 												onClick={handleSubmit}
-												style={{ padding: "10px 50px", fontSize: "16px" }}
+												style={{
+													padding: "10px 50px",
+													fontSize: "16px",
+													backgroundColor: submitTINDisabled ? "gray" : "var(--red)",
+													cursor: submitTINDisabled ? "not-allowed" : "pointer",
+												}}
 											>
 												Submit
 											</button>
