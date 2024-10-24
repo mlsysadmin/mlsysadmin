@@ -1,5 +1,6 @@
-import React from "react";
-import { useState } from "react";
+import React, { useRef } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
 import FooterComponent from "./layout/FooterComponent";
 import MainLayout from "./layout/layout.component";
@@ -32,6 +33,20 @@ const DiscoverHomeComponent = () => {
 	const toggleAccordion = (index) => {
 		setActiveIndex(index === activeIndex ? null : index);
 	};
+
+	const calculatorRef = useRef(null);
+	const location = useLocation();
+	const scrollToSection = (sectionRef) => {
+		if (sectionRef?.current) {
+			sectionRef.current.scrollIntoView({ behavior: "smooth" });
+		}
+	};
+
+	useEffect(() => {
+		if (location.hash === "#calculator") {
+			scrollToSection(calculatorRef); // Scroll to calculator if URL has #calculator
+		}
+	}, [location]);
 
 	const handleSelectOptionChange = (e) => {
 		setyearFixed(e.target.value);
@@ -136,7 +151,7 @@ const DiscoverHomeComponent = () => {
 			<div className="mortgage-calc">
 				<div className="mortgage-calc-cont">
 					<div className="mortgage-cont1">
-						<div className="mortrange">
+						<div className="mortrange" ref={calculatorRef}>
 							<div className="mortgage-title-mort">Mortgage Calculator</div>
 							<div className="range-group">
 								<div className="home-price-frame">
@@ -191,15 +206,6 @@ const DiscoverHomeComponent = () => {
 								<div className="loan-term-frame">
 									<div className="loan-term-frame-title">Loan Term</div>
 									<div className="loan-term-frame-cont">
-										<img
-											src={iconcalcu}
-											alt="Iconcalcu"
-											style={{
-												height: "25px",
-												width: "25px",
-												color: "black",
-											}}
-										/>
 										<div className="loan-term-value">
 											<Select
 												value={yearFixed}
@@ -210,6 +216,7 @@ const DiscoverHomeComponent = () => {
 												<Select.Option value={5}>5 Years Fixed</Select.Option>
 												<Select.Option value={10}>10 Years Fixed</Select.Option>
 												<Select.Option value={15}>15 Years Fixed</Select.Option>
+												<Select.Option value={30}>30 Years Fixed</Select.Option>
 											</Select>
 										</div>
 
@@ -414,10 +421,10 @@ const DiscoverHomeComponent = () => {
 				<div className="faqs-content">
 					<h2>Most-asked morgage questions</h2>
 					{Object.keys(faqsloandata).map((category, i) => {
-						const {faqs, Title} = faqsloandata[category];
+						const { faqs, Title } = faqsloandata[category];
 						return (
-							<div className="discover-questions" key = {i}> 
-							<br/>
+							<div className="discover-questions" key={i}>
+								<br />
 								<h2>{Title}</h2>
 								{faqs.map((item, index) => (
 									<div key={index}>

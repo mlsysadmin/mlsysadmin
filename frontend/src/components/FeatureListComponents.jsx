@@ -8,7 +8,11 @@ import {
 import "../styles/listing-form.css";
 import axios from "axios";
 
-const FeaturedComponents = ({ onComplete, setPropertyFields }) => {
+const FeaturedComponents = ({
+	onComplete,
+	setPropertyFields,
+	selectedPropertyTab,
+}) => {
 	const [indoorSelectedFeatures, setIndoorSelectedFeatures] = useState([]);
 	const [outdoorSelectedFeatures, setOutdoorSelectedFeatures] = useState([]);
 	const [indooramenities, setIndoorAmenities] = useState([]);
@@ -47,8 +51,24 @@ const FeaturedComponents = ({ onComplete, setPropertyFields }) => {
 	};
 
 	useEffect(() => {
-	const featuresComplete =
-		(indoorSelectedFeatures.length > 0 || outdoorSelectedFeatures.length > 0);
+		const requiresAdditionalFields = ![
+			"commercial land/lot",
+			"lot",
+			"farm lot",
+			"service office",
+			"office space",
+			"shop/retail",
+			"warehouse",
+			"hotel/resort",
+		].includes(selectedPropertyTab);
+		if (!requiresAdditionalFields) {
+			onComplete(true);
+			// setPropertyFields({ Features: [] });
+			return; 
+		}
+
+		const featuresComplete =
+			indoorSelectedFeatures.length > 0 || outdoorSelectedFeatures.length > 0;
 		if (featuresComplete) {
 			const indoorFeaturesWithType = indoorSelectedFeatures.map((feature) => ({
 				FeatureName: feature,
@@ -58,7 +78,7 @@ const FeaturedComponents = ({ onComplete, setPropertyFields }) => {
 			const outdoorFeaturesWithType = outdoorSelectedFeatures.map(
 				(feature) => ({
 					FeatureName: feature,
-					Type: "features", 
+					Type: "features",
 				})
 			);
 			setPropertyFields({
@@ -66,9 +86,10 @@ const FeaturedComponents = ({ onComplete, setPropertyFields }) => {
 			});
 			onComplete(true);
 		} else {
+			setPropertyFields({ Features: [] });
 			onComplete(false);
 		}
-	}, [indoorSelectedFeatures, outdoorSelectedFeatures, onComplete]);
+	}, [indoorSelectedFeatures, outdoorSelectedFeatures, onComplete, selectedPropertyTab]);
 
 	return (
 		<div className="featureList">
@@ -91,9 +112,7 @@ const FeaturedComponents = ({ onComplete, setPropertyFields }) => {
 					toggleFeature={toggleFeature}
 				/>
 			</div>
-			<AddFeature
-				setPropertyFields={setPropertyFields}
-			/>
+			<AddFeature setPropertyFields={setPropertyFields} />
 		</div>
 	);
 };

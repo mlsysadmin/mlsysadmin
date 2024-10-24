@@ -54,25 +54,30 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 			deleteCookies();
 		}
 	}, [userDetails]);
-	const handleProfileClick = () => {
-		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
-		const loginUrl = process.env.REACT_APP_LOGIN_URL;
-		if (isMLWWSPresent && isAccountDetailsPresent) {
-			if (userDetails?.tier?.label === "FULLY VERIFIED") {
-				window.location.href = "/listing";
-			} else if (userDetails?.tier?.label === "BUYER") {
+
+		const handleProfileClick = () => {
+			const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
+			const loginUrl = process.env.REACT_APP_LOGIN_URL;
+			if (isMLWWSPresent && isAccountDetailsPresent) {
+				if (userDetails?.tier?.label === "FULLY VERIFIED") {
+					window.location.href = "/";
+				} else if (userDetails?.tier?.label === "BUYER") {
+					window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+						redirectUrl
+					)}`;
+					deleteCookies();
+					showUpgradeModal(true);
+				}
+			} else {
 				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
 					redirectUrl
 				)}`;
-				deleteCookies();
-				showUpgradeModal(true);
 			}
-		} else {
-			window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-				redirectUrl
-			)}`;
-		}
-	};
+		};
+
+
+
+
 	const handleUserProfileClick = () => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
@@ -265,6 +270,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 				>
 					<RoundBtn
 						type="primary"
+						id= "list-prop"
 						className="menu-buttons"
 						style={{
 							background: "#D90000",
