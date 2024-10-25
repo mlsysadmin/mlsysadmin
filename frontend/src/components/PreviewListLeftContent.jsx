@@ -151,7 +151,7 @@ const PreviewListLeftContent = ({
 						<tbody>
 							<tr>
 								<th>Property Type</th>
-								<td>{oneListing.PropertyType === "Hotel/Resort"? CapitalizeStringwithSymbol(oneListing.PropertyType):CapitalizeString(oneListing.PropertyType)}</td>
+								<td>{oneListing.PropertyType === "hotel/resort"? CapitalizeStringwithSymbol(oneListing.PropertyType):CapitalizeString(oneListing.PropertyType)}</td>
 								<th>Floor Area</th>
 								<td>{NotAvailableReturn(oneListing.FloorArea)}</td>
 							</tr>
