@@ -25,6 +25,7 @@ import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
 import {
 	CapitalizeEachWord,
 	CapitalizeString,
+	CapitalizeStringwithSymbol,
 	FillLocationFilter,
 	GetPropertyTitle,
 	SortListings,
@@ -135,7 +136,9 @@ const RentComponent = () => {
 								isFeatured: item.IsFeatured,
 								sale_type: CapitalizeString(item.SaleType),
 								no_of_beds: item.BedRooms,
-								property_type: item.PropertyType,
+								property_type:item.PropertyType === "hotel/resort"
+									? CapitalizeStringwithSymbol(item.PropertyType)
+									: item.PropertyType,
 								city: item.City
 							};
 						})

@@ -788,6 +788,11 @@ listing search */
 	.advance-searchdropdown .slider-container .range-container .range-border {
 		padding: 15px;
 	}
+		.ant-tooltip .ant-tooltip-inner {
+		font-size: 12px;
+		width: 70px;
+		padding: 0px 5px;
+	}
 }
 @media screen and (min-width: 421px) and (max-width: 435px) {
 	.first-content {
