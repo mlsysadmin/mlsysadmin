@@ -74,7 +74,7 @@ const PreviewListLeftContent = ({
         value: oneListing.LotArea },
       {
         title: "Price per SqM",
-        iconSrc: <PhpOutlinedIcon/>,
+        // iconSrc: <PhpOutlinedIcon/>,
         value: `${oneListing.PricePerSqm}`,
       },
     ];
@@ -143,108 +143,115 @@ const PreviewListLeftContent = ({
 				<h3>Location</h3>
 				<MapComponent oneListing={oneListing} />
 			</div>
-      <div className="web-view-similar-properties">
-        <h3>Home Details</h3>
-        <div className={styles.specificationContainer}>
-          <h4 className={styles.specificationHeader}>Specification</h4>
-          <table className={styles.specificationTable}>
-            <tbody>
-              <tr>
-                <th>Property Type</th>
-                <td>{CapitalizeString(oneListing.PropertyType)}</td>
-                <th>Floor Area</th>
-                <td>{NotAvailableReturn(oneListing.FloorArea)}</td>
-              </tr>
-              <tr>
-                <th>Listing Type</th>
-                <td>{`For ${CapitalizeString(oneListing.SaleType)}`}</td>
-                <th>Lot Area</th>
-                <td>{NotAvailableReturn(AmountFormatterGroup(oneListing.LotArea))}</td>
-              </tr>
-              <tr>
-                <th>Furnishing</th>
-                <td>{NotAvailableReturn(oneListing.Furnishing)}</td>
-                <th>Price per SqM</th>
-                <td>{NotAvailableReturn(AmountFormatterGroup(oneListing.PricePerSqm))}</td>
-              </tr>
-              <tr>
-                <th>Bedroom</th>
-                <td>{NotAvailableReturn(oneListing.BedRooms)}</td>
-                <th>No of Floors</th>
-                <td>{NotAvailableReturn(oneListing.NoOfFloor)}</td>
-              </tr>
-              <tr>
-                <th>Bathroom</th>
-                <td>{NotAvailableReturn(oneListing.BathRooms)}</td>
-                <th>Car Parking</th>
-                <td>{NotAvailableReturn(oneListing.Parking)}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div className="mobile-view-similar-properties">
-        <h3>Home Details</h3>
-        <div className={styles.specificationContainer}>
-          <h4 className={styles.specificationHeader}>Specification</h4>
-          <table className={styles.specificationTable}>
-            <tbody>
-              <tr>
-                <th>Property Type</th>
-                <td>{CapitalizeString(oneListing.PropertyType)}</td>
-              </tr>
-              <tr>
-                <th>Floor Area</th>
-                <td>{NotAvailableReturn(oneListing.FloorArea)}</td>
-              </tr>
-              <tr>
-                <th>Listing Type</th>
-                <td>{`For ${CapitalizeString(oneListing.SaleType)}`}</td>
-              </tr>
-              <tr>
-                <th>Lot Area</th>
-                <td>{NotAvailableReturn(oneListing.LotArea)}</td>
-              </tr>
-              <tr>
-                <th>Furnishing</th>
-                <td>{NotAvailableReturn(oneListing.Furnishing)}</td>
-              </tr>
-              <tr>
-                <th>Price per SqM</th>
-                <td>{NotAvailableReturn(oneListing.PricePerSqm)}</td>
-              </tr>
-              <tr>
-                <th>Bedroom</th>
-                <td>{NotAvailableReturn(oneListing.BedRooms)}</td>
-              </tr>
-              <tr>
-                <th>No of Floors</th>
-                <td>{NotAvailableReturn(oneListing.NoOfFloor)}</td>
-              </tr>
-              <tr>
-                <th>Bathroom</th>
-                <td>{NotAvailableReturn(oneListing.BathRooms)}</td>
-              </tr>
-              <tr>
-                <th>Car Parking</th>
-                <td>{NotAvailableReturn(oneListing.Parking)}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      {
-        features.length == 0 && amenities.length == 0 && includes.length == 0 ?
-           <></>
-        :
-          <HomeHighlights
-            features={features}
-            amenities={amenities}
-            includes={includes}
-          />
-      }
-    </div>
-  );
+			<div className="web-view-similar-properties">
+				<h3>Home Details</h3>
+				<div className={styles.specificationContainer}>
+					<h4 className={styles.specificationHeader}>Specification</h4>
+					<table className={styles.specificationTable}>
+						<tbody>
+							<tr>
+								<th>Property Type</th>
+								<td>{oneListing.PropertyType === "Hotel/Resort"? CapitalizeStringwithSymbol(oneListing.PropertyType):CapitalizeString(oneListing.PropertyType)}</td>
+								<th>Floor Area</th>
+								<td>{NotAvailableReturn(oneListing.FloorArea)}</td>
+							</tr>
+							<tr>
+								<th>Listing Type</th>
+								<td>{`For ${CapitalizeString(oneListing.SaleType)}`}</td>
+								<th>Lot Area</th>
+								<td>
+									{NotAvailableReturn(AmountFormatterGroup(oneListing.LotArea))}
+								</td>
+							</tr>
+							<tr>
+								<th>Furnishing</th>
+								<td>{NotAvailableReturn(oneListing.Furnishing)}</td>
+								<th>Price per SqM</th>
+								<td>
+									{NotAvailableReturn(
+										AmountFormatterGroup(oneListing.PricePerSqm)
+									)}
+								</td>
+							</tr>
+							<tr>
+								<th>Bedroom</th>
+								<td>{NotAvailableReturn(oneListing.BedRooms)}</td>
+								<th>No of Floors</th>
+								<td>{NotAvailableReturn(oneListing.NoOfFloor)}</td>
+							</tr>
+							<tr>
+								<th>Bathroom</th>
+								<td>{NotAvailableReturn(oneListing.BathRooms)}</td>
+								<th>Car Parking</th>
+								<td>{NotAvailableReturn(oneListing.Parking)}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div className="mobile-view-similar-properties">
+				<h3>Home Details</h3>
+				<div className={styles.specificationContainer}>
+					<h4 className={styles.specificationHeader}>Specification</h4>
+					<table className={styles.specificationTable}>
+						<tbody>
+							<tr>
+								<th>Property Type</th>
+
+								<td>{oneListing.PropertyType === "Hotel/Resort"? CapitalizeStringwithSymbol(oneListing.PropertyType):CapitalizeString(oneListing.PropertyType)}
+								</td>
+							</tr>
+							<tr>
+								<th>Floor Area</th>
+								<td>{NotAvailableReturn(oneListing.FloorArea)}</td>
+							</tr>
+							<tr>
+								<th>Listing Type</th>
+								<td>{`For ${CapitalizeString(oneListing.SaleType)}`}</td>
+							</tr>
+							<tr>
+								<th>Lot Area</th>
+								<td>{NotAvailableReturn(oneListing.LotArea)}</td>
+							</tr>
+							<tr>
+								<th>Furnishing</th>
+								<td>{NotAvailableReturn(oneListing.Furnishing)}</td>
+							</tr>
+							<tr>
+								<th>Price per SqM</th>
+								<td>{NotAvailableReturn(oneListing.PricePerSqm)}</td>
+							</tr>
+							<tr>
+								<th>Bedroom</th>
+								<td>{NotAvailableReturn(oneListing.BedRooms)}</td>
+							</tr>
+							<tr>
+								<th>No of Floors</th>
+								<td>{NotAvailableReturn(oneListing.NoOfFloor)}</td>
+							</tr>
+							<tr>
+								<th>Bathroom</th>
+								<td>{NotAvailableReturn(oneListing.BathRooms)}</td>
+							</tr>
+							<tr>
+								<th>Car Parking</th>
+								<td>{NotAvailableReturn(oneListing.Parking)}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			{features.length == 0 && amenities.length == 0 && includes.length == 0 ? (
+				<></>
+			) : (
+				<HomeHighlights
+					features={features}
+					amenities={amenities}
+					includes={includes}
+				/>
+			)}
+		</div>
+	);
 };
 
 export default PreviewListLeftContent;

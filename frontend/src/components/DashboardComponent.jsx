@@ -59,6 +59,7 @@ import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import {
   CapitalizeEachWord,
   CapitalizeString,
+  CapitalizeStringwithSymbol,
   GetPropertyTitle,
   isPastAMonth,
 } from "../utils/StringFunctions.utils";
@@ -624,7 +625,7 @@ const DashboardComponent = () => {
                     lot={item.lot}
                     key={i}
                     loading={loading}
-                    subtitle={`${CapitalizeEachWord(
+                    subtitle={`${item.property_type === "hotel/resort" ? CapitalizeStringwithSymbol(item.property_type) : CapitalizeEachWord(
                       item.property_type
                     )} For ${CapitalizeString(item.sale_type)}`}
                     listingId={item.property_no}

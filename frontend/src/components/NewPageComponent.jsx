@@ -16,7 +16,7 @@ import ListingSearch from "./custom/customsearch/custom.listingsearch";
 import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
-import { CapitalizeEachWord, CapitalizeString, FillLocationFilter, GetPropertyTitle, isPastAMonth, SortByText, SortMaxPrice, SortPrice } from "../utils/StringFunctions.utils";
+import { CapitalizeEachWord,CapitalizeStringwithSymbol, CapitalizeString, FillLocationFilter, GetPropertyTitle, isPastAMonth, SortByText, SortMaxPrice, SortPrice } from "../utils/StringFunctions.utils";
 import DefaultPropertyImage from '../asset/fallbackImage.png';
 
 const NewPageComponent = () => {
@@ -105,9 +105,11 @@ const NewPageComponent = () => {
 							isFeatured: item.IsFeatured,
 							sale_type: CapitalizeString(item.SaleType),
 							no_of_beds: item.BedRooms,
-							property_type: item.PropertyType,
+							property_type:item.PropertyType === "hotel/resort"
+									? CapitalizeStringwithSymbol(item.PropertyType)
+									: item.PropertyType,
 							city: item.City,
-							date: item.created_at
+							date: item.created_at,
 						};
 					})
 				);

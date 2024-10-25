@@ -13,7 +13,7 @@ import Pagination from "./custom/pagination/Pagination";
 import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout, SearchPropertiesSoration } from ".";
 import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
-import { CapitalizeString, FillLocationFilter, GetPropertyTitle, SortListings } from "../utils/StringFunctions.utils";
+import { CapitalizeString, FillLocationFilter, CapitalizeStringwithSymbol, GetPropertyTitle, SortListings } from "../utils/StringFunctions.utils";
 import { CardSkeleton } from "./Skeleton";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import DefaultPropertyImage from '../asset/fallbackImage.png';
@@ -131,9 +131,12 @@ const SaleComponent = () => {
 							isFeatured: item.IsFeatured,
 							sale_type: CapitalizeString(item.SaleType),
 							no_of_beds: item.BedRooms,
-							property_type: item.PropertyType,
-							city: item.City
-						}
+							property_type:
+								item.PropertyType === "hotel/resort"
+									? CapitalizeStringwithSymbol(item.PropertyType)
+									: CapitalizeString(item.PropertyType),
+							city: item.City,
+						};
 					}))
 					const location = FillLocationFilter(dataresp);
 					setFilterLocation(location);
