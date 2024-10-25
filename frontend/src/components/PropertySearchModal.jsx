@@ -1,20 +1,20 @@
 import { useState, useEffect, useRef } from "react";
 import "../styles/otherservicesSearchPropertyModal.css";
+import { SendManualSearch } from "../api/Public/Email.api";
 // import "../../styles/otherservicesSearchPropertyModal.css";
 import { useNavigate } from "react-router-dom";
+import { notification } from "antd";
 
 const PropertySearch = () => {
   const url = window.location.href;
   const urlObj = new URL(url);
   const openModalValue = urlObj?.searchParams.get("dashboardClicked");
-  console.log("openModalValue: ", openModalValue);
   const formRef = useRef(null);
   useEffect(() => {
     if (openModalValue === "true" && formRef.current) {
       formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, []);
-  const [userDetails, setUserDetails] = useState(null);
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
   const [formData, setFormData] = useState({
     mobileNumber: "",
@@ -60,15 +60,63 @@ const PropertySearch = () => {
       }));
     }
   };
-  const handleSubmit = () => {
-    setIsSuccessModalVisible(true);
-    console.log("formData inquiery:  ", formData);
 
-    // if (open){
-    //     setIsSuccessModalVisible(true);
-    //     closeModal();
-    //     console.log("parent modal close:", closeModal());
-    // }
+  const [api, contextHolder] = notification.useNotification();
+  const openNotificationWithIcon = (type, message, description) => {
+    api[type]({
+      message: message,
+      description: description,
+      placement: "bottomRight",
+      duration: type == "error" ? 10 : 10,
+    });
+  };
+  const handleSubmit = async (e) => {
+    // setIsSuccessModalVisible(true);
+    e.preventDefault();
+    console.log("formData inquiery:  ", formData);
+    try {
+      const manualSearchTriggerPayload = {
+        property_type: formData.propertyType,
+        property_details: formData.propertyDetails,
+        location_preference: formData.locationPreference,
+        budget_range: formData.budgetRange,
+        no_of_bedrooms: formData.bedroom,
+        no_of_bathrooms: formData.bathroom,
+        feature_and_amenities: formData.featureAndAmenities,
+        mobile_number: formData.mobileNumber,
+        email: formData.email,
+        last_name: formData.lastName,
+        first_name: formData.firstName,
+        suffix: formData.suffix,
+        middle_name: formData.middleName,
+      };
+      const manualSearchTrigger = await SendManualSearch(
+        manualSearchTriggerPayload
+      );
+      if (manualSearchTrigger) {
+        resetForm();
+        openNotificationWithIcon(
+          "success",
+          `Message Sent`,
+          "Your message has been sent."
+        );
+      } else {
+        resetForm();
+        openNotificationWithIcon(
+          "warning",
+          `Invalid Value`,
+          "Please provide a valid email address."
+        );
+      }
+    } catch (error) {
+      openNotificationWithIcon(
+        "error",
+        "Message Failed",
+        `We're sorry, but your message couldn't be sent. We're already working on resolving the issue. 
+        Please try again later, or for immediate assistance, contact us at properties@mlhuillier.com or 380 300, local 11569.
+        Thank you for your patience!`
+      );
+    }
   };
 
   const [isOtherSelected, setIsOtherSelected] = useState(false);
@@ -96,9 +144,12 @@ const PropertySearch = () => {
     setIsSuccessModalVisible(false);
     navigate("/");
   };
-
+  const isFormValid = () => {
+    return Object.values(formData).every((value) => value.trim() !== "");
+  };
   return (
     <div className="modal-content-searchprop">
+      {contextHolder}
       <div className="toptitle">
         <h1>Looking for Your Dream Property? </h1>
         <span className="top-description">
@@ -362,7 +413,17 @@ const PropertySearch = () => {
             </div>
           </div>
           <div className="form-row submit-row">
-            <button type="submit">Submit Application</button>
+            <button
+              type="submit"
+              style={{
+                backgroundColor: !isFormValid() ? "gray" : "red",
+                color: "white", 
+                cursor: !isFormValid() ? "not-allowed" : "pointer", 
+              }}
+              disabled={!isFormValid()}
+            >
+              Submit Application
+            </button>
           </div>
         </form>
       </div>
