@@ -36,8 +36,25 @@ const SendEmailMessage = async (payload) => {
         throw error;
     }
 }
+const SendManualSearch = async (payload) => {
+    try {
 
+        const config = {
+            headers: {
+                'x-api-key': process.env.REACT_APP_API_KEY
+            }
+        }
+        
+        const response = await MLBROKERAGEAxiosInstance.post('/api/public/mail/search-property', { payload }, config);
+
+        return response.data;
+
+    } catch (error) {
+        throw error;
+    }
+}
 export {
     SendEmailInquiry,
-    SendEmailMessage
+    SendEmailMessage,
+    SendManualSearch
 }
