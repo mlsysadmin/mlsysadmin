@@ -24,7 +24,7 @@ module.exports = {
 
             const emailTemp = EmailTemplate(path, { ...messageContent });
 
-            const sendInquiry = await SendEmail(emailTemp, 'Listing Inquiry', payload.message);
+            const sendInquiry = await SendEmail(emailTemp, 'Listing Inquiry', payload.message, process.env.EMAIL_TO);
 
             console.log(sendInquiry);
 
@@ -54,7 +54,7 @@ module.exports = {
 
             const emailTemp = EmailTemplate(templateName, { ...messageContent });
 
-            const sendMessage = await SendEmail(emailTemp, 'Customer Inquiry', payload.message);
+            const sendMessage = await SendEmail(emailTemp, 'Customer Inquiry', payload.message, process.env.EMAIL_TO);
 
             console.log(sendMessage);
 
@@ -109,7 +109,7 @@ module.exports = {
 
             const reference = new Date();
 
-            const sendMessage = await SendEmail(emailTemp, 'Refinancing (Refinance a Home)', reference);
+            const sendMessage = await SendEmail(emailTemp, 'Refinancing (Refinance a Home)', reference, process.env.EMAIL_TO);
 
             console.log(sendMessage);
 
@@ -162,7 +162,7 @@ module.exports = {
 
             const reference = new Date();
 
-            const sendMessage = await SendEmail(emailTemp, 'Refinancing (Buy a Home)', reference);
+            const sendMessage = await SendEmail(emailTemp, 'Refinancing (Buy a Home)', reference, process.env.EMAIL_TO);
 
             console.log(sendMessage);
 
@@ -206,7 +206,7 @@ module.exports = {
 
             const reference = new Date();
 
-            const sendMessage = await SendEmail(emailTemp, 'Request for a Search of Property', reference);
+            const sendMessage = await SendEmail(emailTemp, 'Request for a Search of Property', reference, process.env.EMAIL_TO);
 
             console.log(sendMessage);
 
@@ -221,7 +221,7 @@ module.exports = {
         try {
 
             const {
-                name, image_path, property_title, property_no
+                name, image_path, property_title, property_no, email
             } = req.body.payload;
 
             const image_link = `${process.env.IGOT_SOLUTION_BASE_URL}${image_path}`
@@ -234,7 +234,7 @@ module.exports = {
 
             const reference = new Date();
 
-            const sendMessage = await SendEmail(emailTemp, 'Listing Approved', reference);
+            const sendMessage = await SendEmail(emailTemp, 'Listing Approved', reference, email);
             console.log(sendMessage);
 
             const mail = DataResponseHandler(
