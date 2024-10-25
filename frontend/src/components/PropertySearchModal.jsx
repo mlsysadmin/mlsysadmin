@@ -4,6 +4,10 @@ import { SendManualSearch } from "../api/Public/Email.api";
 // import "../../styles/otherservicesSearchPropertyModal.css";
 import { useNavigate } from "react-router-dom";
 import { notification } from "antd";
+import CustomMlFooter from "./custom/Custom.Mlfooter";
+import FooterComponent from "./layout/FooterComponent";
+
+
 
 const PropertySearch = () => {
   const url = window.location.href;
@@ -429,6 +433,8 @@ const PropertySearch = () => {
           </form>
         </div>
       </div>
+      <CustomMlFooter/>
+     <FooterComponent/>
     </div>
   );
 };
