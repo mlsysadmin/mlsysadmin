@@ -565,10 +565,10 @@ const RefinanceComponent = () => {
 					loading={loading}
 				/>
 				{/* <SubmitApplicationCustom /> */}
-				<div>
-					<CustomMlFooter />
-					<FooterComponent />
-				</div>
+			</div>
+			<div>
+				<CustomMlFooter />
+				<FooterComponent />
 			</div>
 		</div>
 	);

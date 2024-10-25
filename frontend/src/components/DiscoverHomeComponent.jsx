@@ -99,14 +99,14 @@ const DiscoverHomeComponent = () => {
 							<div className="discover-upper-btn">
 								<div className="buy-a-home">
 									<div className="buy-home-text">
-										<a href="/comingsoon">
+										<a href="/buy-a-home">
 											<span>Buy a Home</span>
 										</a>
 									</div>
 								</div>
 								<div className="refinance-a-home">
 									<div className="refinance-btn">
-										<a href="/comingsoon">
+										<a href="/refinance">
 											<span>Refinance a Home</span>
 										</a>
 									</div>
@@ -395,7 +395,7 @@ const DiscoverHomeComponent = () => {
 				</div>
 
 				<div className="content-4">
-					<a href="/comingsoon">
+					<a href="/buy-a-home">
 						<div className="purchase">
 							<div className="overlap-group">
 								<img src={homeicon} alt="home" />
@@ -405,7 +405,7 @@ const DiscoverHomeComponent = () => {
 							</div>
 						</div>
 					</a>
-					<a href="/comingsoon">
+					<a href="/refinance">
 						<div className="refinance">
 							<div className="overlap-group">
 								<img src={dollaricon} alt="dollar" />
