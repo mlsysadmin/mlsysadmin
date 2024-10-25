@@ -41,11 +41,11 @@ app.use(cors({
 
 app.use(cookieParser(process.env.SECRET_KEY))
 
-// app.use(express.static(path.join(__dirname, "../../../frontend/public")));
+app.use(express.static(path.join(__dirname, "../views/template")));
 
-// app.get("/*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "../../../frontend/public", "index.html"));
-// });
+app.get("/index", (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/template", "index.html"));
+});
 
 app.use('/', GOOGLE_ROUTER);
 app.use('/api/user', USER_ROUTER);
