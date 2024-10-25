@@ -29,11 +29,11 @@ const MortgageComponent = () => {
 			<div className="mortBtn">
 				<div
 					className="purchasebtn"
-					onClick={handleButtonClick}
+					onClick={() => handleButtonClick('/buy-a-home')}
 					style={{ cursor: "pointer" }}
 				>
 					<HomeFilled id="home-icon" />
-					<a style={{ textDecoration: "none" }} onClick={() => handleButtonClick('/buy-a-home')}>
+					<a style={{ textDecoration: "none" }}>
 						<p style={{ color: "white" }}>
 							I want to{" "}
 							<span style={{ fontWeight: "bold", color: "white" }}>
@@ -45,11 +45,11 @@ const MortgageComponent = () => {
 				</div>
 				<div
 					className="refinancebtn"
-					onClick={handleButtonClick}
+					onClick={() => handleButtonClick('/refinance')}
 					style={{ cursor: "pointer" }}
 				>
 					<DollarOutlined id="dollar-icon" />
-					<a style={{ textDecoration: "none" }} onClick={() => handleButtonClick('/refinance')}>
+					<a style={{ textDecoration: "none" }}>
 						<p style={{ color: "white" }}>
 							I want to{" "}
 							<span style={{ fontWeight: "bold", color: "white" }}>

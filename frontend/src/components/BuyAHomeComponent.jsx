@@ -4,9 +4,11 @@ import "../styles/buyahome.css";
 import MainLayout from "./layout/layout.component";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
 import FooterComponent from "./layout/FooterComponent";
-import { Button, Steps } from "antd";
+import { Button, notification, Steps } from "antd";
 import WrapUpDetails from "./custom/application/wrapup.custom";
 import SubmitApplicationCustom from "./custom/application/submitapplication.custom";
+import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
+import { SendBuyHome } from "../api/Public/Email.api";
 
 const BuyAHomeComponent = (firstname, lastname, email) => {
 	const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
@@ -40,12 +42,30 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
 	//details handler
 	const [detailsquest1, setDetailsquest1] = useState(null);
 	const [detailsquest2, setDetailsquest2] = useState(null);
+	const [detailsquest3, setDetailsquest3] = useState(null);
 	const [detailsquest4, setDetailsquest4] = useState(null);
 	const [detailsquest5, setDetailsquest5] = useState(null);
 	const [detailsquest6, setDetailsquest6] = useState(null);
 
 	// Wrap-up state
 	const [isWrapUpComplete, setIsWrapUpComplete] = useState(false);
+
+	const [api, contextHolder] = notification.useNotification();
+	const [loading, setLoading] = useState(false);
+	const [homeLocation, setHomeLocation] = useState(null);
+
+	const [customerInfo, setCustomerInfo] = useState({
+		mobile_number: null,
+		email: null,
+		last_name: null,
+		first_name: null,
+		country: 'Philippines',
+		province: null,
+		city: null,
+		zipcode: null,
+		others: null,
+		source_of_income: null
+	});
 
 	//property handler
 	const handleSpendButtonClick = (option) => {
@@ -78,6 +98,9 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
 	};
 	const handleDetailsquest2 = (option) => {
 		setDetailsquest2(option);
+	};
+	const handleDetailsquest3 = (option) => {
+		setDetailsquest3(option);
 	};
 	const handleDetailsquest4 = (option) => {
 		setDetailsquest4(option);
@@ -214,8 +237,70 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
 		},
 	];
 
+	const handleSubmitApplication = async () => {
+		const property = {
+			estimated_price: selectedButton,
+			property_type: selectedHomeButton,
+			property_usage: selectedNewHomeButton,
+			real_estate_agent: buttonClick,
+			purchase_plan_date: timelinequest1,
+			current_home_ownership: timelinequest2,
+			current_home_ownership: detailsquest1,
+			estimated_downpayment: detailsquest2,
+			annual_income: detailsquest4,
+			declared_bankruptcy: detailsquest5,
+			current_credit_score: detailsquest6,
+			// home_location: homeLocation
+		}
+		
+		const combinedProperty = { ...property, ...customerInfo };
+		const keys = Object.keys(combinedProperty);
+		const values = Object.values(combinedProperty);
+		const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+		console.log("combined", combinedProperty);
+
+		if (values.includes("") || values.includes(null) || values.includes(undefined)) {
+			openNotificationWithIcon('warning', `Required Field`, 'Please fill in required fields.')
+		} else if (keys.filter((key) => key == 'email' && !emailRegex.test(combinedProperty[key])).length !== 0) {
+			openNotificationWithIcon('warning', `Invalid Value`, 'Please provide a valid email address.');
+		} else {
+			// Call API to submit application
+			setLoading(true);
+			await submitApplication(combinedProperty);
+		}
+	}
+
+	const openNotificationWithIcon = (type, message, description) => {
+		api[type]({
+			message: message,
+			description: description,
+			placement: 'bottomRight',
+			duration: type == "error" ? 4 : 3
+		});
+	};
+
+	const submitApplication = async (combinedProperty) => {
+		try {
+
+			const preApproved = await SendBuyHome(combinedProperty);
+
+			console.log("preapproved", preApproved);
+
+			openNotificationWithIcon('success', 'Success', 'Great news! Your Pre-Approval Application has been successfully submitted. We’ll review it and get back to you shortly. Thanks for choosing us!')
+			setLoading(false);
+
+		} catch (error) {
+			console.log("error", error);
+			openNotificationWithIcon('error',
+				``, `We're sorry, but your application couldn't be sent. 
+				We're already working on resolving the issue. Thank you for your patience!`)
+		}
+	}
+
 	return (
 		<div className="buy-a-home-container">
+			{contextHolder}
 			<div className="buy-a-home-content">
 				<div className="radiobtn-group">
 					<Steps
@@ -389,7 +474,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
 								))}
 							</div>
 						</div>
-						<div className="prop-content41">
+						{/* <div className="prop-content41">
 							<span className="prop-quest">
 								Do you have a real estate agent?
 							</span>
@@ -406,7 +491,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
 									</button>
 								))}
 							</div>
-						</div>
+						</div> */}
 					</div>
 					<br />
 					<br />
@@ -470,6 +555,28 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
 							<br />
 							<span className="prop-quest">
 								What is your current employment status?
+							</span>
+							<br />
+							<div className="prop-info-btn-group1">
+								{["Employed", "Self-employed", "Retired", "Not employed"].map((option, index) => (
+									<button
+										key={index}
+										className={`prop-btn ${
+											detailsquest3 === option ? "active" : ""
+										}`}
+										onClick={() => handleDetailsquest3(option)}
+									>
+										{option}
+									</button>
+								))}
+							</div>
+						</div>
+						<br />
+						<br />
+						<div className="prop-content52">
+							<br />
+							<span className="prop-quest">
+							What is your household gross (before taxes) annual income?
 							</span>
 							<br />
 							<div className="prop-info-btn-group1">
@@ -570,16 +677,30 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
 					<br />
 					{/* Wrap-up */}
 					<div className="prop-content-wrap-up" ref={WrapUpGroupRef}>
-						<WrapUpDetails setWrapUpComplete={setIsWrapUpComplete} />
-					</div>
-					<br />
-					<br />
-					<br />
-					<br />
-					<SubmitApplicationCustom
-						isSubmitButtonDisabled={isSubmitButtonDisabled}
-						setIsSubmitButtonDisabled={setIsSubmitButtonDisabled}
+					<WrapUpDetails
+						setWrapUpComplete={setIsWrapUpComplete}
+						setCustomerInfo={setCustomerInfo}
+						customerInfo={customerInfo}
 					/>
+					</div>
+					{/* <br />
+					<br />
+					<br />
+					<br />
+					<br /> */}
+				<br />
+				<br />
+				<span style={{ fontSize: "18px", color: "#8C9094", width: "79%", margin: 'auto' }}>
+					By submitting, I agree my information may be shared and that I may be
+					contacted at this number including through emails. I agree to the
+					privacy policy and terms.
+				</span>
+				<SemiRoundBtn
+					label={"Submit Pre-approval"}
+					className="submit-pre-approval round-btn"
+					handleClick={handleSubmitApplication}
+					loading={loading}
+				/>
 				</div>
 			</div>
 			<CustomMlFooter />

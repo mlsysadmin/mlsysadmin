@@ -2,6 +2,9 @@
 
 require('dotenv').config();
 const { SendEmail, EmailTemplate } = require('../../services/email.service.js');
+const DataResponseHandler = require('../../utils/_helper/DataResponseHandler.helper.js');
+const SuccessFormatter = require('../../utils/_helper/SuccessFormatter.helper.js');
+const SuccessLoggerHelper = require('../../utils/_helper/SuccessLogger.helper.js');
 
 module.exports = {
     SendInquiry: async (req, res, next) => {
@@ -208,6 +211,44 @@ module.exports = {
             console.log(sendMessage);
 
             res.send({ sendMessage });
+
+
+        } catch (error) {
+            next(error);
+        }
+    },
+    SendListingApproved: async (req, res, next) => {
+        try {
+
+            const {
+                name, image_path, property_title, property_no
+            } = req.body.payload;
+
+            const image_link = `${process.env.IGOT_SOLUTION_BASE_URL}${image_path}`
+            const link = `${process.env.CLIENT_APP_URL}/previewListing/?id=${property_no}`;
+            const logo = `${process.env.IGOT_SOLUTION_BASE_URL}/assets/logo.png`
+
+            const templateName = 'approvedlisting.handlebars';
+
+            const emailTemp = EmailTemplate(templateName, { name, image_link, property_title, property_no, link, logo });
+
+            const reference = new Date();
+
+            const sendMessage = await SendEmail(emailTemp, 'Listing Approved', reference);
+            console.log(sendMessage);
+
+            const mail = DataResponseHandler(
+                {response: sendMessage.response, accepted: sendMessage.accepted, rejected: sendMessage.rejected},
+                "EMAIL_SENT",
+                200,
+                true,
+                "SUCCESS"
+            )
+            const success = SuccessFormatter(mail, 200, "Email Sent");
+
+            SuccessLoggerHelper(req, mail);
+
+            res.send(success);
 
 
         } catch (error) {

@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Steps, Menu, Dropdown, Slider } from "antd";
+import { Steps, Menu, Dropdown, Slider, notification } from "antd";
 import MainLayout from "./layout/layout.component";
 import SubmitApplicationCustom from "./custom/application/submitapplication.custom";
 import FooterComponent from "./layout/FooterComponent";
 import WrapUpDetails from "./custom/application/wrapup.custom";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
 import "../styles/refinance.css";
+import RoundBtn from "./custom/buttons/RoundBtn.custom";
+import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
+import { SendRefinance } from "../api/Public/Email.api";
 
 const RefinanceComponent = () => {
 	const { Step } = Steps;
@@ -39,9 +42,24 @@ const RefinanceComponent = () => {
 	const [bankcruptcyStat, setBankcruptcyStat] = useState("");
 	const [mortpayments, setMortPayments] = useState("");
 	const [creditscore, setCreditScore] = useState("");
+	const [homeLocation, setHomeLocation] = useState(null);
 
+	const [customerInfo, setCustomerInfo] = useState({
+		mobile_number: null,
+		email: null,
+		last_name: null,
+		first_name: null,
+		country: 'Philippines',
+		province: null,
+		city: null,
+		zipcode: null,
+		others: null,
+		source_of_income: null
+	});
 	// Wrap-up state
 	const [isWrapUpComplete, setIsWrapUpComplete] = useState(false);
+	const [api, contextHolder] = notification.useNotification();
+	const [loading, setLoading] = useState(false);
 
 	// Property handlers
 	const handleRefPropQuest1 = (option) => {
@@ -166,6 +184,7 @@ const RefinanceComponent = () => {
 	// Update WrapUp section completion status
 	useEffect(() => {
 		if (isWrapUpComplete) {
+
 			setCompletedSteps((prev) => ({ ...prev, wrapUp: true }));
 		}
 	}, [isWrapUpComplete]);
@@ -207,8 +226,70 @@ const RefinanceComponent = () => {
 		</Menu>
 	);
 
+	const handleSubmitApplication = async () => {
+		const property = {
+			reason: refPropquest1,
+			property_type: refPropquest2,
+			interest: selectedDropdownOption,
+			property_usage: selectedbtnprop,
+			estimated_price: refinanceAmount,
+			loan_balance: loanAmount,
+			cash_take_out: additionalLoanAmount,
+			employment_status: empStatus,
+			annual_income: annualInc,
+			declared_bankruptcy: bankcruptcyStat,
+			late_mortgage_payments: mortpayments,
+			current_credit_score: creditscore,
+			home_location: homeLocation
+		}
+		const combinedProperty = { ...property, ...customerInfo };
+		const keys = Object.keys(combinedProperty);
+		const values = Object.values(combinedProperty);
+		const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+		console.log("combined", combinedProperty);
+
+		if (values.includes("") || values.includes(null) || values.includes(undefined)) {
+			openNotificationWithIcon('warning', `Required Field`, 'Please fill in required fields.')
+		} else if (keys.filter((key) => key == 'email' && !emailRegex.test(combinedProperty[key])).length !== 0) {
+			openNotificationWithIcon('warning', `Invalid Value`, 'Please provide a valid email address.');
+		} else {
+			// Call API to submit application
+			setLoading(true);
+			await submitApplication(combinedProperty);
+		}
+	}
+
+	const openNotificationWithIcon = (type, message, description) => {
+		api[type]({
+			message: message,
+			description: description,
+			placement: 'bottomRight',
+			duration: type == "error" ? 4 : 3
+		});
+	};
+
+	const submitApplication = async (combinedProperty) => {
+		try {
+
+			const preApproved = await SendRefinance(combinedProperty);
+
+			console.log("preapproved", preApproved);
+
+			openNotificationWithIcon('success', 'Success', 'Great news! Your Pre-Approval Application has been successfully submitted. We’ll review it and get back to you shortly. Thanks for choosing us!')
+			setLoading(false);
+
+		} catch (error) {
+			console.log("error", error);
+			openNotificationWithIcon('error',
+				``, `We're sorry, but your application couldn't be sent. 
+				We're already working on resolving the issue. Thank you for your patience!`)
+		}
+	}
+
 	return (
 		<div className="refinance-container">
+			{contextHolder}
 			<div className="refinance-content">
 				<div className="refinance-group-one">
 					<Steps
@@ -250,9 +331,8 @@ const RefinanceComponent = () => {
 							].map((option, index) => (
 								<button
 									key={index}
-									className={`ref-prop-btn ${
-										refPropquest1 === option ? "active" : `${option}`
-									}`}
+									className={`ref-prop-btn ${refPropquest1 === option ? "active" : `${option}`
+										}`}
 									onClick={() => handleRefPropQuest1(option)}
 								>
 									{option}
@@ -282,9 +362,8 @@ const RefinanceComponent = () => {
 							{buttonGroup1.map((button, index) => (
 								<button
 									key={index}
-									className={`ref-prop-btn ${
-										refPropquest2 === button ? "active" : ""
-									}`}
+									className={`ref-prop-btn ${refPropquest2 === button ? "active" : ""
+										}`}
 									onClick={() => handleRefPropQuest2(button)}
 								>
 									{button}
@@ -298,9 +377,8 @@ const RefinanceComponent = () => {
 							{buttonGroup2.map((button, index) => (
 								<button
 									key={index}
-									className={`ref-prop-btn ${
-										selectedbtnprop === button ? "active" : ""
-									}`}
+									className={`ref-prop-btn ${selectedbtnprop === button ? "active" : ""
+										}`}
 									onClick={() => handlefourthquestprop(button)}
 								>
 									{button}
@@ -368,9 +446,8 @@ const RefinanceComponent = () => {
 								(status, index) => (
 									<button
 										key={index}
-										className={`ref-prop-btn ${
-											empStatus === status ? "active" : `${status}`
-										}`}
+										className={`ref-prop-btn ${empStatus === status ? "active" : `${status}`
+											}`}
 										onClick={() => handleEmploymentStatus(status)}
 									>
 										{status}
@@ -387,9 +464,8 @@ const RefinanceComponent = () => {
 							{buttonGroup4.map((button, index) => (
 								<button
 									key={index}
-									className={`ref-prop-btn ${
-										annualInc === button ? "active" : ""
-									}`}
+									className={`ref-prop-btn ${annualInc === button ? "active" : ""
+										}`}
 									onClick={() => handleAnnualIncome(button)}
 								>
 									{button}
@@ -403,9 +479,8 @@ const RefinanceComponent = () => {
 							{["No", "Yes"].map((answer, i) => (
 								<button
 									key={i}
-									className={`ref-prop-btn ${
-										bankcruptcyStat === answer ? "active" : ""
-									}`}
+									className={`ref-prop-btn ${bankcruptcyStat === answer ? "active" : ""
+										}`}
 									onClick={() => handleBankcrutpcyStatus(answer)}
 								>
 									{answer}
@@ -421,9 +496,8 @@ const RefinanceComponent = () => {
 							{["No", "Yes"].map((answer, i) => (
 								<button
 									key={i}
-									className={`ref-prop-btn ${
-										mortpayments === answer ? "active" : ""
-									}`}
+									className={`ref-prop-btn ${mortpayments === answer ? "active" : ""
+										}`}
 									onClick={() => handleMortgagePayments(answer)}
 								>
 									{answer}
@@ -444,9 +518,8 @@ const RefinanceComponent = () => {
 							].map((score, index) => (
 								<button
 									key={index}
-									className={`ref-prop-btn ${
-										creditscore === score ? "active" : ""
-									}`}
+									className={`ref-prop-btn ${creditscore === score ? "active" : ""
+										}`}
 									onClick={() => handleCreditScore(score)}
 								>
 									{score}
@@ -461,17 +534,37 @@ const RefinanceComponent = () => {
 						</p>
 						<div className="ref-btn-group-input">
 							<div className="ref-btn-group">
-								<input type="text" placeholder="City or zip code" />
+								<input type="text"
+									placeholder="City or zip code"
+									value={homeLocation}
+									onChange={(e) => setHomeLocation(e.target.value)} />
 							</div>
 						</div>
 					</div>
 				</div>
 				<br />
 				<div className="refinance-wrap-up-group" ref={WrapUpGroupRef}>
-					<WrapUpDetails setWrapUpComplete={setIsWrapUpComplete} />
+					<WrapUpDetails
+						setWrapUpComplete={setIsWrapUpComplete}
+						setCustomerInfo={setCustomerInfo}
+						customerInfo={customerInfo}
+					/>
 				</div>
 				<br />
-				<SubmitApplicationCustom />
+				<br />
+				<br />
+				<span style={{ fontSize: "18px", color: "#8C9094", width: "79%", margin: 'auto' }}>
+					By submitting, I agree my information may be shared and that I may be
+					contacted at this number including through emails. I agree to the
+					privacy policy and terms.
+				</span>
+				<SemiRoundBtn
+					label={"Submit Pre-approval"}
+					className="submit-pre-approval round-btn"
+					handleClick={handleSubmitApplication}
+					loading={loading}
+				/>
+				{/* <SubmitApplicationCustom /> */}
 				<div>
 					<CustomMlFooter />
 					<FooterComponent />
