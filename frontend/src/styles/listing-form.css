@@ -1361,6 +1361,14 @@ select.location-form-inputs {
 	.listing-form-application .buttonSubmit {
 		padding-bottom: 10px;
 	}
+	.vendor-modal-content{
+		width: 90%;
+		padding: 20px 5px;
+	}
+	.vendor-modal-content h2{
+		font-size: 22px;
+	}
+
 }
 
 @media screen and (min-width: 360px) and (max-width: 480px) {
@@ -1425,7 +1433,7 @@ select.location-form-inputs {
 	.listing-property-details-label, 
 	.listing-listing-details-label{
 		font-size: 18px;
-		padding: 10px;
+		padding: 5px 0px;
 	}
 	.listing-ContentContainer .listing-application .listing-property-type {
 		display: flex;
@@ -1689,6 +1697,13 @@ select.location-form-inputs {
 	.listing-property-details-label .label{
 		margin-top: 10px;
 	}
+	.vendor-modal-content{
+		width: 90%;
+		padding: 20px 5px;
+	}
+	.vendor-modal-content h2{
+		font-size: 22px;
+	}
 }
 
 @media only screen and (min-width: 481px) and (max-width: 768px) {
@@ -1857,6 +1872,13 @@ select.location-form-inputs {
 	}
 	.descriptionDetails, .uploadPhotos{
 		padding: 30px;
+	}
+	.vendor-modal-content{
+		width: 90%;
+		padding: 20px 5px;
+	}
+	.vendor-modal-content h2{
+		font-size: 22px;
 	}
 }
 

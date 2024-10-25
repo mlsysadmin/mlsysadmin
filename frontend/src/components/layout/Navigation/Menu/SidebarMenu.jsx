@@ -250,12 +250,14 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 				style={{
 					display:"flex",
 					flexDirection:"column",
-					gap:"20px"
+					gap:"20px",
+					justifyContent:"flex-start"
 			
 					// display: "grid",
 					// gridTemplateColumns: "1fr 1fr",
 					// gridGap: "10px",
 				}}
+				className="dropdown-user-gr"
 			>
 				<div
 					style={{
@@ -267,6 +269,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 						width:"100%",
 						gap:"10px"
 					}}
+					className="join-team-list-property"
 				>
 					<RoundBtn
 						type="primary"
@@ -292,7 +295,6 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 						style={{
 							border: "#D90000 solid 1px",
 							background: "white",
-							marginTop: "0px",
 							color: "#D90000",
 						}}
 						label="Join our Team"

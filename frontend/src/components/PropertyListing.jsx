@@ -22,7 +22,7 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [checked, setIsChecked] = useState(false);
   const [likes, setLikes] = useState([]);
-  const [showTooltip, setShowTooltip] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(true);
 
  const isSmallScreen = window.innerWidth <= 768; 
 

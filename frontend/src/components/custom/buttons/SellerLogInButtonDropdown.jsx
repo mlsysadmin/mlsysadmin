@@ -92,7 +92,7 @@ const handleLogout = async() =>{
 			: "";
 
 	return (
-		<div style={{ position: "relative" }} className="user-dropdown-group">
+		<div className="user-dropdown-group">
 			<button
 				style={{
 					margin: "0px 0px 0px 10px",
@@ -103,8 +103,8 @@ const handleLogout = async() =>{
 					padding: "6px 10px",
 					borderRadius: "5px",
 					display: "flex",
-					width: "auto",
 					alignItems: "center",
+					justifyContent:"space-between"
 				}}
 				onClick={handleButtonClick}
 				className="seller-button-dropdown"
@@ -126,11 +126,11 @@ const handleLogout = async() =>{
 				<div
 					style={{
 						position: "absolute",
-						top: "40px",
-						right: "0",
+						top: "80px",
+						right: "25px",
 						backgroundColor: "rgba(0, 0, 0, .72)",
 						// color: "white",
-						padding: "10px 5px",
+						padding: "10px 0px",
 						borderRadius: "5px",
 						width: "150px",
 						zIndex: "999",
