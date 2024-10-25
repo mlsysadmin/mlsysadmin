@@ -59,12 +59,13 @@ import {
 	DeniedMasterList,
 	ApprovedApplication,
 	SupportCreateListing,
+	PropertySearchPage,
 	ComingSoonPage,
 	FaqsPage,
 	TermsandConditionPage,
 } from "../pages";
 import { ProtectedRoute, BuyerSellerProtectedRoute } from "./ProtectedRoute";
-import { PropertySearchModal, SaleComponent, SearchListingComponent } from "../components";
+import { SaleComponent, SearchListingComponent } from "../components";
 
 
 
@@ -203,8 +204,8 @@ const Routes = [
 				element: <PreviewListing />,
 			},
 			{
-				path: "/propertySearchmodal",
-				element: <PropertySearchModal />,
+				path: "/propertySearch",
+				element: <PropertySearchPage />,
 			},
 			{
 				path: "/buyer-application-history",

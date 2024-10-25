@@ -342,7 +342,7 @@ const HeaderMenu = () => {
 		{
 			label: <OtherServicesMenu />,
 			key: "other-services",
-			link: "/other-services",
+			link: "/propertySearch",
 		},
 		{ label: "Contact", key: "contact", link: "/contact-us" },
 	];

@@ -209,27 +209,37 @@ const FeaturedProperties = [
 ]
 
 const Ratings = [
-    {
-        numRate: 5,
-        user: 'Jack Frost',
-        rate: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-    },
-    {
-        numRate: 4.5,
-        user: 'Ran Takahashi',
-        rate: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-    },
-    {
-        numRate: 4,
-        user: 'Pablo Nase',
-        rate: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-    },
-    {
-        numRate: 4.7,
-        user: 'Gojo Satoru',
-        rate: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-    }
-]
+	{
+		numRate: 5,
+		user: "Sarah T",
+		rate: "ML Brokerage made selling my home a breeze! The interface is user-friendly, and I quickly found interested buyers!",
+	},
+	{
+		numRate: 4,
+		user: "James K.",
+		rate: "The property listing process was straightforward, but I wish there were more templates for photos. Overall, a solid experience!",
+	},
+	{
+		numRate: 3,
+		user: "Ethan P.",
+		rate: "Functional website, but I encountered some limitations with the reporting features. It served its purpose, though.",
+	},
+	{
+		numRate: 4.7,
+		user: "Ava W.",
+		rate: "Fantastic exposure for my rental property! I had several inquiries within days of posting.",
+	},
+	{
+		numRate: 4,
+		user: "Emily Carter",
+		rate: "Great platform for posting listings! The interface is user-friendly, making it easy to sell properties quickly.",
+	},
+	{
+		numRate: 4.5,
+		user: "Michael Fort",
+		rate: "Impressive site—lots of potential buyers! I sold my property within weeks, and the support team was helpful throughout.",
+	},
+];
 const prop = property;
 const cardData =[
     {
