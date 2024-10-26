@@ -1,3 +1,7 @@
+.whole-property-search-page{
+    background: white;
+}
+
 .custom-modal-searchprop {
   width: auto;
 }
@@ -21,11 +25,12 @@
   width: 100%;
 }
 
-.whole-property-search-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  justify-content: center;
+.whole-property-search-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .toptitle {
@@ -119,13 +124,14 @@
 }
 
 .property-search-form {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  margin-top: 50px;
-  gap: 20px;
-  padding: 10px;
-  background-color: #f7f7f7;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-top: 50px;
+    gap: 20px;
+    /* padding:10px; */
+    background-color: #F7F7F7;
+    padding: 40px 30px 10px;
 }
 
 .form-row {
@@ -143,23 +149,23 @@
 
 .form-row input,
 .form-row .form-column select {
-  flex: 1;
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
 }
-.form-row input:disabled,
-.form-row select:disabled {
-  border-color: #d9d9d9;
-  background-color: #d9d9d9;
+.form-row input:disabled, .form-row select:disabled{
+    border-color: #d9d9d9;
+    background-color: #d9d9d9;
 }
-.form-column {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  flex-direction: column;
-  width: 100%;
+.form-column{
+    display: flex;
+    flex-wrap: wrap ;
+    gap: 5px;
+    flex-direction: column;
+    width: 100%;
 }
 .submit-row {
   justify-content: right;

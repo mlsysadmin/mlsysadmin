@@ -50,7 +50,7 @@ const ContactUsComponent = () => {
     api[type]({
       message: message,
       description: description,
-      placement: 'top',
+      placement: 'bottomRight',
       duration: type == "error" ?  4 : 3
     });
   };

@@ -2,6 +2,9 @@
 
 require('dotenv').config();
 const { SendEmail, EmailTemplate } = require('../../services/email.service.js');
+const DataResponseHandler = require('../../utils/_helper/DataResponseHandler.helper.js');
+const SuccessFormatter = require('../../utils/_helper/SuccessFormatter.helper.js');
+const SuccessLoggerHelper = require('../../utils/_helper/SuccessLogger.helper.js');
 
 module.exports = {
     SendInquiry: async (req, res, next) => {
@@ -21,7 +24,7 @@ module.exports = {
 
             const emailTemp = EmailTemplate(path, { ...messageContent });
 
-            const sendInquiry = await SendEmail(emailTemp, 'Listing Inquiry', payload.message);
+            const sendInquiry = await SendEmail(emailTemp, 'Listing Inquiry', payload.message, process.env.EMAIL_TO);
 
             console.log(sendInquiry);
 
@@ -51,7 +54,7 @@ module.exports = {
 
             const emailTemp = EmailTemplate(templateName, { ...messageContent });
 
-            const sendMessage = await SendEmail(emailTemp, 'Customer Inquiry', payload.message);
+            const sendMessage = await SendEmail(emailTemp, 'Customer Inquiry', payload.message, process.env.EMAIL_TO);
 
             console.log(sendMessage);
 
@@ -106,7 +109,7 @@ module.exports = {
 
             const reference = new Date();
 
-            const sendMessage = await SendEmail(emailTemp, 'Refinancing (Refinance a Home)', reference);
+            const sendMessage = await SendEmail(emailTemp, 'Refinancing (Refinance a Home)', reference, process.env.EMAIL_TO);
 
             console.log(sendMessage);
 
@@ -159,7 +162,7 @@ module.exports = {
 
             const reference = new Date();
 
-            const sendMessage = await SendEmail(emailTemp, 'Refinancing (Buy a Home)', reference);
+            const sendMessage = await SendEmail(emailTemp, 'Refinancing (Buy a Home)', reference, process.env.EMAIL_TO);
 
             console.log(sendMessage);
 
@@ -203,11 +206,49 @@ module.exports = {
 
             const reference = new Date();
 
-            const sendMessage = await SendEmail(emailTemp, 'Request for a Search of Property', reference);
+            const sendMessage = await SendEmail(emailTemp, 'Request for a Search of Property', reference, process.env.EMAIL_TO);
 
             console.log(sendMessage);
 
             res.send({ sendMessage });
+
+
+        } catch (error) {
+            next(error);
+        }
+    },
+    SendListingApproved: async (req, res, next) => {
+        try {
+
+            const {
+                name, image_path, property_title, property_no, email
+            } = req.body.payload;
+
+            const image_link = `${process.env.IGOT_SOLUTION_BASE_URL}${image_path}`
+            const link = `${process.env.CLIENT_APP_URL}/previewListing/?id=${property_no}`;
+            const logo = `${process.env.IGOT_SOLUTION_BASE_URL}/assets/logo.png`
+
+            const templateName = 'approvedlisting.handlebars';
+
+            const emailTemp = EmailTemplate(templateName, { name, image_link, property_title, property_no, link, logo });
+
+            const reference = new Date();
+
+            const sendMessage = await SendEmail(emailTemp, 'Listing Approved', reference, email);
+            console.log(sendMessage);
+
+            const mail = DataResponseHandler(
+                {response: sendMessage.response, accepted: sendMessage.accepted, rejected: sendMessage.rejected},
+                "EMAIL_SENT",
+                200,
+                true,
+                "SUCCESS"
+            )
+            const success = SuccessFormatter(mail, 200, "Email Sent");
+
+            SuccessLoggerHelper(req, mail);
+
+            res.send(success);
 
 
         } catch (error) {

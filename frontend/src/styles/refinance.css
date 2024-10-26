@@ -1,28 +1,42 @@
 .refinance-container {
   width: 100%;
+  background-color: #ffffff;
+
 }
+
 .refinance-content {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
+  /* width: 100%; */
   height: auto;
+  /* border: 1px solid black; */
+  width: 55%;
+  margin: auto;
 }
-.ref-btn-group .ref-prop-btn, .ref-btn-group-two .ref-prop-btn, .ref-btn-group-five .ref-prop-btn { 
+
+.ref-btn-group .ref-prop-btn,
+.ref-btn-group-two .ref-prop-btn,
+.ref-btn-group-five .ref-prop-btn {
   color: var(--black);
 }
+
 .refinance-group-one {
   gap: 20px;
-  width: 30%;
-  margin: 50px 0px 0px 20%;
+  width: 70%;
+  margin: 50px auto 0px;
 }
+
 .refinance-content .refinance-property-group {
   display: flex;
   flex-direction: column;
   /* width: 100%; */
-  margin: 20px 0px 0px 200px;
+  margin: 30px auto 0px;
+  width: 100%;
+  /* margin: 20px 0px 0px 200px; */
   gap: 30px;
+  padding: 0px 20px;
 }
 
 h4 {
@@ -30,21 +44,27 @@ h4 {
   font-size: 25px;
   font-weight: bold;
 }
+
 .ref-btn-group {
   display: flex;
-  width: 90%;
+  width: 100% !important;
   margin: 20px 0px 0px 0px;
-  gap: 10px;
+  gap: 30px;
 }
+
 .ref-prop-btn {
   border: 1px solid var(--mute-gray) !important;
-  width: 250px;
-  height: 50px !important;
-  border-radius: 10px !important;
+  max-width: 250px;
+  height: 55px !important;
+  /* border-radius: 10px !important; */
+  border-radius: 6px !important;
   background-color: white !important;
   font-size: 15px !important;
   margin: 20px 0px 0px 0px;
+  width: 100%;
+  padding: 0px 5px;
 }
+
 .refinance-property-group .ref-prop-btn.active,
 .refinance-property-group .ref-prop-btn:hover,
 .refinance-details-group .ref-prop-btn.active,
@@ -58,7 +78,7 @@ h4 {
   border: 1px solid var(--mute-gray);
   width: 55%;
   height: 50px;
-  border-radius: 10px;
+  border-radius: 6px;
   background-color: white;
   font-size: 15px;
   justify-content: space-between;
@@ -71,12 +91,14 @@ h4 {
   color: black;
   font-weight: bold;
 }
+
 .refinance-property-group .refinance-property-group-three .ref-btn-group {
   display: flex;
   width: 50%;
   flex-wrap: wrap;
   flex-direction: row;
 }
+
 .refinance-property-group .ref-btn-group-five {
   display: flex;
   width: 30%;
@@ -84,16 +106,19 @@ h4 {
   gap: 30px;
   flex-direction: column;
 }
+
 .refinance-content .refinance-loan-group input,
 .refinance-content .refinance-details-group-six input,
 .refinance-content .refinance-property-group-five input {
   width: 550px;
   height: 50px;
   font-size: 15px;
-  border-radius: 10px;
+  border-radius: 6px;
   border: 1px solid var(--mute-gray);
-  padding: 0px 0px 0px 20px;
+  padding: 0px 15px;
+  outline: none;
 }
+
 .refinance-content.ant-slider-track {
   background-color: var(--red) !important;
 }
@@ -103,8 +128,7 @@ h4 {
     color: red !important;
     border-color: red !important;
   } */
-:where(.css-dev-only-do-not-override-3rel02).ant-slider
-  .ant-slider-handle::after {
+:where(.css-dev-only-do-not-override-3rel02).ant-slider .ant-slider-handle::after {
   /* background-color: var(--red); */
   box-shadow: 0 0 0 2px var(--red);
   cursor: pointer;
@@ -117,125 +141,129 @@ h4 {
 .refinance-loan-group {
   display: flex;
   flex-direction: column;
-  margin: 20px 0px 0px 200px;
+  margin: 20px 0px 0px 0px;
   flex-wrap: wrap;
   gap: 30px;
+  padding: 0px 20px;
 }
+
 .refinance-loan-group-one {
   display: flex;
   flex-direction: column;
 }
+
 .refinance-loan-group .estimate {
   font-size: 16px;
   color: black;
   font-weight: normal !important;
 }
+
 .refinance-details-group-one {
   display: flex;
   width: 100%;
   gap: 10px;
   flex-direction: column;
 }
+
 .refinance-details-group .ref-btn-group-two {
   display: flex;
-  width: 70%;
+  /* width: 70%; */
+  width: 100%;
   flex-wrap: wrap;
   flex-direction: row;
   margin: 20px 0px 0px 0px;
   gap: 30px;
 }
+
 .refinance-details-group .ref-btn-group-five {
   display: flex;
-  width: 50%;
+  /* width: 50%; */
+  width: 100%;
   flex-wrap: wrap;
   flex-direction: row;
   margin: 20px 0px 0px 0px;
   gap: 30px;
 }
+
 .refinance-details-group span {
   font-size: 18px;
   color: black;
   font-weight: bold;
 }
+
 .refinance-loan-group span {
   font-size: 18px;
   color: black;
   font-weight: bold;
 }
+
 .refinance-details-group {
   display: flex;
   flex-direction: column;
-  margin: 20px 0px 0px 200px;
+  /* margin: 20px 0px 0px 200px; */
+  margin: 20px 0px 0px 0px;
   flex-wrap: wrap;
   gap: 30px;
+  padding: 0px 20px;
 }
+
 .refinance-wrap-up-group {
   display: flex;
   flex-direction: column;
-  margin: 20px 0px 0px 200px;
+  margin: 20px 0px 0px 0px;
   flex-wrap: wrap;
   gap: 30px;
-  width: 80%;
+  /* width: 80%; */
+  padding: 0px 20px;
 }
+
 .refinance-wrap-up-group-one {
   display: flex;
   gap: 20px;
 }
+
 .refinance-wrap-up-group-two span {
   font-size: 18px;
   color: black;
   font-weight: bold;
 }
+
 .refinance-group-one .ant-steps-item-process .ant-steps-item-icon {
   background-color: #d9d9d9 !important;
 }
-.refinance-group-one
-  :where(.css-dev-only-do-not-override-3rel02).ant-steps
-  .ant-steps-item-process
-  .ant-steps-item-icon {
+
+.refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps .ant-steps-item-process .ant-steps-item-icon {
   background-color: var(--red);
   border-color: var(--red);
 }
-.refinance-group-one
-  :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-with-progress
-  .ant-steps-item-process
-  .ant-steps-item-container
-  .ant-steps-item-icon
-  .ant-steps-icon {
+
+.refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-with-progress .ant-steps-item-process .ant-steps-item-container .ant-steps-item-icon .ant-steps-icon {
   /* color: #fff; */
   display: none;
 }
-.refinance-group-one
-  :where(.css-dev-only-do-not-override-3rel02).ant-progress
-  .ant-progress-inner:not(.ant-progress-circle-gradient)
-  .ant-progress-circle-path {
+
+.refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-progress .ant-progress-inner:not(.ant-progress-circle-gradient) .ant-progress-circle-path {
   stroke: var(--red);
 }
+
 .refinance-group-one .ant-steps-icon {
   font-size: 0;
 }
+
 .refinance-group-one .ant-steps-item-tail {
   color: var(--red);
 }
-.refinance-group-one
-  :where(.css-dev-only-do-not-override-3rel02).ant-steps
-  .ant-steps-item-wait
-  .ant-steps-item-icon {
+
+.refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps .ant-steps-item-wait .ant-steps-item-icon {
   background-color: #cccccc;
   border-color: transparent;
 }
-.refinance-group-one
-  :where(
-    .css-dev-only-do-not-override-3rel02
-  ).ant-steps.ant-steps-with-progress.ant-steps-label-vertical
-  .ant-steps-item
-  .ant-steps-item-tail {
+
+.refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-with-progress.ant-steps-label-vertical .ant-steps-item .ant-steps-item-tail {
   background-color: var(--red);
 }
 
-.refinance-group-one
-  :where(.css-dev-only-do-not-override-3rel02).ant-steps
-  .ant-steps-item-tail::after {
+.refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps .ant-steps-item-tail::after {
   display: inline-block;
   width: 100%;
   height: 1px;
@@ -244,28 +272,24 @@ h4 {
   transition: background 0.3s;
   content: "";
 }
-.refinance-property-group-five
-  :where(.css-dev-only-do-not-override-3rel02).ant-slider
-  .ant-slider-rail {
+
+.refinance-property-group-five :where(.css-dev-only-do-not-override-3rel02).ant-slider .ant-slider-rail {
   background-color: rgba(217, 0, 0, 38%);
 }
-.refinance-property-group-five
-  :where(.css-dev-only-do-not-override-m4timi).ant-slider-horizontal
-  .ant-slider-rail {
+
+.refinance-property-group-five :where(.css-dev-only-do-not-override-m4timi).ant-slider-horizontal .ant-slider-rail {
   height: 15px;
   border-radius: 10px;
   background-color: rgba(217, 0, 0, 38%);
 }
-.refinance-property-group-five
-  :where(.css-dev-only-do-not-override-m4timi).ant-slider
-  .ant-slider-handle::after {
+
+.refinance-property-group-five :where(.css-dev-only-do-not-override-m4timi).ant-slider .ant-slider-handle::after {
   width: 20px;
   height: 20px;
   background-color: var(--red);
 }
-.refinance-property-group-five
-  :where(.css-dev-only-do-not-override-m4timi).ant-slider-horizontal
-  .ant-slider-track {
+
+.refinance-property-group-five :where(.css-dev-only-do-not-override-m4timi).ant-slider-horizontal .ant-slider-track {
   height: 15px;
   border-radius: 10px;
 }
@@ -286,6 +310,7 @@ h4 {
   display: flex;
   flex-direction: column;
 }
+
 /* .refinance-container .refinance-group-one .ant-steps-item-icon{
   border-width: 1px !important;
   background-color: #D9D9D9 !important;
@@ -323,14 +348,8 @@ h4 {
   background-color: #d9d9d9 !important;
 }
 
-.refinance-container
-  .refinance-group-one
-  .ant-steps-item-finish
-  .ant-steps-item-icon,
-.refinance-container
-  .refinance-group-one
-  .ant-steps-item-process
-  .ant-steps-item-icon {
+.refinance-container .refinance-group-one .ant-steps-item-finish .ant-steps-item-icon,
+.refinance-container .refinance-group-one .ant-steps-item-process .ant-steps-item-icon {
   background-color: red !important;
 }
 
@@ -344,17 +363,34 @@ h4 {
   justify-content: center;
 }
 
-@media screen and (min-width: 320px) and (max-width: 359px) {
+.submit-pre-approval,
+.submit-pre-approval:hover {
+  background-color: var(--red) !important;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px !important;
+  max-width: 250px;
+  height: 50px;
+  border: 1px solid var(--red) !important;
+  font-size: 16px;
+  color: white !important;
+  width: 100%;
+  margin: 30px auto 50px auto;
+}
+
+/* @media screen and (min-width: 320px) and (max-width: 359px) {
   .refinance-group-one {
     width: 50%;
     margin: 50px 0px 0px 30px;
   }
-  .refinance-group-one
-    :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-vertical {
+
+  .refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-vertical {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
+
   .refinance-details-group-six .ref-btn-group-input {
     display: flex;
     width: 100%;
@@ -362,6 +398,7 @@ h4 {
     flex-direction: row;
     gap: 10px;
   }
+
   .refinance-details-group-six .ref-btn-group-input input {
     width: 98%;
     height: 50px;
@@ -369,35 +406,32 @@ h4 {
     margin: 0px 0px 0px 0px;
     align-items: center;
   }
-  .refinance-group-one
-    :where(.css-dev-only-do-not-override-3rel02).ant-steps
-    .ant-steps-item-process
-    .ant-steps-item-icon {
+
+  .refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps .ant-steps-item-process .ant-steps-item-icon {
     width: 20px;
     height: 20px;
   }
-  .refinance-group-one
-    :where(.css-dev-only-do-not-override-3rel02).ant-steps
-    .ant-steps-item-wait
-    .ant-steps-item-icon {
+
+  .refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps .ant-steps-item-wait .ant-steps-item-icon {
     width: 20px;
     height: 20px;
   }
+
   .refinance-content .refinance-property-group {
     display: flex;
     flex-direction: column;
     margin: 0px 0px 0px 15px;
     gap: 30px;
   }
+
   .ref-btn-group {
     display: flex;
     flex-direction: column;
     width: 100%;
-    /* justify-content: center;
-  align-items: center; */
     margin: 10px 0px 0px 0px;
     gap: 5px;
   }
+
   .ref-prop-btn {
     width: 98%;
     height: 50px;
@@ -405,27 +439,33 @@ h4 {
     margin: 0px 0px 0px 0px;
     align-items: center;
   }
+
   .ref .refinance-property-group span {
     font-size: 16px;
   }
+
   .refinance-property-group .refinance-property-group-two .ref-dropdown {
     width: 98%;
     height: 50px;
     font-size: 16px;
   }
+
   .refinance-property-group .refinance-property-group-three .ref-btn-group {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
     flex-direction: row;
   }
+
   .refinance-property-group .ref-btn-group-five {
     width: 80%;
   }
+
   .refinance-property-group .ref-btn-group-five .refinance-slider {
     margin: 0px 0px 0px 0px;
     width: 100%;
   }
+
   .refinance-loan-group {
     display: flex;
     width: 90%;
@@ -434,21 +474,26 @@ h4 {
     flex-wrap: wrap;
     gap: 30px;
   }
+
   .refinance-loan-group-one {
     width: 100%;
   }
+
   .refinance-loan-group span,
   .refinance-details-group span {
     font-size: 16px;
     width: 93%;
   }
+
   .refinance-content .refinance-wrap-up-group input {
     width: 250px;
     height: 50px;
   }
+
   .refinance-details-group-six p {
     width: 290px;
   }
+
   .refinance-content .refinance-loan-group input,
   .refinance-content .refinance-wrap-up-group-two input,
   .ref-btn-group-five input {
@@ -457,6 +502,7 @@ h4 {
     font-size: 16px;
     margin: 0px;
   }
+
   .refinance-content .refinance-property-group-five input,
   .refinance-property-group-five input {
     width: 98%;
@@ -464,10 +510,12 @@ h4 {
     font-size: 16px;
     margin: 0px 0px 0px 0px;
   }
+
   .refinance-content .refinance-wrap-up-group .refinance-wrap-up-group-one {
     display: flex;
     flex-direction: column;
   }
+
   .refinance-details-group {
     display: flex;
     flex-direction: column;
@@ -475,6 +523,7 @@ h4 {
     flex-wrap: wrap;
     gap: 30px;
   }
+
   .refinance-details-group .ref-btn-group-two,
   .refinance-details-group .ref-btn-group-five {
     display: flex;
@@ -483,25 +532,35 @@ h4 {
     flex-direction: row;
     gap: 10px;
   }
+
   .refinance-wrap-up-group {
     margin: 20px 0px 0px 20px;
     gap: 0px;
     width: 97%;
   }
+
   .SSl-Encryption {
     width: 95%;
   }
-}
-@media screen and (min-width: 360px) and (max-width: 480px) {
+
+  .refinance-content {
+    width: 90%;
+  }
+} */
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .refinance-content {
+    width: 90%;
+  }
+
   .refinance-property-group,
-  .refinance-loan-group,
   .refinance-details-group,
   .refinance-wrap-up-group {
-    padding: 0px 0px 0px 5%;
+    padding: 0px 10px;
   }
+
   .refinance-group-one {
-    width: 50%;
-    margin: 50px 0px 0px 30px;
+    width: 100%;
   }
 
   .refinance-details-group .ref-btn-group-input {
@@ -511,250 +570,287 @@ h4 {
     flex-direction: row;
     gap: 10px;
   }
+
   .refinance-details-group .ref-btn-group-input input {
-    width: 90%;
+    width: 100%;
     height: 50px;
     font-size: 16px;
     margin: 0px 0px 0px 0px;
     align-items: center;
   }
 
-  .refinance-group-one
-    :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-vertical {
+  .refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-vertical {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-  .refinance-group-one
-    :where(.css-dev-only-do-not-override-3rel02).ant-steps
-    .ant-steps-item-process
-    .ant-steps-item-icon {
+
+  .refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps .ant-steps-item-process .ant-steps-item-icon {
     width: 20px;
     height: 20px;
   }
-  .refinance-group-one
-    :where(.css-dev-only-do-not-override-3rel02).ant-steps
-    .ant-steps-item-wait
-    .ant-steps-item-icon {
+
+  .refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps .ant-steps-item-wait .ant-steps-item-icon {
     width: 20px;
     height: 20px;
   }
+
   .refinance-content .refinance-property-group {
-    display: flex;
-    flex-direction: column;
-    margin: 0px 0px 0px 25px;
-    gap: 30px;
-  }
-  .ref-btn-group {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    /* justify-content: center;
-  align-items: center; */
-    margin: 10px 0px 0px 0px;
-    gap: 5px;
-  }
-  .ref-prop-btn {
-    width: 90%;
-    height: 50px;
-    font-size: 16px;
     margin: 0px 0px 0px 0px;
-    align-items: center;
+    gap: 20px;
+    padding: 0 10px;
   }
+  .refinance-property-group h4,
+  .refinance-loan-group h4,
+  .refinance-details-group h4,
+  .refinance-wrap-up-group h3{
+    font-size: 23px;
+  }
+  .refinance-property-group span{
+    font-size: 16px;
+  }
+
+  .ref-btn-group {
+    margin: 15px 0px 10px;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .ref-btn-group .ref-prop-btn {
+    max-width: 48%;
+    word-wrap: break-word;
+    padding: 5px;
+    font-size: 14px !important;
+}
+
   .ref .refinance-property-group span {
     font-size: 16px;
   }
+
   .refinance-property-group .refinance-property-group-two .ref-dropdown {
-    width: 90%;
+    width: 100%;
     height: 50px;
-    font-size: 16px;
+    font-size: 15px;
   }
+
   .refinance-property-group .refinance-property-group-three .ref-btn-group {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
     flex-direction: row;
   }
+
   .refinance-property-group .ref-btn-group-five {
     width: 80%;
   }
+
   .refinance-property-group .ref-btn-group-five .refinance-slider {
     margin: 0px 0px 0px 0px;
     width: 100%;
   }
+
   .refinance-loan-group {
-    display: flex;
-    width: 90%;
-    flex-direction: column;
-    margin: 0px 0px 0px 20px;
-    flex-wrap: wrap;
-    gap: 30px;
+    width: 100%;
+    gap: 20px;
+    padding: 0 10px;
   }
+
   .refinance-loan-group-one {
     width: 100%;
   }
+
   .refinance-loan-group span,
   .refinance-details-group span {
     font-size: 16px;
-    width: 93%;
+    width: 100%;
   }
+
   .refinance-content .refinance-wrap-up-group input {
     width: 250px;
     height: 50px;
   }
+
   .refinance-details-group-six p {
     width: 290px;
   }
+
   .refinance-content .refinance-loan-group input,
   .refinance-content .refinance-wrap-up-group-two input,
   .ref-btn-group-five input {
-    width: 95%;
+    width: 100%;
     height: 50px;
-    font-size: 16px;
+    font-size: 15px;
     margin: 0px;
   }
+
   .refinance-content .refinance-property-group-five input,
   .refinance-property-group-five input {
-    width: 90%;
+    width: 100%;
     height: 50px;
-    font-size: 16px;
+    font-size: 15px;
     margin: 0px 0px 0px 0px;
   }
+
   .refinance-content .refinance-wrap-up-group .refinance-wrap-up-group-one {
     display: flex;
     flex-direction: column;
   }
+
   .refinance-details-group {
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0px 0px 20px;
-    flex-wrap: wrap;
-    gap: 30px;
-  }
-  .refinance-details-group .ref-btn-group-two,
-  .refinance-details-group .ref-btn-group-five {
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    flex-direction: row;
     gap: 10px;
   }
+
+  .refinance-details-group .ref-btn-group-two,
+  .refinance-details-group .ref-btn-group-five {
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
   .refinance-wrap-up-group {
-    margin: 20px 0px 0px 20px;
     gap: 0px;
-    width: 86%;
+    width: 100%;
+  }
+  .ref-prop-btn{
+    max-width: 100%;
+  }
+
+  .refinance-wrap-up-group .wrap-up-inf .prop-content2-wrap-up .label{
+    margin-bottom: 10px;
   }
 }
+
 @media screen and (min-width: 481px) and (max-width: 575px) {
   .refinance-content {
     padding: 0px;
+    width: 90%;
   }
+
   .refinance-group-one {
-    width: 80%;
-    margin: 50px 0px 0px 1%;
+    width: 100%;
+    /* margin: 50px 0px 0px 1%; */
   }
-  .refinance-group-one
-    :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-vertical {
+
+  .refinance-property-group-one h4,
+  .refinance-loan-group-one h4,
+  .refinance-details-group-one h4 {
+    font-size: 23px;
+    margin-bottom: 15px;
+  }
+
+  .refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-vertical {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
+
   .refinance-content .refinance-property-group {
-    display: flex;
-    flex-direction: column;
-    margin: 20px 10px 0px 10px;
-    gap: 30px;
+    margin-top: 20px;
+    gap: 20px;
+    padding: 0px 10px;
   }
+
   .ref-btn-group {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    margin: 10px 0px 0px 0px;
+    margin: 15px 0px 10px;
     gap: 10px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
   }
+
   .refinance-details-group-six .ref-btn-group {
     width: 100%;
   }
+
   .refinance-property-group-three .ref-btn-group {
     width: 100%;
   }
 
-  .ref-prop-btn {
-    width: 98%;
-    height: 50px;
-    font-size: 16px;
-    margin: 0px 0px 0px 0px;
+  .ref-btn-group .ref-prop-btn {
+    max-width: 46%;
   }
 
-  .refinance-property-group span {
-    font-size: 20px;
+  .ref-prop-btn {
+    max-width: 100%;
+    height: 50px;
+    font-size: 14px !important;
+    margin: 10px 0px 0px 0px;
   }
+
+  .refinance-property-group span,
+  .refinance-details-group span {
+    font-size: 17px;
+  }
+
   .refinance-property-group .refinance-property-group-three .ref-btn-group {
-    display: flex;
     width: 100%;
-    flex-wrap: wrap;
-    flex-direction: row;
   }
+
   .refinance-property-group .refinance-property-group-two .ref-dropdown {
     width: 100%;
-    height: 50px;
-    font-size: 16px;
+    font-size: 15px;
   }
+
   .refinance-property-group .ref-btn-group-five {
     width: 80%;
   }
+
   .refinance-property-group .ref-btn-group-five .refinance-slider {
     margin: 0px 0px 0px 20px;
     width: 100%;
   }
+
   .refinance-loan-group {
-    display: flex;
     width: 100%;
-    flex-direction: column;
-    margin: 0px 0px 0px 20px;
-    flex-wrap: wrap;
-    gap: 30px;
+    margin-top: 0px;
+    gap: 20px;
   }
+
   .refinance-loan-group-one {
     width: 100%;
   }
+
   .refinance-loan-group-one span,
   .refinance-loan-group-two span .refinance-details-group span {
-    font-size: 18px;
-    width: 80%;
+    font-size: 17px;
+    width: 100%;
   }
+
   .refinance-content .refinance-wrap-up-group input {
     /* width: 400px; */
     height: 50px;
   }
+
   .refinance-content .refinance-details-group-six input {
     width: 98%;
   }
+
   .refinance-content .refinance-loan-group input,
   .refinance-content .refinance-wrap-up-group-two input,
   .ref-btn-group-five input {
-    width: 95%;
-    height: 50px;
-    font-size: 18px;
+    width: 100%;
+    font-size: 14px;
     margin: 0px;
   }
+
   .ref-btn-group-five input {
     width: 400px;
     height: 50px;
     font-size: 18px;
     margin: 0px 0px 0px 20px;
   }
+
   .refinance-content .refinance-wrap-up-group .refinance-wrap-up-group-one {
     display: flex;
     flex-direction: column;
   }
+
   .refinance-details-group {
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0px 0px 20px;
-    flex-wrap: wrap;
-    gap: 30px;
+    gap: 20px;
   }
+
   .refinance-details-group .ref-btn-group-two,
   .refinance-details-group .ref-btn-group-five {
     display: flex;
@@ -763,11 +859,13 @@ h4 {
     flex-direction: row;
     gap: 10px;
   }
+
   .refinance-wrap-up-group {
-    margin: 30px 0px 0px 20px;
-    gap: 10px;
+    margin: 30px 0px 0px 0px;
+    gap: 20px;
     width: 100%;
   }
+
   .refinance-wrap-up-group-two span {
     font-size: 24px;
     color: black;
@@ -777,15 +875,23 @@ h4 {
 
 
 @media screen and (min-width: 576px) and (max-width: 1024px) {
-  .wrap-up-inf .prop-content2-wrap-up .wrap-up-dropdown-button{
+
+  /* .wrap-up-inf .prop-content2-wrap-up .wrap-up-dropdown-button {
     width: 100%;
+  } */
+  .refinance-content {
+    width: 90%;
   }
+
   .refinance-details-group .ref-btn-group-five {
     width: 100%;
   }
-  .refinance-loan-group-one, .refinance-loan-group-two{
+
+  .refinance-loan-group-one,
+  .refinance-loan-group-two {
     width: 100%;
   }
+
   .wrap-up-inf .prop-content2-wrap-up .mobile-address-group,
   .wrap-up-inf .prop-content2-wrap-up .email-address-group,
   .wrap-up-inf .prop-content2-wrap-up .lastname-group,
@@ -796,140 +902,117 @@ h4 {
   .wrap-up-inf .prop-content2-wrap-up .zipcode-group,
   .wrap-up-inf .prop-content2-wrap-up .housenumber-group,
   .wrap-up-inf .prop-content2-wrap-up .source-income-group {
-    width: 100%;
+    width: 45%;
   }
+
   .refinance-details-group .ref-btn-group-two {
     width: 100%;
   }
+
   .ref-prop-btn {
     width: 100%;
   }
+
   .ref-btn-group {
     width: 100%;
   }
+
   .refinance-details-group-four,
   .refinance-details-group-three,
   .refinance-details-group-five,
   .refinance-details-group-six {
     width: 100%;
   }
-  .wrap-up-inf .prop-content2-wrap-up .source-income-group {
+
+  /* .wrap-up-inf .prop-content2-wrap-up .source-income-group {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin: 20px 0px 0px 0px;
-  }
-  .refinance-details-group {
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0px 0px 100px;
-    flex-wrap: wrap;
-    gap: 30px;
-  }
-  .refinance-content .refinance-property-group {
-    display: flex;
-    flex-direction: column;
-    /* width: 100%; */
-    margin: 20px 0px 0px 100px;
-    gap: 30px;
-  }
-  .refinance-loan-group {
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0px 0px 100px;
-    flex-wrap: wrap;
-    gap: 30px;
-  }
-  .refinance-wrap-up-group {
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0px 0px 100px;
-    flex-wrap: wrap;
-    gap: 30px;
-  }
+  } */
+
   .refinance-details-group-six p {
     width: 290px;
   }
+
   .refinance-group-one {
     gap: 20px;
-    width: 30%;
-    margin: 50px 0px 0px 15%;
+    width: 100%;
+    /* margin: 50px 0px 0px 15%; */
   }
 }
+
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .refinance-content {
     padding: 0px;
+    width: 90%;
   }
 
   .refinance-group-one {
     width: 80%;
-    margin: 20px 20px 0px 70px;
+    /* margin: 20px 20px 0px 70px; */
   }
-  .refinance-group-one
-    :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-vertical {
+
+  .refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-vertical {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-  .refinance-content .refinance-property-group {
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0px 0px 200px;
-    gap: 30px;
-  }
+
   .ref-btn-group {
     display: flex;
     flex-direction: row;
-    width: 90%;
+    /* width: 90%; */
     margin: 10px 0px 0px 0px;
-    gap: 10px;
+    /* gap: 10px; */
   }
+
   .ref-prop-btn {
-    width: 80%;
-    height: 50px;
     font-size: 16px;
     margin: 0px 0px 0px 0px;
   }
+
   .refinance-property-group span {
     font-size: 20px;
   }
+
   .refinance-property-group .refinance-property-group-three .ref-btn-group {
     display: flex;
     width: 80%;
     flex-wrap: wrap;
     flex-direction: row;
   }
+
   .refinance-property-group .refinance-property-group-two .ref-dropdown {
     width: 80%;
     height: 50px;
     font-size: 16px;
   }
+
   .refinance-property-group .ref-btn-group-five {
     width: 80%;
   }
+
   .refinance-property-group .ref-btn-group-five .refinance-slider {
     margin: 0px 0px 0px 20px;
     width: 100%;
   }
-  .refinance-loan-group {
-    display: flex;
-    flex-direction: column;
-    margin: 0px 0px 0px 200px;
-    flex-wrap: wrap;
-    gap: 30px;
-  }
+
   .refinance-loan-group-one {
     width: 100%;
   }
+
   .refinance-loan-group-one span,
   .refinance-loan-group-two span .refinance-details-group span {
     font-size: 18px;
     width: 80%;
   }
+
   .refinance-content .refinance-wrap-up-group input {
     width: 400px;
     height: 50px;
   }
+
   .refinance-content .refinance-loan-group input,
   .refinance-content .refinance-details-group-six input,
   .refinance-content .refinance-wrap-up-group-two input,
@@ -939,51 +1022,38 @@ h4 {
     font-size: 18px;
     margin: 0px;
   }
+
   .ref-btn-group-five input {
     width: 400px;
     height: 50px;
     font-size: 18px;
     margin: 0px 0px 0px 20px;
   }
+
   .refinance-content .refinance-wrap-up-group .refinance-wrap-up-group-one {
     display: flex;
     flex-direction: column;
   }
-  .refinance-details-group {
-    display: flex;
-    flex-direction: column;
-    margin: 0px 0px 0px 200px;
-    flex-wrap: wrap;
-    gap: 30px;
-  }
-  .refinance-details-group .ref-btn-group-two,
-  .refinance-details-group .ref-btn-group-five {
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    flex-direction: row;
-    gap: 10px;
-  }
-  .refinance-wrap-up-group {
-    margin: 20px 0px 0px 150px;
-    gap: 10px;
-  }
+
   .refinance-wrap-up-group-two span {
     font-size: 24px;
     color: black;
     font-weight: bold;
   }
 }
+
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
   .refinance-content {
     padding: 0px;
   }
+
   .refinance-property-group .refinance-property-group-three .ref-btn-group {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
     flex-direction: row;
   }
+
   .refinance-details-group .ref-btn-group-five {
     display: flex;
     width: 100%;
@@ -992,17 +1062,41 @@ h4 {
     margin: 20px 0px 0px 0px;
     gap: 30px;
   }
+
   .refinance-group-one {
     gap: 20px;
     width: 80%;
-    margin: 80px 0px 0px 120px;
+    /* margin: 80px 0px 0px 120px; */
   }
 }
+
 @media screen and (min-width: 1201px) and (max-width: 1400px) {
   .refinance-group-one {
     display: flex;
     gap: 20px;
     width: 80%;
     margin: 80px 0px 0px 120px;
+  }
+
+  .refinance-content {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 1301px) and (max-width: 1400px) {
+  .refinance-content {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 1101px) and (max-width: 1300px) {
+  .refinance-content {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 901px) and (max-width: 1100px) {
+  .refinance-content {
+    width: 90%;
   }
 }
