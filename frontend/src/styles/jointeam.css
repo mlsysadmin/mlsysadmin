@@ -356,6 +356,22 @@ input[type="file"] {
   line-height: normal;
   margin-top: 15px;
 }
+@media only screen and (min-width: 1098px) {
+  #city.join-our-team-selector {
+    width: 180px;
+  }
+  #suffix.join-our-team-selector {
+    width: 195px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  #city.join-our-team-selector {
+    width: 180px;
+  }
+  #suffix.join-our-team-selector {
+    width: 195px;
+  }
+}
 @media only screen and (min-width: 576px) and (max-width: 1024px) {
   .join-team-submit-button {
     background-color: #d90000;
@@ -1179,7 +1195,7 @@ input[type="file"] {
 @media only screen and (min-width: 332px) and (max-width: 365px) {
   .join-team-group {
     width: 100%;
-  } 
+  }
   .join-team-group input,
   .radio-button-broker-question input[type="text"],
   .join-team-group .join-our-team-selector {
