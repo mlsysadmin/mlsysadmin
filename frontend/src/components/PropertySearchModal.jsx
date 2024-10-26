@@ -382,25 +382,27 @@ const PropertySearch = () => {
               </div>
             </div>
             <div className="form-row">
-              <div className="form-column">
-                <span>Bedrooms</span>
-                <input
-                  type="number"
-                  placeholder="Enter Number"
-                  name="bedroom"
-                  value={formData.bedroom}
-                  onChange={(e) => handleInputChangeInquieries(e)}
-                />
-              </div>
-              <div className="form-column">
-                <span>Bathrooms</span>
-                <input
-                  type="number"
-                  placeholder="Enter Number"
-                  name="bathroom"
-                  value={formData.bathroom}
-                  onChange={(e) => handleInputChangeInquieries(e)}
-                />
+              <div className="left-form-row">
+                <div className="form-column">
+                  <span>Bedrooms</span>
+                  <input
+                    type="number"
+                    placeholder="Enter Number"
+                    name="bedroom"
+                    value={formData.bedroom}
+                    onChange={(e) => handleInputChangeInquieries(e)}
+                  />
+                </div>
+                <div className="form-column">
+                  <span>Bathrooms</span>
+                  <input
+                    type="number"
+                    placeholder="Enter Number"
+                    name="bathroom"
+                    value={formData.bathroom}
+                    onChange={(e) => handleInputChangeInquieries(e)}
+                  />
+                </div>
               </div>
               <div className="form-column">
                 <span>Feature & Amenities</span>
