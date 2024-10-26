@@ -238,9 +238,9 @@ listing search */
 	justify-content: space-between;
 	padding: 0px;
 	box-sizing: border-box;
-	background: url("../asset/icons/dropdown-arrow.png") no-repeat right 15px
+	background: url("../asset/icons/dropdown-arrow.png") no-repeat right 10px
 		center;
-	background-size: 14px;
+	background-size: 17px;
 	align-items: center;
 }
 .select-field-features span {

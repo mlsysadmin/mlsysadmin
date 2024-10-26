@@ -285,7 +285,7 @@ const ListingSearch = ({
 						options={location}
 						classname={'select-field'}
 						placeholder={'Location'}
-						suffixIcon={<CaretDownOutlined />}
+						// suffixIcon={<CaretDownOutlined />}
 						value={newSearchParams['location']}
 						// value={newSearchParams['location']}
 						onSelectionChange={(e) => onSelectionChange(e, 'location')}
@@ -294,7 +294,7 @@ const ListingSearch = ({
 						options={PropertyTypes}
 						classname={'select-field'}
 						placeholder={'Property Type'}
-						suffixIcon={<CaretDownOutlined />}
+						// suffixIcon={<CaretDownOutlined  />}
 						value={newSearchParams["property_type"]}
 						// value={ValueGreaterThanZeroOrNull(newSearchParams["property_type"], "select", "Property Type", false)}
 						onSelectionChange={(e) => onSelectionChange(e, 'property_type')} />
@@ -302,7 +302,7 @@ const ListingSearch = ({
 						options={ListingTypes}
 						classname={'select-field'}
 						placeholder={'Listing Type'}
-						suffixIcon={<CaretDownOutlined />}
+						// suffixIcon={<CaretDownOutlined />}
 						value={newSearchParams["sale_type"]}
 						onSelectionChange={(e) => onSelectionChange(e, 'sale_type')} />
 					<Button className="right-button" onClick={() => handleSearchClick()}>Search</Button>
@@ -388,21 +388,21 @@ const ListingSearch = ({
 							options={SelectNum()}
 							classname={'select-field'}
 							placeholder={'Bedrooms'}
-							suffixIcon={<CaretDownOutlined />}
+							// suffixIcon={<CaretDownOutlined />}
 							value={newSearchParams["bedrooms"]}
 							onSelectionChange={(e) => onSelectionChange(e, 'bedrooms')} />
 						<RoundSelect
 							options={SelectNum()}
 							classname={'select-field'}
 							placeholder={'Bathrooms'}
-							suffixIcon={<CaretDownOutlined />}
+							// suffixIcon={<CaretDownOutlined />}
 							value={newSearchParams["bathrooms"]}
 							onSelectionChange={(e) => onSelectionChange(e, 'bathrooms')} />
 						<RoundSelect
 							options={SelectNum()}
 							classname={'select-field'}
 							placeholder={'Garage/Parking'}
-							suffixIcon={<CaretDownOutlined />}
+							// suffixIcon={<CaretDownOutlined />}
 							value={newSearchParams["parking"]}
 							onSelectionChange={(e) => onSelectionChange(e, 'parking')} />
 						<Dropdown
