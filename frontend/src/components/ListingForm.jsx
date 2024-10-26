@@ -380,12 +380,12 @@ export const ListingForm = () => {
 				};
 				console.log("Adding new vendor:", vendorPayload);
 
-				// const addNewVendor = await AddVendor(vendorPayload);
-				// if (addNewVendor) {
-				// 	handleCreateProperty(addedVendorName, addedVendorId);
-				// } else {
-				// 	console.log(addNewVendor);
-				// }
+				const addNewVendor = await AddVendor(vendorPayload);
+				if (addNewVendor) {
+					handleCreateProperty(addedVendorName, addedVendorId);
+				} else {
+					console.log(addNewVendor);
+				}
 			}
 
 			// console.log("modal", showAlertModal);

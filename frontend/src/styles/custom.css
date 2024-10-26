@@ -759,11 +759,11 @@ listing search */
 		gap: 10px;
 	}
 	.subcontent-inputs-1 .right-button {
-		margin-top: 1400px;
+		margin-top: 1400px !important;
 		display: flex;
-		height: 40px;
-		position: absolute;
-		margin-left: 190px;
+		height: 40px !important;
+		position: absolute !important;
+		margin-left: 190px !important;
 	}
 	.advance-searchdropdown .custom-range-button {
 		margin-top: 890px;
@@ -871,11 +871,11 @@ listing search */
 		gap: 10px;
 	}
 	.subcontent-inputs-1 .right-button {
-		margin-top: 1400px;
+		margin-top: 1400px !important;
 		display: flex;
-		height: 40px;
-		position: absolute;
-		margin-left: 240px;
+		height: 40px !important;
+		position: absolute !important;
+		margin-left: 240px !important;
 	}
 	.advance-searchdropdown .custom-range-button {
 		margin-top: 890px;
