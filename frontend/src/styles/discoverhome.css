@@ -757,6 +757,10 @@ h2 {
 .mortrange .ant-slider-horizontal .ant-slider-rail{
 	height: 13px;
 }
+.mortrange .ant-slider .ant-slider-handle{
+width: 15px;
+height: 15px;
+}
 
 @media screen and (min-width: 320px) and (max-width: 359px) {
 	.discover-home .discover-home-content {
