@@ -396,9 +396,7 @@
 	font-size: 18px;
 	font-weight: 400;
 }
-.mortgage-calc
-	:where(.css-dev-only-do-not-override-1uq9j6g).ant-slider
-	.ant-slider-handle::after {
+.mortgage-calc .ant-slider .ant-slider-handle::after {
 	content: "";
 	position: absolute;
 	inset-block-start: 0;
