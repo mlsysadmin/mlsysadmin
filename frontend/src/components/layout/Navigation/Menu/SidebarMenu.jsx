@@ -11,6 +11,8 @@ import { searchKyc } from "../../../../api/Public/User.api";
 import UpgradeTierModal from "../../../modals/UpgradeTierModal";
 import { isCookiePresent } from "../../../../utils/CookieChecker";
 import "../../../../styles/sellerdropdown.css";
+import UserLogout from "../../../../api/Logout";
+import TierUpgradeModal from "../../../modals/TierUpgradeModal";
 import SellerLogInButtonDropdown from "../../../custom/buttons/SellerLogInButtonDropdown";
 import { getCookieData } from "../../../../utils/CookieChecker";
 
@@ -24,6 +26,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 	const isMLWWSPresent = isCookiePresent(sessionCookieName);
 	const isAccountDetailsPresent = isCookiePresent(accountCookieName);
 	const [userDetails, setUserDetails] = useState(null);
+	const [tierUpgrade, setTierUpgrade] = useState(false);
 
 	const accountDetails = getCookieData();
 
@@ -42,59 +45,65 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 			redirectUrl
 		)}`;
 	};
-	const deleteCookies = () => {
-		document.cookie.split(";").forEach((cookie) => {
-			const [name] = cookie.split("=");
-			document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
-		});
-	};
-	useEffect(() => {
-		if (userDetails?.tier.label === "BUYER") {
-			setShowUpgradeModal(true);
-			deleteCookies();
-		}
-	}, [userDetails]);
 
-		const handleProfileClick = () => {
-			const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
-			const loginUrl = process.env.REACT_APP_LOGIN_URL;
-			if (isMLWWSPresent && isAccountDetailsPresent) {
-				if (userDetails?.tier?.label === "FULLY VERIFIED") {
-					window.location.href = "/";
-				} else if (userDetails?.tier?.label === "BUYER") {
-					window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-						redirectUrl
-					)}`;
-					deleteCookies();
-					showUpgradeModal(true);
-				}
+	const handleLogout = async () => {
+		const logout = await UserLogout();
+		console.log("Logout Success:", logout);
+		return logout;
+	};
+
+	const handleProfileClick = () => {
+		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
+		const loginUrl = process.env.REACT_APP_LOGIN_URL;
+		if (isMLWWSPresent && isAccountDetailsPresent) {
+			if (
+				userDetails?.tier?.label !== "BUYER" ||
+				userDetails?.tier?.label !== "SEMI-VERIFIED"
+			) {
+				window.location.href = "/";
 			} else {
 				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
 					redirectUrl
 				)}`;
+				handleLogout();
+				setTierUpgrade(true);
 			}
-		};
+			// if (userDetails?.tier?.label === "FULLY VERIFIED") {
+			// 	window.location.href = "/";
+			// } else if (
+			// 	userDetails?.tier?.label === "BUYER" ||
+			// 	userDetails?.tier?.label === "SEMI-VERIFIED"
+			// ) {
+			// 	window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+			// 		redirectUrl
+			// 	)}`;
+			// 	handleLogout();
+			// 	setTierUpgrade(true);
+			// }
+		} else {
+			window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+				redirectUrl
+			)}`;
+		}
+	};
+	const openTierUpgradeModal = () => {
+		setTierUpgrade(true);
+	};
 
-
-
-
-	const handleUserProfileClick = () => {
+	const handleListPropertyClick = () => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 		if (isMLWWSPresent && isAccountDetailsPresent) {
-			if (userDetails?.tier?.label === "FULLY VERIFIED") {
+			if (
+				userDetails?.tier?.label !== "BUYER" ||
+				userDetails?.tier?.label !== "SEMI-VERIFIED"
+			) {
 				window.location.href = "/listing";
-			} else if (userDetails?.tier?.label === "BUYER") {
-				console.log(
-					"User is a buyer and cannot list properties.",
-					showUpgradeModal
-				);
+			} else {
+				console.log("User is a buyer and cannot list properties.");
 				openUpgradeModal();
 			}
 		} else {
-			// window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-			// 	redirectUrl
-			// )}`;
 			setShowUpgradeModal(true);
 		}
 
@@ -248,11 +257,11 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 			<Divider />
 			<div
 				style={{
-					display:"flex",
-					flexDirection:"column",
-					gap:"20px",
-					justifyContent:"flex-start"
-			
+					display: "flex",
+					flexDirection: "column",
+					gap: "20px",
+					justifyContent: "flex-start",
+
 					// display: "grid",
 					// gridTemplateColumns: "1fr 1fr",
 					// gridGap: "10px",
@@ -264,22 +273,22 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 						// gridRow: "1 / 3",
 						display: "flex",
 						flexDirection: "row",
-						justifyContent:"center",
-						alignItems:"center",
-						width:"100%",
-						gap:"10px"
+						justifyContent: "center",
+						alignItems: "center",
+						width: "100%",
+						gap: "10px",
 					}}
 					className="join-team-list-property"
 				>
 					<RoundBtn
 						type="primary"
-						id= "list-prop"
+						id="list-prop"
 						className="menu-buttons"
 						style={{
 							background: "#D90000",
 						}}
 						label="List your Property"
-						onClick={handleUserProfileClick}
+						onClick={handleListPropertyClick}
 					/>
 					{showUpgradeModal && (
 						<UpgradeTierModal
@@ -290,7 +299,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 					)}
 					<RoundBtn
 						type="primary"
-						id = "join-team"
+						id="join-team"
 						className="menu-buttons"
 						style={{
 							border: "#D90000 solid 1px",
@@ -301,11 +310,10 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 						onClick={handleJoinTeamClick}
 					/>
 				</div>
-				<Col 
-					className="menu-buttons"
-				>
+				<Col className="menu-buttons">
 					{isMLWWSPresent ? (
-						userDetails?.tier.label === "FULLY VERIFIED" ? (
+						userDetails?.tier?.label !== "BUYER" ||
+						userDetails?.tier?.label !== "SEMI-VERIFIED" ? (
 							<SellerLogInButtonDropdown />
 						) : (
 							<img
@@ -322,6 +330,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 						/>
 					)}
 				</Col>
+				{tierUpgrade && <TierUpgradeModal openModal={openTierUpgradeModal} />}
 			</div>
 		</>
 	);

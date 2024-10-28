@@ -396,9 +396,11 @@
 	font-size: 18px;
 	font-weight: 400;
 }
-.mortgage-calc
-	:where(.css-dev-only-do-not-override-1uq9j6g).ant-slider
-	.ant-slider-handle::after {
+.mortgage-cont1 .ant-slider .ant-slider-handle:hover::after{
+	width: 15px !important;
+	height: 15px !important;
+}
+.mortgage-cont1 .ant-slider .ant-slider-handle::after {
 	content: "";
 	position: absolute;
 	inset-block-start: 0;
@@ -406,7 +408,7 @@
 	width: 15px !important;
 	height: 15px !important;
 	background-color: black;
-	box-shadow: 0 0 0 2px black;
+	box-shadow: 0 0 0 2px black !important;
 	outline: 0px solid transparent;
 	cursor: pointer;
 	transition: inset-inline-start 0.2s, inset-block-start 0.2s, width 0.2s,

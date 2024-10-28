@@ -21,7 +21,9 @@ import TextBtn from "../../../custom/buttons/TextBtn.custom";
 import LoginModal from "../../../modals/loginmodal";
 import SellerLogInButtonDropdown from "../../../custom/buttons/SellerLogInButtonDropdown";
 import { colors } from "@mui/material";
+import UserLogout from "../../../../api/Logout";
 import UpgradeTierModal from "../../../modals/UpgradeTierModal";
+import TierUpgradeModal from "../../../modals/TierUpgradeModal";
 
 const HeaderMenu = () => {
 	const [currentMenu, setCurrent] = useState("");
@@ -41,6 +43,8 @@ const HeaderMenu = () => {
 
 	const login = process.env.REACT_APP_LOGIN_URL;
 
+	const [tierUpgrade, setTierUpgrade] = useState(false);
+
 	const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
 	const showLogin = () => {
@@ -51,8 +55,9 @@ const HeaderMenu = () => {
 			redirectUrl
 		)}`;
 	};
+
 	const closeModal = () => {
-		setShowUpgradeModal(false)
+		setShowUpgradeModal(false);
 	};
 	const openUpgradeModal = () => {
 		setShowUpgradeModal(true);
@@ -72,6 +77,8 @@ const HeaderMenu = () => {
 		}
 	};
 
+	
+
 	useEffect(() => {
 		if (isMLWWSPresent && isAccountDetailsPresent) {
 			fetchUserDetails();
@@ -79,54 +86,50 @@ const HeaderMenu = () => {
 	}, [isMLWWSPresent, isAccountDetailsPresent]);
 
 
-	  const deleteCookies = () => {
-			document.cookie.split(";").forEach((cookie) => {
-				const [name] = cookie.split("=");
-				document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
-			});
-
-	};
-	 useEffect(() => {
-			
-			if (userDetails?.tier.label === "BUYER") {
-			    setShowUpgradeModal(true);
-				deleteCookies()
-			}
-		}, [userDetails]);
 
 
-		useEffect(() => {
-			const currentPath = location.pathname;
+	useEffect(() => {
+		const currentPath = location.pathname;
 
-			if (currentPath.includes("/rent")) {
-				setCurrent("rent");
-			} else if (currentPath.includes("/sale")) {
-				setCurrent("buy");
-			} else if (currentPath.includes("/discover-home")) {
-				setCurrent("home-loan");
-			} else if (currentPath.includes("/loan-calculator")) {
-				setCurrent("home-loan");
-			} else if (currentPath.includes("/refinance")) {
-				setCurrent("home-loan");
-			} else if (currentPath.includes("/buy-a-home")) {
-				setCurrent("home-loan");
-			} else {
-				setCurrent("");
-			}
-		}, [location.pathname]);
-
+		if (currentPath.includes("/rent")) {
+			setCurrent("rent");
+		} else if (currentPath.includes("/sale")) {
+			setCurrent("buy");
+		} else if (currentPath.includes("/discover-home")) {
+			setCurrent("home-loan");
+		} else if (currentPath.includes("/loan-calculator")) {
+			setCurrent("home-loan");
+		} else if (currentPath.includes("/refinance")) {
+			setCurrent("home-loan");
+		} else if (currentPath.includes("/buy-a-home")) {
+			setCurrent("home-loan");
+		} else {
+			setCurrent("");
+		}
+	}, [location.pathname]);
 
 	const handleListPropertyClick = () => {
 		if (isMLWWSPresent && isAccountDetailsPresent) {
-			if (userDetails?.tier?.label === "FULLY VERIFIED") {
+			if (
+				userDetails?.tier?.label !== "BUYER" ||
+				userDetails?.tier?.label !== "SEMI-VERIFIED"
+			) {
 				window.location.href = "/listing";
-			} else if (userDetails?.tier?.label === "BUYER") {
-				console.log(
-					"User is a buyer and cannot list properties.",
-					setShowUpgradeModal(true)
-				);
+				
+			} else {
+				console.log("User is a buyer and cannot list properties.");
 				openUpgradeModal();
 			}
+			// if (userDetails?.tier?.label === "FULLY VERIFIED") {
+			// 	window.location.href = "/listing";
+			// } else if (userDetails?.tier?.label === "BUYER"
+			// 	|| userDetails?.tier?.label === "SEMI-VERIFIED") {
+			// 	console.log(
+			// 		"User is a buyer and cannot list properties.",
+			// 		setShowUpgradeModal(true)
+			// 	);
+			// 	openUpgradeModal();
+			// }
 		} else {
 			// window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
 			// 	redirectUrl
@@ -143,26 +146,47 @@ const HeaderMenu = () => {
 		// 	process.env.REACT_APP_REDIRECT_URL
 		// }?redirect_url=${encodeURIComponent(redirectUrl)}`;
 	};
+	const handleLogout = async () => {
+		const logout = await UserLogout();
+		console.log("Logout Success:", logout);
+		return logout;
+	};
+
 	const handleProfileClick = () => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
+
 		if (isMLWWSPresent && isAccountDetailsPresent) {
-			if (userDetails?.tier?.label === "FULLY VERIFIED") {
+			if (
+				userDetails?.tier?.label !== "BUYER" ||
+				userDetails?.tier?.label !== "SEMI-VERIFIED"
+			) {
 				window.location.href = "/";
-			} else if (userDetails?.tier?.label === "BUYER") {
+				
+			} else {
 				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
 					redirectUrl
 				)}`;
-				deleteCookies();
-				showUpgradeModal(true);
+				handleLogout();
+				setTierUpgrade(true);
 			}
-
-		}else{
-				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-					redirectUrl
-			)}`; 
-		} 
-
+			// if (userDetails?.tier?.label === "FULLY VERIFIED") {
+			// 	window.location.href = "/";
+			// } else if (
+			// 	userDetails?.tier?.label === "BUYER" ||
+			// 	userDetails?.tier?.label === "SEMI-VERIFIED"
+			// ) {
+			// 	window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+			// 		redirectUrl
+			// 	)}`;
+			// 	handleLogout();
+			// 	setTierUpgrade(true);
+			// }
+		} else {
+			window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+				redirectUrl
+			)}`;
+		}
 	};
 	//modals
 	const [showModal, setShowModal] = useState(false);
@@ -174,13 +198,16 @@ const HeaderMenu = () => {
 		setShowModal(true);
 		// navigate("/comingsoon");
 	};
+	const openTierUpgradeModal = () => {
+		setTierUpgrade(true);
+	};
 
 	// useEffect(() => {
 	// 	// const path = location.pathname.replace("/", "");
 
 	// 	// setCurrent(path);
 	// 	// console.log("path", location);
-		
+
 	// }, [location]);
 
 	const handleMenuOnClick = (menu) => {
@@ -231,7 +258,7 @@ const HeaderMenu = () => {
 			// sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(false);
 		}
-		
+
 		setCurrent(menu.key);
 	};
 
@@ -282,7 +309,7 @@ const HeaderMenu = () => {
 			popUpOpen={rentPopUpOpen}
 			label={"Rent"}
 			content={RentMenuPopContent}
-			menuKey={'rent'}
+			menuKey={"rent"}
 		/>
 	);
 	const BuyMenu = () => (
@@ -292,7 +319,7 @@ const HeaderMenu = () => {
 			popUpOpen={buyPopUpOpen}
 			label={"Buy"}
 			content={BuyMenuPopContent}
-			menuKey={'sale'}
+			menuKey={"sale"}
 		/>
 	);
 
@@ -303,7 +330,7 @@ const HeaderMenu = () => {
 			popUpOpen={homeLoanPopUpOpen}
 			label={"Loans"}
 			content={HomeLoanMenuPopContent}
-			menuKey={'home-loan'}
+			menuKey={"home-loan"}
 		/>
 	);
 	// const HomeInsuranceMenu = () => (
@@ -318,7 +345,7 @@ const HeaderMenu = () => {
 	// );
 	const OtherServicesMenu = () => (
 		<MenuPopup
-		menuKey={'other-services'}
+			menuKey={"other-services"}
 			// handleOpenChange={handleBuyOpenChange}
 			title={"Other Services"}
 			popUpOpen={otherServicesPopUpOpen}
@@ -420,7 +447,8 @@ const HeaderMenu = () => {
 				{showModal && <JoinTeam toggleModal={toggleModal} />}
 				<Row align={"middle"} className="menu-buttons">
 					{isMLWWSPresent ? (
-						userDetails?.tier.label === "FULLY VERIFIED" ? (
+						userDetails?.tier?.label !== "BUYER" ||
+						userDetails?.tier?.label !== "SEMI-VERIFIED" ? (
 							<SellerLogInButtonDropdown />
 						) : (
 							<img
@@ -437,6 +465,7 @@ const HeaderMenu = () => {
 						/>
 					)}
 				</Row>
+				{tierUpgrade && <TierUpgradeModal openModal={openTierUpgradeModal} />}
 			</div>
 		</>
 	);
