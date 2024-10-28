@@ -56,15 +56,17 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 		if (isMLWWSPresent && isAccountDetailsPresent) {
-
-			if (userDetails?.tier?.label === "BUYER" || userDetails?.tier?.label === "SEMI-VERIFIED") {
+			if (
+				userDetails?.tier?.label !== "BUYER" ||
+				userDetails?.tier?.label !== "SEMI-VERIFIED"
+			) {
+				window.location.href = "/";
+			} else {
 				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
 					redirectUrl
 				)}`;
 				handleLogout();
 				setTierUpgrade(true);
-			}else{
-				window.location.href = "/";
 			}
 			// if (userDetails?.tier?.label === "FULLY VERIFIED") {
 			// 	window.location.href = "/";
@@ -93,13 +95,13 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 		if (isMLWWSPresent && isAccountDetailsPresent) {
 			if (
-				userDetails?.tier?.label === "BUYER" ||
-				userDetails?.tier?.label === "SEMI-VERIFIED"
+				userDetails?.tier?.label !== "BUYER" ||
+				userDetails?.tier?.label !== "SEMI-VERIFIED"
 			) {
+				window.location.href = "/listing";
+			} else {
 				console.log("User is a buyer and cannot list properties.");
 				openUpgradeModal();
-			} else {
-				window.location.href = "/listing";
 			}
 		} else {
 			setShowUpgradeModal(true);

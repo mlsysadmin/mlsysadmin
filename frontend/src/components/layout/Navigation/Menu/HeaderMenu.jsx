@@ -55,7 +55,7 @@ const HeaderMenu = () => {
 			redirectUrl
 		)}`;
 	};
-	
+
 	const closeModal = () => {
 		setShowUpgradeModal(false);
 	};
@@ -111,13 +111,14 @@ const HeaderMenu = () => {
 	const handleListPropertyClick = () => {
 		if (isMLWWSPresent && isAccountDetailsPresent) {
 			if (
-				userDetails?.tier?.label === "BUYER" ||
-				userDetails?.tier?.label === "SEMI-VERIFIED"
+				userDetails?.tier?.label !== "BUYER" ||
+				userDetails?.tier?.label !== "SEMI-VERIFIED"
 			) {
+				window.location.href = "/listing";
+				
+			} else {
 				console.log("User is a buyer and cannot list properties.");
 				openUpgradeModal();
-			} else {
-				window.location.href = "/listing";
 			}
 			// if (userDetails?.tier?.label === "FULLY VERIFIED") {
 			// 	window.location.href = "/listing";
@@ -157,16 +158,17 @@ const HeaderMenu = () => {
 
 		if (isMLWWSPresent && isAccountDetailsPresent) {
 			if (
-				userDetails?.tier?.label === "BUYER" ||
-				userDetails?.tier?.label === "SEMI-VERIFIED"
+				userDetails?.tier?.label !== "BUYER" ||
+				userDetails?.tier?.label !== "SEMI-VERIFIED"
 			) {
+				window.location.href = "/";
+				
+			} else {
 				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
 					redirectUrl
 				)}`;
 				handleLogout();
 				setTierUpgrade(true);
-			} else {
-				window.location.href = "/";
 			}
 			// if (userDetails?.tier?.label === "FULLY VERIFIED") {
 			// 	window.location.href = "/";
