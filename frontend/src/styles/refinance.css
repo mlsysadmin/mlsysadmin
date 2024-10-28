@@ -1,9 +1,15 @@
 .refinance-container {
   width: 100%;
   background-color: #ffffff;
-
 }
-
+.wrap-up--select::after {
+  content: "▾";
+  font-size: 1.5rem;
+  right: 7px;
+  color: var(--mute-gray);
+  top: 7px;
+  position: absolute;
+}
 .refinance-content {
   background-color: #ffffff;
   display: flex;
@@ -76,11 +82,13 @@ h4 {
 
 .refinance-property-group .refinance-property-group-two .ref-dropdown {
   border: 1px solid var(--mute-gray);
-  width: 55%;
+  padding-left: 10px;
+  width: 100%;
   height: 50px;
   border-radius: 6px;
   background-color: white;
   font-size: 15px;
+  appearance: none;
   justify-content: space-between;
   display: flex;
   align-items: center;
@@ -128,7 +136,8 @@ h4 {
     color: red !important;
     border-color: red !important;
   } */
-:where(.css-dev-only-do-not-override-3rel02).ant-slider .ant-slider-handle::after {
+:where(.css-dev-only-do-not-override-3rel02).ant-slider
+  .ant-slider-handle::after {
   /* background-color: var(--red); */
   box-shadow: 0 0 0 2px var(--red);
   cursor: pointer;
@@ -206,7 +215,18 @@ h4 {
   gap: 30px;
   padding: 0px 20px;
 }
-
+.wrap-up--selection {
+  position: relative;
+  width: 45%;
+}
+.wrap-up--selection::after {
+  content: "▾";
+  font-size: 1.5rem;
+  right: 7px;
+  color: var(--mute-gray);
+  top: 7px;
+  position: absolute;
+}
 .refinance-wrap-up-group {
   display: flex;
   flex-direction: column;
@@ -232,17 +252,28 @@ h4 {
   background-color: #d9d9d9 !important;
 }
 
-.refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps .ant-steps-item-process .ant-steps-item-icon {
+.refinance-group-one
+  :where(.css-dev-only-do-not-override-3rel02).ant-steps
+  .ant-steps-item-process
+  .ant-steps-item-icon {
   background-color: var(--red);
   border-color: var(--red);
 }
 
-.refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-with-progress .ant-steps-item-process .ant-steps-item-container .ant-steps-item-icon .ant-steps-icon {
+.refinance-group-one
+  :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-with-progress
+  .ant-steps-item-process
+  .ant-steps-item-container
+  .ant-steps-item-icon
+  .ant-steps-icon {
   /* color: #fff; */
   display: none;
 }
 
-.refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-progress .ant-progress-inner:not(.ant-progress-circle-gradient) .ant-progress-circle-path {
+.refinance-group-one
+  :where(.css-dev-only-do-not-override-3rel02).ant-progress
+  .ant-progress-inner:not(.ant-progress-circle-gradient)
+  .ant-progress-circle-path {
   stroke: var(--red);
 }
 
@@ -254,16 +285,26 @@ h4 {
   color: var(--red);
 }
 
-.refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps .ant-steps-item-wait .ant-steps-item-icon {
+.refinance-group-one
+  :where(.css-dev-only-do-not-override-3rel02).ant-steps
+  .ant-steps-item-wait
+  .ant-steps-item-icon {
   background-color: #cccccc;
   border-color: transparent;
 }
 
-.refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-with-progress.ant-steps-label-vertical .ant-steps-item .ant-steps-item-tail {
+.refinance-group-one
+  :where(
+    .css-dev-only-do-not-override-3rel02
+  ).ant-steps.ant-steps-with-progress.ant-steps-label-vertical
+  .ant-steps-item
+  .ant-steps-item-tail {
   background-color: var(--red);
 }
 
-.refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps .ant-steps-item-tail::after {
+.refinance-group-one
+  :where(.css-dev-only-do-not-override-3rel02).ant-steps
+  .ant-steps-item-tail::after {
   display: inline-block;
   width: 100%;
   height: 1px;
@@ -273,23 +314,31 @@ h4 {
   content: "";
 }
 
-.refinance-property-group-five :where(.css-dev-only-do-not-override-3rel02).ant-slider .ant-slider-rail {
+.refinance-property-group-five
+  :where(.css-dev-only-do-not-override-3rel02).ant-slider
+  .ant-slider-rail {
   background-color: rgba(217, 0, 0, 38%);
 }
 
-.refinance-property-group-five :where(.css-dev-only-do-not-override-m4timi).ant-slider-horizontal .ant-slider-rail {
+.refinance-property-group-five
+  :where(.css-dev-only-do-not-override-m4timi).ant-slider-horizontal
+  .ant-slider-rail {
   height: 15px;
   border-radius: 10px;
   background-color: rgba(217, 0, 0, 38%);
 }
 
-.refinance-property-group-five :where(.css-dev-only-do-not-override-m4timi).ant-slider .ant-slider-handle::after {
+.refinance-property-group-five
+  :where(.css-dev-only-do-not-override-m4timi).ant-slider
+  .ant-slider-handle::after {
   width: 20px;
   height: 20px;
   background-color: var(--red);
 }
 
-.refinance-property-group-five :where(.css-dev-only-do-not-override-m4timi).ant-slider-horizontal .ant-slider-track {
+.refinance-property-group-five
+  :where(.css-dev-only-do-not-override-m4timi).ant-slider-horizontal
+  .ant-slider-track {
   height: 15px;
   border-radius: 10px;
 }
@@ -348,8 +397,14 @@ h4 {
   background-color: #d9d9d9 !important;
 }
 
-.refinance-container .refinance-group-one .ant-steps-item-finish .ant-steps-item-icon,
-.refinance-container .refinance-group-one .ant-steps-item-process .ant-steps-item-icon {
+.refinance-container
+  .refinance-group-one
+  .ant-steps-item-finish
+  .ant-steps-item-icon,
+.refinance-container
+  .refinance-group-one
+  .ant-steps-item-process
+  .ant-steps-item-icon {
   background-color: red !important;
 }
 
@@ -552,7 +607,14 @@ h4 {
   .refinance-content {
     width: 90%;
   }
-
+  .wrap-up--selection {
+    position: relative;
+    width: 100%;
+}
+  .refinance-group-one {
+    width: 100%;
+    /* margin: 50px 0px 0px 1%; */
+  }
   .refinance-property-group,
   .refinance-details-group,
   .refinance-wrap-up-group {
@@ -579,18 +641,25 @@ h4 {
     align-items: center;
   }
 
-  .refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-vertical {
+  .refinance-group-one
+    :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-vertical {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
-  .refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps .ant-steps-item-process .ant-steps-item-icon {
+  .refinance-group-one
+    :where(.css-dev-only-do-not-override-3rel02).ant-steps
+    .ant-steps-item-process
+    .ant-steps-item-icon {
     width: 20px;
     height: 20px;
   }
 
-  .refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps .ant-steps-item-wait .ant-steps-item-icon {
+  .refinance-group-one
+    :where(.css-dev-only-do-not-override-3rel02).ant-steps
+    .ant-steps-item-wait
+    .ant-steps-item-icon {
     width: 20px;
     height: 20px;
   }
@@ -603,10 +672,10 @@ h4 {
   .refinance-property-group h4,
   .refinance-loan-group h4,
   .refinance-details-group h4,
-  .refinance-wrap-up-group h3{
+  .refinance-wrap-up-group h3 {
     font-size: 23px;
   }
-  .refinance-property-group span{
+  .refinance-property-group span {
     font-size: 16px;
   }
 
@@ -623,7 +692,7 @@ h4 {
     word-wrap: break-word;
     padding: 5px;
     font-size: 14px !important;
-}
+  }
 
   .ref .refinance-property-group span {
     font-size: 16px;
@@ -713,11 +782,11 @@ h4 {
     gap: 0px;
     width: 100%;
   }
-  .ref-prop-btn{
+  .ref-prop-btn {
     max-width: 100%;
   }
 
-  .refinance-wrap-up-group .wrap-up-inf .prop-content2-wrap-up .label{
+  .refinance-wrap-up-group .wrap-up-inf .prop-content2-wrap-up .label {
     margin-bottom: 10px;
   }
 }
@@ -727,7 +796,10 @@ h4 {
     padding: 0px;
     width: 90%;
   }
-
+  .wrap-up--selection {
+    position: relative;
+    width: 100%;
+}
   .refinance-group-one {
     width: 100%;
     /* margin: 50px 0px 0px 1%; */
@@ -740,7 +812,8 @@ h4 {
     margin-bottom: 15px;
   }
 
-  .refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-vertical {
+  .refinance-group-one
+    :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-vertical {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -873,12 +946,7 @@ h4 {
   }
 }
 
-
 @media screen and (min-width: 576px) and (max-width: 1024px) {
-
-  /* .wrap-up-inf .prop-content2-wrap-up .wrap-up-dropdown-button {
-    width: 100%;
-  } */
   .refinance-content {
     width: 90%;
   }
@@ -923,14 +991,19 @@ h4 {
   .refinance-details-group-six {
     width: 100%;
   }
-
+  .wrap-up--selection {
+    position: relative;
+    width: 100%;
+  }
   /* .wrap-up-inf .prop-content2-wrap-up .source-income-group {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin: 20px 0px 0px 0px;
   } */
-
+  .ref-btn-group {
+    gap: 20px;
+  }
   .refinance-details-group-six p {
     width: 290px;
   }
@@ -953,7 +1026,8 @@ h4 {
     /* margin: 20px 20px 0px 70px; */
   }
 
-  .refinance-group-one :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-vertical {
+  .refinance-group-one
+    :where(.css-dev-only-do-not-override-3rel02).ant-steps.ant-steps-vertical {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -984,9 +1058,27 @@ h4 {
   }
 
   .refinance-property-group .refinance-property-group-two .ref-dropdown {
-    width: 80%;
+    width: 100%;
     height: 50px;
     font-size: 16px;
+    /* 
+    
+    
+                        margin: "0px",
+                    appearance: "none",
+                    border: "1px solid var(--mute-gray)",
+                    width: "100%",
+                    height: "50px",
+                    borderRadius: "6px",
+                    backgroundColor: "white",
+                    fontSize: "15px",
+                    justifyContent: "space-between",
+                    display: "flex",
+                    fontSize: "15px !important",
+                    paddingLeft: "20px",
+                    alignItems: "center",
+                    
+    */
   }
 
   .refinance-property-group .ref-btn-group-five {
