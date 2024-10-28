@@ -73,7 +73,7 @@ const NewPageComponent = () => {
 				const listingRes = dataresp.filter(
 					(listing) =>
 						!isPastAMonth(listing.created_at) &&
-						["sale", "rent", "pre selling"].includes(listing.SaleType.toLowerCase())
+						["sale", "rent", "pre-selling"].includes(listing.SaleType.toLowerCase())
 				);
 
 				let listings = [];
