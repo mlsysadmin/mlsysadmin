@@ -513,17 +513,16 @@
 @media screen and (min-width: 469px) and (max-width: 1024px) {
   .property-information-container .prop-info-btn-group1 {
     width: 100%;
-    /* margin: 20px 0px 0px 0px;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap; */
-    gap: 20px;
+    flex-wrap: wrap;
   }
   .property-information-container .prop-info-btn-group3 {
     width: 100%;
     margin: 20px 0px 0px 0px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
   }
   .property-information-container .prop-info-btn-group-timeline {
     display: flex;

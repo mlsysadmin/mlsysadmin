@@ -31,7 +31,6 @@
   flex-direction: column;
   width: 270px;
   margin: 20px 0px 0px 0px;
-
 }
 
 .wrap-up-inf .prop-content2-wrap-up .label {
@@ -52,11 +51,19 @@
   padding: 15px;
   outline: none;
 }
-
 .wrap-up-inf .prop-content2-wrap-up .housenumber-group {
-  width: 50%;
-}
+  width: 270px;
+  /* margin: 20px 0px 0px 0px; */
+  margin: 0;
 
+}
+@media screen and (min-width: 1513px) {
+  .wrap-up-inf .prop-content2-wrap-up .housenumber-group, .wrap-up-inf .prop-content2-wrap-up .source-income-group 
+  {
+    width: 570px;
+    margin: 20px 0px 0px 0px;
+  }
+}
 .wrap-up-inf .prop-content2-wrap-up .input-lock,
 .secure-text {
   width: 20px;
@@ -80,7 +87,6 @@
   -webkit-appearance: none;
   appearance: none;
   /* border: none; */
-
 }
 
 .wrap-up--select {
@@ -98,7 +104,10 @@
   position: absolute;
 }
 
-.wrap-up-inf .prop-content2-wrap-up .wrap-up-dropdown-button .ant-dropdown-link {
+.wrap-up-inf
+  .prop-content2-wrap-up
+  .wrap-up-dropdown-button
+  .ant-dropdown-link {
   color: #333;
   display: flex;
   justify-content: space-between;
@@ -106,10 +115,43 @@
   padding: 0px 10px;
 }
 
-.wrap-up-inf .prop-content2-wrap-up .source-income-group{
-  width: 40%;
+.wrap-up-inf .prop-content2-wrap-up .source-income-group {
+  width: 570px;
 }
-
+@media screen and (min-width: 1025px) and (max-width: 1512px) {
+  .wrap-up-inf .prop-content2-wrap-up .source-income-group {
+    width: 870px;
+  }
+}
+@media screen and (min-width: 1301px) and (max-width: 1400px) {
+  .wrap-up-inf .prop-content2-wrap-up .source-income-group {
+    width: 270px;
+  }
+}
+@media screen and (min-width: 1101px) and (max-width: 1137px) {
+  .wrap-up-inf .prop-content2-wrap-up .source-income-group {
+    width: 270px;
+  }
+}
+@media screen and (min-width: 745px) and (max-width: 1024px) {
+  .wrap-up-inf .prop-content2-wrap-up .source-income-group {
+    width: 270px;
+    margin: 10px 0px 0px 0px;
+  }
+  .wrap-up-inf .prop-content2-wrap-up .housenumber-group{
+    margin: 20px 0px 0px 0px;
+  }
+}
+@media screen and (max-width: 575px) {
+  .wrap-up-inf .prop-content2-wrap-up .housenumber-group{
+    margin: 20px 0px 0px 0px;
+  }
+}
+@media screen and (min-width: 745px) and (max-width: 1024px){
+  .wrap-up-inf .prop-content2-wrap-up .housenumber-group{
+    margin: 10px 0px 0px 0px;
+  }
+}
 @media screen and (min-width: 320px) and (max-width: 359px) {
   .wrap-up-inf {
     width: 95%;
@@ -155,7 +197,10 @@
     margin: 40px 0px 0px 205px;
   }
 
-  .wrap-up-inf .prop-content2-wrap-up .wrap-up-dropdown-button .ant-dropdown-link {
+  .wrap-up-inf
+    .prop-content2-wrap-up
+    .wrap-up-dropdown-button
+    .ant-dropdown-link {
     color: #333;
     display: flex;
     justify-content: space-between;
@@ -214,7 +259,10 @@
     margin: 40px 0px 0px 240px;
   }
 
-  .wrap-up-inf .prop-content2-wrap-up .wrap-up-dropdown-button .ant-dropdown-link {
+  .wrap-up-inf
+    .prop-content2-wrap-up
+    .wrap-up-dropdown-button
+    .ant-dropdown-link {
     color: #333;
     display: flex;
     justify-content: space-between;
@@ -236,7 +284,7 @@
   .wrap-up-inf {
     width: 95%;
   }
-  .wrap-up-inf h3{
+  .wrap-up-inf h3 {
     font-size: 23px;
   }
   .wrap-up-inf .prop-content2-wrap-up {
@@ -259,7 +307,7 @@
 
   .wrap-up-inf .prop-content2-wrap-up .source-income-group {
     width: 100%;
-    margin: 42px 0px 0px 0px;
+    margin: 20px 0px 0px 0px;
   }
 
   .wrap-up-inf .prop-content2-wrap-up .input-lock,

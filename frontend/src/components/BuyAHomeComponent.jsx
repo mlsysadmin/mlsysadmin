@@ -713,7 +713,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
 					<br /> */}
           <br />
           <br />
-          <div style={{ textAlign: "center" }}>
+          <div className="preApproveDiv" style={{ textAlign: "center" }}>
             <div
               style={{
                 fontSize: "18px",
