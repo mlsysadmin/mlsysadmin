@@ -541,7 +541,7 @@ listing search */
 	top: 10%;
 	background: white;
 	border-radius: 10px;
-	width: 500px;
+	width: 400px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -555,9 +555,13 @@ listing search */
 	flex-direction: column;
 }
 .modal-success-header {
-	font-size: 24px;
+	font-size: 20px;
 	font-weight: 700;
 	color: green;
+}
+.success-modal-content-body .success-details p{
+	font-size: 16px;
+	text-align: center;
 }
 .success-details {
 	font-size: 16px;

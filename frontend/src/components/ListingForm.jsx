@@ -49,7 +49,7 @@ export const ListingForm = () => {
 	const [publiclisting, setPublicListing] = useState([]);
 	const [showAlert, setShowAlert] = useState(true);
 	const [showAlertModal, setShowAlertModal] = useState(false);
-	const [showVendorModal, setShowVendorModal] = useState(false);
+	const [showVendorModal, setShowVendorModal] = useState(true);
 	const [addedVendorId, setAddedVendorId] = useState();
 	const [addedVendorName, setAddedVendorName] = useState();
 	const [isSubmitting, setIsSubmitting] = useState(false);
@@ -724,6 +724,7 @@ export const ListingForm = () => {
 													fontSize: "16px",
 													backgroundColor: submitTINDisabled ? "gray" : "var(--red)",
 													cursor: submitTINDisabled ? "not-allowed" : "pointer",
+													marginRight:"0px"
 												}}
 											>
 												Submit

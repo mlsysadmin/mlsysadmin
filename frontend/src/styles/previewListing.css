@@ -558,14 +558,13 @@
 
 .contact-us{
   display: flex;
-  gap: 1rem;
+  gap: 20px;
   flex-direction: column;
   background: white;
   padding: 1.5rem;
   border-radius: 20px;
   width: 90%;
   height: auto;
-  gap: 1rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .calculator {
@@ -579,10 +578,7 @@
   gap: 1rem;
 }
 
-.calculator-input,
-.contact-input {
-  margin-bottom: 1rem;
-}
+
 
 .year-select {
   width: 100%;
@@ -1328,4 +1324,60 @@ align-content: center;
   .contact-us{
     width: 100%;
   }
+}
+@media (min-width: 1281px) and (max-width: 1500px) {
+  .leftContent{
+    width: 60%;
+  }
+  .widerRightSideContent{
+    width: 100%;
+  }
+  .right-side-container{
+    margin-left: 9%;
+  }
+  .contact-us{
+    width: 90%;
+  }
+  .right-side-container {
+    align-content: center;
+  }
+
+  .calculator-field,
+  .calculator-result,
+  .contact-input textarea {
+    width: 138px;
+    max-width: 150px;
+  }
+
+  .calculator-field,
+  .calculator-result,
+  .contact-input textarea span {
+    font-size: 13px;
+  }
+
+  .slider-value {
+    font-size: 12px;
+  }
+
+  .apply-button {
+    padding: 0.5rem;
+    font-size: 12px;
+  }
+
+  .send-message-button {
+    padding: 0.3rem;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .pi {
+    font-size: 10px;
+  }
+
+  .red-bar {
+    /* margin-right: 20px; */
+    margin-left: 10px;
+    margin-bottom: 120px;
+  }
+  
 }

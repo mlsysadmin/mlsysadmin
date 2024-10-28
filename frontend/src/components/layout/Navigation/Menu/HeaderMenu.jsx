@@ -343,16 +343,16 @@ const HeaderMenu = () => {
 	// 		menuKey={'home-insurance'}
 	// 	/>
 	// );
-	const OtherServicesMenu = () => (
-		<MenuPopup
-			menuKey={"other-services"}
-			// handleOpenChange={handleBuyOpenChange}
-			title={"Other Services"}
-			popUpOpen={otherServicesPopUpOpen}
-			label={"Other Services"}
-			content={OtherServicesMenuPopContent}
-		/>
-	);
+	// const OtherServicesMenu = () => (
+	// 	<MenuPopup
+	// 		menuKey={"other-services"}
+	// 		// handleOpenChange={handleBuyOpenChange}
+	// 		title={"Other Services"}
+	// 		popUpOpen={otherServicesPopUpOpen}
+	// 		label={"Other Services"}
+	// 		content={OtherServicesMenuPopContent}
+	// 	/>
+	// );
 
 	const MenuItems = [
 		{ label: "New", key: "new", link: "/new" },
@@ -366,11 +366,11 @@ const HeaderMenu = () => {
 			key: "home-insurance",
 			link: "/insurance-guide",
 		},
-		{
-			label: <OtherServicesMenu />,
-			key: "other-services",
-			link: "/propertySearch",
-		},
+		// {
+		// 	label: <OtherServicesMenu />,
+		// 	key: "other-services",
+		// 	link: "/propertySearch",
+		// },
 		{ label: "Contact", key: "contact", link: "/contact-us" },
 	];
 

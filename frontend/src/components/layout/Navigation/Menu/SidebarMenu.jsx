@@ -166,12 +166,12 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 								label: "Loan Dashboard",
 								link: sub.link,
 						  }
-						: Object.keys(sub).includes("sub_info_insurance")
-						? {
-								key: sub.sub_info_insurance,
-								label: "Start Your Property Search Today!",
-								link: sub.link,
-						  }
+						// : Object.keys(sub).includes("sub_info_insurance")
+						// ? {
+						// 		key: sub.sub_info_insurance,
+						// 		label: "Start Your Property Search Today!",
+						// 		link: sub.link,
+						//   }
 						: {
 								key: sub.sub,
 								label: sub.sub,
@@ -209,11 +209,11 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 			key: "home-insurance",
 			link: "/insurance-guide",
 		},
-		{
-			label: "Other Services",
-			key: "other-services",
-			children: SubMenuChild(SubMenu.otherServices),
-		},
+		// {
+		// 	label: "Other Services",
+		// 	key: "other-services",
+		// 	children: SubMenuChild(SubMenu.otherServices),
+		// },
 		{ label: "Contact", key: "contact", link: "/contact-us" },
 	];
 
