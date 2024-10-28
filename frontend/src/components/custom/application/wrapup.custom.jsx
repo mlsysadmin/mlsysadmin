@@ -14,7 +14,11 @@ import { DownOutlined } from "@ant-design/icons";
 //   GetCities,
 // } from "../../../api/Public/Location.api";
 
-const WrapUpDetails = ({ setWrapUpComplete, setCustomerInfo, customerInfo }) => {
+const WrapUpDetails = ({
+  setWrapUpComplete,
+  setCustomerInfo,
+  customerInfo,
+}) => {
   const [email, setEmail] = useState("");
   const [mobile_number, setMobileNumber] = useState("");
   const [firstname, setFirstname] = useState("");
@@ -49,28 +53,27 @@ const WrapUpDetails = ({ setWrapUpComplete, setCustomerInfo, customerInfo }) => 
     console.log("setWrapUpValues", name, value);
 
     setCustomerInfo((prevSearchParams) => ({
-
       ...prevSearchParams,
-      [name]: value
+      [name]: value,
     }));
-  }
+  };
 
   const handleSelect = (value, fieldName) => {
-    if (fieldName == 'province') {
+    if (fieldName == "province") {
       handleProvinceChange(value);
     }
-    setWrapUpValues(fieldName, value)
-  }
+    setWrapUpValues(fieldName, value);
+  };
 
   const handleInput = (value, setField) => {
-    setField(value)
-  }
+    setField(value);
+  };
 
   const handleBlurInput = (value, fieldName) => {
     if (!["", null, undefined].includes(value)) {
       setWrapUpValues(fieldName, value);
     }
-  }
+  };
 
   const allProvince = async () => {
     const dataresprovince = await GetProvince();
@@ -135,7 +138,7 @@ const WrapUpDetails = ({ setWrapUpComplete, setCustomerInfo, customerInfo }) => 
   // ]);
 
   // Styling for completed and incomplete state
-  // const wrapUpClassName = `wrap-up-inf 
+  // const wrapUpClassName = `wrap-up-inf
   // ${email &&
   //   firstname &&
   //   lastname &&
@@ -152,9 +155,7 @@ const WrapUpDetails = ({ setWrapUpComplete, setCustomerInfo, customerInfo }) => 
   const wrapUpClassName = `wrap-up-inf`;
 
   return (
-    <div
-      className={wrapUpClassName}
-    >
+    <div className={wrapUpClassName}>
       <h3>Wrap Up</h3>
       <span className="protect-tagline">
         <div className="SSl-Encryption">
@@ -209,23 +210,23 @@ const WrapUpDetails = ({ setWrapUpComplete, setCustomerInfo, customerInfo }) => 
         </div>
         <div className="country-group">
           <span className="label">Country</span>
-            <select
-              name="country"
-              id="country"
-              placeholder="Select Country"
-              className="wrap-up-dropdown-button"
-              value={customerInfo.country}
-              onChange={(e) => handleSelect(e.target.value, 'country')}
-              style={{ backgroundColor: "rgb(164,161,161, 27%)" }}
-              disabled
-            >
-              {/* <option value="" disabled selected hidden>
+          <select
+            name="country"
+            id="country"
+            placeholder="Select Country"
+            className="wrap-up-dropdown-button"
+            value={customerInfo.country}
+            onChange={(e) => handleSelect(e.target.value, "country")}
+            style={{ backgroundColor: "rgb(164,161,161, 27%)" }}
+            disabled
+          >
+            {/* <option value="" disabled selected hidden>
 							Select Country
 						</option> */}
-              <option value="Philippines" disabled>
-                Philippines
-              </option>
-              {/* {getCountry.map((country, index) => (
+            <option value="Philippines" disabled>
+              Philippines
+            </option>
+            {/* {getCountry.map((country, index) => (
 							<option
 								key={index}
 								value={
@@ -237,7 +238,7 @@ const WrapUpDetails = ({ setWrapUpComplete, setCustomerInfo, customerInfo }) => 
 									country.name.slice(1).toLowerCase()}
 							</option>
 						))} */}
-            </select>
+          </select>
         </div>
         <div className="province-group">
           <span className="label">Province/State</span>
@@ -247,15 +248,10 @@ const WrapUpDetails = ({ setWrapUpComplete, setCustomerInfo, customerInfo }) => 
               id="province"
               className="wrap-up-dropdown-button"
               value={customerInfo.province}
-              onChange={(e) => handleSelect(e.target.value, 'province')}
-            // onChange={handleAddressChange}
+              onChange={(e) => handleSelect(e.target.value, "province")}
+              // onChange={handleAddressChange}
             >
-              <option
-                value=""
-                disabled
-                selected
-                hidden
-              >
+              <option value="" disabled selected hidden>
                 Select Province
               </option>
               {getProvince.map((province, index) => (
@@ -277,29 +273,29 @@ const WrapUpDetails = ({ setWrapUpComplete, setCustomerInfo, customerInfo }) => 
         <div className="city-town-group">
           <span className="label">City/Town</span>
           <div className="wrap-up--select">
-          <select
-            name="city"
-            id="city"
-            className="wrap-up-dropdown-button"
-            value={customerInfo.city}
-            onChange={(e) => handleSelect(e.target.value, 'city')}
-          >
-            <option value="" disabled selected hidden>
-              Select City
-            </option>
-            {filteredCities.map((city, index) => (
-              <option
-                key={index}
-                value={
-                  city.name.charAt(0).toUpperCase() +
-                  city.name.slice(1).toLowerCase()
-                }
-              >
-                {city.name.charAt(0).toUpperCase() +
-                  city.name.slice(1).toLowerCase()}
+            <select
+              name="city"
+              id="city"
+              className="wrap-up-dropdown-button"
+              value={customerInfo.city}
+              onChange={(e) => handleSelect(e.target.value, "city")}
+            >
+              <option value="" disabled selected hidden>
+                Select City
               </option>
-            ))}
-          </select>
+              {filteredCities.map((city, index) => (
+                <option
+                  key={index}
+                  value={
+                    city.name.charAt(0).toUpperCase() +
+                    city.name.slice(1).toLowerCase()
+                  }
+                >
+                  {city.name.charAt(0).toUpperCase() +
+                    city.name.slice(1).toLowerCase()}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <div className="zipcode-group">
@@ -329,21 +325,20 @@ const WrapUpDetails = ({ setWrapUpComplete, setCustomerInfo, customerInfo }) => 
         <div className="source-income-group">
           <span className="label">Source of Income</span>
           <div className="wrap-up--select">
-          <select
-            name="source_of_income"
-            id=""
-            value={customerInfo.source_of_income}
-            className="wrap-up-dropdown-button"
-            style={{ margin: "0px" }}
-            onChange={(e) => handleSelect(e.target.value, 'source_of_income')}
-          >
-            <option value="" disabled selected hidden>
-              Select Source of Income
-            </option>
-            {incomeTypeOptions.map((option) => (
-              <option key={option}>{option}</option>
-            ))}
-          </select>
+            <select
+              name="source_of_income"
+              value={customerInfo.source_of_income}
+              className="wrap-up-dropdown-button"
+              style={{ margin: "0px" }}
+              onChange={(e) => handleSelect(e.target.value, "source_of_income")}
+            >
+              <option value="" disabled selected hidden>
+                Select Source of Income
+              </option>
+              {incomeTypeOptions.map((option) => (
+                <option key={option}>{option}</option>
+              ))}
+            </select>
           </div>
           {/* <button className="wrap-up-dropdown-button" style={{ margin: "0px" }}>
             <Dropdown
