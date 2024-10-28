@@ -312,7 +312,8 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 				</div>
 				<Col className="menu-buttons">
 					{isMLWWSPresent ? (
-						userDetails?.tier.label === "FULLY VERIFIED" ? (
+						userDetails?.tier?.label !== "BUYER" ||
+						userDetails?.tier?.label !== "SEMI-VERIFIED" ? (
 							<SellerLogInButtonDropdown />
 						) : (
 							<img
