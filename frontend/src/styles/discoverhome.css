@@ -403,8 +403,8 @@
 	position: absolute;
 	inset-block-start: 0;
 	inset-inline-start: 0;
-	width: 15px;
-	height: 15px;
+	width: 15px !important;
+	height: 15px !important;
 	background-color: black;
 	box-shadow: 0 0 0 2px black;
 	outline: 0px solid transparent;
