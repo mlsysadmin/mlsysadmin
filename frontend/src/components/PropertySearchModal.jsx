@@ -411,6 +411,7 @@ const PropertySearch = () => {
               <div className="form-column">
                 <span>Feature & Amenities</span>
                 <input
+                  id="featureAmenities"
                   type="text"
                   placeholder="Enter Feature & Amenities"
                   name="featureAndAmenities"

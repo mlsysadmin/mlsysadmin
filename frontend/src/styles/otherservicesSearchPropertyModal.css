@@ -1,5 +1,5 @@
-.whole-property-search-page{
-    background: white;
+.whole-property-search-page {
+  background: white;
 }
 
 .custom-modal-searchprop {
@@ -25,12 +25,13 @@
   width: 100%;
 }
 
-.whole-property-search-page{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.whole-property-search-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  background: #d9d9d9;
+  flex-direction: column;
 }
 
 .toptitle {
@@ -124,14 +125,14 @@
 }
 
 .property-search-form {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    margin-top: 50px;
-    gap: 20px;
-    /* padding:10px; */
-    background-color: #F7F7F7;
-    padding: 40px 30px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-top: 50px;
+  gap: 20px;
+  /* padding:10px; */
+  background-color: #f7f7f7;
+  padding: 40px 30px 10px;
 }
 
 .form-row {
@@ -147,25 +148,26 @@
   margin-bottom: 15px;
 }
 
-.form-row input,
+.form-row input:not(#featureAmenities),
 .form-row .form-column select {
-    flex: 1;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
 }
-.form-row input:disabled, .form-row select:disabled{
-    border-color: #d9d9d9;
-    background-color: #d9d9d9;
+.form-row input:disabled,
+.form-row select:disabled {
+  border-color: #d9d9d9;
+  background-color: #d9d9d9;
 }
-.form-column{
-    display: flex;
-    flex-wrap: wrap ;
-    gap: 5px;
-    flex-direction: column;
-    width: 100%;
+.form-column {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  flex-direction: column;
+  width: 100%;
 }
 .submit-row {
   justify-content: right;
@@ -220,10 +222,29 @@
   gap: 30px;
   width: 400px;
 }
-
-@media screen and (min-width: 1472px) {
+.property-search-form .form-row .form-column #featureAmenities {
+  height: 45px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+/* @media screen and (min-width: 1300px) and (max-width: 1502px) {
+  .property-search-form {
+    width: 100%;
+    padding: 40px 20px 10px;
+  }
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+}
+*/
+@media screen and (min-width: 1300px) {
   .modal-content-searchprop {
-    width: 60%;
+    width: 80%;
     padding: 20px;
   }
 }
