@@ -40,7 +40,7 @@
 
 .wrap-up-inf .prop-content2-wrap-up .wrap-up-input,
 .wrap-up-inf .prop-content2-wrap-up .wrap-up-dropdown-button {
-  border: 1px solid var(--mute-gray);
+  border: 1px solid #d9d9d9;
   background-color: transparent;
   border-radius: 6px;
   height: 50px;

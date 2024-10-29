@@ -49,7 +49,7 @@ export const ListingForm = () => {
 	const [publiclisting, setPublicListing] = useState([]);
 	const [showAlert, setShowAlert] = useState(true);
 	const [showAlertModal, setShowAlertModal] = useState(false);
-	const [showVendorModal, setShowVendorModal] = useState(true);
+	const [showVendorModal, setShowVendorModal] = useState(false);
 	const [addedVendorId, setAddedVendorId] = useState();
 	const [addedVendorName, setAddedVendorName] = useState();
 	const [isSubmitting, setIsSubmitting] = useState(false);
