@@ -456,7 +456,6 @@ const handleAdditionalLoanAmountChange = (value) => {
 								onKeyDown={(e) => {
 									if (!/\d/.test(e.key)) {
 										e.preventDefault();
-										er;
 									}
 								}}
 							/>
