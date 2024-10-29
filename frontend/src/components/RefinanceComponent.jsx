@@ -30,7 +30,7 @@ const RefinanceComponent = () => {
   const [refPropquest2, setRefPropQuest2] = useState("");
   const [selectedDropdownOption, setSelectedDropdownOption] = useState(null);
   const [selectedbtnprop, setsSelectedbtnprop] = useState("");
-  const [refinanceAmount, setRefinanceAmount] = useState(0);
+  const [refinanceAmount, setRefinanceAmount] = useState("");
 
   // Loan state
   const [loanAmount, setLoanAmount] = useState("");
@@ -61,6 +61,14 @@ const RefinanceComponent = () => {
   const [api, contextHolder] = notification.useNotification();
   const [loading, setLoading] = useState(false);
 
+
+  const formatNumberWithCommas = (num) => {
+		const cleanedNum = num.replace(/[^0-9.]/g, "");
+		const parts = cleanedNum.split(".");
+		parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		return parts.join(".");
+	};
+
   // Property handlers
   const handleRefPropQuest1 = (option) => {
     setRefPropQuest1(option);
@@ -71,9 +79,10 @@ const RefinanceComponent = () => {
     setRefPropQuest2(option);
   };
 
-  const handleRefinanceAmountChange = (value) => {
-    setRefinanceAmount(value);
-  };
+ const handleRefinanceAmountChange = (value) => {
+		const refinanceValue = formatNumberWithCommas(value);
+		setRefinanceAmount(refinanceValue);
+ };
 
   const handlefourthquestprop = (option) => {
     setsSelectedbtnprop(option);
@@ -84,12 +93,14 @@ const RefinanceComponent = () => {
   };
 
   // Loan handlers
-  const handleLoanAmountChange = (e) => {
-    setLoanAmount(e.target.value);
-  };
-  const handleAdditionalLoanAmountChange = (e) => {
-    setAdditionalLoanAmount(e.target.value);
-  };
+const handleLoanAmountChange = (value) => {
+	const loanAmountValue = formatNumberWithCommas(value);
+	setLoanAmount(loanAmountValue);
+};
+const handleAdditionalLoanAmountChange = (value) => {
+	const additionalAmountValue = formatNumberWithCommas(value);
+	setAdditionalLoanAmount(additionalAmountValue);
+};
 
   // Details handlers
   const handleEmploymentStatus = (option) => {
@@ -304,63 +315,63 @@ const RefinanceComponent = () => {
   };
 
   return (
-    <div className="refinance-container">
-      {contextHolder}
-      <div className="refinance-content">
-        <div className="refinance-group-one">
-          <Steps
-            current={current}
-            onChange={onChange}
-            percent={100}
-            labelPlacement="vertical"
-            size="small"
-            className="custom-steps"
-          >
-            <Step
-              title="Property"
-              status={completedSteps.property ? "finish" : "wait"}
-            />
-            <Step
-              title="Loan"
-              status={completedSteps.loan ? "finish" : "wait"}
-            />
-            <Step
-              title="Details"
-              status={completedSteps.details ? "finish" : "wait"}
-            />
-            <Step
-              title="WrapUp"
-              status={completedSteps.wrapUp ? "finish" : "wait"}
-            />
-          </Steps>
-        </div>
-        <br />
-        <div className="refinance-property-group" ref={PropertyGroupRef}>
-          <div className="refinance-property-group-one">
-            <h4>Property</h4>
-            <span>Why do you want to refinance?</span>
-            <div className="ref-btn-group">
-              {[
-                "Take cash out of home",
-                "Pay off debts",
-                "Lower my monthly payment",
-              ].map((option, index) => (
-                <button
-                  key={index}
-                  className={`ref-prop-btn ${
-                    refPropquest1 === option ? "active" : `${option}`
-                  }`}
-                  onClick={() => handleRefPropQuest1(option)}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="refinance-property-group-two">
-            <span>What is your current mortgage interest rate?</span>
-            <div className="ref-btn-group">
-              {/* <Dropdown overlay={menu}>
+		<div className="refinance-container">
+			{contextHolder}
+			<div className="refinance-content">
+				<div className="refinance-group-one">
+					<Steps
+						current={current}
+						onChange={onChange}
+						percent={100}
+						labelPlacement="vertical"
+						size="small"
+						className="custom-steps"
+					>
+						<Step
+							title="Property"
+							status={completedSteps.property ? "finish" : "wait"}
+						/>
+						<Step
+							title="Loan"
+							status={completedSteps.loan ? "finish" : "wait"}
+						/>
+						<Step
+							title="Details"
+							status={completedSteps.details ? "finish" : "wait"}
+						/>
+						<Step
+							title="WrapUp"
+							status={completedSteps.wrapUp ? "finish" : "wait"}
+						/>
+					</Steps>
+				</div>
+				<br />
+				<div className="refinance-property-group" ref={PropertyGroupRef}>
+					<div className="refinance-property-group-one">
+						<h4>Property</h4>
+						<span>Why do you want to refinance?</span>
+						<div className="ref-btn-group">
+							{[
+								"Take cash out of home",
+								"Pay off debts",
+								"Lower my monthly payment",
+							].map((option, index) => (
+								<button
+									key={index}
+									className={`ref-prop-btn ${
+										refPropquest1 === option ? "active" : `${option}`
+									}`}
+									onClick={() => handleRefPropQuest1(option)}
+								>
+									{option}
+								</button>
+							))}
+						</div>
+					</div>
+					<div className="refinance-property-group-two">
+						<span>What is your current mortgage interest rate?</span>
+						<div className="ref-btn-group">
+							{/* <Dropdown overlay={menu}>
                 <button
                   className="ref-dropdown"
                 //   onClick={handleDropdownOptionClick}
@@ -379,260 +390,277 @@ const RefinanceComponent = () => {
                   </span>
                 </button>
               </Dropdown> */}
-              <div className="wrap-up--selection">
-                <select
-                  className="ref-dropdown"
-                  name="select_your_current_interest_rate"
-                  // value={customerInfo.source_of_income}
-                  onClick={handleDropdownOptionClick}
+							<div className="wrap-up--selection">
+								<select
+									className="ref-dropdown"
+									name="select_your_current_interest_rate"
+									// value={customerInfo.source_of_income}
+									onClick={handleDropdownOptionClick}
 
-                  // onChange={
-                  // 	(e) =>
-                  //   handleSelect(e.target.value, "source_of_income")
-                  // }
-                >
-                  <option value="" disabled selected hidden>
-                    Select your current interest rate
-                  </option>
-                  {currentInterestRate.map((option) => (
-                    <option key={option}>{option}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          </div>
-          <div className="refinance-property-group-three">
-            <span>Why do you want to refinance?</span>
-            <div className="ref-btn-group">
-              {buttonGroup1.map((button, index) => (
-                <button
-                  key={index}
-                  className={`ref-prop-btn ${
-                    refPropquest2 === button ? "active" : ""
-                  }`}
-                  onClick={() => handleRefPropQuest2(button)}
-                >
-                  {button}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="refinance-property-group-four">
-            <span>How will you use your new home?</span>
-            <div className="ref-btn-group">
-              {buttonGroup2.map((button, index) => (
-                <button
-                  key={index}
-                  className={`ref-prop-btn ${
-                    selectedbtnprop === button ? "active" : ""
-                  }`}
-                  onClick={() => handlefourthquestprop(button)}
-                >
-                  {button}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="refinance-property-group-five">
-            <span>What is the value of your home?</span>
-            <span className="estimate">(an estimate is fine)</span>
-            <div className="ref-btn-group">
-              <input
-                className="amount-input-field-refinance"
-                placeholder="Amount"
-                value={refinanceAmount}
-                onChange={(e) =>
-                  handleRefinanceAmountChange(Number(e.target.value))
-                }
-              />
-            </div>
-          </div>
-        </div>
-        <br />
-        <br />
-        <br />
-        <div className="refinance-loan-group" ref={loanGroupRef}>
-          <div className="refinance-loan-group-one">
-            <h4>Loans</h4>
-            <span>What's your remaining balance of your current loan?</span>
-            <span className="estimate">(an estimate is fine)</span>
-            <div className="ref-btn-group">
-              <input
-                type="number"
-                placeholder="PHP"
-                value={loanAmount}
-                onChange={handleLoanAmountChange}
-              />
-            </div>
-          </div>
-          <div className="refinance-loan-group-two">
-            <span>How much additional cash would you like to take out?</span>
-            <span className="estimate">
-              You may be able to take out as much as PHP50,000
-            </span>
-            <div className="ref-btn-group">
-              <input
-                type="number"
-                placeholder="PHP"
-                value={additionalLoanAmount} // Add state for loan amount
-                onChange={handleAdditionalLoanAmountChange}
-              />
-            </div>
-            {/* Remove the button */}
-          </div>
-        </div>
-        <br />
-        <br />
-        <br />
-        <div className="refinance-details-group" ref={DetailsGroupRef}>
-          <div className="refinance-details-group-one">
-            <h4>Details</h4>
-            <span>What is your current employment status?</span>
-            <div className="ref-btn-group">
-              {["Employed", "Self-employed", "Retired", "Not employed"].map(
-                (status, index) => (
-                  <button
-                    key={index}
-                    className={`ref-prop-btn ${
-                      empStatus === status ? "active" : `${status}`
-                    }`}
-                    onClick={() => handleEmploymentStatus(status)}
-                  >
-                    {status}
-                  </button>
-                )
-              )}
-            </div>
-          </div>
-          <div className="refinance-details-group-two">
-            <span>
-              What is your household gross (before taxes) annual income?
-            </span>
-            <div className="ref-btn-group-two">
-              {buttonGroup4.map((button, index) => (
-                <button
-                  key={index}
-                  className={`ref-prop-btn ${
-                    annualInc === button ? "active" : ""
-                  }`}
-                  onClick={() => handleAnnualIncome(button)}
-                >
-                  {button}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="refinance-details-group-three">
-            <span>Have you declared bankruptcy in the last 4 years?</span>
-            <div className="ref-btn-group">
-              {["No", "Yes"].map((answer, i) => (
-                <button
-                  key={i}
-                  className={`ref-prop-btn ${
-                    bankcruptcyStat === answer ? "active" : ""
-                  }`}
-                  onClick={() => handleBankcrutpcyStatus(answer)}
-                >
-                  {answer}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="refinance-details-group-four">
-            <span>
-              Have you made any late mortgage payments in the last 12 months?
-            </span>
-            <div className="ref-btn-group">
-              {["No", "Yes"].map((answer, i) => (
-                <button
-                  key={i}
-                  className={`ref-prop-btn ${
-                    mortpayments === answer ? "active" : ""
-                  }`}
-                  onClick={() => handleMortgagePayments(answer)}
-                >
-                  {answer}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="refinance-details-group-five">
-            <span>What is your credit score range?</span>
-            <div className="ref-btn-group-five">
-              {[
-                "Excellent (720+)",
-                "Good (680-719)",
-                "Fair (660-679)",
-                "Below average (620-659)",
-                "Poor (520-619)",
-                "Bad (Below 580)",
-              ].map((score, index) => (
-                <button
-                  key={index}
-                  className={`ref-prop-btn ${
-                    creditscore === score ? "active" : ""
-                  }`}
-                  onClick={() => handleCreditScore(score)}
-                >
-                  {score}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="refinance-details-group-six">
-            <span>Where are you looking to buy?</span>
-            <p>
-              Enter the city or zip code of the area where you are home shopping
-            </p>
-            <div className="ref-btn-group-input">
-              <div className="ref-btn-group">
-                <input
-                  type="text"
-                  placeholder="City or zip code"
-                  value={homeLocation}
-                  onChange={(e) => setHomeLocation(e.target.value)}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <br />
-        <div className="refinance-wrap-up-group" ref={WrapUpGroupRef}>
-          <WrapUpDetails
-            setWrapUpComplete={setIsWrapUpComplete}
-            setCustomerInfo={setCustomerInfo}
-            customerInfo={customerInfo}
-          />
-        </div>
-        <br />
-        <br />
-        <br />
-        <span
-          style={{
-            fontSize: "18px",
-            color: "#8C9094",
-            width: "79%",
-            margin: "auto",
-          }}
-        >
-          By submitting, I agree my information may be shared and that I may be
-          contacted at this number including through emails. I agree to the
-          privacy policy and terms.
-        </span>
-        <SemiRoundBtn
-          label={"Submit Pre-approval"}
-          className="submit-pre-approval round-btn"
-          handleClick={handleSubmitApplication}
-          loading={loading}
-        />
-        {/* <SubmitApplicationCustom /> */}
-      </div>
-      <div>
-        <CustomMlFooter />
-        <FooterComponent />
-      </div>
-    </div>
-  );
+									// onChange={
+									// 	(e) =>
+									//   handleSelect(e.target.value, "source_of_income")
+									// }
+								>
+									<option value="" disabled selected hidden>
+										Select your current interest rate
+									</option>
+									{currentInterestRate.map((option) => (
+										<option key={option}>{option}</option>
+									))}
+								</select>
+							</div>
+						</div>
+					</div>
+					<div className="refinance-property-group-three">
+						<span>Why do you want to refinance?</span>
+						<div className="ref-btn-group">
+							{buttonGroup1.map((button, index) => (
+								<button
+									key={index}
+									className={`ref-prop-btn ${
+										refPropquest2 === button ? "active" : ""
+									}`}
+									onClick={() => handleRefPropQuest2(button)}
+								>
+									{button}
+								</button>
+							))}
+						</div>
+					</div>
+					<div className="refinance-property-group-four">
+						<span>How will you use your new home?</span>
+						<div className="ref-btn-group">
+							{buttonGroup2.map((button, index) => (
+								<button
+									key={index}
+									className={`ref-prop-btn ${
+										selectedbtnprop === button ? "active" : ""
+									}`}
+									onClick={() => handlefourthquestprop(button)}
+								>
+									{button}
+								</button>
+							))}
+						</div>
+					</div>
+					<div className="refinance-property-group-five">
+						<span>What is the value of your home?</span>
+						<span className="estimate">(an estimate is fine)</span>
+						<div className="ref-btn-group">
+							<input
+								className="amount-input-field-refinance"
+								placeholder="Amount"
+								value={refinanceAmount}
+								onChange={(e) => handleRefinanceAmountChange(e.target.value)}
+								onKeyDown={(e) => {
+									if (!/\d/.test(e.key)) {
+										e.preventDefault();
+										er;
+									}
+								}}
+							/>
+						</div>
+					</div>
+				</div>
+				<br />
+				<br />
+				<br />
+				<div className="refinance-loan-group" ref={loanGroupRef}>
+					<div className="refinance-loan-group-one">
+						<h4>Loans</h4>
+						<span>What's your remaining balance of your current loan?</span>
+						<span className="estimate">(an estimate is fine)</span>
+						<div className="ref-btn-group">
+							<input
+								type="number"
+								placeholder="PHP"
+								value={loanAmount}
+								onChange={(e) => handleLoanAmountChange(e.target.value)}
+								onKeyDown={(e) => {
+									if (!/\d/.test(e.key)) {
+										e.preventDefault();
+									}
+								}}
+							/>
+						</div>
+					</div>
+					<div className="refinance-loan-group-two">
+						<span>How much additional cash would you like to take out?</span>
+						<span className="estimate">
+							You may be able to take out as much as PHP50,000
+						</span>
+						<div className="ref-btn-group">
+							<input
+								type="number"
+								placeholder="PHP"
+								value={additionalLoanAmount} 
+								onChange={(e) =>
+									handleAdditionalLoanAmountChange(e.target.value)
+								}
+								onKeyDown={(e) => {
+									if (!/\d/.test(e.key)) {
+										e.preventDefault();
+									}
+								}}
+							/>
+						</div>
+						{/* Remove the button */}
+					</div>
+				</div>
+				<br />
+				<br />
+				<br />
+				<div className="refinance-details-group" ref={DetailsGroupRef}>
+					<div className="refinance-details-group-one">
+						<h4>Details</h4>
+						<span>What is your current employment status?</span>
+						<div className="ref-btn-group">
+							{["Employed", "Self-employed", "Retired", "Not employed"].map(
+								(status, index) => (
+									<button
+										key={index}
+										className={`ref-prop-btn ${
+											empStatus === status ? "active" : `${status}`
+										}`}
+										onClick={() => handleEmploymentStatus(status)}
+									>
+										{status}
+									</button>
+								)
+							)}
+						</div>
+					</div>
+					<div className="refinance-details-group-two">
+						<span>
+							What is your household gross (before taxes) annual income?
+						</span>
+						<div className="ref-btn-group-two">
+							{buttonGroup4.map((button, index) => (
+								<button
+									key={index}
+									className={`ref-prop-btn ${
+										annualInc === button ? "active" : ""
+									}`}
+									onClick={() => handleAnnualIncome(button)}
+								>
+									{button}
+								</button>
+							))}
+						</div>
+					</div>
+					<div className="refinance-details-group-three">
+						<span>Have you declared bankruptcy in the last 4 years?</span>
+						<div className="ref-btn-group">
+							{["No", "Yes"].map((answer, i) => (
+								<button
+									key={i}
+									className={`ref-prop-btn ${
+										bankcruptcyStat === answer ? "active" : ""
+									}`}
+									onClick={() => handleBankcrutpcyStatus(answer)}
+								>
+									{answer}
+								</button>
+							))}
+						</div>
+					</div>
+					<div className="refinance-details-group-four">
+						<span>
+							Have you made any late mortgage payments in the last 12 months?
+						</span>
+						<div className="ref-btn-group">
+							{["No", "Yes"].map((answer, i) => (
+								<button
+									key={i}
+									className={`ref-prop-btn ${
+										mortpayments === answer ? "active" : ""
+									}`}
+									onClick={() => handleMortgagePayments(answer)}
+								>
+									{answer}
+								</button>
+							))}
+						</div>
+					</div>
+					<div className="refinance-details-group-five">
+						<span>What is your credit score range?</span>
+						<div className="ref-btn-group-five">
+							{[
+								"Excellent (720+)",
+								"Good (680-719)",
+								"Fair (660-679)",
+								"Below average (620-659)",
+								"Poor (520-619)",
+								"Bad (Below 580)",
+							].map((score, index) => (
+								<button
+									key={index}
+									className={`ref-prop-btn ${
+										creditscore === score ? "active" : ""
+									}`}
+									onClick={() => handleCreditScore(score)}
+								>
+									{score}
+								</button>
+							))}
+						</div>
+					</div>
+					<div className="refinance-details-group-six">
+						<span>Where are you looking to buy?</span>
+						<p>
+							Enter the city or zip code of the area where you are home shopping
+						</p>
+						<div className="ref-btn-group-input">
+							<div className="ref-btn-group">
+								<input
+									type="text"
+									placeholder="City or zip code"
+									value={homeLocation}
+									onChange={(e) => setHomeLocation(e.target.value)}
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br />
+				<div className="refinance-wrap-up-group" ref={WrapUpGroupRef}>
+					<WrapUpDetails
+						setWrapUpComplete={setIsWrapUpComplete}
+						setCustomerInfo={setCustomerInfo}
+						customerInfo={customerInfo}
+					/>
+				</div>
+				<br />
+				<br />
+				<br />
+				<span
+					style={{
+						fontSize: "18px",
+						color: "#8C9094",
+						width: "79%",
+						margin: "auto",
+						textAlign: "center",
+					}}
+				>
+					By submitting, I agree my information may be shared and that I may be
+					contacted at this number including through emails. I agree to the
+					privacy policy and terms.
+				</span>
+				<SemiRoundBtn
+					label={"Submit Pre-approval"}
+					className="submit-pre-approval round-btn"
+					handleClick={handleSubmitApplication}
+					loading={loading}
+				/>
+				{/* <SubmitApplicationCustom /> */}
+			</div>
+			<div>
+				<CustomMlFooter />
+				<FooterComponent />
+			</div>
+		</div>
+	);
 };
 
 export default RefinanceComponent;

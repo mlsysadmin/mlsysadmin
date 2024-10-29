@@ -49,23 +49,23 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 		setSelectedProvince(province);
 		console.log("Selected Province:", province);
 
+		const normalizedProvince = province.toLowerCase(); 
+
 		const provinceData = getProvince.find(
-			(p) =>
-				p.name.charAt(0).toUpperCase() + p.name.slice(1).toLowerCase() ===
-				province
+			(p) => p.name.toLowerCase() === normalizedProvince
 		);
 		if (provinceData) {
 			const provinceId = provinceData.addressL1Id;
 			const filtered = getCities.filter((city) => {
-				// console.log("Checking city:", city.name);
+				// Filter cities based on the addressL1Id
 				return city.addressL1Id === provinceId;
 			});
-			// console.log("Filtered cities:", filtered);
 			setFilteredCities(filtered);
 		} else {
 			setFilteredCities([]);
 		}
 	};
+
 	useEffect(() => {
 		const fetchData = async () => {
 			try {

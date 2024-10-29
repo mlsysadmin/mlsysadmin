@@ -75,6 +75,15 @@ const WrapUpDetails = ({
     }
   };
 
+  	const pascalTextFormatter = (text) => {
+			return text
+				.split(" ")
+				.map(
+					(word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+				)
+				.join(" ");
+		};
+
   const allProvince = async () => {
     const dataresprovince = await GetProvince();
     setGetProvince(dataresprovince);
@@ -87,10 +96,10 @@ const WrapUpDetails = ({
   };
 
   const handleProvinceChange = (province) => {
+    const prov = province.toLowerCase()
     const provinceData = getProvince.find(
       (p) =>
-        p.name.charAt(0).toUpperCase() + p.name.slice(1).toLowerCase() ===
-        province
+p.name.toLowerCase() === prov
     );
     if (provinceData) {
       const provinceId = provinceData.addressL1Id;
@@ -259,12 +268,11 @@ const WrapUpDetails = ({
                   key={index}
                   style={{ maxHeight: "20px", overflowY: "auto" }}
                   value={
-                    province.name.charAt(0).toUpperCase() +
-                    province.name.slice(1).toLowerCase()
+                    pascalTextFormatter(province.name)
+                   
                   }
                 >
-                  {province.name.charAt(0).toUpperCase() +
-                    province.name.slice(1).toLowerCase()}
+                  {pascalTextFormatter(province.name)}
                 </option>
               ))}
             </select>
@@ -287,12 +295,10 @@ const WrapUpDetails = ({
                 <option
                   key={index}
                   value={
-                    city.name.charAt(0).toUpperCase() +
-                    city.name.slice(1).toLowerCase()
+                    pascalTextFormatter(city.name)
                   }
                 >
-                  {city.name.charAt(0).toUpperCase() +
-                    city.name.slice(1).toLowerCase()}
+                  {pascalTextFormatter(city.name)}
                 </option>
               ))}
             </select>
