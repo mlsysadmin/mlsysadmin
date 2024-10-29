@@ -75,14 +75,12 @@ const WrapUpDetails = ({
     }
   };
 
-  	const pascalTextFormatter = (text) => {
-			return text
-				.split(" ")
-				.map(
-					(word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-				)
-				.join(" ");
-		};
+  const pascalTextFormatter = (text) => {
+    return text
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  };
 
   const allProvince = async () => {
     const dataresprovince = await GetProvince();
@@ -96,11 +94,8 @@ const WrapUpDetails = ({
   };
 
   const handleProvinceChange = (province) => {
-    const prov = province.toLowerCase()
-    const provinceData = getProvince.find(
-      (p) =>
-p.name.toLowerCase() === prov
-    );
+    const prov = province.toLowerCase();
+    const provinceData = getProvince.find((p) => p.name.toLowerCase() === prov);
     if (provinceData) {
       const provinceId = provinceData.addressL1Id;
       const filtered = getCities.filter((city) => {
@@ -182,6 +177,14 @@ p.name.toLowerCase() === prov
             onChange={(e) => handleInput(e.target.value, setMobileNumber)}
             // Add handler if needed
             onBlur={(e) => handleBlurInput(e.target.value, "mobile_number")}
+            onKeyDown={(e) => {
+              if (e.key === "Backspace" || e.key === "Delete") {
+                return; // Allow backspace and delete keys to work as expected
+              }
+              if (!/\d/.test(e.key)) {
+                e.preventDefault(); // Prevent non-numeric characters from being entered
+              }
+            }}
           />
         </div>
         <div className="email-address-group">
@@ -267,10 +270,7 @@ p.name.toLowerCase() === prov
                 <option
                   key={index}
                   style={{ maxHeight: "20px", overflowY: "auto" }}
-                  value={
-                    pascalTextFormatter(province.name)
-                   
-                  }
+                  value={pascalTextFormatter(province.name)}
                 >
                   {pascalTextFormatter(province.name)}
                 </option>
@@ -292,12 +292,7 @@ p.name.toLowerCase() === prov
                 Select City
               </option>
               {filteredCities.map((city, index) => (
-                <option
-                  key={index}
-                  value={
-                    pascalTextFormatter(city.name)
-                  }
-                >
+                <option key={index} value={pascalTextFormatter(city.name)}>
                   {pascalTextFormatter(city.name)}
                 </option>
               ))}
