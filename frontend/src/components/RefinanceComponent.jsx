@@ -88,8 +88,8 @@ const RefinanceComponent = () => {
     setsSelectedbtnprop(option);
   };
 
-  const handleDropdownOptionClick = ({ key }) => {
-    setSelectedDropdownOption(key);
+  const handleDropdownOptionClick = (event) => {
+    setSelectedDropdownOption(event.target.value);
   };
 
   // Loan handlers
@@ -405,7 +405,7 @@ const handleAdditionalLoanAmountChange = (value) => {
 									<option value="" disabled selected hidden>
 										Select your current interest rate
 									</option>
-									{currentInterestRate.map((option) => (
+									{currentInterestRate?.map((option) => (
 										<option key={option}>{option}</option>
 									))}
 								</select>
