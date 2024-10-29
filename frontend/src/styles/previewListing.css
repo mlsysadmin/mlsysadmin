@@ -427,7 +427,7 @@
 
 .property-on-map h3 {
   color: black;
-  /* font-size: 30px; */
+  font-size: 25px;
   /* margin: 20px; */
   margin-bottom: 20px;
 }
@@ -467,7 +467,7 @@
 
 .web-view-similar-properties h3 {
   color: black;
-  /* font-size: 30px; */
+  font-size: 25px;
 }
 .web-view-similar-properties button.active {
   background-color: #c00;
@@ -1323,6 +1323,9 @@ align-content: center;
   }
   .contact-us{
     width: 100%;
+  }
+    .property-on-map h3, .web-view-similar-properties h3{
+     font-size: 20px ;
   }
 }
 @media (min-width: 1281px) and (max-width: 1500px) {

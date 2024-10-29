@@ -122,6 +122,9 @@
   margin-top: 22px;
   gap: 13px;
 }
+.featureContent svg{
+  font-size: 28px;
+}
 
 .featureIcon {
   aspect-ratio: 1.11;
@@ -285,6 +288,7 @@
     font: 20px Poppins;
     font-weight: bold;
   }
+
   
   .leftdescriptionText {
     color: #8c9094;
@@ -297,6 +301,9 @@
   .leftcontainer {
     font-size: 15px;
   }
+  .featureContent svg{
+  font-size: 20px;
+}
   
   .lefttitle {
     font-family: Poppins, sans-serif;
