@@ -11,310 +11,319 @@ import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import { SendRefinance } from "../api/Public/Email.api";
 
 const RefinanceComponent = () => {
-  const { Step } = Steps;
-  const [current, setCurrent] = useState(0);
-  const [completedSteps, setCompletedSteps] = useState({
-    property: false,
-    loan: false,
-    details: false,
-    wrapUp: false,
-  });
+	const { Step } = Steps;
+	const [current, setCurrent] = useState(0);
+	const [completedSteps, setCompletedSteps] = useState({
+		property: false,
+		loan: false,
+		details: false,
+		wrapUp: false,
+	});
 
-  const loanGroupRef = useRef(null);
-  const PropertyGroupRef = useRef(null);
-  const DetailsGroupRef = useRef(null);
-  const WrapUpGroupRef = useRef(null);
+	const loanGroupRef = useRef(null);
+	const PropertyGroupRef = useRef(null);
+	const DetailsGroupRef = useRef(null);
+	const WrapUpGroupRef = useRef(null);
 
-  // Property state
-  const [refPropquest1, setRefPropQuest1] = useState("");
-  const [refPropquest2, setRefPropQuest2] = useState("");
-  const [selectedDropdownOption, setSelectedDropdownOption] = useState(null);
-  const [selectedbtnprop, setsSelectedbtnprop] = useState("");
-  const [refinanceAmount, setRefinanceAmount] = useState("");
+	// Property state
+	const [refPropquest1, setRefPropQuest1] = useState("");
+	const [refPropquest2, setRefPropQuest2] = useState("");
+	const [selectedDropdownOption, setSelectedDropdownOption] = useState("");
+	const [selectedbtnprop, setsSelectedbtnprop] = useState("");
+	const [refinanceAmount, setRefinanceAmount] = useState("");
 
-  // Loan state
-  const [loanAmount, setLoanAmount] = useState("");
-  const [additionalLoanAmount, setAdditionalLoanAmount] = useState("");
+	// Loan state
+	const [loanAmount, setLoanAmount] = useState("");
+	const [additionalLoanAmount, setAdditionalLoanAmount] = useState("");
 
-  // Details state
-  const [empStatus, setEmplStatus] = useState("");
-  const [annualInc, setAnnualInc] = useState("");
-  const [bankcruptcyStat, setBankcruptcyStat] = useState("");
-  const [mortpayments, setMortPayments] = useState("");
-  const [creditscore, setCreditScore] = useState("");
-  const [homeLocation, setHomeLocation] = useState(null);
+	// Details state
+	const [empStatus, setEmplStatus] = useState("");
+	const [annualInc, setAnnualInc] = useState("");
+	const [bankcruptcyStat, setBankcruptcyStat] = useState("");
+	const [mortpayments, setMortPayments] = useState("");
+	const [creditscore, setCreditScore] = useState("");
+	const [homeLocation, setHomeLocation] = useState(null);
 
-  const [customerInfo, setCustomerInfo] = useState({
-    mobile_number: null,
-    email: null,
-    last_name: null,
-    first_name: null,
-    country: "Philippines",
-    province: null,
-    city: null,
-    zipcode: null,
-    others: null,
-    source_of_income: null,
-  });
-  // Wrap-up state
-  const [isWrapUpComplete, setIsWrapUpComplete] = useState(false);
-  const [api, contextHolder] = notification.useNotification();
-  const [loading, setLoading] = useState(false);
+	const [customerInfo, setCustomerInfo] = useState({
+		mobile_number: null,
+		email: null,
+		last_name: null,
+		first_name: null,
+		country: "Philippines",
+		province: null,
+		city: null,
+		zipcode: null,
+		others: null,
+		source_of_income: null,
+	});
+	// Wrap-up state
+	const [isWrapUpComplete, setIsWrapUpComplete] = useState(false);
+	const [api, contextHolder] = notification.useNotification();
+	const [loading, setLoading] = useState(false);
 
-
-  const formatNumberWithCommas = (num) => {
+	const formatNumberWithCommas = (num) => {
 		const cleanedNum = num.replace(/[^0-9.]/g, "");
 		const parts = cleanedNum.split(".");
 		parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		return parts.join(".");
 	};
 
-  // Property handlers
-  const handleRefPropQuest1 = (option) => {
-    setRefPropQuest1(option);
-    if (option) setCompletedSteps((prev) => ({ ...prev, property: true }));
-  };
+	// Property handlers
+	const handleRefPropQuest1 = (option) => {
+		setRefPropQuest1(option);
+		if (option) setCompletedSteps((prev) => ({ ...prev, property: true }));
+	};
 
-  const handleRefPropQuest2 = (option) => {
-    setRefPropQuest2(option);
-  };
+	const handleRefPropQuest2 = (option) => {
+		setRefPropQuest2(option);
+	};
 
- const handleRefinanceAmountChange = (value) => {
+	const handleRefinanceAmountChange = (value) => {
 		const refinanceValue = formatNumberWithCommas(value);
 		setRefinanceAmount(refinanceValue);
- };
+	};
 
-  const handlefourthquestprop = (option) => {
-    setsSelectedbtnprop(option);
-  };
+	const handlefourthquestprop = (option) => {
+		setsSelectedbtnprop(option);
+	};
+	const handleDropdownOptionChange = (e) => {
+		const selectedValue = e.target.value;
+		console.log("Selected value: ", selectedValue);
+		setSelectedDropdownOption(selectedValue);
+	};
 
-  const handleDropdownOptionClick = (event) => {
-    setSelectedDropdownOption(event.target.value);
-  };
+	// Loan handlers
+	const handleLoanAmountChange = (value) => {
+		const loanAmountValue = formatNumberWithCommas(value);
+		setLoanAmount(loanAmountValue);
+	};
+	const handleAdditionalLoanAmountChange = (value) => {
+		const additionalAmountValue = formatNumberWithCommas(value);
+		setAdditionalLoanAmount(additionalAmountValue);
+	};
 
-  // Loan handlers
-const handleLoanAmountChange = (value) => {
-	const loanAmountValue = formatNumberWithCommas(value);
-	setLoanAmount(loanAmountValue);
-};
-const handleAdditionalLoanAmountChange = (value) => {
-	const additionalAmountValue = formatNumberWithCommas(value);
-	setAdditionalLoanAmount(additionalAmountValue);
-};
+	// Details handlers
+	const handleEmploymentStatus = (option) => {
+		setEmplStatus(option);
+	};
 
-  // Details handlers
-  const handleEmploymentStatus = (option) => {
-    setEmplStatus(option);
-  };
+	const handleAnnualIncome = (option) => {
+		setAnnualInc(option);
+	};
 
-  const handleAnnualIncome = (option) => {
-    setAnnualInc(option);
-  };
+	const handleBankcrutpcyStatus = (option) => {
+		setBankcruptcyStat(option);
+	};
 
-  const handleBankcrutpcyStatus = (option) => {
-    setBankcruptcyStat(option);
-  };
+	const handleMortgagePayments = (option) => {
+		setMortPayments(option);
+	};
 
-  const handleMortgagePayments = (option) => {
-    setMortPayments(option);
-  };
+	const handleCreditScore = (option) => {
+		setCreditScore(option);
+	};
 
-  const handleCreditScore = (option) => {
-    setCreditScore(option);
-  };
+	// Scroll handler
+	const onChange = (value) => {
+		setCurrent(value);
+		if (value === 0) {
+			PropertyGroupRef.current.scrollIntoView({ behavior: "smooth" });
+		} else if (value === 1) {
+			loanGroupRef.current.scrollIntoView({ behavior: "smooth" });
+		} else if (value === 2) {
+			DetailsGroupRef.current.scrollIntoView({ behavior: "smooth" });
+		} else if (value === 3) {
+			WrapUpGroupRef.current.scrollIntoView({ behavior: "smooth" });
+		}
+	};
 
-  // Scroll handler
-  const onChange = (value) => {
-    setCurrent(value);
-    if (value === 0) {
-      PropertyGroupRef.current.scrollIntoView({ behavior: "smooth" });
-    } else if (value === 1) {
-      loanGroupRef.current.scrollIntoView({ behavior: "smooth" });
-    } else if (value === 2) {
-      DetailsGroupRef.current.scrollIntoView({ behavior: "smooth" });
-    } else if (value === 3) {
-      WrapUpGroupRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+	useEffect(() => {
+		const handleScroll = () => {
+			const scrollTop =
+				window.pageYOffset || document.documentElement.scrollTop;
+			const propertyGroupRect =
+				PropertyGroupRef.current.getBoundingClientRect();
+			const loanGroupRect = loanGroupRef.current.getBoundingClientRect();
+			const detailsGroupRect = DetailsGroupRef.current.getBoundingClientRect();
+			const wrapUpGroupRect = WrapUpGroupRef.current.getBoundingClientRect();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
-      const propertyGroupRect =
-        PropertyGroupRef.current.getBoundingClientRect();
-      const loanGroupRect = loanGroupRef.current.getBoundingClientRect();
-      const detailsGroupRect = DetailsGroupRef.current.getBoundingClientRect();
-      const wrapUpGroupRect = WrapUpGroupRef.current.getBoundingClientRect();
+			if (scrollTop >= propertyGroupRect.top && scrollTop < loanGroupRect.top) {
+				setCurrent(0);
+			} else if (
+				scrollTop >= loanGroupRect.top &&
+				scrollTop < detailsGroupRect.top
+			) {
+				setCurrent(1);
+			} else if (
+				scrollTop >= detailsGroupRect.top &&
+				scrollTop < wrapUpGroupRect.top
+			) {
+				setCurrent(2);
+			} else if (scrollTop >= wrapUpGroupRect.top) {
+				setCurrent(3);
+			}
+		};
 
-      if (scrollTop >= propertyGroupRect.top && scrollTop < loanGroupRect.top) {
-        setCurrent(0);
-      } else if (
-        scrollTop >= loanGroupRect.top &&
-        scrollTop < detailsGroupRect.top
-      ) {
-        setCurrent(1);
-      } else if (
-        scrollTop >= detailsGroupRect.top &&
-        scrollTop < wrapUpGroupRect.top
-      ) {
-        setCurrent(2);
-      } else if (scrollTop >= wrapUpGroupRect.top) {
-        setCurrent(3);
-      }
-    };
+		window.addEventListener("scroll", handleScroll);
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, [PropertyGroupRef, loanGroupRef, DetailsGroupRef, WrapUpGroupRef]);
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [PropertyGroupRef, loanGroupRef, DetailsGroupRef, WrapUpGroupRef]);
+	// Update loan section completion status
+	useEffect(() => {
+		if (loanAmount !== "" /* && other conditions */) {
+			setCompletedSteps((prev) => ({ ...prev, loan: true }));
+		}
+	}, [loanAmount /*, other dependencies */]);
 
-  // Update loan section completion status
-  useEffect(() => {
-    if (loanAmount !== "" /* && other conditions */) {
-      setCompletedSteps((prev) => ({ ...prev, loan: true }));
-    }
-  }, [loanAmount /*, other dependencies */]);
+	// Update Details section completion status
+	useEffect(() => {
+		if (
+			empStatus &&
+			annualInc &&
+			bankcruptcyStat &&
+			mortpayments &&
+			creditscore
+		) {
+			setCompletedSteps((prev) => ({ ...prev, details: true }));
+		} else {
+			setCompletedSteps((prev) => ({ ...prev, details: false }));
+		}
+	}, [empStatus, annualInc, bankcruptcyStat, mortpayments, creditscore]);
 
-  // Update Details section completion status
-  useEffect(() => {
-    if (
-      empStatus &&
-      annualInc &&
-      bankcruptcyStat &&
-      mortpayments &&
-      creditscore
-    ) {
-      setCompletedSteps((prev) => ({ ...prev, details: true }));
-    } else {
-      setCompletedSteps((prev) => ({ ...prev, details: false }));
-    }
-  }, [empStatus, annualInc, bankcruptcyStat, mortpayments, creditscore]);
+	// Update WrapUp section completion status
+	useEffect(() => {
+		if (isWrapUpComplete) {
+			setCompletedSteps((prev) => ({ ...prev, wrapUp: true }));
+		}
+	}, [isWrapUpComplete]);
 
-  // Update WrapUp section completion status
-  useEffect(() => {
-    if (isWrapUpComplete) {
-      setCompletedSteps((prev) => ({ ...prev, wrapUp: true }));
-    }
-  }, [isWrapUpComplete]);
+	const buttonGroup1 = [
+		"Single family",
+		"Multi-family",
+		"Town home",
+		"Condominium",
+		"Mobile/Manufactured",
+		"New construction",
+	];
+	const buttonGroup4 = [
+		"Greater than 2,000,000",
+		"PHP1,000,000-800,000",
+		"PHP700,000-600,000",
+		"PHP500,000-400,000",
+		"PHP300,000-200,000",
+		"PHP100,000-50,000",
+		"Less than 50,000",
+	];
 
-  const buttonGroup1 = [
-    "Single family",
-    "Multi-family",
-    "Town home",
-    "Condominium",
-    "Mobile/Manufactured",
-    "New construction",
-  ];
-  const buttonGroup4 = [
-    "Greater than 2,000,000",
-    "PHP1,000,000-800,000",
-    "PHP700,000-600,000",
-    "PHP500,000-400,000",
-    "PHP300,000-200,000",
-    "PHP100,000-50,000",
-    "Less than 50,000",
-  ];
+	const buttonGroup2 = [
+		"Primary residence",
+		"Secondary/Vacation",
+		"Investment property",
+	];
+	const buttonGroup3 = [
+		"Primary residence",
+		"Secondary/Vacation",
+		"Investment property",
+	];
 
-  const buttonGroup2 = [
-    "Primary residence",
-    "Secondary/Vacation",
-    "Investment property",
-  ];
-  const buttonGroup3 = [
-    "Primary residence",
-    "Secondary/Vacation",
-    "Investment property",
-  ];
-  const currentInterestRate = ["15%", "20%", "25%"];
+	const property = {
+		reason: refPropquest1,
+		property_type: refPropquest2,
+		interest: selectedDropdownOption,
+		property_usage: selectedbtnprop,
+		estimated_price: refinanceAmount,
+		loan_balance: loanAmount,
+		cash_take_out: additionalLoanAmount,
+		employment_status: empStatus,
+		annual_income: annualInc,
+		declared_bankruptcy: bankcruptcyStat,
+		late_mortgage_payments: mortpayments,
+		current_credit_score: creditscore,
+		home_location: homeLocation,
+	};
+	const isFormValid = () => {
+		// Check if any property fields are empty
+		const isPropertyEmpty = Object.values(property).some((value) => !value);
 
-  const handleSubmitApplication = async () => {
-    const property = {
-      reason: refPropquest1,
-      property_type: refPropquest2,
-      interest: selectedDropdownOption,
-      property_usage: selectedbtnprop,
-      estimated_price: refinanceAmount,
-      loan_balance: loanAmount,
-      cash_take_out: additionalLoanAmount,
-      employment_status: empStatus,
-      annual_income: annualInc,
-      declared_bankruptcy: bankcruptcyStat,
-      late_mortgage_payments: mortpayments,
-      current_credit_score: creditscore,
-      home_location: homeLocation,
-    };
-    const combinedProperty = { ...property, ...customerInfo };
-    const keys = Object.keys(combinedProperty);
-    const values = Object.values(combinedProperty);
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+		// Check if any customerInfo fields are empty
+		const isCustomerInfoEmpty = Object.values(customerInfo).some(
+			(value) => !value
+		);
 
-    console.log("combined", combinedProperty);
+		// Return true if both are filled, false otherwise
+		return !isPropertyEmpty && !isCustomerInfoEmpty;
+	};
+	const handleSubmitApplication = async () => {
+		const combinedProperty = { ...property, ...customerInfo };
+		const keys = Object.keys(combinedProperty);
+		const values = Object.values(combinedProperty);
+		const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    if (
-      values.includes("") ||
-      values.includes(null) ||
-      values.includes(undefined)
-    ) {
-      openNotificationWithIcon(
-        "warning",
-        `Required Field`,
-        "Please fill in required fields."
-      );
-    } else if (
-      keys.filter(
-        (key) => key == "email" && !emailRegex.test(combinedProperty[key])
-      ).length !== 0
-    ) {
-      openNotificationWithIcon(
-        "warning",
-        `Invalid Value`,
-        "Please provide a valid email address."
-      );
-    } else {
-      // Call API to submit application
-      setLoading(true);
-      await submitApplication(combinedProperty);
-    }
-  };
+		if (
+			values.includes("") ||
+			values.includes(null) ||
+			values.includes(undefined)
+		) {
+			openNotificationWithIcon(
+				"warning",
+				`Required Field`,
+				"Please fill in required fields."
+			);
+		} else if (
+			keys.filter(
+				(key) => key == "email" && !emailRegex.test(combinedProperty[key])
+			).length !== 0
+		) {
+			openNotificationWithIcon(
+				"warning",
+				`Invalid Value`,
+				"Please provide a valid email address."
+			);
+		} else {
+			// Call API to submit application
+			setLoading(true);
+			await submitApplication(combinedProperty);
+		}
+	};
 
-  const openNotificationWithIcon = (type, message, description) => {
-    api[type]({
-      message: message,
-      description: description,
-      placement: "bottomRight",
-      duration: type == "error" ? 4 : 3,
-    });
-  };
+	const openNotificationWithIcon = (type, message, description) => {
+		api[type]({
+			message: message,
+			description: description,
+			placement: "bottomRight",
+			duration: type == "error" ? 4 : 3,
+		});
+	};
 
-  useEffect(() => {
-    console.log("selectedDropdownOption: ", selectedDropdownOption);
-  }, []);
-  const submitApplication = async (combinedProperty) => {
-    try {
-      const preApproved = await SendRefinance(combinedProperty);
+	useEffect(() => {
+		console.log("selectedDropdownOption: ", selectedDropdownOption);
+	}, []);
+	const submitApplication = async (combinedProperty) => {
+		try {
+			const preApproved = await SendRefinance(combinedProperty);
 
-      console.log("preapproved", preApproved);
+			console.log("preapproved", preApproved);
 
-      openNotificationWithIcon(
-        "success",
-        "Success",
-        "Great news! Your Pre-Approval Application has been successfully submitted. We’ll review it and get back to you shortly. Thanks for choosing us!"
-      );
-      setLoading(false);
-    } catch (error) {
-      console.log("error", error);
-      openNotificationWithIcon(
-        "error",
-        ``,
-        `We're sorry, but your application couldn't be sent. 
+			openNotificationWithIcon(
+				"success",
+				"Success",
+				"Great news! Your Pre-Approval Application has been successfully submitted. We’ll review it and get back to you shortly. Thanks for choosing us!"
+			);
+			setLoading(false);
+		} catch (error) {
+			console.log("error", error);
+			openNotificationWithIcon(
+				"error",
+				``,
+				`We're sorry, but your application couldn't be sent. 
 				We're already working on resolving the issue. Thank you for your patience!`
-      );
-    }
-  };
+			);
+		}
+	};
 
-  return (
+	return (
 		<div className="refinance-container">
 			{contextHolder}
 			<div className="refinance-content">
@@ -394,20 +403,15 @@ const handleAdditionalLoanAmountChange = (value) => {
 								<select
 									className="ref-dropdown"
 									name="select_your_current_interest_rate"
-									// value={customerInfo.source_of_income}
-									onClick={handleDropdownOptionClick}
-
-									// onChange={
-									// 	(e) =>
-									//   handleSelect(e.target.value, "source_of_income")
-									// }
+									value={selectedDropdownOption}
+									onChange={handleDropdownOptionChange}
 								>
-									<option value="" disabled selected hidden>
+									<option value="" disabled hidden>
 										Select your current interest rate
 									</option>
-									{currentInterestRate?.map((option) => (
-										<option key={option}>{option}</option>
-									))}
+									<option value="15%">15%</option>
+									<option value="20%">20%</option>
+									<option value="25%">25%</option>
 								</select>
 							</div>
 						</div>
@@ -454,8 +458,11 @@ const handleAdditionalLoanAmountChange = (value) => {
 								value={refinanceAmount}
 								onChange={(e) => handleRefinanceAmountChange(e.target.value)}
 								onKeyDown={(e) => {
+									if (e.key === "Backspace" || e.key === "Delete") {
+										return; // Allow backspace and delete keys to work as expected
+									}
 									if (!/\d/.test(e.key)) {
-										e.preventDefault();
+										e.preventDefault(); // Prevent non-numeric characters from being entered
 									}
 								}}
 							/>
@@ -472,13 +479,15 @@ const handleAdditionalLoanAmountChange = (value) => {
 						<span className="estimate">(an estimate is fine)</span>
 						<div className="ref-btn-group">
 							<input
-								type="number"
 								placeholder="PHP"
 								value={loanAmount}
 								onChange={(e) => handleLoanAmountChange(e.target.value)}
 								onKeyDown={(e) => {
+									if (e.key === "Backspace" || e.key === "Delete") {
+										return; // Allow backspace and delete keys to work as expected
+									}
 									if (!/\d/.test(e.key)) {
-										e.preventDefault();
+										e.preventDefault(); // Prevent non-numeric characters from being entered
 									}
 								}}
 							/>
@@ -491,15 +500,17 @@ const handleAdditionalLoanAmountChange = (value) => {
 						</span>
 						<div className="ref-btn-group">
 							<input
-								type="number"
 								placeholder="PHP"
-								value={additionalLoanAmount} 
+								value={additionalLoanAmount}
 								onChange={(e) =>
 									handleAdditionalLoanAmountChange(e.target.value)
 								}
 								onKeyDown={(e) => {
+									if (e.key === "Backspace" || e.key === "Delete") {
+										return; // Allow backspace and delete keys to work as expected
+									}
 									if (!/\d/.test(e.key)) {
-										e.preventDefault();
+										e.preventDefault(); // Prevent non-numeric characters from being entered
 									}
 								}}
 							/>
@@ -651,6 +662,7 @@ const handleAdditionalLoanAmountChange = (value) => {
 					className="submit-pre-approval round-btn"
 					handleClick={handleSubmitApplication}
 					loading={loading}
+					disabled={!isFormValid()}
 				/>
 				{/* <SubmitApplicationCustom /> */}
 			</div>
