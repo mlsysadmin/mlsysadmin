@@ -7,12 +7,12 @@ const cors = require('cors');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 
-const { 
-    USER_ROUTER, 
-    LISTING_ROUTER, 
-    SELLER_ROUTER, 
-    SUPPORT_ROUTER, 
-    PUBLIC_ROUTER, 
+const {
+    USER_ROUTER,
+    LISTING_ROUTER,
+    SELLER_ROUTER,
+    SUPPORT_ROUTER,
+    PUBLIC_ROUTER,
     GOOGLE_ROUTER
 } = require('../routers/router.main');
 const Logger = require('../config/_log/mlbrokerage.logger');
@@ -21,6 +21,7 @@ const DataResponseHandler = require('../utils/_helper/DataResponseHandler.helper
 const verifyApiKey = require('../middleware/_auth/api.auth.middleware');
 const { GoogleSignInCallback } = require('../controllers/_users/user.controller');
 const verifyToken = require('../middleware/_auth/jwt.auth.middleware');
+const { verifyCors } = require('../middleware/_headers/cors.headers.middleware');
 
 const app = express();
 
@@ -34,10 +35,30 @@ app.use(helmet({
     maxAge: 31536000
 }))
 
-app.use(cors({
-    origin: process.env.CLIENT_APP_URL,
-    credentials: true,
-}));
+const corsOptions = {
+
+    origin: (origin, callback) => {
+        const origins = process.env.ALLOWED_ORIGINS;
+        
+        const allowedOrigins = origins.split('|');
+
+        console.log("allowedOrigins", allowedOrigins);
+        // allow requests with no origin (like mobile apps or curl requests)
+        // if (!origin) return callback(null, true);
+        if (allowedOrigins.includes(origin)) {
+            console.log("dsfgfd");
+            
+            callback(null, true);
+        } else {
+            console.log("dsdsgd");
+            
+            callback(new Error("Cors not allowed"), false);
+        }
+    },
+    credentials: true
+}
+
+app.use(cors(corsOptions));
 
 app.use(cookieParser(process.env.SECRET_KEY))
 
