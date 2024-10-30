@@ -48,7 +48,34 @@ const WrapUpDetails = ({
 
     fetchData();
   }, []);
-
+  useEffect(() => {
+      const isAnyFieldEmptyForWrapUp =
+      mobile_number === "" ||
+      email === "" ||
+      lastname === "" ||
+      firstname === "" ||
+      customerInfo.province === "" ||
+      customerInfo.city === "" ||
+      zipcode === "" ||
+      otherAddress === "" ||
+      customerInfo.source_of_income === "";
+      console.log("isAnyFieldEmptyForWrapUp: ",isAnyFieldEmptyForWrapUp);
+      if (!isAnyFieldEmptyForWrapUp) {
+      setWrapUpComplete(true);
+      } else {
+      setWrapUpComplete(false);
+      }
+    }, [
+      mobile_number,
+      email,
+      lastname,
+      firstname,
+      customerInfo.province,
+      customerInfo.city,
+      zipcode,
+      otherAddress,
+      customerInfo.source_of_income
+    ]);
   const setWrapUpValues = (name, value) => {
     console.log("setWrapUpValues", name, value);
 
