@@ -6,18 +6,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Branch Request</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <!-- <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" /> -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        /* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
 
-        .card .details {
+        /*.card .details {
             width: 70%;
+        }*/
+        @font-face {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrJJfecg.woff2) format('woff2');
+            /* unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; */
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        body {
+            margin: 0;
         }
 
         .header {
@@ -25,88 +46,172 @@
             font-size: 15px;
         }
 
-        table {
-            border-spacing: 0px;
+        .content {
+            font-family: "Poppins", sans-serif !important;
+            font-weight: 500;
         }
 
-        tr.card {
-            /* border: 1px #747474 solid; */
-            /* box-shadow: 0 4px 5px #0003; */
-            /* background-color: gainsboro; */
+        table {
+            border-spacing: 0px;
+            font-size: 17px;
+            background-color: #ffffff !important;
+            padding: 30px 25px;
+            font-family: "Poppins", sans-serif !important;
+            font-weight: 500;
+        }
+
+        .table-container {
+            background-color: #efefef75;
+            padding-top: 20px;
+            padding-bottom: 30px;
+        }
+
+        .image {
+            border-radius: 10px;
+        }
+
+        .card td.listing-card {
+            border-left: 1px solid #0000001c;
+            border-bottom: 1px solid #0000001c;
+            border-right: 1px solid #0000001c;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .card td.card-right-shadow {
+            border-top-right-radius: 10px;
+        }
+
+        td.card-bottom-shadow {
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        .image img {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+
+        }
+
+        @media screen and (max-width:600px) {
+            table {
+                width: 330px !important;
+                padding-left: 20px;
+                padding-right: 20px;
+                /* border: 1px solid black; */
+            }
+
+            .header {
+                font-size: 22px !important;
+            }
+
+            .content {
+                font-size: 21px !important;
+                font-weight: 500 !important;
+            }
+
+            .content-body {
+                font-size: 23px !important;
+                font-weight: 500 !important;
+            }
+
+            body {
+                margin: 0 !important;
+            }
+
+            .table-container {
+                background: none !important;
+            }
         }
     </style>
 </head>
 
 <body>
-    <table style="width:70%;margin:auto">
-        <tr align="center">
-            <td colspan="2">
-                <div class="logo">
-                    <img src={{{logo}}} alt="logo" width="250">
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <p class="header">Hi {{{name}}},</p>
-            </td>
-        </tr>
-        <tr style="margin-bottom: 20px;">
-            <td colspan="2">
-                <p style="margin-bottom: 2px;font-size: 15px;">Great News!</p>
-                <p style="margin-top: 2px;font-size: 15px;">Your property listing has beed approved and is now live on
-                    our website.</p>
-            </td>
-        </tr>
-        {{!-- <tr>
-            <td style="height: 3px; background-color: #e0e0e0a2;" colspan="2"></td>
-        </tr> --}}
-        <tr style="border-radius: 6px;" class="card">
-            <td
-                style="width: 230px;border-top-left-radius: 6px;border-bottom-left-radius: 6px;box-shadow: 0px 3px 5px #0003;">
-                <div class="image">
-                    <img src={{{image_link}}} alt="listing_photo" width="250" height="160">
-                </div>
-            </td>
-            <td
-                style="border-top-right-radius: 6px;border-bottom-right-radius: 6px;box-shadow: 1px 3px 5px #0003;cursor:pointer">
-                <a href={{{image_link}}} style="text-decoration-line: none;">
-                    <div class="details" style="margin-left: 30px;">
-                        <p style="color: black;font-weight: bold;font-size: 18px;">{{{property_title}}}</p>
-                        <p style="color: #808080b0; font-weight: bold;font-size: 16px;">{{{property_no}}}</p>
+    <div class="table-container">
+        <table style="width:400px;margin:auto;" class="table" cellpadding="0" cellspacing="0" border="0">
+
+            <tr align="center">
+                <td colspan="2">
+                    <div class="logo">
+                        <img src={{{logo}}} alt="logo" width="250">
                     </div>
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td style="height: 2px; background-color: #e0e0e077;border-bottom-right-radius: 6px;border-bottom-left-radius: 6px;"
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <p class="header" style="font-size: 18px;margin-top: 40px;">Hi {{{name}}},</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p style="margin-bottom: 2px;" class="content">Great News!</p>
+                    <p style="margin-top: 2px;margin-bottom: 20px;font-family: 'Poppins', sans-serif"
+                        class="content">Your property
+                        listing
+                        has beed approved and is now live on
+                        our website.</p>
+                </td>
+            </tr>
+            <!-- <tr>
+            <td style="height: 3px; background-color: #e0e0e094;background-color: #e0e0e077;border-top-right-radius: 40px;border-top-left-radius: 40px;"
                 colspan="2"></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <p style="margin: 1.5em 0.5em 0.5em;font-size: 15px;">If you need assistance, feel free to message us at
-                    properties@mlhuillier.com or visit your nearest ML
-                    Branch.</p>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <p style="margin: 0.5em 0.5em 1.5em;font-size: 15px;">Thank you for choosing M Lhuillier!</p>
-            </td>
-        </tr>
-        <tr align="center">
-            <td colspan="2">
-                <button style="color: white;background-color: #D90000; 
+        </tr> -->
+            <tr style="border-radius: 6px;" class="card">
+
+                <td colspan="2" class="listing-card">
+                    <div class="image" style="border-top-right-radius: 20px;border-top-left-radius: 20px;">
+                        <img src={{{image_link}}} alt="listing_photo" height="230" width="400">
+                    </div>
+                    <div>
+                        <a href={{{link}}} style="text-decoration-line: none;">
+                            <div class="details" style="margin-left: 15px;padding-top: 10px;padding-bottom: 5px">
+                                <p style="color: black;font-weight:500;padding-bottom: 7px"
+                                    class="content-body">
+                                    {{{property_title}}}</p>
+                                <p style="color: black;font-weight:500;" class="content-body">PHP
+                                    {{{price}}}</p>
+                            </div>
+                        </a>
+                    </div>
+                </td>
+                {{!-- <td style="background-color: #e0e0e077;padding-left: 3px;" class="card-right-shadow">
+                </td> --}}
+            </tr>
+            {{!-- <tr align="center">
+                <td style="padding-bottom: 2px; background-color: #e0e0e077;" class="card-bottom-shadow" colspan="2">
+                </td>
+            </tr> --}}
+            <tr>
+                <td colspan="2">
+                    <p style="margin: 1.5em 0.5em 0.5em;" class="content">If you need assistance, feel
+                        free
+                        to message us at
+                        properties@mlhuillier.com or visit your nearest ML
+                        Branch.</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <p style="margin: 0.5em 0.5em 1.5em;" class="content">Thank you for choosing M
+                        Lhuillier!</p>
+                </td>
+            </tr>
+            <tr align="center">
+                <td colspan="2">
+                    <button style="color: white;background-color: #D90000; 
                     border-radius: 6px; 
                     outline: none; padding: 15px 30px; 
                     border: none;
-                    font-weight: bold;
-                    font-size: 15px;cursor:pointer">
-                    <a href={{{link}}} style="color: white;text-decoration: none;">Visit Listing</a>
-                </button>
-            </td>
-        </tr>
-    </table>
+                    font-weight: 500;
+                    cursor:pointer">
+                        <a href={{{link}}} style="color: white;text-decoration: none;" class="content">Visit Listing</a>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
     <!-- built files will be auto injected -->
 </body>
 

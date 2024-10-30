@@ -62,6 +62,7 @@ import {
   CapitalizeStringwithSymbol,
   GetPropertyTitle,
   isPastAMonth,
+  SortByText,
 } from "../utils/StringFunctions.utils";
 import { CardSkeleton, FeaturesSkeleton } from "./Skeleton";
 
@@ -120,10 +121,12 @@ const DashboardComponent = () => {
       if (dataresp.length == 0) {
         setPublicListing([]);
       } else {
-        const listingRes = dataresp.filter(
-          (listing) => !isPastAMonth(listing.created_at)
+        let listingRes = dataresp.filter(
+          (listing) => !isPastAMonth(listing.updated_at)
           // && listing.PropertyType == "lot"
         );
+
+        listingRes = listingRes.sort((a,b) => SortByText(b.updated_at, a.updated_at))
 
         let listings = [];
 

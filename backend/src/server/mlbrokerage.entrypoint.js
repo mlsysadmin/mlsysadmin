@@ -21,7 +21,6 @@ const DataResponseHandler = require('../utils/_helper/DataResponseHandler.helper
 const verifyApiKey = require('../middleware/_auth/api.auth.middleware');
 const { GoogleSignInCallback } = require('../controllers/_users/user.controller');
 const verifyToken = require('../middleware/_auth/jwt.auth.middleware');
-const { verifyCors } = require('../middleware/_headers/cors.headers.middleware');
 
 const app = express();
 
@@ -43,8 +42,9 @@ const corsOptions = {
         const allowedOrigins = origins.split('|');
 
         console.log("allowedOrigins", allowedOrigins);
+        console.log("origin", origin);
         // allow requests with no origin (like mobile apps or curl requests)
-        // if (!origin) return callback(null, true);
+        if (!origin) return callback(null, true);
         if (allowedOrigins.includes(origin)) {
             console.log("dsfgfd");
             
@@ -62,11 +62,11 @@ app.use(cors(corsOptions));
 
 app.use(cookieParser(process.env.SECRET_KEY))
 
-// app.use(express.static(path.join(__dirname, "../views/template")));
+app.use(express.static(path.join(__dirname, "../views/template")));
 
-// app.get("/index", (req, res) => {
-//   res.sendFile(path.join(__dirname, "../views/template", "index.html"));
-// });
+app.get("/index", (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/template", "index.html"));
+});
 
 app.use('/', GOOGLE_ROUTER);
 app.use('/api/user', USER_ROUTER);

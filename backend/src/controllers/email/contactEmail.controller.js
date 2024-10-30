@@ -24,7 +24,7 @@ module.exports = {
 
             const emailTemp = EmailTemplate(path, { ...messageContent });
 
-            const sendInquiry = await SendEmail(emailTemp, 'Listing Inquiry', payload.message, process.env.EMAIL_TO);
+            const sendInquiry = await SendEmail(emailTemp, 'Brokerage Client: Listing Inquiry', payload.message, process.env.EMAIL_TO);
 
             console.log(sendInquiry);
 
@@ -54,7 +54,7 @@ module.exports = {
 
             const emailTemp = EmailTemplate(templateName, { ...messageContent });
 
-            const sendMessage = await SendEmail(emailTemp, 'Customer Inquiry', payload.message, process.env.EMAIL_TO);
+            const sendMessage = await SendEmail(emailTemp, 'Brokerage Client: Customer Inquiry', payload.message, process.env.EMAIL_TO);
 
             console.log(sendMessage);
 
@@ -109,7 +109,7 @@ module.exports = {
 
             const reference = new Date();
 
-            const sendMessage = await SendEmail(emailTemp, 'Refinancing (Refinance a Home)', reference, process.env.EMAIL_TO);
+            const sendMessage = await SendEmail(emailTemp, 'Brokerage Client: Refinancing (Refinance a Home)', reference, process.env.EMAIL_TO);
 
             console.log(sendMessage);
 
@@ -162,7 +162,7 @@ module.exports = {
 
             const reference = new Date();
 
-            const sendMessage = await SendEmail(emailTemp, 'Refinancing (Buy a Home)', reference, process.env.EMAIL_TO);
+            const sendMessage = await SendEmail(emailTemp, 'Brokerage Client: Refinancing (Buy a Home)', reference, process.env.EMAIL_TO);
 
             console.log(sendMessage);
 
@@ -206,7 +206,7 @@ module.exports = {
 
             const reference = new Date();
 
-            const sendMessage = await SendEmail(emailTemp, 'Request for a Search of Property', reference, process.env.EMAIL_TO);
+            const sendMessage = await SendEmail(emailTemp, 'Brokerage Client: Request for a Search of Property', reference, process.env.EMAIL_TO);
 
             console.log(sendMessage);
 
@@ -220,9 +220,18 @@ module.exports = {
     SendListingApproved: async (req, res, next) => {
         try {
 
-            const {
-                name, image_path, property_title, property_no, email
+            let {
+                name, image_path, property_title, email, sale_type, price, property_no
             } = req.body.payload;
+
+            price = price.toLocaleString({
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            })
+
+            if (sale_type == "rent") {
+                price = `${price} / month`
+            }
 
             const image_link = `${process.env.IGOT_SOLUTION_BASE_URL}${image_path}`
             const link = `${process.env.CLIENT_APP_URL}/previewListing/?id=${property_no}`;
@@ -230,12 +239,11 @@ module.exports = {
 
             const templateName = 'approvedlisting.handlebars';
 
-            const emailTemp = EmailTemplate(templateName, { name, image_link, property_title, property_no, link, logo });
+            const emailTemp = EmailTemplate(templateName, { name, image_link, property_title, sale_type, price, link, logo });
 
             const reference = new Date();
 
-            const sendMessage = await SendEmail(emailTemp, 'Listing Approved', reference, email);
-            console.log(sendMessage);
+            const sendMessage = await SendEmail(emailTemp, 'Great News! Your Listing Is Now Live', reference, email);
 
             const mail = DataResponseHandler(
                 {response: sendMessage.response, accepted: sendMessage.accepted, rejected: sendMessage.rejected},
