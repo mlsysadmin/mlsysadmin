@@ -93,8 +93,9 @@
 .leftfeatureGrid {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin-top: 10px;
-  width: 70%;
+  width: 100%;
   gap: 10px;
   font-size: 20px;
   font-weight: 400;

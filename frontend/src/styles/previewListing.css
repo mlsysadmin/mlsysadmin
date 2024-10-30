@@ -1330,7 +1330,7 @@ align-content: center;
 }
 @media (min-width: 1281px) and (max-width: 1500px) {
   .leftContent{
-    width: 60%;
+    width: 70%;
   }
   .widerRightSideContent{
     width: 50%;
