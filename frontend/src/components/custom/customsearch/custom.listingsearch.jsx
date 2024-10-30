@@ -441,7 +441,7 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 							onSelectionChange={(e) => onSelectionChange(e, "parking")}
 						/>
 						<Dropdown
-							menu={<CertainFeatureMenu setCheckFeatures={setCheckFeatures} />} // The content of the dropdown
+							overlay={<CertainFeatureMenu setCheckFeatures={setCheckFeatures} />} // The content of the dropdown
 							trigger={["click"]}
 							open={iscertainFeatureOpen}
 							onOpenChange={handleCertainFeatureClick}
