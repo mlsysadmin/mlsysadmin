@@ -186,7 +186,7 @@ module.exports = {
             let fullname = `${first_name} ${middle_name} ${last_name} ${suffix}`;
 
             fullname = fullname.split(" ")
-                .filter(f => !["null", null, undefined, "undefined", ""].includes(f))
+                .filter(f => !["null", null, undefined, "undefined", "", "none"].includes(f.toLowerCase()))
                 .map(f => f.trim()).join(" ");
 
             const customerInfo = {
@@ -221,7 +221,7 @@ module.exports = {
         try {
 
             let {
-                name, image_path, property_title, email, sale_type, price, property_no
+                name, image_path, property_title, email, sale_type, price, property_no, approval_status
             } = req.body.payload;
 
             price = price.toLocaleString({
@@ -236,14 +236,23 @@ module.exports = {
             const image_link = `${process.env.IGOT_SOLUTION_BASE_URL}${image_path}`
             const link = `${process.env.CLIENT_APP_URL}/previewListing/?id=${property_no}`;
             const logo = `${process.env.IGOT_SOLUTION_BASE_URL}/assets/logo.png`
+            
+            let templateName;
+            let subject;
 
-            const templateName = 'approvedlisting.handlebars';
+            if (approval_status.toLowerCase() == "approved") {
+                templateName = 'approvedlisting.handlebars'
+                subject = 'Great News! Your Listing Is Now Live'
+            }else{
+                templateName = 'rejectedlisting.handlebars'
+                subject = 'Your Listing Needs Attention to Meet Approval Requirements'
+            }
 
             const emailTemp = EmailTemplate(templateName, { name, image_link, property_title, sale_type, price, link, logo });
 
             const reference = new Date();
 
-            const sendMessage = await SendEmail(emailTemp, 'Great News! Your Listing Is Now Live', reference, email);
+            const sendMessage = await SendEmail(emailTemp, subject, reference, email);
 
             const mail = DataResponseHandler(
                 {response: sendMessage.response, accepted: sendMessage.accepted, rejected: sendMessage.rejected},

@@ -15,17 +15,17 @@ import { useNavigate } from "react-router-dom";
 
 const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 	const navigate = useNavigate();
- const originalPriceRange = [0, 100000000];
+	const originalPriceRange = [0, 100000000];
 	const { Option } = Select;
 	const [isAdvancedSearchOpen, setIsAdvancedSearchOpen] = useState(false);
 	const [iscertainFeatureOpen, setcertainFeatureOpen] = useState(false);
 	const [getProvince, setGetProvince] = useState([]);
-	 const [sliderValue, setSliderValue] = useState(originalPriceRange[0]);
+	const [sliderValue, setSliderValue] = useState(originalPriceRange[0]);
 	const [isCustomRange, setIsCustomRange] = useState(false);
 	const [checkFeatures, setCheckFeatures] = useState([]);
 	const [bedValue, setBedValue] = useState(0);
 	const [priceRange, setPriceRange] = useState(originalPriceRange);
-	 const [isPriceRangeReset, setIsPriceRangeReset] = useState(false);
+	const [isPriceRangeReset, setIsPriceRangeReset] = useState(false);
 	const [newSearchParams, setNewSearchParams] = useState({});
 
 	useEffect(() => {
@@ -38,6 +38,8 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 		const keys = Object.keys(searchParams);
 
 		keys.forEach((key, i) => {
+			console.log("se", searchParams[key]);
+
 			params[key] = searchParams[key];
 		});
 		setNewSearchParams(params);
@@ -50,31 +52,31 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 	const handleCertainFeatureClick = () => {
 		setcertainFeatureOpen(!iscertainFeatureOpen);
 	};
-	 const handleCustomRangeClick = () => {
-			if (isCustomRange) {
-				setPriceRange(originalPriceRange);
-				setSliderValue(originalPriceRange[0]);
-			} else {
-				setPriceRange([0, 0]); 
-				setSliderValue(0);
-			}
-			setIsCustomRange(!isCustomRange); 
-		};
+	const handleCustomRangeClick = () => {
+		if (isCustomRange) {
+			setPriceRange(originalPriceRange);
+			setSliderValue(originalPriceRange[0]);
+		} else {
+			setPriceRange([0, 0]);
+			setSliderValue(0);
+		}
+		setIsCustomRange(!isCustomRange);
+	};
 
-		const handleMinChange = (e) => {
-			const value = e.target.value.replace(/,/g, ""); 
-			const parsedValue = parseInt(value, 10) || 0;
-			setPriceRange([parsedValue, priceRange[1]]);
-			SetParamsAllField("price_min", parsedValue);
-				
-		};
+	const handleMinChange = (e) => {
+		const value = e.target.value.replace(/,/g, "");
+		const parsedValue = parseInt(value, 10) || 0;
+		setPriceRange([parsedValue, priceRange[1]]);
+		SetParamsAllField("price_min", parsedValue);
 
-		const handleMaxChange = (e) => {
-			const value = e.target.value.replace(/,/g, ""); 
-				const parsedValue = parseInt(value, 10) || 0;
-				setPriceRange([priceRange[0], parsedValue]);
-				SetParamsAllField("price_max", value);	
-		};
+	};
+
+	const handleMaxChange = (e) => {
+		const value = e.target.value.replace(/,/g, "");
+		const parsedValue = parseInt(value, 10) || 0;
+		setPriceRange([priceRange[0], parsedValue]);
+		SetParamsAllField("price_max", value);
+	};
 
 	const handleSliderChange = (value) => {
 		console.log("value", value);
@@ -172,7 +174,7 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 
 	const handleSearchClick = () => {
 		let params = "";
-		setPriceRange([priceRange[0],priceRange[1]]);
+		setPriceRange([priceRange[0], priceRange[1]]);
 
 		Object.keys(newSearchParams).forEach((key, index, arr) => {
 			if (
@@ -296,7 +298,7 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 						placeholder="Enter keyword"
 						value={newSearchParams["keyword"]}
 						onChange={(e) => HandleFieldChange(e, "keyword")}
-						// onBlur={(e) => onInputBlur(e,"keyword")}
+					// onBlur={(e) => onInputBlur(e,"keyword")}
 					/>
 					<RoundSelect
 						options={location}
@@ -360,12 +362,13 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 												// value={newSearchParams['price_min']}
 												onChange={handleMinChange}
 												className="range-input"
-												// onBlur={() => onInputBlur('price_min', priceRange[0])}
+											// onBlur={() => onInputBlur('price_min', priceRange[0])}
 											/>
 										</span>
 									) : (
 										<b style={{ color: "#f60000" }}>
-											PHP {priceRange[0].toLocaleString()}
+											{/* PHP {priceRange[0].toLocaleString()} */}
+											PHP {newSearchParams['price_min']?.toLocaleString()}
 										</b>
 									)}
 								</p>
@@ -384,12 +387,15 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 												// value={newSearchParams['price_max']}
 												onChange={handleMaxChange}
 												className="range-input"
-												// onBlur={() => onInputBlur('price_min', priceRange[1])}
+											// onBlur={() => onInputBlur('price_min', priceRange[1])}
 											/>
 										</span>
 									) : (
 										<b style={{ color: "#f60000" }}>
-											PHP {priceRange[1].toLocaleString()}
+											{/* PHP {priceRange[1].toLocaleString()} */}
+											PHP {
+												newSearchParams['price_max']?.toLocaleString()
+											}
 										</b>
 									)}
 								</p>
@@ -408,7 +414,7 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 							placeholder="Enter Lot Area"
 							value={newSearchParams["lot_area"]}
 							onChange={(e) => HandleFieldChange(e, "lot_area")}
-							// onBlur={(e) => onInputBlur(e,"lot_area")}
+						// onBlur={(e) => onInputBlur(e,"lot_area")}
 						/>
 						<RoundSelect
 							options={SelectNum()}

@@ -109,12 +109,23 @@ const SearchListingComponent = () => {
         console.log(filtersearchKeys);
 
         filtersearchKeys.forEach((fsKey, i) => {
-            setSearchParams((prevState) => ({
-                ...prevState,
-                [fsKey]: queryParams.get(fsKey)
-            }))
+            if (fsKey == 'price_min' || fsKey == 'price_max') {
 
-            searchQueryParams[fsKey] = queryParams.get(fsKey);
+                setSearchParams((prevState) => ({
+                    ...prevState,
+                    [fsKey]: Number(queryParams.get(fsKey))
+                }))
+
+                searchQueryParams[fsKey] = queryParams.get(fsKey);
+            } else {
+                setSearchParams((prevState) => ({
+                    ...prevState,
+                    [fsKey]: queryParams.get(fsKey)
+                }))
+
+                searchQueryParams[fsKey] = queryParams.get(fsKey);
+            }
+
         });
 
         console.log("Search Query Params: ", searchQueryParams);
@@ -128,7 +139,7 @@ const SearchListingComponent = () => {
             setHeaderText('Search Properties');
         }
     }, [location]);
-    
+
     const getlistings = async (renderParams) => {
         try {
 
@@ -170,14 +181,14 @@ const SearchListingComponent = () => {
 
                 let listingByLocation = [];
 
-                const keywordMatched = (v) => Object.values(v).some((e, i) => 
+                const keywordMatched = (v) => Object.values(v).some((e, i) =>
                     e.toString()
                         .toLowerCase()
                         .replace(/[\/_-]/g, '')
-                    .includes(renderParams['keyword']
-                        .toLowerCase()
-                        .replace(/[\/_-]/g, ''))
-                    );
+                        .includes(renderParams['keyword']
+                            .toLowerCase()
+                            .replace(/[\/_-]/g, ''))
+                );
 
                 if (hasLocation && hasKeyword) {
                     const main = ['location', 'keyword'];
@@ -200,7 +211,7 @@ const SearchListingComponent = () => {
                     });
 
                 } else if (!hasLocation && hasKeyword) {
-                    
+
                     formattedListings.forEach((fl) => {
                         console.log("keywordMatched", keywordMatched(fl));
                         // const keywordMatched = Object.values(fl).every(e => e.includes('condominium'.toLowerCase()));
@@ -310,7 +321,7 @@ const SearchListingComponent = () => {
                 //     })
                 // )
                 let filteredListings = listingByLocation;
-                
+
 
                 const paramsKeys = Object.keys(renderParams);
                 if (paramsKeys.length > 0) {
@@ -327,15 +338,15 @@ const SearchListingComponent = () => {
                         delete renderParams['price_min']
                     }
                 }
-                
+
                 // Get keys from the remaining render params
                 const remainingParams = Object.keys(renderParams);
 
                 // Filter listing from the rest search params
                 if (remainingParams.length > 0) {
-                    
+
                     filteredListings = filteredListings.filter(listing =>
-                        remainingParams.every(key =>renderParams[key].toLowerCase().replace(/[-_]/g, " ") == listing[key]?.toLowerCase().replace(/[-_]/g, " "))
+                        remainingParams.every(key => renderParams[key].toLowerCase().replace(/[-_]/g, " ") == listing[key]?.toLowerCase().replace(/[-_]/g, " "))
                     )
                 }
 
@@ -374,18 +385,18 @@ const SearchListingComponent = () => {
     const indexOfFirstCard = indexOfLastCard - cardsPerPage;
     let currentCards = publiclisting.slice(indexOfFirstCard, indexOfLastCard);
 
-	const totalPages = Math.ceil(publiclisting?.length / cardsPerPage);
+    const totalPages = Math.ceil(publiclisting?.length / cardsPerPage);
 
-	const HandleSort = (e) => {
+    const HandleSort = (e) => {
 
-		setSelectedSort(e.domEvent.target.innerText);
-		const sortKey = e.key;
-		let sortListing;
+        setSelectedSort(e.domEvent.target.innerText);
+        const sortKey = e.key;
+        let sortListing;
 
-		sortListing = SortListings(sortKey, sortListing, publiclisting);
+        sortListing = SortListings(sortKey, sortListing, publiclisting);
 
-		currentCards = sortListing;
-	}
+        currentCards = sortListing;
+    }
 
     const FillLocationFilter = (listings) => {
         try {
