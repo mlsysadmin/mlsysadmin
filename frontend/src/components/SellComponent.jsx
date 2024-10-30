@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/sell.css";
 import { DownOutlined } from "@ant-design/icons";
@@ -17,9 +17,24 @@ const SellComponent = () => {
 		console.log("radio checked", e.target.value);
 		setValue(e.target.value);
 	};
-
 	const navigate = useNavigate();
 	const location = useLocation();
+
+	const topSellComponentDiv = useRef(null);
+	const scrollToSection = (sectionRef) => {
+		if (sectionRef?.current) {
+			sectionRef.current.scrollIntoView({ behavior: "smooth" });
+		}
+	};
+
+
+	useEffect(() => {
+		if (location.hash === "#sell") {
+			scrollToSection(topSellComponentDiv);
+		}
+	}, [location]);
+
+
 
 	const url_Redirect = process.env.REACT_APP_LOGIN_URL;
 
@@ -54,8 +69,9 @@ const SellComponent = () => {
 		buy: { faqs: buyFaqs, title: "Rent" },
 	};
 	const combinedFaqs = [...sellFaqs, ...buyFaqs];
+
 	return (
-		<div className="sell">
+		<div className="sell" ref={topSellComponentDiv}>
 			<div className="sell-container">
 				<div className="sell-contents">
 					<div className="first-section">
@@ -220,11 +236,10 @@ const SellComponent = () => {
 								{Object.keys(SellBUyFaqs).map((category, i) => {
 									const { faqs, title } = SellBUyFaqs[category];
 									return (
-										<div className="sell-component-faqs-questions" key={i} >
-											
+										<div className="sell-component-faqs-questions" key={i}>
 											<h2>{title}</h2>
 											{faqs.map((item, index) => (
-												<div className="sell-buy-faqs"key={index}>
+												<div className="sell-buy-faqs" key={index}>
 													<div
 														className="sell-faqs-dropdown"
 														onClick={() => toggleFaq(index)}

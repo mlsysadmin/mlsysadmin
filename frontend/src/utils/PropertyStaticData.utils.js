@@ -14,7 +14,7 @@ const CardCategory = [
         luxurious estates and everything in between. Whatever your preferences and budget, 
         we have options to suit your needs.`,
 		buttonTitle: "Browse Homes",
-		link: '/all'
+		link: "/all",
 	},
 	{
 		icon: Sell,
@@ -22,7 +22,7 @@ const CardCategory = [
 		category: "Sell",
 		decription: `Our platform is designed to expedite the selling process, saving you time and effort.`,
 		buttonTitle: "See your options",
-		link: '/sell'
+		link: "/sell#sell",
 	},
 	{
 		icon: Rent,
@@ -31,13 +31,13 @@ const CardCategory = [
 		decription: `Discover your dream rental property today! Let us help you find the 
         perfect place to live your best life!`,
 		buttonTitle: "Find rentals",
-		link: '/all/?sale_type=rent'
+		link: "/all/?sale_type=rent",
 	},
 	// {
 	// 	icon: Rent,
 	// 	image: image,
 	// 	category: "Rent",
-	// 	decription: `Discover your dream rental property today! Let us help you find the 
+	// 	decription: `Discover your dream rental property today! Let us help you find the
 	//     perfect place to live your best life!`,
 	// 	buttonTitle: "Find rentals",
 	// },
@@ -45,7 +45,7 @@ const CardCategory = [
 	// 	icon: Rent,
 	// 	image: image,
 	// 	category: "Rent",
-	// 	decription: `Discover your dream rental property today! Let us help you find the 
+	// 	decription: `Discover your dream rental property today! Let us help you find the
 	//     perfect place to live your best life!`,
 	// 	buttonTitle: "Find rentals",
 	// },
