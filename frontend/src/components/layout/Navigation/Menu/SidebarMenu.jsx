@@ -11,7 +11,7 @@ import { searchKyc } from "../../../../api/Public/User.api";
 import UpgradeTierModal from "../../../modals/UpgradeTierModal";
 import { isCookiePresent } from "../../../../utils/CookieChecker";
 import "../../../../styles/sellerdropdown.css";
-import UserLogout from "../../../../api/Logout";
+
 import TierUpgradeModal from "../../../modals/TierUpgradeModal";
 import SellerLogInButtonDropdown from "../../../custom/buttons/SellerLogInButtonDropdown";
 import { getCookieData } from "../../../../utils/CookieChecker";
@@ -45,13 +45,15 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 			redirectUrl
 		)}`;
 	};
-
 	const handleLogout = async () => {
-		const logout = await UserLogout();
-		console.log("Logout Success:", logout);
-		return logout;
-	};
+		const logoutURL = process.env.REACT_APP_LOGOUT_URL;
+		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 
+		window.location.href = `${logoutURL}?redirect_url=${encodeURIComponent(
+			redirectUrl
+		)}`;
+	};
+	
 	const handleProfileClick = () => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;

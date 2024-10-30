@@ -115,6 +115,7 @@
 .featureTitle {
   font-family: Poppins, sans-serif;
   text-wrap: wrap;
+  width: 140px;
 }
 
 .featureContent {
@@ -376,6 +377,7 @@
   .featureTitle {
     font-family: Poppins, sans-serif;
     font-size: 15px;
+    width: 120px;
   }
   
   .featureContent {

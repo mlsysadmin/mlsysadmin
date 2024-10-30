@@ -9,7 +9,6 @@ import JoinTeam from "../../modals/JoinTeamModal";
 import "../../../styles/sellerdropdown.css";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import UserLogout from "../../../api/Logout";
 import { isCookiePresent } from "../../../utils/CookieChecker";
 
 const SellerLogInButtonDropdown = () => {
@@ -76,10 +75,10 @@ const SellerLogInButtonDropdown = () => {
 	// }, []);
 
 const handleLogout = async() =>{
+const logoutURL = process.env.REACT_APP_LOGOUT_URL;
+const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 
-	const logout =  await UserLogout();
-	console.log("Logout Success:", logout);
-	return logout;
+window.location.href  = `${logoutURL}?redirect_url=${encodeURIComponent(redirectUrl)}`;
 
 }
 

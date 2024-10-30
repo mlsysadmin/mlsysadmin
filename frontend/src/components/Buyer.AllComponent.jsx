@@ -131,11 +131,13 @@ const AllComponent = () => {
           const location = FillLocationFilter(dataresp);
           setFilterLocation(location);
           setPublicListing(newListing);
+          setLoading(false);
           console.log("location", location);
 
 
         } else {
           setPublicListing([]);
+          setLoading(false);
         }
 
       }
@@ -160,14 +162,14 @@ const AllComponent = () => {
       getlistings(getSaleType);
       setSaleType(getSaleType);
       setHeaderText(`Properties For ${CapitalizeString(getSaleType)}`);
-      setLoading(false);
+      // setLoading(false);
       setBreadCrumbItems([{ title: "All", href: '/all' }, { title: `For ${CapitalizeString(getSaleType)}` }])
     } else {
 
       getlistings('all');
       setSaleType('Rent/Sale/Pre-Selling');
       setHeaderText('Properties for Rent/Sale/Pre-Selling');
-      setLoading(false);
+      // setLoading(false);
       const bread = [{ title: "All", href: '/all' }, { title: "For Rent/For Sale/For Pre-Selling" }].map(sale => { return { title: sale.title, href: sale.href } });
       setBreadCrumbItems(bread)
     }

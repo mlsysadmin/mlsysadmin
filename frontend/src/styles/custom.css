@@ -190,13 +190,16 @@
 listing search */
 
 .first-content {
-	background-color: #fff;
+	/* background-color: #fff; */
 	color: white;
 	height: auto;
-	width: 95%;
+    width: 100%;
 	/* margin: 50px 0px 0px 50px; */
 	border-radius: 8px;
-	margin: 50px 45px;
+	display: flex;
+	padding-top: 50px;
+	justify-content: center;
+	align-items:center;
 	/* padding-top: 40px; */
 }
 
@@ -205,6 +208,7 @@ listing search */
 	height: auto;
 	display: flex;
 	flex-direction: column;
+	width: 68%;
 	padding: 20px;
 }
 
@@ -679,7 +683,7 @@ listing search */
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin: 40px 5px 0px 10px;
+		/* margin: 40px 5px 0px 10px; */
 	}
 	.first-content .sub-content1 {
 		display: flex;
@@ -1106,14 +1110,15 @@ listing search */
 
 @media screen and (min-width: 481px) and (max-width: 485px) {
 	.first-content {
-		margin: 50px 0px 0px 10px;
+		/* margin: 50px 0px 0px 10px; */
 		height: 550px;
 	}
 	.first-content .sub-content1 {
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: row;
-		margin-left: 5px;
+		width: 90%;
+		/* margin-left: 5px; */
 	}
 	.subcontent-inputs-1 {
 		display: flex;
@@ -1179,11 +1184,11 @@ listing search */
 		gap: 10px;
 	}
 	.subcontent-inputs-1 .right-button {
-		margin-top: 480px;
+		margin-top: 410px;
 		display: flex;
 		height: 40px;
 		position: absolute;
-		margin-left: 310px;
+		margin-left: 290px;
 	}
 	.subcontent-inputs-2 .input-field,
 	.subcontent-inputs-2 .select-field,
@@ -1207,14 +1212,15 @@ listing search */
 }
 @media screen and (min-width: 486px) and (max-width: 489px) {
 	.first-content {
-		margin-left: 15px;
+		/* margin-left: 15px; */
 		height: 550px;
 	}
 	.first-content .sub-content1 {
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: row;
-		margin-left: 5px;
+		width: 90%;
+		/* margin-left: 5px; */
 	}
 	.subcontent-inputs-1 {
 		display: flex;
@@ -1280,7 +1286,7 @@ listing search */
 		gap: 10px;
 	}
 	.subcontent-inputs-1 .right-button {
-		margin-top: 480px;
+		margin-top: 450px;
 		display: flex;
 		height: 40px;
 		position: absolute;
@@ -1307,7 +1313,7 @@ listing search */
 }
 @media screen and (min-width: 490px) and (max-width: 506px) {
 	.first-content {
-		margin-left: 15px;
+		/* margin-left: 15px; */
 		height: 550px;
 	}
 	.first-content .sub-content1 {
@@ -1315,6 +1321,7 @@ listing search */
 		flex-wrap: wrap;
 		flex-direction: row;
 		margin-left: 5px;
+		width: 90%;
 	}
 	.subcontent-inputs-1 {
 		display: flex;
@@ -1372,11 +1379,11 @@ listing search */
 		gap: 10px;
 	}
 	.subcontent-inputs-1 .right-button {
-		margin-top: 480px;
+		margin-top: 410px;
 		display: flex;
 		height: 40px;
 		position: absolute;
-		margin-left: 320px;
+		margin-left: 290px;
 	}
 	.subcontent-inputs-2 .input-field,
 	.subcontent-inputs-2 .select-field,
@@ -1398,15 +1405,16 @@ listing search */
 	}
 }
 @media screen and (min-width: 507px) and (max-width: 538px) {
-	.first-content {
-		margin-left: 15px;
+	.first-content{
 		height: 550px;
 	}
 	.first-content .sub-content1 {
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: row;
-		margin-left: 5px;
+		width: 90%;
+		
+		/* margin-left: 5px; */
 	}
 	.subcontent-inputs-1 {
 		display: flex;
@@ -1494,14 +1502,20 @@ listing search */
 }
 @media screen and (min-width: 539px) and (max-width: 574px) {
 	.first-content {
-		margin-left: 15px;
-		height: 550px;
+		/* margin-left: 15px; */
+		height: 560px;
+		padding-top: 50px;
+		margin-bottom: 30px;
 	}
 	.first-content .sub-content1 {
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: row;
-		margin-left: 5px;
+		width: 90%;
+		
+		padding: 20px 20px 80px 20px
+		
+		/* margin-left: 5px; */
 	}
 	.subcontent-inputs-1 {
 		display: flex;
@@ -1515,6 +1529,7 @@ listing search */
 		margin: 0px;
 		padding: 10px;
 		width: calc(52% - 15px);
+		
 		/* width: 200px; */
 	}
 	.advance-searchdropdown {
@@ -1563,7 +1578,7 @@ listing search */
 		display: flex;
 		height: 40px;
 		position: absolute;
-		margin-left: 370px;
+		margin-left: 350px;
 	}
 	.subcontent-inputs-2 .input-field,
 	.subcontent-inputs-2 .select-field {
@@ -1887,13 +1902,11 @@ listing search */
 }
 
 @media screen and (min-width: 610px) and (max-width: 1024px) {
-	.first-content {
-		margin-left: 15px;
-	}
 	.first-content .sub-content1 {
 		display: flex;
 		flex-wrap: wrap;
-		margin-left: 5px;
+		/* margin-left: 5px; */
+		width: 90%;
 	}
 	.advance-searchdropdown {
 		display: flex;
@@ -1955,6 +1968,15 @@ listing search */
 		width: 100%;
 		margin-top: 0px;
 	}
+	.first-content{
+		width: 100%;
+		padding: 20px 10px;
+		margin: 0px;
+	}
+	.sub-content1{
+width: 95%;
+margin: 0px;
+	}
 	.advance-searchdropdown .slider-container .range-container {
 		display: flex;
 		flex-direction: row;
@@ -1986,7 +2008,39 @@ listing search */
 		margin-top: 0px;
 		gap: 10px;
 	}
+		.first-content{
+		width: 100%;
+		padding: 40px 10px;
+		margin: 0px;
+	}
+	.sub-content1{
+width: 90%;
+margin: 0px;
+	}
 }
+@media screen and (min-width: 1401px) and (max-width: 1500px) {
+		.first-content{
+		width: 100%;
+		padding: 40px 10px;
+		margin: 0px;
+	}
+	.sub-content1{
+width: 91%;
+margin: 0px;
+	}
+}
+@media screen and (min-width: 1501px) and (max-width: 1700px) {
+		.first-content{
+		width: 100%;
+		padding: 40px 10px;
+		margin: 0px;
+	}
+	.sub-content1{
+width: 85%;
+margin: 0px;
+	}
+}
+
 @media screen and (min-width: 315px) and (max-width: 500px) {
 	.features-list {
 		flex-direction: column;
@@ -2065,6 +2119,6 @@ listing search */
 	}
 	.first-content {
 		width: 100%;
-		margin: 50px 20px;
+		/* margin: 50px 20px; */
 	}
 }

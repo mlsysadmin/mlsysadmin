@@ -110,7 +110,7 @@ const SubMenu = {
 			header: "Mortgage Loan",
 			submenu: [
 				{ sub: "Discover Home Loan", link: "/discover-home" },
-				{ sub: "Loan Calculator", link: "/loan-calculator" },
+				{ sub: "Loan Calculator", link: "/discover-home#calculator" },
 			],
 		},
 		{
@@ -188,7 +188,6 @@ const SubMenu = {
 								<a
 									// href="/?openModal=true"
 									href="/propertySearch"
-
 									style={{
 										color: "var(--red)",
 										textDecoration: "none",
