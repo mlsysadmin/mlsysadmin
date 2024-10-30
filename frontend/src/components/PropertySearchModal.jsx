@@ -7,8 +7,6 @@ import { notification } from "antd";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
 import FooterComponent from "./layout/FooterComponent";
 
-
-
 const PropertySearch = () => {
   const url = window.location.href;
   const urlObj = new URL(url);
@@ -40,6 +38,9 @@ const PropertySearch = () => {
   //     formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
   //   }
   // }, [openModal]);
+
+
+  
   const handleInputChangeInquieries = async (e) => {
     const { name, value } = e.target;
     console.log("Name: ", name, "\nValue:", value);
@@ -58,6 +59,14 @@ const PropertySearch = () => {
         }));
       }
     } else {
+      if (name === "email") {
+        // Basic validation to ensure "@" is included
+        if (value.includes("@") || value.length === 0) {
+          setFormData({ ...formData, [name]: value });
+        }
+      } else {
+        setFormData({ ...formData, [name]: value });
+      }
       setFormData((prevFormData) => ({
         ...prevFormData,
         [name]: value,
@@ -66,6 +75,7 @@ const PropertySearch = () => {
   };
 
   const [api, contextHolder] = notification.useNotification();
+
   const openNotificationWithIcon = (type, message, description) => {
     api[type]({
       message: message,
@@ -73,6 +83,24 @@ const PropertySearch = () => {
       placement: "bottomRight",
       duration: type == "error" ? 10 : 10,
     });
+  };
+    const isValidEmail = (email) => {
+    // Regular expression for validating an email address
+    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(email);
+    if (!emailPattern) {
+      return false;
+    }else{ 
+      return true;
+    }
+  };
+  const handleKeyDown = (e) => {
+    // Regular expression to allow letters and symbols only
+    const validInputPattern = /^[A-Za-z\s!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+
+    // Check if the key pressed is valid
+    if (!validInputPattern.test(e.key) && e.key !== 'Backspace' && e.key !== 'Tab') {
+      e.preventDefault(); // Prevent the default action if the key is invalid
+    }
   };
   const handleSubmit = async (e) => {
     // setIsSuccessModalVisible(true);
@@ -149,7 +177,7 @@ const PropertySearch = () => {
     navigate("/");
   };
   const isFormValid = () => {
-    return Object.values(formData).every((value) => value.trim() !== "");
+    return Object.values(formData).every((value) => value.trim() !== "") && isValidEmail(formData.email);
   };
   return (
     <div className="whole-property-search-page">
@@ -250,6 +278,14 @@ const PropertySearch = () => {
                   placeholder="Mobile Number"
                   value={formData.mobileNumber}
                   onChange={handleInputChangeInquieries}
+                  onKeyDown={(e) => {
+                    if (e.key === "Backspace" || e.key === "Delete") {
+                      return;
+                    }
+                    if (!/\d/.test(e.key)) {
+                      e.preventDefault();
+                    }
+                  }}
                 />
               </div>
               <div className="form-column">
@@ -259,6 +295,7 @@ const PropertySearch = () => {
                   type="email"
                   placeholder="Email Address"
                   value={formData.email}
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   onChange={handleInputChangeInquieries}
                   // disabled={!!userDetails}
                 />
@@ -272,6 +309,7 @@ const PropertySearch = () => {
                   name="lastName"
                   placeholder="Last Name"
                   value={formData.lastName}
+                  onKeyDown={handleKeyDown}
                   onChange={handleInputChangeInquieries}
                   // disabled={!!userDetails}
                 />
@@ -283,6 +321,7 @@ const PropertySearch = () => {
                   name="firstName"
                   placeholder="First Name"
                   value={formData.firstName}
+                  onKeyDown={handleKeyDown}
                   onChange={handleInputChangeInquieries}
                   // disabled={!!userDetails}
                 />
@@ -294,6 +333,7 @@ const PropertySearch = () => {
                   name="middleName"
                   placeholder="Middle Name"
                   value={formData.middleName}
+                  onKeyDown={handleKeyDown}
                   onChange={handleInputChangeInquieries}
                   // disabled={!!userDetails}
                 />
@@ -364,6 +404,7 @@ const PropertySearch = () => {
                   placeholder="Enter Location"
                   name="locationPreference"
                   value={formData.locationPreference}
+                  onKeyDown={handleKeyDown}
                   onChange={(e) => handleInputChangeInquieries(e)}
                 />
               </div>
@@ -416,6 +457,7 @@ const PropertySearch = () => {
                   placeholder="Enter Feature & Amenities"
                   name="featureAndAmenities"
                   value={formData.featureAndAmenities}
+                  onKeyDown={handleKeyDown}
                   onChange={(e) => handleInputChangeInquieries(e)}
                 />
               </div>
@@ -436,8 +478,8 @@ const PropertySearch = () => {
           </form>
         </div>
       </div>
-      <CustomMlFooter/>
-     <FooterComponent/>
+      <CustomMlFooter />
+      <FooterComponent />
     </div>
   );
 };
