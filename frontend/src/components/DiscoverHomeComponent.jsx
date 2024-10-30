@@ -368,11 +368,11 @@ const DiscoverHomeComponent = () => {
 												className="radio-circle"
 												style={{ backgroundColor: "#F9C7C7" }}
 											/>
-											<span> Interest&nbsp;&nbsp;{interestRate} %</span>
+											<span> Interest&nbsp;&nbsp;{interestRate} % per year</span>
 										</div>
 									</div>
 									<div className="lower-monthly-payment">
-										<span className="pan">Principle and Interest</span>
+										<span className="pan">Principal and Interest</span>
 										<div className="line-principal-group">
 											<img
 												className="line-3"
