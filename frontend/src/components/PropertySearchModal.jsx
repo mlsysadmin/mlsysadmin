@@ -244,6 +244,7 @@ const PropertySearch = () => {
             we’ll take it from there.
           </p>
 
+
           <form className="property-search-form" onSubmit={handleSubmit}>
             <div className="form-row">
               <div className="form-column">
