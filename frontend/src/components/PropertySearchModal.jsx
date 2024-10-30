@@ -38,6 +38,9 @@ const PropertySearch = () => {
   //     formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
   //   }
   // }, [openModal]);
+
+
+  
   const handleInputChangeInquieries = async (e) => {
     const { name, value } = e.target;
     console.log("Name: ", name, "\nValue:", value);
@@ -72,6 +75,7 @@ const PropertySearch = () => {
   };
 
   const [api, contextHolder] = notification.useNotification();
+
   const openNotificationWithIcon = (type, message, description) => {
     api[type]({
       message: message,
