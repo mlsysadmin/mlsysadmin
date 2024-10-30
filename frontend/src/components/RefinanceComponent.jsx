@@ -67,7 +67,24 @@ const RefinanceComponent = () => {
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
   };
+  const isValidEmail = (email) => {
+    // Regular expression for validating an email address
+    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(email);
+    if (!emailPattern) {
+      return false;
+    }else{ 
+      return true;
+    }
+  };
+  const handleKeyDown = (e) => {
+    // Regular expression to allow letters and symbols only
+    const validInputPattern = /^[A-Za-z\s!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
 
+    // Check if the key pressed is valid
+    if (!validInputPattern.test(e.key) && e.key !== 'Backspace' && e.key !== 'Tab') {
+      e.preventDefault(); // Prevent the default action if the key is invalid
+    }
+  };
   // Property handlers
   const handleRefPropQuest1 = (option) => {
     setRefPropQuest1(option);

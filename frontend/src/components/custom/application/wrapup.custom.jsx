@@ -49,7 +49,7 @@ const WrapUpDetails = ({
     fetchData();
   }, []);
   useEffect(() => {
-      const isAnyFieldEmptyForWrapUp =
+    const isAnyFieldEmptyForWrapUp =
       mobile_number === "" ||
       email === "" ||
       lastname === "" ||
@@ -59,26 +59,24 @@ const WrapUpDetails = ({
       zipcode === "" ||
       otherAddress === "" ||
       customerInfo.source_of_income === "";
-      console.log("isAnyFieldEmptyForWrapUp: ",isAnyFieldEmptyForWrapUp);
-      if (!isAnyFieldEmptyForWrapUp) {
+    console.log("isAnyFieldEmptyForWrapUp: ", isAnyFieldEmptyForWrapUp);
+    if (!isAnyFieldEmptyForWrapUp) {
       setWrapUpComplete(true);
-      } else {
+    } else {
       setWrapUpComplete(false);
-      }
-    }, [
-      mobile_number,
-      email,
-      lastname,
-      firstname,
-      customerInfo.province,
-      customerInfo.city,
-      zipcode,
-      otherAddress,
-      customerInfo.source_of_income
-    ]);
+    }
+  }, [
+    mobile_number,
+    email,
+    lastname,
+    firstname,
+    customerInfo.province,
+    customerInfo.city,
+    zipcode,
+    otherAddress,
+    customerInfo.source_of_income,
+  ]);
   const setWrapUpValues = (name, value) => {
-    console.log("setWrapUpValues", name, value);
-
     setCustomerInfo((prevSearchParams) => ({
       ...prevSearchParams,
       [name]: value,
@@ -93,24 +91,182 @@ const WrapUpDetails = ({
   };
 
   const handleInput = (value, setField) => {
+    console.log("value: ",value);
     setField(value);
   };
+  const [errorMessage, setErrorMessage] = useState({
+    error_mobile_number: "",
+    error_email_address: "",
+    error_last_name: "",
+    error_first_name: "",
+    error_province: "",
+    error_city: "",
+    error_zipcode: "",
+    error_house_no: "",
+    error_source_of_income: "",
+  });
+  const [isMobileBlurred, setIsMobileBlurred] = useState(false);
+  const [isProvinceBlurred, setIsProvinceBlurred] = useState(false);
+  const [isCityBlurred, setIsCityBlurred] = useState(false);
+  const [isSourceOfIncomeBlurred, setIsSourceOfIncomeBlurred] = useState(false);
 
   const handleBlurInput = (value, fieldName) => {
-    if (!["", null, undefined].includes(value)) {
-      setWrapUpValues(fieldName, value);
+    // console.log("errorFieldName: ", errorFieldName);
+    console.log("fieldName: ", fieldName);
+    console.log("value:", value);
+    console.log("`error_${fieldName}`: ", `error_${fieldName}`);
+
+    const trimmedValue = value.trim();
+    let isValid = true;
+    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    if (trimmedValue === "") {
+      if (fieldName === "mobile_number") {
+        setErrorMessage((prevState) => ({
+          ...prevState,
+          error_mobile_number: "Please provide your Phone numbers.",
+        }));
+        isValid = false;
+      } else if (fieldName === "email") {
+        setErrorMessage((prevState) => ({
+          ...prevState,
+          error_email_address: "Email address cannot be empty.",
+        }));
+        isValid = false;
+      } else if (fieldName === "last_name") {
+        setErrorMessage((prevState) => ({
+          ...prevState,
+          error_last_name: "Please provide your Last name.",
+        }));
+        isValid = false;
+      } else if (fieldName === "first_name") {
+        setErrorMessage((prevState) => ({
+          ...prevState,
+          error_first_name: "Please provide your First name.",
+        }));
+        isValid = false;
+      } else if (fieldName === "zipcode") {
+        setErrorMessage((prevState) => ({
+          ...prevState,
+          error_zipcode: "Please provide your zip code.",
+        }));
+        isValid = false;
+      } else if (fieldName === "others") {
+        setErrorMessage((prevState) => ({
+          ...prevState,
+          error_house_no: `Please provide your House No/Unit/Building Name/Street`,
+        }));
+        isValid = false;
+      } else {
+        setErrorMessage((prevState) => ({
+          ...prevState,
+          [`error_${fieldName}`]: `Please provide a valid1 ${fieldName}`,
+        }));
+        isValid = false;
+      }
+    } else {
+      if (fieldName === "email") {
+        if (!emailPattern.test(trimmedValue)) {
+          console.log(`Invalid email format for ${fieldName}: ${trimmedValue}`);
+          setErrorMessage((prevState) => ({
+            ...prevState,
+            error_email_address: "Please provide a valid Email Address",
+          }));
+          isValid = false;
+        } else {
+          setErrorMessage((prevState) => ({
+            ...prevState,
+            error_email_address: "",
+          }));
+        }
+      }
+      if (fieldName === "mobile_number") {
+        if (trimmedValue.startsWith("09")) {
+          if (trimmedValue.length !== 11) {
+            console.log(
+              `Invalid mobile number length for ${fieldName}: ${trimmedValue}`
+            );
+            setErrorMessage((prevState) => ({
+              ...prevState,
+              error_mobile_number:
+                "Mobile number must be 11 digits long and start with '09'.",
+            }));
+            isValid = false;
+          } else {
+            setErrorMessage((prevState) => ({
+              ...prevState,
+              error_mobile_number: "",
+            }));
+          }
+        } else {
+          setErrorMessage((prevState) => ({
+            ...prevState,
+            error_mobile_number: "Mobile number must start with '09'.",
+          }));
+          isValid = false;
+        }
+      } 
+      if (fieldName === "last_name") {
+        setErrorMessage((prevState) => ({
+          ...prevState,
+          error_last_name: "",
+        }));
+      }
+      if (fieldName === "first_name") {
+        setErrorMessage((prevState) => ({
+          ...prevState,
+          error_first_name: "",
+        }));
+      }
+      if (fieldName === "zipcode") {
+        setErrorMessage((prevState) => ({
+          ...prevState,
+          error_zipcode: "",
+        }));
+      }
+      if (fieldName === "others") {
+        setErrorMessage((prevState) => ({
+          ...prevState,
+          error_house_no: "",
+        }));
+      }
+      else {
+        setErrorMessage((prevState) => ({
+          ...prevState,
+          [fieldName]: "",
+        }));
+      }
+    }
+    setIsMobileBlurred(true);
+    setWrapUpValues(fieldName, value);
+  };
+  const setFieldError = (fieldName, message) => {
+    setErrorMessage((prevState) => ({
+      ...prevState,
+      [`error_${fieldName}`]: message,
+    }));
+  };
+  const handleBlurSelect = (value, fieldName, displayName) => {
+    if (value.trim() === "") {
+      setFieldError(fieldName, `${displayName} is required`);
+    } else {
+      setFieldError(fieldName, "");
+    }
+    if (fieldName === "province") {
+      setIsProvinceBlurred(true);
+    }
+    if (fieldName === "city") {
+      setIsCityBlurred(true);
+    }
+    if (fieldName === "source_of_income") {
+      setIsSourceOfIncomeBlurred(true);
     }
   };
-
-  	const pascalTextFormatter = (text) => {
-			return text
-				.split(" ")
-				.map(
-					(word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-				)
-				.join(" ");
-		};
-
+  const pascalTextFormatter = (text) => {
+    return text
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  };
   const allProvince = async () => {
     const dataresprovince = await GetProvince();
     setGetProvince(dataresprovince);
@@ -123,18 +279,13 @@ const WrapUpDetails = ({
   };
 
   const handleProvinceChange = (province) => {
-    const prov = province.toLowerCase()
-    const provinceData = getProvince.find(
-      (p) =>
-p.name.toLowerCase() === prov
-    );
+    const prov = province.toLowerCase();
+    const provinceData = getProvince.find((p) => p.name.toLowerCase() === prov);
     if (provinceData) {
       const provinceId = provinceData.addressL1Id;
       const filtered = getCities.filter((city) => {
-        // console.log("Checking city:", city.name);
         return city.addressL1Id === provinceId;
       });
-      // console.log("Filtered cities:", filtered);
       setFilteredCities(filtered);
     } else {
       setFilteredCities([]);
@@ -148,48 +299,26 @@ p.name.toLowerCase() === prov
     "Regular Remittance Abroad(valid Id & IRT)",
   ];
 
-  // Check if the form is complete
-  // useEffect(() => {
-  //   const isFormComplete =
-  //     email &&
-  //     firstname &&
-  //     lastname &&
-  //     selectedCountry &&
-  //     selectedState &&
-  //     selectedCity &&
-  //     incomeType &&
-  //     targetValue;
-
-  //   setWrapUpComplete(isFormComplete);
-  // }, [
-  //   email,
-  //   firstname,
-  //   lastname,
-  //   selectedCountry,
-  //   selectedState,
-  //   selectedCity,
-  //   incomeType,
-  //   targetValue,
-  //   setWrapUpComplete,
-  // ]);
-
-  // Styling for completed and incomplete state
-  // const wrapUpClassName = `wrap-up-inf
-  // ${email &&
-  //   firstname &&
-  //   lastname &&
-  //   selectedCountry &&
-  //   selectedState &&
-  //   selectedCity &&
-  //   incomeType &&
-  //   targetValue
-  //   ? "completed"
-  //   : "incomplete"
-  //   }
-  //   `;
-
   const wrapUpClassName = `wrap-up-inf`;
+  const handleKeyDownForLettersAndSymbolsOnly = (e) => {
+    // Regular expression to allow letters and symbols only
+    const validInputPattern = /^[A-Za-z\s!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
 
+    // Check if the key pressed is valid
+    if (!validInputPattern.test(e.key) && e.key !== 'Backspace' && e.key !== 'Tab') {
+      e.preventDefault(); // Prevent the default action if the key is invalid
+    }
+  };
+  const handleKeyDownForNumbers = (e) => {
+    const validInputPatternWrapUp = /^\d*$/;
+    if (
+      !validInputPatternWrapUp.test(e.key) &&
+      e.key !== "Backspace" &&
+      e.key !== "Tab"
+    ) {
+      e.preventDefault();
+    }
+  };
   return (
     <div className={wrapUpClassName}>
       <h3>Wrap Up</h3>
@@ -200,49 +329,79 @@ p.name.toLowerCase() === prov
       </span>
       <div className="prop-content2-wrap-up">
         <div className="mobile-address-group">
-          <span className="label">Mobile Address</span>
+          <span className="label">Mobile Number</span>
           <input
             type="text"
-            className="wrap-up-input"
+            className={`wrap-up-input ${
+              isMobileBlurred && errorMessage.error_mobile_number ? "error" : ""
+            }`}
             placeholder="09"
             value={mobile_number}
+            onKeyDown={handleKeyDownForNumbers}
             onChange={(e) => handleInput(e.target.value, setMobileNumber)}
             // Add handler if needed
-            onBlur={(e) => handleBlurInput(e.target.value, "mobile_number")}
+            onBlur={(e) =>
+              handleBlurInput(e.target.value, "mobile_number", "Mobile Number")
+            }
           />
+          {errorMessage.error_mobile_number && (
+            <p className="error-message">{errorMessage.error_mobile_number}</p>
+          )}{" "}
         </div>
         <div className="email-address-group">
           <span className="label">Email Address</span>
           <input
-            type="text"
-            className="wrap-up-input"
+            type="email"
+            className={`wrap-up-input ${
+              isMobileBlurred && errorMessage.error_email_address ? "error" : ""
+            }`}
             placeholder="Email Address"
             value={email}
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
             onChange={(e) => handleInput(e.target.value, setEmail)}
-            onBlur={(e) => handleBlurInput(e.target.value, "email")}
+            onBlur={(e) =>
+              handleBlurInput(e.target.value, "email", "Email address")
+            }
           />
+          {errorMessage.error_email_address && (
+            <p className="error-message">{errorMessage.error_email_address}</p>
+          )}{" "}
+          {/* Show error message */}
         </div>
         <div className="lastname-group">
           <span className="label">Last Name</span>
           <input
             type="text"
-            className="wrap-up-input"
+            className={`wrap-up-input ${
+              isMobileBlurred && errorMessage.error_last_name ? "error" : ""
+            }`}
             placeholder="Last Name"
             value={lastname}
+            onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
             onChange={(e) => handleInput(e.target.value, setLastname)}
             onBlur={(e) => handleBlurInput(e.target.value, "last_name")}
           />
+          {errorMessage.error_last_name && (
+            <p className="error-message">{errorMessage.error_last_name}</p>
+          )}{" "}
         </div>
         <div className="firstname-group">
           <span className="label">First Name</span>
           <input
             type="text"
-            className="wrap-up-input"
+            className={`wrap-up-input ${
+              isMobileBlurred && errorMessage.error_first_name ? "error" : ""
+            }`}
             placeholder="First Name"
             value={firstname}
+            onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
+
             onChange={(e) => handleInput(e.target.value, setFirstname)}
             onBlur={(e) => handleBlurInput(e.target.value, "first_name")}
           />
+          {errorMessage.error_first_name && (
+            <p className="error-message">{errorMessage.error_first_name}</p>
+          )}{" "}
         </div>
         <div className="country-group">
           <span className="label">Country</span>
@@ -282,10 +441,16 @@ p.name.toLowerCase() === prov
             <select
               name="province"
               id="province"
-              className="wrap-up-dropdown-button"
+
+              className={`wrap-up-dropdown-button ${
+                isProvinceBlurred && errorMessage.error_province ? "error" : ""
+              }`}
               value={customerInfo.province}
               onChange={(e) => handleSelect(e.target.value, "province")}
               // onChange={handleAddressChange}
+              onBlur={(e) =>
+                handleBlurSelect(e.target.value, "province", "Province")
+              }
             >
               <option value="" disabled selected hidden>
                 Select Province
@@ -294,15 +459,15 @@ p.name.toLowerCase() === prov
                 <option
                   key={index}
                   style={{ maxHeight: "20px", overflowY: "auto" }}
-                  value={
-                    pascalTextFormatter(province.name)
-                   
-                  }
+                  value={pascalTextFormatter(province.name)}
                 >
                   {pascalTextFormatter(province.name)}
                 </option>
               ))}
             </select>
+            {errorMessage.error_province && (
+              <p className="error-message">{errorMessage.error_province}</p>
+            )}
           </div>
         </div>
         <div className="city-town-group">
@@ -311,49 +476,60 @@ p.name.toLowerCase() === prov
             <select
               name="city"
               id="city"
-              className="wrap-up-dropdown-button"
+              className={`wrap-up-dropdown-button ${
+                isCityBlurred && errorMessage.error_city ? "error" : ""
+              }`}
               value={customerInfo.city}
               onChange={(e) => handleSelect(e.target.value, "city")}
+              onBlur={(e) => handleBlurSelect(e.target.value, "city", "City")}
             >
               <option value="" disabled selected hidden>
                 Select City
               </option>
               {filteredCities.map((city, index) => (
-                <option
-                  key={index}
-                  value={
-                    pascalTextFormatter(city.name)
-                  }
-                >
+                <option key={index} value={pascalTextFormatter(city.name)}>
                   {pascalTextFormatter(city.name)}
                 </option>
               ))}
             </select>
+            {errorMessage.error_city && (
+              <p className="error-message">{errorMessage.error_city}</p>
+            )}
           </div>
         </div>
         <div className="zipcode-group">
           <span className="label">Zipcode</span>
           <input
             type="text"
-            className="wrap-up-input"
+            className={`wrap-up-input ${
+              isMobileBlurred && errorMessage.error_zipcode ? "error" : ""
+            }`}
             placeholder="Enter Zipcode"
             // Add handler if needed
             value={zipcode}
+            onKeyDown={handleKeyDownForNumbers}
             onChange={(e) => handleInput(e.target.value, setZipCode)}
             onBlur={(e) => handleBlurInput(e.target.value, "zipcode")}
           />
+          {errorMessage.error_zipcode && (
+            <p className="error-message">{errorMessage.error_zipcode}</p>
+          )}{" "}
         </div>
         <div className="housenumber-group">
           <span className="label">House No/Unit/Building Name/Street</span>
           <input
             type="text"
-            className="wrap-up-input"
+            className={`wrap-up-input ${
+              isMobileBlurred && errorMessage.error_house_no ? "error" : ""
+            }`}
             placeholder="Enter Street"
-            // Add handler if needed
             value={otherAddress}
             onChange={(e) => handleInput(e.target.value, setOtherAddress)}
             onBlur={(e) => handleBlurInput(e.target.value, "others")}
           />
+          {errorMessage.error_house_no && (
+            <p className="error-message">{errorMessage.error_house_no}</p>
+          )}{" "}
         </div>
         <div className="source-income-group">
           <span className="label">Source of Income</span>
@@ -361,9 +537,20 @@ p.name.toLowerCase() === prov
             <select
               name="source_of_income"
               value={customerInfo.source_of_income}
-              className="wrap-up-dropdown-button"
+              className={`wrap-up-dropdown-button ${
+                isSourceOfIncomeBlurred && errorMessage.error_source_of_income
+                  ? "error"
+                  : ""
+              }`}
               style={{ margin: "0px" }}
               onChange={(e) => handleSelect(e.target.value, "source_of_income")}
+              onBlur={(e) =>
+                handleBlurSelect(
+                  e.target.value,
+                  "source_of_income",
+                  "Source of Income"
+                )
+              }
             >
               <option value="" disabled selected hidden>
                 Select Source of Income
@@ -372,6 +559,11 @@ p.name.toLowerCase() === prov
                 <option key={option}>{option}</option>
               ))}
             </select>
+            {errorMessage.error_source_of_income && (
+              <p className="error-message">
+                {errorMessage.error_source_of_income}
+              </p>
+            )}
           </div>
           {/* <button className="wrap-up-dropdown-button" style={{ margin: "0px" }}>
             <Dropdown

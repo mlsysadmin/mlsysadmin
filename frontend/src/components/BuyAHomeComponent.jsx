@@ -46,6 +46,8 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
   const [detailsquest4, setDetailsquest4] = useState(null);
   const [detailsquest5, setDetailsquest5] = useState(null);
   const [detailsquest6, setDetailsquest6] = useState(null);
+  const [detailsquest7, setDetailsquest7] = useState(null);
+
 
   // Wrap-up state
   const [isWrapUpComplete, setIsWrapUpComplete] = useState(false);
@@ -67,6 +69,9 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
     source_of_income: null,
   });
 
+  useEffect(() => {
+    console.log("customerInfo: ", customerInfo);
+  }, [customerInfo]);
   //property handler
   const handleSpendButtonClick = (option) => {
     setSelectedButton(option);
@@ -111,7 +116,11 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
   const handleDetailsquest6 = (option) => {
     setDetailsquest6(option);
   };
-
+  const handleDetailsquest7 = (option) => {
+    console.log("option7: ",option);
+    
+    setDetailsquest7(option);
+  };
   const onChange = (value) => {
     console.log("onChange:", value);
     if (value === 0) {
@@ -169,7 +178,6 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
     const timeline1Clicked = timelinequest1 !== null;
     const timeline2Clicked = timelinequest2 !== null;
     const timeline3Clicked = timelinequest3 !== null;
-    const detailsquestClicked1 = detailsquest1 !== null;
     const detailsquestClicked2 = detailsquest2 !== null;
     const detailsquestClicked4 = detailsquest4 !== null;
     const detailsquestClicked5 = detailsquest5 !== null;
@@ -188,7 +196,6 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
         !timeline1Clicked ||
         !timeline2Clicked ||
         !timeline3Clicked ||
-        !detailsquestClicked1 ||
         !detailsquestClicked2 ||
         !detailsquestClicked4 ||
         !detailsquestClicked5 ||
@@ -207,7 +214,6 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
     timelinequest1,
     timelinequest2,
     timelinequest3,
-    detailsquest1,
     detailsquest2,
     detailsquest4,
     detailsquest5,
@@ -221,19 +227,35 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
   const items = [
     {
       title: "Property",
-      status: selectedButton ? "finish" : "wait",
+      status:
+        selectedButton &&
+        selectedHomeButton &&
+        selectedNewHomeButton &&
+        buttonClick
+          ? "finish"
+          : "wait",
     },
     {
       title: "Timeline",
-      status: timelinequest1 ? "finish" : "wait",
+      status: timelinequest1 && timelinequest2 ? "finish" : "wait",
     },
     {
       title: "Details",
-      status: detailsquest1 ? "finish" : "wait",
+      status:
+        detailsquest1 &&
+        detailsquest2 &&
+        detailsquest3 &&
+        detailsquest4 &&
+        detailsquest5 &&
+        detailsquest6 &&
+        detailsquest7
+
+          ? "finish"
+          : "wait",
     },
     {
       title: "Wrap Up",
-      status: isSubmitButtonDisabled ? "wait" : "finish",
+      status: isWrapUpComplete ? "finish" : "wait",
     },
   ];
 
@@ -244,12 +266,14 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
       property_usage: selectedNewHomeButton,
       real_estate_agent: buttonClick,
       purchase_plan_date: timelinequest1,
-      current_home_ownership: timelinequest2,
+      plan_to_sell_current_home: timelinequest2,
       current_home_ownership: detailsquest1,
       estimated_downpayment: detailsquest2,
+      employment_status: detailsquest3,
       annual_income: detailsquest4,
       declared_bankruptcy: detailsquest5,
       current_credit_score: detailsquest6,
+      home_location: detailsquest7
       // home_location: homeLocation
     };
 
@@ -339,6 +363,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
         <div className="prop-content">
           <div className="prop-content1" ref={PropertyGroupRef}>
             <h3>Property</h3>
+            <br />
             <span className="prop-quest">
               How much do you plan to spend on your new home?
             </span>
@@ -451,6 +476,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
           {/* timeline */}
           <div className="prop-content1-timeline" ref={TimelineGroupRef}>
             <h3>Timeline</h3>
+            <br />
             <span className="prop-quest-subheader">
               When are you planning to make your home purchase?
             </span>
@@ -476,13 +502,12 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
               ))}
             </div>
             <div className="prop-content32">
-              <span className="prop-quest">Do you currently own a home?</span>
+              <span className="prop-quest">
+                Do you plan to sell your current home before purchasing a new
+                one?
+              </span>
               <div className="prop-info-btn-group1">
-                {[
-                  "Yes, I currently owning  a home",
-                  "No, I am currently renting house",
-                  "No, I have other living arrangements",
-                ].map((option) => (
+                {["No", "Yes"].map((option) => (
                   <button
                     key={option}
                     className={`prop-btn ${
@@ -541,7 +566,6 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
               ))}
             </div>
             <br />
-            <br />
             <div className="prop-content2">
               <br />
               <span className="prop-quest">
@@ -550,24 +574,19 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
               <br />
               <span>(An estimate is fine)</span>
               <div className="prop-info-btn-group1">
-                {[
-                  "3% (50,000)",
-                  "5% (100,000)",
-                  "10% (200,000)",
-                  "15% (300,000 - 500,000)",
-                  "20% (600,000 - 1,000,000)",
-                  "More than 20%",
-                ].map((option, index) => (
-                  <button
-                    key={index}
-                    className={`prop-btn ${
-                      detailsquest2 === option ? "active" : ""
-                    }`}
-                    onClick={() => handleDetailsquest2(option)}
-                  >
-                    {option}
-                  </button>
-                ))}
+                {["3%", "5%", "10%", "15%", "20%", "More than 20%"].map(
+                  (option, index) => (
+                    <button
+                      key={index}
+                      className={`prop-btn ${
+                        detailsquest2 === option ? "active" : ""
+                      }`}
+                      onClick={() => handleDetailsquest2(option)}
+                    >
+                      {option}
+                    </button>
+                  )
+                )}
               </div>
             </div>
             <br />
@@ -604,13 +623,13 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
               <br />
               <div className="prop-info-btn-group1">
                 {[
-                  "Greater than 2,000,000",
-                  "PHP1,000,000-800,000",
-                  "PHP700,000-600,000",
-                  "PHP500,000-400,000",
-                  "PHP300,000-200,000",
-                  "PHP100,000-50,000",
                   "Less than 50,000",
+                  "PHP100,000-50,000",
+                  "PHP300,000-200,000",
+                  "PHP500,000-400,000",
+                  "PHP700,000-600,000",
+                  "PHP1,000,000-800,000",
+                  "Greater than 2,000,000",
                 ].map((option, index) => (
                   <button
                     key={index}
@@ -690,6 +709,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                   type="text"
                   placeholder="City or zip code"
                   style={{ padding: "0px 0px 0px 10px" }}
+                  onChange={(e) => handleDetailsquest7(e.target.value)}
                 />
               </div>
             </div>
@@ -706,11 +726,6 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
               customerInfo={customerInfo}
             />
           </div>
-          {/* <br />
-					<br />
-					<br />
-					<br />
-					<br /> */}
           <br />
           <br />
           <div className="preApproveDiv" style={{ textAlign: "center" }}>
