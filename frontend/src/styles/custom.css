@@ -193,13 +193,13 @@ listing search */
 	/* background-color: #fff; */
 	color: white;
 	height: auto;
-    width: 100%;
+	width: 100%;
 	/* margin: 50px 0px 0px 50px; */
 	border-radius: 8px;
 	display: flex;
 	padding-top: 50px;
 	justify-content: center;
-	align-items:center;
+	align-items: center;
 	/* padding-top: 40px; */
 }
 
@@ -563,7 +563,7 @@ listing search */
 	font-weight: 700;
 	color: green;
 }
-.success-modal-content-body .success-details p{
+.success-modal-content-body .success-details p {
 	font-size: 16px;
 	text-align: center;
 }
@@ -796,7 +796,7 @@ listing search */
 	.advance-searchdropdown .slider-container .range-container .range-border {
 		padding: 15px;
 	}
-		.ant-tooltip .ant-tooltip-inner {
+	.ant-tooltip .ant-tooltip-inner {
 		font-size: 12px;
 		width: 70px;
 		padding: 0px 5px;
@@ -1405,7 +1405,7 @@ listing search */
 	}
 }
 @media screen and (min-width: 507px) and (max-width: 538px) {
-	.first-content{
+	.first-content {
 		height: 550px;
 	}
 	.first-content .sub-content1 {
@@ -1413,7 +1413,7 @@ listing search */
 		flex-wrap: wrap;
 		flex-direction: row;
 		width: 90%;
-		
+
 		/* margin-left: 5px; */
 	}
 	.subcontent-inputs-1 {
@@ -1512,9 +1512,9 @@ listing search */
 		flex-wrap: wrap;
 		flex-direction: row;
 		width: 90%;
-		
-		padding: 20px 20px 80px 20px
-		
+
+		padding: 20px 20px 80px 20px;
+
 		/* margin-left: 5px; */
 	}
 	.subcontent-inputs-1 {
@@ -1529,7 +1529,7 @@ listing search */
 		margin: 0px;
 		padding: 10px;
 		width: calc(52% - 15px);
-		
+
 		/* width: 200px; */
 	}
 	.advance-searchdropdown {
@@ -1968,14 +1968,14 @@ listing search */
 		width: 100%;
 		margin-top: 0px;
 	}
-	.first-content{
+	.first-content {
 		width: 100%;
 		padding: 20px 10px;
 		margin: 0px;
 	}
-	.sub-content1{
-width: 95%;
-margin: 0px;
+	.sub-content1 {
+		width: 95%;
+		margin: 0px;
 	}
 	.advance-searchdropdown .slider-container .range-container {
 		display: flex;
@@ -2008,36 +2008,36 @@ margin: 0px;
 		margin-top: 0px;
 		gap: 10px;
 	}
-		.first-content{
+	.first-content {
 		width: 100%;
-		padding: 40px 10px;
+		padding: 40px 0px 40px 0px;
 		margin: 0px;
 	}
-	.sub-content1{
-width: 90%;
-margin: 0px;
+	.sub-content1 {
+		width: 89%;
+		margin: 0px;
 	}
 }
 @media screen and (min-width: 1401px) and (max-width: 1500px) {
-		.first-content{
+	.first-content {
 		width: 100%;
-		padding: 40px 10px;
+		padding: 40px 10px 40px 0px;
 		margin: 0px;
 	}
-	.sub-content1{
-width: 91%;
-margin: 0px;
+	.sub-content1 {
+		width: 92%;
+		margin: 0px;
 	}
 }
 @media screen and (min-width: 1501px) and (max-width: 1700px) {
-		.first-content{
+	.first-content {
 		width: 100%;
-		padding: 40px 10px;
+		padding: 40px 10px 40px 0px;
 		margin: 0px;
 	}
-	.sub-content1{
-width: 85%;
-margin: 0px;
+	.sub-content1 {
+		width: 85%;
+		margin: 0px;
 	}
 }
 
