@@ -16,17 +16,36 @@ import Title from "antd/es/skeleton/Title";
 const DiscoverHomeComponent = () => {
 	const [activeIndex, setActiveIndex] = useState(null);
 	const [monthlyPayment, setMonthlyPayment] = useState(0);
-	const [HomepriceRange, setHomePriceRange] = useState([100000]);
-	const [DppriceRange, setDpHomePriceRange] = useState([10000]);
+	const [HomepriceRange, setHomePriceRange] = useState(100000);
+	const [DppriceRange, setDpHomePriceRange] = useState(10000);
 	const [yearFixed, setyearFixed] = useState(30);
 	const [interestRate, setInterestRate] = useState(0);
 
 	const handleHomePriceRangeChange = (values) => {
 		setHomePriceRange(values);
 	};
+ const formatValue = (value) => {
+		if (value === undefined) {
+			return "N/A"; 
+		}
+		return value.toLocaleString(); 
+ };
+
 	const handleDpPriceRange = (values) => {
 		setDpHomePriceRange(values);
 	};
+	const handleHomePriceInputChange = (e) => {
+		const value = e.target.value.replace(/,/g, "");
+		const parsedValue = parseInt(value, 10) || 0;
+		setHomePriceRange(parsedValue);
+	};
+
+	const handleDpInputChange = (e) => {
+		const value = e.target.value.replace(/,/g, "");
+		const parsedValue = parseInt(value, 10) || 0;
+		setDpHomePriceRange(parsedValue);
+	};
+
 	const handleInterestRateChange = (values) => {
 		setInterestRate(values);
 	};
@@ -44,7 +63,7 @@ const DiscoverHomeComponent = () => {
 
 	useEffect(() => {
 		if (location.hash === "#calculator") {
-			scrollToSection(calculatorRef); // Scroll to calculator if URL has #calculator
+			scrollToSection(calculatorRef); 
 		}
 	}, [location]);
 
@@ -52,9 +71,10 @@ const DiscoverHomeComponent = () => {
 		setyearFixed(e.target.value);
 	};
 
+	const principalAmnt = HomepriceRange - DppriceRange;
 	const computeMortgage = () => {
-		const dpPriceRange = DppriceRange[0];
-		const homePriceRange = HomepriceRange[0];
+		const dpPriceRange = DppriceRange;
+		const homePriceRange = HomepriceRange;
 		const interestRateDecimal = interestRate / 100;
 
 		const monthlyInterestRate = interestRateDecimal / 12;
@@ -159,22 +179,29 @@ const DiscoverHomeComponent = () => {
 									<div className="home-price-frame-cont">
 										<div className="home-price-price-range">
 											<span className="amount-value">PHP </span>
-											<span className="amount">
-												{Array.isArray(HomepriceRange) &&
-												HomepriceRange.length === 2
-													? `${HomepriceRange[0]?.toLocaleString() || 0} - ${
-															HomepriceRange[1]?.toLocaleString() || 0
-													  }`
-													: HomepriceRange?.toLocaleString() || 0}
-											</span>
+											<input
+												type="text"
+												value={
+													HomepriceRange ? HomepriceRange.toLocaleString() : "0"
+												}
+												onChange={handleHomePriceInputChange}
+												style={{
+													fontSize: "18px",
+													borderStyle: "none",
+													paddingLeft: "5px",
+													backgroundColor: "transparent",
+												}}
+											/>
 										</div>
 										<Slider
 											range
 											min={100000}
-											max={5000000}
+											max={100000000}
 											step={100}
 											value={HomepriceRange}
 											onChange={handleHomePriceRangeChange}
+											// tooltip={{ open: true }}
+											tipFormatter={formatValue}
 										/>
 										{/* <div className="ellipse" /> */}
 									</div>
@@ -183,15 +210,22 @@ const DiscoverHomeComponent = () => {
 									<div className="down-payment-title">Down payment</div>
 									<div className="down-payment-frame-cont">
 										<div className="downpayment-amount">
-											<span className="amount-value">PHP </span>
-											<span className="downpayment-amount">
-												{Array.isArray(DppriceRange) &&
-												DppriceRange.length === 2
-													? `${DppriceRange[0]?.toLocaleString() || 0} - ${
-															DppriceRange[1]?.toLocaleString() || 0
-													  }`
-													: DppriceRange?.toLocaleString() || 0}
-											</span>
+											<div className="downpayment-amount-val">
+												<span className="amount-value">PHP </span>
+												<input
+													type="text"
+													value={
+														DppriceRange ? DppriceRange.toLocaleString() : "0"
+													}
+													onChange={handleDpInputChange}
+													style={{
+														fontSize: "18px",
+														borderStyle: "none",
+														paddingLeft: "5px",
+														backgroundColor: "transparent",
+													}}
+												/>
+											</div>
 											<Slider
 												range
 												min={10000}
@@ -199,6 +233,7 @@ const DiscoverHomeComponent = () => {
 												step={100}
 												value={DppriceRange}
 												onChange={handleDpPriceRange}
+												tipFormatter={formatValue}
 											/>
 										</div>
 									</div>
@@ -287,14 +322,7 @@ const DiscoverHomeComponent = () => {
 										gapPosition="bottom"
 									/>
 									<div style={{}} className="montly-pay-cal">
-										PHP{" "}
-										{Array.isArray(monthlyPayment) &&
-										monthlyPayment.length === 2
-											? `${
-													Number(monthlyPayment[0])?.toLocaleString() || 0
-											  } - ${Number(monthlyPayment[1])?.toLocaleString() || 0}`
-											: Number(monthlyPayment)?.toLocaleString() || 0}{" "}
-										<br />
+										PHP {Number(monthlyPayment)?.toLocaleString() || 0} <br />
 										<p
 											style={{
 												fontSize: "16px",
@@ -315,13 +343,7 @@ const DiscoverHomeComponent = () => {
 												style={{ backgroundColor: "rgba(140, 144, 148, 0.62)" }}
 											/>
 											<span>
-												{Array.isArray(DppriceRange) &&
-												DppriceRange.length === 2
-													? `${DppriceRange[0]?.toLocaleString() || 0} - ${
-															DppriceRange[1]?.toLocaleString() || 0
-													  }`
-													: DppriceRange?.toLocaleString() || 0}{" "}
-												down payment
+												{DppriceRange?.toLocaleString() || 0} down payment
 											</span>
 										</div>
 										<div className="payment-breakdown">
@@ -338,14 +360,7 @@ const DiscoverHomeComponent = () => {
 											/>
 											<span>
 												Principal&nbsp;&nbsp;PHP &nbsp;
-												{Array.isArray(monthlyPayment) &&
-												monthlyPayment.length === 2
-													? `${
-															Number(monthlyPayment[0])?.toLocaleString() || 0
-													  } - ${
-															Number(monthlyPayment[1])?.toLocaleString() || 0
-													  }`
-													: Number(monthlyPayment)?.toLocaleString() || 0}{" "}
+												{Number(principalAmnt)?.toLocaleString() || 0}
 											</span>
 										</div>
 										<div className="payment-breakdown">

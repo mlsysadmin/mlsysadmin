@@ -351,7 +351,13 @@
 	font-size: 18px;
 	font-weight: 400;
 	border-radius: 20px;
+
 }
+.mortgage-calc .downpayment-amount-val{
+	display: flex;
+	flex-direction: row;
+}
+
 
 .mortgage-calc .amount-value {
 	font-weight: 700;
@@ -388,6 +394,8 @@
 	font-family: "Poppins", Helvetica;
 	font-size: 18px;
 	font-weight: 400;
+	display: flex;
+	flex-direction: row;
 }
 
 .mortgage-calc .home-price-frame-title {
@@ -679,7 +687,7 @@ padding: 0px;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	gap: 100px;
+	gap: 50px;
 	margin: 50px 0px 0px 0px;
 }
 

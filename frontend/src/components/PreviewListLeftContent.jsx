@@ -144,9 +144,9 @@ const PreviewListLeftContent = ({
 				<MapComponent oneListing={oneListing} />
 			</div>
 			<div className="web-view-similar-properties">
-				<h3>Home Details</h3>
+				<h3>Property Details</h3>
 				<div className={styles.specificationContainer}>
-					<h4 className={styles.specificationHeader}>Specification</h4>
+					<h4 className={styles.specificationHeader}>Specifications</h4>
 					<table className={styles.specificationTable}>
 						<tbody>
 							<tr>
@@ -190,7 +190,7 @@ const PreviewListLeftContent = ({
 				</div>
 			</div>
 			<div className="mobile-view-similar-properties">
-				<h3>Home Details</h3>
+				<h3>Property Details</h3>
 				<div className={styles.specificationContainer}>
 					<h4 className={styles.specificationHeader}>Specification</h4>
 					<table className={styles.specificationTable}>

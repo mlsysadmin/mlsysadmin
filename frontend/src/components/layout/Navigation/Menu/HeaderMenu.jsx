@@ -21,7 +21,6 @@ import TextBtn from "../../../custom/buttons/TextBtn.custom";
 import LoginModal from "../../../modals/loginmodal";
 import SellerLogInButtonDropdown from "../../../custom/buttons/SellerLogInButtonDropdown";
 import { colors } from "@mui/material";
-import UserLogout from "../../../../api/Logout";
 import UpgradeTierModal from "../../../modals/UpgradeTierModal";
 import TierUpgradeModal from "../../../modals/TierUpgradeModal";
 
@@ -146,11 +145,16 @@ const HeaderMenu = () => {
 		// 	process.env.REACT_APP_REDIRECT_URL
 		// }?redirect_url=${encodeURIComponent(redirectUrl)}`;
 	};
-	const handleLogout = async () => {
-		const logout = await UserLogout();
-		console.log("Logout Success:", logout);
-		return logout;
-	};
+
+const handleLogout = async () => {
+	const logoutURL = process.env.REACT_APP_LOGOUT_URL;
+	const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
+
+	window.location.href = `${logoutURL}?redirect_url=${encodeURIComponent(
+		redirectUrl
+	)}`;
+};
+
 
 	const handleProfileClick = () => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
