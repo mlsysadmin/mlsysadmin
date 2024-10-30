@@ -44,7 +44,7 @@ const JoinTeam = ({ toggleModal }) => {
     api[type]({
       message: message,
       description: description,
-      placement: "top",
+      placement: "bottomRight",
       duration: type == "error" ? 4 : 3,
     });
   };
@@ -87,6 +87,8 @@ const JoinTeam = ({ toggleModal }) => {
   };
   const handleInputChange = async (e) => {
     const { name, value } = e.target;
+    console.log("name; ", name);
+
     switch (name) {
       case "country":
         // setFormData(value);
@@ -173,12 +175,23 @@ const JoinTeam = ({ toggleModal }) => {
         isValid = false;
       }
     }
-
-    if (!formData.brokerQuestion) {
-      // formErrors.brokerQuestion = "This field is required";
+    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    const trimmedValue = formData.email.trim();
+    if (!emailPattern.test(trimmedValue)) {
+      // setFormData((prevFormData) => ({
+      //   ...prevFormData,
+      //   email: value,
+      // }));
+      openNotificationWithIcon(
+        "warning",
+        `Unable to proceed`,
+        "Please provide a valid Email Address."
+      );
       isValid = false;
     }
-    // setErrors(formErrors);
+    if (!formData.brokerQuestion) {
+      isValid = false;
+    }
     return isValid;
   };
 
@@ -316,14 +329,26 @@ const JoinTeam = ({ toggleModal }) => {
       setFilteredCities([]);
     }
   };
-  const handleKeyDownPhone = (e) => {
-    // const philippineNumberRegex = /^(09|\+639)\d{9}$/;
-    const philippineNumberRegex =
-      /^[0-9]*\.?[0-9]*$/.test(e.key) || e.key == "Backspace";
-    if (philippineNumberRegex) {
-      return;
+  const handleKeyDownForLettersAndSymbolsOnly = (e) => {
+    const validInputPattern =
+      /^[A-Za-z\s!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+    if (
+      !validInputPattern.test(e.key) &&
+      e.key !== "Backspace" &&
+      e.key !== "Tab"
+    ) {
+      e.preventDefault();
     }
-    e.preventDefault();
+  };
+  const handleKeyDownForNumbers = (e) => {
+    const validInputPatternWrapUp = /^\d*$/;
+    if (
+      !validInputPatternWrapUp.test(e.key) &&
+      e.key !== "Backspace" &&
+      e.key !== "Tab"
+    ) {
+      e.preventDefault();
+    }
   };
   const Modal = ({ isVisible, onClose }) => {
     if (!isVisible) return null;
@@ -431,7 +456,7 @@ const JoinTeam = ({ toggleModal }) => {
                     placeholder="09"
                     value={formData.mobileNumber}
                     onChange={handleInputChange}
-                    onKeyDown={(e) => handleKeyDownPhone(e)}
+                    onKeyDown={handleKeyDownForNumbers}
                     pattern="[0-9]*"
                   />
                   {errors.mobileNumber && (
@@ -445,8 +470,8 @@ const JoinTeam = ({ toggleModal }) => {
                     name="email"
                     placeholder="Email Address"
                     value={formData.email}
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                     onChange={handleInputChange}
-                    disabled={!!userDetails}
                   />
                   {errors.email && <p className="error">{errors.email}</p>}
                 </div>
@@ -460,6 +485,7 @@ const JoinTeam = ({ toggleModal }) => {
                     placeholder="Last Name"
                     value={formData.lastName}
                     onChange={handleInputChange}
+                    onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
                     disabled={!!userDetails}
                   />
                   {errors.lastName && (
@@ -474,6 +500,7 @@ const JoinTeam = ({ toggleModal }) => {
                     placeholder="First Name"
                     value={formData.firstName}
                     onChange={handleInputChange}
+                    onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
                     disabled={!!userDetails}
                   />
                   {errors.firstName && (
@@ -486,6 +513,7 @@ const JoinTeam = ({ toggleModal }) => {
                     type="text"
                     name="middleName"
                     placeholder="Middle Name"
+                    onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
                     value={formData.middleName}
                     onChange={handleInputChange}
                   />
@@ -672,6 +700,7 @@ const JoinTeam = ({ toggleModal }) => {
                     placeholder="House No/St/Sitio/Barangay"
                     value={formData.address}
                     onChange={handleInputChange}
+                    onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
                   />
                   {errors.address && <p className="error">{errors.address}</p>}
                 </div>
@@ -720,6 +749,7 @@ const JoinTeam = ({ toggleModal }) => {
                           placeholder="Please specify"
                           value={othersInputValue}
                           onChange={handleInputOthers}
+                          onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
                         />
                         {errors.otherBrokerQuestion && (
                           <p className="error">{errors.otherBrokerQuestion}</p>

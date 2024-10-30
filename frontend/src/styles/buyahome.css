@@ -101,7 +101,7 @@
 }
 .property-information-container .prop-btn:hover,
 .property-information-container .prop-btn.active {
-  background-color: var(--red);
+  background: var(--red) !important;
   color: white;
 }
 .property-information-container .prop-info-btn-group1 {

@@ -16,7 +16,18 @@
   gap: 30px;
   /* gap: 50px; */
 }
-
+.wrap-up-input.error {
+  border-color: red !important;
+  justify-content: center;
+}
+.wrap-up-dropdown-button.error {
+  border-color: red !important;
+  justify-content: center;
+}
+.error-message {
+  color: red; 
+  font-size: 12px; 
+}
 .wrap-up-inf .prop-content2-wrap-up .mobile-address-group,
 .wrap-up-inf .prop-content2-wrap-up .email-address-group,
 .wrap-up-inf .prop-content2-wrap-up .lastname-group,
