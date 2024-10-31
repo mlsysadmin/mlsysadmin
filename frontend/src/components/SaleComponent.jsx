@@ -86,27 +86,22 @@ const SaleComponent = () => {
 
 				const removeSpecialChar = (ch) => {
 					
-					return ch.toLowerCase().replace(/[-_]/g, " ");
+					return ch.toLowerCase().replace(/[/_-]/g, " ").trim();
 				}
 
 				console.log("remove", removeSpecialChar(property_type));
-				console.log("data", dataresp.filter(
-					(listing) =>
-						["sale"].includes(listing.SaleType.toLowerCase())));
+				console.log("data", dataresp.filter((listing) =>
+					["sale"].includes(listing.SaleType.toLowerCase())));
+				
 
 				const listingRes = dataresp.filter((listing) =>
 					["sale"].includes(listing.SaleType.toLowerCase())
 					&& 
-					listing.PropertyType.toLowerCase().replace(/[-_]/g, " ").includes(property_type.toLowerCase().replace(/[-_]/g, " "))
+					removeSpecialChar(listing.PropertyType) == removeSpecialChar(property_type)
+					// listing.PropertyType.toLowerCase().replace(/[/_-]/g, " ").trim() == (property_type.toLowerCase().replace(/[/_-]/g, " ")).trim()
+					// listing.PropertyType.toLowerCase().replace(/[/_-]/g, " ").trim() == (property_type.toLowerCase().replace(/[/_-]/g, " ")).trim()
 				);
-				const lr = dataresp.filter((listing) =>
-
-						{
-							console.log(listing.PropertyType.toLowerCase().replace(/[-_]/g, " "));
-							console.log(property_type.toLowerCase().replace(/[-_]/g, " "));
-							
-						}
-					);
+				
 				console.log("listingRes", listingRes);
 				
 				if (listingRes.length !== 0) {
