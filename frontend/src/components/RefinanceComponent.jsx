@@ -204,13 +204,13 @@ const RefinanceComponent = () => {
     "New construction",
   ];
   const buttonGroup4 = [
-    "Greater than 2,000,000",
-    "PHP1,000,000-800,000",
-    "PHP700,000-600,000",
-    "PHP500,000-400,000",
-    "PHP300,000-200,000",
-    "PHP100,000-50,000",
     "Less than 50,000",
+    "PHP100,000-50,000",
+    "PHP300,000-200,000",
+    "PHP500,000-400,000",
+    "PHP700,000-600,000",
+    "PHP1,000,000-800,000",
+    "Greater than 2,000,000",
   ];
 
   const buttonGroup2 = [
