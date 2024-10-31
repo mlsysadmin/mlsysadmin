@@ -57,7 +57,7 @@ const EmailTemplate = (filePath, data) => {
 const SendEmail = async (emailTemp, emailType, references, emailTo) => {
     
     let messageContent = {
-        subject: `Brokerage Client: ${emailType}`,
+        subject: `${emailType}`,
         to: emailTo,
         from: `M Lhuillier Properties Realty & Brokerage <${process.env.EMAIL_FROM}>`,
         html: emailTemp,

@@ -1,54 +1,95 @@
-<div style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
-    <div>
-        <p style="
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrJJfecg.woff2) format('woff2');
+            /* unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; */
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .search {
+            font-family: "Poppins", sans-serif !important;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="search">
+        <div>
+            <p style="
                 font-weight: 600; 
                 margin-bottom: 5px;
                 font-size: 15px;">Customer Information</p>
-        <div>
-            <span>Name: </span>
-            <span>{{{customerInfo.name}}}</span>
+            <div>
+                <span>Name: </span>
+                <span>{{{customerInfo.name}}}</span>
+            </div>
+            <div>
+                <span>Mobile Number: </span>
+                <span>{{{customerInfo.mobile_number}}}</span>
+            </div>
+            <div>
+                <span>Email Address: </span>
+                <span>{{{customerInfo.email}}}</span>
+            </div>
         </div>
         <div>
-            <span>Mobile Number: </span>
-            <span>{{{customerInfo.mobile_number}}}</span>
-        </div>
-        <div>
-            <span>Email Address: </span>
-            <span>{{{customerInfo.email}}}</span>
-        </div>
-    </div>
-    <div>
-        <p style="
+            <p style="
             font-weight: 600; 
             margin-bottom: 5px;
             font-size: 15px;">Property</p>
-        <div>
-            <span>Property Type: </span>
-            <span>{{{property.property_type}}}</span>
-        </div>
-        <div>
-            <span>Property Details: </span>
-            <span>{{{property.property_details}}}</span>
-        </div>
-        <div>
-            <span>Location Preference: </span>
-            <span>{{{property.location_preference}}}</span>
-        </div>
-        <div>
-            <span>Budget Range: </span>
-            <span>{{{property.budget_range}}}</span>
-        </div>
-         <div>
-            <span>Bedrooms: </span>
-            <span>{{{property.no_of_bedrooms}}}</span>
-        </div>
-         <div>
-            <span>Bathrooms: </span>
-            <span>{{{property.no_of_bathrooms}}}</span>
-        </div>
-         <div>
-            <span>Feature & Amenities: </span>
-            <span>{{{property.feature_and_amenities}}}</span>
+            <div>
+                <span>Property Type: </span>
+                <span>{{{property.property_type}}}</span>
+            </div>
+            <div>
+                <span>Property Details: </span>
+                <span>{{{property.property_details}}}</span>
+            </div>
+            <div>
+                <span>Location Preference: </span>
+                <span>{{{property.location_preference}}}</span>
+            </div>
+            <div>
+                <span>Budget Range: </span>
+                <span>{{{property.budget_range}}}</span>
+            </div>
+            <div>
+                <span>Bedrooms: </span>
+                <span>{{{property.no_of_bedrooms}}}</span>
+            </div>
+            <div>
+                <span>Bathrooms: </span>
+                <span>{{{property.no_of_bathrooms}}}</span>
+            </div>
+            <div>
+                <span>Feature & Amenities: </span>
+                <span>{{{property.feature_and_amenities}}}</span>
+            </div>
         </div>
     </div>
-</div>
+</body>
+
+</html>

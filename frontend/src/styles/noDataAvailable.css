@@ -12,3 +12,9 @@
 .no-data--wrapper{
     margin-bottom: 50px;
 }
+
+@media screen and (max-width: 600px) {
+    .no-data--wrapper .no-data--container img{
+        width: 300px;
+    }
+}
