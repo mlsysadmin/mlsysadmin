@@ -311,6 +311,19 @@ const WrapUpDetails = ({
   };
   const handleKeyDownForNumbers = (e) => {
     const validInputPatternWrapUp = /^\d*$/;
+    const currentLength = mobile_number.length;
+    if (e.key === "Backspace" || e.key === "Delete") {
+      return;
+    }
+    if (!/\d/.test(e.key)) {
+      e.preventDefault();
+    }
+    if (currentLength === 0 && e.key !== "0") {
+      e.preventDefault(); 
+    }
+    if (currentLength === 1 && e.key !== "9") {
+      e.preventDefault(); 
+    }
     if (
       !validInputPatternWrapUp.test(e.key) &&
       e.key !== "Backspace" &&
@@ -343,6 +356,7 @@ const WrapUpDetails = ({
             onBlur={(e) =>
               handleBlurInput(e.target.value, "mobile_number", "Mobile Number")
             }
+            maxLength={11}
           />
           {errorMessage.error_mobile_number && (
             <p className="error-message">{errorMessage.error_mobile_number}</p>

@@ -129,12 +129,7 @@ const PreviewListRightSideContent = ({ oneListing }) => {
   };
   const handleKeyDownPhone = (e) => {
     // const philippineNumberRegex = /^(09|\+639)\d{9}$/;
-    const philippineNumberRegex =
-      /^[0-9]*\.?[0-9]*$/.test(e.key) || e.key == "Backspace";
-    if (philippineNumberRegex) {
-      return;
-    }
-    e.preventDefault();
+
   };
   const handleLoanClick = () => {
     navigate("/discover-home#calculator");
@@ -380,9 +375,24 @@ const PreviewListRightSideContent = ({ oneListing }) => {
             type="text"
             placeholder="Phone Number"
             onChange={(e) => handleContactChange(e)}
-            onKeyDown={(e) => handleKeyDownPhone(e)}
+            onKeyDown={(e) => {
+              const currentLength = contact.phone.length;
+              if (e.key === "Backspace" || e.key === "Delete") {
+                return;
+              }
+              if (!/\d/.test(e.key)) {
+                e.preventDefault();
+              }
+              if (currentLength === 0 && e.key !== "0") {
+                e.preventDefault(); 
+              }
+              if (currentLength === 1 && e.key !== "9") {
+                e.preventDefault(); 
+              }
+            }}
             value={contact.phone}
             name="phone"
+            maxLength={11}
           />
         </div>
         <div className="contact-textarea">
