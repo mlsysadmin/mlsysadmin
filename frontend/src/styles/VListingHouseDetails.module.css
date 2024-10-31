@@ -423,4 +423,30 @@
 .VListingHouseDetails_featureCard__ZDxzL{
   width:300px !important;
 }
+
+
+}
+@media screen and (min-width:1200px) and (max-width:1400px) {
+  .featureCard{
+  width: 135px !important;
+  padding: 10px !important;
+}
+.featureTitle{
+  font-size: 17px !important;
+}
+.featureValue{
+  font-size: 17px !important;
+}
+}
+@media screen and (min-width:1401px) and (max-width:1600px) {
+  .featureCard{
+  width: 150px !important;
+  padding: 10px !important;
+}
+.featureTitle{
+  font-size: 17px !important;
+}
+.featureValue{
+  font-size: 17px !important;
+}
 }
