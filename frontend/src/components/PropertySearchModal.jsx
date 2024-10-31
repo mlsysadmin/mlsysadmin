@@ -39,8 +39,6 @@ const PropertySearch = () => {
   //   }
   // }, [openModal]);
 
-
-  
   const handleInputChangeInquieries = async (e) => {
     const { name, value } = e.target;
     console.log("Name: ", name, "\nValue:", value);
@@ -64,6 +62,15 @@ const PropertySearch = () => {
         if (value.includes("@") || value.length === 0) {
           setFormData({ ...formData, [name]: value });
         }
+      } else if (name === "mobile_number") {
+        // Allow only numbers and limit to 11 characters
+        const numericValue = value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
+        if (numericValue.length <= 11) {
+          setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: numericValue,
+          }));
+        }
       } else {
         setFormData({ ...formData, [name]: value });
       }
@@ -84,21 +91,26 @@ const PropertySearch = () => {
       duration: type == "error" ? 10 : 10,
     });
   };
-    const isValidEmail = (email) => {
+  const isValidEmail = (email) => {
     // Regular expression for validating an email address
     const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(email);
     if (!emailPattern) {
       return false;
-    }else{ 
+    } else {
       return true;
     }
   };
   const handleKeyDown = (e) => {
     // Regular expression to allow letters and symbols only
-    const validInputPattern = /^[A-Za-z\s!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+    const validInputPattern =
+      /^[A-Za-z\s!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
 
     // Check if the key pressed is valid
-    if (!validInputPattern.test(e.key) && e.key !== 'Backspace' && e.key !== 'Tab') {
+    if (
+      !validInputPattern.test(e.key) &&
+      e.key !== "Backspace" &&
+      e.key !== "Tab"
+    ) {
       e.preventDefault(); // Prevent the default action if the key is invalid
     }
   };
@@ -130,7 +142,7 @@ const PropertySearch = () => {
         openNotificationWithIcon(
           "success",
           `Message Sent`,
-          "Your message has been sent."
+          "Thanks for reaching out! Our team will contact you soon with property options."
         );
       } else {
         resetForm();
@@ -177,7 +189,10 @@ const PropertySearch = () => {
     navigate("/");
   };
   const isFormValid = () => {
-    return Object.values(formData).every((value) => value.trim() !== "") && isValidEmail(formData.email);
+    return (
+      Object.values(formData).every((value) => value.trim() !== "") &&
+      isValidEmail(formData.email)
+    );
   };
   return (
     <div className="whole-property-search-page">
@@ -278,12 +293,20 @@ const PropertySearch = () => {
                   placeholder="Mobile Number"
                   value={formData.mobileNumber}
                   onChange={handleInputChangeInquieries}
+                  maxLength={11}
                   onKeyDown={(e) => {
+                    const currentLength = formData.mobileNumber.length;
                     if (e.key === "Backspace" || e.key === "Delete") {
                       return;
                     }
                     if (!/\d/.test(e.key)) {
                       e.preventDefault();
+                    }
+                    if (currentLength === 0 && e.key !== "0") {
+                      e.preventDefault(); 
+                    }
+                    if (currentLength === 1 && e.key !== "9") {
+                      e.preventDefault(); 
                     }
                   }}
                 />
