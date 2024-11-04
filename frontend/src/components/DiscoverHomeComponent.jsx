@@ -19,17 +19,20 @@ const DiscoverHomeComponent = () => {
 	const [HomepriceRange, setHomePriceRange] = useState(100000);
 	const [DppriceRange, setDpHomePriceRange] = useState(10000);
 	const [yearFixed, setyearFixed] = useState(30);
+	const [interestPerMonthAmount, setInterestPerMonthAmount] = useState(0);
 	const [interestRate, setInterestRate] = useState(0);
+	const [totalNumberMonths, setTotalnumberMonths] = useState(0);
+	const [principalWithInterest, setPrincipalwithInterest]= useState(0);
 
 	const handleHomePriceRangeChange = (values) => {
 		setHomePriceRange(values);
 	};
- const formatValue = (value) => {
+	const formatValue = (value) => {
 		if (value === undefined) {
-			return "N/A"; 
+			return "N/A";
 		}
-		return value.toLocaleString(); 
- };
+		return value.toLocaleString();
+	};
 
 	const handleDpPriceRange = (values) => {
 		setDpHomePriceRange(values);
@@ -63,7 +66,7 @@ const DiscoverHomeComponent = () => {
 
 	useEffect(() => {
 		if (location.hash === "#calculator") {
-			scrollToSection(calculatorRef); 
+			scrollToSection(calculatorRef);
 		}
 	}, [location]);
 
@@ -72,21 +75,35 @@ const DiscoverHomeComponent = () => {
 	};
 
 	const principalAmnt = HomepriceRange - DppriceRange;
+   const totalNumberOfMonths = yearFixed * 12;
+   const totalInterestRate = interestRate * yearFixed;
+     const totalInterestAmount = principalAmnt * (totalInterestRate / 100);
 	const computeMortgage = () => {
-		const dpPriceRange = DppriceRange;
-		const homePriceRange = HomepriceRange;
-		const interestRateDecimal = interestRate / 100;
+       const principalAmnt = HomepriceRange - DppriceRange;
+	   const totalInterestRate = interestRate * yearFixed;
+	   const totalNumberOfMonths = yearFixed * 12;
+	   setTotalnumberMonths(totalNumberOfMonths);
+	   const totalInterestAmount = principalAmnt * (totalInterestRate / 100);
+	   const totalPaymentwithInterest = principalAmnt + totalInterestAmount;
+	   setPrincipalwithInterest(totalPaymentwithInterest.toFixed(2));
+	   const totalMonthlyPayment = totalPaymentwithInterest / totalNumberOfMonths;
+	   setMonthlyPayment(totalMonthlyPayment.toFixed(2));
+       const interestAmountperMonth = totalMonthlyPayment * (totalInterestRate / 100);
+	   setInterestPerMonthAmount(interestAmountperMonth.toFixed(2));
+		// const dpPriceRange = DppriceRange;
+		// const homePriceRange = HomepriceRange;
+		// const interestRateDecimal = interestRate / 100;
 
-		const monthlyInterestRate = interestRateDecimal / 12;
-		const loanAmount = homePriceRange - dpPriceRange;
-		const numberOfPayments = yearFixed * 12;
-		const totalMonthlyPayment =
-			loanAmount *
-			((monthlyInterestRate *
-				Math.pow(1 + monthlyInterestRate, numberOfPayments)) /
-				(Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1));
+		// const monthlyInterestRate = interestRateDecimal / 12;
+		// const loanAmount = homePriceRange - dpPriceRange;
+		// const numberOfPayments = yearFixed * 12;
+		// const totalMonthlyPayment =
+		// 	loanAmount *
+		// 	((monthlyInterestRate *
+		// 		Math.pow(1 + monthlyInterestRate, numberOfPayments)) /
+		// 		(Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1));
 
-		setMonthlyPayment(totalMonthlyPayment.toFixed(2));
+		// setMonthlyPayment(totalMonthlyPayment.toFixed(2));
 	};
 	const menu = (
 		<Menu onClick={(e) => setyearFixed(parseInt(e.key))}>
@@ -349,13 +366,6 @@ const DiscoverHomeComponent = () => {
 										<div className="payment-breakdown">
 											<div
 												className="radio-circle"
-												style={{ backgroundColor: "#8C9094" }}
-											/>
-											<span>{yearFixed} years</span>
-										</div>
-										<div className="payment-breakdown">
-											<div
-												className="radio-circle"
 												style={{ backgroundColor: "#D90000" }}
 											/>
 											<span>
@@ -368,11 +378,32 @@ const DiscoverHomeComponent = () => {
 												className="radio-circle"
 												style={{ backgroundColor: "#F9C7C7" }}
 											/>
-											<span> Interest&nbsp;&nbsp;{interestRate} % per year</span>
+											<span>
+												{" "}
+												Interest:&nbsp;&nbsp;{interestPerMonthAmount} per month
+											</span>
+										</div>
+										<div className="payment-breakdown">
+											<div
+												className="radio-circle"
+												style={{ backgroundColor: "#8C9094" }}
+											/>
+											<span>
+												Total Interest: PHP {totalInterestAmount.toLocaleString()} 
+											</span>
+										</div>
+										<div className="payment-breakdown">
+											<div
+												className="radio-circle"
+												style={{ backgroundColor: "#8C9094" }}
+											/>
+											<span>
+												{totalNumberOfMonths} months ({yearFixed} years)
+											</span>
 										</div>
 									</div>
 									<div className="lower-monthly-payment">
-										<span className="pan">Principal and Interest</span>
+										<span className="pan">Principal with interest</span>
 										<div className="line-principal-group">
 											<img
 												className="line-3"
@@ -384,14 +415,19 @@ const DiscoverHomeComponent = () => {
 												style={{ fontSize: "18px" }}
 											>
 												PHP{" "}
-												{Array.isArray(monthlyPayment) &&
-												monthlyPayment.length === 2
+												{Array.isArray(principalWithInterest) &&
+												principalWithInterest.length === 2
 													? `${
-															Number(monthlyPayment[0])?.toLocaleString() || 0
+															Number(
+																principalWithInterest[0]
+															)?.toLocaleString() || 0
 													  } - ${
-															Number(monthlyPayment[1])?.toLocaleString() || 0
+															Number(
+																principalWithInterest[1]
+															)?.toLocaleString() || 0
 													  }`
-													: Number(monthlyPayment)?.toLocaleString() || 0}{" "}
+													: Number(principalWithInterest)?.toLocaleString() ||
+													  0}{" "}
 											</div>
 										</div>
 									</div>
