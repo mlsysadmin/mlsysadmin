@@ -131,12 +131,76 @@
 }
 @media screen and (min-width: 1025px) and (max-width: 1512px) {
   .wrap-up-inf .prop-content2-wrap-up .source-income-group {
-    width: 870px;
+    margin: 0px 0px 0px 0px;
+    width: 570px;
+  }
+  .wrap-up-inf .prop-content2-wrap-up .housenumber-group {
+    width: 570px;
+  }
+}
+@media screen and (min-width: 1000px) and (max-width: 1100px) {
+  .wrap-up-inf .prop-content2-wrap-up{
+    gap: 10px;
+  }
+  .wrap-up-inf .prop-content2-wrap-up .source-income-group {
+    margin: 20px 0px 0px 0px;
+    width: 550px;
+    order: 9;
+  }
+  .wrap-up-inf .prop-content2-wrap-up .housenumber-group {
+    width: 550px;
+    margin: 20px 0px 0px 0px;
+    order: 10;
+  }
+}
+@media screen and (min-width: 1000px) and (max-width: 1173px) {
+  .wrap-up-inf .prop-content2-wrap-up{
+    gap: 10px;
+  }
+  .wrap-up-inf .prop-content2-wrap-up .source-income-group {
+    margin: 20px 0px 0px 0px;
+    width: 270px;
+    order: 9;
+  }
+  .wrap-up-inf .prop-content2-wrap-up .housenumber-group {
+    width: 830px;
+    margin: 20px 0px 0px 0px;
+    order: 10;
+  }
+}
+@media screen and (min-width: 1174px) and (max-width: 1210px) {
+  .wrap-up-inf .prop-content2-wrap-up{
+    gap: 10px;
+  }
+  .wrap-up-inf .prop-content2-wrap-up .source-income-group {
+    margin: 20px 0px 0px 0px;
+    width: 550px;
+    order: 9;
+  }
+  .wrap-up-inf .prop-content2-wrap-up .housenumber-group {
+    width: 550px;
+    margin: 20px 0px 0px 0px;
+    order: 10;
+  }
+}
+@media screen and (min-width: 1211px) and (max-width: 1273px) {
+  .wrap-up-inf .prop-content2-wrap-up{
+    gap: 10px;
+  }
+  .wrap-up-inf .prop-content2-wrap-up .source-income-group {
+    margin: 20px 0px 0px 0px;
+    width: 550px;
+    order: 9;
+  }
+  .wrap-up-inf .prop-content2-wrap-up .housenumber-group {
+    margin: 20px 0px 0px 0px;
+    width: 550px;
+    order: 10;
   }
 }
 @media screen and (min-width: 1301px) and (max-width: 1400px) {
   .wrap-up-inf .prop-content2-wrap-up .source-income-group {
-    width: 270px;
+    width: 570px;
   }
 }
 @media screen and (min-width: 1101px) and (max-width: 1137px) {
