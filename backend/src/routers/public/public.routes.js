@@ -6,6 +6,8 @@ const PUBLIC_ROUTER = express.Router();
 const { GetProvince, GetCities, GetCountries } = require("../../controllers/public/location.controller");
 const { GetAllMasterListings, GetMasterListingDetails } = require("../../controllers/public/listing.contoller");
 const { SendInquiry, SendMessage, SendRefinancing, SendBuyHome, SendSearchProperty, SendListingApproved } = require("../../controllers/email/contactEmail.controller");
+const { Validation } = require("../../middleware/_validator/validator.middleware");
+const { ListingEmail } = require("../../utils/_helper/validationSchema.helper");
 
 PUBLIC_ROUTER.get('/get/provinces', GetProvince);
 PUBLIC_ROUTER.get('/get/cities', GetCities);
@@ -18,7 +20,8 @@ PUBLIC_ROUTER.post('/mail/send-email', SendMessage);
 PUBLIC_ROUTER.post('/mail/refinance-home', SendRefinancing);
 PUBLIC_ROUTER.post('/mail/buy-home', SendBuyHome);
 PUBLIC_ROUTER.post('/mail/search-property', SendSearchProperty);
-PUBLIC_ROUTER.post('/mail/listing', SendListingApproved);
+PUBLIC_ROUTER.post('/mail/listing', Validation(ListingEmail, 'body', 'payload'), SendListingApproved);
+
 
 module.exports = PUBLIC_ROUTER;
 
