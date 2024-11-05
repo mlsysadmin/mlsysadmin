@@ -32,7 +32,7 @@
   font-size: 20px;
 }
 .property-information-container {
-  width: 100%;
+  width: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -593,5 +593,40 @@
   .property-information-container .prop-info-btn-group-details-input input,
   .property-information-container .prop-info-wrap-up-input input {
     width: 50%;
+  }
+}
+@media screen and (min-width: 1174px) and (max-width: 1273px) {
+  .property-information-container{
+    width: 100%;
+  }
+  .property-information-container .prop-content{
+    width: 95%;
+  }
+}
+
+@media screen and (min-width: 1274px) and (max-width: 1547px) {
+  .property-information-container{
+    width: 100%;
+  }
+  .property-information-container .prop-content{
+    width: 95%;
+  }
+}
+@media screen and (min-width: 1548px) and (max-width: 1600px) {
+  .property-information-container{
+    width: 95%;
+  }
+}
+@media screen and (min-width: 1601px) and (max-width: 1624px) {
+  .property-information-container{
+    width: 95%;
+  }
+}
+@media screen and (min-width: 1025px) and (max-width: 1152px) {
+  .property-information-container{
+    width: 100%;
+  }
+  .property-information-container .prop-content{
+    width: 90%;
   }
 }
