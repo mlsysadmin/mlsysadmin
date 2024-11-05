@@ -39,7 +39,7 @@ const ErrorHandler = async (error, request, response, next) => {
         ErrLogger.addContext('context', `Logging.. | ML BROKERAGE`);
         ErrLogger.error(...errorContext);
 
-        const err = ErrorFormatter(error.code, error.status, error.message);
+        const err = ErrorFormatter(error.code, error.status, error.message, error.data);
 
         response.status(error.status).send(err);
 
