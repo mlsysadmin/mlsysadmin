@@ -342,6 +342,19 @@ const JoinTeam = ({ toggleModal }) => {
   };
   const handleKeyDownForNumbers = (e) => {
     const validInputPatternWrapUp = /^\d*$/;
+    const currentLength = formData.mobileNumber.length;
+    if (e.key === "Backspace" || e.key === "Delete") {
+      return;
+    }
+    if (!/\d/.test(e.key)) {
+      e.preventDefault();
+    }
+    if (currentLength === 0 && e.key !== "0") {
+      e.preventDefault(); 
+    }
+    if (currentLength === 1 && e.key !== "9") {
+      e.preventDefault(); 
+    }
     if (
       !validInputPatternWrapUp.test(e.key) &&
       e.key !== "Backspace" &&
@@ -458,6 +471,7 @@ const JoinTeam = ({ toggleModal }) => {
                     onChange={handleInputChange}
                     onKeyDown={handleKeyDownForNumbers}
                     pattern="[0-9]*"
+                    maxLength={11}
                   />
                   {errors.mobileNumber && (
                     <p className="error">{errors.mobileNumber}</p>
