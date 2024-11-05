@@ -1168,7 +1168,11 @@ h4 {
     width: 80%;
   }
 }
-
+@media screen and (min-width: 1513px) and (max-width: 1728px) {
+  .refinance-content {
+    width: 80%;
+  }
+}
 @media screen and (min-width: 901px) and (max-width: 1100px) {
   .refinance-content {
     width: 90%;

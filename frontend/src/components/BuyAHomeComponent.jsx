@@ -708,7 +708,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                 <input
                   type="text"
                   placeholder="City or zip code"
-                  style={{ padding: "0px 0px 0px 10px" }}
+                  style={{ padding: "0px 0px 0px 10px", fontSize: "15px" }}
                   onChange={(e) => handleDetailsquest7(e.target.value)}
                 />
               </div>
