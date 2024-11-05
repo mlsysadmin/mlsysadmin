@@ -338,7 +338,10 @@
   }
   .how-it-works .steps {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     padding: 0px;
   }
