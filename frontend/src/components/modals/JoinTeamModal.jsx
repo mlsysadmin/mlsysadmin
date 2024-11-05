@@ -541,8 +541,12 @@ const JoinTeam = ({ toggleModal }) => {
                       Select option
                     </option>
                     <option value="None">None</option>
-                    <option value="Jr.">Jr.</option>
-                    <option value="Sr.">Sr.</option>
+                    <option value="jr">Jr.</option>
+                    <option value="sr">Sr.</option>
+                    <option value="I">I</option>
+                    <option value="II">II</option>
+                    <option value="III">III</option>
+                    <option value="IV">IV</option>
                   </select>
 
                   {/* <Select
