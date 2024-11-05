@@ -704,7 +704,6 @@ const JoinTeam = ({ toggleModal }) => {
                     placeholder="House No/St/Sitio/Barangay"
                     value={formData.address}
                     onChange={handleInputChange}
-                    onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
                   />
                   {errors.address && <p className="error">{errors.address}</p>}
                 </div>
