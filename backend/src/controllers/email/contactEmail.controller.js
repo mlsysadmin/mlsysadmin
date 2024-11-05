@@ -2,6 +2,7 @@
 
 require('dotenv').config();
 const { SendEmail, EmailTemplate } = require('../../services/email.service.js');
+const { StringToArray } = require('../../utils/_helper/DataFunctions.helper.js');
 const DataResponseHandler = require('../../utils/_helper/DataResponseHandler.helper.js');
 const SuccessFormatter = require('../../utils/_helper/SuccessFormatter.helper.js');
 const SuccessLoggerHelper = require('../../utils/_helper/SuccessLogger.helper.js');
@@ -24,7 +25,9 @@ module.exports = {
 
             const emailTemp = EmailTemplate(path, { ...messageContent });
 
-            const sendInquiry = await SendEmail(emailTemp, 'Brokerage Client: Listing Inquiry', payload.message, process.env.EMAIL_TO);
+            const emailTo = StringToArray(process.env.EMAIL_TO, '|');
+
+            const sendInquiry = await SendEmail(emailTemp, 'Brokerage Client: Listing Inquiry', payload.message, emailTo);
 
             console.log(sendInquiry);
 
@@ -54,7 +57,9 @@ module.exports = {
 
             const emailTemp = EmailTemplate(templateName, { ...messageContent });
 
-            const sendMessage = await SendEmail(emailTemp, 'Brokerage Client: Customer Inquiry', payload.message, process.env.EMAIL_TO);
+            const emailTo = StringToArray(process.env.EMAIL_TO, '|');
+
+            const sendMessage = await SendEmail(emailTemp, 'Brokerage Client: Customer Inquiry', payload.message, emailTo);
 
             console.log(sendMessage);
 
@@ -109,7 +114,9 @@ module.exports = {
 
             const reference = new Date();
 
-            const sendMessage = await SendEmail(emailTemp, 'Brokerage Client: Refinancing (Refinance a Home)', reference, process.env.EMAIL_TO);
+            const emailTo = StringToArray(process.env.EMAIL_TO, '|');
+
+            const sendMessage = await SendEmail(emailTemp, 'Brokerage Client: Refinancing (Refinance a Home)', reference, emailTo);
 
             console.log(sendMessage);
 
@@ -162,7 +169,9 @@ module.exports = {
 
             const reference = new Date();
 
-            const sendMessage = await SendEmail(emailTemp, 'Brokerage Client: Refinancing (Buy a Home)', reference, process.env.EMAIL_TO);
+            const emailTo = StringToArray(process.env.EMAIL_TO, '|');
+
+            const sendMessage = await SendEmail(emailTemp, 'Brokerage Client: Refinancing (Buy a Home)', reference, emailTo);
 
             console.log(sendMessage);
 
@@ -206,7 +215,9 @@ module.exports = {
 
             const reference = new Date();
 
-            const sendMessage = await SendEmail(emailTemp, 'Brokerage Client: Request for a Search of Property', reference, process.env.EMAIL_TO);
+            const emailTo = StringToArray(process.env.EMAIL_TO, '|');
+
+            const sendMessage = await SendEmail(emailTemp, 'Brokerage Client: Request for a Search of Property', reference, emailTo);
 
             console.log(sendMessage);
 
