@@ -22,7 +22,7 @@ const DiscoverHomeComponent = () => {
 	const [interestPerMonthAmount, setInterestPerMonthAmount] = useState(0);
 	const [interestRate, setInterestRate] = useState(0);
 	const [totalNumberMonths, setTotalnumberMonths] = useState(0);
-	const [principalWithInterest, setPrincipalwithInterest]= useState(0);
+	const [principalWithInterest, setPrincipalwithInterest] = useState(0);
 
 	const handleHomePriceRangeChange = (values) => {
 		setHomePriceRange(values);
@@ -75,21 +75,29 @@ const DiscoverHomeComponent = () => {
 	};
 
 	const principalAmnt = HomepriceRange - DppriceRange;
-   const totalNumberOfMonths = yearFixed * 12;
-   const totalInterestRate = interestRate * yearFixed;
-     const totalInterestAmount = principalAmnt * (totalInterestRate / 100);
+	const progressBar = ((HomepriceRange - monthlyPayment) / HomepriceRange ) * 100 ;
+	const totalNumberOfMonths = yearFixed * 12;
+	const totalInterestRate = (interestRate / 100) * yearFixed;
+	const totalInterestAmount = principalAmnt * totalInterestRate;
+
 	const computeMortgage = () => {
-       const principalAmnt = HomepriceRange - DppriceRange;
-	   const totalInterestRate = interestRate * yearFixed;
-	   const totalNumberOfMonths = yearFixed * 12;
-	   setTotalnumberMonths(totalNumberOfMonths);
-	   const totalInterestAmount = principalAmnt * (totalInterestRate / 100);
-	   const totalPaymentwithInterest = principalAmnt + totalInterestAmount;
-	   setPrincipalwithInterest(totalPaymentwithInterest.toFixed(2));
-	   const totalMonthlyPayment = totalPaymentwithInterest / totalNumberOfMonths;
-	   setMonthlyPayment(totalMonthlyPayment.toFixed(2));
-       const interestAmountperMonth = totalMonthlyPayment * (totalInterestRate / 100);
-	   setInterestPerMonthAmount(interestAmountperMonth.toFixed(2));
+		const principalAmnt = HomepriceRange - DppriceRange;
+		
+		const totalInterestRate = (interestRate / 100) * yearFixed;
+		const totalNumberOfMonths = yearFixed * 12;
+		setTotalnumberMonths(totalNumberOfMonths);
+		const totalInterestAmount = principalAmnt * totalInterestRate;
+		const totalPaymentwithInterest = principalAmnt + totalInterestAmount;
+		setPrincipalwithInterest(totalPaymentwithInterest.toFixed(2));
+		const totalMonthlyPayment = totalPaymentwithInterest / totalNumberOfMonths;
+		setMonthlyPayment(totalMonthlyPayment.toFixed(2));
+		
+		const yearlyInterestAmount = totalInterestAmount / yearFixed; //interest per year
+		const monthlyInterestAmount = yearlyInterestAmount / 12; //interest amount per month
+		setInterestPerMonthAmount(monthlyInterestAmount.toFixed(2));
+
+		// const interestAmountperMonth = totalMonthlyPayment * totalInterestRate;
+		//    setInterestPerMonthAmount(interestAmountperMonth.toFixed(2));
 		// const dpPriceRange = DppriceRange;
 		// const homePriceRange = HomepriceRange;
 		// const interestRateDecimal = interestRate / 100;
@@ -329,7 +337,7 @@ const DiscoverHomeComponent = () => {
 								>
 									<Progress
 										type="circle"
-										percent={85}
+										percent={progressBar}
 										width={200}
 										strokeWidth={10}
 										strokeColor="#D90000"
@@ -380,7 +388,9 @@ const DiscoverHomeComponent = () => {
 											/>
 											<span>
 												{" "}
-												Interest:&nbsp;&nbsp;{interestPerMonthAmount} per month
+												Interest:&nbsp;&nbsp;PHP{" "}
+												{Number(interestPerMonthAmount).toLocaleString()} per
+												month
 											</span>
 										</div>
 										<div className="payment-breakdown">
@@ -389,13 +399,14 @@ const DiscoverHomeComponent = () => {
 												style={{ backgroundColor: "#8C9094" }}
 											/>
 											<span>
-												Total Interest: PHP {totalInterestAmount.toLocaleString()} 
+												Total Interest: PHP{" "}
+												{totalInterestAmount.toLocaleString()}
 											</span>
 										</div>
 										<div className="payment-breakdown">
 											<div
 												className="radio-circle"
-												style={{ backgroundColor: "#8C9094" }}
+												style={{ backgroundColor: "#D9AEAE" }}
 											/>
 											<span>
 												{totalNumberOfMonths} months ({yearFixed} years)
