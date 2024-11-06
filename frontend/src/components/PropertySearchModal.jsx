@@ -48,6 +48,7 @@ const PropertySearch = () => {
         setFormData((prevFormData) => ({
           ...prevFormData,
           propertyType: "",
+          propertyDetails: '',
         }));
       } else {
         setIsOtherSelected(false);
@@ -194,12 +195,34 @@ const PropertySearch = () => {
       isValidEmail(formData.email)
     );
   };
+  const propertyDetailsOptions = {
+    Commercial: [
+      'Service Office',
+      'Shop/Retail',
+      'Commercial Land/Lot',
+    ],
+    Residential: [
+      'Condominium',
+      'House & Lot',
+      'Lot',
+      'Townhouse',
+      'Apartment',
+    ],
+    Industrial: [
+      'Warehouse',
+      'Farm Lot',
+      'Hotel/Resort',
+    ],
+  };
+  const availablePropertyDetails = formData.propertyType
+  ? propertyDetailsOptions[formData.propertyType] || []
+  : [];
   return (
     <div className="whole-property-search-page">
       <div className="modal-content-searchprop">
         {contextHolder}
         <div className="toptitle">
-          <h1>Looking for Your Dream Property? </h1>
+          <span className="top-title">Looking for Your Dream Property? </span>
           <span className="top-description">
             Let us help you find the perfect place to call home! Whether you're
             searching for a luxurious estate, commercial lot for your business,
@@ -276,14 +299,15 @@ const PropertySearch = () => {
         </div>
 
         <div className="form-section" ref={formRef}>
+
+
+          <form className="property-search-form" onSubmit={handleSubmit}>
           <h3>Ready to Start Your Property Search?</h3>
           <p>
             Don’t hesitate to reach out! Our team is eager to assist you in
             finding the perfect property. Simply fill out the inquiry form, and
             we’ll take it from there.
           </p>
-
-          <form className="property-search-form" onSubmit={handleSubmit}>
             <div className="form-row">
               <div className="form-column">
                 <span>Mobile Number</span>
@@ -303,16 +327,16 @@ const PropertySearch = () => {
                       e.preventDefault();
                     }
                     if (currentLength === 0 && e.key !== "0") {
-                      e.preventDefault(); 
+                      e.preventDefault();
                     }
                     if (currentLength === 1 && e.key !== "9") {
-                      e.preventDefault(); 
+                      e.preventDefault();
                     }
                   }}
                 />
               </div>
               <div className="form-column">
-                <span>Email</span>
+                <span>Email Address</span>
                 <input
                   name="email"
                   type="email"
@@ -391,7 +415,7 @@ const PropertySearch = () => {
                   >
                     <option value="">Select Property Type</option>
                     <option value="Commercial">Commercial</option>
-                    <option value="Resident">Resident</option>
+                    <option value="Residential">Residential</option>
                     <option value="Industrial">Industrial</option>
                     <option value="Others">Others</option>
                   </select>
@@ -412,7 +436,34 @@ const PropertySearch = () => {
               </div>
               <div className="form-column">
                 <span>Property Details</span>
-                <select
+                {!isOtherSelected ? (
+                  <select
+                    name="propertyDetails"
+                    value={formData.propertyDetails}
+                    onChange={(e) => handleInputChangeInquieries(e)}
+                  >
+                    <option value="">Select Property Details</option>
+                    {availablePropertyDetails.map((detail) => (
+                      <option key={detail} value={detail}>
+                        {detail}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <input
+                    type="text"
+                    name="propertyDetails"
+                    placeholder="Specify Other Property Details"
+                    value={formData.propertyDetails}
+                    onChange={(e) => {
+                      setFormData((prevFormData) => ({
+                        ...prevFormData,
+                        propertyDetails: e.target.value,
+                      }));
+                    }}
+                  />
+                )}
+                {/* <select
                   name="propertyDetails"
                   value={formData.propertyDetails}
                   onChange={(e) => handleInputChangeInquieries(e)}
@@ -421,7 +472,7 @@ const PropertySearch = () => {
                   <option value="Condominium">Condominium</option>
                   <option value="House & Lot">House & Lot</option>
                   <option value="Townhouse">Townhouse</option>
-                </select>
+                </select> */}
               </div>
               <div className="form-column">
                 <span>Location Preference</span>
@@ -475,7 +526,7 @@ const PropertySearch = () => {
                   />
                 </div>
               </div>
-              <div className="form-column">
+              <div className="form-column" id="form-column-featuresAmenities">
                 <span>Feature & Amenities</span>
                 <input
                   id="featureAmenities"
