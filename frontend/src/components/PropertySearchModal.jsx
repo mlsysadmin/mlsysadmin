@@ -297,10 +297,7 @@ const PropertySearch = () => {
             </div>
           </div>
         </div>
-
         <div className="form-section" ref={formRef}>
-
-
           <form className="property-search-form" onSubmit={handleSubmit}>
           <h3>Ready to Start Your Property Search?</h3>
           <p>
@@ -526,7 +523,7 @@ const PropertySearch = () => {
                   />
                 </div>
               </div>
-              <div className="form-column" id="form-column-featuresAmenities">
+              <div className="form-column" id="">
                 <span>Feature & Amenities</span>
                 <input
                   id="featureAmenities"
