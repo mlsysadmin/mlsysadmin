@@ -300,7 +300,12 @@ const JoinTeam = ({ toggleModal }) => {
       brokerYears: "",
     });
   };
-
+  const pascalTextFormatter = (text) => {
+    return text
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  };
   const handleCloseModal = () => {
     setIsModalVisible(false);
     resetForm();
@@ -350,10 +355,10 @@ const JoinTeam = ({ toggleModal }) => {
       e.preventDefault();
     }
     if (currentLength === 0 && e.key !== "0") {
-      e.preventDefault(); 
+      e.preventDefault();
     }
     if (currentLength === 1 && e.key !== "9") {
-      e.preventDefault(); 
+      e.preventDefault();
     }
     if (
       !validInputPatternWrapUp.test(e.key) &&
@@ -639,18 +644,14 @@ const JoinTeam = ({ toggleModal }) => {
                       Select Province
                     </option>
                     {getProvince?.map((province, index) => (
-                      <option
-                        key={index}
-                        style={{ maxHeight: "20px", overflowY: "auto" }}
-                        value={
-                          province.name.charAt(0).toUpperCase() +
-                          province.name.slice(1).toLowerCase()
-                        }
-                      >
-                        {province.name.charAt(0).toUpperCase() +
-                          province.name.slice(1).toLowerCase()}
-                      </option>
-                    ))}
+                <option
+                  key={index}
+                  style={{ maxHeight: "20px", overflowY: "auto" }}
+                  value={pascalTextFormatter(province.name)}
+                >
+                  {pascalTextFormatter(province.name)}
+                </option>
+              ))}
                   </select>
                   {errors.province && (
                     <p className="error">{errors.province}</p>
@@ -658,21 +659,6 @@ const JoinTeam = ({ toggleModal }) => {
                 </div>
                 <div className="join-team-group">
                   <span>City/Town</span>
-                  {/* <Select
-                    name="city"
-                    className="join-our-team-selector"
-                    value={formData.city}
-                    onChange={(value) =>
-                      handleInputChange({ target: { name: "city", value } })
-                    }
-                  >
-                    <Option value="">Select City</Option>
-                    {filteredCities?.map((city, index) => (
-                      <Option key={index} value={formatCityLabel(city.name)}>
-                        {formatCityLabel(city.name)}
-                      </Option>
-                    ))}
-                  </Select> */}
                   <select
                     name="city"
                     id="city"
@@ -691,13 +677,9 @@ const JoinTeam = ({ toggleModal }) => {
                     {filteredCities.map((city, index) => (
                       <option
                         key={index}
-                        value={
-                          city.name.charAt(0).toUpperCase() +
-                          city.name.slice(1).toLowerCase()
-                        }
+                        value={pascalTextFormatter(city.name)}
                       >
-                        {city.name.charAt(0).toUpperCase() +
-                          city.name.slice(1).toLowerCase()}
+                        {pascalTextFormatter(city.name)}
                       </option>
                     ))}
 

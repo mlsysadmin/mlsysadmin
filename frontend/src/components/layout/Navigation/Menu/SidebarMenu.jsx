@@ -289,7 +289,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 						style={{
 							background: "#D90000",
 						}}
-						label="List your Property"
+						label="List Your Property"
 						onClick={handleListPropertyClick}
 					/>
 					{showUpgradeModal && (
@@ -308,7 +308,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 							background: "white",
 							color: "#D90000",
 						}}
-						label="Join our Team"
+						label="Join Our Team"
 						onClick={handleJoinTeamClick}
 					/>
 				</div>

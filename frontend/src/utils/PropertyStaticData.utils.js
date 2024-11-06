@@ -30,7 +30,7 @@ const CardCategory = [
 		category: "Rent",
 		decription: `Discover your dream rental property today! Let us help you find the 
         perfect place to live your best life!`,
-		buttonTitle: "Find rentals",
+		buttonTitle: "Find Rentals",
 		link: "/all/?sale_type=rent",
 	},
 	// {

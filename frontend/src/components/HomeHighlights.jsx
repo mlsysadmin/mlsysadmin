@@ -57,7 +57,7 @@ const HomeHighlights = ({ features, amenities, includes }) => {
 
 	return (
 		<section className={styles.container}>
-			<h1 className={styles.title}>Home Highlights</h1>
+			<h1 className={styles.title}>Property Highlights</h1>
 			{
 				features.length !== 0 && (
 					<FeatureCard features={features} />

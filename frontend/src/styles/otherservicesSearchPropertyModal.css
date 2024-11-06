@@ -41,14 +41,17 @@
   flex-direction: column;
 }
 
-.toptitle h1 {
-  font-size: 24px;
+.toptitle .top-title {
+  font-size: 30px;
+  color: #000;
   margin-bottom: 10px;
+  font-weight: 700;
 }
 
-.toptitle span {
-  font-size: 16px;
+.toptitle .top-description {
+  font-size: 20px;
   color: #555;
+  
 }
 
 .why-choose-us {
@@ -64,7 +67,7 @@
 }
 .why-choose-us h2,
 .how-it-works h2 {
-  font-size: 20px;
+  font-size: 30px;
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -72,6 +75,7 @@
 .why-choose-us ul {
   list-style: none;
   padding: 0;
+  font-size: 20px;
 }
 
 .why-choose-us li {
@@ -111,11 +115,18 @@
   align-items: center;
   flex-direction: column;
 }
-.how-it-works .step label,
-.how-it-works .step span {
+.how-it-works .step label {
   font-weight: bold;
+  font-size: 20px;
 }
-
+.how-it-works .step span {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+.how-it-works .step p {
+  font-size: 20px;
+}
 .form-section {
   margin-top: 30px;
   width: 100%;
@@ -123,7 +134,12 @@
   flex-direction: column;
   flex-wrap: wrap;
 }
-
+.form-section h3{
+  font-size: 30px;
+}
+.form-section p{
+  font-size: 20px;
+}
 .property-search-form {
   display: flex;
   flex-wrap: wrap;
@@ -152,7 +168,7 @@
 .form-row .form-column select {
   flex: 1;
   padding: 10px;
-  font-size: 14px;
+  font-size: 17px;
   border: 1px solid #ccc;
   border-radius: 5px;
   outline: none;
@@ -173,6 +189,9 @@
   justify-content: right;
 }
 
+.form-section .property-search-form .form-row .form-column span{
+  font-size: 17px;
+}
 .submit-row button {
   background: red;
   color: white;
@@ -225,7 +244,7 @@
 .property-search-form .form-row .form-column #featureAmenities {
   height: 45px;
   padding: 10px;
-  font-size: 14px;
+  font-size: 17px;
   border: 1px solid #ccc;
   border-radius: 5px;
   outline: none;
@@ -379,7 +398,8 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    gap: 30px;
+    gap: 15px;
+    margin-bottom: 0px;
   }
   .ant-modal .ant-modal-body {
     width: 100%;
@@ -394,6 +414,7 @@
   .form-row {
     display: flex;
     flex-direction: column;
+    margin-bottom: 0px;
   }
   .toptitle {
     margin-top: 20px;
@@ -415,12 +436,13 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     padding: 0px;
   }
   .how-it-works .step {
-    width: 30%;
+    width: 100%;
   }
   .form-section {
     display: flex;
@@ -442,6 +464,9 @@
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
+  .left-form-row{
+    gap: 10%;
+  }
   .how-it-works {
     display: flex;
     flex-wrap: wrap;
@@ -480,11 +505,17 @@
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
-    width: 700px;
+    width: 100%;
     gap: 20px;
   }
   .form-column {
     width: 45%;
+  }
+  #form-column-featuresAmenities{
+    width: 100%;
+  }
+  .property-search-form .form-row .form-column #featureAmenities{
+    font-size: 17px;
   }
   .submit-row {
     justify-content: right;

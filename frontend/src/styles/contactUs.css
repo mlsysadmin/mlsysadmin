@@ -126,13 +126,12 @@ padding: 10px;
 
 .questions {
   width: 35%;
-  font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 23px;
   text-align: left;
   display: flex;
   flex-direction: column;
   gap: 3.5rem;
-  margin-top: 5%;
+  margin-top: 20px;
   margin-left: 5%;
 }
 
@@ -1125,4 +1124,12 @@ hr {
   .contactUsContainer {
     margin-top: 20%;
   }
+}
+@media  screen and (min-width:1401px) and (max-width:1600px) {
+  .contactUsContent{
+    gap: 210px;
+  }
+.location{
+  padding-left: 80px;
+}
 }

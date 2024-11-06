@@ -49,6 +49,10 @@ const DiscoverHomeComponent = () => {
 		setDpHomePriceRange(parsedValue);
 	};
 
+
+	const getApproved = () =>{
+		window.location.href = "/mortgage"
+	}
 	const handleInterestRateChange = (values) => {
 		setInterestRate(values);
 	};
@@ -73,6 +77,7 @@ const DiscoverHomeComponent = () => {
 	const handleSelectOptionChange = (e) => {
 		setyearFixed(e.target.value);
 	};
+
 
 	const principalAmnt = HomepriceRange - DppriceRange;
 	const progressBar = ((HomepriceRange - monthlyPayment) / HomepriceRange ) * 100 ;
@@ -312,7 +317,7 @@ const DiscoverHomeComponent = () => {
 							>
 								<span>Compute Mortgage</span>
 							</div>
-							<div className="getpre-approvedbtn">
+							<div className="getpre-approvedbtn" onClick={getApproved}>
 								<span className="text-wrapper">
 									<a
 										href="/mortgage"
