@@ -86,12 +86,21 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 							<span
 								style={{
 									fontSize: "14px",
-									fontWeight: "bolder",
+									fontWeight: "bold",
+									lineHeight: "40px",
 								}}
 							>
 								How to list your property?
 							</span>
-							<p>You have two options to list your property:</p>
+							<p
+								style={{
+									fontSize: "14px",
+									fontWeight: "400",
+									lineHeight: "40px",
+								}}
+							>
+								You have two options to list your property:
+							</p>
 							<div
 								className="ol-group-upgrade"
 								style={{
@@ -99,10 +108,10 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 									paddingLeft: "20px",
 								}}
 							>
-								<ol style={{ fontSize: "14px" }}>
+								<ol style={{ fontSize: "14px", fontWeight: "400" }}>
 									1. Upload your listing details on our website
 								</ol>
-								<ol style={{ fontSize: "14px" }}>
+								<ol style={{ fontSize: "14px", fontWeight: "400" }}>
 									2. Visit nearest ML Branch and FLA will assist you with
 									listing your property.
 								</ol>
@@ -120,10 +129,18 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 								flexWrap: "wrap",
 							}}
 						>
-							<span style={{ fontSize: "14px", fontWeight: "bolder" }}>
+							<span
+								style={{
+									fontSize: "14px",
+									fontWeight: "bold",
+									lineHeight: "40px",
+								}}
+							>
 								How to Upload Your Listing on OurWebsite? 
 							</span>
-							<p>Follow these steps to upload your property listing online:</p>
+							<p style={{ fontSize: "14px", lineHeight: "40px" }}>
+								Follow these steps to upload your property listing online:
+							</p>
 							<div
 								className="second-ol-group-upgrade"
 								style={{
@@ -131,17 +148,24 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 									paddingLeft: "20px",
 								}}
 							>
-								<ol style={{ fontSize: "14px" }}>
+								<ol style={{ fontSize: "14px", fontWeight: "400" }}>
 									1. Download and Install ML Wallet app.
 								</ol>
-								<ol style={{ fontSize: "14px" }}>
+								<ol style={{ fontSize: "14px", fontWeight: "400" }}>
 									2. Register and ensure your account is fully verified. 
-									<p style={{ fontStyle: "italic", paddingLeft: "15px" }}>
+									<p
+										style={{
+											fontStyle: "italic",
+											paddingLeft: "15px",
+											fontSize: "14px",
+											fontWeight: "400",
+										}}
+									>
 										Note: if your account isn’t verified, visit the nearest ML
 										Branch to upgrade it.
 									</p>
 								</ol>
-								<ol style={{ fontSize: "14px" }}>
+								<ol style={{ fontSize: "14px", fontWeight: "400" }}>
 									3. Once approved, scan the QR Code on ML Website to login. 
 								</ol>
 							</div>

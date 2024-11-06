@@ -297,7 +297,7 @@ const ContactUsComponent = () => {
                   {activeIndex === index && (
                     <div
                       className="dropdown-content"
-                      style={{ height: "auto", fontWeight: "lighter" }}
+                      style={{ height: "auto", fontWeight: "300",paddingTop:"20px" }}
                     >
                       {item.answer}
                     </div>

@@ -1,0 +1,1024 @@
+INFO 2024-11-05T11:41:52.194 HOTGQCD09 
+ ML Brokerage Server listening on port 8002
+INFO 2024-11-05T14:10:51.962 HOTGQCD09 
+ ML Brokerage Server listening on port 8002
+INFO 2024-11-05T14:10:59.353 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzU5Mjc3LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNTksImV4cCI6MTczMDc4NzM1OX0.h4hiY9p9vr8WCohwD4zfYTm0hweD_yFt4eahGpl9pYM"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:10:59.356 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzU5MjgwLCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNTksImV4cCI6MTczMDc4NzM1OX0.h6mNPNc1YJMpgxSNddT7t-GBhx6XSiQJ-qNwLXqhOtc"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:10:59.442 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzU5MzU0LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNTksImV4cCI6MTczMDc4NzM1OX0.8JLr5mTUIKYcon1WQaTj1OnyG29lte6P4Xk1o0Yivr0"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:10:59.446 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzU5MzcwLCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNTksImV4cCI6MTczMDc4NzM1OX0.2pak3WIDQxJuHlT4txKOnxvR1lQS2ASvTv0lxqazTjk"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:10:59.909 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/customers/exact-search',
+    method: 'GET',
+    query: '{"cellphoneNumber":"09319219651"}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzU5MjgwLCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNTksImV4cCI6MTczMDc4NzM1OX0.h6mNPNc1YJMpgxSNddT7t-GBhx6XSiQJ-qNwLXqhOtc","Accept":"application/json","Content-Type":"application/json"},"params":{"cellphoneNumber":"09319219651"}}'
+  },
+  RES: {
+    data: '"X230800000246K1"',
+    status: 200,
+    code: 'OK',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:10:59.909 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/search-kyc',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"payload":{"cellphoneNumber":"09319219651"}}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","content-length":"45","sec-ch-ua-platform":"\\"Windows\\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","content-type":"application/json","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '{"tier":{"tierLimits":[],"tierRequirements":[],"description":"EMPLOYEE","isAwarded":1,"kycTierId":7,"label":"EMPLOYEE","level":35,"maxBalance":200000,"expirationDays":null,"availableAtService":["KPX"],"type":null},"addresses":{"current":{"addressId":14550,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"otherAddress":"CEBU CITY","zipCode":null},"permanent":{"addressId":14551,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"intlProvinceCity":null,"otherAddress":"CEBU CITY","zipCode":null}},"birthDate":"2000-01-18","branchRemarks":null,"cellphoneNumber":"09319219651","civilStatus":"SINGLE","ckycId":"X230800000246K1","createdAtBranchId":null,"createdByService":"ML PAYROLL","createdByUserId":null,"dateCreated":"2023-08-14 17:46:28","dateModified":null,"modifiedByUserId":null,"modifiedByService":null,"modifiedAtBranchId":null,"customerId":7249,"email":"charebel.bejoc@mlhuillier.com","gender":"FEMALE","ids":[{"category":"GSIS (E-CARD)","expirationDate":"2024-11-15","idCardId":1515,"idNumber":"038I492","type":"SEMI-VERIFIED","validIdCardId":20,"isRequired":1,"customerId":7249,"verificationType":"MANUAL","hasExpiry":1,"otherDetails":null}],"occupation":{"organizationName":"","pensionSource":null,"workAddress":null,"workRemarks":null,"yearRetired":null,"offering":null,"workPosition":null,"natureOfWork":null,"sourceOfIncome":null},"pictures":{"customerPhoto":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_customerPhoto2_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787359&Signature=LZ9dFRYm0t99wTPwIjzug9VMJVcCV5JtqJd9f3zlHNxja%2BtXYwLN9CZzEwciR%2FfecggHG7pUuGHeMtVNaAlCc%2B8laTdi%2Fh9kR%2BJJ4F9zQO%2BIx5lr5FqG5hD%2B3LAXAEXRGJWeIm80GGhxQm7lX0dEdnWYJDWoalideAT6Vo%2F2tUhL%2Bhu8I1Jrb0MMUtExPec%2Bpd00Tots2DG7Na%2BV7DPjEwN06nS5AeCvrfO6Z5y4nkc%2Fdg37YSLgaSlUuuNG4JYLLO%2FITjQxWAjv5NrXy4NHDFddh%2BIlRTeOB0oq%2BpB7%2BwAkMNGR3t845ahFMGhMNzZdnkhXiVDtfVuec%2BV0RqO1qQ%3D%3D","idPhoto1":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto0_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787359&Signature=r%2F7do5wZw0wmmPZFOk%2BDMoA7NXywvb1tv1YTqnZzlEYr6oBQUH5qQst7manGxf3aeukzlGIfM2JMI8oubzimE0P24QNN%2B3X4kcgeFxorBMwtFgEzCq%2BSJ17XnTUG5jXnYgqcvqEKkymz7V9%2F1SIRyHOSjwJzKG7oRZhVuykfG2PnKjarWAe155i2GJJz39UcyEc%2FPB5R61oCTkKNk45tAsz1hJpKlNEZ%2BuarnNefgjyA9aIYX1ZyUtsNxx0WwX1C2dDzdPFi5Y%2F9i8nkclzDn7pQi1S2DCSVI8J8Uq79JDl%2BTux24lCGHNVC1Wc8UAAR6iW7Itkm9xPOwFQ7kSVcyQ%3D%3D","idPhoto2":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto1_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787359&Signature=Qlvnq43cXNYKUGnpMRNWuRNjW%2BtMKf%2BHTKUAtsmKIVd9HURJwM5XqVia%2Fj7Vb5lLP1ZRHyOsEOpCRBOATtr%2FtZZ%2FMuWxYTy9i%2F1JhcdwSqFo7IctXnMvHjvhd49%2BHSTk0%2FzhDGNSyWLukOtPkzufoXE1ao%2F7fj%2FtkGJrD8RzyiEmZmntRhbj0N%2FHxWk92cK6v8LqYbLCsZZXQwD11hajtteTRg0tY0gHATJyEI112aL6xr9vHsuQBFBVRciAPdYMH3Idq4e0uiPubpSQ8%2BiT9bttwT6%2BDQLujd66CUzF4Vz10Nq1ADy1x2Jeg9I%2FKlqSul52Oaa9Ot9dRXaeqO1Sug%3D%3D","idPhoto3Front":null,"idPhoto3Back":null,"kycBottom":null,"kycTop":null},"placeOfBirth":"CEBU CITY","name":{"firstName":"CHAREBEL","lastName":"BEJOC","middleName":"RR","suffix":null},"nationality":"FILIPINO","vpoRemarks":null,"seccomRemarks":null,"telephoneNumber":null,"originSystem":"HRIS","isWatchlist":null,"isActive":1,"activeStatusRemarks":null,"emailVerificationStatus":"UNVERIFIED","countryOfBirth":null,"tgRemarks":null}',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:00.212 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/customers/exact-search',
+    method: 'GET',
+    query: '{"cellphoneNumber":"09319219651"}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzU5MzcwLCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNTksImV4cCI6MTczMDc4NzM1OX0.2pak3WIDQxJuHlT4txKOnxvR1lQS2ASvTv0lxqazTjk","Accept":"application/json","Content-Type":"application/json"},"params":{"cellphoneNumber":"09319219651"}}'
+  },
+  RES: {
+    data: '"X230800000246K1"',
+    status: 200,
+    code: 'OK',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:00.212 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/search-kyc',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"payload":{"cellphoneNumber":"09319219651"}}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","content-length":"45","sec-ch-ua-platform":"\\"Windows\\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","content-type":"application/json","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '{"tier":{"tierLimits":[],"tierRequirements":[],"description":"EMPLOYEE","isAwarded":1,"kycTierId":7,"label":"EMPLOYEE","level":35,"maxBalance":200000,"expirationDays":null,"availableAtService":["KPX"],"type":null},"addresses":{"current":{"addressId":14550,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"otherAddress":"CEBU CITY","zipCode":null},"permanent":{"addressId":14551,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"intlProvinceCity":null,"otherAddress":"CEBU CITY","zipCode":null}},"birthDate":"2000-01-18","branchRemarks":null,"cellphoneNumber":"09319219651","civilStatus":"SINGLE","ckycId":"X230800000246K1","createdAtBranchId":null,"createdByService":"ML PAYROLL","createdByUserId":null,"dateCreated":"2023-08-14 17:46:28","dateModified":null,"modifiedByUserId":null,"modifiedByService":null,"modifiedAtBranchId":null,"customerId":7249,"email":"charebel.bejoc@mlhuillier.com","gender":"FEMALE","ids":[{"category":"GSIS (E-CARD)","expirationDate":"2024-11-15","idCardId":1515,"idNumber":"038I492","type":"SEMI-VERIFIED","validIdCardId":20,"isRequired":1,"customerId":7249,"verificationType":"MANUAL","hasExpiry":1,"otherDetails":null}],"occupation":{"organizationName":"","pensionSource":null,"workAddress":null,"workRemarks":null,"yearRetired":null,"offering":null,"workPosition":null,"natureOfWork":null,"sourceOfIncome":null},"pictures":{"customerPhoto":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_customerPhoto2_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787359&Signature=LZ9dFRYm0t99wTPwIjzug9VMJVcCV5JtqJd9f3zlHNxja%2BtXYwLN9CZzEwciR%2FfecggHG7pUuGHeMtVNaAlCc%2B8laTdi%2Fh9kR%2BJJ4F9zQO%2BIx5lr5FqG5hD%2B3LAXAEXRGJWeIm80GGhxQm7lX0dEdnWYJDWoalideAT6Vo%2F2tUhL%2Bhu8I1Jrb0MMUtExPec%2Bpd00Tots2DG7Na%2BV7DPjEwN06nS5AeCvrfO6Z5y4nkc%2Fdg37YSLgaSlUuuNG4JYLLO%2FITjQxWAjv5NrXy4NHDFddh%2BIlRTeOB0oq%2BpB7%2BwAkMNGR3t845ahFMGhMNzZdnkhXiVDtfVuec%2BV0RqO1qQ%3D%3D","idPhoto1":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto0_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787360&Signature=YDKfLqVKhYyrAVXi6W%2BOIS%2FNWn4zu68Apdd6X6BMivUua%2FQkoV%2BGbLRkIRnCSZYns8PQKDDT9xCdenDyvVPAGc58bvlLTV6JtzeCT0yhLTzuIsL5%2FmKK95Ca3tLpzucluAIMr1tCe4ZOA3aE0aLftdMpmpiZP4NSgr3PaSqnLUr4tCs8OJT%2ByyCDO1GDs0c1DTPhqkabp1JqGtzpRD6NK%2BfwTW0UAupJocgCUFDazo1nS%2BWFX173Yo5DKM86sjTeyJeWIJgmnPhaEFx4%2BnXNvveVteTgl%2BkKbCLokAknHf3LnUPH%2Bdy0%2BO57ERVdDaeN6zYp1W%2FNQQUhR2WQlGYFdw%3D%3D","idPhoto2":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto1_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787360&Signature=OTOejvDKs5K24nHlzm%2B77m5WXZo9kLC%2B%2Fv4HR3TZOU7zO3UY2U9P7wBm3sQw2K82diCJCg8BjtYBtr4%2FW%2BWS4NAiuN9eQ%2B%2BV2w0NW%2BjZta%2BIycZb48eIrUE3lxW8dsJPNa3ktc64SugRRRL8Wt9SABqLzSwY%2F7rRwdvwIvISoiT4%2FRliibvq%2BM2rxnYySdy0bJoBQIDEuBQfKpqNhjZtTlyfcacDBsLwkTHNG%2BhXyvhGOBs7t9AIqefChLEOhiCZtsbtjs60vLMh4nVyD0gDne%2FuwA4KoQxjbq1IFXVnwEHz20o8ytmzNiY1gEUJ1kLu5vkKVeCEND%2B280ONsbXckw%3D%3D","idPhoto3Front":null,"idPhoto3Back":null,"kycBottom":null,"kycTop":null},"placeOfBirth":"CEBU CITY","name":{"firstName":"CHAREBEL","lastName":"BEJOC","middleName":"RR","suffix":null},"nationality":"FILIPINO","vpoRemarks":null,"seccomRemarks":null,"telephoneNumber":null,"originSystem":"HRIS","isWatchlist":null,"isActive":1,"activeStatusRemarks":null,"emailVerificationStatus":"UNVERIFIED","countryOfBirth":null,"tgRemarks":null}',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:00.332 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/customers/exact-search',
+    method: 'GET',
+    query: '{"cellphoneNumber":"09319219651"}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzU5MzU0LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNTksImV4cCI6MTczMDc4NzM1OX0.8JLr5mTUIKYcon1WQaTj1OnyG29lte6P4Xk1o0Yivr0","Accept":"application/json","Content-Type":"application/json"},"params":{"cellphoneNumber":"09319219651"}}'
+  },
+  RES: {
+    data: '"X230800000246K1"',
+    status: 200,
+    code: 'OK',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:00.333 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/search-kyc',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"payload":{"cellphoneNumber":"09319219651"}}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","content-length":"45","sec-ch-ua-platform":"\\"Windows\\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","content-type":"application/json","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '{"tier":{"tierLimits":[],"tierRequirements":[],"description":"EMPLOYEE","isAwarded":1,"kycTierId":7,"label":"EMPLOYEE","level":35,"maxBalance":200000,"expirationDays":null,"availableAtService":["KPX"],"type":null},"addresses":{"current":{"addressId":14550,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"otherAddress":"CEBU CITY","zipCode":null},"permanent":{"addressId":14551,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"intlProvinceCity":null,"otherAddress":"CEBU CITY","zipCode":null}},"birthDate":"2000-01-18","branchRemarks":null,"cellphoneNumber":"09319219651","civilStatus":"SINGLE","ckycId":"X230800000246K1","createdAtBranchId":null,"createdByService":"ML PAYROLL","createdByUserId":null,"dateCreated":"2023-08-14 17:46:28","dateModified":null,"modifiedByUserId":null,"modifiedByService":null,"modifiedAtBranchId":null,"customerId":7249,"email":"charebel.bejoc@mlhuillier.com","gender":"FEMALE","ids":[{"category":"GSIS (E-CARD)","expirationDate":"2024-11-15","idCardId":1515,"idNumber":"038I492","type":"SEMI-VERIFIED","validIdCardId":20,"isRequired":1,"customerId":7249,"verificationType":"MANUAL","hasExpiry":1,"otherDetails":null}],"occupation":{"organizationName":"","pensionSource":null,"workAddress":null,"workRemarks":null,"yearRetired":null,"offering":null,"workPosition":null,"natureOfWork":null,"sourceOfIncome":null},"pictures":{"customerPhoto":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_customerPhoto2_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787359&Signature=LZ9dFRYm0t99wTPwIjzug9VMJVcCV5JtqJd9f3zlHNxja%2BtXYwLN9CZzEwciR%2FfecggHG7pUuGHeMtVNaAlCc%2B8laTdi%2Fh9kR%2BJJ4F9zQO%2BIx5lr5FqG5hD%2B3LAXAEXRGJWeIm80GGhxQm7lX0dEdnWYJDWoalideAT6Vo%2F2tUhL%2Bhu8I1Jrb0MMUtExPec%2Bpd00Tots2DG7Na%2BV7DPjEwN06nS5AeCvrfO6Z5y4nkc%2Fdg37YSLgaSlUuuNG4JYLLO%2FITjQxWAjv5NrXy4NHDFddh%2BIlRTeOB0oq%2BpB7%2BwAkMNGR3t845ahFMGhMNzZdnkhXiVDtfVuec%2BV0RqO1qQ%3D%3D","idPhoto1":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto0_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787360&Signature=YDKfLqVKhYyrAVXi6W%2BOIS%2FNWn4zu68Apdd6X6BMivUua%2FQkoV%2BGbLRkIRnCSZYns8PQKDDT9xCdenDyvVPAGc58bvlLTV6JtzeCT0yhLTzuIsL5%2FmKK95Ca3tLpzucluAIMr1tCe4ZOA3aE0aLftdMpmpiZP4NSgr3PaSqnLUr4tCs8OJT%2ByyCDO1GDs0c1DTPhqkabp1JqGtzpRD6NK%2BfwTW0UAupJocgCUFDazo1nS%2BWFX173Yo5DKM86sjTeyJeWIJgmnPhaEFx4%2BnXNvveVteTgl%2BkKbCLokAknHf3LnUPH%2Bdy0%2BO57ERVdDaeN6zYp1W%2FNQQUhR2WQlGYFdw%3D%3D","idPhoto2":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto1_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787360&Signature=OTOejvDKs5K24nHlzm%2B77m5WXZo9kLC%2B%2Fv4HR3TZOU7zO3UY2U9P7wBm3sQw2K82diCJCg8BjtYBtr4%2FW%2BWS4NAiuN9eQ%2B%2BV2w0NW%2BjZta%2BIycZb48eIrUE3lxW8dsJPNa3ktc64SugRRRL8Wt9SABqLzSwY%2F7rRwdvwIvISoiT4%2FRliibvq%2BM2rxnYySdy0bJoBQIDEuBQfKpqNhjZtTlyfcacDBsLwkTHNG%2BhXyvhGOBs7t9AIqefChLEOhiCZtsbtjs60vLMh4nVyD0gDne%2FuwA4KoQxjbq1IFXVnwEHz20o8ytmzNiY1gEUJ1kLu5vkKVeCEND%2B280ONsbXckw%3D%3D","idPhoto3Front":null,"idPhoto3Back":null,"kycBottom":null,"kycTop":null},"placeOfBirth":"CEBU CITY","name":{"firstName":"CHAREBEL","lastName":"BEJOC","middleName":"RR","suffix":null},"nationality":"FILIPINO","vpoRemarks":null,"seccomRemarks":null,"telephoneNumber":null,"originSystem":"HRIS","isWatchlist":null,"isActive":1,"activeStatusRemarks":null,"emailVerificationStatus":"UNVERIFIED","countryOfBirth":null,"tgRemarks":null}',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:00.357 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/customers/exact-search',
+    method: 'GET',
+    query: '{"cellphoneNumber":"09319219651"}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzU5Mjc3LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNTksImV4cCI6MTczMDc4NzM1OX0.h4hiY9p9vr8WCohwD4zfYTm0hweD_yFt4eahGpl9pYM","Accept":"application/json","Content-Type":"application/json"},"params":{"cellphoneNumber":"09319219651"}}'
+  },
+  RES: {
+    data: '"X230800000246K1"',
+    status: 200,
+    code: 'OK',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:00.357 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/search-kyc',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"payload":{"cellphoneNumber":"09319219651"}}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","content-length":"45","sec-ch-ua-platform":"\\"Windows\\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","content-type":"application/json","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '{"tier":{"tierLimits":[],"tierRequirements":[],"description":"EMPLOYEE","isAwarded":1,"kycTierId":7,"label":"EMPLOYEE","level":35,"maxBalance":200000,"expirationDays":null,"availableAtService":["KPX"],"type":null},"addresses":{"current":{"addressId":14550,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"otherAddress":"CEBU CITY","zipCode":null},"permanent":{"addressId":14551,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"intlProvinceCity":null,"otherAddress":"CEBU CITY","zipCode":null}},"birthDate":"2000-01-18","branchRemarks":null,"cellphoneNumber":"09319219651","civilStatus":"SINGLE","ckycId":"X230800000246K1","createdAtBranchId":null,"createdByService":"ML PAYROLL","createdByUserId":null,"dateCreated":"2023-08-14 17:46:28","dateModified":null,"modifiedByUserId":null,"modifiedByService":null,"modifiedAtBranchId":null,"customerId":7249,"email":"charebel.bejoc@mlhuillier.com","gender":"FEMALE","ids":[{"category":"GSIS (E-CARD)","expirationDate":"2024-11-15","idCardId":1515,"idNumber":"038I492","type":"SEMI-VERIFIED","validIdCardId":20,"isRequired":1,"customerId":7249,"verificationType":"MANUAL","hasExpiry":1,"otherDetails":null}],"occupation":{"organizationName":"","pensionSource":null,"workAddress":null,"workRemarks":null,"yearRetired":null,"offering":null,"workPosition":null,"natureOfWork":null,"sourceOfIncome":null},"pictures":{"customerPhoto":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_customerPhoto2_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787359&Signature=LZ9dFRYm0t99wTPwIjzug9VMJVcCV5JtqJd9f3zlHNxja%2BtXYwLN9CZzEwciR%2FfecggHG7pUuGHeMtVNaAlCc%2B8laTdi%2Fh9kR%2BJJ4F9zQO%2BIx5lr5FqG5hD%2B3LAXAEXRGJWeIm80GGhxQm7lX0dEdnWYJDWoalideAT6Vo%2F2tUhL%2Bhu8I1Jrb0MMUtExPec%2Bpd00Tots2DG7Na%2BV7DPjEwN06nS5AeCvrfO6Z5y4nkc%2Fdg37YSLgaSlUuuNG4JYLLO%2FITjQxWAjv5NrXy4NHDFddh%2BIlRTeOB0oq%2BpB7%2BwAkMNGR3t845ahFMGhMNzZdnkhXiVDtfVuec%2BV0RqO1qQ%3D%3D","idPhoto1":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto0_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787360&Signature=YDKfLqVKhYyrAVXi6W%2BOIS%2FNWn4zu68Apdd6X6BMivUua%2FQkoV%2BGbLRkIRnCSZYns8PQKDDT9xCdenDyvVPAGc58bvlLTV6JtzeCT0yhLTzuIsL5%2FmKK95Ca3tLpzucluAIMr1tCe4ZOA3aE0aLftdMpmpiZP4NSgr3PaSqnLUr4tCs8OJT%2ByyCDO1GDs0c1DTPhqkabp1JqGtzpRD6NK%2BfwTW0UAupJocgCUFDazo1nS%2BWFX173Yo5DKM86sjTeyJeWIJgmnPhaEFx4%2BnXNvveVteTgl%2BkKbCLokAknHf3LnUPH%2Bdy0%2BO57ERVdDaeN6zYp1W%2FNQQUhR2WQlGYFdw%3D%3D","idPhoto2":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto1_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787360&Signature=OTOejvDKs5K24nHlzm%2B77m5WXZo9kLC%2B%2Fv4HR3TZOU7zO3UY2U9P7wBm3sQw2K82diCJCg8BjtYBtr4%2FW%2BWS4NAiuN9eQ%2B%2BV2w0NW%2BjZta%2BIycZb48eIrUE3lxW8dsJPNa3ktc64SugRRRL8Wt9SABqLzSwY%2F7rRwdvwIvISoiT4%2FRliibvq%2BM2rxnYySdy0bJoBQIDEuBQfKpqNhjZtTlyfcacDBsLwkTHNG%2BhXyvhGOBs7t9AIqefChLEOhiCZtsbtjs60vLMh4nVyD0gDne%2FuwA4KoQxjbq1IFXVnwEHz20o8ytmzNiY1gEUJ1kLu5vkKVeCEND%2B280ONsbXckw%3D%3D","idPhoto3Front":null,"idPhoto3Back":null,"kycBottom":null,"kycTop":null},"placeOfBirth":"CEBU CITY","name":{"firstName":"CHAREBEL","lastName":"BEJOC","middleName":"RR","suffix":null},"nationality":"FILIPINO","vpoRemarks":null,"seccomRemarks":null,"telephoneNumber":null,"originSystem":"HRIS","isWatchlist":null,"isActive":1,"activeStatusRemarks":null,"emailVerificationStatus":"UNVERIFIED","countryOfBirth":null,"tgRemarks":null}',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.278 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzY1MjE3LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNjUsImV4cCI6MTczMDc4NzM2NX0.kQW3qByKe8kQH2j0Pl5z9TAlYW3VYZ31VCK3lfdg4ys"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.283 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzY1MjExLCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNjUsImV4cCI6MTczMDc4NzM2NX0.btmjAwNIhh4YK3Gc9T4ze7ZCJeSTWfiOyvlN7hby208"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.288 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzY1MjE0LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNjUsImV4cCI6MTczMDc4NzM2NX0.JLu4i8TDdmkHcksazRp8F074w_YXi919e0Y2S5Ga4rE"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.292 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzY1MjIwLCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNjUsImV4cCI6MTczMDc4NzM2NX0.A5ekP1m6dHc4OyfZC2Ni60nmV1TSFtYkujhuI_w6nU4"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.384 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/addresses/provinces',
+    method: 'GET',
+    query: '{}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzY1MjE3LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNjUsImV4cCI6MTczMDc4NzM2NX0.kQW3qByKe8kQH2j0Pl5z9TAlYW3VYZ31VCK3lfdg4ys","Accept":"application/json","Content-Type":"application/json"}}'
+  },
+  RES: {
+    data: '82',
+    status: 200,
+    code: 'OK',
+    message: 'Provinces Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.384 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/get/provinces',
+    method: 'GET',
+    query: '{}',
+    params: '{}',
+    body: '{}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","sec-ch-ua-platform":"\\"Windows\\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '82',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'Provinces Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.503 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzY1NDI3LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNjUsImV4cCI6MTczMDc4NzM2NX0.beNttqGkXsdNFvcqLcgyhwOzzvS4w9U2IPK7slfofyw"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.514 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/addresses/cities',
+    method: 'GET',
+    query: '{}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzY1MjIwLCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNjUsImV4cCI6MTczMDc4NzM2NX0.A5ekP1m6dHc4OyfZC2Ni60nmV1TSFtYkujhuI_w6nU4","Accept":"application/json","Content-Type":"application/json"}}'
+  },
+  RES: {
+    data: '1636',
+    status: 200,
+    code: 'OK',
+    message: 'Cities Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.514 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/get/cities',
+    method: 'GET',
+    query: '{}',
+    params: '{}',
+    body: '{}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","sec-ch-ua-platform":"\\"Windows\\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '1636',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'Provinces Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.578 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzY1NDg2LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNjUsImV4cCI6MTczMDc4NzM2NX0.Kr-xpXEfw6qNXM9BxNctbe4DaXJcdc4TksYYM_11HVQ"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.640 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/addresses/provinces',
+    method: 'GET',
+    query: '{}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzY1NDI3LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNjUsImV4cCI6MTczMDc4NzM2NX0.beNttqGkXsdNFvcqLcgyhwOzzvS4w9U2IPK7slfofyw","Accept":"application/json","Content-Type":"application/json"}}'
+  },
+  RES: {
+    data: '82',
+    status: 200,
+    code: 'OK',
+    message: 'Provinces Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.641 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/get/provinces',
+    method: 'GET',
+    query: '{}',
+    params: '{}',
+    body: '{}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","sec-ch-ua-platform":"\\"Windows\\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D","if-none-match":"W/\\"182d-ouLqcT98sJN4dRc8LlWwOySBUf0\\""}'
+  },
+  RES: {
+    data: '82',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'Provinces Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.644 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzY1NDk1LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNjUsImV4cCI6MTczMDc4NzM2NX0.yZvbNHmVX8YxrjMgXnyDz6o7cPRU2TLHrv3pBb8fNvM"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.696 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzY1NjE5LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNjUsImV4cCI6MTczMDc4NzM2NX0.U9svodE20UBdey1c7V_MYm1cRmcu5Q3Th1NMbaKZJsg"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.705 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/customers/exact-search',
+    method: 'GET',
+    query: '{"cellphoneNumber":"09319219651"}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzY1MjExLCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNjUsImV4cCI6MTczMDc4NzM2NX0.btmjAwNIhh4YK3Gc9T4ze7ZCJeSTWfiOyvlN7hby208","Accept":"application/json","Content-Type":"application/json"},"params":{"cellphoneNumber":"09319219651"}}'
+  },
+  RES: {
+    data: '"X230800000246K1"',
+    status: 200,
+    code: 'OK',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.705 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/search-kyc',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"payload":{"cellphoneNumber":"09319219651"}}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","content-length":"45","sec-ch-ua-platform":"\\"Windows\\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","content-type":"application/json","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '{"tier":{"tierLimits":[],"tierRequirements":[],"description":"EMPLOYEE","isAwarded":1,"kycTierId":7,"label":"EMPLOYEE","level":35,"maxBalance":200000,"expirationDays":null,"availableAtService":["KPX"],"type":null},"addresses":{"current":{"addressId":14550,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"otherAddress":"CEBU CITY","zipCode":null},"permanent":{"addressId":14551,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"intlProvinceCity":null,"otherAddress":"CEBU CITY","zipCode":null}},"birthDate":"2000-01-18","branchRemarks":null,"cellphoneNumber":"09319219651","civilStatus":"SINGLE","ckycId":"X230800000246K1","createdAtBranchId":null,"createdByService":"ML PAYROLL","createdByUserId":null,"dateCreated":"2023-08-14 17:46:28","dateModified":null,"modifiedByUserId":null,"modifiedByService":null,"modifiedAtBranchId":null,"customerId":7249,"email":"charebel.bejoc@mlhuillier.com","gender":"FEMALE","ids":[{"category":"GSIS (E-CARD)","expirationDate":"2024-11-15","idCardId":1515,"idNumber":"038I492","type":"SEMI-VERIFIED","validIdCardId":20,"isRequired":1,"customerId":7249,"verificationType":"MANUAL","hasExpiry":1,"otherDetails":null}],"occupation":{"organizationName":"","pensionSource":null,"workAddress":null,"workRemarks":null,"yearRetired":null,"offering":null,"workPosition":null,"natureOfWork":null,"sourceOfIncome":null},"pictures":{"customerPhoto":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_customerPhoto2_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787365&Signature=TKdne91i8ELN63IjK3D6BdXlUIIYI3Yqi8LjMh5Wk9q%2BDue0jBRwT5JNkukKfs1xhOBMMsKbUmEnENR8ct8YTAYFmOpxmRB0%2FoQ426hnWu13R5uOMoBHQ31DcqDqFLEd8joRHI7sa%2B43VtPNqOfkUKbnzcR8hZYaKDMGA6KMQkMDTWZRHj%2FdzDPrUfKJTHh3KjYctNIoHVxRpZ08z2GmAsWT%2FSjxqN58SYgyLloB5YqZG7gB1Zfv%2FGvispTZ6QXNK8Mjsxpuyd5b26AQEAAgg4xB5ZhjuLDzYnThawTIb3MH2Rmfo61f%2BZrpmaZpJoNfYTa0vzUjHb14kAVOLv2GOg%3D%3D","idPhoto1":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto0_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787365&Signature=lp%2FdDrAPLk58AZyh67NeIo5crtT5jpil3pYU8nVytGMDKfz3ArwC3I8AFrCDTlxuGn0pJFUiDjrPgFnkLtdTfjfZ66VcvxQrzW9GUPJEht5AAVN%2FwxK4sNGVrG2Yvh6FtS%2FknT4xnIiKjV0VoOAgKuUdhtp6il6NecJKp7Ujkyxdposv3Yx87geQ7T3r4iAWIUPp5T8xHxkMirg%2F%2BCj4YOFFUKsx3MudEONX3%2BjQe2Z5u9HPA7JEa7wxwB5M%2FqA%2FSDNXQmlgQBK2cau7WiMoJdlIC9N3XFffZrezSTjtBEuBtOLloSRlcxnpt%2BK4pihTunZRhLWWQ%2BJ4Xy1fARrlKA%3D%3D","idPhoto2":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto1_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787365&Signature=q7DYnZ0g1Dt%2FBBGujOFxZQ2nT2PUYDwp8diTit92DYR%2BZ078I%2Bz%2BqcDoIm40L7Xad5s4HuXXrON5gMsqvIrDnLgnTfzODWnsqkW%2Fo58PzzVCBIbYFT07tunlipaWeL%2FEbx606Y0oczn36DLljhOGMkK80SSPe4VBDDdX9EjmeWDr09r1wwSuM0R3r8GiNnPwf%2BgARSCYm6MCK5vkrW6RI1bn1DV2ysxul8P1j676MDkRrXUqMca54P85vGoT9ThCFqk5WHs%2FyYtcvUdbQHA%2Fkns7sP4d5KZ2%2F2OEz2IRQ4ggumDaMUsahiulHSMHvOrup5FOTNMq25BYQI41EwlCuQ%3D%3D","idPhoto3Front":null,"idPhoto3Back":null,"kycBottom":null,"kycTop":null},"placeOfBirth":"CEBU CITY","name":{"firstName":"CHAREBEL","lastName":"BEJOC","middleName":"RR","suffix":null},"nationality":"FILIPINO","vpoRemarks":null,"seccomRemarks":null,"telephoneNumber":null,"originSystem":"HRIS","isWatchlist":null,"isActive":1,"activeStatusRemarks":null,"emailVerificationStatus":"UNVERIFIED","countryOfBirth":null,"tgRemarks":null}',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.959 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/addresses/cities',
+    method: 'GET',
+    query: '{}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzY1NjE5LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNjUsImV4cCI6MTczMDc4NzM2NX0.U9svodE20UBdey1c7V_MYm1cRmcu5Q3Th1NMbaKZJsg","Accept":"application/json","Content-Type":"application/json"}}'
+  },
+  RES: {
+    data: '1636',
+    status: 200,
+    code: 'OK',
+    message: 'Cities Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.960 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/get/cities',
+    method: 'GET',
+    query: '{}',
+    params: '{}',
+    body: '{}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","sec-ch-ua-platform":"\\"Windows\\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D","if-none-match":"W/\\"2171f-O7YN3Bq95rEE/pX/7MKZEmOoGBs\\""}'
+  },
+  RES: {
+    data: '1636',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'Provinces Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.998 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/customers/exact-search',
+    method: 'GET',
+    query: '{"cellphoneNumber":"09319219651"}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzY1NDg2LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNjUsImV4cCI6MTczMDc4NzM2NX0.Kr-xpXEfw6qNXM9BxNctbe4DaXJcdc4TksYYM_11HVQ","Accept":"application/json","Content-Type":"application/json"},"params":{"cellphoneNumber":"09319219651"}}'
+  },
+  RES: {
+    data: '"X230800000246K1"',
+    status: 200,
+    code: 'OK',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:05.999 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/search-kyc',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"payload":{"cellphoneNumber":"09319219651"}}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","content-length":"45","sec-ch-ua-platform":"\\"Windows\\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","content-type":"application/json","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '{"tier":{"tierLimits":[],"tierRequirements":[],"description":"EMPLOYEE","isAwarded":1,"kycTierId":7,"label":"EMPLOYEE","level":35,"maxBalance":200000,"expirationDays":null,"availableAtService":["KPX"],"type":null},"addresses":{"current":{"addressId":14550,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"otherAddress":"CEBU CITY","zipCode":null},"permanent":{"addressId":14551,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"intlProvinceCity":null,"otherAddress":"CEBU CITY","zipCode":null}},"birthDate":"2000-01-18","branchRemarks":null,"cellphoneNumber":"09319219651","civilStatus":"SINGLE","ckycId":"X230800000246K1","createdAtBranchId":null,"createdByService":"ML PAYROLL","createdByUserId":null,"dateCreated":"2023-08-14 17:46:28","dateModified":null,"modifiedByUserId":null,"modifiedByService":null,"modifiedAtBranchId":null,"customerId":7249,"email":"charebel.bejoc@mlhuillier.com","gender":"FEMALE","ids":[{"category":"GSIS (E-CARD)","expirationDate":"2024-11-15","idCardId":1515,"idNumber":"038I492","type":"SEMI-VERIFIED","validIdCardId":20,"isRequired":1,"customerId":7249,"verificationType":"MANUAL","hasExpiry":1,"otherDetails":null}],"occupation":{"organizationName":"","pensionSource":null,"workAddress":null,"workRemarks":null,"yearRetired":null,"offering":null,"workPosition":null,"natureOfWork":null,"sourceOfIncome":null},"pictures":{"customerPhoto":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_customerPhoto2_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787365&Signature=TKdne91i8ELN63IjK3D6BdXlUIIYI3Yqi8LjMh5Wk9q%2BDue0jBRwT5JNkukKfs1xhOBMMsKbUmEnENR8ct8YTAYFmOpxmRB0%2FoQ426hnWu13R5uOMoBHQ31DcqDqFLEd8joRHI7sa%2B43VtPNqOfkUKbnzcR8hZYaKDMGA6KMQkMDTWZRHj%2FdzDPrUfKJTHh3KjYctNIoHVxRpZ08z2GmAsWT%2FSjxqN58SYgyLloB5YqZG7gB1Zfv%2FGvispTZ6QXNK8Mjsxpuyd5b26AQEAAgg4xB5ZhjuLDzYnThawTIb3MH2Rmfo61f%2BZrpmaZpJoNfYTa0vzUjHb14kAVOLv2GOg%3D%3D","idPhoto1":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto0_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787365&Signature=lp%2FdDrAPLk58AZyh67NeIo5crtT5jpil3pYU8nVytGMDKfz3ArwC3I8AFrCDTlxuGn0pJFUiDjrPgFnkLtdTfjfZ66VcvxQrzW9GUPJEht5AAVN%2FwxK4sNGVrG2Yvh6FtS%2FknT4xnIiKjV0VoOAgKuUdhtp6il6NecJKp7Ujkyxdposv3Yx87geQ7T3r4iAWIUPp5T8xHxkMirg%2F%2BCj4YOFFUKsx3MudEONX3%2BjQe2Z5u9HPA7JEa7wxwB5M%2FqA%2FSDNXQmlgQBK2cau7WiMoJdlIC9N3XFffZrezSTjtBEuBtOLloSRlcxnpt%2BK4pihTunZRhLWWQ%2BJ4Xy1fARrlKA%3D%3D","idPhoto2":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto1_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787365&Signature=q7DYnZ0g1Dt%2FBBGujOFxZQ2nT2PUYDwp8diTit92DYR%2BZ078I%2Bz%2BqcDoIm40L7Xad5s4HuXXrON5gMsqvIrDnLgnTfzODWnsqkW%2Fo58PzzVCBIbYFT07tunlipaWeL%2FEbx606Y0oczn36DLljhOGMkK80SSPe4VBDDdX9EjmeWDr09r1wwSuM0R3r8GiNnPwf%2BgARSCYm6MCK5vkrW6RI1bn1DV2ysxul8P1j676MDkRrXUqMca54P85vGoT9ThCFqk5WHs%2FyYtcvUdbQHA%2Fkns7sP4d5KZ2%2F2OEz2IRQ4ggumDaMUsahiulHSMHvOrup5FOTNMq25BYQI41EwlCuQ%3D%3D","idPhoto3Front":null,"idPhoto3Back":null,"kycBottom":null,"kycTop":null},"placeOfBirth":"CEBU CITY","name":{"firstName":"CHAREBEL","lastName":"BEJOC","middleName":"RR","suffix":null},"nationality":"FILIPINO","vpoRemarks":null,"seccomRemarks":null,"telephoneNumber":null,"originSystem":"HRIS","isWatchlist":null,"isActive":1,"activeStatusRemarks":null,"emailVerificationStatus":"UNVERIFIED","countryOfBirth":null,"tgRemarks":null}',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:07.120 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/customers/exact-search',
+    method: 'GET',
+    query: '{"cellphoneNumber":"09319219651"}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzY1NDk1LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNjUsImV4cCI6MTczMDc4NzM2NX0.yZvbNHmVX8YxrjMgXnyDz6o7cPRU2TLHrv3pBb8fNvM","Accept":"application/json","Content-Type":"application/json"},"params":{"cellphoneNumber":"09319219651"}}'
+  },
+  RES: {
+    data: '"X230800000246K1"',
+    status: 200,
+    code: 'OK',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:07.120 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/search-kyc',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"payload":{"cellphoneNumber":"09319219651"}}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","content-length":"45","sec-ch-ua-platform":"\\"Windows\\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","content-type":"application/json","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '{"tier":{"tierLimits":[],"tierRequirements":[],"description":"EMPLOYEE","isAwarded":1,"kycTierId":7,"label":"EMPLOYEE","level":35,"maxBalance":200000,"expirationDays":null,"availableAtService":["KPX"],"type":null},"addresses":{"current":{"addressId":14550,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"otherAddress":"CEBU CITY","zipCode":null},"permanent":{"addressId":14551,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"intlProvinceCity":null,"otherAddress":"CEBU CITY","zipCode":null}},"birthDate":"2000-01-18","branchRemarks":null,"cellphoneNumber":"09319219651","civilStatus":"SINGLE","ckycId":"X230800000246K1","createdAtBranchId":null,"createdByService":"ML PAYROLL","createdByUserId":null,"dateCreated":"2023-08-14 17:46:28","dateModified":null,"modifiedByUserId":null,"modifiedByService":null,"modifiedAtBranchId":null,"customerId":7249,"email":"charebel.bejoc@mlhuillier.com","gender":"FEMALE","ids":[{"category":"GSIS (E-CARD)","expirationDate":"2024-11-15","idCardId":1515,"idNumber":"038I492","type":"SEMI-VERIFIED","validIdCardId":20,"isRequired":1,"customerId":7249,"verificationType":"MANUAL","hasExpiry":1,"otherDetails":null}],"occupation":{"organizationName":"","pensionSource":null,"workAddress":null,"workRemarks":null,"yearRetired":null,"offering":null,"workPosition":null,"natureOfWork":null,"sourceOfIncome":null},"pictures":{"customerPhoto":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_customerPhoto2_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787365&Signature=TKdne91i8ELN63IjK3D6BdXlUIIYI3Yqi8LjMh5Wk9q%2BDue0jBRwT5JNkukKfs1xhOBMMsKbUmEnENR8ct8YTAYFmOpxmRB0%2FoQ426hnWu13R5uOMoBHQ31DcqDqFLEd8joRHI7sa%2B43VtPNqOfkUKbnzcR8hZYaKDMGA6KMQkMDTWZRHj%2FdzDPrUfKJTHh3KjYctNIoHVxRpZ08z2GmAsWT%2FSjxqN58SYgyLloB5YqZG7gB1Zfv%2FGvispTZ6QXNK8Mjsxpuyd5b26AQEAAgg4xB5ZhjuLDzYnThawTIb3MH2Rmfo61f%2BZrpmaZpJoNfYTa0vzUjHb14kAVOLv2GOg%3D%3D","idPhoto1":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto0_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787365&Signature=lp%2FdDrAPLk58AZyh67NeIo5crtT5jpil3pYU8nVytGMDKfz3ArwC3I8AFrCDTlxuGn0pJFUiDjrPgFnkLtdTfjfZ66VcvxQrzW9GUPJEht5AAVN%2FwxK4sNGVrG2Yvh6FtS%2FknT4xnIiKjV0VoOAgKuUdhtp6il6NecJKp7Ujkyxdposv3Yx87geQ7T3r4iAWIUPp5T8xHxkMirg%2F%2BCj4YOFFUKsx3MudEONX3%2BjQe2Z5u9HPA7JEa7wxwB5M%2FqA%2FSDNXQmlgQBK2cau7WiMoJdlIC9N3XFffZrezSTjtBEuBtOLloSRlcxnpt%2BK4pihTunZRhLWWQ%2BJ4Xy1fARrlKA%3D%3D","idPhoto2":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto1_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787365&Signature=q7DYnZ0g1Dt%2FBBGujOFxZQ2nT2PUYDwp8diTit92DYR%2BZ078I%2Bz%2BqcDoIm40L7Xad5s4HuXXrON5gMsqvIrDnLgnTfzODWnsqkW%2Fo58PzzVCBIbYFT07tunlipaWeL%2FEbx606Y0oczn36DLljhOGMkK80SSPe4VBDDdX9EjmeWDr09r1wwSuM0R3r8GiNnPwf%2BgARSCYm6MCK5vkrW6RI1bn1DV2ysxul8P1j676MDkRrXUqMca54P85vGoT9ThCFqk5WHs%2FyYtcvUdbQHA%2Fkns7sP4d5KZ2%2F2OEz2IRQ4ggumDaMUsahiulHSMHvOrup5FOTNMq25BYQI41EwlCuQ%3D%3D","idPhoto3Front":null,"idPhoto3Back":null,"kycBottom":null,"kycTop":null},"placeOfBirth":"CEBU CITY","name":{"firstName":"CHAREBEL","lastName":"BEJOC","middleName":"RR","suffix":null},"nationality":"FILIPINO","vpoRemarks":null,"seccomRemarks":null,"telephoneNumber":null,"originSystem":"HRIS","isWatchlist":null,"isActive":1,"activeStatusRemarks":null,"emailVerificationStatus":"UNVERIFIED","countryOfBirth":null,"tgRemarks":null}',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:07.236 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/customers/exact-search',
+    method: 'GET',
+    query: '{"cellphoneNumber":"09319219651"}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzY1MjE0LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNjUsImV4cCI6MTczMDc4NzM2NX0.JLu4i8TDdmkHcksazRp8F074w_YXi919e0Y2S5Ga4rE","Accept":"application/json","Content-Type":"application/json"},"params":{"cellphoneNumber":"09319219651"}}'
+  },
+  RES: {
+    data: '"X230800000246K1"',
+    status: 200,
+    code: 'OK',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:07.236 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/search-kyc',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"payload":{"cellphoneNumber":"09319219651"}}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","content-length":"45","sec-ch-ua-platform":"\\"Windows\\"","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","content-type":"application/json","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?0","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '{"tier":{"tierLimits":[],"tierRequirements":[],"description":"EMPLOYEE","isAwarded":1,"kycTierId":7,"label":"EMPLOYEE","level":35,"maxBalance":200000,"expirationDays":null,"availableAtService":["KPX"],"type":null},"addresses":{"current":{"addressId":14550,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"otherAddress":"CEBU CITY","zipCode":null},"permanent":{"addressId":14551,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"intlProvinceCity":null,"otherAddress":"CEBU CITY","zipCode":null}},"birthDate":"2000-01-18","branchRemarks":null,"cellphoneNumber":"09319219651","civilStatus":"SINGLE","ckycId":"X230800000246K1","createdAtBranchId":null,"createdByService":"ML PAYROLL","createdByUserId":null,"dateCreated":"2023-08-14 17:46:28","dateModified":null,"modifiedByUserId":null,"modifiedByService":null,"modifiedAtBranchId":null,"customerId":7249,"email":"charebel.bejoc@mlhuillier.com","gender":"FEMALE","ids":[{"category":"GSIS (E-CARD)","expirationDate":"2024-11-15","idCardId":1515,"idNumber":"038I492","type":"SEMI-VERIFIED","validIdCardId":20,"isRequired":1,"customerId":7249,"verificationType":"MANUAL","hasExpiry":1,"otherDetails":null}],"occupation":{"organizationName":"","pensionSource":null,"workAddress":null,"workRemarks":null,"yearRetired":null,"offering":null,"workPosition":null,"natureOfWork":null,"sourceOfIncome":null},"pictures":{"customerPhoto":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_customerPhoto2_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787365&Signature=TKdne91i8ELN63IjK3D6BdXlUIIYI3Yqi8LjMh5Wk9q%2BDue0jBRwT5JNkukKfs1xhOBMMsKbUmEnENR8ct8YTAYFmOpxmRB0%2FoQ426hnWu13R5uOMoBHQ31DcqDqFLEd8joRHI7sa%2B43VtPNqOfkUKbnzcR8hZYaKDMGA6KMQkMDTWZRHj%2FdzDPrUfKJTHh3KjYctNIoHVxRpZ08z2GmAsWT%2FSjxqN58SYgyLloB5YqZG7gB1Zfv%2FGvispTZ6QXNK8Mjsxpuyd5b26AQEAAgg4xB5ZhjuLDzYnThawTIb3MH2Rmfo61f%2BZrpmaZpJoNfYTa0vzUjHb14kAVOLv2GOg%3D%3D","idPhoto1":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto0_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787365&Signature=lp%2FdDrAPLk58AZyh67NeIo5crtT5jpil3pYU8nVytGMDKfz3ArwC3I8AFrCDTlxuGn0pJFUiDjrPgFnkLtdTfjfZ66VcvxQrzW9GUPJEht5AAVN%2FwxK4sNGVrG2Yvh6FtS%2FknT4xnIiKjV0VoOAgKuUdhtp6il6NecJKp7Ujkyxdposv3Yx87geQ7T3r4iAWIUPp5T8xHxkMirg%2F%2BCj4YOFFUKsx3MudEONX3%2BjQe2Z5u9HPA7JEa7wxwB5M%2FqA%2FSDNXQmlgQBK2cau7WiMoJdlIC9N3XFffZrezSTjtBEuBtOLloSRlcxnpt%2BK4pihTunZRhLWWQ%2BJ4Xy1fARrlKA%3D%3D","idPhoto2":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto1_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787366&Signature=m7hTP9CDz3Yx%2FbGkiQj1hXnhC3prgMVC93p8dS%2B2RJL1sg7DXwWOA84bK6Jfc6KrZSatuoTbqw2msUqurE4cQOQhdRcaBFfLyEBrUsTXHvjHV2mDkmOm1irXq9O4pH1K%2Bq1m7VdSzcm22hrqDaHLSMlUVePAY7B57RX9vj7YUjsxJTN%2FsDuqMI6Joqxi8qeYh10Xn%2FD0xghnteeAaSDCN9xPUSFz%2BDtfXNVJhAdlLNwmykXWHZWofldThS2m7WojJiFXlkIwXWKWXsDl9cw%2F1hhFBhXSyVLWopKVuZsKBkmRtOUWBhLK9DIhCiFo6Kubu5efNyEBoUEJ0%2B1o9OL8lA%3D%3D","idPhoto3Front":null,"idPhoto3Back":null,"kycBottom":null,"kycTop":null},"placeOfBirth":"CEBU CITY","name":{"firstName":"CHAREBEL","lastName":"BEJOC","middleName":"RR","suffix":null},"nationality":"FILIPINO","vpoRemarks":null,"seccomRemarks":null,"telephoneNumber":null,"originSystem":"HRIS","isWatchlist":null,"isActive":1,"activeStatusRemarks":null,"emailVerificationStatus":"UNVERIFIED","countryOfBirth":null,"tgRemarks":null}',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:15.170 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3Mzc1MTAzLCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNzUsImV4cCI6MTczMDc4NzM3NX0.X2rKwDs0eG6jeh2Wuq7_8ey6817X2Ny1u_LX7StNCW8"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:11:15.174 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3Mzc1MDk1LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNzUsImV4cCI6MTczMDc4NzM3NX0.LWhMbScT1yKi9wieV_jp6zjyyok5YfUm_F-C96hy7Go"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:11:15.178 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3Mzc1MTA2LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNzUsImV4cCI6MTczMDc4NzM3NX0.hZh6Dgu09jd827rhogod3sBIe7Mb0OrsunhgoblRGtc"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:11:15.238 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3Mzc1MTc2LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNzUsImV4cCI6MTczMDc4NzM3NX0.lI1i6Dhea5oSBXJm8y3jE57bdIbHHuwGWzwbdBSSstM"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:11:16.612 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/customers/exact-search',
+    method: 'GET',
+    query: '{"cellphoneNumber":"09319219651"}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3Mzc1MTAzLCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNzUsImV4cCI6MTczMDc4NzM3NX0.X2rKwDs0eG6jeh2Wuq7_8ey6817X2Ny1u_LX7StNCW8","Accept":"application/json","Content-Type":"application/json"},"params":{"cellphoneNumber":"09319219651"}}'
+  },
+  RES: {
+    data: '"X230800000246K1"',
+    status: 200,
+    code: 'OK',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:16.613 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/search-kyc',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"payload":{"cellphoneNumber":"09319219651"}}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","content-length":"45","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua-platform":"\\"Android\\"","user-agent":"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","content-type":"application/json","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?1","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '{"tier":{"tierLimits":[],"tierRequirements":[],"description":"EMPLOYEE","isAwarded":1,"kycTierId":7,"label":"EMPLOYEE","level":35,"maxBalance":200000,"expirationDays":null,"availableAtService":["KPX"],"type":null},"addresses":{"current":{"addressId":14550,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"otherAddress":"CEBU CITY","zipCode":null},"permanent":{"addressId":14551,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"intlProvinceCity":null,"otherAddress":"CEBU CITY","zipCode":null}},"birthDate":"2000-01-18","branchRemarks":null,"cellphoneNumber":"09319219651","civilStatus":"SINGLE","ckycId":"X230800000246K1","createdAtBranchId":null,"createdByService":"ML PAYROLL","createdByUserId":null,"dateCreated":"2023-08-14 17:46:28","dateModified":null,"modifiedByUserId":null,"modifiedByService":null,"modifiedAtBranchId":null,"customerId":7249,"email":"charebel.bejoc@mlhuillier.com","gender":"FEMALE","ids":[{"category":"GSIS (E-CARD)","expirationDate":"2024-11-15","idCardId":1515,"idNumber":"038I492","type":"SEMI-VERIFIED","validIdCardId":20,"isRequired":1,"customerId":7249,"verificationType":"MANUAL","hasExpiry":1,"otherDetails":null}],"occupation":{"organizationName":"","pensionSource":null,"workAddress":null,"workRemarks":null,"yearRetired":null,"offering":null,"workPosition":null,"natureOfWork":null,"sourceOfIncome":null},"pictures":{"customerPhoto":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_customerPhoto2_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787375&Signature=egJ4c3%2B7KRTeyD6LVrEZ9n%2BKI3i9JzYC8W51Cpz8b8ar%2ByGLrI1GH5XpJ94r2CKMLEd7AvI5StvfficKLQYXCAzXGb9%2FTIvJdXKGtbbTADCWc2ahyQ9Xt34KDnofHrTJxLjmR6JZGXaZ6NvUXKkf9fvfwLzAGcZIoK8UeoOPAgmeeHNQEUgy814W4wWBIzddmN1tRYbhQmb3qwtvBi8Xko0EMigOADSZhy9%2FNnJovy8eeE20yAgn1dRvAgnR3nqLW123oI0wZpau2soyF4IAj2sHJP3thUoyrtj%2BncX%2Bc7G8e7JFhVEEIRJjpOqSi8gQo4GxMgvWIjLHr%2FZPYFJKMA%3D%3D","idPhoto1":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto0_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787376&Signature=iwcHqi3M5K9Wnp1gsvh0rKSbYV%2B8Djxc%2Fd9mhlGhL%2FJWd7A9%2BhB2cGWhCr6hAMcL3hmTHIsZI55EnLTQ8qPHayo16BNlumx6vIyicOU2MDpXLDtiIRdJ%2FNAFeXm94y2veyqaLzddlqxODhehIuqpGv5WsX8bhm4EWBkmXq509kTB0Nn1Bhm8SIqqyCm2N0T6yP4286SCMQRDHz457KsK%2BDrF%2B4pYHg2x7DVdjpwW767sZvOntppEL9uVIKQRer20zlKygwI2emvoYruhMM9nV8vm2SS8hIY%2B2r%2FiGnjFNR8FKJH7136IDdMMgFWvQgisiVC%2Blh8Y0soUGq205kGCQg%3D%3D","idPhoto2":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto1_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787376&Signature=uXTwQoyS37d8Sn6IB%2Be3NZn%2Fas2Y%2BLNttxdN8TzeTLC%2FobmeV1SJMyFFNzB3HkEQdMN%2BheAgHG3vY3pvTM7fwZAFtUV3My7cqpqTm%2Bd6fskZzpIeTBHM0HqVk4hLySAKOazSY2ef%2FmMJYOZSofFgE0aKpClEZcm7W%2BBzcLPHq5z2os3eSyzaToCYH2vyTg0787IuiWq1u8pZ9Nz%2F72Q8hE7pf6Zo1AeD%2BVHRCC11ttYCBG3aeSwLitRTCy9C6G3yfN4mO0iRM2rP1T6WxlFzZHHgWJfp41dQWaJo04cqbE7VuGZcn%2BmeYu9WXBFDRvPre0LoI4BCHpvGwCsX0SwAzg%3D%3D","idPhoto3Front":null,"idPhoto3Back":null,"kycBottom":null,"kycTop":null},"placeOfBirth":"CEBU CITY","name":{"firstName":"CHAREBEL","lastName":"BEJOC","middleName":"RR","suffix":null},"nationality":"FILIPINO","vpoRemarks":null,"seccomRemarks":null,"telephoneNumber":null,"originSystem":"HRIS","isWatchlist":null,"isActive":1,"activeStatusRemarks":null,"emailVerificationStatus":"UNVERIFIED","countryOfBirth":null,"tgRemarks":null}',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:16.949 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/customers/exact-search',
+    method: 'GET',
+    query: '{"cellphoneNumber":"09319219651"}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3Mzc1MDk1LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNzUsImV4cCI6MTczMDc4NzM3NX0.LWhMbScT1yKi9wieV_jp6zjyyok5YfUm_F-C96hy7Go","Accept":"application/json","Content-Type":"application/json"},"params":{"cellphoneNumber":"09319219651"}}'
+  },
+  RES: {
+    data: '"X230800000246K1"',
+    status: 200,
+    code: 'OK',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:16.950 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/search-kyc',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"payload":{"cellphoneNumber":"09319219651"}}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","content-length":"45","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua-platform":"\\"Android\\"","user-agent":"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","content-type":"application/json","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?1","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '{"tier":{"tierLimits":[],"tierRequirements":[],"description":"EMPLOYEE","isAwarded":1,"kycTierId":7,"label":"EMPLOYEE","level":35,"maxBalance":200000,"expirationDays":null,"availableAtService":["KPX"],"type":null},"addresses":{"current":{"addressId":14550,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"otherAddress":"CEBU CITY","zipCode":null},"permanent":{"addressId":14551,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"intlProvinceCity":null,"otherAddress":"CEBU CITY","zipCode":null}},"birthDate":"2000-01-18","branchRemarks":null,"cellphoneNumber":"09319219651","civilStatus":"SINGLE","ckycId":"X230800000246K1","createdAtBranchId":null,"createdByService":"ML PAYROLL","createdByUserId":null,"dateCreated":"2023-08-14 17:46:28","dateModified":null,"modifiedByUserId":null,"modifiedByService":null,"modifiedAtBranchId":null,"customerId":7249,"email":"charebel.bejoc@mlhuillier.com","gender":"FEMALE","ids":[{"category":"GSIS (E-CARD)","expirationDate":"2024-11-15","idCardId":1515,"idNumber":"038I492","type":"SEMI-VERIFIED","validIdCardId":20,"isRequired":1,"customerId":7249,"verificationType":"MANUAL","hasExpiry":1,"otherDetails":null}],"occupation":{"organizationName":"","pensionSource":null,"workAddress":null,"workRemarks":null,"yearRetired":null,"offering":null,"workPosition":null,"natureOfWork":null,"sourceOfIncome":null},"pictures":{"customerPhoto":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_customerPhoto2_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787376&Signature=kG7jPjYbbVzrzQCuDGfiwcd%2FQgOC4c0NW0rOxhY1vegwgndPs7AOjTqnreH3L33FHU3CLmAt6M15drCCGLZI%2F5tYt%2FG4a4NPhAYkCYhwHYsSrbFa%2BU32CFQbvtQ0b%2Brs7pA8z3BwBl7UzKudVWLEYxxo13MrL6FQqI6Ld13eP7bw61hE3GL1yJeHzjXmsDpVdm29pkRzz1RHsb32cG3%2FrBpM2itG1g%2FO4zeYMOih3D4LIderUz5BlHh0nRYgiGos4g0KQYm5J6NExQLYpelYXM8ZVlgYjgtQ6TlWEL2BjjSv9MQWCULuVf1SjakmQ6AzXWBoKGPuZuK6rhNWHPl0dg%3D%3D","idPhoto1":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto0_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787376&Signature=iwcHqi3M5K9Wnp1gsvh0rKSbYV%2B8Djxc%2Fd9mhlGhL%2FJWd7A9%2BhB2cGWhCr6hAMcL3hmTHIsZI55EnLTQ8qPHayo16BNlumx6vIyicOU2MDpXLDtiIRdJ%2FNAFeXm94y2veyqaLzddlqxODhehIuqpGv5WsX8bhm4EWBkmXq509kTB0Nn1Bhm8SIqqyCm2N0T6yP4286SCMQRDHz457KsK%2BDrF%2B4pYHg2x7DVdjpwW767sZvOntppEL9uVIKQRer20zlKygwI2emvoYruhMM9nV8vm2SS8hIY%2B2r%2FiGnjFNR8FKJH7136IDdMMgFWvQgisiVC%2Blh8Y0soUGq205kGCQg%3D%3D","idPhoto2":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto1_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787376&Signature=uXTwQoyS37d8Sn6IB%2Be3NZn%2Fas2Y%2BLNttxdN8TzeTLC%2FobmeV1SJMyFFNzB3HkEQdMN%2BheAgHG3vY3pvTM7fwZAFtUV3My7cqpqTm%2Bd6fskZzpIeTBHM0HqVk4hLySAKOazSY2ef%2FmMJYOZSofFgE0aKpClEZcm7W%2BBzcLPHq5z2os3eSyzaToCYH2vyTg0787IuiWq1u8pZ9Nz%2F72Q8hE7pf6Zo1AeD%2BVHRCC11ttYCBG3aeSwLitRTCy9C6G3yfN4mO0iRM2rP1T6WxlFzZHHgWJfp41dQWaJo04cqbE7VuGZcn%2BmeYu9WXBFDRvPre0LoI4BCHpvGwCsX0SwAzg%3D%3D","idPhoto3Front":null,"idPhoto3Back":null,"kycBottom":null,"kycTop":null},"placeOfBirth":"CEBU CITY","name":{"firstName":"CHAREBEL","lastName":"BEJOC","middleName":"RR","suffix":null},"nationality":"FILIPINO","vpoRemarks":null,"seccomRemarks":null,"telephoneNumber":null,"originSystem":"HRIS","isWatchlist":null,"isActive":1,"activeStatusRemarks":null,"emailVerificationStatus":"UNVERIFIED","countryOfBirth":null,"tgRemarks":null}',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:16.973 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/customers/exact-search',
+    method: 'GET',
+    query: '{"cellphoneNumber":"09319219651"}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3Mzc1MTA2LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNzUsImV4cCI6MTczMDc4NzM3NX0.hZh6Dgu09jd827rhogod3sBIe7Mb0OrsunhgoblRGtc","Accept":"application/json","Content-Type":"application/json"},"params":{"cellphoneNumber":"09319219651"}}'
+  },
+  RES: {
+    data: '"X230800000246K1"',
+    status: 200,
+    code: 'OK',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:16.974 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/search-kyc',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"payload":{"cellphoneNumber":"09319219651"}}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","content-length":"45","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua-platform":"\\"Android\\"","user-agent":"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","content-type":"application/json","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?1","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '{"tier":{"tierLimits":[],"tierRequirements":[],"description":"EMPLOYEE","isAwarded":1,"kycTierId":7,"label":"EMPLOYEE","level":35,"maxBalance":200000,"expirationDays":null,"availableAtService":["KPX"],"type":null},"addresses":{"current":{"addressId":14550,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"otherAddress":"CEBU CITY","zipCode":null},"permanent":{"addressId":14551,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"intlProvinceCity":null,"otherAddress":"CEBU CITY","zipCode":null}},"birthDate":"2000-01-18","branchRemarks":null,"cellphoneNumber":"09319219651","civilStatus":"SINGLE","ckycId":"X230800000246K1","createdAtBranchId":null,"createdByService":"ML PAYROLL","createdByUserId":null,"dateCreated":"2023-08-14 17:46:28","dateModified":null,"modifiedByUserId":null,"modifiedByService":null,"modifiedAtBranchId":null,"customerId":7249,"email":"charebel.bejoc@mlhuillier.com","gender":"FEMALE","ids":[{"category":"GSIS (E-CARD)","expirationDate":"2024-11-15","idCardId":1515,"idNumber":"038I492","type":"SEMI-VERIFIED","validIdCardId":20,"isRequired":1,"customerId":7249,"verificationType":"MANUAL","hasExpiry":1,"otherDetails":null}],"occupation":{"organizationName":"","pensionSource":null,"workAddress":null,"workRemarks":null,"yearRetired":null,"offering":null,"workPosition":null,"natureOfWork":null,"sourceOfIncome":null},"pictures":{"customerPhoto":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_customerPhoto2_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787376&Signature=kG7jPjYbbVzrzQCuDGfiwcd%2FQgOC4c0NW0rOxhY1vegwgndPs7AOjTqnreH3L33FHU3CLmAt6M15drCCGLZI%2F5tYt%2FG4a4NPhAYkCYhwHYsSrbFa%2BU32CFQbvtQ0b%2Brs7pA8z3BwBl7UzKudVWLEYxxo13MrL6FQqI6Ld13eP7bw61hE3GL1yJeHzjXmsDpVdm29pkRzz1RHsb32cG3%2FrBpM2itG1g%2FO4zeYMOih3D4LIderUz5BlHh0nRYgiGos4g0KQYm5J6NExQLYpelYXM8ZVlgYjgtQ6TlWEL2BjjSv9MQWCULuVf1SjakmQ6AzXWBoKGPuZuK6rhNWHPl0dg%3D%3D","idPhoto1":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto0_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787376&Signature=iwcHqi3M5K9Wnp1gsvh0rKSbYV%2B8Djxc%2Fd9mhlGhL%2FJWd7A9%2BhB2cGWhCr6hAMcL3hmTHIsZI55EnLTQ8qPHayo16BNlumx6vIyicOU2MDpXLDtiIRdJ%2FNAFeXm94y2veyqaLzddlqxODhehIuqpGv5WsX8bhm4EWBkmXq509kTB0Nn1Bhm8SIqqyCm2N0T6yP4286SCMQRDHz457KsK%2BDrF%2B4pYHg2x7DVdjpwW767sZvOntppEL9uVIKQRer20zlKygwI2emvoYruhMM9nV8vm2SS8hIY%2B2r%2FiGnjFNR8FKJH7136IDdMMgFWvQgisiVC%2Blh8Y0soUGq205kGCQg%3D%3D","idPhoto2":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto1_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787376&Signature=uXTwQoyS37d8Sn6IB%2Be3NZn%2Fas2Y%2BLNttxdN8TzeTLC%2FobmeV1SJMyFFNzB3HkEQdMN%2BheAgHG3vY3pvTM7fwZAFtUV3My7cqpqTm%2Bd6fskZzpIeTBHM0HqVk4hLySAKOazSY2ef%2FmMJYOZSofFgE0aKpClEZcm7W%2BBzcLPHq5z2os3eSyzaToCYH2vyTg0787IuiWq1u8pZ9Nz%2F72Q8hE7pf6Zo1AeD%2BVHRCC11ttYCBG3aeSwLitRTCy9C6G3yfN4mO0iRM2rP1T6WxlFzZHHgWJfp41dQWaJo04cqbE7VuGZcn%2BmeYu9WXBFDRvPre0LoI4BCHpvGwCsX0SwAzg%3D%3D","idPhoto3Front":null,"idPhoto3Back":null,"kycBottom":null,"kycTop":null},"placeOfBirth":"CEBU CITY","name":{"firstName":"CHAREBEL","lastName":"BEJOC","middleName":"RR","suffix":null},"nationality":"FILIPINO","vpoRemarks":null,"seccomRemarks":null,"telephoneNumber":null,"originSystem":"HRIS","isWatchlist":null,"isActive":1,"activeStatusRemarks":null,"emailVerificationStatus":"UNVERIFIED","countryOfBirth":null,"tgRemarks":null}',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:17.006 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/customers/exact-search',
+    method: 'GET',
+    query: '{"cellphoneNumber":"09319219651"}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3Mzc1MTc2LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwNzUsImV4cCI6MTczMDc4NzM3NX0.lI1i6Dhea5oSBXJm8y3jE57bdIbHHuwGWzwbdBSSstM","Accept":"application/json","Content-Type":"application/json"},"params":{"cellphoneNumber":"09319219651"}}'
+  },
+  RES: {
+    data: '"X230800000246K1"',
+    status: 200,
+    code: 'OK',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:17.006 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/search-kyc',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"payload":{"cellphoneNumber":"09319219651"}}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","content-length":"45","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua-platform":"\\"Android\\"","user-agent":"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","content-type":"application/json","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?1","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '{"tier":{"tierLimits":[],"tierRequirements":[],"description":"EMPLOYEE","isAwarded":1,"kycTierId":7,"label":"EMPLOYEE","level":35,"maxBalance":200000,"expirationDays":null,"availableAtService":["KPX"],"type":null},"addresses":{"current":{"addressId":14550,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"otherAddress":"CEBU CITY","zipCode":null},"permanent":{"addressId":14551,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"intlProvinceCity":null,"otherAddress":"CEBU CITY","zipCode":null}},"birthDate":"2000-01-18","branchRemarks":null,"cellphoneNumber":"09319219651","civilStatus":"SINGLE","ckycId":"X230800000246K1","createdAtBranchId":null,"createdByService":"ML PAYROLL","createdByUserId":null,"dateCreated":"2023-08-14 17:46:28","dateModified":null,"modifiedByUserId":null,"modifiedByService":null,"modifiedAtBranchId":null,"customerId":7249,"email":"charebel.bejoc@mlhuillier.com","gender":"FEMALE","ids":[{"category":"GSIS (E-CARD)","expirationDate":"2024-11-15","idCardId":1515,"idNumber":"038I492","type":"SEMI-VERIFIED","validIdCardId":20,"isRequired":1,"customerId":7249,"verificationType":"MANUAL","hasExpiry":1,"otherDetails":null}],"occupation":{"organizationName":"","pensionSource":null,"workAddress":null,"workRemarks":null,"yearRetired":null,"offering":null,"workPosition":null,"natureOfWork":null,"sourceOfIncome":null},"pictures":{"customerPhoto":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_customerPhoto2_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787376&Signature=kG7jPjYbbVzrzQCuDGfiwcd%2FQgOC4c0NW0rOxhY1vegwgndPs7AOjTqnreH3L33FHU3CLmAt6M15drCCGLZI%2F5tYt%2FG4a4NPhAYkCYhwHYsSrbFa%2BU32CFQbvtQ0b%2Brs7pA8z3BwBl7UzKudVWLEYxxo13MrL6FQqI6Ld13eP7bw61hE3GL1yJeHzjXmsDpVdm29pkRzz1RHsb32cG3%2FrBpM2itG1g%2FO4zeYMOih3D4LIderUz5BlHh0nRYgiGos4g0KQYm5J6NExQLYpelYXM8ZVlgYjgtQ6TlWEL2BjjSv9MQWCULuVf1SjakmQ6AzXWBoKGPuZuK6rhNWHPl0dg%3D%3D","idPhoto1":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto0_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787376&Signature=iwcHqi3M5K9Wnp1gsvh0rKSbYV%2B8Djxc%2Fd9mhlGhL%2FJWd7A9%2BhB2cGWhCr6hAMcL3hmTHIsZI55EnLTQ8qPHayo16BNlumx6vIyicOU2MDpXLDtiIRdJ%2FNAFeXm94y2veyqaLzddlqxODhehIuqpGv5WsX8bhm4EWBkmXq509kTB0Nn1Bhm8SIqqyCm2N0T6yP4286SCMQRDHz457KsK%2BDrF%2B4pYHg2x7DVdjpwW767sZvOntppEL9uVIKQRer20zlKygwI2emvoYruhMM9nV8vm2SS8hIY%2B2r%2FiGnjFNR8FKJH7136IDdMMgFWvQgisiVC%2Blh8Y0soUGq205kGCQg%3D%3D","idPhoto2":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto1_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787376&Signature=uXTwQoyS37d8Sn6IB%2Be3NZn%2Fas2Y%2BLNttxdN8TzeTLC%2FobmeV1SJMyFFNzB3HkEQdMN%2BheAgHG3vY3pvTM7fwZAFtUV3My7cqpqTm%2Bd6fskZzpIeTBHM0HqVk4hLySAKOazSY2ef%2FmMJYOZSofFgE0aKpClEZcm7W%2BBzcLPHq5z2os3eSyzaToCYH2vyTg0787IuiWq1u8pZ9Nz%2F72Q8hE7pf6Zo1AeD%2BVHRCC11ttYCBG3aeSwLitRTCy9C6G3yfN4mO0iRM2rP1T6WxlFzZHHgWJfp41dQWaJo04cqbE7VuGZcn%2BmeYu9WXBFDRvPre0LoI4BCHpvGwCsX0SwAzg%3D%3D","idPhoto3Front":null,"idPhoto3Back":null,"kycBottom":null,"kycTop":null},"placeOfBirth":"CEBU CITY","name":{"firstName":"CHAREBEL","lastName":"BEJOC","middleName":"RR","suffix":null},"nationality":"FILIPINO","vpoRemarks":null,"seccomRemarks":null,"telephoneNumber":null,"originSystem":"HRIS","isWatchlist":null,"isActive":1,"activeStatusRemarks":null,"emailVerificationStatus":"UNVERIFIED","countryOfBirth":null,"tgRemarks":null}',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:20.282 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzgwMjIxLCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwODAsImV4cCI6MTczMDc4NzM4MH0.MZ8UnOR_X9r6KOHsjSJw9m3BDmaozhAFE2l8BKsSdc4"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:11:20.430 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzgwMzU0LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwODAsImV4cCI6MTczMDc4NzM4MH0.wE_d3xeYHHDm0TXQMz-zAaYD8wY1xhBI6x_tbEv8pCA"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:11:20.434 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzgwMzYyLCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwODAsImV4cCI6MTczMDc4NzM4MH0.6etaMeztPgGtt2sgqb8DmcB_8myb5hiTIWGVCzNUJXI"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:11:20.436 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-authservice-dev.df.r.appspot.com/api/v1/external-user',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"reqBody":{"apiKey":"mlibApiKey","signature":"4d1faf964fa768e9032962ff192b6d52b6dc71abae4f534cda959bef23c9db191237f37364605a58b41fa19d29764b097ceb6fa848d23ab82993dcaff836487e"},"signature":"mlibApiKey|mlibSecret|2024-11-05"}',
+    headers: '{}'
+  },
+  RES: {
+    data: '{"data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzgwMzY0LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwODAsImV4cCI6MTczMDc4NzM4MH0.bsS_BKKhq6GgVLvYXpe0W0UIBC3SFH8-Ruj6ku4fZyU"},"code":"SUCCESS"}',
+    status: 201,
+    code: 'CREATED',
+    message: 'Token Created Successfully'
+  }
+}
+INFO 2024-11-05T14:11:20.635 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/customers/exact-search',
+    method: 'GET',
+    query: '{"cellphoneNumber":"09319219651"}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzgwMjIxLCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwODAsImV4cCI6MTczMDc4NzM4MH0.MZ8UnOR_X9r6KOHsjSJw9m3BDmaozhAFE2l8BKsSdc4","Accept":"application/json","Content-Type":"application/json"},"params":{"cellphoneNumber":"09319219651"}}'
+  },
+  RES: {
+    data: '"X230800000246K1"',
+    status: 200,
+    code: 'OK',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:20.635 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/search-kyc',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"payload":{"cellphoneNumber":"09319219651"}}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","content-length":"45","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua-platform":"\\"Android\\"","user-agent":"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","content-type":"application/json","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?1","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '{"tier":{"tierLimits":[],"tierRequirements":[],"description":"EMPLOYEE","isAwarded":1,"kycTierId":7,"label":"EMPLOYEE","level":35,"maxBalance":200000,"expirationDays":null,"availableAtService":["KPX"],"type":null},"addresses":{"current":{"addressId":14550,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"otherAddress":"CEBU CITY","zipCode":null},"permanent":{"addressId":14551,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"intlProvinceCity":null,"otherAddress":"CEBU CITY","zipCode":null}},"birthDate":"2000-01-18","branchRemarks":null,"cellphoneNumber":"09319219651","civilStatus":"SINGLE","ckycId":"X230800000246K1","createdAtBranchId":null,"createdByService":"ML PAYROLL","createdByUserId":null,"dateCreated":"2023-08-14 17:46:28","dateModified":null,"modifiedByUserId":null,"modifiedByService":null,"modifiedAtBranchId":null,"customerId":7249,"email":"charebel.bejoc@mlhuillier.com","gender":"FEMALE","ids":[{"category":"GSIS (E-CARD)","expirationDate":"2024-11-15","idCardId":1515,"idNumber":"038I492","type":"SEMI-VERIFIED","validIdCardId":20,"isRequired":1,"customerId":7249,"verificationType":"MANUAL","hasExpiry":1,"otherDetails":null}],"occupation":{"organizationName":"","pensionSource":null,"workAddress":null,"workRemarks":null,"yearRetired":null,"offering":null,"workPosition":null,"natureOfWork":null,"sourceOfIncome":null},"pictures":{"customerPhoto":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_customerPhoto2_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787380&Signature=cWTU3aDr%2BHxlHbADMRToYUSybURCVnUnFXQhyvnH1yk%2BOg7fz%2F4mppXhFxyII1B4mTCVgMVJEJFjOnTrmoTpSheTBr1wU%2Fw7L6eqEiyp%2FpwTWbNxWEvlmIgNyjJy5XKE3bf3JT7Y16XrGN%2FJafoYeqR02eMjzjhKZAjxNGoAI3KoNDWqhrdq5cwaGfvi2g1NMksgyp9kv9XCN3bgUp7%2BYWxkoZ1L2QE0SXbP4%2BoR3FQM7Nxpkg5mL1gGMT2xjRqfFz85ssj7u6m%2FtKI5mfJ38kpMQMxiEUzf7CXx%2BPMipqK8fF1InA0ru0UuBa8tj7GHaOWrDOsIDlOTHuZgaOoHxA%3D%3D","idPhoto1":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto0_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787380&Signature=dVwDW7LA1QdvosdlUZuAiXYqEPp0dHFGZbWC2mr8XOHqEkIuwaE0yTfoQXGs%2FsgX7%2Fq1Q6Hu6nmYSQ649Ft3UjmZAhMzV2EQEXLdX2fJZN9wYC4wMuT4GyHbsSDC7PC7zPW7Gjal5e629QjtAzdhiDFWWef%2FOpeImmKh%2FSpUig6msjcPHMGL4WHk7Y48q%2FzrtCTWWhk2h0dC6JyMP7p%2BqOqdDqqMi8XQHqPcMXPQdvvj2Yn3Y4PkSMjdSxje418IMSyGqCtPc2ig38HTyVyqJlJ4txApEq8o7o5WN3S%2FRdVNxqa5G9jl%2FbZ3%2BdeYOJYJpgrHbcnfqNWWaB0aZo5L6w%3D%3D","idPhoto2":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto1_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787380&Signature=iEmL%2BAWOpGc4qq1qy%2Fb4L7galeBy7ipc10mCXIAHeK5Zg4y1V36uUPA9N4cWMj%2FYDNgoMr%2B3btLbY0wgZUHyCaPvDLv0qVja5CMIWhYYVdR11p9CyBeB%2Fg8RE828gUmqEadJI5rZxAoa%2FMVy%2BMn6WkgBvNfx5zDRhC652AsaA%2FagOZH%2Fq03TP1k6oFkx7WLfdIyKUFJtsYHtv8aW0CGaS23J8YgC20wlWZtvyRFGnbaRd2NWnp3RxSNUtmR%2FOh%2FPgLxPxpIs6lxJsP5cShd%2BY%2FKrZLebhjE8axd%2F5X4vXCRfWPRRYHglqjUdv8N3n%2BluzwaWzodUQepME9%2B53fyCvQ%3D%3D","idPhoto3Front":null,"idPhoto3Back":null,"kycBottom":null,"kycTop":null},"placeOfBirth":"CEBU CITY","name":{"firstName":"CHAREBEL","lastName":"BEJOC","middleName":"RR","suffix":null},"nationality":"FILIPINO","vpoRemarks":null,"seccomRemarks":null,"telephoneNumber":null,"originSystem":"HRIS","isWatchlist":null,"isActive":1,"activeStatusRemarks":null,"emailVerificationStatus":"UNVERIFIED","countryOfBirth":null,"tgRemarks":null}',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:20.954 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/customers/exact-search',
+    method: 'GET',
+    query: '{"cellphoneNumber":"09319219651"}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzgwMzU0LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwODAsImV4cCI6MTczMDc4NzM4MH0.wE_d3xeYHHDm0TXQMz-zAaYD8wY1xhBI6x_tbEv8pCA","Accept":"application/json","Content-Type":"application/json"},"params":{"cellphoneNumber":"09319219651"}}'
+  },
+  RES: {
+    data: '"X230800000246K1"',
+    status: 200,
+    code: 'OK',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:20.954 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/search-kyc',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"payload":{"cellphoneNumber":"09319219651"}}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","content-length":"45","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua-platform":"\\"Android\\"","user-agent":"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","content-type":"application/json","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?1","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '{"tier":{"tierLimits":[],"tierRequirements":[],"description":"EMPLOYEE","isAwarded":1,"kycTierId":7,"label":"EMPLOYEE","level":35,"maxBalance":200000,"expirationDays":null,"availableAtService":["KPX"],"type":null},"addresses":{"current":{"addressId":14550,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"otherAddress":"CEBU CITY","zipCode":null},"permanent":{"addressId":14551,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"intlProvinceCity":null,"otherAddress":"CEBU CITY","zipCode":null}},"birthDate":"2000-01-18","branchRemarks":null,"cellphoneNumber":"09319219651","civilStatus":"SINGLE","ckycId":"X230800000246K1","createdAtBranchId":null,"createdByService":"ML PAYROLL","createdByUserId":null,"dateCreated":"2023-08-14 17:46:28","dateModified":null,"modifiedByUserId":null,"modifiedByService":null,"modifiedAtBranchId":null,"customerId":7249,"email":"charebel.bejoc@mlhuillier.com","gender":"FEMALE","ids":[{"category":"GSIS (E-CARD)","expirationDate":"2024-11-15","idCardId":1515,"idNumber":"038I492","type":"SEMI-VERIFIED","validIdCardId":20,"isRequired":1,"customerId":7249,"verificationType":"MANUAL","hasExpiry":1,"otherDetails":null}],"occupation":{"organizationName":"","pensionSource":null,"workAddress":null,"workRemarks":null,"yearRetired":null,"offering":null,"workPosition":null,"natureOfWork":null,"sourceOfIncome":null},"pictures":{"customerPhoto":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_customerPhoto2_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787380&Signature=cWTU3aDr%2BHxlHbADMRToYUSybURCVnUnFXQhyvnH1yk%2BOg7fz%2F4mppXhFxyII1B4mTCVgMVJEJFjOnTrmoTpSheTBr1wU%2Fw7L6eqEiyp%2FpwTWbNxWEvlmIgNyjJy5XKE3bf3JT7Y16XrGN%2FJafoYeqR02eMjzjhKZAjxNGoAI3KoNDWqhrdq5cwaGfvi2g1NMksgyp9kv9XCN3bgUp7%2BYWxkoZ1L2QE0SXbP4%2BoR3FQM7Nxpkg5mL1gGMT2xjRqfFz85ssj7u6m%2FtKI5mfJ38kpMQMxiEUzf7CXx%2BPMipqK8fF1InA0ru0UuBa8tj7GHaOWrDOsIDlOTHuZgaOoHxA%3D%3D","idPhoto1":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto0_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787380&Signature=dVwDW7LA1QdvosdlUZuAiXYqEPp0dHFGZbWC2mr8XOHqEkIuwaE0yTfoQXGs%2FsgX7%2Fq1Q6Hu6nmYSQ649Ft3UjmZAhMzV2EQEXLdX2fJZN9wYC4wMuT4GyHbsSDC7PC7zPW7Gjal5e629QjtAzdhiDFWWef%2FOpeImmKh%2FSpUig6msjcPHMGL4WHk7Y48q%2FzrtCTWWhk2h0dC6JyMP7p%2BqOqdDqqMi8XQHqPcMXPQdvvj2Yn3Y4PkSMjdSxje418IMSyGqCtPc2ig38HTyVyqJlJ4txApEq8o7o5WN3S%2FRdVNxqa5G9jl%2FbZ3%2BdeYOJYJpgrHbcnfqNWWaB0aZo5L6w%3D%3D","idPhoto2":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto1_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787380&Signature=iEmL%2BAWOpGc4qq1qy%2Fb4L7galeBy7ipc10mCXIAHeK5Zg4y1V36uUPA9N4cWMj%2FYDNgoMr%2B3btLbY0wgZUHyCaPvDLv0qVja5CMIWhYYVdR11p9CyBeB%2Fg8RE828gUmqEadJI5rZxAoa%2FMVy%2BMn6WkgBvNfx5zDRhC652AsaA%2FagOZH%2Fq03TP1k6oFkx7WLfdIyKUFJtsYHtv8aW0CGaS23J8YgC20wlWZtvyRFGnbaRd2NWnp3RxSNUtmR%2FOh%2FPgLxPxpIs6lxJsP5cShd%2BY%2FKrZLebhjE8axd%2F5X4vXCRfWPRRYHglqjUdv8N3n%2BluzwaWzodUQepME9%2B53fyCvQ%3D%3D","idPhoto3Front":null,"idPhoto3Back":null,"kycBottom":null,"kycTop":null},"placeOfBirth":"CEBU CITY","name":{"firstName":"CHAREBEL","lastName":"BEJOC","middleName":"RR","suffix":null},"nationality":"FILIPINO","vpoRemarks":null,"seccomRemarks":null,"telephoneNumber":null,"originSystem":"HRIS","isWatchlist":null,"isActive":1,"activeStatusRemarks":null,"emailVerificationStatus":"UNVERIFIED","countryOfBirth":null,"tgRemarks":null}',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:21.001 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/customers/exact-search',
+    method: 'GET',
+    query: '{"cellphoneNumber":"09319219651"}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzgwMzY0LCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwODAsImV4cCI6MTczMDc4NzM4MH0.bsS_BKKhq6GgVLvYXpe0W0UIBC3SFH8-Ruj6ku4fZyU","Accept":"application/json","Content-Type":"application/json"},"params":{"cellphoneNumber":"09319219651"}}'
+  },
+  RES: {
+    data: '"X230800000246K1"',
+    status: 200,
+    code: 'OK',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:21.001 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/search-kyc',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"payload":{"cellphoneNumber":"09319219651"}}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","content-length":"45","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua-platform":"\\"Android\\"","user-agent":"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","content-type":"application/json","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?1","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '{"tier":{"tierLimits":[],"tierRequirements":[],"description":"EMPLOYEE","isAwarded":1,"kycTierId":7,"label":"EMPLOYEE","level":35,"maxBalance":200000,"expirationDays":null,"availableAtService":["KPX"],"type":null},"addresses":{"current":{"addressId":14550,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"otherAddress":"CEBU CITY","zipCode":null},"permanent":{"addressId":14551,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"intlProvinceCity":null,"otherAddress":"CEBU CITY","zipCode":null}},"birthDate":"2000-01-18","branchRemarks":null,"cellphoneNumber":"09319219651","civilStatus":"SINGLE","ckycId":"X230800000246K1","createdAtBranchId":null,"createdByService":"ML PAYROLL","createdByUserId":null,"dateCreated":"2023-08-14 17:46:28","dateModified":null,"modifiedByUserId":null,"modifiedByService":null,"modifiedAtBranchId":null,"customerId":7249,"email":"charebel.bejoc@mlhuillier.com","gender":"FEMALE","ids":[{"category":"GSIS (E-CARD)","expirationDate":"2024-11-15","idCardId":1515,"idNumber":"038I492","type":"SEMI-VERIFIED","validIdCardId":20,"isRequired":1,"customerId":7249,"verificationType":"MANUAL","hasExpiry":1,"otherDetails":null}],"occupation":{"organizationName":"","pensionSource":null,"workAddress":null,"workRemarks":null,"yearRetired":null,"offering":null,"workPosition":null,"natureOfWork":null,"sourceOfIncome":null},"pictures":{"customerPhoto":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_customerPhoto2_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787380&Signature=cWTU3aDr%2BHxlHbADMRToYUSybURCVnUnFXQhyvnH1yk%2BOg7fz%2F4mppXhFxyII1B4mTCVgMVJEJFjOnTrmoTpSheTBr1wU%2Fw7L6eqEiyp%2FpwTWbNxWEvlmIgNyjJy5XKE3bf3JT7Y16XrGN%2FJafoYeqR02eMjzjhKZAjxNGoAI3KoNDWqhrdq5cwaGfvi2g1NMksgyp9kv9XCN3bgUp7%2BYWxkoZ1L2QE0SXbP4%2BoR3FQM7Nxpkg5mL1gGMT2xjRqfFz85ssj7u6m%2FtKI5mfJ38kpMQMxiEUzf7CXx%2BPMipqK8fF1InA0ru0UuBa8tj7GHaOWrDOsIDlOTHuZgaOoHxA%3D%3D","idPhoto1":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto0_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787380&Signature=dVwDW7LA1QdvosdlUZuAiXYqEPp0dHFGZbWC2mr8XOHqEkIuwaE0yTfoQXGs%2FsgX7%2Fq1Q6Hu6nmYSQ649Ft3UjmZAhMzV2EQEXLdX2fJZN9wYC4wMuT4GyHbsSDC7PC7zPW7Gjal5e629QjtAzdhiDFWWef%2FOpeImmKh%2FSpUig6msjcPHMGL4WHk7Y48q%2FzrtCTWWhk2h0dC6JyMP7p%2BqOqdDqqMi8XQHqPcMXPQdvvj2Yn3Y4PkSMjdSxje418IMSyGqCtPc2ig38HTyVyqJlJ4txApEq8o7o5WN3S%2FRdVNxqa5G9jl%2FbZ3%2BdeYOJYJpgrHbcnfqNWWaB0aZo5L6w%3D%3D","idPhoto2":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto1_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787380&Signature=iEmL%2BAWOpGc4qq1qy%2Fb4L7galeBy7ipc10mCXIAHeK5Zg4y1V36uUPA9N4cWMj%2FYDNgoMr%2B3btLbY0wgZUHyCaPvDLv0qVja5CMIWhYYVdR11p9CyBeB%2Fg8RE828gUmqEadJI5rZxAoa%2FMVy%2BMn6WkgBvNfx5zDRhC652AsaA%2FagOZH%2Fq03TP1k6oFkx7WLfdIyKUFJtsYHtv8aW0CGaS23J8YgC20wlWZtvyRFGnbaRd2NWnp3RxSNUtmR%2FOh%2FPgLxPxpIs6lxJsP5cShd%2BY%2FKrZLebhjE8axd%2F5X4vXCRfWPRRYHglqjUdv8N3n%2BluzwaWzodUQepME9%2B53fyCvQ%3D%3D","idPhoto3Front":null,"idPhoto3Back":null,"kycBottom":null,"kycTop":null},"placeOfBirth":"CEBU CITY","name":{"firstName":"CHAREBEL","lastName":"BEJOC","middleName":"RR","suffix":null},"nationality":"FILIPINO","vpoRemarks":null,"seccomRemarks":null,"telephoneNumber":null,"originSystem":"HRIS","isWatchlist":null,"isActive":1,"activeStatusRemarks":null,"emailVerificationStatus":"UNVERIFIED","countryOfBirth":null,"tgRemarks":null}',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:21.045 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: 'https://ml-ckyc-dev.df.r.appspot.com/api/v1/customers/exact-search',
+    method: 'GET',
+    query: '{"cellphoneNumber":"09319219651"}',
+    params: '{}',
+    body: '{}',
+    headers: '{"headers":{"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJtbGliQXBpS2V5IiwibmFtZSI6Ik1MIElCIiwiZXhwaXJlc0luIjoxNzMwNzg3MzgwMzYyLCJyZXNvdXJjZVBlcm1pc3Npb24iOnt9LCJpYXQiOjE3MzA3ODcwODAsImV4cCI6MTczMDc4NzM4MH0.6etaMeztPgGtt2sgqb8DmcB_8myb5hiTIWGVCzNUJXI","Accept":"application/json","Content-Type":"application/json"},"params":{"cellphoneNumber":"09319219651"}}'
+  },
+  RES: {
+    data: '"X230800000246K1"',
+    status: 200,
+    code: 'OK',
+    message: 'KYC Retrieved Successfully'
+  }
+}
+INFO 2024-11-05T14:11:21.046 HOTGQCD09 
+ Logging.. | ML BROKERAGE {
+  REQ: {
+    url: '/search-kyc',
+    method: 'POST',
+    query: '{}',
+    params: '{}',
+    body: '{"payload":{"cellphoneNumber":"09319219651"}}',
+    headers: '{"host":"localhost:8002","connection":"keep-alive","content-length":"45","pragma":"no-cache","cache-control":"no-cache","sec-ch-ua-platform":"\\"Android\\"","user-agent":"Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36","accept":"application/json, text/plain, */*","sec-ch-ua":"\\"Chromium\\";v=\\"130\\", \\"Brave\\";v=\\"130\\", \\"Not?A_Brand\\";v=\\"99\\"","content-type":"application/json","x-api-key":"AIzaSyDC86gN1O512Ucqzc9UEtYnyosw8vpLIFM","sec-ch-ua-mobile":"?1","sec-gpc":"1","accept-language":"en-US,en","origin":"http://localhost:3000","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:3000/","accept-encoding":"gzip, deflate, br, zstd","cookie":"ML_W_W_S=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJja3ljSWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJzdWIiOjY0ODAsIm1haW5BY2NvdW50SWQiOiJYMjMwODAwMDAwMjQ2SzEiLCJ0eXBlIjoiTk9STUFMIiwiaWF0IjoxNzMwMDk2MjkxLCJleHAiOjE3MzEzOTIyOTF9.qvXoZTh9AVqcLYjgyloqWx8gGMw9CmZmiThS6Rv49M0; account_session=Fe26.2*1*1e794599c8b68ec8611f7baed57cc1a073d3165f8a94f9a1f5ca2ae664eead98*HHp1mutIP5H1V5wmtkA-VA*x46sGW_9AKlD_8z8dB8mXn5GIjZRNfxcWVGFsA0zSeg4oSXkylbvqB-xMjV7YgQytxKA_GTSIWt0nc_pXtWs9X8B86FMYfrPaDfW5DfF7fDjo_qUdyxWuWpXoBbb75Mly3bqMP4m341VJ7XjjHVTYNPwQ-GFwDzrnf_AJFO1xsQaKHG3eLgiND0efG9aJnqK-CksH5Sxk3yOx6NQlJ-BZq58n7_ROZ9ljZLWMbQYnkVmkJ1HplNcjfls_-nkVt_RvgXYkaMclmiaJ2jBolLR_c87HMv4BITaFLEq70MdNxJahWv1f6RzZMmnnOmtJ3hM_Ys4Q9Cnb-hpA2pm8ewjVGJJ21-4Wn5xbmenlIXvqa6b5Myl0OF3lCol0mcYVEjxhIciM2NDDMKWXocI-zmRfJwXvAIl4uuKuTAZgQSR3DGVlPO5rCxiw6Dq64sA2ZPTNH3XOruGwdD9f-0FOnLJ2zqWP0fmpjBZfgJpADyeXrs4CJ3UJfvxKKMzg065lv_8Rscp8HPbUIhI0ojQe1PccJCPx_nfOdVd1yry_oyJlJs*1731305905216*1982670b1e000a046d7064800f434d44a8d2d15d4b6b1c79a95e397ae04955c4*G3019CLWu5OHpSnBpjy5Czy4-Z7Zyz8DqZuU3eIA2bM~2; account_details=%7B%22address%22%3A%7B%22addressL2Name%22%3A%22CEBU%20CITY%22%2C%22otherAddress%22%3A%22CEBU%20CITY%22%2C%22addressL0Name%22%3A%22PHILIPPINES%22%2C%22addressL1Name%22%3A%22CEBU%22%2C%22zipCode%22%3Anull%7D%2C%22birthDate%22%3A%222000-01-18%22%2C%22civilStatus%22%3A%22SINGLE%22%2C%22ckycId%22%3A%22X230800000246K1%22%2C%22email%22%3A%22charebel.bejoc%40mlhuillier.com%22%2C%22firstName%22%3A%22CHAREBEL%22%2C%22gender%22%3A%22FEMALE%22%2C%22lastName%22%3A%22BEJOC%22%2C%22middleName%22%3A%22RR%22%2C%22mlWalletNumber%22%3Anull%2C%22mobileNumber%22%3A%2209319219651%22%2C%22nationality%22%3A%22FILIPINO%22%2C%22placeOfBirth%22%3A%22CEBU%20CITY%22%2C%22suffix%22%3Anull%7D; remote_login_coordinates=%7B%22latitude%22%3A10.3049043%2C%22longitude%22%3A123.9094348%7D"}'
+  },
+  RES: {
+    data: '{"tier":{"tierLimits":[],"tierRequirements":[],"description":"EMPLOYEE","isAwarded":1,"kycTierId":7,"label":"EMPLOYEE","level":35,"maxBalance":200000,"expirationDays":null,"availableAtService":["KPX"],"type":null},"addresses":{"current":{"addressId":14550,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"otherAddress":"CEBU CITY","zipCode":null},"permanent":{"addressId":14551,"addressL0Id":1,"addressL0Name":"PHILIPPINES","addressL1Id":25,"addressL1Name":"CEBU","addressL2Id":828,"addressL2Name":"CEBU CITY","addressL3Id":null,"addressL3Name":null,"addressL4Id":null,"addressL4Name":null,"addressL5Id":null,"addressL5Name":null,"intlProvinceCity":null,"otherAddress":"CEBU CITY","zipCode":null}},"birthDate":"2000-01-18","branchRemarks":null,"cellphoneNumber":"09319219651","civilStatus":"SINGLE","ckycId":"X230800000246K1","createdAtBranchId":null,"createdByService":"ML PAYROLL","createdByUserId":null,"dateCreated":"2023-08-14 17:46:28","dateModified":null,"modifiedByUserId":null,"modifiedByService":null,"modifiedAtBranchId":null,"customerId":7249,"email":"charebel.bejoc@mlhuillier.com","gender":"FEMALE","ids":[{"category":"GSIS (E-CARD)","expirationDate":"2024-11-15","idCardId":1515,"idNumber":"038I492","type":"SEMI-VERIFIED","validIdCardId":20,"isRequired":1,"customerId":7249,"verificationType":"MANUAL","hasExpiry":1,"otherDetails":null}],"occupation":{"organizationName":"","pensionSource":null,"workAddress":null,"workRemarks":null,"yearRetired":null,"offering":null,"workPosition":null,"natureOfWork":null,"sourceOfIncome":null},"pictures":{"customerPhoto":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_customerPhoto2_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787380&Signature=cWTU3aDr%2BHxlHbADMRToYUSybURCVnUnFXQhyvnH1yk%2BOg7fz%2F4mppXhFxyII1B4mTCVgMVJEJFjOnTrmoTpSheTBr1wU%2Fw7L6eqEiyp%2FpwTWbNxWEvlmIgNyjJy5XKE3bf3JT7Y16XrGN%2FJafoYeqR02eMjzjhKZAjxNGoAI3KoNDWqhrdq5cwaGfvi2g1NMksgyp9kv9XCN3bgUp7%2BYWxkoZ1L2QE0SXbP4%2BoR3FQM7Nxpkg5mL1gGMT2xjRqfFz85ssj7u6m%2FtKI5mfJ38kpMQMxiEUzf7CXx%2BPMipqK8fF1InA0ru0UuBa8tj7GHaOWrDOsIDlOTHuZgaOoHxA%3D%3D","idPhoto1":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto0_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787380&Signature=dVwDW7LA1QdvosdlUZuAiXYqEPp0dHFGZbWC2mr8XOHqEkIuwaE0yTfoQXGs%2FsgX7%2Fq1Q6Hu6nmYSQ649Ft3UjmZAhMzV2EQEXLdX2fJZN9wYC4wMuT4GyHbsSDC7PC7zPW7Gjal5e629QjtAzdhiDFWWef%2FOpeImmKh%2FSpUig6msjcPHMGL4WHk7Y48q%2FzrtCTWWhk2h0dC6JyMP7p%2BqOqdDqqMi8XQHqPcMXPQdvvj2Yn3Y4PkSMjdSxje418IMSyGqCtPc2ig38HTyVyqJlJ4txApEq8o7o5WN3S%2FRdVNxqa5G9jl%2FbZ3%2BdeYOJYJpgrHbcnfqNWWaB0aZo5L6w%3D%3D","idPhoto2":"https://storage.googleapis.com/ml-ckyc-dev.appspot.com/customer_images/2024/10/X230800000246K1_idPhoto1_0.jpg?GoogleAccessId=ml-ckyc-dev%40appspot.gserviceaccount.com&Expires=1730787380&Signature=iEmL%2BAWOpGc4qq1qy%2Fb4L7galeBy7ipc10mCXIAHeK5Zg4y1V36uUPA9N4cWMj%2FYDNgoMr%2B3btLbY0wgZUHyCaPvDLv0qVja5CMIWhYYVdR11p9CyBeB%2Fg8RE828gUmqEadJI5rZxAoa%2FMVy%2BMn6WkgBvNfx5zDRhC652AsaA%2FagOZH%2Fq03TP1k6oFkx7WLfdIyKUFJtsYHtv8aW0CGaS23J8YgC20wlWZtvyRFGnbaRd2NWnp3RxSNUtmR%2FOh%2FPgLxPxpIs6lxJsP5cShd%2BY%2FKrZLebhjE8axd%2F5X4vXCRfWPRRYHglqjUdv8N3n%2BluzwaWzodUQepME9%2B53fyCvQ%3D%3D","idPhoto3Front":null,"idPhoto3Back":null,"kycBottom":null,"kycTop":null},"placeOfBirth":"CEBU CITY","name":{"firstName":"CHAREBEL","lastName":"BEJOC","middleName":"RR","suffix":null},"nationality":"FILIPINO","vpoRemarks":null,"seccomRemarks":null,"telephoneNumber":null,"originSystem":"HRIS","isWatchlist":null,"isActive":1,"activeStatusRemarks":null,"emailVerificationStatus":"UNVERIFIED","countryOfBirth":null,"tgRemarks":null}',
+    status: 200,
+    code: 'RETRIEVED_SUCCESSFULLY',
+    message: 'KYC Retrieved Successfully'
+  }
+}
