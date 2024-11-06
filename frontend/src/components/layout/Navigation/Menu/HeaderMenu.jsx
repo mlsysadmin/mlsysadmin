@@ -192,6 +192,43 @@ const handleLogout = async () => {
 			)}`;
 		}
 	};
+
+	const handleListingRedirect = () => {
+		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
+		const loginUrl = process.env.REACT_APP_LOGIN_URL;
+
+		if (isMLWWSPresent && isAccountDetailsPresent) {
+			if (
+				userDetails?.tier?.label !== "BUYER" ||
+				userDetails?.tier?.label !== "SEMI-VERIFIED"
+			) {
+				window.location.href = "/listing";
+				
+			} else {
+				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+					`${redirectUrl}/listing`
+				)}`;
+				handleLogout();
+				setTierUpgrade(true);
+			}
+			// if (userDetails?.tier?.label === "FULLY VERIFIED") {
+			// 	window.location.href = "/";
+			// } else if (
+			// 	userDetails?.tier?.label === "BUYER" ||
+			// 	userDetails?.tier?.label === "SEMI-VERIFIED"
+			// ) {
+			// 	window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+			// 		redirectUrl
+			// 	)}`;
+			// 	handleLogout();
+			// 	setTierUpgrade(true);
+			// }
+		} else {
+			window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+				`${redirectUrl}/listing`
+			)}`;
+		}
+	};
 	//modals
 	const [showModal, setShowModal] = useState(false);
 
@@ -422,7 +459,7 @@ const handleLogout = async () => {
 					<UpgradeTierModal
 						isVisible={showUpgradeModal}
 						onClose={closeModal}
-						showLogin={handleProfileClick}
+						showLogin={handleListingRedirect}
 					/>
 				)}
 				{/* {!isMLWWSPresent&&
