@@ -61,17 +61,17 @@ const SellComponent = () => {
 				userDetails?.tier?.label !== "BUYER" ||
 				userDetails?.tier?.label !== "SEMI-VERIFIED"
 			) {
-				window.location.href = "/";
+				window.location.href = "/listing";
 			} else {
 				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-					redirectUrl
+					`${redirectUrl}/listing`
 				)}`;
 				handleLogout();
 				setTierUpgrade(true);
 			}
 		} else {
 			window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-				redirectUrl
+				`${redirectUrl}/listing`
 			)}`;
 		}
 	};

@@ -65,6 +65,7 @@ import {
   SortByText,
 } from "../utils/StringFunctions.utils";
 import { CardSkeleton, FeaturesSkeleton } from "./Skeleton";
+import { isCookiePresent } from "../utils/CookieChecker";
 
 const { Option } = Select;
 
@@ -210,14 +211,22 @@ const DashboardComponent = () => {
     }
   };
 
-  const url_Redirect = process.env.REACT_APP_LOGIN_URL;
+  const login_url = process.env.REACT_APP_LOGIN;
+  const redirect_url = process.env.REACT_APP_REDIRECT_URL;
+  const sessionCookieName = process.env.REACT_APP_SESSION_COOKIE_NAME;
+	const accountCookieName = process.env.REACT_APP_ACCOUNT_COOKIE_NAME;
+	const isMLWWSPresent = isCookiePresent(sessionCookieName);
+	const isAccountDetailsPresent = isCookiePresent(accountCookieName);
+
   const handleUserProfileClick = () => {
-    if (url_Redirect) {
-      window.location.href = url_Redirect;
+    if (!isMLWWSPresent && !isAccountDetailsPresent) {
+      window.location.href = `${login_url}?redirect_url=${redirect_url}`;
+    }else{
+      window.location.href = '/';
     }
   };
   const handleClickedGetFreeAssistance = () => {
-    if (url_Redirect) {
+    if (redirect_url) {
       window.location.href = "/propertySearch";
     }
   };
