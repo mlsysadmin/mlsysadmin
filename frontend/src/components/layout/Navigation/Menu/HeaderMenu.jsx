@@ -415,7 +415,7 @@ const handleLogout = async () => {
 						boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
 						margin: "0px 0px 0px 0px",
 					}}
-					label="List your Property"
+					label="List Your Property"
 					onClick={handleListPropertyClick}
 				/>
 				{showUpgradeModal && (
@@ -439,7 +439,7 @@ const handleLogout = async () => {
 						cursor: "pointer",
 						margin: "0px 0px 0px 10px",
 					}}
-					label="Join our Team"
+					label="Join Our Team"
 					onClick={handleJoinTeamClick}
 				/>
 

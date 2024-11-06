@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/sell.css";
+import { isCookiePresent } from "../utils/CookieChecker";
 import { DownOutlined } from "@ant-design/icons";
 import bannerImg from "../asset/banners/house_car_LE_auto_x2-transformed.jpeg";
 import { Button, Radio } from "antd";
+import UpgradeTierModal from "./modals/UpgradeTierModal";
 import { FooterComponent, CustomMlFooter, MainLayout } from "../components";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import WorkingOnItModal from "./ComingSoonComponent";
@@ -12,6 +14,7 @@ import { buyFaqs, sellFaqs } from "../utils/FaqsData";
 const SellComponent = () => {
 	const [activeIndex, setActiveIndex] = useState(null);
 	const [value, setValue] = useState(1);
+	const [tierUpgrade, setTierUpgrade] = useState(false);
 
 	const onChange = (e) => {
 		console.log("radio checked", e.target.value);
@@ -27,14 +30,73 @@ const SellComponent = () => {
 		}
 	};
 
+	const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+	const sessionCookieName = process.env.REACT_APP_SESSION_COOKIE_NAME;
+	const accountCookieName = process.env.REACT_APP_ACCOUNT_COOKIE_NAME;
+	const isMLWWSPresent = isCookiePresent(sessionCookieName);
+	const isAccountDetailsPresent = isCookiePresent(accountCookieName);
+	const [userDetails, setUserDetails] = useState(null);
+
+	const openUpgradeModal = () => {
+		setShowUpgradeModal(true);
+	};
+	const closeModal = () => {
+		setShowUpgradeModal(false);
+	};
+	const handleLogout = async () => {
+		const logoutURL = process.env.REACT_APP_LOGOUT_URL;
+		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
+
+		window.location.href = `${logoutURL}?redirect_url=${encodeURIComponent(
+			redirectUrl
+		)}`;
+	};
+
+	const handleProfileClick = () => {
+		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
+		const loginUrl = process.env.REACT_APP_LOGIN_URL;
+
+		if (isMLWWSPresent && isAccountDetailsPresent) {
+			if (
+				userDetails?.tier?.label !== "BUYER" ||
+				userDetails?.tier?.label !== "SEMI-VERIFIED"
+			) {
+				window.location.href = "/";
+			} else {
+				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+					redirectUrl
+				)}`;
+				handleLogout();
+				setTierUpgrade(true);
+			}
+		} else {
+			window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+				redirectUrl
+			)}`;
+		}
+	};
+
+	const handleListPropertyClick = () => {
+		if (isMLWWSPresent && isAccountDetailsPresent) {
+			if (
+				userDetails?.tier?.label !== "BUYER" ||
+				userDetails?.tier?.label !== "SEMI-VERIFIED"
+			) {
+				window.location.href = "/listing";
+			} else {
+				console.log("User is a buyer and cannot list properties.");
+				openUpgradeModal();
+			}
+		} else {
+			setShowUpgradeModal(true);
+		}
+	};
 
 	useEffect(() => {
 		if (location.hash === "#sell") {
 			scrollToSection(topSellComponentDiv);
 		}
 	}, [location]);
-
-
 
 	const url_Redirect = process.env.REACT_APP_LOGIN_URL;
 
@@ -108,7 +170,7 @@ const SellComponent = () => {
 									label={"Sign In"}
 									id="signIn"
 									className={"sell--action-btn"}
-									handleClick={handleSignIn}
+									handleClick={handleProfileClick}
 								/>
 							</div>
 						</div>
@@ -128,8 +190,15 @@ const SellComponent = () => {
 									label={"List Your Property"}
 									id="ListPropertybtn"
 									className={"sell--action-btn"}
-									handleClick={() => handleSignIn}
+									handleClick={handleListPropertyClick}
 								/>
+								{showUpgradeModal && (
+									<UpgradeTierModal
+										isVisible={showUpgradeModal}
+										onClose={closeModal}
+										showLogin={handleProfileClick}
+									/>
+								)}
 							</div>
 							<div className="options">
 								<label>

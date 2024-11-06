@@ -179,7 +179,7 @@ const InsuranceGuideComponent = () => {
 					</div>
 				</div>
 				<div className="insurance-guide-content-five">
-					<span>Frequently Asked Questions</span>
+					<span className="i-questions-title">Frequently Asked Questions</span>
 					<div className="questions">
 						{accordionData.map((item, index) => (
 							<div key={index}>
@@ -205,7 +205,7 @@ const InsuranceGuideComponent = () => {
 									{activeIndex === index && (
 										<div
 											className="dropdown-content"
-											style={{ height: "auto", fontWeight: "lighter" }}
+											style={{ height: "auto", fontWeight: "300px" }}
 										>
 											{item.answer}
 										</div>
