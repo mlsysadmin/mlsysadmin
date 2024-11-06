@@ -232,14 +232,13 @@ const ValidationSchema = {
         name: Joi.string().required(),
         property_no: Joi.string().required(),
         property_title: Joi.string().required(),
-        image_path: Joi.string().required(),
         email: Joi.string()
             .email({
                 minDomainSegments: 2
             }).required(),
         image_path: Joi.string().required(),
         sale_type: Joi.string().custom((value, helpers) => {
-            const status = ['sale', 'rent', 'pre selling'];
+            const status = ['sale', 'rent', 'pre selling', 'Sale', 'Rent', 'pre-selling', 'Pre-Selling', 'Pre Selling'];
 
             if (!status.includes(value)) {
                 return helpers.message(`Invalid Sale Type value.`);
@@ -249,7 +248,7 @@ const ValidationSchema = {
         }).required(),
         price: Joi.number().positive().required(),
         approval_status: Joi.string().custom((value, helpers) => {
-            const status = ['approved', 'rejected'];
+            const status = ['approved', 'rejected', 'APPROVED', 'REJECTED'];
 
             if (!status.includes(value)) {
                 return helpers.message(`Invalid approval status value.`);
