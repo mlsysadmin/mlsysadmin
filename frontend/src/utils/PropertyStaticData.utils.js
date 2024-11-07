@@ -81,6 +81,7 @@ const PropertyTypes = [
 		options: [
 			{ label: "Service Office", value: "service-office" },
 			{ label: "Shop/Retail", value: "shop/retail" },
+			{ label: "Office Space", value: "office-space" },
 			{ label: "Commercial Land/Lot", value: "commercial-land/lot" },
 		],
 	},

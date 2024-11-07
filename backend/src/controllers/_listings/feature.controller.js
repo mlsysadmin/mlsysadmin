@@ -47,5 +47,48 @@ module.exports = {
         } catch (error) {
             next(error);
         }
+    },
+    GetAllFeatures: async (req, res, next) => {
+        try {
+            
+            const getAllAmenities = await FindAllFeaturesLists();
+
+            const indoor = getAllAmenities.filter((amenity, i) => amenity.feature_type === 'indoor');
+            const outdoor = getAllAmenities.filter((amenity, i) => amenity.feature_type === 'outdoor');
+
+            const data = {
+                features: { indoor, outdoor }
+            }
+            const amenities_data = {
+                indoor_count: data.features.indoor.length,
+                outdoor_count: data.features.outdoor.length
+            }
+
+            const amenities_log = DataResponseHandler(
+                amenities_data,
+                "FEATURES_RETRIEVED",
+                200,
+                true,
+                "SUCCESS"
+            );
+
+            const amenities = DataResponseHandler(
+                data,
+                "FEATURES_RETRIEVED",
+                200,
+                true,
+                "SUCCESS"
+            );
+
+            const success = SuccessFormatter(amenities, 200, "Retrieved Successfully");
+
+            SuccessLoggerHelper(req, amenities_log);
+
+            res.status(200).send(success);
+
+
+        } catch (error) {
+            next(error);
+        }
     }
 }
