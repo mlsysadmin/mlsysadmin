@@ -26,7 +26,7 @@
 .term-intro {
 	padding-top: 100px;
 	text-align: left;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 40px;
 }
 .p-terms-cont{
@@ -34,13 +34,13 @@
 
 }
 .p-terms-cont p{
-    font-size: 15px;
+    font-size: 20px;
     text-align: justify;
 }
 .sublabel{
     font-weight: bold;
     line-height: 40px;
-    font-size: 16px;
+    font-size: 20px;
 }
 @media screen  and (min-width:320px) and (max-width:1024px) {
     .terms-main-content-group{
@@ -52,5 +52,8 @@ font-size: 18px;
     }
     .term-intro {
 	padding-top: 50px;
+}
+.p-terms-cont p, .sublabel, .term-intro{
+    font-size: 16px;
 }
 }
