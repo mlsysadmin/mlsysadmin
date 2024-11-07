@@ -9,6 +9,8 @@ import {
 	homeloanFaqs,
 	mortgageFaqs,
 } from "../utils/FaqsData";
+import CustomMlFooter from "./custom/Custom.Mlfooter";
+import FooterComponent from "./layout/FooterComponent";
 
 const FaqsComponent = () => {
 	const [activeIndex, setActiveIndex] = useState(null);
@@ -64,9 +66,8 @@ const FaqsComponent = () => {
 					<h1 className="faq-title">Have questions? We are here to help.</h1>
 					<span className="faq-subtitle">
 						Here are the most common questions about M Lhuillier Properties
-						Realty & Brokerage.
-						 Whether you're buying or selling, we're here to discuss your
-						options.
+						Realty & Brokerage. Whether you're buying or selling, we're here to
+						discuss your options.
 					</span>
 				</div>
 				<div className="faq-section">
@@ -154,6 +155,8 @@ const FaqsComponent = () => {
 					</div>
 				</div>
 			</div>
+			<CustomMlFooter />
+			<FooterComponent />
 		</div>
 	);
 };
