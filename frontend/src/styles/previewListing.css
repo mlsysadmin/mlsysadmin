@@ -7,7 +7,8 @@
   overflow: hidden;
   width: 100%;
 }
-.loan-calculator-button, .ant-btn.loan-calculator-button:hover{
+.loan-calculator-button,
+.ant-btn.loan-calculator-button:hover {
   background-color: white;
   color: black !important;
   font-weight: bold;
@@ -445,7 +446,7 @@
   font-size: 16px;
 } */
 
-.property-on-map{
+.property-on-map {
   padding: 0 20px;
 }
 
@@ -556,7 +557,7 @@
   padding: 0 20px;
 }
 
-.contact-us{
+.contact-us {
   display: flex;
   gap: 20px;
   flex-direction: column;
@@ -577,8 +578,6 @@
   height: auto;
   gap: 1rem;
 }
-
-
 
 .year-select {
   width: 100%;
@@ -1094,7 +1093,7 @@
   text-align: center;
   gap: 10px;
 }
-.mobile-view-similar-properties h3{
+.mobile-view-similar-properties h3 {
   font-size: 25px;
 }
 .apply-button:hover,
@@ -1114,7 +1113,7 @@
 .mobileRightSideContent {
   display: none;
 }
-@media only screen and (min-width: 320px) and (max-width: 480px) {
+@media only screen and (min-width: 320px) and (max-width: 1024px) {
   .mobile-view-similar-properties {
     display: block;
     margin-top: 50px;
@@ -1250,23 +1249,22 @@ align-content: center;
 }
 
 @media (min-width: 1180px) and (max-width: 1200px) {
-
   .calculator,
   .contact-us {
     width: 95%;
   }
 }
 @media (min-width: 1025px) and (max-width: 1280px) {
-  .leftContent{
-    width: 60%;
+  .leftContent {
+    width: 80%;
   }
-  .widerRightSideContent{
+  .widerRightSideContent {
     width: 50%;
   }
-  .right-side-container{
+  .right-side-container {
     margin-left: 3%;
   }
-  .contact-us{
+  .contact-us {
     width: 100%;
   }
   .right-side-container {
@@ -1311,34 +1309,52 @@ align-content: center;
     margin-bottom: 120px;
   }
 }
-@media (min-width: 873px) and (max-width: 1024px) {
-  .leftContent{
-    width: 60%;
+@media (min-width: 800px) and (max-width: 936px) {
+  .VListingHouseDetails_leftfeatureGrid__8mg4Q {
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    display: flex;
+    margin-top: 30px;
+    gap: 10px;
   }
-  .widerRightSideContent{
-    width: 60%;
+}
+@media screen and (max-width: 719px) {
+  .VListingHouseDetails_featureTitle__clV7N{
+    font-size: 16px;
   }
-  .right-side-container{
-    margin-left: 3%;
+  .VListingHouseDetails_featureValue__nH2b4{
+    font-size: 15px;
   }
-  .contact-us{
+}
+@media (min-width: 937px) and (max-width: 1024px) {
+  .leftContent {
     width: 100%;
   }
-    .property-on-map h3, .web-view-similar-properties h3{
-     font-size: 20px ;
+  .VListingHouseDetails_leftfeatureGrid__8mg4Q {
+    flex-wrap: nowrap !important;
+  }
+  .right-side-container {
+    margin-left: 0%;
+  }
+  .contact-us {
+    width: 100%;
+  }
+  .property-on-map h3,
+  .web-view-similar-properties h3 {
+    font-size: 20px;
   }
 }
 @media (min-width: 1281px) and (max-width: 1500px) {
-  .leftContent{
+  .leftContent {
     width: 80%;
   }
-  .widerRightSideContent{
+  .widerRightSideContent {
     width: 50%;
   }
-  .right-side-container{
+  .right-side-container {
     margin-left: 9%;
   }
-  .contact-us{
+  .contact-us {
     width: 90%;
   }
   .right-side-container {
@@ -1382,5 +1398,4 @@ align-content: center;
     margin-left: 10px;
     margin-bottom: 120px;
   }
-  
 }
