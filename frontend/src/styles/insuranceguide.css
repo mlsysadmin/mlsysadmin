@@ -1339,6 +1339,21 @@
 	}
 	
 }
+@media screen and (min-width:1265px) and (max-width:1400px) {
+	    .insurance-guide-inboxes {
+			width: 50% !important;
+		}
+		.insurance-guide-tagline-two span{
+			padding-left: 100px !important;
+			align-items: center !important;
+			justify-content: center !important;
+		}
+		.insurance-guide-tagline-two p{
+			padding-left: 50px !important;
+		}
+
+	
+}
 @media screen and (min-width: 1201px) and (max-width: 1399px) {
 	.insurance-header {
 		padding: 0px 0px 0px 90px !important;
