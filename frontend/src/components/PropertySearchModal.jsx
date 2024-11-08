@@ -523,7 +523,7 @@ const PropertySearch = () => {
                   />
                 </div>
               </div>
-              <div className="form-column" id="">
+              <div className="form-column" id="featureAminities">
                 <span>Feature & Amenities</span>
                 <input
                   id="featureAmenities"
