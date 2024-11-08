@@ -170,9 +170,7 @@ export const ListingForm = () => {
 		}
 	};
 
-	const handleSellingPriceClick = (furnishing) => {
-		setSelectedSellingPrice(furnishing);
-	};
+
 
 	const handleVendorSubmit = async () => {
 		setIsSubmitting(false);
@@ -519,7 +517,6 @@ export const ListingForm = () => {
 									priceInputError={priceInputError}
 									setPriceInputError={setPriceInputError}
 									selectedSellingPrice={selectedSellingPrice}
-									handleSellingPriceClick={handleSellingPriceClick}
 									floorAreaInputError={floorAreaInputError}
 									setFloorAreaInputError={setFloorAreaInputError}
 									pricePerSqmInputError={pricePerSqmInputError}
