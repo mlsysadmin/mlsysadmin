@@ -12,7 +12,6 @@ const UnitDetailsComponent = ({
 	priceInputError,
 	setPriceInputError,
 	selectedSellingPrice,
-	handleSellingPriceClick,
 	floorAreaInputError,
 	setFloorAreaInputError,
 	pricePerSqmInputError,
@@ -50,10 +49,24 @@ const UnitDetailsComponent = ({
 	const handleClassificationClick = (tab) => {
 		setClassification(tab);
 	};
+	const handleFurnishingClick = (tab) => {
+		setFurnishing(tab)
+	};
+
+
 
 	useEffect(() => {
 		if (
-			["commercial land/lot", "lot", "farm lot", "service office", "office space", "shop/retail","warehouse", "hotel/resort"].includes(selectedPropertyTab)
+			[
+				"commercial land/lot",
+				"lot",
+				"farm lot",
+				"service office",
+				"office space",
+				"shop/retail",
+				"warehouse",
+				"hotel/resort",
+			].includes(selectedPropertyTab)
 		) {
 			setFurnishing(null);
 			setClassification(null);
@@ -80,8 +93,8 @@ const UnitDetailsComponent = ({
 			typeof discountedPrice === "string" &&
 			discountedPrice.trim() !== "" &&
 			(!requiresAdditionalFields ||
-				(typeof selectedSellingPrice === "string" &&
-					selectedSellingPrice.trim() !== "" &&
+				(typeof furnishing === "string" &&
+					furnishing.trim() !== "" &&
 					typeof Classification === "string" &&
 					Classification.trim() !== "" &&
 					noOfBeds !== null &&
@@ -132,6 +145,27 @@ const UnitDetailsComponent = ({
 		propId,
 	]);
 
+	useEffect(() => {
+		if (
+			[
+				"commercial land/lot",
+				"lot",
+				"farm lot",
+				"service office",
+				"office space",
+				"shop/retail",
+				"warehouse",
+				"house and lot",
+				"hotel/resort",
+			].includes(selectedPropertyTab) &&
+			price &&
+			lotArea
+		) {
+			const pricePerSqmCalculated = price / lotArea;
+			setPricePerSqm(pricePerSqmCalculated.toFixed(2).toString());
+		}
+	}, [price, lotArea, selectedPropertyTab]);
+
 	const isPricePerSqmDisabled = ![
 		"commercial land/lot",
 		"lot",
@@ -140,6 +174,7 @@ const UnitDetailsComponent = ({
 		"office space",
 		"shop/retail",
 		"warehouse",
+		"house and lot",
 		"hotel/resort",
 	].includes(selectedPropertyTab);
 
@@ -224,11 +259,10 @@ const UnitDetailsComponent = ({
 											<div
 												key={tab}
 												className={`furnish-tab ${
-													selectedSellingPrice === tab ? "selected" : ""
+													furnishing === tab ? "selected" : ""
 												}`}
 												onClick={() =>
-													!disabledPropertyFields &&
-													handleSellingPriceClick(tab)
+													!disabledPropertyFields && handleFurnishingClick(tab)
 												}
 												style={{
 													cursor: disabledPropertyFields
