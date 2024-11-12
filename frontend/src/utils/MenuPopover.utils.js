@@ -118,8 +118,8 @@ const SubMenu = {
 			submenu: [
 				// { sub: "Mortgage", link: "/mortgage" },
 
-				{ sub: "Refinance your home", link: "/refinance" },
-				{ sub: "Buy A Home", link: "/buy-a-home" },
+				{ sub: "Refinancing your Home", link: "/refinance" },
+				{ sub: "Buy a Home", link: "/buy-a-home" },
 			],
 		},
 	],
