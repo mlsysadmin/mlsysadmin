@@ -81,10 +81,15 @@ const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 window.location.href  = `${logoutURL}?redirect_url=${encodeURIComponent(redirectUrl)}`;
 }
 
-
+const toPascalCase = (name) => {
+    return name
+        .split(' ') 
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1)) 
+        .join(' '); 
+}
 
 	const firstName = accountDetails ? accountDetails.firstName.toLowerCase() : "User";
-	const formatFirstname = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+	const formatFirstname = toPascalCase(firstName);
 	const lastNameInitial =
 		accountDetails && accountDetails.lastName
 			? accountDetails.lastName.charAt(0).toUpperCase() + "."
