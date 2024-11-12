@@ -83,7 +83,8 @@ window.location.href  = `${logoutURL}?redirect_url=${encodeURIComponent(redirect
 
 
 
-	const firstName = accountDetails ? accountDetails.firstName : "User";
+	const firstName = accountDetails ? accountDetails.firstName.toLowerCase() : "User";
+	const formatFirstname = firstName.charAt(0).toUpperCase() + firstName.slice(1);
 	const lastNameInitial =
 		accountDetails && accountDetails.lastName
 			? accountDetails.lastName.charAt(0).toUpperCase() + "."
@@ -112,7 +113,7 @@ window.location.href  = `${logoutURL}?redirect_url=${encodeURIComponent(redirect
 					alt="User Profile"
 					style={{ marginRight: "5px", height: "20px" }}
 				/>
-				{firstName} {lastNameInitial}
+				{formatFirstname} {lastNameInitial}
 				<img
 					src={profileDropdown}
 					alt=""
