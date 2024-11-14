@@ -42,7 +42,6 @@ const corsOptions = {
         const allowedOrigins = origins.split('|');
 
         console.log("allowedOrigins", allowedOrigins);
-        console.log("origin", origin);
         // allow requests with no origin (like mobile apps or curl requests)
         if (!origin) return callback(null, true);
         if (allowedOrigins.includes(origin)) {
@@ -50,7 +49,7 @@ const corsOptions = {
             
             callback(null, true);
         } else {
-            console.log("dsdsgd");
+            console.log("Cors not allowed", origin);
             
             callback(new Error("Cors not allowed"), false);
         }

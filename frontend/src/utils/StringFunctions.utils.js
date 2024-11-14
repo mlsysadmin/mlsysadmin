@@ -2,20 +2,28 @@
 
 const CapitalizeString = (word) => {
 
-  let capitalize = word.charAt(0).toUpperCase();
+  try {
+    let capitalize = word.charAt(0).toUpperCase();
 
 
-  let sliceConcat = capitalize + word.slice(1);
+    let sliceConcat = capitalize + word.slice(1);
 
-  return sliceConcat;
+    return sliceConcat;
+  } catch (error) {
+    return word
+  }
 }
 const CapitalizeStringwithSymbol = (str) => {
-	if (!str) return "";
+  try {
+    if (!str) return "";
 
-	return str
-		.split(/[\s/]+/)
-		.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-		.join("/");
+    return str
+      .split(/[\s/]+/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join("/");
+  } catch (error) {
+    return str
+  }
 };
 
 const NotAvailableReturn = (detail) => {
@@ -48,9 +56,13 @@ function isPastAMonth(date) {
 
 const GetPropertyTitle = (projectName, unitName) => {
 
-  const project_name = projectName.includes("NA".toLocaleLowerCase()) || projectName ? "" : projectName;
+  try {
+    const project_name = projectName.includes("NA".toLocaleLowerCase()) || projectName ? "" : projectName;
 
-  return `${project_name} ${unitName}`.trim()
+    return `${project_name} ${unitName}`.trim()
+  } catch (error) {
+    return unitName;
+  }
 
 }
 
@@ -121,23 +133,27 @@ const SortListings = (sortKey, sortListing, listings) => {
 }
 
 const CapitalizeEachWord = (word) => {
-  let capitalizeEachWord = "";
+  try {
+    let capitalizeEachWord = "";
 
-  if (word === undefined) {
-    capitalizeEachWord = "";
-  }else{
-    let w = ""
-    word.trim().replace(/[\_-]/g, " ").split(' ').forEach((st) => {
-      w += CapitalizeString(st) + " ";
-    })
+    if (word === undefined) {
+      capitalizeEachWord = "";
+    } else {
+      let w = ""
+      word.trim().replace(/[\_-]/g, " ").split(' ').forEach((st) => {
+        w += CapitalizeString(st) + " ";
+      })
 
-    capitalizeEachWord = w
+      capitalizeEachWord = w
+    }
+    console.log(capitalizeEachWord);
+
+    capitalizeEachWord.trim();
+
+    return capitalizeEachWord;
+  } catch (error) {
+    return word
   }
-  console.log(capitalizeEachWord);
-
-  capitalizeEachWord.trim();
-  
-  return capitalizeEachWord;
 
 }
 

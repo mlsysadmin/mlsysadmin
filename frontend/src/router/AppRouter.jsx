@@ -66,6 +66,7 @@ import {
 } from "../pages";
 import { ProtectedRoute, BuyerSellerProtectedRoute } from "./ProtectedRoute";
 import { SaleComponent, SearchListingComponent } from "../components";
+import Error from "../components/ErrorComponent";
 
 
 
@@ -235,6 +236,10 @@ const Routes = [
 	{
 		path: "support/signin",
 		element: <SignIn />,
+	},
+	{
+		path: 'error',
+		element: <Error/>
 	},
 	{
 		path: "support",
