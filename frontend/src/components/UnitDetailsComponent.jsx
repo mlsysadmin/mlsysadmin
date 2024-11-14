@@ -156,6 +156,8 @@ const UnitDetailsComponent = ({
 				"shop/retail",
 				"warehouse",
 				"house and lot",
+				"townhouse",
+				"condominium",
 				"hotel/resort",
 			].includes(selectedPropertyTab) &&
 			price &&
@@ -175,6 +177,8 @@ const UnitDetailsComponent = ({
 		"shop/retail",
 		"warehouse",
 		"house and lot",
+		"townhouse",
+		"condominium",
 		"hotel/resort",
 	].includes(selectedPropertyTab);
 
