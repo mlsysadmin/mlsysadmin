@@ -3,8 +3,8 @@ import "../styles/previewListing.css";
 import styles from "../styles/VListingHouseDetails.module.css";
 import VLFeatureCard from "./VLFeatureCard";
 import {
-  FormatLocation,
-  LocationFormatter,
+	FormatLocation,
+	LocationFormatter,
 } from "../utils/LocationDateFormatter";
 import MapComponent from "./mapComponent";
 import area from "../assets/icons/previewlisting/area.png";
@@ -12,10 +12,10 @@ import { useNavigate } from "react-router-dom";
 import HomeHighlights from "./HomeHighlights";
 
 import {
-  CapitalizeString,
-  CapitalizeStringwithSymbol,
-  GetPropertyTitle,
-  NotAvailableReturn,
+	CapitalizeString,
+	CapitalizeStringwithSymbol,
+	GetPropertyTitle,
+	NotAvailableReturn,
 } from "../utils/StringFunctions.utils";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
@@ -27,83 +27,84 @@ import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFi
 import PhpOutlinedIcon from '@mui/icons-material/PhpOutlined';
 
 const PreviewListLeftContent = ({
-  label,
-  value,
-  oneListing,
-  features,
-  amenities,
-  includes,
+	label,
+	value,
+	oneListing,
+	features,
+	amenities,
+	includes,
 }) => {
-  const navigate = useNavigate();
-  const handleButtonClick = () => {
-    navigate("/mortgage");
-  };
+	const navigate = useNavigate();
+	const handleButtonClick = () => {
+		navigate("/mortgage");
+	};
 
-  const [featuress, setFeaturess] = useState([]);
+	const [featuress, setFeaturess] = useState([]);
 
-  useEffect(() => {
-    if (oneListing) {
-      FilterFeature(oneListing.PropertyType);
-    }
-  }, []);
+	useEffect(() => {
+		if (oneListing) {
+			FilterFeature(oneListing.PropertyType);
+		}
+	}, []);
 
-  const FilterFeature = (property_type) => {
-    const feat = [
-      {
-        title: "Bedrooms",
-        iconSrc: <BedOutlinedIcon/>,
-          // "https://cdn.builder.io/api/v1/image/assets/TEMP/ffa0b4ae5294fab32f04e2df5bccc9e215b962c4a23b87baa3b3a4f9d11a3bf0?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
-        value: oneListing.BedRooms,
-      },
-      {
-        title: "Bathrooms",
-        iconSrc: <ShowerOutlinedIcon/>,
-          // "https://cdn.builder.io/api/v1/image/assets/TEMP/372723378f9151c6cced3d234ccf4d85735cb0c5bd16df4ca6bac2adaf6189fb?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
-        value: oneListing.BathRooms,
-      },
-      {
-        title: "Garage",
-        iconSrc: <DirectionsCarFilledOutlinedIcon/>,
-          // "https://cdn.builder.io/api/v1/image/assets/TEMP/a17243275d0fedc1a93dbce25cd9571671d11f482871f3219644e3e5fe1afa72?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
-        value: oneListing.Parking,
-      },
-      { 
-        title: "Area", 
-        // iconSrc: area,
-        iconSrc: <ShortcutOutlinedIcon/>, 
-        value: oneListing.LotArea },
-      {
-        title: "Price per SqM",
-        // iconSrc: <PhpOutlinedIcon/>,
-        value: `${oneListing.PricePerSqm}`,
-      },
-    ];
-    let feature = [];
-    console.log(
-      "type",
-      property_type,
-      property_type.toLowerCase().includes("lot") ||
-      property_type.toLowerCase().includes("house")
-    );
+	const FilterFeature = (property_type) => {
+		const feat = [
+			{
+				title: "Bedrooms",
+				iconSrc: <BedOutlinedIcon />,
+				// "https://cdn.builder.io/api/v1/image/assets/TEMP/ffa0b4ae5294fab32f04e2df5bccc9e215b962c4a23b87baa3b3a4f9d11a3bf0?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
+				value: oneListing.BedRooms,
+			},
+			{
+				title: "Bathrooms",
+				iconSrc: <ShowerOutlinedIcon />,
+				// "https://cdn.builder.io/api/v1/image/assets/TEMP/372723378f9151c6cced3d234ccf4d85735cb0c5bd16df4ca6bac2adaf6189fb?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
+				value: oneListing.BathRooms,
+			},
+			{
+				title: "Garage",
+				iconSrc: <DirectionsCarFilledOutlinedIcon />,
+				// "https://cdn.builder.io/api/v1/image/assets/TEMP/a17243275d0fedc1a93dbce25cd9571671d11f482871f3219644e3e5fe1afa72?apiKey=e5af2e14d6ff40c0b0f04c88d87330a5",
+				value: oneListing.Parking,
+			},
+			{
+				title: "Area",
+				// iconSrc: area,
+				iconSrc: <ShortcutOutlinedIcon />,
+				value: oneListing.LotArea
+			},
+			{
+				title: "Price per SqM",
+				// iconSrc: <PhpOutlinedIcon/>,
+				value: `${oneListing.PricePerSqm}`,
+			},
+		];
+		let feature = [];
 
-    if ((property_type.toLowerCase().includes("lot") && !property_type.toLowerCase().includes("house")) || property_type.toLowerCase().includes("office")) {
-      feature = feat.filter((item, i) =>
-        ["price per sqm", 'area'].includes(item.title.toLocaleLowerCase())
-      );
-    }
-    else if (property_type.toLowerCase().includes("lot") && property_type.toLowerCase().includes("house")) {
-      feature = feat;
-    }
-    else {
-      feature = feat.filter(
-        (item, i) => !["price per sqm"].includes(item.title.toLocaleLowerCase())
-      );
-    }
+		try {
+			if ((property_type.toLowerCase().includes("lot") && !property_type.toLowerCase().includes("house")) || property_type.toLowerCase().includes("office")) {
+				feature = feat.filter((item, i) =>
+					["price per sqm", 'area'].includes(item.title.toLocaleLowerCase())
+				);
+			}
+			else if (property_type.toLowerCase().includes("lot") && property_type.toLowerCase().includes("house")) {
+				feature = feat;
+			}
+			else {
+				feature = feat.filter(
+					(item, i) => !["price per sqm"].includes(item.title.toLocaleLowerCase())
+				);
+			}
 
-    setFeaturess(feature);
-  };
+			setFeaturess(feature);
+		} catch (error) {
+			console.log("error", error);
+			
+			setFeaturess([]);
+		}
+	};
 
-  return (
+	return (
 		<div className="leftContent">
 			<main className={styles.leftcontainer}>
 				<h1 className={styles.lefttitle}>
@@ -151,7 +152,7 @@ const PreviewListLeftContent = ({
 						<tbody>
 							<tr>
 								<th>Property Type</th>
-								<td>{oneListing.PropertyType === "hotel/resort"? CapitalizeStringwithSymbol(oneListing.PropertyType):CapitalizeString(oneListing.PropertyType)}</td>
+								<td>{oneListing.PropertyType === "hotel/resort" ? CapitalizeStringwithSymbol(oneListing.PropertyType) : CapitalizeString(oneListing.PropertyType)}</td>
 								<th>Floor Area</th>
 								<td>{NotAvailableReturn(oneListing.FloorArea)}</td>
 							</tr>
@@ -198,7 +199,7 @@ const PreviewListLeftContent = ({
 							<tr>
 								<th>Property Type</th>
 
-								<td>{oneListing.PropertyType === "Hotel/Resort"? CapitalizeStringwithSymbol(oneListing.PropertyType):CapitalizeString(oneListing.PropertyType)}
+								<td>{oneListing.PropertyType === "Hotel/Resort" ? CapitalizeStringwithSymbol(oneListing.PropertyType) : CapitalizeString(oneListing.PropertyType)}
 								</td>
 							</tr>
 							<tr>

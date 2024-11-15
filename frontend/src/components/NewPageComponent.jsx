@@ -16,7 +16,7 @@ import ListingSearch from "./custom/customsearch/custom.listingsearch";
 import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
-import { CapitalizeEachWord,CapitalizeStringwithSymbol, CapitalizeString, FillLocationFilter, GetPropertyTitle, isPastAMonth, SortByText, SortMaxPrice, SortPrice } from "../utils/StringFunctions.utils";
+import { CapitalizeEachWord, CapitalizeStringwithSymbol, CapitalizeString, FillLocationFilter, GetPropertyTitle, isPastAMonth, SortByText, SortMaxPrice, SortPrice } from "../utils/StringFunctions.utils";
 import DefaultPropertyImage from '../asset/fallbackImage.png';
 
 const NewPageComponent = () => {
@@ -44,15 +44,15 @@ const NewPageComponent = () => {
 	const [filterLocation, setFilterLocation] = useState([]);
 	const [searchParams, setSearchParams] = useState({
 		location: null,
-        price_min: 1000,
-        price_max: 100000000,
-        keyword: null,
-        property_type: null,
-        bedrooms: null,
-        bathrooms: null,
-        parking: null,
-        sale_type: null,
-        lot_area: null,
+		price_min: 1000,
+		price_max: 100000000,
+		keyword: null,
+		property_type: null,
+		bedrooms: null,
+		bathrooms: null,
+		parking: null,
+		sale_type: null,
+		lot_area: null,
 	})
 
 	const handleCardClick = (id) => {
@@ -91,7 +91,7 @@ const NewPageComponent = () => {
 						const gallery = getPhotoGallery.data;
 
 						const image = GetPhotoWithUrl(item.Photo);
-						
+
 						return {
 							id: item.id,
 							title: CapitalizeString(item.UnitName),
@@ -105,9 +105,9 @@ const NewPageComponent = () => {
 							isFeatured: item.IsFeatured,
 							sale_type: CapitalizeString(item.SaleType),
 							no_of_beds: item.BedRooms,
-							property_type:item.PropertyType === "hotel/resort"
-									? CapitalizeStringwithSymbol(item.PropertyType)
-									: item.PropertyType,
+							property_type: item.PropertyType === "hotel/resort"
+								? CapitalizeStringwithSymbol(item.PropertyType)
+								: item.PropertyType,
 							city: item.City,
 							date: item.created_at,
 						};
@@ -143,30 +143,34 @@ const NewPageComponent = () => {
 	const totalPages = Math.ceil(publiclisting.length / cardsPerPage);
 
 	const HandleSort = (e) => {
-		
-		setSelectedSort(e.domEvent.target.innerText);
-		const sortKey = e.key;
-		let sortListing;
 
-		if (sortKey == "price-asc") {
-			sortListing = publiclisting.sort((a, b) => SortPrice(b, a));
-		}else if (sortKey == "price-desc") {
-			sortListing = publiclisting.sort((a, b) => SortPrice(a, b));
-		}else if (sortKey == "new" || sortKey == "relevant") {
-			sortListing = publiclisting.sort((a, b) => SortByText(b.date, a.date));
-		}else if (sortKey == "old") {
-			sortListing = publiclisting.sort((a, b) => SortByText(a.date, b.date))
-		}else if (sortKey == "title-asc") {
-			sortListing = publiclisting.sort((a, b) => SortByText(a.title, b.title))
-		}else if (sortKey == "title-desc") {
-			sortListing = publiclisting.sort((a, b) => SortByText(b.title, a.title))
-		}else {
-			sortListing = publiclisting;
+		try {
+			setSelectedSort(e.domEvent.target.innerText);
+			const sortKey = e.key;
+			let sortListing;
+
+			if (sortKey == "price-asc") {
+				sortListing = publiclisting.sort((a, b) => SortPrice(b, a));
+			} else if (sortKey == "price-desc") {
+				sortListing = publiclisting.sort((a, b) => SortPrice(a, b));
+			} else if (sortKey == "new" || sortKey == "relevant") {
+				sortListing = publiclisting.sort((a, b) => SortByText(b.date, a.date));
+			} else if (sortKey == "old") {
+				sortListing = publiclisting.sort((a, b) => SortByText(a.date, b.date))
+			} else if (sortKey == "title-asc") {
+				sortListing = publiclisting.sort((a, b) => SortByText(a.title, b.title))
+			} else if (sortKey == "title-desc") {
+				sortListing = publiclisting.sort((a, b) => SortByText(b.title, a.title))
+			} else {
+				sortListing = publiclisting;
+			}
+			console.log("sort", sortListing);
+
+
+			currentCards = sortListing;
+		} catch (error) {
+			currentCards = []
 		}
-		console.log("sort", sortListing);
-		
-
-		currentCards = sortListing;
 	}
 	return (
 		<div className="newpage">
