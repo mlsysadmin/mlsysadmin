@@ -1,4 +1,4 @@
-name: Docker Image CI with GHCR
+name: Docker Image CI with Separate Versioning for Frontend and Backend
 
 on:
   push:
@@ -42,28 +42,72 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build Frontend Docker image
-      run: docker build ./frontend --file ./frontend/Dockerfile --tag frontend-temp:${{ github.sha }}
-
-    - name: Tag Frontend Docker image
+    # Frontend versioning and build
+    - name: Read frontend version from VERSION file or set initial version
+      id: frontend_version
       run: |
-        docker tag frontend-temp:${{ github.sha }} ghcr.io/${{ github.repository_owner }}/ml-brokerage-frontend:${{ github.sha }}
-        docker tag frontend-temp:${{ github.sha }} ghcr.io/${{ github.repository_owner }}/ml-brokerage-frontend:latest
+        if [ -f frontend/VERSION ]; then
+          VERSION=$(cat frontend/VERSION)
+        else
+          VERSION="1.0.0"
+        fi
+        echo "Frontend version: $VERSION"
+        echo "FRONTEND_VERSION=$VERSION" >> $GITHUB_ENV
+
+    - name: Increment frontend version (Patch, Minor, Major)
+      id: increment_frontend_version
+      run: |
+        IFS='.' read -r major minor patch <<< "${{ env.FRONTEND_VERSION }}"
+        patch=$((patch + 1))  # Increment the patch version (you can modify this logic to increment major or minor)
+        NEW_FRONTEND_VERSION="${major}.${minor}.${patch}"
+        echo "New frontend version: $NEW_FRONTEND_VERSION"
+        echo "FRONTEND_VERSION=$NEW_FRONTEND_VERSION" >> $GITHUB_ENV
+        echo $NEW_FRONTEND_VERSION > frontend/VERSION  # Save new version to frontend's VERSION file
+
+    - name: Build Frontend Docker image
+      run: docker build ./frontend --file ./frontend/Dockerfile --tag frontend-temp:${{ env.FRONTEND_VERSION }}
+
+    - name: Tag Frontend Docker image with version
+      run: |
+        docker tag frontend-temp:${{ env.FRONTEND_VERSION }} ghcr.io/${{ github.actor }}/ml-brokerage-frontend:${{ env.FRONTEND_VERSION }}
+        docker tag frontend-temp:${{ env.FRONTEND_VERSION }} ghcr.io/${{ github.actor }}/ml-brokerage-frontend:latest
 
     - name: Push Frontend Docker image
       run: |
-        docker push ghcr.io/${{ github.repository_owner }}/ml-brokerage-frontend:${{ github.sha }}
-        docker push ghcr.io/${{ github.repository_owner }}/ml-brokerage-frontend:latest
+        docker push ghcr.io/${{ github.actor }}/ml-brokerage-frontend:${{ env.FRONTEND_VERSION }}
+        docker push ghcr.io/${{ github.actor }}/ml-brokerage-frontend:latest
+
+    # Backend versioning and build
+    - name: Read backend version from VERSION file or set initial version
+      id: backend_version
+      run: |
+        if [ -f backend/VERSION ]; then
+          VERSION=$(cat backend/VERSION)
+        else
+          VERSION="1.0.0"
+        fi
+        echo "Backend version: $VERSION"
+        echo "BACKEND_VERSION=$VERSION" >> $GITHUB_ENV
+
+    - name: Increment backend version (Patch, Minor, Major)
+      id: increment_backend_version
+      run: |
+        IFS='.' read -r major minor patch <<< "${{ env.BACKEND_VERSION }}"
+        patch=$((patch + 1))  # Increment the patch version (you can modify this logic to increment major or minor)
+        NEW_BACKEND_VERSION="${major}.${minor}.${patch}"
+        echo "New backend version: $NEW_BACKEND_VERSION"
+        echo "BACKEND_VERSION=$NEW_BACKEND_VERSION" >> $GITHUB_ENV
+        echo $NEW_BACKEND_VERSION > backend/VERSION  # Save new version to backend's VERSION file
 
     - name: Build Backend Docker image
-      run: docker build ./backend --file ./backend/Dockerfile --tag backend-temp:${{ github.sha }}
+      run: docker build ./backend --file ./backend/Dockerfile --tag backend-temp:${{ env.BACKEND_VERSION }}
 
-    - name: Tag Backend Docker image
+    - name: Tag Backend Docker image with version
       run: |
-        docker tag backend-temp:${{ github.sha }} ghcr.io/${{ github.repository_owner }}/ml-brokerage-backend:${{ github.sha }}
-        docker tag backend-temp:${{ github.sha }} ghcr.io/${{ github.repository_owner }}/ml-brokerage-backend:latest
+        docker tag backend-temp:${{ env.BACKEND_VERSION }} ghcr.io/${{ github.actor }}/ml-brokerage-backend:${{ env.BACKEND_VERSION }}
+        docker tag backend-temp:${{ env.BACKEND_VERSION }} ghcr.io/${{ github.actor }}/ml-brokerage-backend:latest
 
     - name: Push Backend Docker image
       run: |
-        docker push ghcr.io/${{ github.repository_owner }}/ml-brokerage-backend:${{ github.sha }}
-        docker push ghcr.io/${{ github.repository_owner }}/ml-brokerage-backend:latest
+        docker push ghcr.io/${{ github.actor }}/ml-brokerage-backend:${{ env.BACKEND_VERSION }}
+        docker push ghcr.io/${{ github.actor }}/ml-brokerage-backend:latest
