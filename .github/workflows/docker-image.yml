@@ -12,6 +12,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
+    # Set the custom token as an environment variable
+    - name: Set custom token
+      run: echo "ACCESS_TOKEN=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" >> $GITHUB_ENV
     
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -40,7 +44,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ env.ACCESS_TOKEN }}
 
     # Frontend versioning and build
     - name: Read frontend version from VERSION file or set initial version
