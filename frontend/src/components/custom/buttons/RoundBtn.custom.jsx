@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import React from "react";
 
-const RoundBtn = ({ label, style, className, type, beforeIcon, afterIcon , onClick}) => {
+const RoundBtn = ({ label, style, className, type, beforeIcon, afterIcon , onClick, shape}) => {
   const handleClick = () => {
     if (onClick) {
       onClick();
@@ -11,7 +11,7 @@ const RoundBtn = ({ label, style, className, type, beforeIcon, afterIcon , onCli
   return (
     <Button
       type={type}
-      // shape=""
+      shape={shape}
       className={className}
       style={style}
       onClick={handleClick}

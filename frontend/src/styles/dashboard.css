@@ -75,6 +75,12 @@
   text-align: center;
   justify-content: center;
   align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#dashboard .banner .banner-tags .menu-tags .tag{
+  margin: 10px 5px;
 }
 
 #dashboard .banner .banner-tags .menu-tags li {

@@ -11,20 +11,24 @@ const CertainFeatureMenu = ({ setCheckFeatures }) => {
   const [OutdoorAm, setOutdoorAm] = useState([]);
 
   const indoorF = async () => {
-    const resIndoor = await GetAllIndoorAmenities();
-    // const indoorDatas = resIndoor;
+    try {
+      const resIndoor = await GetAllIndoorAmenities();
     setIndoorAm(resIndoor);
-    // console.log("all amenities", resIndoor);
+    } catch (error) {
+      setIndoorAm([])
+    }
   };
   useEffect(() => {
     indoorF();
   }, []);
 
   const outdoorF = async () => {
-    const resIndoor = await GetAllOutdoorAmenities();
-    // const indoorDatas = resIndoor;
-    setOutdoorAm(resIndoor);
-    // console.log("all amenities", resIndoor);
+    try {
+      const resIndoor = await GetAllOutdoorAmenities();
+      setOutdoorAm(resIndoor);
+    } catch (error) {
+      setOutdoorAm([])
+    }
   };
   useEffect(() => {
     outdoorF();
