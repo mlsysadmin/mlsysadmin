@@ -127,7 +127,7 @@ const DashboardComponent = () => {
           // && listing.PropertyType == "lot"
         );
 
-        listingRes = listingRes.sort((a,b) => SortByText(b.updated_at, a.updated_at))
+        listingRes = listingRes.sort((a, b) => SortByText(b.updated_at, a.updated_at))
 
         let listings = [];
 
@@ -214,14 +214,14 @@ const DashboardComponent = () => {
   const login_url = process.env.REACT_APP_LOGIN;
   const redirect_url = process.env.REACT_APP_REDIRECT_URL;
   const sessionCookieName = process.env.REACT_APP_SESSION_COOKIE_NAME;
-	const accountCookieName = process.env.REACT_APP_ACCOUNT_COOKIE_NAME;
-	const isMLWWSPresent = isCookiePresent(sessionCookieName);
-	const isAccountDetailsPresent = isCookiePresent(accountCookieName);
+  const accountCookieName = process.env.REACT_APP_ACCOUNT_COOKIE_NAME;
+  const isMLWWSPresent = isCookiePresent(sessionCookieName);
+  const isAccountDetailsPresent = isCookiePresent(accountCookieName);
 
   const handleUserProfileClick = () => {
     if (!isMLWWSPresent && !isAccountDetailsPresent) {
       window.location.href = `${login_url}?redirect_url=${redirect_url}`;
-    }else{
+    } else {
       window.location.href = '/';
     }
   };
@@ -264,13 +264,20 @@ const DashboardComponent = () => {
   ];
 
   const Tags = () => (
-    <Menu className="menu-tags" mode="horizontal" selectedKeys={["all"]}>
-      {tags.map((tag) => (
-        <Menu.Item key={tag.key}>
-          {tag.link ? <Link to={tag.link}>{tag.label}</Link> : tag.label}
-        </Menu.Item>
-      ))}
-    </Menu>
+    <div className="menu-tags">
+      {
+        tags.map((tag, index) => (
+          <div key={index} className="tag">
+            <RoundBtn
+              label={tag.label}
+              key={tag.key}
+              onClick={() => navigate(tag.link)}
+              shape={'round'}
+            />
+          </div>
+        ))
+      }
+    </div>
   );
 
   const CardCategories = () => {
