@@ -39,7 +39,7 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: ghcr.io
-        username: ${{ github.actor }}
+        username: ${{ github.actor | lower }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
     # Frontend versioning and build
@@ -69,13 +69,13 @@ jobs:
 
     - name: Tag Frontend Docker image with version
       run: |
-        docker tag frontend-temp:${{ env.FRONTEND_VERSION }} ghcr.io/${{ github.actor }}/ml-brokerage-frontend:${{ env.FRONTEND_VERSION }}
-        docker tag frontend-temp:${{ env.FRONTEND_VERSION }} ghcr.io/${{ github.actor }}/ml-brokerage-frontend:latest
+        docker tag frontend-temp:${{ env.FRONTEND_VERSION }} ghcr.io/${{ github.actor | lower }}/ml-brokerage-frontend:${{ env.FRONTEND_VERSION }}
+        docker tag frontend-temp:${{ env.FRONTEND_VERSION }} ghcr.io/${{ github.actor | lower }}/ml-brokerage-frontend:latest
 
     - name: Push Frontend Docker image
       run: |
-        docker push ghcr.io/${{ github.actor }}/ml-brokerage-frontend:${{ env.FRONTEND_VERSION }}
-        docker push ghcr.io/${{ github.actor }}/ml-brokerage-frontend:latest
+        docker push ghcr.io/${{ github.actor | lower }}/ml-brokerage-frontend:${{ env.FRONTEND_VERSION }}
+        docker push ghcr.io/${{ github.actor | lower }}/ml-brokerage-frontend:latest
 
     # Backend versioning and build
     - name: Read backend version from VERSION file or set initial version
@@ -104,10 +104,10 @@ jobs:
 
     - name: Tag Backend Docker image with version
       run: |
-        docker tag backend-temp:${{ env.BACKEND_VERSION }} ghcr.io/${{ github.actor }}/ml-brokerage-backend:${{ env.BACKEND_VERSION }}
-        docker tag backend-temp:${{ env.BACKEND_VERSION }} ghcr.io/${{ github.actor }}/ml-brokerage-backend:latest
+        docker tag backend-temp:${{ env.BACKEND_VERSION }} ghcr.io/${{ github.actor | lower }}/ml-brokerage-backend:${{ env.BACKEND_VERSION }}
+        docker tag backend-temp:${{ env.BACKEND_VERSION }} ghcr.io/${{ github.actor | lower }}/ml-brokerage-backend:latest
 
     - name: Push Backend Docker image
       run: |
-        docker push ghcr.io/${{ github.actor }}/ml-brokerage-backend:${{ env.BACKEND_VERSION }}
-        docker push ghcr.io/${{ github.actor }}/ml-brokerage-backend:latest
+        docker push ghcr.io/${{ github.actor | lower }}/ml-brokerage-backend:${{ env.BACKEND_VERSION }}
+        docker push ghcr.io/${{ github.actor | lower }}/ml-brokerage-backend:latest
