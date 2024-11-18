@@ -67,6 +67,7 @@ import {
 import { ProtectedRoute, BuyerSellerProtectedRoute } from "./ProtectedRoute";
 import { SaleComponent, SearchListingComponent } from "../components";
 import Error from "../components/ErrorComponent";
+import NotFoundComponent from "../components/Errors/NotFoundComponent";
 
 
 
@@ -229,7 +230,6 @@ const Routes = [
 			},
 			{
 				path: "/documents/mlprop_TermsCondition.pdf",
-
 			},
 		],
 	},
@@ -240,6 +240,10 @@ const Routes = [
 	{
 		path: 'error',
 		element: <Error/>
+	},
+	{
+		path: '*',
+		element: <NotFoundComponent/>
 	},
 	{
 		path: "support",
