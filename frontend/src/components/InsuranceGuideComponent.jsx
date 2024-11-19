@@ -38,22 +38,29 @@ const InsuranceGuideComponent = () => {
 			<div className="insurance-guide-contents">
 				<div className="insurance-guide-content-one">
 					<div className="insurance-guide-tagline">
-						<span>
-							Live your life
-							without worry.
-						</span>
-						<br />
 						<p>
-							Secure your home in uncertain
-							times. ML Home Insurance will help you protect
-							and guard your home.
+							Live your life
+							<br />
+							without worry.
 						</p>
+						<br />
+						<span>
+							Secure your home in uncertain
+							times. 
+							<br />
+							ML Home Insurance will help you protect
+							and
+							<br /> 
+							guard your home.
+						</span>
 					</div>
-					<img src={InsuranceGuide}></img>
+					<div className="insurance-banner">
+						<img src={InsuranceGuide}></img>
+					</div>
 				</div>
 				<div className="insurance-guide-content-two">
 					<div className="insurance-guide-inboxes">
-						<div className="home-insurance-inbox">
+						<div className="home-insurance-inbox insurance-inbox">
 							<img src={InsuranceHouse}></img>
 							<span>Home Insurance</span>
 							<br />
@@ -61,7 +68,7 @@ const InsuranceGuideComponent = () => {
 								Protect your home and your loved ones with ML Home Insurance.
 							</p>
 						</div>
-						<div className="auto-insurance-inbox">
+						<div className="auto-insurance-inbox insurance-inbox">
 							<img src={AutoInsurance}></img>
 							<span>Auto Insurance</span>
 							<br />
@@ -70,7 +77,7 @@ const InsuranceGuideComponent = () => {
 								your vehicle.
 							</p>
 						</div>
-						<div className="health-insurance-inbox">
+						<div className="health-insurance-inbox insurance-inbox">
 							<img src={HealthInsurance}></img>
 							<span>Health Insurance</span>
 							<br />
@@ -78,7 +85,7 @@ const InsuranceGuideComponent = () => {
 								Elevate Your Well-being with ML Health Insurance and be healthy.
 							</p>
 						</div>
-						<div className="travel-insurance-inbox">
+						<div className="travel-insurance-inbox insurance-inbox">
 							<img src={TravelInsurance}></img>
 							<span>Travel Insurance</span>
 							<br />
@@ -91,8 +98,10 @@ const InsuranceGuideComponent = () => {
 					<div className="insurance-guide-tagline-two">
 						<span>
 							<b style={{color:"var(--red)"}}>Choose an Insurance</b> <br />{" "}
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and let us worry <br />
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; about the rest.
+							{/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
+							and let us worry <br />
+							{/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  */}
+							about the rest.
 						</span>
 						<br />
 						<p>We’re here to help. Connect with M Lhuillier today!</p>
@@ -101,53 +110,53 @@ const InsuranceGuideComponent = () => {
 				<div className="insurance-guide-content-four">
 					<span className="insurance-header">Other ML Insurance Products</span>
 					<div className="other-insurance-products">
-						<div className="health-insurance-products">
+						<div className="health-insurance-products insurance-products">
 							<span className="insurance-title">Health Insurance</span>
 							<div className="insurance-child">
 								<p>
-									<CheckCircleOutlined />
+									<CheckCircleOutlined className="check-icon"/>
 									&nbsp;&nbsp;&nbsp;Dengue Rx Insurance
 								</p>
 								<p>
-									<CheckCircleOutlined />
+									<CheckCircleOutlined className="check-icon"/>
 									&nbsp;&nbsp;&nbsp;Emergency Room Insurance
 								</p>
 								<p>
-									<CheckCircleOutlined />
+									<CheckCircleOutlined className="check-icon"/>
 									&nbsp;&nbsp;&nbsp;Medicare Plus Insurance
 								</p>
 								<p>
-									<CheckCircleOutlined />
+									<CheckCircleOutlined className="check-icon"/>
 									&nbsp;&nbsp;&nbsp;Mediphone Insurance
 								</p>
 								<p>
-									<CheckCircleOutlined />
+									<CheckCircleOutlined className="check-icon"/>
 									&nbsp;&nbsp;&nbsp;Personal Accident Insurance
 								</p>
 								<p>
-									<CheckCircleOutlined />
+									<CheckCircleOutlined className="check-icon"/>
 									&nbsp;&nbsp;&nbsp;Virtual Medical Assistance
 								</p>
 							</div>
 						</div>
-						<div className="travel-insurance-products">
+						<div className="travel-insurance-products insurance-products">
 							<span className="insurance-title">Travel Insurance</span>
 							<div className="insurance-child">
 								<p>
-									<CheckCircleOutlined />
+									<CheckCircleOutlined className="check-icon"/>
 									&nbsp;&nbsp;&nbsp;Global Travel Protect Insurance
 								</p>
 								<p>
-									<CheckCircleOutlined />
+									<CheckCircleOutlined className="check-icon"/>
 									&nbsp;&nbsp;&nbsp;OFW Balik Manggagawa Insurance
 								</p>
 							</div>
 						</div>
-						<div className="auto-insurance-products">
+						<div className="auto-insurance-products insurance-products">
 							<span className="insurance-title">Auto Insurance</span>
 							<div className="insurance-child">
 								<p>
-									<CheckCircleOutlined />
+									<CheckCircleOutlined className="check-icon"/>
 									&nbsp;&nbsp;&nbsp;CTPL Insurance
 								</p>
 								<div class="radio-buttons">
