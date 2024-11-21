@@ -50,6 +50,7 @@ import RentComponent from "./RentComponent";
 import SaleComponent from "./SaleComponent";
 import SellComponent from "./SellComponent";
 import FaqsComponent from "./FAQsComponent";
+import PreSellingComponent from "./PreSellingComponent";
 import CardListingComponent from "./CardListingComponent";
 import AllPropertiesComponent from "./AllPropertiesComponent";
 import { ShowDetailsProcessing } from "./ShowDetailsProcessing";
@@ -139,6 +140,7 @@ export {
 	LoanCalculatorComponent,
 	MortgageComponent,
 	RentComponent,
+	PreSellingComponent,
 	SellComponent,
 	TermsandConditionComponent,
 	SoldPropertyDetails,

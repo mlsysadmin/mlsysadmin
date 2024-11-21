@@ -4,6 +4,7 @@ import HouseForRentPage from "./HouseForRent.page";
 import DiscoverHomePage from "./DiscoverHome.page";
 import BuyAHomePage from "./BuyAHome.page";
 import RefinancePage from "./Refinance.page";
+import PreSellingPage from "./PreSelling.page";
 import InsuranceGuidePage from "./InsuranceGuide.page";
 import MortgagePage from "./Mortgage.page";
 import SellPage from "./Sell.page";
@@ -84,6 +85,7 @@ export {
 	ListingPage,
 	MainOutlet,
 	Dashboard,
+	PreSellingPage,
 	HouseForRentPage,
 	DiscoverHomePage,
 	ComingSoonPage,

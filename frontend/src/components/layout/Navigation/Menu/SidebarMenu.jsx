@@ -128,6 +128,28 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 			console.error("Error fetching user details:", error);
 		}
 	};
+	
+useEffect(() => {
+	const currentPath = location.pathname;
+
+	if (currentPath.includes("/rent")) {
+		setCurrent("rent");
+	} else if (currentPath.includes("/sale")) {
+		setCurrent("buy");
+	} else if (currentPath.includes("/discover-home")) {
+		setCurrent("home-loan");
+	} else if (currentPath.includes("/loan-calculator")) {
+		setCurrent("home-loan");
+	} else if (currentPath.includes("/refinance")) {
+		setCurrent("home-loan");
+	} else if (currentPath.includes("/buy-a-home")) {
+		setCurrent("home-loan");
+	} else if (currentPath.includes("/pre-selling")) {
+		setCurrent("pre-selling");
+	} else {
+		setCurrent("");
+	}
+}, [location.pathname]);
 
 	useEffect(() => {
 		if (isMLWWSPresent && isAccountDetailsPresent) {
@@ -199,6 +221,11 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 			label: "Rent",
 			key: "rent",
 			children: SubMenuChild(SubMenu.rent),
+		},
+		{
+			label: "Pre-Selling",
+			key: "pre-selling",
+			children: SubMenuChild(SubMenu.preSelling),
 		},
 
 		{
