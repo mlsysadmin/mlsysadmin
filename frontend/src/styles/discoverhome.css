@@ -415,8 +415,8 @@
 	inset-inline-start: 0;
 	width: 15px !important;
 	height: 15px !important;
-	background-color: black;
-	box-shadow: 0 0 0 2px black !important;
+	background-color: var(--red);
+	box-shadow: 0 0 0 2px var(--red) !important;
 	outline: 0px solid transparent;
 	cursor: pointer;
 	transition: inset-inline-start 0.2s, inset-block-start 0.2s, width 0.2s,

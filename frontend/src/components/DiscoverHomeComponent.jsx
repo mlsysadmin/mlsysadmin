@@ -22,7 +22,7 @@ const DiscoverHomeComponent = () => {
 	const [interestPerMonthAmount, setInterestPerMonthAmount] = useState(0);
 	const [interestRate, setInterestRate] = useState(0);
 	const [yearlypayment, setYearlyPayment] = useState(0);
-	const [progressBarVal, setProgressBarVal] = useState();
+	const [progressBarVal, setProgressBarVal] = useState(HomepriceRange);
 	const [totalNumberMonths, setTotalnumberMonths] = useState(0);
 	const [principalWithInterest, setPrincipalwithInterest] = useState(0);
 
@@ -142,7 +142,7 @@ const DiscoverHomeComponent = () => {
 
 		// Total payment including interest
 		const totalPaymentwithInterest = totalMonthlyPayment * totalNumberOfMonths;
-		setPrincipalwithInterest(Number(totalPaymentwithInterest).toFixed(2));
+		setPrincipalwithInterest(Math.round(totalPaymentwithInterest));
 
 		// Progress bar calculation
 		const progressBar =
@@ -351,7 +351,7 @@ const DiscoverHomeComponent = () => {
 										<Slider
 											range
 											min={0}
-											max={100}
+											max={25}
 											step={1}
 											value={interestRate}
 											onChange={handleInterestRateChange}

@@ -4,15 +4,6 @@ import React, { useState } from "react";
 const ParkingInputSlider = ({value,onChange}) => {
   return (
 		<div className="parking-group">
-			<div className="parking-value">
-				<input
-					id="parking-input"
-					className="parking-input"
-					type="text"
-					value={value}
-					readOnly
-				/>
-			</div>
 			<div className="parking-slider-container">
 				<input
 					id="parking-slider"
