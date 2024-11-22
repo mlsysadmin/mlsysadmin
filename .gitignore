@@ -4,3 +4,5 @@ package*.json
 .anima
 
 .vscode
+.github
+VERSION
