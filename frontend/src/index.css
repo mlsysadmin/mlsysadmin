@@ -18,6 +18,15 @@ body {
   --green: rgb(0, 102, 0);
   --black: black;
   --mute-white: #fdfbfa;
+  --radius: 10px;
+  /* xl */
+  --xl-header-1-fs: 2.8rem;
+  --xl-header-2-fs: 2.5rem;
+  --xl-header-3-fs: 2rem;
+  --xl-label-fs: 1.8rem;
+  --xl-sub-label-fs: 1.5rem;
+  --xl-text-label-fs: 1.2rem;
+  --xl-field-fs: 0.95rem;
   /* DESKTOP */
   --d-header-1-fs: 2.5rem;
   --d-header-2-fs: 2rem;
@@ -30,7 +39,7 @@ body {
   --l-header-1-fs: 2.2rem;
   --l-header-2-fs: 1.7rem;
   --l-header-3-fs: 1.4rem;
-  --l-label-fs: 1.1rem;
+  --l-label-fs: 1.3rem;
   --l-sub-label-fs: 1rem;
   --l-text-label-fs: 0.90rem;
   --l-field-fs: 0.75rem;
@@ -50,6 +59,7 @@ body {
   --m-sub-label-fs: 0.90rem;
   --m-text-label-fs: 0.80rem;
   --m-field-fs: 0.70rem;
+
   --header-1-fw: bold;
   --header-2-fw: 600;
   --header-3-fw: 500;

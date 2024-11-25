@@ -319,7 +319,7 @@ const SellComponent = () => {
 														}}
 													>
 														{item.question}
-														<DownOutlined
+														{/* <DownOutlined
 															style={{
 																color: "rgb(164, 161, 161, 27%)",
 																transform:
@@ -327,7 +327,7 @@ const SellComponent = () => {
 																		? "rotate(180deg)"
 																		: "none",
 															}}
-														/>
+														/> */}
 														{activeIndex === index && (
 															<div
 																className="sell-faqs-dropdown-content"

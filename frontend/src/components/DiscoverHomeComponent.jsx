@@ -199,6 +199,7 @@ const DiscoverHomeComponent = () => {
 				</div>
 			</div>
 			<div className="mortgage-calc">
+			<div className="mortgage-title-mort-lg">Mortgage Calculator</div>
 				<div className="mortgage-calc-cont">
 					<div className="mortgage-cont1">
 						<div className="mortrange" ref={calculatorRef}>
@@ -208,7 +209,7 @@ const DiscoverHomeComponent = () => {
 									<div className="home-price-frame-title">Home price</div>
 									<div className="home-price-frame-cont">
 										<div className="home-price-price-range">
-											<span className="amount-value">PHP </span>
+											<span className="amount-value">Php </span>
 											<input
 												type="text"
 												value={
@@ -241,7 +242,7 @@ const DiscoverHomeComponent = () => {
 									<div className="down-payment-frame-cont">
 										<div className="downpayment-amount">
 											<div className="downpayment-amount-val">
-												<span className="amount-value">PHP </span>
+												<span className="amount-value">Php </span>
 												<input
 													type="text"
 													value={
@@ -343,13 +344,14 @@ const DiscoverHomeComponent = () => {
 									<Progress
 										type="circle"
 										percent={progressBar}
-										width={200}
+										// width={200}
 										strokeWidth={10}
 										strokeColor="#D90000"
 										trailColor="#d900002b"
 										format={() => null} // No need to format inside the Progress component
 										gapDegree={10}
 										gapPosition="bottom"
+										className="calculator--progress"
 									/>
 									<div style={{}} className="montly-pay-cal">
 										PHP {Number(monthlyPayment)?.toLocaleString() || 0} <br />
@@ -506,13 +508,13 @@ const DiscoverHomeComponent = () => {
 											}}
 										>
 											{item.question}
-											<DownOutlined
+											{/* <DownOutlined
 												style={{
 													color: "rgb(164, 161, 161, 27%)",
 													transform:
 														activeIndex === index ? "rotate(180deg)" : "none",
 												}}
-											/>
+											/> */}
 											{activeIndex === index && (
 												<div
 													className="dropdown-content"
