@@ -107,12 +107,12 @@ const PropertyDetailsComponent = ({ onComplete, setPropertyFields }) => {
 						<div className="tab-label" style={{ color: '#8b8f94', fontWeight: '400' }}>What is the Listing Type?</div>
 							<div className="listing-tab-wrapper">
 								<div className="listing-tabs">
-									{["Rent", "Sale", "Pre-Selling"].map((tab) => (
+									{["Rent", "Sale", "Pre Selling"].map((tab) => (
 										<div
 											key={tab}
-											className={`tab ${selectedListingTab === tab ? "selected" : ""
+											className={`tab ${selectedListingTab.toLowerCase().replace(/\s/g, "") === tab.toLowerCase().replace(/\s/g, "") ? "selected" : ""
 												}`}
-											onClick={() => handleListingTabClick(tab)}
+											onClick={() => handleListingTabClick(tab.toLowerCase().replace(/\s/g, ""))}
 										>
 											{tab}
 										</div>

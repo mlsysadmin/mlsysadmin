@@ -35,24 +35,24 @@ const GetPhotoLength = async (unitId) => {
   }
 };
 
-const GetAllPhoto = (oneListing) => {
-  const url = process.env.REACT_APP_STORAGE_BUCKET_URL;
-  const objectname = process.env.REACT_APP_OBJECT_NAME;
-  try {
-    if (oneListing) {
-      const parsedData = JSON.parse(oneListing);
-      const images = parsedData.map(img => (
-        `${url}${objectname}/${img.photo}`
-      ))
+// const GetAllPhoto = (oneListing) => {
+//   const url = process.env.REACT_APP_STORAGE_BUCKET_URL;
+//   const objectname = process.env.REACT_APP_OBJECT_NAME;
+//   try {
+//     if (oneListing) {
+//       const parsedData = JSON.parse(oneListing);
+//       const images = parsedData.map(img => (
+//         `${url}${objectname}/${img.photo}`
+//       ))
 
-      return `images, ${images}`;
+//       return `images, ${images}`;
 
-    } else {
-      return null;
-    }
-  } catch (error) {
-    return null;
-  }
-};
+//     } else {
+//       return null;
+//     }
+//   } catch (error) {
+//     return null;
+//   }
+// };
 
-export { GetPhotoWithUrl, GetPhotoLength, GetAllPhoto };
+export { GetPhotoWithUrl, GetPhotoLength };

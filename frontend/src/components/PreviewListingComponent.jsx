@@ -25,8 +25,6 @@ import Loading from "./modals/LoadingModal";
 import PreviewLoadingModal from "./modals/PreviewLoadingModal";
 
 const PreviewListing = () => {
-  const url = process.env.REACT_APP_STORAGE_BUCKET_URL;
-  const objectname = process.env.REACT_APP_OBJECT_NAME;
   const location = useLocation();
   const navigate = useNavigate();
 

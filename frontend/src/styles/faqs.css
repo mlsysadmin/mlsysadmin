@@ -1,26 +1,26 @@
 .faqs-container-page {
 	flex-direction: column;
 	width: 100%;
-	font-family: Arial, sans-serif;
+  background-color: white;
 }
 .faqs-content-page {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
-	width: 100%;
-	padding: 50px 100px;
-	background-color: white;
+	width: 1000px;
+	padding: 50px 0px;
+  margin: auto;
 }
 .faq-title {
-    font-size: 2.5rem;
+    font-size: var(--d-header-1-fs);
     margin-bottom: 10px;
     color: black;
     text-align: center; 
 }
 
 .faq-subtitle {
-    font-size: 1.2rem;
+    font-size: var(--d-sub-label-fs);
     color: black;
     margin-bottom: 40px;
     text-align: center;
@@ -29,7 +29,7 @@
 
 .faq-section {
 	display: flex;
-	width: 70%;
+	width: 100%;
 	flex-direction: column;
 	gap: 20px;
 }
@@ -49,15 +49,15 @@
 	padding: 0;
 	display: flex;
 	flex-direction: row;
-	gap: 10px;
+	gap: 15px;
 	justify-content: center;
 }
 
 .faq-link {
-	padding: 5px 10px;
+	padding: 5px 15px;
 	color: black;
 	cursor: pointer;
-	font-size: 1.1rem;
+	font-size: var(--d-text-label-fs);
 	background-color: transparent;
 	border-radius: 20px;
 	border: 1px solid #000000;
@@ -74,13 +74,16 @@
 .faq-questions {
 	flex: 1;
 }
+.faq-questions h2{
+	font-size: var(--t-header-1-fs);
+}
 
 .faq-item {
 	margin-bottom: 20px;
 }
 
 .faq-question {
-	font-size: 20px;
+	font-size: var(--d-text-label-fs);
 	display: flex;
 	justify-content: space-between;
 	cursor: pointer;
@@ -89,7 +92,7 @@
 }
 
 .faq-answer {
-	font-size: 18px;
+	font-size: var(--d-text-label-fs);
 	padding: 10px 0;
 	color: #444444;
 }

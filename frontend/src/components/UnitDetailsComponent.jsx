@@ -50,10 +50,29 @@ const UnitDetailsComponent = ({
 		setClassification(tab);
 	};
 	const handleFurnishingClick = (tab) => {
-		setFurnishing(tab)
+		setFurnishing(tab);
 	};
 
-
+	const handleBedChange = (e) => {
+		const value = e.target.value.replace(/,/g, "");
+		const parsedValue = parseInt(value, 10) || 0;
+		setNoOfBeds(parsedValue);
+	};
+	const handleFloorChange = (e) => {
+		const value = e.target.value.replace(/,/g, "");
+		const parsedValue = parseInt(value, 10) || 0;
+		setNoOfFloors(parsedValue);
+	};
+	const handleParkingChange = (e) => {
+		const value = e.target.value.replace(/,/g, "");
+		const parsedValue = parseInt(value, 10) || 0;
+		setParking(parsedValue);
+	};
+	const handleBathroomChange = (e) => {
+		const value = e.target.value.replace(/,/g, "");
+		const parsedValue = parseInt(value, 10) || 0;
+		setNoOfBathrooms(parsedValue);
+	};
 
 	useEffect(() => {
 		if (
@@ -293,6 +312,19 @@ const UnitDetailsComponent = ({
 							<div className="beds-listing-unit-input-group">
 								<div className="overlap-10">
 									<div className="beds-number">
+										<input
+											type="number"
+											className="beds-input"
+											value={noOfBeds ? noOfBeds.toLocaleString() : "0"}
+											onChange={handleBedChange}
+											disabled={disabledPropertyFields}
+											style={{
+												marginLeft: "10px",
+												width: "60px",
+												textAlign: "center",
+												cursor: disabledPropertyFields ? "not-allowed" : "auto",
+											}}
+										/>
 										<BedsInputSlider
 											value={noOfBeds}
 											onChange={(value) => setNoOfBeds(Number(value))}
@@ -322,6 +354,20 @@ const UnitDetailsComponent = ({
 							<div className="parking-listing-unit-input-group">
 								<div className="overlap-10">
 									<div className="parking-number">
+										<input
+											type="number"
+											className="parking-input"
+											value={Parking ? Parking.toLocaleString() : ""}
+											min="0"
+											onChange={handleParkingChange}
+											disabled={disabledPropertyFields}
+											style={{
+												marginLeft: "10px",
+												width: "60px",
+												textAlign: "center",
+												cursor: disabledPropertyFields ? "not-allowed" : "auto",
+											}}
+										/>
 										<ParkingInputSlider
 											value={Parking}
 											onChange={(value) => setParking(Number(value))}
@@ -494,6 +540,20 @@ const UnitDetailsComponent = ({
 							<div className="bathroom-listing-unit-input-group">
 								<div className="overlap-10">
 									<div className="bathroom-number">
+										<input
+											type="number"
+											className="bathroom-input"
+											value={noOfBathrooms? noOfBathrooms.toLocaleString: "0"}
+											min="0"
+											onChange={handleBathroomChange}
+											disabled={disabledPropertyFields}
+											style={{
+												marginLeft: "10px",
+												width: "60px",
+												textAlign: "center",
+												cursor: disabledPropertyFields ? "not-allowed" : "auto",
+											}}
+										/>
 										<BathroomInputSlider
 											value={noOfBathrooms}
 											onChange={(value) => setNoOfBathrooms(Number(value))}
@@ -523,6 +583,21 @@ const UnitDetailsComponent = ({
 							<div className="nofloors-listing-unit-input-group">
 								<div className="overlap-10">
 									<div className="nofloors-number">
+										<input
+											type="number"
+											className="no-of-floors-input"
+											value={noOfFloors ? noOfFloors.toLocaleString():"0"}
+											min="0"
+											onChange={handleFloorChange}
+											disabled={disabledPropertyFields}
+											style={{
+												marginLeft: "10px",
+												width: "60px",
+												textAlign: "center",
+												cursor: disabledPropertyFields ? "not-allowed" : "auto",
+											}}
+										/>
+
 										<NoOfFloorsInputSlider
 											value={noOfFloors}
 											onChange={(value) => setNoOfFloors(Number(value))}
