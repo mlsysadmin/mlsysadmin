@@ -123,6 +123,33 @@ const SubMenu = {
 			],
 		},
 	],
+
+	preSelling: [
+		{
+			header: "",
+			submenu: [
+				{
+					sub: "House and Lot",
+					link: "/pre-selling/?property_type=house-and-lot",
+				},
+			],
+		},
+		{
+			header: "",
+			submenu: [
+				{ sub: "Condominium", link: "/pre-selling/?property_type=condominium" },
+			],
+		},
+		{
+			header: "",
+			submenu: [
+				{
+					sub: "Townhouse ",
+					link: "/pre-selling/?property_type=townhouse",
+				},
+			],
+		},
+	],
 	// homeInsurance: [
 	// 	{
 	// 		header: (

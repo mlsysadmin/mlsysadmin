@@ -130,13 +130,14 @@ const FaqsComponent = () => {
 												onClick={() => toggleFaq(i)}
 											>
 												{faq.question}
-												{/* <DownOutlined
+												<DownOutlined
 													style={{
 														color: "rgb(164, 161, 161, 27%)",
 														transform:
 															activeIndex === i ? "rotate(180deg)" : "none",
 													}}
-												/> */}
+													className="dropdown-icon"
+												/>
 
 												{activeIndex === i && (
 													<div className="faq-answer">

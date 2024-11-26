@@ -203,14 +203,15 @@ const InsuranceGuideComponent = () => {
 									}}
 								>
 									{item.label}
-									{/* <DownOutlined
+									<DownOutlined
 										style={{
 											color: "#ff2800",
 											transform:
 												activeIndex === index ? "rotate(180deg)" : "none",
 											// transition: "transform 0.3s ease",
 										}}
-									/> */}
+										className="dropdown-icon"
+									/>
 									{activeIndex === index && (
 										<div
 											className="dropdown-content"

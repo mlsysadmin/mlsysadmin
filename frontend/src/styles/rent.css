@@ -53,7 +53,7 @@
 .rent-h1.breadcrumb--search{
 	font-size: 18px !important;
 	font-weight: 500;
-	margin: auto auto 20px;
+	margin: auto auto 0px;
   }
 
 .rentContent {
@@ -91,13 +91,16 @@
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		padding: 5px;
+		padding: 50px 5px 20px 5px;
 	}
 
 	.rentContainer .rent-h1 {
 		font-size: 22px;
-		padding: 20px 0px 20px 20px;
+		padding: 20px 0px 20px 15px;
 		width: 100% !important;
+	}
+	.rent-h1.breadcrumb--search{
+		padding: 0px 15px!important;
 	}
 	
 }
@@ -115,6 +118,9 @@
 	margin: 0px 0px 20px 0px;
 	padding: 0px;
 	}
+	.rent-h1.breadcrumb--search{
+		padding: 50px 0px 0px 20px !important;
+	}
 }
 
 @media screen and (min-width: 481px) and (max-width: 768px) {
@@ -127,7 +133,7 @@
 
 	.rentContainer .rent-h1 {
 		font-size: 26px;
-		padding: 20px 0px 0px 20px;
+		padding: 0px 0px 0px 20px;
 		width: 100%;
 	}
 }
@@ -207,5 +213,8 @@
 		font-size: 26px;
 		padding: 20px 0px 0px 0px !important;
 		width: 1300px;
+	}
+	.rentContainer{
+		padding-top: 0px !important;
 	}
 }

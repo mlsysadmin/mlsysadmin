@@ -21,6 +21,8 @@ const DiscoverHomeComponent = () => {
 	const [yearFixed, setyearFixed] = useState(30);
 	const [interestPerMonthAmount, setInterestPerMonthAmount] = useState(0);
 	const [interestRate, setInterestRate] = useState(0);
+	const [yearlypayment, setYearlyPayment] = useState(0);
+	const [progressBarVal, setProgressBarVal] = useState(HomepriceRange);
 	const [totalNumberMonths, setTotalnumberMonths] = useState(0);
 	const [principalWithInterest, setPrincipalwithInterest] = useState(0);
 
@@ -80,26 +82,75 @@ const DiscoverHomeComponent = () => {
 
 
 	const principalAmnt = HomepriceRange - DppriceRange;
-	const progressBar = ((HomepriceRange - monthlyPayment) / HomepriceRange ) * 100 ;
 	const totalNumberOfMonths = yearFixed * 12;
+	
+	// const interestRateperMonth = ((interestRate/100) / 12);
+	// console.log("interestRateperMonth:", interestRateperMonth);
+
+	// const addedOneinInterest =
+	// 	(interestRateperMonth + 1).toFixed(7);
+	// const powerAddedOneinInterest = (addedOneinInterest ** totalNumberMonths).toFixed(5);
+	// console.log("powerAddedOneinInterest:", powerAddedOneinInterest);
+
+ //total numbe of months
 	const totalInterestRate = (interestRate / 100) * yearFixed;
 	const totalInterestAmount = principalAmnt * totalInterestRate;
 
 	const computeMortgage = () => {
+		// Calculate principal amount
 		const principalAmnt = HomepriceRange - DppriceRange;
-		
-		const totalInterestRate = (interestRate / 100) * yearFixed;
+
+		// Total number of months for the loan
 		const totalNumberOfMonths = yearFixed * 12;
 		setTotalnumberMonths(totalNumberOfMonths);
+
+		// Monthly interest rate
+		const interestRateperMonth = interestRate / 100 / 12;
+		console.log("interestRateperMonth:", interestRateperMonth);
+
+		// Add 1 to interest rate
+		const addedOneinInterest = interestRateperMonth + 1;
+		console.log("addedOneinInterest:", addedOneinInterest);
+
+		// Exponentiate to the total number of months
+		const powerAddedOneinInterest = Math.pow(
+			addedOneinInterest,
+			totalNumberOfMonths
+		);
+		console.log("powerAddedOneinInterest:", powerAddedOneinInterest);
+
+		// Total monthly payment using the mortgage formula
+		const totalMonthlyPayment = 
+			((principalAmnt * interestRateperMonth * powerAddedOneinInterest) /
+				(powerAddedOneinInterest - 1)).toFixed(2);
+		;
+
+		console.log("totalMonthlyPayment:", totalMonthlyPayment);
+
+		// Yearly payment
+		const yearlyPayment = totalMonthlyPayment * 12;
+		setYearlyPayment(Math.round(yearlyPayment));
+
+		// Total interest over the loan term
+		const totalInterestRate = (interestRate / 100) * yearFixed;
 		const totalInterestAmount = principalAmnt * totalInterestRate;
-		const totalPaymentwithInterest = principalAmnt + totalInterestAmount;
-		setPrincipalwithInterest(totalPaymentwithInterest.toFixed(2));
-		const totalMonthlyPayment = totalPaymentwithInterest / totalNumberOfMonths;
-		setMonthlyPayment(totalMonthlyPayment.toFixed(2));
-		
-		const yearlyInterestAmount = totalInterestAmount / yearFixed; //interest per year
-		const monthlyInterestAmount = yearlyInterestAmount / 12; //interest amount per month
+
+		// Interest per year and per month
+		const yearlyInterestAmount = totalInterestAmount / yearFixed;
+		const monthlyInterestAmount = yearlyInterestAmount / 12;
 		setInterestPerMonthAmount(monthlyInterestAmount.toFixed(2));
+
+		// Total payment including interest
+		const totalPaymentwithInterest = totalMonthlyPayment * totalNumberOfMonths;
+		setPrincipalwithInterest(Math.round(totalPaymentwithInterest));
+
+		// Progress bar calculation
+		const progressBar =
+			((HomepriceRange - yearlyPayment) / HomepriceRange) * 100;
+		setProgressBarVal(progressBar);
+
+		console.log("Yearly Payment:", yearlyPayment);
+		console.log("Progress Bar Value:", progressBar);
 
 		// const interestAmountperMonth = totalMonthlyPayment * totalInterestRate;
 		//    setInterestPerMonthAmount(interestAmountperMonth.toFixed(2));
@@ -301,7 +352,7 @@ const DiscoverHomeComponent = () => {
 										<Slider
 											range
 											min={0}
-											max={100}
+											max={25}
 											step={1}
 											value={interestRate}
 											onChange={handleInterestRateChange}
@@ -335,7 +386,7 @@ const DiscoverHomeComponent = () => {
 
 					<div className="mortlabel">
 						<div className="mortlabel-cont">
-							<span className="label-title">Monthly payment breakdown</span>
+							<span className="label-title">Yearly payment breakdown</span>
 							<div className="per-range">
 								<div
 									className="interest-group-label"
@@ -343,7 +394,7 @@ const DiscoverHomeComponent = () => {
 								>
 									<Progress
 										type="circle"
-										percent={progressBar}
+										percent={progressBarVal}
 										// width={200}
 										strokeWidth={10}
 										strokeColor="#D90000"
@@ -354,7 +405,7 @@ const DiscoverHomeComponent = () => {
 										className="calculator--progress"
 									/>
 									<div style={{}} className="montly-pay-cal">
-										PHP {Number(monthlyPayment)?.toLocaleString() || 0} <br />
+										PHP {Number(yearlypayment)?.toLocaleString() || 0} <br />
 										<p
 											style={{
 												fontSize: "16px",
@@ -362,7 +413,7 @@ const DiscoverHomeComponent = () => {
 												fontWeight: "100px",
 											}}
 										>
-											per month
+											per year
 										</p>
 									</div>
 								</div>
@@ -388,7 +439,7 @@ const DiscoverHomeComponent = () => {
 												{Number(principalAmnt)?.toLocaleString() || 0}
 											</span>
 										</div>
-										<div className="payment-breakdown">
+										{/* <div className="payment-breakdown">
 											<div
 												className="radio-circle"
 												style={{ backgroundColor: "#F9C7C7" }}
@@ -409,7 +460,7 @@ const DiscoverHomeComponent = () => {
 												Total Interest: PHP{" "}
 												{totalInterestAmount.toLocaleString()}
 											</span>
-										</div>
+										</div> */}
 										<div className="payment-breakdown">
 											<div
 												className="radio-circle"
@@ -421,7 +472,7 @@ const DiscoverHomeComponent = () => {
 										</div>
 									</div>
 									<div className="lower-monthly-payment">
-										<span className="pan">Principal with interest</span>
+										<span className="pan">Total Payment</span>
 										<div className="line-principal-group">
 											<img
 												className="line-3"
@@ -508,13 +559,14 @@ const DiscoverHomeComponent = () => {
 											}}
 										>
 											{item.question}
-											{/* <DownOutlined
+											<DownOutlined
 												style={{
 													color: "rgb(164, 161, 161, 27%)",
 													transform:
 														activeIndex === index ? "rotate(180deg)" : "none",
 												}}
-											/> */}
+												className="dropdown-icon"
+											/>
 											{activeIndex === index && (
 												<div
 													className="dropdown-content"

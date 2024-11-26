@@ -28,6 +28,7 @@ const HeaderMenu = () => {
 	const [currentMenu, setCurrent] = useState("");
 	const [rentPopUpOpen, setrentPopUpOpen] = useState(false);
 	const [buyPopUpOpen, setbuyPopUpOpen] = useState(false);
+	const [preSellingPopUpOpen, setpreSellingPopUpOpen] = useState(false);
 	const [homeLoanPopUpOpen, sethomeLoanPopUpOpen] = useState(false);
 	const [homeInsurancePopUpOpen, sethomeInsurancePopUpOpen] = useState(false);
 	const [otherServicesPopUpOpen, setotherServicesPopUpOpen] = useState(false);
@@ -102,6 +103,8 @@ const HeaderMenu = () => {
 			setCurrent("home-loan");
 		} else if (currentPath.includes("/buy-a-home")) {
 			setCurrent("home-loan");
+		} else if (currentPath.includes("/pre-selling")) {
+			setCurrent("pre-selling");
 		} else {
 			setCurrent("");
 		}
@@ -269,24 +272,35 @@ const handleLogout = async () => {
 			setrentPopUpOpen(false);
 			setbuyPopUpOpen(false);
 			sethomeLoanPopUpOpen(false);
+			setpreSellingPopUpOpen(false);
 			// sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(true);
 		} else if (menu.key === "rent") {
 			setrentPopUpOpen(true);
 			setbuyPopUpOpen(false);
 			sethomeLoanPopUpOpen(false);
+			setpreSellingPopUpOpen(false);
 			// sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(false);
 		} else if (menu.key === "buy") {
 			setrentPopUpOpen(false);
 			setbuyPopUpOpen(true);
 			sethomeLoanPopUpOpen(false);
+			setpreSellingPopUpOpen(false);
 			// sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(false);
 		} else if (menu.key === "home-loan") {
 			setrentPopUpOpen(false);
 			setbuyPopUpOpen(false);
+			setpreSellingPopUpOpen(false);
 			sethomeLoanPopUpOpen(true);
+			// sethomeInsurancePopUpOpen(false);
+			setotherServicesPopUpOpen(false);
+		} else if (menu.key === "pre-selling") {
+			setrentPopUpOpen(false);
+			setbuyPopUpOpen(false);
+			setpreSellingPopUpOpen(true);
+			sethomeLoanPopUpOpen(false);
 			// sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(false);
 		} else {
@@ -312,6 +326,8 @@ const handleLogout = async () => {
 
 		if (menuKey === "rent") {
 			setrentPopUpOpen(true);
+		} else if (menuKey === "pre-selling") {
+			setpreSellingPopUpOpen(true);
 		} else if (menuKey === "buy") {
 			setbuyPopUpOpen(true);
 		} else if (menuKey === "home-loan") {
@@ -325,6 +341,7 @@ const handleLogout = async () => {
 	const handleMouseLeave = () => {
 		setbuyPopUpOpen(false);
 		sethomeLoanPopUpOpen(false);
+		setpreSellingPopUpOpen(false)
 		// sethomeInsurancePopUpOpen(false);
 		setotherServicesPopUpOpen(false);
 		setrentPopUpOpen(false);
@@ -333,6 +350,7 @@ const handleLogout = async () => {
 	const RentMenuPopContent = <MenuPopupContent submenu={SubMenu.rent} />;
 
 	const BuyMenuPopContent = <MenuPopupContent submenu={SubMenu.buy} />;
+	const PreSellingPopContent = <MenuPopupContent submenu={SubMenu.preSelling}/>;
 
 	const HomeLoanMenuPopContent = (
 		<MenuPopupContent submenu={SubMenu.homeLoan} />
@@ -363,6 +381,16 @@ const handleLogout = async () => {
 			menuKey={"sale"}
 		/>
 	);
+
+	const PreSellingMenu = () => (
+		<MenuPopup
+			title={""}
+			popUpOpen={preSellingPopUpOpen}
+			label={"Pre-Selling"}
+			content={PreSellingPopContent}
+			menuKey={"pre-selling"}
+		/>
+	)
 
 	const HomeLoanMenu = () => (
 		<MenuPopup
@@ -400,6 +428,7 @@ const handleLogout = async () => {
 		{ label: "Sell", key: "sell", link: "/sell" },
 		{ label: <BuyMenu />, key: "buy" },
 		{ label: <RentMenu />, key: "rent" },
+		{ label: <PreSellingMenu />, key:"pre-selling"},
 		{ label: <HomeLoanMenu />, key: "home-loan" },
 		{
 			// label: <HomeInsuranceMenu />,

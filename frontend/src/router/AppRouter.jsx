@@ -63,6 +63,7 @@ import {
 	ComingSoonPage,
 	FaqsPage,
 	TermsandConditionPage,
+	PreSellingPage,
 } from "../pages";
 import { ProtectedRoute, BuyerSellerProtectedRoute } from "./ProtectedRoute";
 import { SaleComponent, SearchListingComponent } from "../components";
@@ -125,6 +126,10 @@ const Routes = [
 				element: <SaleComponent />,
 			},
 			{
+				path: "/pre-selling",
+				element: <PreSellingPage />,
+			},
+			{
 				path: "/sell",
 				element: <SellPage />,
 			},
@@ -138,7 +143,7 @@ const Routes = [
 			},
 			{
 				path: "/listing",
-				element: <BuyerSellerProtectedRoute element={<ListingPage /> }/>
+				element: <BuyerSellerProtectedRoute element={<ListingPage />} />,
 				// element: <ListingPage />,
 			},
 			{
@@ -226,7 +231,7 @@ const Routes = [
 			},
 			{
 				path: "/termsandcondition",
-				element:<TermsandConditionPage/>
+				element: <TermsandConditionPage />,
 			},
 			{
 				path: "/documents/mlprop_TermsCondition.pdf",
@@ -238,12 +243,12 @@ const Routes = [
 		element: <SignIn />,
 	},
 	{
-		path: 'error',
-		element: <Error/>
+		path: "error",
+		element: <Error />,
 	},
 	{
-		path: '*',
-		element: <NotFoundComponent/>
+		path: "*",
+		element: <NotFoundComponent />,
 	},
 	{
 		path: "support",
