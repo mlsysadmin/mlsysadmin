@@ -19,6 +19,7 @@ body {
   --black: black;
   --mute-white: #fdfbfa;
   --radius: 10px;
+  --default-page-size: 1000px;
   /* xl */
   --xl-header-1-fs: 2.8rem;
   --xl-header-2-fs: 2.5rem;
@@ -59,7 +60,7 @@ body {
   --m-sub-label-fs: 0.90rem;
   --m-text-label-fs: 0.80rem;
   --m-field-fs: 0.70rem;
-
+  /* Font Weight */
   --header-1-fw: bold;
   --header-2-fw: 600;
   --header-3-fw: 500;
