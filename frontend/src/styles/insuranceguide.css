@@ -1,4 +1,776 @@
+/* MAIN */
 .insurance-guide-container {
+	background-color: white;
+}
+
+.insurance-guide-content-two,
+.insurance-guide-content-one,
+.insurance-guide-content-four {
+	margin-bottom: 150px;
+}
+
+.insurance-guide-tagline p,
+.insurance-guide-content-four .insurance-header,
+.insurance-guide-content-five .i-questions-title {
+	font-weight: var(--header-1-fw);
+}
+
+.insurance-guide-content-two,
+.insurance-guide-content-four,
+.insurance-guide-content-five {
+	/* width: 90%; */
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0 10px;
+}
+
+.insurance-guide-content-four .insurance-header,
+.insurance-guide-content-five .i-questions-title {
+	font-size: var(--d-header-2-fs);
+	margin-bottom: 50px;
+}
+
+/* Content-One */
+.insurance-guide-contents {
+	width: 85%;
+	margin: auto;
+}
+
+.insurance-guide-content-one {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	background-color: var(--mute-white);
+	flex-wrap: wrap;
+
+}
+
+.insurance-guide-tagline {
+	width: 45%;
+	margin: auto;
+	padding: 0 30px;
+	text-align: center;
+}
+
+.insurance-guide-tagline p {
+	color: var(--red);
+	margin: 5px 0;
+	font-size: var(--d-header-1-fs);
+}
+
+.insurance-guide-tagline span {
+	font-size: var(--d-text-label-fs);
+}
+
+.insurance-banner {
+	width: 55%;
+}
+
+.insurance-banner img {
+	width: 100%;
+}
+
+/* Content-Two */
+.insurance-guide-content-two {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.insurance-guide-content-two .insurance-guide-inboxes {
+	display: flex;
+	width: 65%;
+	align-items: center;
+	gap: 50px;
+	flex-wrap: wrap;
+}
+
+.insurance-guide-inboxes .insurance-inbox {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	width: 250px;
+	padding: 30px 10px;
+	border: 1px solid var(--red);
+	border-radius: 10px;
+	height: 250px;
+}
+
+.insurance-guide-inboxes .insurance-inbox img {
+	width: 50px;
+	height: 50px;
+	color: var(--red);
+	margin: 10px 0;
+}
+
+.insurance-guide-inboxes .insurance-inbox span {
+	font-size: var(--d-text-label-fs);
+	color: var(--black);
+	font-weight: var(--header-1-fw);
+}
+
+.insurance-guide-inboxes .insurance-inbox p {
+	font-size: var(--d-field-fs);
+	color: var(--black);
+}
+
+.insurance-guide-content-two .insurance-guide-tagline-two {
+	width: 35%;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	gap: 50px;
+}
+
+.insurance-guide-tagline-two span {
+	font-size: var(--d-header-3-fs);
+}
+
+.insurance-guide-tagline-two p {
+	font-size: var(--d-text-label-fs);
+}
+
+.insurance-guide-content-four {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.insurance-guide-content-four .other-insurance-products {
+	display: flex;
+	gap: 40px;
+}
+
+.insurance-guide-content-four .other-insurance-products .insurance-products {
+	border: 1px solid var(--red);
+	border-radius: 10px;
+	width: 450px;
+	height: 430px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 50px 10px 30px;
+}
+
+.insurance-products .insurance-title {
+	height: 50px;
+	color: var(--red);
+	font-size: var(--d-label-fs);
+	font-weight: var(--header-1-fw);
+}
+
+.insurance-products .insurance-child {
+	font-size: var(--d-text-label-fs);
+	padding: 0 10px;
+	margin: 10px 0;
+}
+
+.insurance-products .insurance-child p {
+	margin: 15px 0;
+	text-wrap: wrap;
+}
+
+.insurance-products .insurance-child p .check-icon {
+	color: var(--red);
+	font-size: var(--d-sub-label-fs);
+}
+
+.auto-insurance-products .radio-buttons {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 10px 0px 10px 10px;
+}
+
+.auto-choice-group {
+	margin: 10px 0;
+}
+
+.radio-buttons .circle {
+	width: 20px;
+	height: 20px;
+	border: 2px solid var(--red);
+	border-radius: 50%;
+	margin-right: 10px;
+	display: inline-block;
+	position: relative;
+}
+
+.radio-buttons .circle::before {
+	content: "";
+	width: 10px;
+	height: 10px;
+	background-color: var(--red);
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* Content Five */
+.insurance-guide-content-five .questions {
+	width: 100% !important;
+	margin: 50px 0 90px;
+	gap: 3.5rem;
+	font-size: var(--d-header-3-fs);
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+}
+
+.insurance-guide-content-five .questions .dropdown-label {
+	font-size: var(--d-sub-label-fs);
+
+}
+
+/* MEDIA QUERIES */
+/* @media (min-width: 1280px) and (max-width: 1506px) {
+
+	.insurance-guide-tagline p {
+		font-size: var(--d-header-2-fs);
+	}
+
+	.insurance-guide-content-four .insurance-header,
+	.insurance-guide-content-five .i-questions-title {
+		font-size: var(--l-header-2-fs);
+	}
+
+	.insurance-guide-tagline span {
+		font-size: var(--d-field-fs);
+	}
+
+	.insurance-guide-content-two,
+	.insurance-guide-content-four,
+	.insurance-guide-content-five {
+		width: 90%;
+	}
+
+	.insurance-guide-inboxes .insurance-inbox img {
+		width: 40px;
+		height: 40px;
+	}
+
+	.insurance-guide-content-two .insurance-guide-inboxes {
+		gap: 30px;
+		width: 60%;
+	}
+
+	.insurance-guide-inboxes .insurance-inbox {
+		width: 250px;
+		height: 220px;
+	}
+
+	.insurance-guide-content-two .insurance-guide-tagline-two {
+		width: 40%;
+	}
+
+	.insurance-guide-content-four .other-insurance-products {
+		gap: 30px;
+	}
+
+	.insurance-guide-content-four .other-insurance-products .insurance-products {
+		width: 500px;
+		height: 400px;
+	}
+} */
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+	.insurance-guide-contents {
+		width: 85%;
+	}
+
+	.insurance-guide-content-two,
+	.insurance-guide-content-one,
+	.insurance-guide-content-four {
+		margin-bottom: 100px;
+	}
+
+	.insurance-guide-tagline p {
+		font-size: var(--d-header-2-fs);
+	}
+
+	.insurance-guide-content-four .insurance-header,
+	.insurance-guide-content-five .i-questions-title {
+		font-size: var(--l-header-2-fs);
+	}
+
+	.insurance-guide-tagline span {
+		font-size: var(--d-field-fs);
+	}
+
+	.insurance-guide-inboxes .insurance-inbox p {
+		font-size: var(--l-field-fs);
+	}
+
+	.insurance-guide-inboxes .insurance-inbox span {
+		font-size: var(--l-text-label-fs);
+	}
+
+	.insurance-guide-content-two,
+	.insurance-guide-content-four,
+	.insurance-guide-content-five {
+		width: 100%;
+	}
+
+	.insurance-guide-inboxes .insurance-inbox img {
+		width: 40px;
+		height: 40px;
+	}
+
+	.insurance-guide-content-two .insurance-guide-inboxes {
+		gap: 30px;
+		width: 60%;
+	}
+
+	.insurance-guide-inboxes .insurance-inbox {
+		width: 230px;
+		height: 200px;
+	}
+
+	.insurance-guide-content-two .insurance-guide-tagline-two {
+		width: 40%;
+	}
+
+	.insurance-guide-content-four .other-insurance-products {
+		gap: 30px;
+	}
+
+	.insurance-guide-content-four .other-insurance-products .insurance-products {
+		width: 500px;
+		height: 400px;
+	}
+
+	.insurance-products .insurance-title {
+		font-size: var(--l-label-fs);
+	}
+
+	.insurance-products .insurance-child {
+		font-size: var(--l-text-label-fs);
+	}
+
+	.insurance-products .insurance-child p .check-icon {
+		font-size: var(--l-sub-label-fs);
+	}
+
+	.radio-buttons .circle {
+		width: 15px;
+		height: 15px;
+	}
+
+	.radio-buttons .circle::before {
+		width: 7px;
+		height: 7px;
+		top: 45%;
+		left: 45%;
+	}
+
+	.insurance-guide-content-five .questions .dropdown-label {
+		font-size: var(--l-text-label-fs);
+	}
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+	.insurance-guide-content-four .insurance-header {
+		text-align: center;
+	}
+
+	.insurance-guide-content-four .other-insurance-products {
+		gap: 30px;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.insurance-guide-content-four .other-insurance-products .insurance-products {
+		width: 210px;
+		height: 350px;
+		padding: 25px 10px 10px;
+	}
+
+	.insurance-products .insurance-title {
+		font-size: var(--t-text-label-fs);
+	}
+
+	.insurance-products .insurance-child {
+		font-size: var(--t-field-fs);
+	}
+
+	.insurance-products .insurance-child p .check-icon {
+		font-size: var(--t-sub-label-fs);
+	}
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+	.insurance-guide-contents {
+		width: 100%;
+	}
+
+	.insurance-guide-content-two,
+	.insurance-guide-content-one,
+	.insurance-guide-content-four {
+		margin-bottom: 70px;
+	}
+
+	.insurance-guide-tagline p {
+		font-size: var(--t-header-2-fs);
+	}
+
+	.insurance-guide-content-four .insurance-header,
+	.insurance-guide-content-five .i-questions-title {
+		font-size: var(--t-header-2-fs);
+	}
+
+	.insurance-guide-tagline span {
+		font-size: var(--t-field-fs);
+	}
+
+	.insurance-guide-inboxes .insurance-inbox p {
+		font-size: var(--t-field-fs);
+	}
+
+	.insurance-guide-inboxes .insurance-inbox span {
+		font-size: var(--t-text-label-fs);
+	}
+
+	.insurance-guide-tagline-two span {
+		font-size: var(--t-header-3-fs);
+	}
+
+	.insurance-guide-tagline-two p {
+		font-size: var(--t-text-label-fs);
+	}
+
+	.insurance-guide-content-two,
+	.insurance-guide-content-four,
+	.insurance-guide-content-five {
+		width: 90%;
+		padding: 0;
+	}
+
+	.insurance-guide-content-two {
+		flex-direction: column-reverse;
+		gap: 60px 0;
+	}
+
+	.insurance-guide-inboxes .insurance-inbox img {
+		width: 40px;
+		height: 40px;
+	}
+
+	.insurance-guide-content-two .insurance-guide-inboxes {
+		gap: 30px;
+		width: 100%;
+		justify-content: center;
+	}
+
+	.insurance-guide-inboxes .insurance-inbox {
+		width: 200px;
+		height: 200px;
+	}
+
+	.insurance-guide-content-two .insurance-guide-tagline-two {
+		width: 100%;
+		gap: 0;
+	}
+
+	.insurance-guide-content-four .other-insurance-products {
+		gap: 30px;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.insurance-guide-content-four .other-insurance-products .insurance-products {
+		width: 230px;
+		height: 350px;
+		padding: 25px 10px 10px;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.insurance-products .insurance-title {
+		font-size: var(--t-text-label-fs);
+	}
+
+	.insurance-products .insurance-child {
+		font-size: var(--t-field-fs);
+	}
+
+	.insurance-products .insurance-child p .check-icon {
+		font-size: var(--t-sub-label-fs);
+	}
+
+	.radio-buttons .circle {
+		width: 15px;
+		height: 15px;
+	}
+
+	.radio-buttons .circle::before {
+		width: 7px;
+		height: 7px;
+		top: 45%;
+		left: 50%;
+	}
+
+	.insurance-guide-content-five .questions .dropdown-label {
+		font-size: var(--t-text-label-fs);
+	}
+}
+
+@media (min-width: 500px) and (max-width: 639px) {
+	.insurance-guide-contents {
+		width: 100%;
+	}
+	.insurance-banner img{
+		height: 300px;
+	}
+	.insurance-guide-content-two,
+	.insurance-guide-content-one,
+	.insurance-guide-content-four {
+		margin-bottom: 70px;
+	}
+
+	.insurance-guide-tagline p {
+		font-size: var(--m-header-2-fs);
+	}
+
+	.insurance-guide-content-four .insurance-header,
+	.insurance-guide-content-five .i-questions-title {
+		font-size: var(--m-header-2-fs);
+	}
+
+	.insurance-guide-tagline span {
+		font-size: var(--m-field-fs);
+	}
+
+	.insurance-guide-inboxes .insurance-inbox p {
+		font-size: var(--m-field-fs);
+	}
+
+	.insurance-guide-inboxes .insurance-inbox span {
+		font-size: var(--m-text-label-fs);
+	}
+
+	.insurance-guide-tagline-two span {
+		font-size: var(--m-header-3-fs);
+	}
+
+	.insurance-guide-tagline-two p {
+		font-size: var(--m-text-label-fs);
+	}
+
+	.insurance-guide-content-two,
+	.insurance-guide-content-four,
+	.insurance-guide-content-five {
+		width: 90%;
+		padding: 0;
+	}
+
+	.insurance-guide-content-two {
+		flex-direction: column-reverse;
+		gap: 60px 0;
+	}
+
+	.insurance-guide-inboxes .insurance-inbox img {
+		width: 40px;
+		height: 40px;
+	}
+
+	.insurance-guide-content-two .insurance-guide-inboxes {
+		gap: 30px;
+		width: 100%;
+		justify-content: center;
+	}
+
+	.insurance-guide-inboxes .insurance-inbox {
+		width: 200px;
+		height: 200px;
+	}
+
+	.insurance-guide-content-two .insurance-guide-tagline-two {
+		width: 100%;
+		gap: 0;
+	}
+
+	.insurance-guide-content-four .other-insurance-products {
+		gap: 30px;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.insurance-guide-content-four .other-insurance-products .insurance-products {
+		width: 250px;
+		height: 300px;
+		padding: 25px 10px 10px;
+	}
+	.insurance-guide-content-four .insurance-header{
+		text-align: center;
+	}
+
+	.insurance-products .insurance-title {
+		font-size: var(--m-text-label-fs);
+		height: auto;
+	}
+
+	.insurance-products .insurance-child {
+		font-size: var(--m-field-fs);
+	}
+
+	.insurance-products .insurance-child p .check-icon {
+		font-size: var(--m-sub-label-fs);
+	}
+
+	.radio-buttons .circle {
+		width: 15px;
+		height: 15px;
+	}
+
+	.radio-buttons .circle::before {
+		width: 7px;
+		height: 7px;
+		top: 45%;
+		left: 50%;
+	}
+
+	.insurance-guide-content-five .questions .dropdown-label {
+		font-size: var(--m-text-label-fs);
+	}
+}
+@media (min-width: 320px) and (max-width: 499px) {
+	.insurance-guide-contents {
+		width: 100%;
+	}
+	.insurance-guide-content-one{
+		flex-direction: column;
+		gap: 50px 0;
+	}
+	.insurance-guide-tagline{
+		padding-top: 30px;
+	}
+	.insurance-guide-tagline,
+	.insurance-banner{
+		width: 100%;
+	}
+
+	.insurance-guide-content-two,
+	.insurance-guide-content-one,
+	.insurance-guide-content-four {
+		margin-bottom: 50px;
+	}
+
+	.insurance-guide-tagline p {
+		font-size: var(--m-header-2-fs);
+	}
+
+	.insurance-guide-content-four .insurance-header,
+	.insurance-guide-content-five .i-questions-title {
+		font-size: var(--m-header-3-fs);
+		text-align: center;
+	}
+
+	.insurance-guide-tagline span {
+		font-size: var(--m-field-fs);
+	}
+
+	.insurance-guide-inboxes .insurance-inbox p {
+		font-size: var(--m-field-fs);
+	}
+
+	.insurance-guide-inboxes .insurance-inbox span {
+		font-size: var(--m-text-label-fs);
+	}
+
+	.insurance-guide-tagline-two span {
+		font-size: var(--m-header-3-fs);
+	}
+
+	.insurance-guide-tagline-two p {
+		font-size: var(--m-text-label-fs);
+	}
+
+	.insurance-guide-content-two,
+	.insurance-guide-content-four,
+	.insurance-guide-content-five {
+		width: 90%;
+		padding: 0;
+	}
+
+	.insurance-guide-content-two {
+		flex-direction: column-reverse;
+		gap: 40px 0;
+	}
+
+	.insurance-guide-inboxes .insurance-inbox img {
+		width: 40px;
+		height: 40px;
+	}
+
+	.insurance-guide-content-two .insurance-guide-inboxes {
+		gap: 20px;
+		width: 100%;
+		justify-content: center;
+	}
+
+	.insurance-guide-inboxes .insurance-inbox {
+		width: 150px;
+		height: 200px;
+	}
+
+	.insurance-guide-content-two .insurance-guide-tagline-two {
+		width: 100%;
+		gap: 0;
+	}
+
+	.insurance-guide-content-four .other-insurance-products {
+		gap: 20px;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.insurance-guide-content-four .insurance-header{
+		margin-bottom: 30px;
+	}
+
+	.insurance-guide-content-four .other-insurance-products .insurance-products {
+		width: 300px;
+		height: 280px;
+		padding: 25px 10px 10px;
+	}
+
+	.insurance-products .insurance-title {
+		font-size: var(--m-label-fs);
+		height: 0;
+		margin-bottom: 15px;
+	}
+
+	.insurance-products .insurance-child {
+		font-size: var(--m-text-label-fs);
+	}
+
+	.insurance-products .insurance-child p .check-icon {
+		font-size: var(--m-sub-label-fs);
+	}
+
+	.radio-buttons .circle {
+		width: 15px;
+		height: 15px;
+	}
+
+	.radio-buttons .circle::before {
+		width: 7px;
+		height: 7px;
+		top: 45%;
+		left: 50%;
+	}
+
+	.insurance-guide-content-five .questions .dropdown-label {
+		font-size: var(--m-text-label-fs);
+	}
+}
+/* .insurance-guide-container {
 	background-color: white;
 }
 .insurance-guide-contents {
@@ -17,7 +789,6 @@
 	flex-wrap: wrap;
 	margin: 20px 0px 0px 0px;
 	justify-content: space-between;
-	/* align-items: center; */
 	background-color: #fdfbfa;
 }
 .insurance-guide-content-five .questions span svg {
@@ -29,14 +800,13 @@
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	padding: 0px 0px 0px 250px;
+	margin: auto;
 }
 
 .insurance-guide-tagline span {
 	color: var(--red);
 	font-weight: bold;
-	font-size: 30px;
-	width: 250px;
+	font-size: 35px;
 }
 
 .insurance-guide-tagline p {
@@ -54,21 +824,16 @@
 .insurance-guide-content-two {
 	display: flex;
 	flex-direction: row;
-	/* width: 2000px; */
-	/* flex-wrap:wrap; */
-	/* justify-content: space-between; */
 	align-items: center;
 	justify-content: center;
 }
 
 .insurance-guide-inboxes {
 	width: 50%;
-	/* height: 50%; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
-	/* margin: 0px 0px 0px 50px; */
 	gap: 50px;
 }
 
@@ -77,20 +842,16 @@
 .health-insurance-inbox,
 .travel-insurance-inbox {
 	width: 300px;
-	/* height: 350px; */
 	padding-bottom: 30px;
 	border: 1px solid var(--red);
 	border-radius: 10px;
 	display: flex;
-	/* justify-content: center; */
 	align-items: center;
 	flex-direction: column;
-	/* margin: 20px 0px 0px 0px; */
 }
 
 .insurance-guide-inboxes p {
 	justify-content: center;
-	/* align-items: center; */
 	display: flex;
 	height: 100px;
 	padding: 20px 0px 0px 20px;
@@ -204,7 +965,6 @@
 .health-insurance-products,
 .travel-insurance-products,
 .auto-insurance-products {
-	/* background-color: rgb(217, 0, 0, 11%); */
 	border: 1px solid #d90000;
 	width: 350px;
 	height: 400px;
@@ -317,7 +1077,6 @@
 		width: 100%;
 		padding: 20px 10px 0px 20px;
 		margin: 0px;
-		/* margin: 0px 10px 0px 0px; */
 	}
 
 	.insurance-guide-tagline span {
@@ -354,7 +1113,6 @@
 		width: 200px;
 		height: 20px;
 		height: auto;
-		/* padding: 5px; */
 		margin: 0px;
 	}
 
@@ -395,7 +1153,6 @@
 		font-size: 16px;
 		width: 100%;
 		margin: 30px 0px 0px 10px;
-		/* width: 50%; */
 	}
 	.insurance-guide-content-three {
 		width: 100%;
@@ -451,10 +1208,6 @@
 		font-weight: bold;
 	}
 
-	/* .other-insurance-products span {
-        font-size: 20px;
-    
-    } */
 	.auto-insurance-products .radio-buttons {
 		margin: 0px;
 	}
@@ -491,12 +1244,11 @@
 	.auto-insurance-products .radio-buttons p:after {
 		content: "";
 		display: inline-block;
-		width: 5px; /* Size of the inner red circle */
+		width: 5px; 
 		height: 5px;
-		background-color: #ff0000; /* Inner red circle */
+		background-color: #ff0000; 
 		border-radius: 50%;
 		position: absolute;
-		/* top: 50%; */
 		left: 24%;
 	}
 }
@@ -677,12 +1429,11 @@
 	.auto-insurance-products .radio-buttons p:after {
 		content: "";
 		display: inline-block;
-		width: 5px; /* Size of the inner red circle */
+		width: 5px;
 		height: 5px;
-		background-color: #ff0000; /* Inner red circle */
+		background-color: #ff0000; 
 		border-radius: 50%;
 		position: absolute;
-		/* top: 50%; */
 		left: 27%;
 	}
 }
@@ -704,13 +1455,10 @@
 		justify-content: center;
 		align-items: center;
 		padding-left: 30px;
-		/* align-items: flex-start; */
-		/* margin: 0px 10px 0px 0px; */
 	}
 
 	.insurance-guide-tagline span {
 		font-size: 22px;
-		/* margin: 0px 0px 0px 50px; */
 	}
 
 	.insurance-guide-tagline p {
@@ -769,7 +1517,6 @@
 
 	.insurance-guide-tagline-two span {
 		font-size: 24px;
-		/* margin: 20px 0px 0px 100px; */
 		width: 100%;
 	}
 
@@ -865,12 +1612,11 @@
 	.auto-insurance-products .radio-buttons p:after {
 		content: "";
 		display: inline-block;
-		width: 5px; /* Size of the inner red circle */
+		width: 5px; 
 		height: 5px;
-		background-color: #ff0000; /* Inner red circle */
+		background-color: #ff0000;
 		border-radius: 50%;
 		position: absolute;
-		/* top: 50%; */
 		left: 73%;
 	}
 }
@@ -891,7 +1637,6 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		/* align-items: flex-start; */
 		padding-left: 100px;
 	}
 
@@ -1236,22 +1981,8 @@
 		margin: 20px 0px 0px 0px;
 		flex-wrap: nowrap;
 	}
-
-	.insurance-guide-tagline {
-		width: 50%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		margin: 0px 10px 0px 0px;
-	}
 	.insurance-header {
 		padding: 0px 0px 0px 20px;
-	}
-
-	.insurance-guide-tagline span {
-		font-size: 26px;
-		margin: 0px 0px 0px 50px;
 	}
 
 	.insurance-guide-tagline p {
@@ -1440,4 +2171,4 @@
 	.other-insurance-products {
 		gap: 60px;
 	}
-}
+} */

@@ -109,7 +109,7 @@
 .sell-header {
 	color: black;
 	text-align: left;
-	font-size: 80%;
+	font-size: var(--xl-header-1-fs);
 }
 
 .first-section .sell--action-btn,
@@ -117,9 +117,9 @@
 	border-radius: 10px;
 	font-weight: bold;
 	padding: 25px;
-	width: 200px;
-	height: 80px;
-	font-size: 22px;
+	width: 180px;
+	height: 70px;
+	font-size: var(--d-label-fs);
 }
 
 .first-section #contactUs {
@@ -164,7 +164,7 @@
 
 .second-content-span {
 	color: black;
-	font-size: 60%;
+	font-size: var(--d-header-2-fs);
 	font-weight: bold;
 	width: 100%;
 	/* width: 90%; */
@@ -174,14 +174,14 @@
 
 .second-section .content #ListPropertybtn {
 	border: 1px solid var(--red);
-	width: 300px;
+	width: 270px;
 	height: 80px;
 	color: #ffffff;
 	font-weight: bold;
 	background-color: #d90000;
 	border-radius: 10px;
 	padding: 35px;
-	font-size: 23px;
+	font-size: var(--d-label-fs);
 	margin: 50px 0px 0px 0px;
 	/* margin: 50px 0px 0px 100px; */
 	justify-content: center;
@@ -191,7 +191,8 @@
 
 .second-section .content p {
 	color: #000;
-	font-size: 40%;
+	/* font-size: 40%; */
+	font-size:var(--d-label-fs) ;
 	align-items: flex-start;
 	font-weight: lighter;
 	text-align: left;
@@ -203,7 +204,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 1.5rem;
-	font-size: 40%;
+	font-size:var(--d-label-fs) ;
 	font-weight: normal;
 	align-items: flex-start;
 	justify-content: left;
@@ -243,7 +244,7 @@
 .third-section .third-cont-guide {
 	color: #000;
 	font-weight: bold;
-	font-size: 60%;
+	font-size: var(--d-header-2-fs);
 	/* margin-right: 74%; */
 	/* width: 100%; */
 }
@@ -258,7 +259,7 @@
 }
 .third-section .section-cont-guide {
 	color: #000;
-	font-size: 24px;
+	font-size: var(--d-label-fs);
 	font-weight: 300px;
 }
 
@@ -284,7 +285,7 @@
 }
 
 .cards p {
-	font-size: 50%;
+	font-size: var(--d-sub-label-fs);
 	margin-top: 25%;
 }
 
@@ -311,11 +312,11 @@
 }
 
 .sell .non-wallet-user-group span {
-	font-size: 20px;
+	font-size: var(--d-sub-label-fs);
 }
 
 .sell .non-wallet-user-group li {
-	font-size: 20px;
+	font-size: var(--d-sub-label-fs);
 	margin: 20px 0px 0px 0px;
 }
 
@@ -334,13 +335,13 @@
 .fourth-section h1 {
 	color: black;
 	font-weight: bold;
-	font-size: 60%;
+	font-size: var(--d-header-2-fs);
 	text-align: center;
 }
 
 .fourth-section p {
 	color: #000;
-	font-size: 20px;
+	font-size: var(--d-label-fs);
 	font-weight: lighter;
 	margin-top: 2%;
 }
@@ -381,12 +382,16 @@
 }
 
 .sell-faqs-dropdown {
-	font-size: 20px;
+	font-size: var(--d-sub-label-fs);
 	font-weight: 400;
 	cursor: pointer;
 	padding-bottom: 15px;
 	border-bottom: 1px solid rgb(164, 161, 161, 27%);
 	justify-content: space-between;
+}
+
+.sell-faqs-dropdown-content{
+	font-size: var(--d-text-label-fs);
 }
 
 .sell-buy-faqs {

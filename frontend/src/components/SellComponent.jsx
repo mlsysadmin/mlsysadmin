@@ -327,6 +327,7 @@ const SellComponent = () => {
 																		? "rotate(180deg)"
 																		: "none",
 															}}
+															className="dropdown-icon"
 														/>
 														{activeIndex === index && (
 															<div
