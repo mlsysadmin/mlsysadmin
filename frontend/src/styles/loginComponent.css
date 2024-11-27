@@ -1,0 +1,90 @@
+.login-content-container {
+	background: rgba(0, 0, 0, 0.4) url("../asset/banners/dashboard-banner.png") !important;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
+	background-blend-mode: darken !important;
+	width: 100%;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
+.login-content {
+	background-color: white;
+	width: 350px;
+	height: 443px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* justify-content: center; */
+	border-radius: 10px;
+	padding: 40px 20px;
+	gap: 20px;
+}
+.login-content .logo-area img {
+	width: 190px;
+	height: 90px;
+	padding-left: 80px;
+}
+.conten-login-page{
+
+}
+.login-content .gen-content-login {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	gap: 40px;
+}
+.login-content .gen-content-login #signin {
+	font-size: 20px;
+}
+.login-content .gen-content-login #no-account,
+.mobile-input-login-group #mobile-num-label {
+	font-size: 15px;
+}
+.mobile-input-login-group {
+	padding-left: 40px;
+}
+.login-input-group .react-tel-input .form-control {
+	width: 236px;
+	height: 47px;
+	border-radius: 10px;
+	border: 1px solid #8c9094;
+}
+.login-input-group .react-tel-input .flag-dropdown,
+.login-input-group .react-tel-input .flag-dropdown.open {
+	border-radius: 10px 0 0 10px;
+	border: 1px solid #8c9094;
+	width: 44px;
+	background-color: transparent;
+}
+.login-input-group .react-tel-input .flag-dropdown.open .selected-flag {
+	border-radius: 10px 0 0 10px;
+	background: none;
+}
+.login-input-group .react-tel-input .selected-flag:hover,
+.login-input-group .react-tel-input .selected-flag:focus {
+	background: none;
+	border-radius: 10px 0 0 10px;
+}
+.login-input-group .react-tel-input .country-list .country:hover,
+.login-input-group .react-tel-input .country-list .country,
+.login-input-group .react-tel-input .country-list {
+	width: 236px;
+	border-radius: 10px;
+}
+.login-input-group .react-tel-input .country-list {
+	margin: 2px 0px 0px 0px;
+}
+.login-slider {
+	width: 236px !important;
+	height: 47px !important;
+}
+.mobile-input-login-group{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+
+}
+
+
