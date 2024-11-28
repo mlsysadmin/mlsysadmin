@@ -25,6 +25,7 @@ import Sidebar from "./DraftSidebar.page";
 import PreviewListing from "./PreviewListing.page";
 import ModalComponents from "./ModalComponents.page";
 import PropertySearchPage from "./PropertySearch.page";
+import LoginPage from "./Login.page";
 
 // import RegistrationModal from "./RegistrationModal.page";
 import LoginModal from "./LoginModal.page";
@@ -95,6 +96,7 @@ export {
 	MortgagePage,
 	RentPage,
 	SellPage,
+	LoginPage,
 	LoanCalculatorPage,
 	ContactUsPage,
 	MyDraftsPage,

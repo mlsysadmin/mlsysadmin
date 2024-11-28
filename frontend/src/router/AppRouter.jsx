@@ -64,6 +64,7 @@ import {
 	FaqsPage,
 	TermsandConditionPage,
 	PreSellingPage,
+	LoginPage,
 } from "../pages";
 import { ProtectedRoute, BuyerSellerProtectedRoute } from "./ProtectedRoute";
 import { SaleComponent, SearchListingComponent } from "../components";
@@ -146,6 +147,7 @@ const Routes = [
 				element: <BuyerSellerProtectedRoute element={<ListingPage />} />,
 				// element: <ListingPage />,
 			},
+
 			{
 				path: "/comingsoon",
 				element: <ComingSoonPage />,
@@ -241,6 +243,10 @@ const Routes = [
 	{
 		path: "support/signin",
 		element: <SignIn />,
+	},
+	{
+		path: "/login",
+		element: <LoginPage />,
 	},
 	{
 		path: "error",
