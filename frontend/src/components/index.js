@@ -76,6 +76,7 @@ import SignIn from "./support/SignIn.component";
 import CloseApplicationModal from "./custom/support/CloseApplicationModal";
 import SupportListingComponent from "./support/SupportListingComponent";
 import TermsandConditionComponent from "./TermsandConditionComponent";
+import LoginComponent from "./LogInPageComponent";
 
 import SupportHeaderContainer from "./layout/Navigation/support/SupportHeaderContainer";
 import SuccessModal from "./modals/SuccessModal";
@@ -176,5 +177,6 @@ export {
 	ApplicationHistory,
 	SaleComponent,
 	FaqsComponent,
-	SearchListingComponent
+	SearchListingComponent,
+	LoginComponent,
 };

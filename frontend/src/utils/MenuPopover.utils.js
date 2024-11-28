@@ -96,6 +96,7 @@ const SubMenu = {
 								<a
 									href="https://mlhuillier.com/home-loan/"
 									className="redirect"
+									target="_blank"
 								>
 									Home Loan Dashboard <RightOutlined />
 								</a>
@@ -103,6 +104,7 @@ const SubMenu = {
 						</div>
 					),
 					link: "https://mlhuillier.com/home-loan/",
+					isExternalLink: true
 				},
 			],
 		},
@@ -126,23 +128,36 @@ const SubMenu = {
 
 	preSelling: [
 		{
-			header: "",
+			header: (
+				<>
+					<span style={{ padding: "0 5px", color: "black", fontSize: "15px" }}>
+						Looking for a Pre-Selling property?
+					</span>
+				</>
+			),
+			submenu: [
+				{
+					sub_info: (
+						<div className="sub-info">
+							<span>Reserve your spot now and save on future value!</span>
+						</div>
+					),
+				},
+			],
+		},
+
+		{
+			header: "Homes for Pre-Selling",
 			submenu: [
 				{
 					sub: "House and Lot",
 					link: "/pre-selling/?property_type=house-and-lot",
 				},
-			],
-		},
-		{
-			header: "",
-			submenu: [
 				{ sub: "Condominium", link: "/pre-selling/?property_type=condominium" },
-			],
-		},
-		{
-			header: "",
-			submenu: [
+				{
+					sub: "Apartment ",
+					link: "/pre-selling/?property_type=townhouse",
+				},
 				{
 					sub: "Townhouse ",
 					link: "/pre-selling/?property_type=townhouse",

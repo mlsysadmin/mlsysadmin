@@ -98,6 +98,7 @@
 	border: 1px solid var(--red);
 	border-radius: 10px;
 	height: 250px;
+	gap: 10px;
 }
 
 .insurance-guide-inboxes .insurance-inbox img {
@@ -114,7 +115,7 @@
 }
 
 .insurance-guide-inboxes .insurance-inbox p {
-	font-size: var(--d-field-fs);
+	font-size: var(--d-text-field-fs);
 	color: var(--black);
 }
 
@@ -225,7 +226,7 @@
 }
 
 .insurance-guide-content-five .questions .dropdown-label {
-	font-size: var(--d-sub-label-fs);
+	font-size: var(--d-text-label-fs) !important;
 
 }
 
@@ -301,15 +302,15 @@
 	}
 
 	.insurance-guide-tagline span {
-		font-size: var(--d-field-fs);
+		font-size: var(--l-text-label-fs);
 	}
 
 	.insurance-guide-inboxes .insurance-inbox p {
-		font-size: var(--l-field-fs);
+		font-size: var(--l-text-label-fs);
 	}
 
 	.insurance-guide-inboxes .insurance-inbox span {
-		font-size: var(--l-text-label-fs);
+		font-size: var(--l-sub-label-fs);
 	}
 
 	.insurance-guide-content-two,
@@ -330,7 +331,7 @@
 
 	.insurance-guide-inboxes .insurance-inbox {
 		width: 230px;
-		height: 200px;
+		height: 220px;
 	}
 
 	.insurance-guide-content-two .insurance-guide-tagline-two {
@@ -351,7 +352,7 @@
 	}
 
 	.insurance-products .insurance-child {
-		font-size: var(--l-text-label-fs);
+		font-size: var(--l-sub-label-fs);
 	}
 
 	.insurance-products .insurance-child p .check-icon {
@@ -371,7 +372,7 @@
 	}
 
 	.insurance-guide-content-five .questions .dropdown-label {
-		font-size: var(--l-text-label-fs);
+		font-size: var(--l-sub-label-fs) !important;
 	}
 }
 
@@ -417,7 +418,7 @@
 	}
 
 	.insurance-guide-tagline p {
-		font-size: var(--t-header-2-fs);
+		font-size: var(--t-header-1-fs);
 	}
 
 	.insurance-guide-content-four .insurance-header,
@@ -426,19 +427,19 @@
 	}
 
 	.insurance-guide-tagline span {
-		font-size: var(--t-field-fs);
-	}
-
-	.insurance-guide-inboxes .insurance-inbox p {
-		font-size: var(--t-field-fs);
-	}
-
-	.insurance-guide-inboxes .insurance-inbox span {
 		font-size: var(--t-text-label-fs);
 	}
 
+	.insurance-guide-inboxes .insurance-inbox p {
+		font-size: var(--t-text-label-fs);
+	}
+
+	.insurance-guide-inboxes .insurance-inbox span {
+		font-size: var(--t-sub-label-fs);
+	}
+
 	.insurance-guide-tagline-two span {
-		font-size: var(--t-header-3-fs);
+		font-size: var(--t-header-2-fs);
 	}
 
 	.insurance-guide-tagline-two p {
@@ -470,7 +471,7 @@
 
 	.insurance-guide-inboxes .insurance-inbox {
 		width: 200px;
-		height: 200px;
+		/* height: 20px; */
 	}
 
 	.insurance-guide-content-two .insurance-guide-tagline-two {
@@ -485,19 +486,19 @@
 	}
 
 	.insurance-guide-content-four .other-insurance-products .insurance-products {
-		width: 230px;
-		height: 350px;
+		width: 280px;
+		height: 380px;
 		padding: 25px 10px 10px;
-		justify-content: center;
 		align-items: center;
 	}
 
 	.insurance-products .insurance-title {
-		font-size: var(--t-text-label-fs);
+		font-size: var(--t-sub-label-fs);
+		height: auto;
 	}
 
 	.insurance-products .insurance-child {
-		font-size: var(--t-field-fs);
+		font-size: var(--t-text-label-fs);
 	}
 
 	.insurance-products .insurance-child p .check-icon {
@@ -517,7 +518,13 @@
 	}
 
 	.insurance-guide-content-five .questions .dropdown-label {
-		font-size: var(--t-text-label-fs);
+		font-size: var(--t-sub-label-fs) !important;
+	}
+	.insurance-guide-tagline{
+		padding: 20px 30px;
+	}
+	.insurance-banner img{
+		height: 300px;
 	}
 }
 
@@ -544,11 +551,11 @@
 	}
 
 	.insurance-guide-tagline span {
-		font-size: var(--m-field-fs);
+		font-size: var(--m-text-label-fs);
 	}
 
 	.insurance-guide-inboxes .insurance-inbox p {
-		font-size: var(--m-field-fs);
+		font-size: var(--m-text-label-fs);
 	}
 
 	.insurance-guide-inboxes .insurance-inbox span {
@@ -560,7 +567,7 @@
 	}
 
 	.insurance-guide-tagline-two p {
-		font-size: var(--m-text-label-fs);
+		font-size: var(--m-sub-label-fs);
 	}
 
 	.insurance-guide-content-two,
@@ -617,7 +624,7 @@
 	}
 
 	.insurance-products .insurance-child {
-		font-size: var(--m-field-fs);
+		font-size: var(--m-text-label-fs);
 	}
 
 	.insurance-products .insurance-child p .check-icon {
@@ -659,11 +666,11 @@
 	.insurance-guide-content-two,
 	.insurance-guide-content-one,
 	.insurance-guide-content-four {
-		margin-bottom: 50px;
+		margin-bottom: 70px;
 	}
 
 	.insurance-guide-tagline p {
-		font-size: var(--m-header-2-fs);
+		font-size: var(--m-header-1-fs);
 	}
 
 	.insurance-guide-content-four .insurance-header,
@@ -673,15 +680,16 @@
 	}
 
 	.insurance-guide-tagline span {
-		font-size: var(--m-field-fs);
+		font-size: var(--m-sub-label-fs);
 	}
 
 	.insurance-guide-inboxes .insurance-inbox p {
-		font-size: var(--m-field-fs);
+		font-size: var(--m-sub-label-fs);
 	}
 
 	.insurance-guide-inboxes .insurance-inbox span {
-		font-size: var(--m-text-label-fs);
+		font-size: var(--m-sub-label-fs);
+		margin: 5px 0;
 	}
 
 	.insurance-guide-tagline-two span {
@@ -689,13 +697,15 @@
 	}
 
 	.insurance-guide-tagline-two p {
-		font-size: var(--m-text-label-fs);
+		font-size: var(--m-sub-label-fs);
 	}
-
+	.insurance-guide-content-five{
+		padding: 0 15px !important;
+	}
 	.insurance-guide-content-two,
 	.insurance-guide-content-four,
 	.insurance-guide-content-five {
-		width: 90%;
+		width: 95%;
 		padding: 0;
 	}
 
@@ -707,6 +717,7 @@
 	.insurance-guide-inboxes .insurance-inbox img {
 		width: 40px;
 		height: 40px;
+		margin: 0px;
 	}
 
 	.insurance-guide-content-two .insurance-guide-inboxes {
@@ -717,7 +728,10 @@
 
 	.insurance-guide-inboxes .insurance-inbox {
 		width: 150px;
-		height: 200px;
+		/* height: 240px; */
+		justify-content:start;
+		padding: 20px 10px;
+		gap: 5px;
 	}
 
 	.insurance-guide-content-two .insurance-guide-tagline-two {
@@ -736,7 +750,7 @@
 
 	.insurance-guide-content-four .other-insurance-products .insurance-products {
 		width: 300px;
-		height: 280px;
+		height: 300px;
 		padding: 25px 10px 10px;
 	}
 
@@ -747,7 +761,7 @@
 	}
 
 	.insurance-products .insurance-child {
-		font-size: var(--m-text-label-fs);
+		font-size: var(--m-sub-label-fs);
 	}
 
 	.insurance-products .insurance-child p .check-icon {
