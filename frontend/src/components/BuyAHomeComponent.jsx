@@ -371,14 +371,14 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
             <span>(An estimate is fine)</span>
             <div className="prop-info-btn-group">
               {[
-                "PHP 1,000,000 or more",
+                "More than 100M",
                 "PHP 900,000 - 800,000",
                 "PHP 700,000 - 600,000",
                 "PHP 600,000 - 500,000",
                 "PHP 500,000 - 400,000",
                 "PHP 300,000 - 200,000",
                 "PHP 100,000 - 50,000",
-                "PHP 50,000 or less",
+                "Less than 50,000",
               ].map((option) => (
                 <button
                   key={option}
