@@ -1256,7 +1256,7 @@ h2 {
 
 	.faqs-container {
 		margin: 100px auto;
-		padding: 0;
+		padding: 0 10px;
 	}
 
 	.faqs-content h2 {

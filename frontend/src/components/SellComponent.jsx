@@ -137,7 +137,9 @@ const SellComponent = () => {
 			<div className="sell-container">
 				<div className="sell-contents">
 					<div className="first-section">
+						<div className="sell-banner-bg">
 						<img src={bannerImg} alt="" />
+						</div>
 						<div className="bannerbg">
 							<span className="sell-header">
 								{" "}

@@ -96,6 +96,7 @@ const SubMenu = {
 								<a
 									href="https://mlhuillier.com/home-loan/"
 									className="redirect"
+									target="_blank"
 								>
 									Home Loan Dashboard <RightOutlined />
 								</a>
@@ -103,6 +104,7 @@ const SubMenu = {
 						</div>
 					),
 					link: "https://mlhuillier.com/home-loan/",
+					isExternalLink: true
 				},
 			],
 		},
