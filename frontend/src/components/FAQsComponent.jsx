@@ -136,6 +136,7 @@ const FaqsComponent = () => {
 														transform:
 															activeIndex === i ? "rotate(180deg)" : "none",
 													}}
+													className="dropdown-icon"
 												/>
 
 												{activeIndex === i && (
