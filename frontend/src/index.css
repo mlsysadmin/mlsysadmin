@@ -34,7 +34,7 @@ body {
   --d-header-3-fs: 1.5rem;
   --d-label-fs: 1.3rem;
   --d-sub-label-fs: 1.2rem;
-  --d-text-label-fs: 1rem;
+  --d-text-label-fs: 1.1rem;
   --d-field-fs: 0.85rem;
   /* LAPTOP */
   --l-header-1-fs: 2.2rem;
@@ -42,7 +42,7 @@ body {
   --l-header-3-fs: 1.4rem;
   --l-label-fs: 1.3rem;
   --l-sub-label-fs: 1rem;
-  --l-text-label-fs: 0.90rem;
+  --l-text-label-fs: 0.95rem;
   --l-field-fs: 0.75rem;
   /* TABLET */
   --t-header-1-fs: 2rem;

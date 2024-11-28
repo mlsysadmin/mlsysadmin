@@ -63,7 +63,7 @@ const InsuranceGuideComponent = () => {
 						<div className="home-insurance-inbox insurance-inbox">
 							<img src={InsuranceHouse}></img>
 							<span>Home Insurance</span>
-							<br />
+							{/* <br /> */}
 							<p>
 								Protect your home and your loved ones with ML Home Insurance.
 							</p>
@@ -71,7 +71,7 @@ const InsuranceGuideComponent = () => {
 						<div className="auto-insurance-inbox insurance-inbox">
 							<img src={AutoInsurance}></img>
 							<span>Auto Insurance</span>
-							<br />
+							{/* <br /> */}
 							<p>
 								Choose ML Auto Insurance and discover unmatched protection for
 								your vehicle.
@@ -80,7 +80,7 @@ const InsuranceGuideComponent = () => {
 						<div className="health-insurance-inbox insurance-inbox">
 							<img src={HealthInsurance}></img>
 							<span>Health Insurance</span>
-							<br />
+							{/* <br /> */}
 							<p>
 								Elevate Your Well-being with ML Health Insurance and be healthy.
 							</p>
@@ -88,7 +88,7 @@ const InsuranceGuideComponent = () => {
 						<div className="travel-insurance-inbox insurance-inbox">
 							<img src={TravelInsurance}></img>
 							<span>Travel Insurance</span>
-							<br />
+							{/* <br /> */}
 							<p>
 								Don't wait until you're sick or injured to think about health
 								insurance.
