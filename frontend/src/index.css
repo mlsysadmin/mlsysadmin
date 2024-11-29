@@ -9,15 +9,96 @@ body {
 }
 
 
-:root{
+:root {
   --red: #D90000;
   --mute-gray: #8C9094;
   --font-family: "Poppins", sans-serif;
   --mute-red: #FFDBDB;
   --bg-shadow: rgba(0, 0, 0, 0.4);
   --green: rgb(0, 102, 0);
-  --black:black;
+  --black: black;
+  --mute-white: #fdfbfa;
+  --radius: 10px;
+  --default-page-size: 1000px;
+  /* xl */
+  --xl-header-1-fs: 2.8rem;
+  --xl-header-2-fs: 2.5rem;
+  --xl-header-3-fs: 2rem;
+  --xl-label-fs: 1.8rem;
+  --xl-sub-label-fs: 1.5rem;
+  --xl-text-label-fs: 1.2rem;
+  --xl-field-fs: 0.95rem;
+  /* DESKTOP */
+  --d-header-1-fs: 2.5rem;
+  --d-header-2-fs: 2rem;
+  --d-header-3-fs: 1.5rem;
+  --d-label-fs: 1.3rem;
+  --d-sub-label-fs: 1.2rem;
+  --d-text-label-fs: 1.1rem;
+  --d-field-fs: 0.85rem;
+  /* LAPTOP */
+  --l-header-1-fs: 2.2rem;
+  --l-header-2-fs: 1.7rem;
+  --l-header-3-fs: 1.4rem;
+  --l-label-fs: 1.3rem;
+  --l-sub-label-fs: 1rem;
+  --l-text-label-fs: 0.95rem;
+  --l-field-fs: 0.75rem;
+  /* TABLET */
+  --t-header-1-fs: 2rem;
+  --t-header-2-fs: 1.5rem;
+  --t-header-3-fs: 1.3rem;
+  --t-label-fs: 1.2rem;
+  --t-sub-label-fs: 1rem;
+  --t-text-label-fs: 0.95rem;
+  --t-field-fs: 0.75rem;
+  /* Mobile */
+  --m-header-1-fs: 1.5rem;
+  --m-header-2-fs: 1.4rem;
+  --m-header-3-fs: 1.2rem;
+  --m-label-fs: 1rem;
+  --m-sub-label-fs: 0.90rem;
+  --m-text-label-fs: 0.80rem;
+  --m-field-fs: 0.70rem;
+  /* Font Weight */
+  --header-1-fw: bold;
+  --header-2-fw: 600;
+  --header-3-fw: 500;
+  --label-fw: 400;
+  --field-fw: 300;
 }
+
+/* Font Size Recommendations:
+
+1. Desktop 
+H1: 2.5rem (approx. 32px)
+H2: 2rem (approx. 28px)
+H3: 1.5rem (approx. 24px)
+Body Text: 1rem (16px)
+
+2. Laptop 
+H1: 2.2rem (approx. 28px)
+H2: 1.8rem (approx. 24x)
+H3: 1.4rem (approx. 20px)
+Body Text: 1rem (14px)
+
+3. Tablet 
+H1: 2rem (approx. 24px)
+H2: 1.6rem (approx. 20px)
+H3: 1.3rem (approx. 16px)
+Body Text: 0.75rem (12px)
+
+3. Mobile 
+H1: 1.5rem (20px)
+H2: 1.4rem (16px)
+H3: 1.2rem (14px)
+Body Text: 0.75rem (12px / 10px) */
+
+/* sm    640px    @media (min-width: 640px) { ... }
+md    768px    @media (min-width: 768px) { ... }
+lg    1024px    @media (min-width: 1024px) { ... }
+xl    1280px    @media (min-width: 1280px) { ... }
+2xl    1536px    @media (min-width: 1536px) { ... } */
 
 .poppins-thin {
   font-family: "Poppins", sans-serif;
@@ -128,7 +209,7 @@ body {
 }
 
 
-.loading--message-background{
+.loading--message-background {
   top: 0;
   left: 0;
   width: 100%;
@@ -137,6 +218,12 @@ body {
   z-index: 100;
 }
 
-.layout--background{
+.layout--background {
   background: white;
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .dropdown-icon {
+    display: none;
+  }
 }

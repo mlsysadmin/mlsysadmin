@@ -50,6 +50,7 @@ import RentComponent from "./RentComponent";
 import SaleComponent from "./SaleComponent";
 import SellComponent from "./SellComponent";
 import FaqsComponent from "./FAQsComponent";
+import PreSellingComponent from "./PreSellingComponent";
 import CardListingComponent from "./CardListingComponent";
 import AllPropertiesComponent from "./AllPropertiesComponent";
 import { ShowDetailsProcessing } from "./ShowDetailsProcessing";
@@ -75,6 +76,7 @@ import SignIn from "./support/SignIn.component";
 import CloseApplicationModal from "./custom/support/CloseApplicationModal";
 import SupportListingComponent from "./support/SupportListingComponent";
 import TermsandConditionComponent from "./TermsandConditionComponent";
+import LoginComponent from "./LogInPageComponent";
 
 import SupportHeaderContainer from "./layout/Navigation/support/SupportHeaderContainer";
 import SuccessModal from "./modals/SuccessModal";
@@ -140,6 +142,7 @@ export {
 	LoanCalculatorComponent,
 	MortgageComponent,
 	RentComponent,
+	PreSellingComponent,
 	SellComponent,
 	TermsandConditionComponent,
 	SoldPropertyDetails,
@@ -175,5 +178,6 @@ export {
 	ApplicationHistory,
 	SaleComponent,
 	FaqsComponent,
-	SearchListingComponent
+	SearchListingComponent,
+	LoginComponent,
 };

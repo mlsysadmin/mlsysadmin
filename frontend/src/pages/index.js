@@ -4,6 +4,7 @@ import HouseForRentPage from "./HouseForRent.page";
 import DiscoverHomePage from "./DiscoverHome.page";
 import BuyAHomePage from "./BuyAHome.page";
 import RefinancePage from "./Refinance.page";
+import PreSellingPage from "./PreSelling.page";
 import InsuranceGuidePage from "./InsuranceGuide.page";
 import MortgagePage from "./Mortgage.page";
 import SellPage from "./Sell.page";
@@ -25,7 +26,7 @@ import PreviewListing from "./PreviewListing.page";
 import ModalComponents from "./ModalComponents.page";
 import PropertySearchPage from "./PropertySearch.page";
 import SavedPropertiespage from "./SavedProperty.page";
-
+import LoginPage from "./Login.page";
 
 // import RegistrationModal from "./RegistrationModal.page";
 import LoginModal from "./LoginModal.page";
@@ -87,6 +88,7 @@ export {
 	ListingPage,
 	MainOutlet,
 	Dashboard,
+	PreSellingPage,
 	HouseForRentPage,
 	DiscoverHomePage,
 	ComingSoonPage,
@@ -96,6 +98,7 @@ export {
 	MortgagePage,
 	RentPage,
 	SellPage,
+	LoginPage,
 	LoanCalculatorPage,
 	ContactUsPage,
 	MyDraftsPage,
