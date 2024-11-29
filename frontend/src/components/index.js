@@ -100,9 +100,10 @@ import SupportPreApprovalListComponent from "./support/SupportPreApprovalListCom
 import ApprovalSectionComponent from "./support/ApprovalSectionComponent";
 
 import SearchListingComponent from "./SearchListingComponent";
-
+import SavedPropertiesComponent from "./SavedPropertiesComponent";
 export {
 	ActiveListingDetails,
+	SavedPropertiesComponent,
 	ShowDetailsProcessing,
 	ShowDetailsDenied,
 	ListingSearchLoggedin,

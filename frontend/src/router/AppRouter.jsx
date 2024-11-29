@@ -43,6 +43,7 @@ import {
 	PendingApplication,
 	DisapprovedApplication,
 	ListingDetails,
+	SavedPropertiespage,
 	ApplicationDetails,
 	CancelledApplication,
 	PreApprovalRequest,
@@ -139,6 +140,11 @@ const Routes = [
 			{
 				path: "/listing",
 				element: <BuyerSellerProtectedRoute element={<ListingPage /> }/>
+				// element: <ListingPage />,
+			},
+			{
+				path: "/saved-properties",
+				element: <BuyerSellerProtectedRoute element={<SavedPropertiespage /> }/>
 				// element: <ListingPage />,
 			},
 			{

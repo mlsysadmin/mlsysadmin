@@ -118,7 +118,7 @@ const DashboardComponent = () => {
       const res = await GetPropertiesBySaleStatus();
 
       const dataresp = res;
-
+      
       if (dataresp.length == 0) {
         setPublicListing([]);
       } else {
@@ -165,6 +165,7 @@ const DashboardComponent = () => {
             };
           })
         );
+        console.log("newListing: ",newListing);
         FillLocationFilter(dataresp);
         setPublicListing(newListing);
         setLoading(false);
