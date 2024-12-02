@@ -7,8 +7,7 @@ const PropertyListing = async (sellerNo) => {
       const response = await IGOTSOLUTIONSAxiosInstance.get(
         `api/getPropertiesByDeveloperId/${sellerNo}`
       );
-      const value = response.data.filter((d) => d.AccessType == "public");
-
+      const value = response.data.filter((d) => d.RecordStatus !== "inactive");
       return value;
     } catch (error) {
       throw error;

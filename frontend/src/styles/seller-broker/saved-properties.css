@@ -1,11 +1,16 @@
-.savedPropertiesBackgroundComponent {
+.wholeViewSavedProperties{
   display: flex;
-  background: white;
-  padding: 0px 30px;
+  /* flex-direction: column; */
+  max-width: var(--default-page-size);
+  margin: auto;
+}
+.savedPropertiesBackgroundComponent {
+  background: #F5F6F7;
+  padding: 0px 30px 50px 30px;
   color: black;
 }
 .savedPropertiesContent {
-  background: white;
+  background: #F5F6F7;
 }
 .savedPropertiesBackgroundComponent
   .ant-tabs
@@ -24,10 +29,10 @@
 .savedPropertiesBackgroundComponent .ant-tabs-top > .ant-tabs-nav::before {
   display: none;
 }
-.savedPropertiesBackgroundComponent .ant-tabs .ant-tabs-content {
+/* .savedPropertiesBackgroundComponent .ant-tabs .ant-tabs-content {
   padding-top: 30px;
-  padding-left: 50px;
-}
+  padding-left: 17%;
+} */
 .savedPropertiesBackgroundComponent
   .ant-tabs
   .ant-tabs-content
@@ -38,31 +43,38 @@
 }
 .savedPropertiesBackgroundComponent .savedPropertiesContent .card-item.field {
   margin-top: 15px;
-  width: 16%;
+  width: 200px;
   height: 40px;
   color: black;
   border-color: #d9d9d9;
   border-width: 1px;
 }
 
-.ant-select-dropdown .ant-select-item-option-selected:not(.ant-select-item-option-disabled){
-    background-color: transparent !important;
+.ant-select-dropdown
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: transparent !important;
 }
 .ant-select-item-option.ant-select-item-option-active:hover {
-    background-color: #d9d9d9 !important;
+  background-color: #d9d9d9 !important;
 }
-.savedPropertiesBackgroundComponent .savedPropertiesContent .ant-select-item-option-content{
-    color: black;
-    font-weight: 400;
+.savedPropertiesBackgroundComponent
+  .savedPropertiesContent
+  .ant-select-item-option-content {
+  color: black;
+  font-weight: 400;
 }
 .savedPropertiesBackgroundComponent .listing-carousel-saved-properties {
-    cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 50px;
-    /* gap: 100px; */
-    flex-wrap: wrap;
-    margin-top: 30px;
-    padding: 0px 20px;
-  }
+  cursor: pointer;
+  display: grid;
+  flex-direction: row;
+  gap: 50px;
+  /* gap: 100px; */
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+.ant-select-outlined:not(.ant-select-disabled):not(
+    .ant-select-customize-input
+  ):not(.ant-pagination-size-changer):hover
+  .ant-select-selector {
+  border-color: #d9d9d9;
+}
