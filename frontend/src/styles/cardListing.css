@@ -7,7 +7,9 @@
   padding: 0px;
   width: 380px;
 }
-.cardBackgroundSavedProperties #card-listing .ant-card-body {
+.wholeViewSavedProperties #card-listing .ant-card-body {
+  padding: 0px;
+  width: 100% !important;
 }
 
 #card-listing .ant-card-body .listing-image .property-img {
@@ -63,8 +65,6 @@
   .listing-image
   .ant-tag {
   font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 12px;
   text-transform: capitalize;
   /* padding-top: 5px;
     padding-bottom: 5px;
@@ -110,7 +110,7 @@
 }
 
 .cardBackgroundSavedProperties #card-listing .ant-card-body .card-content {
-  height: 120px;
+  height: 10%;
   gap: 0px;
   padding: 10px !important;
 }
@@ -178,6 +178,7 @@
 #card-listing .ant-card-body .card-content .card-content--sub {
   color: #8c9094;
   font-weight: normal;
+  margin: 0px !important;
 }
 
 #card-listing .ant-card-body .card-content .card-content--title {
@@ -189,25 +190,9 @@
   .ant-card-body
   .card-content
   .card-content--title {
-  margin: 0px 5px 0px 5px;
-  height: 50px;
+  margin: 0px !important;
+  height: 20px;
 }
-.cardBackgroundSavedProperties
-  #card-listing
-  .ant-card-body
-  .card-content
-  .card-content--subtitle
-  .card-features,
-.cardBackgroundSavedProperties 
-#card-listing
-  .ant-card-body
-  .card-content
-  .card-content--subtitle
-  .card-features
-  .feature-content {
-  font-size: 14px;
-}
-
 #card-listing
   .ant-card-body
   .card-content
@@ -279,6 +264,106 @@
   #card-listing .ant-card-body .listing-image,
   #card-listing .ant-card-body .listing-image .property-img {
     height: 190px !important;
+  }
+}
+
+/* Cellphone */
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .savedPropertiesBackgroundComponent .listing-carousel-saved-properties {
+    grid-template-columns: 1fr !important;
+    font-size: var(--m-body-text);
+  }
+  .cardBackgroundSavedProperties
+    #card-listing
+    .ant-card-body
+    .card-content
+    .card-content--title {
+    height: 30px;
+  }
+  .cardBackgroundSavedProperties #card-listing
+    .ant-card-body
+    .card-content
+    .card-content--subtitle
+    .card-features,
+    .cardBackgroundSavedProperties #card-listing
+    .ant-card-body
+    .card-content
+    .card-content--subtitle
+    .card-features
+    .feature-content{
+    font-size: var(--m-body-text) !important;
+    }
+}
+/* Big Size Cellphone */
+@media screen and (min-width: 481px) and (max-width: 769px) {
+  .savedPropertiesBackgroundComponent .listing-carousel-saved-properties {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .cardBackgroundSavedProperties
+    #card-listing
+    .ant-card-body
+    .card-content
+    .card-content--title {
+    height: 30px;
+  }
+  .cardBackgroundSavedProperties #card-listing .ant-card-body .card-content {
+    height: 140px;
+  }
+  .cardBackgroundSavedProperties
+    #card-listing
+    .ant-card-body
+    .card-content
+    .card-content--subtitle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cardBackgroundSavedProperties #card-listing {
+    font-size: var(--m-body-text) !important;
+  }
+  .cardBackgroundSavedProperties
+    #card-listing
+    .ant-card-body
+    .card-content
+    .card-content--subtitle
+    .card-features
+    .feature-content,
+  .cardBackgroundSavedProperties .card-features,
+  .card-features .feature-content {
+    margin: 0px;
+  }
+}
+
+/* Tablets */
+@media screen and (min-width: 770px) and (max-width: 1024px) {
+  .cardBackgroundSavedProperties
+    #card-listing
+    .ant-card-body
+    .card-content
+    .card-content--title {
+    margin: 0px 0px 10px 0px !important;
+  }
+  .cardBackgroundSavedProperties #card-listing .ant-card-body .card-content {
+    height: 140px;
+  }
+  .cardBackgroundSavedProperties
+    #card-listing
+    .ant-card-body
+    .card-content
+    .card-content--subtitle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1400px) {
+  .cardBackgroundSavedProperties
+    #card-listing
+    .ant-card-body
+    .card-content
+    .card-content--title {
+    height: 30px;
   }
 }
 

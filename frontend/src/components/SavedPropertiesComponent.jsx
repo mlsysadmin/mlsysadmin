@@ -288,69 +288,67 @@ const SavedPropertiesComponent = () => {
             onSelectionChange={(e) => handleSelect(e)}
           ></RoundSelect>
           <div className="cardBackgroundSavedProperties">
-            <div className="cardBackgroundPerRows">
-              {!loading ? (
-                filteredAndSortedListings.length !== 0 ? (
-                  <div className="listing-carousel-saved-properties">
-                    {currentItems.map((item, i) => {
-                      return (
-                        <CardListingComponent
-                          title={item.title}
-                          price={`PHP ${item.price}`}
-                          status={item.status}
-                          pics={item.pics}
-                          img={item.img}
-                          no_of_bathrooms={item.no_of_bathrooms}
-                          no_of_beds={item.no_of_beds}
-                          lot={item.lot}
-                          key={i}
-                          loading={loading}
-                          subtitle={`${
-                            item.property_type === "hotel/resort"
-                              ? CapitalizeStringwithSymbol(item.property_type)
-                              : CapitalizeEachWord(item.property_type)
-                          } For ${CapitalizeString(item.sale_type)}`}
-                          listingId={item.property_no}
-                          handleClick={() => handleCardClick(item.property_no)}
-                          sale_status={item.sale_type}
-                          isSavedProperties={{
-                            atSavedPropertiesPage: true,
-                            isRecordStatus: item.recordStatus,
-                            isAccessType: item.accessType,
-                          }}
-                        />
-                      );
-                    })}
-                    {filteredAndSortedListings.length > 0 && (
-                      <Pagination
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        paginate={setCurrentPage}
+            {!loading ? (
+              filteredAndSortedListings.length !== 0 ? (
+                <div className="listing-carousel-saved-properties">
+                  {currentItems.map((item, i) => {
+                    return (
+                      <CardListingComponent
+                        title={item.title}
+                        price={`PHP ${item.price}`}
+                        status={item.status}
+                        pics={item.pics}
+                        img={item.img}
+                        no_of_bathrooms={item.no_of_bathrooms}
+                        no_of_beds={item.no_of_beds}
+                        lot={item.lot}
+                        key={i}
+                        loading={loading}
+                        subtitle={`${
+                          item.property_type === "hotel/resort"
+                            ? CapitalizeStringwithSymbol(item.property_type)
+                            : CapitalizeEachWord(item.property_type)
+                        } For ${CapitalizeString(item.sale_type)}`}
+                        listingId={item.property_no}
+                        handleClick={() => handleCardClick(item.property_no)}
+                        sale_status={item.sale_type}
+                        isSavedProperties={{
+                          atSavedPropertiesPage: true,
+                          isRecordStatus: item.recordStatus,
+                          isAccessType: item.accessType,
+                        }}
                       />
-                    )}
-                  </div>
-                ) : (
-                  <NoDataAvailable
-                    message={`No available Data that was been in ${getListingLabel(
-                      selectedSort
-                    )}`}
-                  />
-                )
-              ) : (
-                <div
-                  className="listing-carousel-dashboard"
-                  style={{
-                    display: "flex",
-                  }}
-                >
-                  {Array(3)
-                    .fill(null)
-                    .map((_, i) => {
-                      return <CardSkeleton key={i} />;
-                    })}
+                    );
+                  })}
                 </div>
-              )}
-            </div>
+              ) : (
+                <NoDataAvailable
+                  message={`No available Data that was been in ${getListingLabel(
+                    selectedSort
+                  )}`}
+                />
+              )
+            ) : (
+              <div
+                className="listing-carousel-dashboard"
+                style={{
+                  display: "flex",
+                }}
+              >
+                {Array(3)
+                  .fill(null)
+                  .map((_, i) => {
+                    return <CardSkeleton key={i} />;
+                  })}
+              </div>
+            )}
+            {filteredAndSortedListings.length > 0 && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                paginate={setCurrentPage}
+              />
+            )}
           </div>
         </div>
       ),
@@ -358,13 +356,15 @@ const SavedPropertiesComponent = () => {
   ];
 
   return (
-    <div className="wholeViewSavedProperties">
-      <div className="savedPropertiesBackgroundComponent">
-        <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+    <>
+      <div className="wholeViewSavedProperties">
+        <div className="savedPropertiesBackgroundComponent">
+          <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+        </div>
       </div>
       <CustomMlFooter />
-			<FooterComponent />
-    </div>
+      <FooterComponent />
+    </>
   );
 };
 export default SavedPropertiesComponent;

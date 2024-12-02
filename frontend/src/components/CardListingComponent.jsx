@@ -203,7 +203,7 @@ const CardListingComponent = ({
         </div>
         <div className="card-content" onClick={handleClick}>
           <div className="card-content--title">
-            <h4>{title}</h4>
+            <p>{title}</p>
           </div>
           <div className="card-content--sub">
             <h5>{subtitle}</h5>
