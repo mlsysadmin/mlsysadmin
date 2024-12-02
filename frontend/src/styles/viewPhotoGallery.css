@@ -1,0 +1,106 @@
+.photo-gallery--container {
+    width: 100%;
+    padding: 50px 80px;
+}
+
+.photo-gallery--container .photo-gallery--header {
+    font-size: calc(var(--d-body-text) + 5px);
+    font-weight: bold;
+}
+
+.photo-gallery--gallery {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.photo-gallery--item {
+    flex: 1 1 calc(33.33% - 10px);
+    /* Three images per row */
+    box-sizing: border-box;
+}
+
+.photo-gallery--item.large {
+    flex: 2 1 calc(66.66% - 10px);
+    /* Make the large images span two columns */
+}
+
+.photo-gallery--item .photo-gallery__img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.gallery-container {
+    display: flex;
+    /* flex-direction: column; */
+    gap: 20px;
+    /* Space between rows */
+}
+
+.photo-gallery__gallery-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.photo-gallery__gallery-column {
+    display: flex;
+    /* flex-direction: column; */
+    gap: 10px;
+    flex: 1;
+}
+
+.photo-gallery__gallery-item {
+    border-radius: 5px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.photo-gallery__gallery-item .photo-gallery__img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.photo-gallery__gallery-item .ant-image {
+    width: 100%;
+}
+
+.photo-gallery__gallery-img,
+.photo-gallery__gallery-item .ant-image {
+    border-radius: var(--radius);
+
+}
+
+.photo-gallery__gallery-item.large {
+    flex: 2;
+    /* Large images take up more space */
+}
+
+.photo-gallery__gallery-item.small {
+    flex: 1;
+    /* Small images share equal space */
+}
+
+.ant-image-preview-mask{
+    background-color: rgb(0 0 0 / 79%);
+}
+.ant-image-preview-close{
+    color: #ffffff;
+    background-color: rgb(0 0 0);
+}
+
+.ant-image-preview-switch-right,
+.ant-image-preview-switch-left{
+    color: rgb(255 255 255);
+    background: rgb(0 0 0);
+}
+.ant-image-preview-operations{
+    display: none;
+}

@@ -4,7 +4,7 @@
 
 .listing-preview{
     position: relative;
-    font-size: var(--d-body-text);
+    font-size: var(--d-body-text) !important;
 }
 .listing-preview .listing-preview--container{
     width: calc(var(--default-page-size) + 60px);
@@ -74,10 +74,12 @@
 }
 .listing-preview--tag.tag__btn{
     cursor: pointer;
+    border: 1px solid white;
+
 }
 .listing-preview--tag.tag__btn:hover{
     color: black;
-    border: 1px solid black;
+    border-color: black;
 }
 
 .listing-preview--tag.tag__price{
@@ -136,6 +138,9 @@
 .listing-preview__map,
 .listing-preview__listing-specifications--table{
     margin: 20px 0 15px;
+}
+.listing-preview__listing-description p{
+    text-align: justify;
 }
 /* MAP */
 .listing-preview__map .Brokerage-map-Container{
@@ -235,4 +240,12 @@
 /* More Properties */
 .listing-preview--more-properties{
     margin: 30px 0;
+}
+
+/* MODAL PREVIEW IMAGE */
+.listing-preview__modal{
+    background-color: white;
+    width: calc(var(--default-page-size) + 80px) !important;
+    border-radius: var(--radius);
+    top: 60px;
 }
