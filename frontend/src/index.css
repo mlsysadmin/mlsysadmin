@@ -9,7 +9,7 @@ body {
   line-height: calc(var(--d-body-text) * var(--line-height));
 }
 .ant-layout{
-  font-size:var(--d-body-text);
+  font-size:var(--d-body-text) !important;
 }
 
 h2{

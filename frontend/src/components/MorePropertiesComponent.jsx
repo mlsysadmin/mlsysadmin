@@ -1,4 +1,4 @@
-import { Card } from "antd";
+import { Button, Card } from "antd";
 import React, { useEffect, useState } from "react";
 import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
 
@@ -100,7 +100,8 @@ const MorePropertiesComponent = ({ title, subtitle, propertyType, saleType }) =>
                         </div>
                         <div className="properties--group-card__details">
                             <div className="properties--group-card__details--top">
-                                <p>{item.title}</p>
+                                {/* <p>{item.title}</p> */}
+                                <p>Newly Built and Furnished Condominium dsdsffdsd dsds This is some long text that will not fit in the box. This is some long text that will not fit in the box.</p>
                             </div>
                             <div className="properties--group-card__details--middle">
                                 <p>{item.subtitle}</p>
@@ -135,7 +136,7 @@ const MorePropertiesComponent = ({ title, subtitle, propertyType, saleType }) =>
                 <PropertiesByPropertyType />
             </div>
             <div className="properties--group-card__button">
-                <button className="properties--group-card__button">View All</button>
+                <Button size="large" className="properties--group-card__button">View more properties</Button>
             </div>
         </div>
     )

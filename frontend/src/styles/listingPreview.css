@@ -4,6 +4,7 @@
 
 .listing-preview{
     position: relative;
+    font-size: var(--d-body-text);
 }
 .listing-preview .listing-preview--container{
     width: calc(var(--default-page-size) + 60px);

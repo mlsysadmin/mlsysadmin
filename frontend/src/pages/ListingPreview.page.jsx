@@ -458,12 +458,20 @@ const ListingPreview = () => {
                     <div className="more__properties">
                         {
                             !isLoading && (
-                                <MorePropertiesComponent
-                                    title="More Properties"
-                                    subtitle="Discover more house and lot options — find your dream home today!"
-                                    propertyType={oneListing.PropertyType}
-                                    saleType={oneListing.SaleType}
-                                />
+                                <>
+                                    <MorePropertiesComponent
+                                        title="More Properties For Rent"
+                                        subtitle="Discover more House and Lot options — find your dream home today!"
+                                        propertyType={oneListing.PropertyType}
+                                        saleType={oneListing.SaleType}
+                                    />
+                                    <MorePropertiesComponent
+                                        title="More Properties Nearby"
+                                        subtitle="Discover more House and Lot options in Cebu City — find your dream home today!"
+                                        propertyType={oneListing.PropertyType}
+                                        saleType={oneListing.SaleType}
+                                    />
+                                </>
                             )
                         }
                     </div>
