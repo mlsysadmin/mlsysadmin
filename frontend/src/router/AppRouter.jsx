@@ -43,6 +43,7 @@ import {
 	PendingApplication,
 	DisapprovedApplication,
 	ListingDetails,
+	SavedPropertiespage,
 	ApplicationDetails,
 	CancelledApplication,
 	PreApprovalRequest,
@@ -70,6 +71,7 @@ import { ProtectedRoute, BuyerSellerProtectedRoute } from "./ProtectedRoute";
 import { SaleComponent, SearchListingComponent } from "../components";
 import Error from "../components/ErrorComponent";
 import NotFoundComponent from "../components/Errors/NotFoundComponent";
+import ListingPreview from "../pages/ListingPreview.page";
 
 
 
@@ -149,6 +151,11 @@ const Routes = [
 			},
 
 			{
+				path: "/saved-properties",
+				element: <BuyerSellerProtectedRoute element={<SavedPropertiespage /> }/>
+				// element: <ListingPage />,
+			},
+			{
 				path: "/comingsoon",
 				element: <ComingSoonPage />,
 			},
@@ -210,7 +217,8 @@ const Routes = [
 			},
 			{
 				path: "/previewListing",
-				element: <PreviewListing />,
+				element: <ListingPreview />,
+				// element: <PreviewListing />,
 			},
 			{
 				path: "/propertySearch",
