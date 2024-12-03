@@ -651,6 +651,11 @@ const DashboardComponent = () => {
                     listingId={item.property_no}
                     handleClick={() => handleCardClick(item.property_no)}
                     sale_status={item.sale_type}
+                    isSavedProperties={{
+                      atSavedPropertiesPage: false,
+                      isRecordStatus: item.recordStatus,
+                      isAccessType: item.accessType,
+                    }}
                   />
                 );
               })}
