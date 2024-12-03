@@ -25,6 +25,7 @@ import { GetAllFeaturesByPropertyNo } from "../api/GetAllAmenities";
 import PreviewLoadingModal from "../components/modals/PreviewLoadingModal";
 import { FormatLocation } from "../utils/LocationDateFormatter";
 import ViewPhotoGallery from "../components/ViewPhotoGalleryComponent";
+import { CustomMlFooter, FooterComponent } from "../components";
 
 const ListingPreview = () => {
     const location = useLocation();
@@ -627,6 +628,10 @@ const ListingPreview = () => {
                                     photos={unitPhotos}
                                 />
                             </Modal>
+                        </div>
+                        <div className="preview--footer">
+                        <CustomMlFooter />
+                        <FooterComponent />
                         </div>
                     </>
                 )

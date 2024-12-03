@@ -4,7 +4,7 @@ import React from 'react'
 const MenuPopup = ({ label, popUpOpen, handleOpenChange, content, title, menuKey }) => {
   return (
     <Popover
-        placement="bottom"
+        placement="bottomLeft"
         arrow={false}
         content={content}
         title={title}
