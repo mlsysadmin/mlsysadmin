@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
   font-family: var(--font-family) !important;
-  line-height: calc(var(--d-body-text) * var(--line-height));
+  /* line-height: calc(var(--d-body-text) * var(--line-height)); */
 }
 .ant-layout{
   font-size:var(--d-body-text) !important;
@@ -22,7 +22,8 @@ h3{
 
 h4{
   font-size: var(--d-h4-text) !important;
-}
+} 
+ 
 
 :root {
   --red: #D90000;

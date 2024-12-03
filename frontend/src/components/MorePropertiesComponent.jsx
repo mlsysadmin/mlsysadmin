@@ -1,12 +1,17 @@
 import { Button, Card } from "antd";
 import React, { useEffect, useState } from "react";
-import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
+import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 
 import '../styles/moreProperties.css';
 import { CameraFilled, CameraOutlined, HeartOutlined } from "@ant-design/icons";
 import { CapitalizeEachWord, CapitalizeString } from "../utils/StringFunctions.utils";
 
-const MorePropertiesComponent = ({ title, subtitle, propertyType, saleType }) => {
+// ICONS
+import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
+import ShowerOutlinedIcon from "@mui/icons-material/ShowerOutlined";
+import ShortcutOutlinedIcon from "@mui/icons-material/ShortcutOutlined";
+
+const MorePropertiesComponent = ({ title, subtitle, propertyType, saleType, filterValue, filterProperty }) => {
 
     const [properties, setProperties] = useState([
         {
@@ -19,7 +24,8 @@ const MorePropertiesComponent = ({ title, subtitle, propertyType, saleType }) =>
             bedrooms: "",
             isFeatured: false,
             saleType: "",
-            imageCount: 0
+            imageCount: 0,
+            city: ""
         }
     ]);
 
@@ -33,28 +39,43 @@ const MorePropertiesComponent = ({ title, subtitle, propertyType, saleType }) =>
             const URL = process.env.REACT_APP_IGOT_API_URL;
 
             if (getListingByPropertyType.length > 0) {
-                const filteredListing = getListingByPropertyType.filter((listing) =>
-                    listing.PropertyType.toLowerCase() == propertyType.toLowerCase() && listing.SaleType == saleType
-                ).slice(0, 6);
+                console.log(getListingByPropertyType);
 
-                const listing = filteredListing.map((list, i) => {
-                    const formatPrice = Number(list.Price).toLocaleString()
-                    const isRent = list.SaleType == saleType;
+                let filteredListing;
 
-                    return {
-                        title: list.UnitName,
-                        photo: `${URL}/${list.Photo}`,
-                        price: `PHP ${formatPrice} ${isRent ? '/ month' : ''}`,
-                        subtitle: `${CapitalizeEachWord(list.PropertyType)} For ${CapitalizeString(list.SaleType)}`,
-                        area: list.LotArea,
-                        bathrooms: list.BathRooms,
-                        bedrooms: list.BedRooms,
-                        isFeatured: list.IsFeatured,
-                        saleType: `For ${CapitalizeString(list.SaleType)}`,
-                        imageCount: 0
-                    }
-                })
-                console.log(listing);
+                filterProperty.forEach(fp => {
+
+                    filteredListing = getListingByPropertyType.filter(fList => filterValue == fList[fp]);
+                });
+
+                filteredListing = filteredListing.filter((listing) =>
+                    listing.PropertyType == propertyType && listing.SaleType == saleType
+                ).slice(0, 6)
+                const listing = await Promise.all(
+                    filteredListing.map(async (list, i) => {
+
+                        const formatPrice = Number(list.Price).toLocaleString()
+                        const isRent = list.SaleType == saleType;
+
+                        const getPhotoGallery = await GetUnitPhotos(list.id);
+
+                        const gallery = getPhotoGallery.data;
+
+                        return {
+                            title: list.UnitName,
+                            photo: `${URL}/${list.Photo}`,
+                            price: `PHP ${formatPrice} ${isRent ? '/ month' : ''}`,
+                            subtitle: `${CapitalizeEachWord(list.PropertyType)} For ${CapitalizeString(list.SaleType)}`,
+                            area: list.LotArea,
+                            bathrooms: list.BathRooms,
+                            bedrooms: list.BedRooms,
+                            isFeatured: list.IsFeatured,
+                            saleType: `For ${CapitalizeString(list.SaleType)}`,
+                            imageCount: list.Photo ? gallery.length + 1 : 1,
+                            city: list.City
+                        }
+                    })
+                )
 
                 setProperties(listing);
             }
@@ -100,8 +121,8 @@ const MorePropertiesComponent = ({ title, subtitle, propertyType, saleType }) =>
                         </div>
                         <div className="properties--group-card__details">
                             <div className="properties--group-card__details--top">
-                                {/* <p>{item.title}</p> */}
-                                <p>Newly Built and Furnished Condominium dsdsffdsd dsds This is some long text that will not fit in the box. This is some long text that will not fit in the box.</p>
+                                <p>{item.title}</p>
+                                {/* <p>Newly Built and Furnished Condominium dsdsffdsd dsds This is some long text that will not fit in the box.</p> */}
                             </div>
                             <div className="properties--group-card__details--middle">
                                 <p>{item.subtitle}</p>
@@ -111,8 +132,9 @@ const MorePropertiesComponent = ({ title, subtitle, propertyType, saleType }) =>
                                     <p>{item.price}</p>
                                 </div>
                                 <div className="properties--group-card__details--bottom-right">
-                                    <p>{item.imageCount}</p>
-                                    <p>{item.imageCount}</p>
+                                    {
+                                        Features(item.bedrooms, item.bathrooms, item.area)
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -120,6 +142,42 @@ const MorePropertiesComponent = ({ title, subtitle, propertyType, saleType }) =>
                 </div>
             )
         })
+    }
+
+    const Features = (no_of_beds, no_of_bathrooms, lot) => {
+        return (
+            <div className="more-properties__features">
+                {
+                    parseInt(no_of_beds) > 0 && (
+                        <div className="feature-content">
+                            <>
+                                <BedOutlinedIcon />
+                                <p className="feature-detail">{no_of_beds}</p>
+                            </>
+                        </div>
+                    )
+                }
+                {
+                    parseInt(no_of_bathrooms) > 0 && (
+                        <div className="feature-content">
+                            <>
+                                <ShowerOutlinedIcon />
+                                <p className="feature-detail">{no_of_bathrooms}</p>
+                            </>
+                        </div>
+                    )
+                }
+                {
+                    lot && (
+                        <div className="feature-content">
+                            {/* <img src={Sqm} alt="sqm" className="feature-icon" /> */}
+                            <ShortcutOutlinedIcon />
+                            <p className="feature-detail">{lot} SqM</p>
+                        </div>
+                    )
+                }
+            </div>
+        )
     }
 
     return (
