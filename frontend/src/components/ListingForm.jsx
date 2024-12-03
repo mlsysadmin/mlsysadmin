@@ -54,6 +54,7 @@ export const ListingForm = () => {
   const [addedVendorId, setAddedVendorId] = useState();
   const [addedVendorName, setAddedVendorName] = useState();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, isSubmitted] = useState(false);
   const [submitTINDisabled, setIsSubmitTINDisabled] = useState("");
   const [tin, setTin] = useState(null);
 
@@ -127,6 +128,45 @@ export const ListingForm = () => {
   });
 
   useEffect(() => {
+    console.log("submitted na: ", submitted);
+    if (submitted) {
+      setPropertyFields({
+        PropertyNo: "",
+        VendorId: "",
+        VendorName: "",
+        City: "",
+        Location: "",
+        PropertyType: "",
+        Price: "",
+        UnitName: "",
+        SaleType: "",
+        BedRooms: "",
+        BathRooms: "",
+        Details: "",
+        ListingOwnerId: "",
+        ListingOwnerName: "",
+        IsModel: "no",
+        FloorArea: "",
+        LotArea: "",
+        DiscountedPrice: "",
+        Furnishing: "",
+        Classification: "",
+        PricePerSqm: "",
+        Parking: "",
+        PropertyIdNo: "",
+        NoOfFloor: "",
+        Country: "",
+        ProvinceState: "",
+        Zipcode: "",
+        MapLocation: "",
+        Photo: [],
+        Features: [],
+        AddedFeature: [],
+      });
+    }
+  }, [submitted]);
+
+  useEffect(() => {
     window.scrollTo(0, 0);
     fetchUserDetails();
   }, []);
@@ -192,6 +232,7 @@ export const ListingForm = () => {
               vendorExists.data.VendorName,
               vendorExists.data.VendorId
             );
+            isSubmitted(true);
           } else {
             const vendorName = `${userDetails?.name.firstName} ${userDetails?.name.lastName}`;
             const generatedVendotId = await GetVendorId();
@@ -260,7 +301,6 @@ export const ListingForm = () => {
       console.log("AFTER");
     }
 
-
     // watermarkedImages.forEach(({ file, name }) => {
     //   imagePayload.append("Photo[]", file);
     //   imagePayload.append("FileName[]", name);
@@ -271,9 +311,6 @@ export const ListingForm = () => {
 
     console.log("image:", imagePayload.getAll("Photo"));
     console.log("filename:", imagePayload.getAll("FileName"));
-
-
-
 
     const postFeatures = await handleFeatureChecking();
     const updatedPropertyFields = {
@@ -643,6 +680,7 @@ export const ListingForm = () => {
                 <PropertyDetailsComponent
                   onComplete={(completed) => handleStepComplete(0, completed)}
                   setPropertyFields={setPropertyDataFields}
+                  isSubmitted={submitted}
                 />
                 {/* {errors[0] && currentStep === 0 && (
 									<div
@@ -682,6 +720,7 @@ export const ListingForm = () => {
                   setPropIdInputError={setPropIdInputError}
                   setPropertyFields={setPropertyDataFields}
                   selectedPropertyTab={propertyFields.PropertyType}
+                  isSubmitted={submitted}
                 />
                 {/* {errors[1] && currentStep === 1 && (
 									<div
@@ -708,6 +747,7 @@ export const ListingForm = () => {
                 <LocationDetailsComponent
                   onComplete={(completed) => handleStepComplete(2, completed)}
                   setPropertyFields={setPropertyDataFields}
+                  isSubmitted={submitted}
                 />
                 {/* {errors[2] && currentStep === 2 && (
 									<div
@@ -734,6 +774,7 @@ export const ListingForm = () => {
                   onComplete={(completed) => handleStepComplete(3, completed)}
                   setPropertyFields={setPropertyDataFields}
                   setIsFocused={setIsFocused}
+                  isSubmitted={submitted}
                 />
                 {/* {errors[3] && currentStep === 3 && (
 									<div
@@ -759,6 +800,7 @@ export const ListingForm = () => {
                 <UploadPhotosComponent
                   onComplete={(completed) => handleStepComplete(4, completed)}
                   setPropertyFields={setPropertyDataFields}
+                  isSubmitted={submitted}
                 />
                 {/* {errors[4] && currentStep === 4 && (
 									<div
@@ -784,6 +826,7 @@ export const ListingForm = () => {
                   onComplete={(completed) => handleStepComplete(5, completed)}
                   setPropertyFields={setPropertyDataFields}
                   selectedPropertyTab={propertyFields.PropertyType}
+                  isSubmitted={submitted}
                 />
                 {/* {errors[5] && currentStep === 5 && (
 									<div

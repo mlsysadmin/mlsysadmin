@@ -5,10 +5,17 @@ import WatermarkImg from "../asset/watermark.png";
 import { Watermark } from "antd";
 import "../styles/listing-form.css";
 
-const UploadPhotosComponent = ({ onComplete, setPropertyFields }) => {
+const UploadPhotosComponent = ({ onComplete, setPropertyFields, isSubmitted }) => {
 	const [uploadedPhotos, setUploadedPhotos] = useState([]);
 	const [uploadError, setUploadError] = useState(null);
-
+	useEffect(() => {
+		if (isSubmitted) {
+			setPropertyFields({
+				Photo: "",
+			});
+			setUploadedPhotos([]);
+		}
+	  }, [isSubmitted]);
 	const onDrop = (acceptedFiles) => {
 		if (uploadedPhotos.length + acceptedFiles.length >= 11) {
 			setUploadError("You can only upload a maximum of 10 images.");
