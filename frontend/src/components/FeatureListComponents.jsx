@@ -30,6 +30,11 @@ const FeaturedComponents = ({
 		}
 	  }, [isSubmitted]);
 
+
+
+
+
+	  
 	const toggleFeature = useCallback((feature, type) => {
 		if (type === "Indoor Features") {
 			setIndoorSelectedFeatures((prevSelectedFeatures) =>
