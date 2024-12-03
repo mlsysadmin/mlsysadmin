@@ -25,6 +25,7 @@ import Sidebar from "./DraftSidebar.page";
 import PreviewListing from "./PreviewListing.page";
 import ModalComponents from "./ModalComponents.page";
 import PropertySearchPage from "./PropertySearch.page";
+import SavedPropertiespage from "./SavedProperty.page";
 import LoginPage from "./Login.page";
 
 // import RegistrationModal from "./RegistrationModal.page";
@@ -35,6 +36,7 @@ import ActiveListingDetails from "./ActiveListingDetails.page";
 import SoldPropertyDetailsPage from "./SoldPropertyDetails.page";
 import ViewListingComponent from "./ViewListingComponent.page";
 import FaqsPage from "./Faqs.page";
+
 
 
 //Application Pages
@@ -104,6 +106,7 @@ export {
 	ActiveListingDetails,
 	ShowDetailsProcessing,
 	ShowDetailsDenied,
+	SavedPropertiespage,
 	// ListingSearchLoggedin,
 	ListingFormPage,
 	SupportOutlet,

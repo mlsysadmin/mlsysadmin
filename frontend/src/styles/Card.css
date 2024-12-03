@@ -40,6 +40,10 @@
 	flex-direction: column;
 	gap: 10px;
 }
+.cardBackgroundSavedProperties .card-content{
+	height: 0px;
+	gap: 0px;
+}
 .card-content h3 {
 	margin-top: 0px;
 	font-size: 18px;
