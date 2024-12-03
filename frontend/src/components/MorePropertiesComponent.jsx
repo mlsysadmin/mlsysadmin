@@ -39,23 +39,23 @@ const MorePropertiesComponent = ({ title, subtitle, propertyType, saleType, filt
             const URL = process.env.REACT_APP_IGOT_API_URL;
 
             if (getListingByPropertyType.length > 0) {
-                console.log(getListingByPropertyType);
-
+                
                 let filteredListing;
-
+                
                 filterProperty.forEach(fp => {
-
+                    
                     filteredListing = getListingByPropertyType.filter(fList => filterValue == fList[fp]);
                 });
-
+                
                 filteredListing = filteredListing.filter((listing) =>
                     listing.PropertyType == propertyType && listing.SaleType == saleType
-                ).slice(0, 6)
+            ).slice(0, 6)
+            console.log(filteredListing);
                 const listing = await Promise.all(
                     filteredListing.map(async (list, i) => {
 
                         const formatPrice = Number(list.Price).toLocaleString()
-                        const isRent = list.SaleType == saleType;
+                        const isRent = list.SaleType == 'rent';
 
                         const getPhotoGallery = await GetUnitPhotos(list.id);
 
