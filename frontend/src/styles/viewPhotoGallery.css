@@ -46,6 +46,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
 }
 
 .photo-gallery__gallery-column {
@@ -78,8 +79,17 @@
 
 }
 
+.photo-gallery__gallery-item.large .ant-image,
+.photo-gallery__gallery-item.large .ant-image img{
+    height: 400px !important;
+}
+.photo-gallery__gallery-item.small .ant-image,
+.photo-gallery__gallery-item.small .ant-image img{
+    height: 300px !important;
+}
+
 .photo-gallery__gallery-item.large {
-    flex: 2;
+    /* flex: 2; */
     /* Large images take up more space */
 }
 
