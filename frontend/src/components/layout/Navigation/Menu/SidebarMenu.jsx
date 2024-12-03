@@ -134,6 +134,8 @@ useEffect(() => {
 
 	if (currentPath.includes("/rent")) {
 		setCurrent("rent");
+	} if (currentPath.includes("/new")) {
+		setCurrent("new");
 	} else if (currentPath.includes("/sale")) {
 		setCurrent("buy");
 	} else if (currentPath.includes("/discover-home")) {

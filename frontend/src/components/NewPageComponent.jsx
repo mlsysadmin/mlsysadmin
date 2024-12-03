@@ -10,6 +10,7 @@ import { Dropdown, Menu, Space } from "antd";
 import { CaretDownOutlined } from "@ant-design/icons";
 import { cardData } from "../utils/ListingMockData";
 import { CardSkeleton } from "./Skeleton";
+import { getCookieData } from "../utils/CookieChecker";
 
 import property from "../images/Guest/property.png";
 import ListingSearch from "./custom/customsearch/custom.listingsearch";
@@ -58,7 +59,9 @@ const NewPageComponent = () => {
 	const handleCardClick = (id) => {
 		navigate(`/previewListing/?id=${id}`, { state: id });
 	};
+	const accountDetails = getCookieData();
 
+	let number = accountDetails.mobileNumber;
 	const allPublicListing = async () => {
 
 		try {
@@ -110,12 +113,14 @@ const NewPageComponent = () => {
 								: item.PropertyType,
 							city: item.City,
 							date: item.created_at,
+							vendorId: item.VendorId,
 						};
 					})
 				);
 				const location = FillLocationFilter(dataresp);
 				setFilterLocation(location);
 				setPublicListing(newListing);
+			console.log("public:", publiclisting);
 				setLoading(false);
 			}
 		} catch (error) {
@@ -176,7 +181,11 @@ const NewPageComponent = () => {
 		<div className="newpage">
 			<div className="newpage-container">
 				<div className="newpage-contents">
-					<ListingSearch location={filterLocation} searchParams={searchParams} setSearchFilters={setSearchParams} />
+					<ListingSearch
+						location={filterLocation}
+						searchParams={searchParams}
+						setSearchFilters={setSearchParams}
+					/>
 					<div className="second-content">
 						<h1 className="new-page-label">New Properties For Sale/Rent</h1>
 						<SearchPropertiesSoration
@@ -186,31 +195,32 @@ const NewPageComponent = () => {
 							setSelectedSort={setSelectedSort}
 							HandleSort={HandleSort}
 						/>
-						{!loading ? currentCards.length > 0 && (
-							<div className="card-container">
-
-								{currentCards.map((data, index) => (
-									<Card
-										key={index}
-										id={data.id}
-										title={data.title}
-										price={`PHP ${data.price}`}
-										imgSrc={data.img}
-										beds={data.no_of_beds}
-										baths={data.no_of_bathrooms}
-										size={data.lot}
-										likes={data.pics}
-										forsale={data.status}
-										subtitle={`${CapitalizeEachWord(
-											data.property_type
-										)} For ${CapitalizeString(data.sale_type)}`}
-										handleClick={() => handleCardClick(data.property_no)}
-									/>
-
-								))}
-							</div>
-
-
+						{!loading ? (
+							currentCards.length > 0 && (
+								<div className="card-container">
+									{currentCards.map((data, index) => (
+										<Card
+											key={index}
+											id={data.id}
+											title={data.title}
+											price={`PHP ${data.price}`}
+											imgSrc={data.img}
+											beds={data.no_of_beds}
+											baths={data.no_of_bathrooms}
+											size={data.lot}
+											likes={data.pics}
+											forsale={data.status}
+											subtitle={`${CapitalizeEachWord(
+												data.property_type
+											)} For ${CapitalizeString(data.sale_type)}`}
+											handleClick={() => handleCardClick(data.property_no)}
+											propertyNo={data.property_no}
+											vendorId={data.vendorId}
+											number = {number}
+										/>
+									))}
+								</div>
+							)
 						) : (
 							<div
 								className="card-skeleton-loading"
@@ -226,7 +236,6 @@ const NewPageComponent = () => {
 										return <CardSkeleton />;
 									})}
 							</div>
-
 						)}
 
 						<Pagination

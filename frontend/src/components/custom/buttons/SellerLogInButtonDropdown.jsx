@@ -108,7 +108,7 @@ const toPascalCase = (name) => {
 					borderRadius: "5px",
 					display: "flex",
 					alignItems: "center",
-					justifyContent:"space-between"
+					justifyContent: "space-between",
 				}}
 				onClick={handleButtonClick}
 				className="seller-button-dropdown"
@@ -184,6 +184,20 @@ const toPascalCase = (name) => {
 								Join Our Team
 							</a>
 						</li>
+						<li>
+							<a
+								style={{
+									textDecoration: "none",
+									color: showModal ? "#d90000" : "white",
+									cursor: "pointer",
+								}}
+								href="/saved-properties/?tabOpened=savedProperties"
+							>
+								Saved Properties
+							</a>
+						</li>
+			
+
 						{showModal && <JoinTeam toggleModal={toggleModal} />}
 						{/* <li>{accountDetails.email}</li> */}
 						{/* <li>{userDetails.tier.label} TIER</li> */}
@@ -232,16 +246,14 @@ const toPascalCase = (name) => {
 						>
 							<li>Client Management</li>
 						</a> */}
-					
-							<a
-								style={{
-									color: "white",
-									cursor: "pointer",
-								}}
-							>
-								<li onClick={handleLogout}>Logout</li>
-							</a>
-
+						<a
+							style={{
+								color: "white",
+								cursor: "pointer",
+							}}
+						>
+							<li onClick={handleLogout}>Logout</li>
+						</a>
 						{/* <li
 							style={{
 								color: "white",

@@ -165,6 +165,24 @@ const LoginComponent = () => {
 	};
 	const handleOtpVerification = () => {
 		console.log("Success");
+		if (userDetails) {
+			if (
+				userDetails?.tier?.label !== "BUYER" ||
+				userDetails?.tier?.label !== "SEMI-VERIFIED"
+			) {
+				window.location.href = "/";
+			} else {
+				// window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+				// 	redirectUrl
+				// )}`;
+			}
+		
+		} else {
+			// window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+			// 	redirectUrl
+			// )}`;
+			window.location.href = "/login";
+		}
 	};
 	useEffect(() => {
 		if (otpTimer > 0) {

@@ -2,6 +2,7 @@ import { message } from "antd";
 import {
 	MLBROKERAGEAxiosInstance,
 	IGOTSOLUTIONSAxiosInstance,
+	MLBROKERAGELOGININSTANCE,
 } from "../helper/axios";
 import { ConsoleSqlOutlined } from "@ant-design/icons";
 
@@ -233,12 +234,13 @@ const PostSellerListing = async (propertyFields = {}) => {
 				data: response.data,
 			});
 		}
-		} catch (error) {
-			console.error("Error occurred while posting listing:", error);
-			console.log("Error details:", {
-				message: error.message,
-				stack: error.stack,
-				response: error.response, })
+	} catch (error) {
+		console.error("Error occurred while posting listing:", error);
+		console.log("Error details:", {
+			message: error.message,
+			stack: error.stack,
+			response: error.response,
+		});
 	}
 };
 
@@ -247,10 +249,9 @@ const AddVendor = async (vendorPayload) => {
 		const VendorId = await GetVendorId();
 
 		const reqBody = {
-				...vendorPayload,
-				VendorId,
-				Photo: {},
-			
+			...vendorPayload,
+			VendorId,
+			Photo: {},
 		};
 
 		console.log("Sending vendor details:", reqBody);
@@ -302,17 +303,15 @@ const GetVendorId = async () => {
 	} catch (error) {
 		console.error("Error getting control last number:", error.message);
 		console.log("Error details:", {
-				message: error.message,
-				stack: error.stack,
-				response: error.response, })
+			message: error.message,
+			stack: error.stack,
+			response: error.response,
+		});
 	}
 };
 
 const savePropertyImages = async (imagePayload) => {
 	try {
-
-		
-
 		const config = {
 			headers: {
 				// "Content-Type": "application/json'",
@@ -446,10 +445,8 @@ const AddAddedFeature = async (payload) => {
 	}
 };
 
-
-const GetFeature = async () =>{
-	try{
-
+const GetFeature = async () => {
+	try {
 		const config = {
 			headers: {
 				"Content-Type": "application/json",
@@ -464,7 +461,6 @@ const GetFeature = async () =>{
 
 		// console.log(resdata)
 
-
 		if (response.status === 200 || response.status === 201) {
 			console.log("success");
 			return resdata;
@@ -478,23 +474,20 @@ const GetFeature = async () =>{
 			);
 		}
 		return resdata;
-	}
-	catch (error){
+	} catch (error) {
 		console.error("Error:", error.message);
 	}
+};
 
-}
-
-const GetVendorByNumber= async (number) =>{
-	try{
-
-		console.log("number",number)
+const GetVendorByNumber = async (number) => {
+	try {
+		console.log("number", number);
 		const config = {
 			headers: {
 				"Content-Type": "application/json",
-				"x-api-key": process.env.REACT_APP_API_KEY
-			}
-		}
+				"x-api-key": process.env.REACT_APP_API_KEY,
+			},
+		};
 
 		const response = await IGOTSOLUTIONSAxiosInstance.get(
 			`api/getVendorByContactNo/${number}`,
@@ -513,16 +506,65 @@ const GetVendorByNumber= async (number) =>{
 				response.response
 			);
 		}
-return response.data;
-	}catch (error){
+		return response.data;
+	} catch (error) {
 		console.error("Error:", caches.message);
 		console.log("Error Details:", error.message, error.stack, error.response);
-		
 	}
 	return null;
-}
+};
 
+const AddSavedProperty = async (number, propertyNo) => {
+	try {
+		const reqBody = {
+			ContactNo: number,
+			PropertyNo: propertyNo,
+		};
+		const config = {
+			headers: {
+				"Content-Type": "application/json",
+				"x-api-key": process.env.REACT_APP_API_KEY,
+			},
+		};
+		const savedRes = await IGOTSOLUTIONSAxiosInstance.post(
+			`api/addSavedProperty`,
+			reqBody,
+			config
+		);
 
+		const savedData = savedRes.data;
+		console.log("savedData", savedData);
+		return savedData;
+	} catch (error) {
+		console.log("Error saving");
+	}
+};
+
+const DeleteSavedProperty = async (id) => {
+	try {
+
+		const reqbody = id
+		console.log("rqbody", reqbody);
+		
+		const config = {
+			headers: {
+				"Content-Type": "application/json",
+				"x-api-key": process.env.REACT_APP_API_KEY,
+			},
+		};
+		const res = await IGOTSOLUTIONSAxiosInstance.delete(
+			`api/deleteSavedProperty/${reqbody}`,
+			reqbody,
+			config
+		);
+
+		const data = res.data;
+		console.log("data", data);
+		return data;
+	} catch (error) {
+		console.log("Error deleting");
+	}
+};
 
 // const AddUnitPhoto = async (photoPayload) => {
 // 	try {
@@ -583,7 +625,6 @@ return response.data;
 // 		}
 //  };
 
-
 export {
 	PostSellerListing,
 	AddVendor,
@@ -594,4 +635,6 @@ export {
 	AddFeature,
 	GetFeature,
 	GetVendorByNumber,
+	AddSavedProperty,
+	DeleteSavedProperty,
 };

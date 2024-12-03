@@ -132,7 +132,7 @@ const SortListings = (sortKey, sortListing, listings) => {
   return sortListing
 }
 
-const CapitalizeEachWord = (word) => {
+const CapitalizeEachWord = (word) => {  
   try {
     let capitalizeEachWord = "";
 

@@ -34,6 +34,7 @@ import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import DefaultPropertyImage from "../asset/fallbackImage.png";
 import { CardSkeleton } from "./Skeleton";
 import NoDataAvailable from "./NoDataFoundComponent";
+import { getCookieData } from "../utils/CookieChecker";
 import { Breadcrumb } from "antd";
 
 const PreSellingComponent = () => {
@@ -60,6 +61,9 @@ const PreSellingComponent = () => {
 			city: "",
 		},
 	]);
+	const accountDetails = getCookieData();
+
+	let number = accountDetails.mobileNumber;
 	const [propertyType, setPropertyType] = useState("house-and-lot");
 	const [currentPage, setCurrentPage] = useState(1);
 	const cardsPerPage = 9;
@@ -144,6 +148,8 @@ const PreSellingComponent = () => {
 										? CapitalizeStringwithSymbol(item.PropertyType)
 										: item.PropertyType,
 								city: item.City,
+								date: item.created_at,
+								vendorId: item.VendorId,
 							};
 						})
 					);
@@ -253,6 +259,9 @@ const PreSellingComponent = () => {
 										data.property_type
 									)} For ${CapitalizeString(data.sale_type)}`}
 									handleClick={() => handleCardClick(data.property_no)}
+									propertyNo={data.property_no}
+									vendorId={data.vendorId}
+									number={number}
 								/>
 							))}
 						</div>

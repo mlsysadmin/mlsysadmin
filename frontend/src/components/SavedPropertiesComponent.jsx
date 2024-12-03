@@ -13,320 +13,473 @@ import { PropertyListing } from "../api/Public/PropertyListing.api";
 import { GetPhotoWithUrl } from "../utils/GetPhoto";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import { GetUnitPhotos } from "../api/GetAllPublicListings";
+import { useLocation } from "react-router-dom";
 import {
-  CapitalizeEachWord,
-  CapitalizeString,
-  CapitalizeStringwithSymbol,
+	CapitalizeEachWord,
+	CapitalizeString,
+	CapitalizeStringwithSymbol,
 } from "../utils/StringFunctions.utils";
+import { GetVendorByNumber } from "../api/PostListings";
 import "../styles/seller-broker/saved-properties.css";
 
 const SavedPropertiesComponent = () => {
-  const [selectedSort, setSelectedSort] = useState("dateAdded");
-  const [tabOpened, setTabOpened] = useState("savedProperties");
-  const [loading, setLoading] = useState(true);
-  const [SortTypes, setSortTypes] = useState([
-    {
-      label: "Date Added",
-      value: "dateAdded",
-    },
-    {
-      label: "Highest Price",
-      value: "highestPrice",
-    },
-    {
-      label: "Lowest Price",
-      value: "lowestPrice",
-    },
-  ]);
-  const [filteredAndSortedListings, setFilteredAndSortedListings] = useState([
-    {
-      id: 0,
-      title: "",
-      price: 0,
-      status: "",
-      pics: 0,
-      img: DefaultPropertyImage,
-      no_of_bathrooms: 0,
-      lot: 0,
-      property_no: "",
-      isFeatured: "",
-      sale_type: "",
-      no_of_beds: "",
-      city: "",
-      property_type: "",
-    },
-  ]);
-  const accountDetails = getCookieData();
+	const [selectedSort, setSelectedSort] = useState("dateAdded");
+	const [tabOpened, setTabOpened] = useState("savedProperties");
+	const [loading, setLoading] = useState(true);
+	const [vendorIdStorage, setVendorIdStorage] = useState("");
+	const [SortTypes, setSortTypes] = useState([
+		{
+			label: "Date Added",
+			value: "dateAdded",
+		},
+		{
+			label: "Highest Price",
+			value: "highestPrice",
+		},
+		{
+			label: "Lowest Price",
+			value: "lowestPrice",
+		},
+	]);
 
-  const onChange = (key) => {
-    console.log("key: ", key);
-    setTabOpened(key);
-    if (key === "propertyListings") {
-      setSelectedSort("allListings");
-      setSortTypes([
-        {
-          label: "All Listing",
-          value: "allListings",
-        },
-        {
-          label: "Pending Listings",
-          value: "pendingListings",
-        },
-        {
-          label: "Approved Listings",
-          value: "approvedListings",
-        },
-        {
-          label: "Denied Listings",
-          value: "deniedListings",
-        },
-      ]);
-    } else if (key === "savedProperties") {
-      setSelectedSort("dateAdded");
-      setSortTypes([
-        {
-          label: "Date Added",
-          value: "dateAdded",
-        },
-        {
-          label: "Highest Price",
-          value: "highestPrice",
-        },
-        {
-          label: "Lowest Price",
-          value: "lowestPrice",
-        },
-      ]);
-    }
-  };
+	const [filteredAndSortedListings, setFilteredAndSortedListings] = useState([
+		{
+			id: 0,
+			title: "",
+			price: 0,
+			status: "",
+			pics: 0,
+			img: DefaultPropertyImage,
+			no_of_bathrooms: 0,
+			lot: 0,
+			property_no: "",
+			isFeatured: "",
+			sale_type: "",
+			no_of_beds: "",
+			city: "",
+			property_type: "",
+		},
+	]);
 
-  useEffect(() => {
-    const fetchSavedProperties = async () => {
-      try {
-        const vendorId = "DVLP1056";
-        if (tabOpened === "savedProperties") {
-          const savedProperties = await GetSavedPropertiesBySellerNo(vendorId);
-          const dataresp = savedProperties;
-          console.log("dataresp: ", dataresp);
-          if (dataresp.length == 0) {
-            setFilteredAndSortedListings([]);
-          } else {
-            let listingRes = [...dataresp];
-            if (selectedSort === "newest") {
-              listingRes.sort(
-                (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
-              );
-              console.log(
-                "istingRes.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));: ",
-                listingRes.sort(
-                  (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
-                )
-              );
-            } else if (selectedSort === "oldest") {
-              listingRes.sort(
-                (a, b) => new Date(a.updated_at) - new Date(b.updated_at)
-              );
-            } else if (selectedSort === "highestPrice") {
-              listingRes.sort((a, b) => b.price - a.price);
-            } else if (selectedSort === "lowestPrice") {
-              listingRes.sort((a, b) => a.price - b.price);
-            }
-            //Saved Properties Fetched Data, what do you want to here:::::
-          }
-        } else {
-          const propertyListing = await PropertyListing(vendorId);
-          const dataresp = propertyListing;
-          console.log("dataresp: ", dataresp);
-          if (dataresp.length == 0) {
-            setFilteredAndSortedListings([]);
-          } else {
-            let listingRes = [...dataresp];
-            if (selectedSort === "allListings") {
-              listingRes = listingRes
-                .filter((item) => item.updated_at) // No filtering; retain all listings
-                .sort(
-                  (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
-                ); // Sort newest to oldest
-              console.log("All Listings (Newest to Oldest): ", listingRes);
-            } else if (selectedSort === "pendingListings") {
-              listingRes = listingRes
-                .filter((item) => item.RecordStatus === "pending")
-                .sort(
-                  (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
-                ); // Sort newest to oldest
-            } else if (selectedSort === "approvedListings") {
-              listingRes = listingRes
-                .filter((item) => item.RecordStatus === "active")
-                .sort(
-                  (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
-                ); // Sort newest to oldest
-            } else if (selectedSort === "deniedListings")  {
-              listingRes = listingRes
-                .filter((item) => item.RecordStatus === "rejected")
-                .sort(
-                  (a, b) => new Date(b.updated_at) - new Date(a.updated_at)
-                ); // Sort newest to oldest
-            }else{
-              listingRes = [];
-            }
-            if (listingRes.length === 0) {
-              console.log("No Data Found");
-            } else {
-              console.log("Filtered and Sorted Listings: ", listingRes);
+	const location = useLocation();
+	const isSavedPropertiesRoute = location.pathname.includes("/saved-properties");
+	const isSavedPropertiesTab = tabOpened === "savedProperties";
+	console.log("location:", location.pathname);
+	const accountDetails = getCookieData();
 
-              console.log("listingRes: ", listingRes);
-              const newListing = await Promise.all(
-                listingRes.map(async (item, i) => {
-                  const getPhotoGallery = await GetUnitPhotos(item.id);
+	let number = accountDetails.mobileNumber;
 
-                  const gallery = getPhotoGallery.data;
+	const onChange = (key) => {
+		console.log("key: ", key);
+		setTabOpened(key);
+		if (key === "propertyListings") {
+			setSelectedSort("allListings");
+			setSortTypes([
+				{
+					label: "All Listing",
+					value: "allListings",
+				},
+				{
+					label: "Pending Listings",
+					value: "pendingListings",
+				},
+				{
+					label: "Approved Listings",
+					value: "approvedListings",
+				},
+				{
+					label: "Denied Listings",
+					value: "deniedListings",
+				},
+			]);
+		} else if (key === "savedProperties") {
+			setSelectedSort("dateAdded");
+			setSortTypes([
+				{
+					label: "Date Added",
+					value: "dateAdded",
+				},
+				{
+					label: "Highest Price",
+					value: "highestPrice",
+				},
+				{
+					label: "Lowest Price",
+					value: "lowestPrice",
+				},
+			]);
+		}
+	};
 
-                  const image = GetPhotoWithUrl(item.Photo);
+	useEffect(() => {
+		const fetchSavedProperties = async () => {
+			setLoading(true);
+			try {
+				// const vendorId = "DVLP1056";
+				if (tabOpened === "savedProperties") {
+					console.log("vendordetails:", number);
+					const savedProperties = await GetSavedPropertiesBySellerNo(number);
+					const dataresp = savedProperties.data;
+					console.log("dataresp: ", dataresp);
 
-                  return {
-                    id: item.id,
-                    title: CapitalizeString(item.UnitName),
-                    price: AmountFormatterGroup(item.Price),
-                    status: "New",
-                    pics: image ? gallery.length + 1 : 1,
-                    img: image,
-                    no_of_bathrooms: item.BathRooms,
-                    lot: item.LotArea,
-                    property_no: item.PropertyNo,
-                    isFeatured: "yes",
-                    sale_type: CapitalizeString(item.SaleType),
-                    no_of_beds: item.BedRooms,
-                    // isFeatured: item.IsFeatured
-                    property_type: item.PropertyType,
-                    city: item.City,
-                    province: item.ProvinceState,
-                  };
-                })
-              );
-              setFilteredAndSortedListings(newListing);
-              setLoading(false);
-            }
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching saved properties:", error);
-      }
-    };
-    fetchSavedProperties();
-  }, [selectedSort, tabOpened]);
+					if (!Array.isArray(dataresp)) {
+						console.error("Error: dataresp is not an array");
+						setFilteredAndSortedListings([]);
+						return;
+					}
 
-  const navigate = useNavigate();
-  const handleCardClick = (id) => {
-    // window.location.hasdref = `/previewListing/${id}`;
-    navigate(`/previewListing/?id=${id}`, { state: id });
-  };
-  const handleSelect = (value) => {
-    console.log("vlaue: ", value);
+					if (dataresp.length === 0) {
+						setFilteredAndSortedListings([]);
+							setLoading(false);
+					} else {
+						let listingRes = [...dataresp];
+						console.log("listingRes:", listingRes);
 
-    setSelectedSort(value);
-    console.log("Selected sort type:", value);
-  };
-  const items = [
-    {
-      key: "savedProperties",
-      label: "Saved Properties",
-      children: "Saved Content",
-    },
-    {
-      key: "propertyListings",
-      label: "Property Listings",
-      children: (
-        <div className="savedPropertiesContent">
-          <p id="myPropertiesTextHeader">My Saved Properties</p>
-          <p id="myPropertiesTextSubHeader">
-            Access and manage your favorite properties in one place.
-          </p>
-          <RoundSelect
-            options={SortTypes}
-            size="middle"
-            classname="card-item field"
-            suffixIcon={<CaretDownOutlined />}
-            value={selectedSort}
-            onSelectionChange={(e) => handleSelect(e)}
-          ></RoundSelect>
-          <div className="cardBackgroundSavedProperties">
-            <div className="cardBackgroundPerRows">
-              {!loading ? (
-                filteredAndSortedListings.length > 0 && (
-                  <div className="listing-carousel-saved-properties">
-                    {filteredAndSortedListings.map((item, i) => {
-                      return (
-                        <CardListingComponent
-                          title={item.title}
-                          price={`PHP ${item.price}`}
-                          status={item.status}
-                          pics={item.pics}
-                          img={item.img}
-                          no_of_bathrooms={item.no_of_bathrooms}
-                          no_of_beds={item.no_of_beds}
-                          lot={item.lot}
-                          key={i}
-                          loading={loading}
-                          subtitle={`${
-                            item.property_type === "hotel/resort"
-                              ? CapitalizeStringwithSymbol(item.property_type)
-                              : CapitalizeEachWord(item.property_type)
-                          } For ${CapitalizeString(item.sale_type)}`}
-                          listingId={item.property_no}
-                          handleClick={() => handleCardClick(item.property_no)}
-                          sale_status={item.sale_type}
-                        />
-                      );
-                    })}
-                    <div
-                      style={{
-                        display: "none",
-                        justifyContent: "center",
-                      }}
-                      className="carousel--see-all-btn"
-                    >
-                      <SemiRoundBtn
-                        label={"See all new properties"}
-                        style={{
-                          borderColor: "#D90000",
-                          color: "#D90000",
-                          height: "38px",
-                          fontWeight: "600",
-                        }}
-                        handleClick={() =>
-                          navigate({
-                            pathname: "/new",
-                          })
-                        }
-                      />
-                    </div>
-                  </div>
-                )
-              ) : (
-                <div
-                  className="listing-carousel-dashboard"
-                  style={{
-                    display: "flex",
-                  }}
-                >
-                  {Array(3)
-                    .fill(null)
-                    .map((_, i) => {
-                      return <CardSkeleton key={i} />;
-                    })}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      ),
-    },
-  ];
+						if (listingRes.length === 0) {
+							console.log("No Data Found");
+						} else {
+							console.log("Filtered and Sorted Listings: ", listingRes);
 
-  return (
-    <div className="savedPropertiesBackgroundComponent">
-      <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
-    </div>
-  );
+							if (selectedSort === "dateAdded") {
+								listingRes.sort(
+									(a, b) => new Date(b.updated_at) - new Date(a.updated_at)
+								);
+							} else if (selectedSort === "oldest") {
+								listingRes.sort(
+									(a, b) => new Date(a.updated_at) - new Date(b.updated_at)
+								);
+							} else if (selectedSort === "highestPrice") {
+								listingRes.sort((a, b) => b.Price - a.Price);
+							} else if (selectedSort === "lowestPrice") {
+								listingRes.sort((a, b) => a.Price - b.Price);
+							} else {
+								console.warn("Unknown sorting option selected:", selectedSort);
+								listingRes = [];
+							}
+
+							if (listingRes.length === 0) {
+								console.log("No Data Found after sorting");
+								setFilteredAndSortedListings([]);
+							} else {
+								console.log("Filtered and Sorted Listings:", listingRes);
+							}
+
+							const newListing = await Promise.all(
+								listingRes.map(async (item) => {
+									const getPhotoGallery = await GetUnitPhotos(item.id);
+									const gallery = getPhotoGallery.data;
+									const image = GetPhotoWithUrl(item.Photo);
+
+									return {
+										id: item.id,
+										title: CapitalizeString(item.UnitName),
+										price: AmountFormatterGroup(item.Price),
+										status: "New",
+										pics: image ? gallery.length + 1 : 1,
+										img: image,
+										no_of_bathrooms: item.BathRooms,
+										lot: item.LotArea,
+										property_no: item.PropertyNo,
+										isFeatured: "yes",
+										sale_type: CapitalizeString(item.SaleType),
+										no_of_beds: item.BedRooms,
+										property_type: item.PropertyType,
+										city: item.City,
+										province: item.ProvinceState,
+									};
+								})
+							);
+
+							setFilteredAndSortedListings(newListing);
+							setLoading(false);
+						}
+					}
+				} else {
+					const propertyListing = await PropertyListing(number);
+					const dataresp = propertyListing;
+					console.log("dataresp: ", dataresp);
+					if (dataresp.length == 0) {
+						setFilteredAndSortedListings([]);
+					} else {
+						let listingRes = [...dataresp];
+						if (selectedSort === "allListings") {
+							listingRes = listingRes
+								.filter((item) => item.updated_at)
+								.sort(
+									(a, b) => new Date(b.updated_at) - new Date(a.updated_at)
+								); // Sort newest to oldest
+							console.log("All Listings (Newest to Oldest): ", listingRes);
+						} else if (selectedSort === "pendingListings") {
+							listingRes = listingRes
+								.filter((item) => item.RecordStatus === "pending")
+								.sort(
+									(a, b) => new Date(b.updated_at) - new Date(a.updated_at)
+								); // Sort newest to oldest
+						} else if (selectedSort === "approvedListings") {
+							listingRes = listingRes
+								.filter((item) => item.RecordStatus === "active")
+								.sort(
+									(a, b) => new Date(b.updated_at) - new Date(a.updated_at)
+								); // Sort newest to oldest
+						} else if (selectedSort === "deniedListings") {
+							listingRes = listingRes
+								.filter((item) => item.RecordStatus === "rejected")
+								.sort(
+									(a, b) => new Date(b.updated_at) - new Date(a.updated_at)
+								); // Sort newest to oldest
+						} else {
+							listingRes = [];
+						}
+						if (listingRes.length === 0) {
+							console.log("No Data Found");
+						} else {
+							console.log("Filtered and Sorted Listings: ", listingRes);
+
+							console.log("listingRes: ", listingRes);
+							const newListing = await Promise.all(
+								listingRes.map(async (item, i) => {
+									const getPhotoGallery = await GetUnitPhotos(item.id);
+
+									const gallery = getPhotoGallery.data;
+
+									const image = GetPhotoWithUrl(item.Photo);
+
+									return {
+										id: item.id,
+										title: CapitalizeString(item.UnitName),
+										price: AmountFormatterGroup(item.Price),
+										status: "New",
+										pics: image ? gallery.length + 1 : 1,
+										img: image,
+										no_of_bathrooms: item.BathRooms,
+										lot: item.LotArea,
+										property_no: item.PropertyNo,
+										isFeatured: "yes",
+										sale_type: CapitalizeString(item.SaleType),
+										no_of_beds: item.BedRooms,
+										// isFeatured: item.IsFeatured
+										property_type: item.PropertyType,
+										city: item.City,
+										province: item.ProvinceState,
+									};
+								})
+							);
+							setFilteredAndSortedListings(newListing);
+							setLoading(false);
+						}
+					}
+				}
+			} catch (error) {
+				console.error("Error fetching saved properties:", error);
+				setLoading(true);
+			}
+		};
+		fetchSavedProperties();
+	}, [selectedSort, tabOpened, number]);
+
+	const navigate = useNavigate();
+	const handleCardClick = (id) => {
+		// window.location.hasdref = `/previewListing/${id}`;
+		navigate(`/previewListing/?id=${id}`, { state: id });
+	};
+	const handleSelect = (value) => {
+		console.log("vlaue: ", value);
+
+		setSelectedSort(value);
+		console.log("Selected sort type:", value);
+	};
+	
+	const items = [
+		{
+			key: "savedProperties",
+			label: "Saved Properties",
+			children: (
+				<div className="savedPropertiesContent">
+					<p id="myPropertiesTextHeader">My Saved Properties</p>
+					<p id="myPropertiesTextSubHeader">
+						Access and manage your favorite properties in one place.
+					</p>
+					<RoundSelect
+						options={SortTypes}
+						size="middle"
+						classname="card-item field"
+						suffixIcon={<CaretDownOutlined />}
+						value={selectedSort}
+						onSelectionChange={(e) => handleSelect(e)}
+					></RoundSelect>
+					<div className="cardBackgroundSavedProperties">
+						<div className="cardBackgroundPerRows">
+							{!loading ? (
+								filteredAndSortedListings.length > 0 && (
+									<div className="listing-carousel-saved-properties">
+										{filteredAndSortedListings.map((item, i) => {
+											return (
+												<CardListingComponent
+													showDeleteIcon={
+														isSavedPropertiesRoute && isSavedPropertiesTab
+													}
+													title={item.title}
+													price={`PHP ${item.price}`}
+													status={item.status}
+													pics={item.pics}
+													img={item.img}
+													no_of_bathrooms={item.no_of_bathrooms}
+													no_of_beds={item.no_of_beds}
+													lot={item.lot}
+													key={i}
+													loading={loading}
+													subtitle={`${
+														item.property_type === "hotel/resort"
+															? CapitalizeStringwithSymbol(item.property_type)
+															: CapitalizeEachWord(item.property_type)
+													} For ${CapitalizeString(item.sale_type)}`}
+													listingId={item.property_no}
+													handleClick={() => handleCardClick(item.property_no)}
+													sale_status={item.sale_type}
+													id = {item.id}
+													number={number}
+													propertyNo={item.property_no}
+												/>
+											);
+										})}
+										<div
+											style={{
+												display: "none",
+												justifyContent: "center",
+											}}
+											className="carousel--see-all-btn"
+										>
+											<SemiRoundBtn
+												label={"See all new properties"}
+												style={{
+													borderColor: "#D90000",
+													color: "#D90000",
+													height: "38px",
+													fontWeight: "600",
+												}}
+												handleClick={() =>
+													navigate({
+														pathname: "/new",
+													})
+												}
+											/>
+										</div>
+									</div>
+								)
+							) : (
+								<div
+									className="listing-carousel-dashboard"
+									style={{
+										display: "flex",
+									}}
+								>
+									{Array(3)
+										.fill(null)
+										.map((_, i) => {
+											return <CardSkeleton key={i} />;
+										})}
+								</div>
+							)}
+						</div>
+					</div>
+				</div>
+			),
+		},
+		{
+			key: "propertyListings",
+			label: "Property Listings",
+			children: (
+				<div className="savedPropertiesContent">
+					<p id="myPropertiesTextHeader">My Saved Properties</p>
+					<p id="myPropertiesTextSubHeader">
+						Access and manage your favorite properties in one place.
+					</p>
+					<RoundSelect
+						options={SortTypes}
+						size="middle"
+						classname="card-item field"
+						suffixIcon={<CaretDownOutlined />}
+						value={selectedSort}
+						onSelectionChange={(e) => handleSelect(e)}
+					></RoundSelect>
+					<div className="cardBackgroundSavedProperties">
+						<div className="cardBackgroundPerRows">
+							{!loading ? (
+								filteredAndSortedListings.length > 0 && (
+									<div className="listing-carousel-saved-properties">
+										{filteredAndSortedListings.map((item, i) => {
+											return (
+												<CardListingComponent
+													title={item.title}
+													price={`PHP ${item.price}`}
+													status={item.status}
+													pics={item.pics}
+													img={item.img}
+													no_of_bathrooms={item.no_of_bathrooms}
+													no_of_beds={item.no_of_beds}
+													lot={item.lot}
+													key={i}
+													loading={loading}
+													subtitle={`${
+														item.property_type === "hotel/resort"
+															? CapitalizeStringwithSymbol(item.property_type)
+															: CapitalizeEachWord(item.property_type)
+													} For ${CapitalizeString(item.sale_type)}`}
+													listingId={item.property_no}
+													handleClick={() => handleCardClick(item.property_no)}
+													sale_status={item.sale_type}
+												/>
+											);
+										})}
+										<div
+											style={{
+												display: "none",
+												justifyContent: "center",
+											}}
+											className="carousel--see-all-btn"
+										>
+											<SemiRoundBtn
+												label={"See all new properties"}
+												style={{
+													borderColor: "#D90000",
+													color: "#D90000",
+													height: "38px",
+													fontWeight: "600",
+												}}
+												handleClick={() =>
+													navigate({
+														pathname: "/new",
+													})
+												}
+											/>
+										</div>
+									</div>
+								)
+							) : (
+								<div
+									className="listing-carousel-dashboard"
+									style={{
+										display: "flex",
+									}}
+								>
+									{Array(3)
+										.fill(null)
+										.map((_, i) => {
+											return <CardSkeleton key={i} />;
+										})}
+								</div>
+							)}
+						</div>
+					</div>
+				</div>
+			),
+		},
+	];
+
+	return (
+		<div className="savedPropertiesBackgroundComponent">
+			<Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+		</div>
+	);
 };
 export default SavedPropertiesComponent;
