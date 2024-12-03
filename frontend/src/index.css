@@ -6,20 +6,44 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; */
   font-family: var(--font-family) !important;
+  /* line-height: calc(var(--d-body-text) * var(--line-height)); */
+}
+.ant-layout{
+  font-size:var(--d-body-text) !important;
 }
 
+h2{
+  font-size: var(--d-h2-text) !important;
+}
+
+h3{
+  font-size: var(--d-h3-text) !important;
+}
+
+h4{
+  font-size: var(--d-h4-text) !important;
+} 
+ 
 
 :root {
   --red: #D90000;
   --mute-gray: #8C9094;
-  --font-family: "Poppins", sans-serif;
+  --font-family: "Poppins";
   --mute-red: #FFDBDB;
   --bg-shadow: rgba(0, 0, 0, 0.4);
   --green: rgb(0, 102, 0);
   --black: black;
   --mute-white: #fdfbfa;
-  --radius: 10px;
+  --white: white;
+  --radius: 6px;
+  --half-radius: 5px;
   --default-page-size: 1000px;
+  --d-body-text: 15px;
+  --m-body-text: 14px;
+  --d-h2-text: 28px;
+  --d-h3-text: 24px;
+  --d-h4-text: 22px;
+  --line-height: 1.6;
   /* xl */
   --xl-header-1-fs: 2.8rem;
   --xl-header-2-fs: 2.5rem;

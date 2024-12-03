@@ -191,7 +191,7 @@ const toPascalCase = (name) => {
 									color: showModal ? "#d90000" : "white",
 									cursor: "pointer",
 								}}
-								href="/saved-properties/?tabOpened=savedProperties"
+								href="/saved-properties"
 							>
 								Saved Properties
 							</a>

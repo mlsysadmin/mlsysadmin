@@ -658,6 +658,11 @@ const DashboardComponent = () => {
 										sale_status={item.sale_type}
 										propertyNo={item.property_no}
 										number={number}
+                     isSavedProperties={{
+                      atSavedPropertiesPage: false,
+                      isRecordStatus: item.recordStatus,
+                      isAccessType: item.accessType,
+                    }}
 									/>
 								);
               })}
