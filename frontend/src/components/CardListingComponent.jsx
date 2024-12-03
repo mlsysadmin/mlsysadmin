@@ -100,12 +100,12 @@ const CardListingComponent = ({
 			console.log("Property not found in saved properties");
 		}
 	};
- const toPascalCase = (str) => {
+	const toPascalCase = (str) => {
 		return str
 			.split(" ")
-			.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) 
-			.join(""); 
- };
+			.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+			.join("");
+	};
 
 	useEffect(() => {
 		if (showDeleteIcon && !isDeleted) {
@@ -227,48 +227,53 @@ const CardListingComponent = ({
 						className="tags-right"
 						style={{ display: "flex", flexDirection: "column" }}
 					>
-						<Tooltip
-							color="var(--red)"
-							title="Added to favorites"
-							visible={showTooltip}
-							placement="top"
-						></Tooltip>
-						<CustomTag
-							tagLabel={
-								checked ? (
-									<HeartFilled
-										style={{
-											color: showDeleteIcon ? "var(--red)" : "",
-											pointerEvents: showDeleteIcon ? "none" : "auto",
-										}}
-									/>
-								) : (
-									<HeartOutlined />
-								)
-							}
-							style={{ fontSize: "23px", color: "#333333" }}
-							className="circle-tags heart"
-							checkable={true}
-							checked={checked}
-							handleChange={(newChecked) => {
-								if (!showDeleteIcon) {
-									setIsChecked(newChecked);
-									handleChange(newChecked);
+						<div
+							className="tags-tooltip"
+							style={{ display: "flex", flexDirection: "row" }}
+						>
+							<Tooltip
+								color="var(--red)"
+								title="Added to favorites"
+								visible={showTooltip}
+								placement="top"
+							></Tooltip>
+							<CustomTag
+								tagLabel={
+									checked ? (
+										<HeartFilled
+											style={{
+												color: showDeleteIcon ? "var(--red)" : "",
+												pointerEvents: showDeleteIcon ? "none" : "auto",
+											}}
+										/>
+									) : (
+										<HeartOutlined />
+									)
 								}
-							}}
-							listingId={listingId}
-						/>{" "}
+								style={{ fontSize: "23px", color: "#333333" }}
+								className="circle-tags heart"
+								checkable={true}
+								checked={checked}
+								handleChange={(newChecked) => {
+									if (!showDeleteIcon) {
+										setIsChecked(newChecked);
+										handleChange(newChecked);
+									}
+								}}
+								listingId={listingId}
+							/>{" "}
+							{showDeleteIcon && (
+								<div
+									className="icon"
+									onClick={handleDeleteClick}
+									style={{ top: "8px" }}
+								>
+									<DeleteOutlined />
+								</div>
+							)}
+						</div>
 						{/* <CustomTag tagLabel={<Filter />} className="circle-tags" /> */}
 					</div>
-					{showDeleteIcon && (
-						<div
-							className="icon"
-							onClick={handleDeleteClick}
-							style={{ top: "8px" }}
-						>
-							<DeleteOutlined />
-						</div>
-					)}
 				</div>
 				<div className="card-content" onClick={handleClick}>
 					<div className="card-content--title">

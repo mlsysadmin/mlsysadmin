@@ -79,7 +79,7 @@ const SavedPropertiesComponent = () => {
 
 	const location = useLocation();
 	const isSavedPropertiesRoute =
-		location.pathname.includes("/saved-properties");
+	location.pathname.includes("/saved-properties");
 	const isSavedPropertiesTab = tabOpened === "savedProperties";
 	console.log("location:", location.pathname);
 	const accountDetails = getCookieData();
@@ -472,6 +472,9 @@ const SavedPropertiesComponent = () => {
 													isRecordStatus: item.recordStatus,
 													isAccessType: item.accessType,
 												}}
+												showDeleteIcon={
+													isSavedPropertiesRoute && isSavedPropertiesTab
+												}
 											/>
 										);
 									})}
