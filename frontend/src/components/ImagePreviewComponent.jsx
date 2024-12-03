@@ -8,6 +8,8 @@ const ImagePreviewComponent = ({ gallery, handleViewGallery }) => {
 
     const [imageFallback, setImageFallback] = React.useState(new Array(4).fill(null));
 
+    const imagesToRender = gallery.length > 5 ? gallery.slice(1, 5) : imageFallback;
+
     return (
         <div className="preview-image--container">
 
@@ -19,28 +21,26 @@ const ImagePreviewComponent = ({ gallery, handleViewGallery }) => {
             </div>
             <div className="preview-image-group">
                 {/* Four images on the other side */}
-
                 {
-                    gallery.length > 5 ?
-                        gallery.slice(1, 5).map((imagePath, key) => {
-                            return (
-                                <div className='preview-group-image--wrapper' key={key} onClick={handleViewGallery}>
-                                    <img src={`${ImageUrl}/${imagePath}`} alt={`Listing Image ${key}`} className="preview-group-image" />
-                                </div>
-                            )
-                        })
-                        :
-                        <>
-                            {
-                                imageFallback.map((_, i) => {
-                                    return (
-                                        <div className='preview-group-image--wrapper' key={i}>
-                                            <img src={FallbackImage} alt={`Fallback image ${i}`} className="preview-group-image" />
-                                        </div>
-                                    )
-                                })
-                            }
-                        </>
+                    Array.from({ length: 4 }).map((_, index) => {
+                        const imagePath = gallery[index + 1]; // Skip the first image (used on the left)
+                        const imageSrc = imagePath ? `${ImageUrl}/${imagePath}` : FallbackImage;
+
+                        return (
+                            <div
+                                className='preview-group-image--wrapper'
+                                key={index}
+                                onClick={handleViewGallery}
+                            >
+                                <img
+                                    src={imageSrc}
+                                    alt={imagePath ? `Gallery image ${index + 2}` : `Fallback image ${index + 1}`}
+                                    className="preview-group-image"
+                                    onError={(e) => e.target.src = FallbackImage}
+                                />
+                            </div>
+                        );
+                    })
                 }
 
             </div>

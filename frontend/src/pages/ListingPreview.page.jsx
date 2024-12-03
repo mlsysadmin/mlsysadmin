@@ -42,6 +42,7 @@ const ListingPreview = () => {
     const [checked, setIsChecked] = useState(false);
     const [likes, setLikes] = useState([]);
     const [showTooltip, setShowTooltip] = useState(false);
+    const [aboutFeatures, setAboutFeatures] = useState([]);
 
     useEffect(() => {
         console.log("dsdsfdgdgf");
@@ -197,11 +198,11 @@ const ListingPreview = () => {
                 );
             }
 
-            setFeatures(feature);
+            setAboutFeatures(feature);
         } catch (error) {
             console.log("error", error);
 
-            setFeatures([]);
+            setAboutFeatures([]);
         }
     };
 
@@ -347,7 +348,7 @@ const ListingPreview = () => {
     }
     const HandleChangeHeart = (isChecked, tag, id) => {
         console.log("dsfdgdg");
-        
+
         const nextSelectedTags =
             isChecked && !likes.includes(id)
                 ? [...likes, id]
@@ -361,6 +362,45 @@ const ListingPreview = () => {
             setTimeout(() => setShowTooltip(false), 800);
         }
     };
+
+    const FeaturesTables = () => {
+        try {
+            console.log("features", features);
+            const headers = features.length > 0 ? Object.keys(features[0]) : [];
+
+            const groupedData = [];
+            for (let i = 0; i < features.length; i += 4) {
+                groupedData.push(features.slice(i, i + 4));
+            }
+
+            return (
+                <table>
+                    <thead>
+                        <tr>
+                            <th style={{ textAlign: 'center' }}>Column 1</th>
+                            <th style={{ textAlign: 'center' }}>Column 2</th>
+                            <th style={{ textAlign: 'center' }}>Column 3</th>
+                            <th style={{ textAlign: 'center' }}>Column 4</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {features.map((row, rowIndex) => (
+                            <tr key={rowIndex}>
+                                {row.map((item, colIndex) => (
+                                    <td key={colIndex} style={{ textAlign: 'center', padding: '8px' }}>
+                                        {item.FeatureName}
+                                    </td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )
+        } catch (error) {
+            console.log("FeaturesTables", error);
+
+        }
+    }
 
     return (
         <>
@@ -452,7 +492,7 @@ const ListingPreview = () => {
                                             <h4>About this property</h4>
                                             <div className="listing-preview__listing-about--items">
                                                 {
-                                                    features.map((feature, index) => {
+                                                    aboutFeatures.map((feature, index) => {
                                                         // if (feature.value && feature.value !== "0") {
 
                                                         return (
@@ -502,13 +542,17 @@ const ListingPreview = () => {
                                         <section className="listing-preview__listing-highlights">
                                             <h4>Property Highlights</h4>
                                             <div className="listing-preview__listing-highlights--table">
-                                                <Table
+                                                {/* <Table
                                                     columns={columnsFeatures}
                                                     dataSource={dataFeatures}
                                                     pagination={false}
                                                     size="middle"
                                                     rowHoverable={false}
-                                                />
+                                                /> */}
+                                                {
+                                                    FeaturesTables()
+                                                }
+
                                             </div>
                                             <div className="listing-preview__listing-highlights--table">
                                                 <Table
@@ -630,8 +674,8 @@ const ListingPreview = () => {
                             </Modal>
                         </div>
                         <div className="preview--footer">
-                        <CustomMlFooter />
-                        <FooterComponent />
+                            <CustomMlFooter />
+                            <FooterComponent />
                         </div>
                     </>
                 )

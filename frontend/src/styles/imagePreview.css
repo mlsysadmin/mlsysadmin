@@ -41,7 +41,8 @@
 .preview-single-image,
 .preview-image-side--wrapper,
 .preview-image-group {
-    height: calc(var(--image-height) * 2 + 20px)
+    height: calc(var(--image-height) * 2 + 20px);
+    width:100%;
 }
 /* ------------------------------------------------- */
 .preview-group-image,
@@ -52,6 +53,7 @@
     cursor: pointer;
     /* Smooth zoom effect */
     transition: transform 2s ease, opacity 1s;
+    object-fit: cover;
 }
 
 /* Slightly enlarge the image */
