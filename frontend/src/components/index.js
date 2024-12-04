@@ -180,4 +180,5 @@ export {
 	FaqsComponent,
 	SearchListingComponent,
 	LoginComponent,
+	
 };

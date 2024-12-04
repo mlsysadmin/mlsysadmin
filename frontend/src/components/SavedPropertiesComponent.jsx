@@ -15,7 +15,8 @@ import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import { GetUnitPhotos } from "../api/GetAllPublicListings";
 import Pagination from "./custom/pagination/Pagination";
 import NoDataAvailable from "./NoDataFoundComponent";
-import { CustomMlFooter, FooterComponent } from "../components";
+import { ListingForm } from "./ListingForm";
+import { CustomMlFooter, FooterComponent, JoinTeam } from "../components";
 import { useLocation } from "react-router-dom";
 import {
 	CapitalizeEachWord,
@@ -25,9 +26,9 @@ import {
 import { GetVendorByNumber } from "../api/PostListings";
 import "../styles/seller-broker/saved-properties.css";
 
-const SavedPropertiesComponent = () => {
+const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 	const [selectedSort, setSelectedSort] = useState("dateAdded");
-	const [tabOpened, setTabOpened] = useState("savedProperties");
+	const [tabOpened, setTabOpened] = useState("");
 	const [loading, setLoading] = useState(true);
 	const [recordStatus, setIsRecordStatus] = useState("");
 	const [SortTypes, setSortTypes] = useState([
@@ -44,6 +45,11 @@ const SavedPropertiesComponent = () => {
 			value: "lowestPrice",
 		},
 	]);
+	useEffect(() => {
+		const hash = window.location.hash.replace("#", ""); 
+		setTabOpened(hash);
+	}, []);
+
 
 	const [filteredAndSortedListings, setFilteredAndSortedListings] = useState([
 		{
@@ -89,6 +95,7 @@ const SavedPropertiesComponent = () => {
 	const onChange = (key) => {
 		console.log("key: ", key);
 		setTabOpened(key);
+		window.location.hash = key; 
 		if (key === "propertyListings") {
 			setSelectedSort("allListings");
 			setSortTypes([
@@ -109,6 +116,7 @@ const SavedPropertiesComponent = () => {
 					value: "deniedListings",
 				},
 			]);
+
 		} else if (key === "savedProperties") {
 			setSelectedSort("dateAdded");
 			setSortTypes([
@@ -213,7 +221,6 @@ const SavedPropertiesComponent = () => {
 				} else {
 					const vendorDetails = await GetVendorByNumber(number);
 					console.log("detais: ", vendorDetails);
-					
 
 					if (vendorDetails.data) {
 						const vendorDataId = vendorDetails.data.VendorId;
@@ -331,6 +338,101 @@ const SavedPropertiesComponent = () => {
 
 	const items = [
 		{
+			key: "listingForm",
+			label: "Listing Form",
+			children: (
+				<>
+					<ListingForm  />
+				</>
+			),
+		},
+		{
+			key: "propertyListings",
+			label: "Property Listings",
+			children: (
+				<div className="savedPropertiesContent">
+					<p id="myPropertiesTextHeader">My Property Listings</p>
+					<p id="myPropertiesTextSubHeader">
+						Easily view and manage all your listings in one place.
+					</p>
+					<RoundSelect
+						options={SortTypes}
+						size="middle"
+						classname="card-item field"
+						suffixIcon={<CaretDownOutlined />}
+						value={selectedSort}
+						onSelectionChange={(e) => handleSelect(e)}
+					></RoundSelect>
+					<div className="cardBackgroundSavedProperties">
+						{!loading ? (
+							filteredAndSortedListings.length !== 0 ? (
+								<div className="listing-carousel-saved-properties">
+									{currentItems.map((item, i) => {
+										return (
+											<CardListingComponent
+												title={item.title}
+												price={`PHP ${item.price}`}
+												status={item.status}
+												pics={item.pics}
+												img={item.img}
+												no_of_bathrooms={item.no_of_bathrooms}
+												no_of_beds={item.no_of_beds}
+												lot={item.lot}
+												key={i}
+												loading={loading}
+												subtitle={`${
+													item.property_type === "hotel/resort"
+														? CapitalizeStringwithSymbol(item.property_type)
+														: CapitalizeEachWord(item.property_type)
+												} For ${CapitalizeString(item.sale_type)}`}
+												listingId={item.property_no}
+												handleClick={() => handleCardClick(item.property_no)}
+												sale_status={item.sale_type}
+												isSavedProperties={{
+													atSavedPropertiesPage: true,
+													isRecordStatus: item.recordStatus,
+													isAccessType: item.accessType,
+												}}
+												showDeleteIcon={
+													isSavedPropertiesRoute && isSavedPropertiesTab
+												}
+											/>
+										);
+									})}
+								</div>
+							) : (
+								<NoDataAvailable
+									message={`No available Data that was been in ${getListingLabel(
+										selectedSort
+									)}`}
+								/>
+							)
+						) : (
+							<div
+								className="listing-carousel-dashboard"
+								style={{
+									display: "flex",
+								}}
+							>
+								{Array(3)
+									.fill(null)
+									.map((_, i) => {
+										return <CardSkeleton key={i} />;
+									})}
+							</div>
+						)}
+						{filteredAndSortedListings.length > 0 && (
+							<Pagination
+								currentPage={currentPage}
+								totalPages={totalPages}
+								paginate={setCurrentPage}
+							/>
+						)}
+					</div>
+				</div>
+			),
+		},
+		{
 			key: "savedProperties",
 			label: "Saved Properties",
 			children: (
@@ -426,89 +528,12 @@ const SavedPropertiesComponent = () => {
 			),
 		},
 		{
-			key: "propertyListings",
-			label: "Property Listings",
+			key: "joinOurTeam",
+			label: "Join Our Team",
 			children: (
-				<div className="savedPropertiesContent">
-					<p id="myPropertiesTextHeader">My Property Listings</p>
-					<p id="myPropertiesTextSubHeader">
-						Easily view and manage all your listings in one place.
-					</p>
-					<RoundSelect
-						options={SortTypes}
-						size="middle"
-						classname="card-item field"
-						suffixIcon={<CaretDownOutlined />}
-						value={selectedSort}
-						onSelectionChange={(e) => handleSelect(e)}
-					></RoundSelect>
-					<div className="cardBackgroundSavedProperties">
-						{!loading ? (
-							filteredAndSortedListings.length !== 0 ? (
-								<div className="listing-carousel-saved-properties">
-									{currentItems.map((item, i) => {
-										return (
-											<CardListingComponent
-												title={item.title}
-												price={`PHP ${item.price}`}
-												status={item.status}
-												pics={item.pics}
-												img={item.img}
-												no_of_bathrooms={item.no_of_bathrooms}
-												no_of_beds={item.no_of_beds}
-												lot={item.lot}
-												key={i}
-												loading={loading}
-												subtitle={`${
-													item.property_type === "hotel/resort"
-														? CapitalizeStringwithSymbol(item.property_type)
-														: CapitalizeEachWord(item.property_type)
-												} For ${CapitalizeString(item.sale_type)}`}
-												listingId={item.property_no}
-												handleClick={() => handleCardClick(item.property_no)}
-												sale_status={item.sale_type}
-												isSavedProperties={{
-													atSavedPropertiesPage: true,
-													isRecordStatus: item.recordStatus,
-													isAccessType: item.accessType,
-												}}
-												showDeleteIcon={
-													isSavedPropertiesRoute && isSavedPropertiesTab
-												}
-											/>
-										);
-									})}
-								</div>
-							) : (
-								<NoDataAvailable
-									message={`No available Data that was been in ${getListingLabel(
-										selectedSort
-									)}`}
-								/>
-							)
-						) : (
-							<div
-								className="listing-carousel-dashboard"
-								style={{
-									display: "flex",
-								}}
-							>
-								{Array(3)
-									.fill(null)
-									.map((_, i) => {
-										return <CardSkeleton key={i} />;
-									})}
-							</div>
-						)}
-						{filteredAndSortedListings.length > 0 && (
-							<Pagination
-								currentPage={currentPage}
-								totalPages={totalPages}
-								paginate={setCurrentPage}
-							/>
-						)}
-					</div>
-				</div>
+				<>
+					<JoinTeam isMLWWSPresent={!isMLWWSPresent} />
+				</>
 			),
 		},
 	];
@@ -517,9 +542,15 @@ const SavedPropertiesComponent = () => {
 		<>
 			<div className="wholeViewSavedProperties">
 				<div className="savedPropertiesBackgroundComponent">
-					<Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+					<Tabs
+
+						items={items}
+						onChange={onChange}
+						activeKey={tabOpened}
+					/>
 				</div>
 			</div>
+
 			<CustomMlFooter />
 			<FooterComponent />
 		</>
