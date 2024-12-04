@@ -97,7 +97,6 @@ const FillLocationFilter = (listings) => {
     return distinctProvince;
 
   } catch (error) {
-    console.log("location", error);
     return [];
   }
 }
@@ -146,7 +145,6 @@ const CapitalizeEachWord = (word) => {
 
       capitalizeEachWord = w
     }
-    console.log(capitalizeEachWord);
 
     capitalizeEachWord.trim();
 

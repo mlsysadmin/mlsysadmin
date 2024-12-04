@@ -1,0 +1,23 @@
+.property-highlights--table{
+    width: 100%;
+    text-align: start;
+    border-radius: 8px 8px 0 0;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.property-highlights--table__thead th{
+    position: relative;
+    color: rgba(0, 0, 0, 0.88);
+    font-weight: 600;
+    text-align: start;
+    background: #fafafa;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.2s ease;
+    padding: 12px 8px;
+}
+
+td.property-highlightss--table__td{
+    padding: 12px 8px;
+    overflow-wrap: break-word;
+}

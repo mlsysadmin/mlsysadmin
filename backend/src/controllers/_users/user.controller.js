@@ -16,6 +16,8 @@ const { GenerateURL, GoogleAuth } = require('../../services/google.auth.service'
 
 const { google } = require('googleapis');
 const { UpdateTokenVersion } = require('../../utils/_helper/Jwt.helper');
+const { SendOtp, ValidateOtp } = require('../../utils/_api/otp.api');
+const { RegisterUserKyc } = require('../../utils/_api/ml_money.api');
 
 module.exports = {
     Login: async (req, res, next) => {
@@ -111,14 +113,6 @@ module.exports = {
                     "We couldn't find an account associated with this email address or mobile number."
                 );
             }
-
-
-        } catch (error) {
-            next(error)
-        }
-    },
-    Register: async (req, res, next) => {
-        try {
 
 
         } catch (error) {
@@ -227,7 +221,7 @@ module.exports = {
             const URL = await GenerateURL(api_key);
 
             console.log("GENERATED URL: ", URL);
-            
+
 
             const data = DataResponseHandler(
                 { url: URL },
@@ -265,7 +259,7 @@ module.exports = {
             const userInfo = await OAuthClient.userinfo.get();
             const email = userInfo.data.email;
 
-            const verifyUser = await FindOneSupportByEmail({email});
+            const verifyUser = await FindOneSupportByEmail({ email });
 
             if (!verifyUser) {
                 throw DataResponseHandler(
@@ -312,7 +306,7 @@ module.exports = {
                     true,
                     "SUCCESS"
                 );
-    
+
                 SuccessLoggerHelper(req, login);
 
                 res.cookie('access_token', generateSessionToken, tokenCookieOptions);
@@ -340,5 +334,104 @@ module.exports = {
             next(error);
         }
     },
+    RegisterKyc: async (req, res, next) => {
+        try {
+
+            const {
+                mobileNumber, otpCode, firstName, lastName, middleName,
+                suffix, email, addressL0Id, addressL1Id, addressL2Id,
+                otherAddress, zipCode
+            } = req.body.payload;
+
+            const user = {
+                mobileNumber, otpCode, firstName, lastName, middleName,
+                suffix, email, addressL0Id, addressL1Id, addressL2Id,
+                otherAddress, zipCode
+            }
+
+            const getToken = await GenerateToken();
+
+            if (getToken) {
+                const token = getToken.data.token;
+
+                const register_kyc = await RegisterUserKyc(token, user);
+
+                const kyc = DataResponseHandler(
+                    register_kyc.register_ckyc.data,
+                    register_kyc.code,
+                    201,
+                    true,
+                    register_kyc.message
+                )
+
+                const success = SuccessFormatter(kyc, 200, register_kyc.message);
+                SuccessLoggerHelper(req, kyc);
+
+                res.status(200).send(success);
+
+            } else {
+                throw DataResponseHandler(
+                    { payload: req.body.payload, getToken },
+                    "SERVER_ERROR",
+                    500,
+                    false,
+                    "We're sorry, something went wrong on our end. Please try again later or contact our support team."
+                );
+            }
+
+        } catch (error) {
+            next(error);
+        }
+    },
+    SendOTP: async (req, res, next) => {
+        try {
+
+            const { cellphoneNumber } = req.body.payload;
+
+            const otp_request = await SendOtp(cellphoneNumber);
+
+            const otp = DataResponseHandler(
+                otp_request.send_otp.data,
+                otp_request.code,
+                201,
+                true,
+                otp_request.message
+            )
+
+            const success = SuccessFormatter(otp, 200, otp_request.message);
+            SuccessLoggerHelper(req, otp);
+
+            res.status(200).send(success);
+
+        } catch (error) {
+            console.log("ERROROROR", error.response);
+
+            next(error)
+        }
+    },
+    ValidateOTP: async (req, res, next) => {
+        try {
+
+            const { cellphoneNumber, pin } = req.body.payload;
+
+            const otp_request = await ValidateOtp(cellphoneNumber, pin);
+
+            const otp = DataResponseHandler(
+                otp_request.validate_otp.data,
+                otp_request.code,
+                201,
+                true,
+                otp_request.message
+            )
+
+            const success = SuccessFormatter(otp, 200, otp_request.message);
+            SuccessLoggerHelper(req, otp);
+
+            res.status(200).send(success);
+
+        } catch (error) {
+            next(error)
+        }
+    }
 
 }
