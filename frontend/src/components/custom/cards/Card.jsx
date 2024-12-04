@@ -86,7 +86,7 @@ const Card = ({
 
 	const handleHeartClick = async () => {
 		const accountDetails = getCookieData();
-		const contactNum = accountDetails?.mobileNumber;
+		const contactNum = accountDetails?.mobileNumber || null;
 		setIsHeartFilled(!isHeartFilled);
 		if (!contactNum) {
 			console.log("Reacted but items are not saved.");
@@ -95,14 +95,18 @@ const Card = ({
 
 		if (!isHeartFilled) {
 			if (number && propertyNo) {
-				const save = await AddSavedProperty(contactNum, propertyNo);
-				// setSavedProperties(save.data);
-				console.log("Saved properties after save:", save);
-				setSavedPropertyId(save.id);
-				console.log("Saved property id after save:", save.id);
+				try {
+					const save = await AddSavedProperty(contactNum, propertyNo);
+					console.log("Saved properties after save:", save);
+					setSavedPropertyId(save.id);
+					console.log("Saved property id after save:", save.id);
 
-				setShowTooltip(true);
-				setTimeout(() => setShowTooltip(false), 800);
+					setShowTooltip(true);
+					setTimeout(() => setShowTooltip(false), 800);
+				} catch (error) {
+					console.error("Error saving property:", error);
+				}
+				
 			} else {
 				alert("Reacted but items are not saved.");
 				return;

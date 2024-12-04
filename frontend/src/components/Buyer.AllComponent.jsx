@@ -81,7 +81,7 @@ const AllComponent = () => {
 	});
 	const accountDetails = getCookieData();
 
-	let number = accountDetails.mobileNumber;
+	let number = accountDetails?.mobileNumber || null;
 	const [breadCrumbItems, setBreadCrumbItems] = useState([
 		{
 			title: "All",
@@ -254,7 +254,7 @@ const AllComponent = () => {
 											handleClick={() => handleCardClick(data.property_no)}
 											propertyNo={data.property_no}
 											vendorId={data.vendorId}
-                      number={number}
+											number={number}
 										/>
 									))}
 								</div>

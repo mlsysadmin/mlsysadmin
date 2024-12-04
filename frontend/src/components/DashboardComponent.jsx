@@ -220,7 +220,7 @@ const DashboardComponent = () => {
   const isAccountDetailsPresent = isCookiePresent(accountCookieName);
 	const accountDetails = getCookieData();
 
-	let number = accountDetails.mobileNumber;
+let number = accountDetails?.mobileNumber || null;
 
   const handleUserProfileClick = () => {
     if (!isMLWWSPresent && !isAccountDetailsPresent) {

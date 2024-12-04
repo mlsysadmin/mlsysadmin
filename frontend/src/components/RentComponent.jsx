@@ -63,7 +63,7 @@ const RentComponent = () => {
 	]);
 	const accountDetails = getCookieData();
 
-	let number = accountDetails.mobileNumber;
+	let number = accountDetails?.mobileNumber || null;
 	const [propertyType, setPropertyType] = useState("house-and-lot");
 	const [currentPage, setCurrentPage] = useState(1);
 	const cardsPerPage = 9;

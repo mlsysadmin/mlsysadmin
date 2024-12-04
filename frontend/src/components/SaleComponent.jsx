@@ -78,7 +78,7 @@ const SaleComponent = () => {
 	});
 	const accountDetails = getCookieData();
 
-	let number = accountDetails.mobileNumber;
+	let number = accountDetails?.mobileNumber || null;
 	const [breadCrumbItems, setBreadCrumbItems] = useState([
 		{
 			title: "For Sale",

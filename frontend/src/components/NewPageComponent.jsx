@@ -61,7 +61,7 @@ const NewPageComponent = () => {
 	};
 	const accountDetails = getCookieData();
 
-	let number = accountDetails.mobileNumber;
+	let number = accountDetails?.mobileNumber || null;
 	const allPublicListing = async () => {
 
 		try {

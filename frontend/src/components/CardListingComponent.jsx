@@ -68,7 +68,7 @@ const CardListingComponent = ({
 		const id = listingId;
 		const accountDetails = getCookieData();
 
-		let number = accountDetails.mobileNumber;
+		let number = accountDetails?.mobileNumber || null ;
 
 		const nextSelectedTags =
 			isChecked && !likes.includes(id)
@@ -78,16 +78,20 @@ const CardListingComponent = ({
 		setLikes(nextSelectedTags);
 		setIsChecked(isChecked);
 		if (isChecked) {
-			if (number && propertyNo) {
-				const save = await AddSavedProperty(number, propertyNo);
-				setSavedPropertyId(save.id);
-				console.log("Property saved with ID:", save.id);
-				setShowTooltip(true);
-				setTimeout(() => setShowTooltip(false), 800);
-			} else {
-				alert("Reacted but items are not saved.");
-				return;
-			}
+			 if (number && propertyNo) {
+					
+					try {
+						const save = await AddSavedProperty(number, propertyNo);
+						setSavedPropertyId(save.id);
+						console.log("Property saved with ID:", save.id);
+						setShowTooltip(true);
+						setTimeout(() => setShowTooltip(false), 800);
+					} catch (error) {
+						console.error("Error saving property:", error);
+					}
+				} else {
+					console.log("Reacted but items are not saved.");
+				}
 		} else if (number && propertyNo) {
 			if (savedPropertyId) {
 				console.log("Attempting to delete property with ID:", savedPropertyId);
