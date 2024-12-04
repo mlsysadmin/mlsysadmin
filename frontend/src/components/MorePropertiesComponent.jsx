@@ -10,8 +10,15 @@ import { CapitalizeEachWord, CapitalizeString } from "../utils/StringFunctions.u
 import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
 import ShowerOutlinedIcon from "@mui/icons-material/ShowerOutlined";
 import ShortcutOutlinedIcon from "@mui/icons-material/ShortcutOutlined";
+import { useNavigate } from "react-router-dom";
 
-const MorePropertiesComponent = ({ title, subtitle, propertyType, saleType, filterValue, filterProperty }) => {
+const MorePropertiesComponent = ({ 
+    title, subtitle, propertyType, 
+    saleType, filterValue, filterProperty,
+    searchProperty 
+}) => {
+
+    const navigate = useNavigate();
 
     const [properties, setProperties] = useState([
         {
@@ -50,7 +57,6 @@ const MorePropertiesComponent = ({ title, subtitle, propertyType, saleType, filt
                 filteredListing = filteredListing.filter((listing) =>
                     listing.PropertyType == propertyType && listing.SaleType == saleType
             ).slice(0, 6)
-            console.log(filteredListing);
                 const listing = await Promise.all(
                     filteredListing.map(async (list, i) => {
 
@@ -88,7 +94,7 @@ const MorePropertiesComponent = ({ title, subtitle, propertyType, saleType, filt
     const PropertiesByPropertyType = () => {
         return properties.map((item, k) => {
             return (
-                <div className="properties--group-card__card">
+                <div className="properties--group-card__card" key={k}>
                     <Card key={k} className="properties--group-card__card-item">
                         <div className="properties--group-card__card-image">
                             <img src={item.photo} alt={item.Name} />
@@ -180,6 +186,20 @@ const MorePropertiesComponent = ({ title, subtitle, propertyType, saleType, filt
         )
     }
 
+    const HandleClickView = () => {
+        let params = "";
+
+        searchProperty.forEach((item, i) => {
+            if (i == 0) {
+				params += `${item.key}=${item.value}`;
+			} else {
+				params += `&${item.key}=${item.value}`;
+			}
+        })
+
+        navigate(`/search/?${params}`)
+    }
+
     return (
         <div className="properties--group-card">
             <div className="properties--group-card__header">
@@ -194,7 +214,9 @@ const MorePropertiesComponent = ({ title, subtitle, propertyType, saleType, filt
                 <PropertiesByPropertyType />
             </div>
             <div className="properties--group-card__button">
-                <Button size="large" className="properties--group-card__button">View more properties</Button>
+                <Button size="large" className="properties--group-card__button" onClick={HandleClickView}>
+                    View more properties
+                </Button>
             </div>
         </div>
     )

@@ -23,10 +23,15 @@ const ML_MONEY_API = axios.create({
     baseURL: process.env.SYMPH_ML_MONEY_API_URL,
 });
 
+const OTP_API = axios.create({
+  baseURL: process.env.OTP_URL,
+});
+
 module.exports = {
     ML_WEB_APP,
     AUTH_SERVICE,
     STORAGE_BUCKET,
     CKYC_API,
-    ML_MONEY_API
+    ML_MONEY_API,
+    OTP_API
 }
