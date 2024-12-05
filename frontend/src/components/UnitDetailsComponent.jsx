@@ -343,7 +343,7 @@ const UnitDetailsComponent = ({
                       type="number"
                       className="beds-input"
                       value={noOfBeds}
-                      onChange={handleBedChange}
+                      onChange={!disabledPropertyFields && handleBedChange}
                       disabled={disabledPropertyFields}
                       style={{
                         marginLeft: "10px",
@@ -354,7 +354,7 @@ const UnitDetailsComponent = ({
                     />
                     <BedsInputSlider
                       value={noOfBeds}
-                      onChange={(value) => setNoOfBeds(Number(value))}
+                      onChange={(value) => !disabledPropertyFields && setNoOfBeds(Number(value))}
                       disabled={disabledPropertyFields}
                       style={{
                         cursor: disabledPropertyFields ? "not-allowed" : "auto",
@@ -386,7 +386,7 @@ const UnitDetailsComponent = ({
                       className="parking-input"
                       value={Parking}
                       min="0"
-                      onChange={handleParkingChange}
+                      onChange={!disabledPropertyFields && handleParkingChange}
                       disabled={disabledPropertyFields}
                       style={{
                         marginLeft: "10px",
@@ -397,7 +397,7 @@ const UnitDetailsComponent = ({
                     />
                     <ParkingInputSlider
                       value={Parking}
-                      onChange={(value) => setParking(Number(value))}
+                      onChange={(value) => !disabledPropertyFields && setParking(Number(value))}
                       disabled={disabledPropertyFields}
                       style={{
                         cursor: disabledPropertyFields ? "not-allowed" : "auto",
@@ -574,7 +574,7 @@ const UnitDetailsComponent = ({
                       value={noOfBathrooms}
                       min="0"
                       onChange={handleBathroomChange}
-                      disabled={disabledPropertyFields}
+                      disabled={!disabledPropertyFields && disabledPropertyFields}
                       style={{
                         marginLeft: "10px",
                         width: "60px",
@@ -584,7 +584,7 @@ const UnitDetailsComponent = ({
                     />
                     <BathroomInputSlider
                       value={noOfBathrooms}
-                      onChange={(value) => setNoOfBathrooms(Number(value))}
+                      onChange={(value) => !disabledPropertyFields && setNoOfBathrooms(Number(value))}
                       disabled={disabledPropertyFields}
                       style={{
                         cursor: disabledPropertyFields ? "not-allowed" : "auto",
@@ -617,7 +617,7 @@ const UnitDetailsComponent = ({
                       value={noOfFloors}
                       min="0"
                       onChange={handleFloorChange}
-                      disabled={disabledPropertyFields}
+                      disabled={!disabledPropertyFields && disabledPropertyFields}
                       style={{
                         marginLeft: "10px",
                         width: "60px",
@@ -628,7 +628,7 @@ const UnitDetailsComponent = ({
 
                     <NoOfFloorsInputSlider
                       value={noOfFloors}
-                      onChange={(value) => setNoOfFloors(Number(value))}
+                      onChange={(value) => !disabledPropertyFields && setNoOfFloors(Number(value))}
                       disabled={disabledPropertyFields}
                       style={{
                         cursor: disabledPropertyFields ? "not-allowed" : "auto",
