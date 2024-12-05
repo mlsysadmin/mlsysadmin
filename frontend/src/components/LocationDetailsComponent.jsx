@@ -11,7 +11,11 @@ const MapUpdater = ({ position }) => {
 	return null;
 };
 
-const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
+const LocationDetailsComponent = ({
+	onComplete,
+	setPropertyFields,
+	isSubmitted,
+}) => {
 	const [getCountry, setGetCountry] = useState([]);
 	const [selectedCountry, setSelectedCountry] = useState("Philippines");
 	const [getProvince, setGetProvince] = useState([]);
@@ -30,7 +34,24 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 	// 	setGetCountry(datares);
 	// 	// console.log("These are countries:", datares);
 	// };
-
+ useEffect(() => {
+		if (isSubmitted) {
+			setPropertyFields({
+				City: "",
+				ProvinceState: "",
+				Country: "",
+				Zipcode: "",
+				MapLocation: "",
+				Location: "",
+			});
+			setSelectedProvince("");
+			setSelectedCity("");
+			setZipcode("");
+			setAddress("");
+			setFilteredCities([]);
+			setPosition([10.3414, 123.9125]);
+		}
+ }, [isSubmitted]);
 	const allCities = async () => {
 		const datarescities = await GetCities();
 		setGetCities(datarescities);
@@ -49,7 +70,7 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 		setSelectedProvince(province);
 		console.log("Selected Province:", province);
 
-		const normalizedProvince = province.toLowerCase(); 
+		const normalizedProvince = province.toLowerCase();
 
 		const provinceData = getProvince.find(
 			(p) => p.name.toLowerCase() === normalizedProvince
@@ -202,7 +223,7 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 						className="location-form-inputs"
 						value={selectedProvince}
 						onChange={(e) => handleProvinceChange(e.target.value)}
-					// onChange={handleAddressChange}
+						// onChange={handleAddressChange}
 					>
 						<option value="" disabled selected hidden>
 							Select Province
@@ -275,9 +296,13 @@ const LocationDetailsComponent = ({ onComplete, setPropertyFields }) => {
 							url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 							attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 						/>
-						<Circle center={position} radius={radius} color="#d90000"
+						<Circle
+							center={position}
+							radius={radius}
+							color="#d90000"
 							fillColor="#d90000"
-							fillOpacity={0.3} />
+							fillOpacity={0.3}
+						/>
 						<MapUpdater position={position} />
 					</MapContainer>
 				</div>

@@ -24,6 +24,7 @@ const UnitDetailsComponent = ({
 	setPropIdInputError,
 	setPropertyFields,
 	selectedPropertyTab,
+	isSubmitted,
 }) => {
 	const [price, setPrice] = useState("");
 	const [discountedPrice, setDiscountedPrice] = useState("");
@@ -37,6 +38,31 @@ const UnitDetailsComponent = ({
 	const [floorArea, setFloorArea] = useState("");
 	const [lotArea, setLotArea] = useState("");
 	const [propId, setPropId] = useState(null);
+
+
+	useEffect(() => {
+		console.log("isSubmitted unit details; ", isSubmitted);
+	}, []);
+	useEffect(() => {
+		console.log("isSubmitted unit details1; ", isSubmitted);
+	}, [isSubmitted]);
+	useEffect(() => {
+		if (isSubmitted) {
+			console.log("i AM INSIDE THE isSubmitted");
+			setPrice("");
+			setDiscountedPrice("");
+			setPricePerSqm("");
+			setFurnishing("");
+			setClassification("");
+			setNoOfBeds(0);
+			setNoOfFloors(0);
+			setNoOfBathrooms(0);
+			setParking(0);
+			setFloorArea("");
+			setLotArea("");
+			setPropId("");
+		}
+	}, [isSubmitted]);
 
 	const validateNumberInput = (value, setError) => {
 		if (isNaN(value)) {
@@ -543,7 +569,7 @@ const UnitDetailsComponent = ({
 										<input
 											type="number"
 											className="bathroom-input"
-											value={noOfBathrooms? noOfBathrooms.toLocaleString: "0"}
+											value={noOfBathrooms ? noOfBathrooms.toLocaleString : "0"}
 											min="0"
 											onChange={handleBathroomChange}
 											disabled={disabledPropertyFields}
@@ -586,7 +612,7 @@ const UnitDetailsComponent = ({
 										<input
 											type="number"
 											className="no-of-floors-input"
-											value={noOfFloors ? noOfFloors.toLocaleString():"0"}
+											value={noOfFloors ? noOfFloors.toLocaleString() : "0"}
 											min="0"
 											onChange={handleFloorChange}
 											disabled={disabledPropertyFields}
