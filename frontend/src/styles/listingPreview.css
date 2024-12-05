@@ -68,18 +68,26 @@
 
 .listing-preview--tag .tag-icon, 
 .listing-preview--tag .tag-icon img,
-.listing-preview--tag .tag-icon .tag-icon__heart,
+/* .listing-preview--tag .tag-icon .tag-icon__heart, */
 .listing-preview--tag .tag-icon .tag-icon__heart svg{
     width: 25px;
     height: 25px;
+}
+.listing-preview--tag .tag-icon .tag-icon__heart.ant-tag{
+    padding: 0;
+    margin: 0;
+    background:none;
+    color: var(--red) !important;
+    border: none;
 }
 .listing-preview--tag.tag__btn{
     cursor: pointer;
     border: 1px solid white;
 
 }
-.listing-preview--tag.tag__btn:hover{
-    color: black;
+.listing-preview--tag.tag__btn:hover,
+.listing-preview--tag .tag-icon .tag-icon__heart.ant-tag:hover{
+    color: black !important;
     border-color: black;
 }
 

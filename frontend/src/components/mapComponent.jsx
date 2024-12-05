@@ -21,7 +21,6 @@ const MapComponent = ({ style, oneListing }) => {
     const fetchCoordinates = async () => {
       const formattedLocation = `${oneListing.City?.toLowerCase().includes('city') ? oneListing.City.toLowerCase().replace('city', ''): oneListing.City}, ${CapitalizeString(oneListing.ProvinceState)}`;
       // const formattedLocation = oneListing.MapLocation;
-      console.log("formattedLocation", formattedLocation);
       // const formattedLocation = LocationFormatter(oneListing.City);
       try {
         const response = await fetch(
@@ -29,13 +28,10 @@ const MapComponent = ({ style, oneListing }) => {
             formattedLocation
           )}&format=json&addressdetails=1`
         );
-        console.log("response", response);
         
         const data = await response.json();
-        console.log("data", data);
         
         if (data.length !== 0) {
-          console.log("dsfsf");
           
           const { lat, lon } = data[0];
           setCoordinates([parseFloat(lat), parseFloat(lon)]);
@@ -44,7 +40,6 @@ const MapComponent = ({ style, oneListing }) => {
           setCoordinates([0, 0]);
         }
       } catch (err) {
-        console.log("errr", err);
         
         setError("An error occurred");
       } finally {
