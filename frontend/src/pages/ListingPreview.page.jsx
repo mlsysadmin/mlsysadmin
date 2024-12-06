@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import ImagePreviewComponent from "../components/ImagePreviewComponent";
 import '../styles/listingPreview.css';
-import { useLocation, useNavigate } from "react-router-dom";
+import "../styles/propertyHighlights.css";
+
 
 // Icons
 import RedCamera from "../assets/icons/previewlisting/redcamera.png";
 import {
     HeartFilled,
     HeartOutlined,
+    CalculatorOutlined,
+    MessageOutlined,
+    AppstoreOutlined
 } from "@ant-design/icons";
 import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
 import ShowerOutlinedIcon from "@mui/icons-material/ShowerOutlined";
 import ShortcutOutlinedIcon from "@mui/icons-material/ShortcutOutlined";
 import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
 import PhpOutlinedIcon from '@mui/icons-material/PhpOutlined';
-import { Button, Input, Modal, notification, Table, Tooltip } from "antd";
+import { Button, FloatButton, Input, Modal, notification, Table, Tooltip } from "antd";
 
 import { GetPublicListingByID, GetUnitPhotos } from "../api/GetAllPublicListings";
 import TextArea from "antd/es/input/TextArea";
@@ -25,10 +30,11 @@ import { GetAllFeaturesByPropertyNo } from "../api/GetAllAmenities";
 import PreviewLoadingModal from "../components/modals/PreviewLoadingModal";
 import { FormatLocation } from "../utils/LocationDateFormatter";
 import ViewPhotoGallery from "../components/ViewPhotoGalleryComponent";
-import { CustomMlFooter, FooterComponent } from "../components";
+import { CustomMlFooter, FloatBtnGroup, FooterComponent } from "../components";
 import PropertyHighLightsTableComponent from "../components/PropertyHighLightsTableComponent";
 import { SendEmailInquiry } from "../api/Public/Email.api";
 import CustomTag from "../components/custom/tags/Tags.custom";
+import SemiRoundBtn from "../components/custom/buttons/SemiRoundBtn.custom";
 
 const ListingPreview = () => {
     const location = useLocation();
@@ -56,6 +62,7 @@ const ListingPreview = () => {
         listingTitle: oneListing?.UnitName,
         propertyNo: oneListing?.PropertyNo,
     });
+    const [propertyDetails, setPropertyDetails] = useState([]);
 
     useEffect(() => {
         getlistingByID();
@@ -70,7 +77,36 @@ const ListingPreview = () => {
             FilterFeature(oneListing.PropertyType);
             setContact((prev) => {
                 return { ...prev, listingTitle: oneListing.UnitName, propertyNo: oneListing.PropertyNo }
-            })
+            });
+
+            const groupedData = [
+                { name: "heading--col", value: 'Property Type' },
+                { name: "heading--col", value: 'Listing Type' },
+                { name: "heading--col", value: 'Furnishing' },
+                { name: "heading--col", value: 'Bedroom' },
+                { name: "heading--col", value: 'Bathroom' },
+                { name: "value--col", value: CapitalizeString(oneListing.PropertyType) },
+                { name: "value--col", value: `For ${CapitalizeString(oneListing.SaleType)}` },
+                { name: "value--col", value: oneListing.Furnishing },
+                { name: "value--col", value: oneListing.BedRooms },
+                { name: "value--col", value: oneListing.BathRooms },
+                { name: "heading--col", value: 'Floor Area' },
+                { name: "heading--col", value: 'Lot Area' },
+                { name: "heading--col", value: 'Price per SqM' },
+                { name: "heading--col", value: 'No. of Floors' },
+                { name: "heading--col", value: 'Car Parking' },
+                { name: "value--col", value: oneListing.FloorArea },
+                { name: "value--col", value: oneListing.LotArea },
+                { name: "value--col", value: `Php ${oneListing.PricePerSqm}` },
+                { name: "value--col", value: oneListing.NoOfFloor },
+                { name: "value--col", value: oneListing.Parking },
+            ];
+            const rowGroup = [];
+
+            for (let i = 0; i < groupedData.length; i += 5) {
+                rowGroup.push(groupedData.slice(i, i + 5));
+            }
+            setPropertyDetails(rowGroup);
         }
     }, [oneListing]);
 
@@ -122,6 +158,11 @@ const ListingPreview = () => {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2
                     });
+                    dataresp.PricePerSqm = dataresp.PricePerSqm > 0 ?
+                        Number(dataresp.PricePerSqm).toLocaleString('en', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }) : 'N/A'
 
                     setOneListing(dataresp);
                     setFeatures(getFeatures);
@@ -279,12 +320,12 @@ const ListingPreview = () => {
             setTimeout(() => setShowTooltip(false), 800);
         }
     };
-    const HandleSaveClick = () =>{
+    const HandleSaveClick = () => {
         if (!checked) {
             setIsChecked(true);
             setShowTooltip(true);
             setTimeout(() => setShowTooltip(false), 800);
-        }else{
+        } else {
             setIsChecked(!checked);
         }
     }
@@ -391,7 +432,7 @@ const ListingPreview = () => {
                                         </div>
                                     </div>
                                     <div className="tag--bottom">
-                                        <div className="listing-preview--tag-wrapper">
+                                        <div className="listing-preview--tag-wrapper tag__wrapper-left">
                                             <div className="listing-preview--tag tag__sale-type">
                                                 <div className="tag-value--text">
                                                     <p>For {CapitalizeString(oneListing.SaleType)}</p>
@@ -403,18 +444,18 @@ const ListingPreview = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="listing-preview--tag-wrapper">
-                                            <div className="listing-preview--tag tag__btn">
+                                        <div className="listing-preview--tag-wrapper tag__wrapper-right">
+                                            <div className="listing-preview--tag tag__btn save-btn">
                                                 <div className="tag-icon">
-                                                <div>
-                                                    <Tooltip
-                                                        color="var(--red)"
-                                                        title="Added to favorites"
-                                                        open={showTooltip}
-                                                        className="preview-listing__tooltip"
-                                                        placement="top"
-                                                    ></Tooltip>
-                                                </div>
+                                                    <div>
+                                                        <Tooltip
+                                                            color="var(--red)"
+                                                            title="Added to favorites"
+                                                            open={showTooltip}
+                                                            className="preview-listing__tooltip"
+                                                            placement="top"
+                                                        ></Tooltip>
+                                                    </div>
                                                     <CustomTag
                                                         tagLabel={checked ? <HeartFilled /> : <HeartOutlined />}
                                                         style={{ fontSize: "23px", color: "#333333" }}
@@ -431,15 +472,16 @@ const ListingPreview = () => {
                                                     } */}
 
                                                 </div>
-                                                <div className="tag-value" onClick={HandleSaveClick}>
+                                                <div className="tag-value save-text" onClick={HandleSaveClick}>
                                                     <div className="tag-value--text">
                                                         <p>Save</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="listing-preview--tag tag__btn" onClick={HandleViewGallery}>
+                                            <div className="listing-preview--tag tag__btn show-all" onClick={HandleViewGallery}>
                                                 <div className="tag-value--text">
                                                     <p>Show All</p>
+                                                    <AppstoreOutlined className="show-all__icon" />
                                                 </div>
                                             </div>
                                         </div>
@@ -502,13 +544,27 @@ const ListingPreview = () => {
                                         <section className="listing-preview__listing-specifications">
                                             <h4>Property Details</h4>
                                             <div className="listing-preview__listing-specifications--table">
-                                                <Table
-                                                    columns={columns}
-                                                    dataSource={data}
-                                                    pagination={false}
-                                                    size="middle"
-                                                    rowHoverable={false}
-                                                />
+                                                <div className="property-highlights-table-component">
+                                                    <div className="property-highlights--table">
+                                                        <div className="property-highlights--table__thead">
+                                                            <p>Specifications</p>
+                                                        </div>
+                                                        <div className="property-highlights--table__tr-wrapper property--details">
+                                                            {propertyDetails.map((group, index) => (
+                                                                <div key={index} className="property-highlights--table__tr">
+                                                                    <div className="property-highlights-table-row">
+                                                                        {group.map((feature, i) => (
+                                                                            <div key={i} className={`property-highlightss--table__td ${feature.name}`}>
+                                                                                {feature.value}
+                                                                            </div>
+                                                                        ))
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </section>
                                         <section className="listing-preview__listing-highlights">
@@ -545,7 +601,7 @@ const ListingPreview = () => {
                                             }
                                         </section>
                                     </div>
-                                    <div className="listing-preview__listing-contact">
+                                    <div className="listing-preview__listing-contact" id="contact-form">
                                         {
                                             !isLoading && (
                                                 <div className="listing-preview__listing-contact--wrapper">
@@ -554,61 +610,65 @@ const ListingPreview = () => {
                                                             <h4>Contact Us</h4>
                                                         </div>
                                                         <div className="listing__contact--form">
-                                                            <div className="listing__contact--form-control">
-                                                                <Input
-                                                                    type="text"
-                                                                    placeholder="Name"
-                                                                    className="contact__form-control"
-                                                                    onChange={(e) => HandleContactChange(e)}
-                                                                    value={contact.name}
-                                                                    name="name"
-                                                                />
-                                                            </div>
-                                                            <div className="listing__contact--form-control">
-                                                                <Input
-                                                                    type="text"
-                                                                    placeholder="Email Address"
-                                                                    className="contact__form-control"
-                                                                    onChange={(e) => HandleContactChange(e)}
-                                                                    value={contact.email}
-                                                                    name="email"
-                                                                />
-                                                            </div>
-                                                            <div className="listing__contact--form-control">
-                                                                <Input
-                                                                    type="text"
-                                                                    placeholder="Phone Number"
-                                                                    className="contact__form-control"
-                                                                    onChange={(e) => HandleContactChange(e)}
-                                                                    value={contact.phone}
-                                                                    name="phone"
-                                                                    maxLength={11}
-                                                                    onKeyDown={(e) => {
-                                                                        const currentLength = contact.phone.length;
-                                                                        if (e.key === "Backspace" || e.key === "Delete") {
-                                                                            return;
-                                                                        }
-                                                                        if (!/\d/.test(e.key)) {
-                                                                            e.preventDefault();
-                                                                        }
-                                                                        if (currentLength === 0 && e.key !== "0") {
-                                                                            e.preventDefault();
-                                                                        }
-                                                                        if (currentLength === 1 && e.key !== "9") {
-                                                                            e.preventDefault();
-                                                                        }
-                                                                    }}
-                                                                />
-                                                            </div>
-                                                            <div className="listing__contact--form-control">
-                                                                <TextArea
-                                                                    placeholder={`I am interested in ${oneListing.UnitName}`}
-                                                                    className="contact__form-control"
-                                                                    rows={4}
-                                                                    onChange={(e) => HandleContactChange(e)}
-                                                                    value={contact.message}
-                                                                    name="message"
-                                                                />
+                                                            <div className="listing__contact--form-group">
+                                                                <div className="listing__contact--form-group-control">
+                                                                    <div className="listing__contact--form-control">
+                                                                        <Input
+                                                                            type="text"
+                                                                            placeholder="Name"
+                                                                            className="contact__form-control"
+                                                                            onChange={(e) => HandleContactChange(e)}
+                                                                            value={contact.name}
+                                                                            name="name"
+                                                                        />
+                                                                    </div>
+                                                                    <div className="listing__contact--form-control">
+                                                                        <Input
+                                                                            type="text"
+                                                                            placeholder="Email Address"
+                                                                            className="contact__form-control"
+                                                                            onChange={(e) => HandleContactChange(e)}
+                                                                            value={contact.email}
+                                                                            name="email"
+                                                                        />
+                                                                    </div>
+                                                                    <div className="listing__contact--form-control">
+                                                                        <Input
+                                                                            type="text"
+                                                                            placeholder="Phone Number"
+                                                                            className="contact__form-control"
+                                                                            onChange={(e) => HandleContactChange(e)}
+                                                                            value={contact.phone}
+                                                                            name="phone"
+                                                                            maxLength={11}
+                                                                            onKeyDown={(e) => {
+                                                                                const currentLength = contact.phone.length;
+                                                                                if (e.key === "Backspace" || e.key === "Delete") {
+                                                                                    return;
+                                                                                }
+                                                                                if (!/\d/.test(e.key)) {
+                                                                                    e.preventDefault();
+                                                                                }
+                                                                                if (currentLength === 0 && e.key !== "0") {
+                                                                                    e.preventDefault();
+                                                                                }
+                                                                                if (currentLength === 1 && e.key !== "9") {
+                                                                                    e.preventDefault();
+                                                                                }
+                                                                            }}
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                                <div className="listing__contact--form-control">
+                                                                    <TextArea
+                                                                        placeholder={`I am interested in ${oneListing.UnitName}`}
+                                                                        className="contact__form-control"
+                                                                        rows={4}
+                                                                        onChange={(e) => HandleContactChange(e)}
+                                                                        value={contact.message}
+                                                                        name="message"
+                                                                    />
+                                                                </div>
                                                             </div>
                                                             <div className="listing__contact--form-btns">
                                                                 <div className="form__btn--send">
@@ -653,6 +713,9 @@ const ListingPreview = () => {
                                                                 value: oneListing.SaleType
                                                             }]
                                                         }
+                                                        isPaginated={true}
+                                                        isNavigated={false}
+                                                        isEffectCoverFlow={true}
                                                     />
                                                     <MorePropertiesComponent
                                                         title="More Properties Nearby"
@@ -675,10 +738,66 @@ const ListingPreview = () => {
                                                                 value: oneListing.SaleType
                                                             }
                                                         ]}
+                                                        isPaginated={true}
+                                                        isNavigated={false}
+                                                        isEffectCoverFlow={true}
                                                     />
+                                                    {/* <MorePropertiesComponent
+                                                        title="More Properties Nearby"
+                                                        subtitle={`Discover more ${CapitalizeEachWord(oneListing.PropertyType)} options in ${CapitalizeEachWord(oneListing.ProvinceState)} — find your dream home today!`}
+                                                        propertyType={oneListing.PropertyType}
+                                                        saleType={oneListing.SaleType}
+                                                        filterValue={oneListing.ProvinceState}
+                                                        filterProperty={['ProvinceState']}
+                                                        searchProperty={[
+                                                            {
+                                                                key: "location",
+                                                                value: oneListing.ProvinceState
+                                                            },
+                                                            {
+                                                                key: "property_type",
+                                                                value: oneListing.PropertyType
+                                                            },
+                                                            {
+                                                                key: "sale_type",
+                                                                value: oneListing.SaleType
+                                                            }
+                                                        ]}
+                                                        isPaginated={true} 
+                                                        isNavigated={true} 
+                                                        isEffectCoverFlow={true}
+                                                    /> */}
                                                 </>
                                             )
                                         }
+                                    </div>
+                                </div>
+                                <div className="listing-preview--property-search">
+                                    <div className="property-search__wrapper">
+                                        <div className="manual-searching-title">
+                                            <h2>Begin Your Property Search Today with Our Help!</h2>
+                                        </div>
+                                        <div className="manual-searching-desc">
+                                            <p>
+                                                Let us help you find the perfect place to call home! Whether
+                                                you're searching for a luxurious estate, commercial lot for your
+                                                business, or industrial lot, our team is dedicated to matching
+                                                you with the ideal property that suits your needs and
+                                                preferences.
+                                            </p>
+                                        </div>
+                                        <div className="manualSearch--actions">
+                                            <SemiRoundBtn
+                                                label={"Get Free Assistance"}
+                                                type={"default"}
+                                                className="manual-search-action action-btn"
+                                                size={"large"}
+                                                handleClick={() => {
+                                                    window.location.href = "/propertySearch/?dashboardClicked=true";
+                                                }}
+                                            />
+                                        </div>
+                                        <p></p>
                                     </div>
                                 </div>
                             </div>
@@ -697,6 +816,32 @@ const ListingPreview = () => {
                                 />
                             </Modal>
                         </div>
+                        <div className="listing__contact--form-btns-sticky">
+                            <FloatBtnGroup
+                                children={
+                                    <>
+                                        <a href="#contact-form">
+                                            <FloatButton
+                                                icon={
+                                                    <MessageOutlined
+                                                        className="message-float__icon--icon"
+                                                    />}
+                                                tooltip="Message us"
+                                                className="float__icon message-float__icon"
+                                            />
+                                        </a>
+                                        <FloatButton icon={
+                                            <CalculatorOutlined
+                                                className="calculator-float__icon"
+                                            />}
+                                            tooltip="Calculator"
+                                            className="float__icon calculator-float__icon"
+                                            onClick={() => navigate('/discover-home#calculator')}
+                                        />
+                                    </>
+                                }
+                            />
+                        </div>
                         <div className="preview--footer">
                             <CustomMlFooter />
                             <FooterComponent />
@@ -704,6 +849,7 @@ const ListingPreview = () => {
                     </>
                 )
             }
+
         </>
     )
 }

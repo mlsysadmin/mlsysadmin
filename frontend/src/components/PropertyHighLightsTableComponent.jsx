@@ -6,35 +6,33 @@ const PropertyHighLightsTableComponent = ({ headerName, features }) => {
 
     useEffect(() => {
         const groupedData = [];
-        for (let i = 0; i < features.length; i += 4) {
-            groupedData.push(features.slice(i, i + 4));
+        for (let i = 0; i < features.length; i += 3) {
+            groupedData.push(features.slice(i, i + 3));
         }
         setPropertyHighlights(groupedData);
     }, [features]);
 
     return (
         <div className="property-highlights-table-component">
-            <table className="property-highlights--table">
-                <thead className="property-highlights--table__thead">
-                    <tr>
-                        <th>{headerName}</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {propertyHighlights.map((row, rowIndex) => (
-                        <tr key={rowIndex} className="property-highlights--table__tr">
-                            {row.map((item, colIndex) => (
-                                <td key={colIndex} className="property-highlightss--table__td">
-                                    {item.FeatureName}
-                                </td>
-                            ))}
-                        </tr>
+            <div className="property-highlights--table">
+                <div className="property-highlights--table__thead">
+                    <p>{headerName}</p>
+                </div>
+                <div className="property-highlights--table__tr-wrapper">
+                    {propertyHighlights.map((group, index) => (
+                        <div key={index} className="property-highlights--table__tr">
+                            <div className="property-highlights-table-row">
+                                {group.map((feature, i) => (
+                                    <div key={i} className="property-highlightss--table__td">
+                                        {feature.FeatureName}
+                                    </div>
+                                ))
+                                }
+                            </div>
+                        </div>
                     ))}
-                </tbody>
-            </table>
+                </div>
+            </div>
         </div>
     )
 }

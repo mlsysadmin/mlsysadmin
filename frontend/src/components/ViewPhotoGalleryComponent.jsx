@@ -17,7 +17,7 @@ const ViewPhotoGallery = ({ photos }) => {
             <div className="photo-gallery--header">
                 <p>Photo Gallery</p>
             </div>
-            <hr className="listing-preview--divider" />
+            <hr className="listing-preview--divider photo-gallery__hr" />
             <div className="photo-gallery--gallery">
                 <Image.PreviewGroup
                     preview={{
