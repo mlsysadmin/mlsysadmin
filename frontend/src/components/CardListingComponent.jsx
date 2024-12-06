@@ -50,46 +50,6 @@ const CardListingComponent = ({
     </div>
   );
 
-  const Features = () => {
-    // return features?.map((feature, i) => {
-    //     return (
-    //         <div className="feature-content" key={i}>
-    //             <img src={Shower} alt="sqm" className='feature-icon' />
-    //             <p className='feature-detail'>{feature.value}</p>
-    //         </div>
-    //     )
-    // })
-    // return (
-    //     <div className="featured">
-    //       {publiclisting.map((feature, i) => {
-    //         const { no_of_beds, no_of_bathrooms, lot_area } = feature.listings.unit_details;
-    //         return (
-    //           <div className="feature" key={i}>
-    //             <div className="feature-items">
-    //               {lot_area > 0 && (
-    //                 <div className="feature-item">
-    //                   <div className="feature-icon">
-    //                     <img src={Sqm} alt="area-icon" width={27} />
-    //                   </div>
-    //                   <p>{lot_area}</p>
-    //                 </div>
-    //               )}
-    //               {no_of_bathrooms > 0 && (
-    //                 <div className="feature-item">
-    //                   <div className="feature-icon">
-    //                     <img src={Shower} alt="bathroom-icon" width={27} />
-    //                   </div>
-    //                   <p>{no_of_bathrooms}</p>
-    //                 </div>
-    //               )}
-    //             </div>
-    //           </div>
-    //         );
-    //       })}
-    //     </div>
-    //   );
-  };
-
   const handleChange = (isChecked, tag, listingId) => {
     const id = listingId;
 

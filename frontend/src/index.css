@@ -41,10 +41,13 @@ h4{
   --half-radius: 5px;
   --default-page-size: 1000px;
   --d-body-text: 15px;
-  --m-body-text: 14px;
+  --m-body-text: 0.875rem; /* 14px */
   --d-h2-text: 28px;
   --d-h3-text: 24px;
   --d-h4-text: 22px;
+  --m-h2-text: 25px;
+  --m-h3-text: 22px;
+  --m-h4-text: 20px;
   --line-height: 1.6;
   /* xl */
   --xl-header-1-fs: 2.8rem;
@@ -252,4 +255,18 @@ xl    1280px    @media (min-width: 1280px) { ... }
   .dropdown-icon {
     display: none;
   }
+}
+
+@media (max-width: 575px) {
+  h2{
+    font-size: var(--m-h2-text) !important;
+  }
+  
+  h3{
+    font-size: var(--m-h3-text) !important;
+  }
+  
+  h4{
+    font-size: var(--m-h4-text) !important;
+  } 
 }

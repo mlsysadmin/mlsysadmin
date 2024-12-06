@@ -19,7 +19,7 @@ const MapComponent = ({ style, oneListing }) => {
 
   useEffect(() => {
     const fetchCoordinates = async () => {
-      const formattedLocation = `${oneListing.City?.toLowerCase().includes('city') ? oneListing.City.toLowerCase().replace('city', ''): oneListing.City}, ${CapitalizeString(oneListing.ProvinceState)}`;
+      const formattedLocation = `${oneListing.City?.toLowerCase().includes('city') ? oneListing.City.toLowerCase().replace('city', '') : oneListing.City}, ${CapitalizeString(oneListing.ProvinceState)}`;
       // const formattedLocation = oneListing.MapLocation;
       // const formattedLocation = LocationFormatter(oneListing.City);
       try {
@@ -28,11 +28,11 @@ const MapComponent = ({ style, oneListing }) => {
             formattedLocation
           )}&format=json&addressdetails=1`
         );
-        
+
         const data = await response.json();
-        
+
         if (data.length !== 0) {
-          
+
           const { lat, lon } = data[0];
           setCoordinates([parseFloat(lat), parseFloat(lon)]);
         } else {
@@ -40,7 +40,7 @@ const MapComponent = ({ style, oneListing }) => {
           setCoordinates([0, 0]);
         }
       } catch (err) {
-        
+
         setError("An error occurred");
       } finally {
         setIsLoaded(false);
@@ -70,10 +70,17 @@ const MapComponent = ({ style, oneListing }) => {
               center={coordinates}
               zoom={13}
               className="Brokerage-map-Container"
+              zoomControl={false}
+              scrollWheelZoom={false}
+              touchZoom={false}
+              minZoom={3}
+              maxZoom={18}
             >
               <TileLayer
+                minZoom={3}
+                maxZoom={18}
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              // attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               />
               <Circle
                 center={coordinates}
@@ -81,8 +88,9 @@ const MapComponent = ({ style, oneListing }) => {
                 color="#d90000"
                 fillColor="#d90000"
                 fillOpacity={0.3}
+
               />
-              <MapUpdater position={coordinates}/>
+              <MapUpdater position={coordinates} />
             </MapContainer>
           </>
         )}
