@@ -12,12 +12,29 @@ const FeaturedComponents = ({
 	onComplete,
 	setPropertyFields,
 	selectedPropertyTab,
+	isSubmitted
 }) => {
 	const [indoorSelectedFeatures, setIndoorSelectedFeatures] = useState([]);
 	const [outdoorSelectedFeatures, setOutdoorSelectedFeatures] = useState([]);
 	const [indooramenities, setIndoorAmenities] = useState([]);
 	const [outdooramenities, setOutdoorAmenities] = useState([]);
 
+
+	useEffect(() => {
+		if (isSubmitted) {
+			setPropertyFields({ Features: [] });
+			setIndoorSelectedFeatures([]);
+			setOutdoorSelectedFeatures([]);
+			indoorAmenities();
+			outdoorAmenities();
+		}
+	  }, [isSubmitted]);
+
+
+
+
+
+	  
 	const toggleFeature = useCallback((feature, type) => {
 		if (type === "Indoor Features") {
 			setIndoorSelectedFeatures((prevSelectedFeatures) =>
@@ -112,7 +129,7 @@ const FeaturedComponents = ({
 					toggleFeature={toggleFeature}
 				/>
 			</div>
-			<AddFeature setPropertyFields={setPropertyFields} />
+			<AddFeature setPropertyFields={setPropertyFields} isSubmitted={isSubmitted} />
 		</div>
 	);
 };

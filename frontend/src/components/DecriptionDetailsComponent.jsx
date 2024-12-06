@@ -5,12 +5,23 @@ const DescriptionDetailsComponent = ({
 	onComplete,
 	setPropertyFields,
 	setIsFocused,
+	isSubmitted
 }) => {
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
 	const [titleError, setTitleError] = useState("");
 	const [descriptionError, setDescriptionError] = useState("");
 
+	useEffect(() => {
+		if (isSubmitted) {
+			setPropertyFields({
+				UnitName: "",
+				Details: "",
+			});
+			setTitle("");
+			setDescription("");
+		}
+	  }, [isSubmitted]);
 	const validateTitle = (value) => {
 		if (!value) {
 			setTitleError("Title is required.");

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../styles/additionalFeature.css";
 import { MinusCircleOutlined } from '@ant-design/icons';
 
-const AddFeature = ({ setPropertyFields }) => {
+const AddFeature = ({ setPropertyFields, isSubmitted }) => {
 	const initialFeatures = ["Landscaped Parks with picnic grounds"];
 	const initialIncludes = ["Living Room with Dining Area"];
 
@@ -14,6 +14,20 @@ const AddFeature = ({ setPropertyFields }) => {
 	const [newInclude, setNewInclude] = useState("");
 	const [addingFeature, setAddingFeature] = useState(false);
 	const [addingInclude, setAddingInclude] = useState(false);
+
+	useEffect(()=>{
+		console.log("isSubmitted: ",isSubmitted);
+		if (isSubmitted) {
+			setFeatures([]);
+			setIncludes([]);
+			setNewFeature("");
+			setNewInclude("");
+			setSelectedFeatures([]);
+			setSelectedIncludes([]);
+		} 
+	},[isSubmitted])
+
+
 
 	const addNewItem = (item, setItems, setNewItem, setAdding, category) => {
 		if (item.trim()) {
