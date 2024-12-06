@@ -740,7 +740,7 @@ let number = accountDetails?.mobileNumber || null;
                   </div>
                   <div className="inquire--actions">
                     <SemiRoundBtn
-                      label={"Sign in to your ML Wallet Account"}
+                      label={"Sign in to your MCash Account"}
                       type={"default"}
                       className="sign-in--action action-btn"
                       size={"small"}

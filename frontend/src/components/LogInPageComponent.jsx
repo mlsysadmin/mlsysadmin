@@ -72,8 +72,15 @@ const LoginComponent = () => {
 		const sanitizedNumber = cleanPhonenumber(val);
 
 		setCountryCode(curCode);
-		setPhone(sanitizedNumber.replace("+63", "0"));
-		// setPhone(curCode + sanitizedNumber.replace(curCode, ""));
+
+		 if (sanitizedNumber.startsWith("0") || sanitizedNumber.startsWith("9")) {
+				setPhone(sanitizedNumber.replace(sanitizedNumber, "+63")); 
+				// setPhone(sanitizedNumber.replace("9", "+63")); 
+			} else {
+				setCountryCode(curCode);
+				setPhone(sanitizedNumber.replace("+63", "0"));
+			}
+		
 		validatePhoneNumber(sanitizedNumber, data.dialCode);
 	};
 
