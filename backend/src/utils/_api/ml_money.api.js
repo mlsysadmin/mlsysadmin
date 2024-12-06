@@ -15,7 +15,7 @@ module.exports = {
             const X_API_KEY = process.env.X_API_KEY;
             const {
                 mobileNumber, otpCode, firstName, lastName, middleName,
-                suffix, email, addressL0Id, addressL1Id, addressL2Id, 
+                suffix, email, addressL0Id, addressL1Id, addressL2Id,
                 otherAddress, zipCode
             } = user;
 
@@ -44,7 +44,7 @@ module.exports = {
             }
 
 
-            const register_ckyc = await ML_MONEY_API.post(endpoint, postData ,config);
+            const register_ckyc = await ML_MONEY_API.post(endpoint, postData, config);
 
             let data;
             let message;
@@ -76,7 +76,54 @@ module.exports = {
         } catch (error) {
             console.log(error);
 
-            throw (resp)
+            throw (error)
+        }
+    },
+    ExternalLogin: async (mobileNumber, otpCode) => {
+        try {
+            const endpoint = `${ML_MONEY_API}/api/v3/login/external`
+
+            const postData = {
+                mobileNumber: mobileNumber,
+                otpCode: otpCode,
+                service: "ML_PROPERTIES"
+            }
+
+            const login = await ML_MONEY_API.post(endpoint, postData);
+
+            // if (login) {
+                
+            // }
+
+            let data;
+            let message;
+            let code;
+
+            let request = {
+                url: URL,
+                method: 'POST',
+                query: {},
+                params: {},
+                body: postData,
+                headers: config
+            }
+
+            let response = {
+                data,
+                status: login.status,
+                code: login.statusText.toUpperCase(),
+                message: "User Logged in Successfully"
+            }
+
+            message = "User Logged in Successfully";
+            code = "USER_LOGGED_IN"
+
+            SuccessLoggerHelper(request, response);
+
+            return { login, message, code }
+
+        } catch (error) {
+            throw error;
         }
     }
 }
