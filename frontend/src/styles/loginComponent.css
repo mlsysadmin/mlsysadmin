@@ -147,10 +147,16 @@
 .sub-groups-user-bdate {
 	display: flex;
 	flex-direction: row;
-	width: 100%;
-	height: 150px;
 	margin-bottom: 0px;
 	justify-content: space-between;
+}
+.bdate-with-error{
+	height: 150px;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	flex-wrap: wrap;
+	width: 260px;
 }
 .month-select-options,
 .date-select-options,
