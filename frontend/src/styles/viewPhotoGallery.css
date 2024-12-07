@@ -78,6 +78,19 @@
 
 }
 
+<<<<<<< HEAD
+=======
+.photo-gallery__gallery-item.large .ant-image,
+.photo-gallery__gallery-item.large .ant-image img {
+    height: 500px !important;
+}
+
+.photo-gallery__gallery-item.small .ant-image,
+.photo-gallery__gallery-item.small .ant-image img {
+    height: 350px !important;
+}
+
+>>>>>>> 03ad603da6b1ab2c61965dddf048f02e9d112842
 .photo-gallery__gallery-item.large {
     flex: 2;
     /* Large images take up more space */
@@ -88,23 +101,157 @@
     /* Small images share equal space */
 }
 
-.ant-image-preview-mask{
+.ant-image-preview-mask {
     background-color: rgb(0 0 0 / 79%) !important;
 }
-.ant-image-preview-close{
+
+.ant-image-preview-close {
     color: #ffffff;
     background-color: rgb(0 0 0);
 }
 
 .ant-image-preview-switch-right,
-.ant-image-preview-switch-left{
+.ant-image-preview-switch-left {
     color: rgb(255 255 255);
     background: rgb(0 0 0);
 }
-.ant-image-preview-operations{
+
+.ant-image-preview-operations {
     display: none;
 }
 
-img.ant-image-preview-img{
+img.ant-image-preview-img {
     max-height: 80% !important;
+    width: 800px !important;
+}
+
+/* RESPONSIVE */
+/* Extra Extra Large Devices (very large screens) */
+@media (min-width: 1400px) {}
+
+/* Extra Large Devices (large desktops) */
+@media (min-width: 1099px) and (max-width: 1399px) {}
+
+/* Large Devices (desktops) */
+@media (min-width: 992px) and (max-width: 1100px) {}
+
+/* Medium Devices (tablets) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .photo-gallery--container {
+        padding: 50px;
+    }
+
+    .photo-gallery--gallery {
+        margin-top: 30px;
+    }
+
+    img.ant-image-preview-img {
+        width: 95% !important;
+    }
+
+    .photo-gallery__gallery-item.large .ant-image,
+    .photo-gallery__gallery-item.large .ant-image img {
+        height: 400px !important;
+    }
+
+    .photo-gallery__gallery-item.small .ant-image,
+    .photo-gallery__gallery-item.small .ant-image img {
+        height: 280px !important;
+    }
+
+    .ant-image-preview-switch-right,
+    .ant-image-preview-switch-left {
+        margin-top: 0;
+    }
+    .photo-gallery__hr{
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+/* Small Devices (phones, landscape) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .photo-gallery--container {
+        padding: 50px 30px;
+    }
+
+    .photo-gallery--gallery {
+        margin-top: 30px;
+    }
+
+    img.ant-image-preview-img {
+        width: 95% !important;
+    }
+
+    .photo-gallery__gallery-item.large .ant-image,
+    .photo-gallery__gallery-item.large .ant-image img {
+        height: 340px !important;
+    }
+
+    .photo-gallery__gallery-item.small .ant-image,
+    .photo-gallery__gallery-item.small .ant-image img {
+        height: 200px !important;
+    }
+
+    .ant-image-preview-switch-right,
+    .ant-image-preview-switch-left {
+        margin-top: 0;
+    }
+}
+
+/* Extra Small Devices (phones, portrait) */
+
+@media (max-width: 575px) {
+    .photo-gallery--container {
+        padding: 50px 30px;
+    }
+
+    .photo-gallery--gallery {
+        margin-top: 30px;
+    }
+
+    img.ant-image-preview-img {
+        width: 95% !important;
+    }
+
+    .photo-gallery__gallery-item.large .ant-image,
+    .photo-gallery__gallery-item.large .ant-image img {
+        height: 260px !important;
+    }
+
+    .photo-gallery__gallery-item.small .ant-image,
+    .photo-gallery__gallery-item.small .ant-image img {
+        height: 160px !important;
+    }
+
+    .ant-image-preview-switch-right,
+    .ant-image-preview-switch-left {
+        margin-top: 0;
+    }
+
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .photo-gallery--container {
+        padding: 30px 20px;
+    }
+
+    img.ant-image-preview-img {
+        width: 95% !important;
+    }
+
+    .photo-gallery__gallery-item.large .ant-image,
+    .photo-gallery__gallery-item.large .ant-image img {
+        height: 220px !important;
+    }
+
+    .photo-gallery__gallery-item.small .ant-image,
+    .photo-gallery__gallery-item.small .ant-image img {
+        height: 120px !important;
+    }
+
+    .ant-image-preview-switch-right,
+    .ant-image-preview-switch-left {
+        margin-top: 0;
+    }
 }
