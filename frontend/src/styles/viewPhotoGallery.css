@@ -46,7 +46,6 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 100%;
 }
 
 .photo-gallery__gallery-column {
@@ -79,6 +78,8 @@
 
 }
 
+<<<<<<< HEAD
+=======
 .photo-gallery__gallery-item.large .ant-image,
 .photo-gallery__gallery-item.large .ant-image img {
     height: 500px !important;
@@ -89,8 +90,9 @@
     height: 350px !important;
 }
 
+>>>>>>> 03ad603da6b1ab2c61965dddf048f02e9d112842
 .photo-gallery__gallery-item.large {
-    /* flex: 2; */
+    flex: 2;
     /* Large images take up more space */
 }
 

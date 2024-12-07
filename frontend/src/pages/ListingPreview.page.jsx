@@ -22,6 +22,8 @@ import PhpOutlinedIcon from '@mui/icons-material/PhpOutlined';
 import { Button, FloatButton, Input, Modal, notification, Table, Tooltip } from "antd";
 
 import { GetPublicListingByID, GetUnitPhotos } from "../api/GetAllPublicListings";
+import { useLocation } from "react-router-dom";
+import { Button, Input, Modal, Table, Tooltip } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import MapComponent from "../components/mapComponent";
 import MorePropertiesComponent from "../components/MorePropertiesComponent";
@@ -38,7 +40,6 @@ import SemiRoundBtn from "../components/custom/buttons/SemiRoundBtn.custom";
 
 const ListingPreview = () => {
     const location = useLocation();
-    const navigate = useNavigate();
 
     const [oneListing, setOneListing] = useState(null);
     const [features, setFeatures] = useState([]);
@@ -48,7 +49,7 @@ const ListingPreview = () => {
     const [unitPhotos, setUnitPhotos] = useState([]);
     const [galleryLength, setGalleryLength] = useState(0);
     const [open, setOpen] = React.useState(false);
-    const [btnLoading, setBtnLoading] = useState(false);
+    const [loadingModal, setLoadingmodal] = useState(true);
     const [checked, setIsChecked] = useState(false);
     const [likes, setLikes] = useState([]);
     const [showTooltip, setShowTooltip] = useState(false);
@@ -65,6 +66,7 @@ const ListingPreview = () => {
     const [propertyDetails, setPropertyDetails] = useState([]);
 
     useEffect(() => {
+        console.log("dsdsfdgdgf");
         getlistingByID();
 
         if (oneListing) {
@@ -137,6 +139,8 @@ const ListingPreview = () => {
 
                         gallery.unshift(photo);
 
+                        console.log("gallery", gallery);
+
                         setUnitPhotos(gallery);
                         setGalleryLength(gallery.length)
 
@@ -173,6 +177,7 @@ const ListingPreview = () => {
                 setOneListing(null);
             }
         } catch (error) {
+            console.log(error);
             setOneListing(null);
         } finally {
             setIsLoading(false);
@@ -184,12 +189,14 @@ const ListingPreview = () => {
 
             return resFeatures.data;
         } catch (error) {
+            console.log("Get Features: ", error);
 
             return [];
         }
     };
     const UnitPhotos = async (propertyId) => {
         try {
+            console.log(propertyId);
 
             const res = await GetUnitPhotos(propertyId);
 
@@ -249,10 +256,11 @@ const ListingPreview = () => {
                 );
             }
 
-            setAboutFeatures(feature);
+            setFeatures(feature);
         } catch (error) {
+            console.log("error", error);
 
-            setAboutFeatures([]);
+            setFeatures([]);
         }
     };
 
@@ -301,13 +309,104 @@ const ListingPreview = () => {
             item_4: 'PHP400,000',
         },
     ];
+    const columnsFeatures = [
+        {
+            title: 'Features',
+            dataIndex: 'item_1',
+            key: 'item_1',
+        },
+        {
+            dataIndex: 'item_2',
+            key: 'item_2',
+        },
+    ];
 
+    const dataFeatures = [
+        {
+            key: '1',
+            item_1: 'Property ID',
+            item_2: 123456789,
+        },
+        {
+            key: '2',
+            item_1: 'Listing Type',
+            item_2: 'House for Sale',
+        },
+        {
+            key: '3',
+            item_1: 'Furnishing',
+            item_2: 'Furnished',
+        },
+    ];
+    const columnsAmenities = [
+        {
+            title: 'Amenities',
+            dataIndex: 'item_1',
+            key: 'item_1',
+        },
+        {
+            dataIndex: 'item_2',
+            key: 'item_2',
+        },
+    ];
+
+    const dataAmenities = [
+        {
+            key: '1',
+            item_1: 'Property ID',
+            item_2: 123456789,
+        },
+        {
+            key: '2',
+            item_1: 'Listing Type',
+            item_2: 'House for Sale',
+        },
+        {
+            key: '3',
+            item_1: 'Furnishing',
+            item_2: 'Furnished',
+        },
+    ];
+    const columnsIncludes = [
+        {
+            title: 'Includes',
+            dataIndex: 'item_1',
+            key: 'item_1',
+        },
+        {
+            dataIndex: 'item_2',
+            key: 'item_2',
+        },
+
+    ];
+
+    const dataIncludes = [
+        {
+            key: '1',
+            item_1: 'Property ID',
+            item_2: 123456789,
+        },
+        {
+            key: '2',
+            item_1: 'Listing Type',
+            item_2: 'House for Sale',
+        },
+        {
+            key: '3',
+            item_1: 'Furnishing',
+            item_2: 'Furnished',
+        },
+    ];
     const HandleViewGallery = () => {
+        console.log('Gallery View');
         setOpen(true)
+        setTimeout(() => {
+            setLoadingmodal(false);
+        }, 1000);
     }
-    const HandleChangeHeart = (isChecked, tag, listingId) => {
-        const id = listingId;
-
+    const HandleChangeHeart = (isChecked, tag, id) => {
+        console.log("dsfdgdg");
+        
         const nextSelectedTags =
             isChecked && !likes.includes(id)
                 ? [...likes, id]
@@ -315,6 +414,7 @@ const ListingPreview = () => {
 
         setLikes(nextSelectedTags);
         setIsChecked(isChecked);
+
         if (isChecked) {
             setShowTooltip(true);
             setTimeout(() => setShowTooltip(false), 800);
@@ -404,7 +504,6 @@ const ListingPreview = () => {
 
     return (
         <>
-            {contextHolder}
             {
                 isLoading ? (
                     <PreviewLoadingModal />
@@ -469,7 +568,7 @@ const ListingPreview = () => {
                                                         checked
                                                             ? <HeartFilled className="tag-icon__heart" />
                                                             : <HeartOutlined className="tag-icon__heart" />
-                                                    } */}
+                                                    }
 
                                                 </div>
                                                 <div className="tag-value save-text" onClick={HandleSaveClick}>
@@ -499,18 +598,18 @@ const ListingPreview = () => {
                                                 )}
                                             </p>
                                             <p className="listing-preview__listing-pre-approved">
-                                                <a href="/mortgage">Get Pre-Approved</a>
+                                                <a href="/pre-approved">Get Pre-Approved</a>
                                             </p>
                                         </section>
                                         <section className="listing-preview__listing-about">
                                             <h4>About this property</h4>
                                             <div className="listing-preview__listing-about--items">
                                                 {
-                                                    aboutFeatures.map((feature, index) => {
+                                                    features.map((feature, index) => {
                                                         // if (feature.value && feature.value !== "0") {
 
                                                         return (
-                                                            <div className="listing-preview__listing-about--item" key={index}>
+                                                            <div className="listing-preview__listing-about--item">
                                                                 <div className="listing-preview__listing-about-item--title">
                                                                     <p>{feature.title}</p>
                                                                 </div>
@@ -672,13 +771,12 @@ const ListingPreview = () => {
                                                             </div>
                                                             <div className="listing__contact--form-btns">
                                                                 <div className="form__btn--send">
-                                                                    <Button className="btn-send" onClick={HandleContactClick}
-                                                                        loading={btnLoading}>
+                                                                    <Button className="btn-send">
                                                                         Send Message
                                                                     </Button>
                                                                 </div>
                                                                 <div className="form__btn--calculator">
-                                                                    <Button className="btn-calculator" onClick={HandleCalculatorClick}>
+                                                                    <Button className="btn-calculator">
                                                                         Loan Calculator
                                                                     </Button>
                                                                 </div>
@@ -719,7 +817,7 @@ const ListingPreview = () => {
                                                     />
                                                     <MorePropertiesComponent
                                                         title="More Properties Nearby"
-                                                        subtitle={`Discover more ${CapitalizeEachWord(oneListing.PropertyType)} options in ${CapitalizeEachWord(oneListing.ProvinceState)} — find your dream home today!`}
+                                                        subtitle={`Discover more ${CapitalizeEachWord(oneListing.PropertyType)} options in ${CapitalizeEachWord(oneListing.City)} — find your dream home today!`}
                                                         propertyType={oneListing.PropertyType}
                                                         saleType={oneListing.SaleType}
                                                         filterValue={oneListing.ProvinceState}
@@ -843,8 +941,8 @@ const ListingPreview = () => {
                             />
                         </div>
                         <div className="preview--footer">
-                            <CustomMlFooter />
-                            <FooterComponent />
+                        <CustomMlFooter />
+                        <FooterComponent />
                         </div>
                     </>
                 )

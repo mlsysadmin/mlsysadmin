@@ -23,7 +23,7 @@
 }
 #card-listing .ant-card-body .listing-image,
 #card-listing .ant-card-body .listing-image .property-img {
-  height: 230px;
+  height: 210px;
 }
 
 #card-listing .ant-card-body .listing-image .tags {
@@ -191,7 +191,7 @@
   .card-content
   .card-content--title {
   margin: 0px !important;
-  height: 20px;
+  height: 40px;
 }
 #card-listing
   .ant-card-body

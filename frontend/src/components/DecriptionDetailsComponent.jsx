@@ -5,7 +5,7 @@ const DescriptionDetailsComponent = ({
 	onComplete,
 	setPropertyFields,
 	setIsFocused,
-	isSubmitted
+	isSubmitted,
 }) => {
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
@@ -21,7 +21,8 @@ const DescriptionDetailsComponent = ({
 			setTitle("");
 			setDescription("");
 		}
-	  }, [isSubmitted]);
+	}, [isSubmitted]);
+
 	const validateTitle = (value) => {
 		if (!value) {
 			setTitleError("Title is required.");
@@ -78,15 +79,16 @@ const DescriptionDetailsComponent = ({
 					{titleError && <div className="error">{titleError}</div>}
 					<p className="example">
 						If there are important details that we weren't able to ask, you can
-						specify it here. Please note: links and contact info entered will be removed.
+						specify it here. Please note: links and contact info entered will be
+						removed.
 					</p>
 				</div>
 				<div className="descriptionContent">
 					<textarea
 						placeholder="Enter Description"
 						value={description}
-						onFocus={() => setIsFocused(true)} 
-						onBlur={() => setIsFocused(false)} 
+						onFocus={() => setIsFocused(true)}
+						onBlur={() => setIsFocused(false)}
 						onChange={(e) => {
 							setDescription(e.target.value);
 							validateDescription(e.target.value);

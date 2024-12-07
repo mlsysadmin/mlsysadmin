@@ -44,52 +44,31 @@ const ValidationSchema = {
     GetMasterDetailsParams: Joi.object().keys({
         listing_id: Joi.string().required(),
         property_status: Joi.string()
-            .custom((value, helpers) => {
-                const status = ['ACTIVE', 'INACTIVE', 'SOLD'];
+        .custom((value, helpers) => {
+            const status = ['ACTIVE', 'INACTIVE', 'SOLD'];
 
-                if (!status.includes(value)) {
-                    return helpers.message(`Invalid approval status`);
-                }
+            if (!status.includes(value)) {
+                return helpers.message(`Invalid approval status`);
+            }
 
-                return value;
-            }).required(),
+            return value;
+        }).required(),
     }),
     GetSellerMasterListingParams: Joi.object().keys({
         seller: Joi.string().required(),
         property_status: Joi.string()
-            .custom((value, helpers) => {
-                const status = ['ACTIVE', 'INACTIVE', 'SOLD'];
+        .custom((value, helpers) => {
+            const status = ['ACTIVE', 'INACTIVE', 'SOLD'];
 
-                if (!status.includes(value)) {
-                    return helpers.message(`Invalid approval status`);
-                }
+            if (!status.includes(value)) {
+                return helpers.message(`Invalid approval status`);
+            }
 
-                return value;
-            }).required(),
+            return value;
+        }).required(),
     }),
     searchKyc: Joi.object().keys({
         cellphoneNumber: Joi.string().required()
-    }),
-    otpProperty: Joi.object().keys({
-        cellphoneNumber: Joi.string().required()
-    }),
-    validateOtp: Joi.object().keys({
-        cellphoneNumber: Joi.string().required(),
-        pin: Joi.string().required(),
-    }),
-    registerKyc: Joi.object().keys({
-        mobileNumber: Joi.string().required(),
-        otpCode: Joi.string().required(),
-        firstName: Joi.string().required(),
-        lastName: Joi.string().required(),
-        middleName: Joi.string().optional(),
-        suffix: Joi.string().optional(),
-        email: Joi.string().required(),
-        addressL0Id: Joi.string().required(),
-        addressL1Id: Joi.string().required(),
-        addressL2Id: Joi.string().required(),
-        otherAddress: Joi.string().optional(),
-        zipCode: Joi.string().optional()
     }),
     ListingBody: Joi.object().keys({
         seller: Joi.string().required(),

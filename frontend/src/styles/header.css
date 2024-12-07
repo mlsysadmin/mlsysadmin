@@ -196,3 +196,8 @@
         font-size: 15px;
     }
 }
+@media screen and (min-width: 1376px) and (max-width: 1500px) {
+    .header--menu.ant-menu li {
+       padding: 5px;
+    }
+}
