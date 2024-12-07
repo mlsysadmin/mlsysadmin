@@ -97,6 +97,7 @@ const FillLocationFilter = (listings) => {
     return distinctProvince;
 
   } catch (error) {
+    console.log("location", error);
     return [];
   }
 }
@@ -131,7 +132,7 @@ const SortListings = (sortKey, sortListing, listings) => {
   return sortListing
 }
 
-const CapitalizeEachWord = (word) => {
+const CapitalizeEachWord = (word) => {  
   try {
     let capitalizeEachWord = "";
 
@@ -145,6 +146,7 @@ const CapitalizeEachWord = (word) => {
 
       capitalizeEachWord = w
     }
+    console.log(capitalizeEachWord);
 
     capitalizeEachWord.trim();
 

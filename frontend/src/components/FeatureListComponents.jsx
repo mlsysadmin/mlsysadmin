@@ -12,14 +12,14 @@ const FeaturedComponents = ({
 	onComplete,
 	setPropertyFields,
 	selectedPropertyTab,
-	isSubmitted
+	isSubmitted,
 }) => {
 	const [indoorSelectedFeatures, setIndoorSelectedFeatures] = useState([]);
 	const [outdoorSelectedFeatures, setOutdoorSelectedFeatures] = useState([]);
 	const [indooramenities, setIndoorAmenities] = useState([]);
 	const [outdooramenities, setOutdoorAmenities] = useState([]);
 
-
+	
 	useEffect(() => {
 		if (isSubmitted) {
 			setPropertyFields({ Features: [] });
@@ -28,13 +28,8 @@ const FeaturedComponents = ({
 			indoorAmenities();
 			outdoorAmenities();
 		}
-	  }, [isSubmitted]);
+	}, [isSubmitted]);
 
-
-
-
-
-	  
 	const toggleFeature = useCallback((feature, type) => {
 		if (type === "Indoor Features") {
 			setIndoorSelectedFeatures((prevSelectedFeatures) =>
@@ -81,7 +76,7 @@ const FeaturedComponents = ({
 		if (!requiresAdditionalFields) {
 			onComplete(true);
 			// setPropertyFields({ Features: [] });
-			return; 
+			return;
 		}
 
 		const featuresComplete =
@@ -106,7 +101,12 @@ const FeaturedComponents = ({
 			setPropertyFields({ Features: [] });
 			onComplete(false);
 		}
-	}, [indoorSelectedFeatures, outdoorSelectedFeatures, onComplete, selectedPropertyTab]);
+	}, [
+		indoorSelectedFeatures,
+		outdoorSelectedFeatures,
+		onComplete,
+		selectedPropertyTab,
+	]);
 
 	return (
 		<div className="featureList">
@@ -129,7 +129,7 @@ const FeaturedComponents = ({
 					toggleFeature={toggleFeature}
 				/>
 			</div>
-			<AddFeature setPropertyFields={setPropertyFields} isSubmitted={isSubmitted} />
+			<AddFeature setPropertyFields={setPropertyFields} />
 		</div>
 	);
 };

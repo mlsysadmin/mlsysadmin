@@ -3,156 +3,156 @@ import { WarningOutlined } from "@ant-design/icons";
 import "../styles/listing-form.css";
 
 const PropertyDetailsComponent = ({
-  onComplete,
-  setPropertyFields,
-  isSubmitted,
+	onComplete,
+	setPropertyFields,
+	isSubmitted,
 }) => {
-  const [selectedPropertyTab, setSelectedPropertyTab] = useState("");
-  const [selectedListingTab, setSelectedListingTab] = useState("");
+	const [selectedPropertyTab, setSelectedPropertyTab] = useState("");
+	const [selectedListingTab, setSelectedListingTab] = useState("");
 
-  useEffect(() => {
-    if (isSubmitted) {
-      setPropertyFields({
-        SaleType: "",
-        PropertyType: "",
-      });
-      setSelectedPropertyTab("");
-      setSelectedListingTab("");
-    }
-  }, [isSubmitted]);
+	useEffect(() => {
+		if (isSubmitted) {
+			setPropertyFields({
+				SaleType: "",
+				PropertyType: "",
+			});
+			setSelectedPropertyTab("");
+			setSelectedListingTab("");
+		}
+	}, [isSubmitted]);
 
-  useEffect(() => {
-    const isCompleted = selectedPropertyTab !== "" && selectedListingTab !== "";
-    onComplete(isCompleted);
-    if (isCompleted) {
-      setPropertyFields({
-        SaleType: selectedListingTab,
-        PropertyType: selectedPropertyTab.toLowerCase(),
-      });
-    }
-  }, [selectedPropertyTab, selectedListingTab, onComplete, setPropertyFields]);
+	useEffect(() => {
+		const isCompleted = selectedPropertyTab !== "" && selectedListingTab !== "";
+		onComplete(isCompleted);
+		if (isCompleted) {
+			setPropertyFields({
+				SaleType: selectedListingTab,
+				PropertyType: selectedPropertyTab.toLowerCase(),
+			});
+		}
+	}, [selectedPropertyTab, selectedListingTab, onComplete, setPropertyFields]);
 
-  const handlePropertyTabClick = (tab) => {
-    setSelectedPropertyTab(tab);
-  };
+	const handlePropertyTabClick = (tab) => {
+		setSelectedPropertyTab(tab);
+	};
 
-  const handleListingTabClick = (tab) => {
-    setSelectedListingTab(tab);
-  };
+	const handleListingTabClick = (tab) => {
+		setSelectedListingTab(tab);
+	};
 
-  return (
-    <div className="listing-property-details">
-      <div className="listing-property-details-info">
-        <b className="b">Property Details</b>
-      </div>
-      <div className="listing-property-details-tabs">
-        <div className="listing-property-type">
-          <div className="listing-property-details-label">
-            <div className="label"> Property Type </div>
-          </div>
-          <div className="tab-container">
-            <div className="tab-category">
-              <div className="tab-label">Commercial</div>
-              <div className="tab-wrapper">
-                <div className="tabs">
-                  {[
-                    "Service Office",
-                    "Shop/Retail",
-                    "Commercial Land/Lot",
-                    "Office Space",
-                  ].map((tab) => (
-                    <div
-                      key={tab}
-                      className={`tab ${
-                        selectedPropertyTab === tab ? "selected" : ""
-                      }`}
-                      onClick={() => handlePropertyTabClick(tab)}
-                    >
-                      {tab}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="tab-category">
-              <div className="tab-label">Residential</div>
-              <div className="tab-wrapper">
-                <div className="tabs">
-                  {["Condominium", "House and Lot", "Lot", "Townhouse"].map(
-                    (tab) => (
-                      <div
-                        key={tab}
-                        className={`tab ${
-                          selectedPropertyTab === tab ? "selected" : ""
-                        }`}
-                        onClick={() => handlePropertyTabClick(tab)}
-                      >
-                        {tab}
-                      </div>
-                    )
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className="tab-category">
-              <div className="tab-label">Industrial/etc</div>
-              <div className="tab-wrapper">
-                <div className="tabs">
-                  {["Warehouse", "Farm Lot", "Hotel/Resort"].map((tab) => (
-                    <div
-                      key={tab}
-                      className={`tab ${
-                        selectedPropertyTab === tab ? "selected" : ""
-                      }`}
-                      onClick={() => handlePropertyTabClick(tab)}
-                    >
-                      {tab}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="listing-listing-type">
-          <div className="listing-listing-details-label">
-            <div className="label"> Listing Type </div>
-          </div>
-          <div className="listing-tab-container">
-            {/* <label className="text-wrapper-38" htmlFor="classification">
+	return (
+		<div className="listing-property-details">
+			<div className="listing-property-details-info">
+				<b className="b">Property Details</b>
+			</div>
+			<div className="listing-property-details-tabs">
+				<div className="listing-property-type">
+					<div className="listing-property-details-label">
+						<div className="label"> Property Type </div>
+					</div>
+					<div className="tab-container">
+						<div className="tab-category">
+							<div className="tab-label">Commercial</div>
+							<div className="tab-wrapper">
+								<div className="tabs">
+									{[
+										"Service Office",
+										"Shop/Retail",
+										"Commercial Land/Lot",
+										"Office Space",
+									].map((tab) => (
+										<div
+											key={tab}
+											className={`tab ${
+												selectedPropertyTab === tab ? "selected" : ""
+											}`}
+											onClick={() => handlePropertyTabClick(tab)}
+										>
+											{tab}
+										</div>
+									))}
+								</div>
+							</div>
+						</div>
+						<div className="tab-category">
+							<div className="tab-label">Residential</div>
+							<div className="tab-wrapper">
+								<div className="tabs">
+									{["Condominium", "House and Lot", "Lot", "Townhouse"].map(
+										(tab) => (
+											<div
+												key={tab}
+												className={`tab ${
+													selectedPropertyTab === tab ? "selected" : ""
+												}`}
+												onClick={() => handlePropertyTabClick(tab)}
+											>
+												{tab}
+											</div>
+										)
+									)}
+								</div>
+							</div>
+						</div>
+						<div className="tab-category">
+							<div className="tab-label">Industrial/etc</div>
+							<div className="tab-wrapper">
+								<div className="tabs">
+									{["Warehouse", "Farm Lot", "Hotel/Resort"].map((tab) => (
+										<div
+											key={tab}
+											className={`tab ${
+												selectedPropertyTab === tab ? "selected" : ""
+											}`}
+											onClick={() => handlePropertyTabClick(tab)}
+										>
+											{tab}
+										</div>
+									))}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="listing-listing-type">
+					<div className="listing-listing-details-label">
+						<div className="label"> Listing Type </div>
+					</div>
+					<div className="listing-tab-container">
+						{/* <label className="text-wrapper-38" htmlFor="classification">
 							What is the Listing Type?
 						</label> */}
-            <div className="tab-category">
-              <div
-                className="tab-label"
-                style={{ color: "#8b8f94", fontWeight: "400" }}
-              >
-                What is the Listing Type?
-              </div>
-              <div className="listing-tab-wrapper">
-                <div className="listing-tabs">
-                  {["Rent", "Sale", "Pre Selling"].map((tab) => (
-                    <div
-                      key={tab}
-                      className={`tab ${
-                        selectedListingTab.toLowerCase().replace(/\s/g, "") ===
-                        tab.toLowerCase().replace(/\s/g, "")
-                          ? "selected"
-                          : ""
-                      }`}
-                      onClick={() =>
-                        handleListingTabClick(
-                          tab.toLowerCase().replace(/\s/g, "")
-                        )
-                      }
-                    >
-                      {tab}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            {/* <div className="listing-note">
+						<div className="tab-category">
+							<div
+								className="tab-label"
+								style={{ color: "#8b8f94", fontWeight: "400" }}
+							>
+								What is the Listing Type?
+							</div>
+							<div className="listing-tab-wrapper">
+								<div className="listing-tabs">
+									{["Rent", "Sale", "Pre Selling"].map((tab) => (
+										<div
+											key={tab}
+											className={`tab ${
+												selectedListingTab.toLowerCase().replace(/\s/g, "") ===
+												tab.toLowerCase().replace(/\s/g, "")
+													? "selected"
+													: ""
+											}`}
+											onClick={() =>
+												handleListingTabClick(
+													tab.toLowerCase().replace(/\s/g, "")
+												)
+											}
+										>
+											{tab}
+										</div>
+									))}
+								</div>
+							</div>
+						</div>
+						{/* <div className="listing-note">
 							<p>
 								To help home buyers better, we only accept these 3 types of
 								listing.
@@ -180,11 +180,11 @@ const PropertyDetailsComponent = ({
 								</p>
 							</ul>
 						</div> */}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default PropertyDetailsComponent;

@@ -65,7 +65,7 @@ import {
   SortByText,
 } from "../utils/StringFunctions.utils";
 import { CardSkeleton, FeaturesSkeleton } from "./Skeleton";
-import { isCookiePresent } from "../utils/CookieChecker";
+import { getCookieData, isCookiePresent } from "../utils/CookieChecker";
 
 const { Option } = Select;
 
@@ -218,6 +218,9 @@ const DashboardComponent = () => {
   const accountCookieName = process.env.REACT_APP_ACCOUNT_COOKIE_NAME;
   const isMLWWSPresent = isCookiePresent(sessionCookieName);
   const isAccountDetailsPresent = isCookiePresent(accountCookieName);
+	const accountDetails = getCookieData();
+
+let number = accountDetails?.mobileNumber || null;
 
   const handleUserProfileClick = () => {
     if (!isMLWWSPresent && !isAccountDetailsPresent) {
@@ -634,30 +637,34 @@ const DashboardComponent = () => {
             <div className="listing-carousel-dashboard">
               {publiclisting.map((item, i) => {
                 return (
-                  <CardListingComponent
-                    title={item.title}
-                    price={`PHP ${item.price}`}
-                    status={item.status}
-                    pics={item.pics}
-                    img={item.img}
-                    no_of_bathrooms={item.no_of_bathrooms}
-                    no_of_beds={item.no_of_beds}
-                    lot={item.lot}
-                    key={i}
-                    loading={loading}
-                    subtitle={`${item.property_type === "hotel/resort" ? CapitalizeStringwithSymbol(item.property_type) : CapitalizeEachWord(
-                      item.property_type
-                    )} For ${CapitalizeString(item.sale_type)}`}
-                    listingId={item.property_no}
-                    handleClick={() => handleCardClick(item.property_no)}
-                    sale_status={item.sale_type}
-                    isSavedProperties={{
+									<CardListingComponent
+										title={item.title}
+										price={`PHP ${item.price}`}
+										status={item.status}
+										pics={item.pics}
+										img={item.img}
+										no_of_bathrooms={item.no_of_bathrooms}
+										no_of_beds={item.no_of_beds}
+										lot={item.lot}
+										key={i}
+										loading={loading}
+										subtitle={`${
+											item.property_type === "hotel/resort"
+												? CapitalizeStringwithSymbol(item.property_type)
+												: CapitalizeEachWord(item.property_type)
+										} For ${CapitalizeString(item.sale_type)}`}
+										listingId={item.property_no}
+										handleClick={() => handleCardClick(item.property_no)}
+										sale_status={item.sale_type}
+										propertyNo={item.property_no}
+										number={number}
+                     isSavedProperties={{
                       atSavedPropertiesPage: false,
                       isRecordStatus: item.recordStatus,
                       isAccessType: item.accessType,
                     }}
-                  />
-                );
+									/>
+								);
               })}
               <div
                 style={{

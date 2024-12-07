@@ -64,7 +64,7 @@
 .login-input-groups .react-tel-input .flag-dropdown.open {
 	border-radius: 10px 0 0 10px;
 	border: 1px solid rgba(140, 144, 148, 0.7);
-	width: 51px;
+	width: 45px;
 	background-color: transparent;
 }
 .login-input-groups .react-tel-input .flag-dropdown.open .selected-flag {
@@ -147,10 +147,16 @@
 .sub-groups-user-bdate {
 	display: flex;
 	flex-direction: row;
-	width: 100%;
-	height: 150px;
 	margin-bottom: 0px;
 	justify-content: space-between;
+}
+.bdate-with-error{
+	height: 150px;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	flex-wrap: wrap;
+	width: 260px;
 }
 .month-select-options,
 .date-select-options,

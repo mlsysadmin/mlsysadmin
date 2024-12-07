@@ -142,7 +142,9 @@
 	font-family: "Poppins", Helvetica;
 	font-weight: 400;
 }
-
+.mortgage-calc .loan-term-value .ant-select span{
+	font-size: 18px !important;
+}
 .home-price-price-range input:focus,
 .mortgage-calc .downpayment-amount-val input:focus {
 	border: 1px solid black;
@@ -157,6 +159,9 @@
 
 .mortgage-calc .range-group .ant-slider {
 	margin: 3px 5px 11px;
+}
+.loan-term-value .ant-select .ant-select-arrow{
+margin-right: 5px;
 }
 
 /* END */
@@ -622,7 +627,7 @@
 } */
 
 .mortgage-calc .loan-term-value {
-	width: 100%;
+	width: 170px;
 	font-size: 18px;
 }
 
