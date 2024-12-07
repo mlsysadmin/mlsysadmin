@@ -154,6 +154,10 @@ const CapitalizeEachWord = (word) => {
   }
 
 }
+const TruncateText = (text, length) => {
+  if (text.length <= length) return text;
+  return text.substring(0, length) + "...";
+};
 
 export {
   CapitalizeString,
@@ -165,5 +169,6 @@ export {
   SortByText,
   SortListings,
   CapitalizeStringwithSymbol,
-  CapitalizeEachWord
+  CapitalizeEachWord,
+  TruncateText
 }

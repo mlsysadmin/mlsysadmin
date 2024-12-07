@@ -1,21 +1,29 @@
-import { Button, Card } from "antd";
+import { Button, Card, Tooltip } from "antd";
 import React, { useEffect, useState } from "react";
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+// import required modules
+import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
+
 import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 
 import '../styles/moreProperties.css';
-import { CameraFilled, CameraOutlined, HeartOutlined } from "@ant-design/icons";
 import { CapitalizeEachWord, CapitalizeString } from "../utils/StringFunctions.utils";
 
-// ICONS
-import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
-import ShowerOutlinedIcon from "@mui/icons-material/ShowerOutlined";
-import ShortcutOutlinedIcon from "@mui/icons-material/ShortcutOutlined";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, createSearchParams } from "react-router-dom";
+import PropertyCard from "./custom/cards/PropertyCard";
 
-const MorePropertiesComponent = ({ 
-    title, subtitle, propertyType, 
+const MorePropertiesComponent = ({
+    title, subtitle, propertyType,
     saleType, filterValue, filterProperty,
-    searchProperty 
+    searchProperty,
+    isPaginated, isNavigated, isEffectCoverFlow
 }) => {
 
     const navigate = useNavigate();
@@ -32,7 +40,8 @@ const MorePropertiesComponent = ({
             isFeatured: false,
             saleType: "",
             imageCount: 0,
-            city: ""
+            city: "",
+            propertyNo: ""
         }
     ]);
 
@@ -46,17 +55,17 @@ const MorePropertiesComponent = ({
             const URL = process.env.REACT_APP_IGOT_API_URL;
 
             if (getListingByPropertyType.length > 0) {
-                
+
                 let filteredListing;
-                
+
                 filterProperty.forEach(fp => {
-                    
+
                     filteredListing = getListingByPropertyType.filter(fList => filterValue == fList[fp]);
                 });
-                
+
                 filteredListing = filteredListing.filter((listing) =>
                     listing.PropertyType == propertyType && listing.SaleType == saleType
-            ).slice(0, 6)
+                ).slice(0, 6)
                 const listing = await Promise.all(
                     filteredListing.map(async (list, i) => {
 
@@ -68,9 +77,9 @@ const MorePropertiesComponent = ({
                         const gallery = getPhotoGallery.data;
 
                         return {
-                            title: list.UnitName,
+                            title: CapitalizeString(list.UnitName),
                             photo: `${URL}/${list.Photo}`,
-                            price: `PHP ${formatPrice} ${isRent ? '/ month' : ''}`,
+                            price: `PHP ${formatPrice}${isRent ? '/month' : ''}`,
                             subtitle: `${CapitalizeEachWord(list.PropertyType)} For ${CapitalizeString(list.SaleType)}`,
                             area: list.LotArea,
                             bathrooms: list.BathRooms,
@@ -78,111 +87,86 @@ const MorePropertiesComponent = ({
                             isFeatured: list.IsFeatured,
                             saleType: `For ${CapitalizeString(list.SaleType)}`,
                             imageCount: list.Photo ? gallery.length + 1 : 1,
-                            city: list.City
+                            city: list.City,
+                            propertyNo: list.PropertyNo
                         }
                     })
                 )
 
                 setProperties(listing);
+            } else {
+                setProperties([]);
             }
 
         } catch (error) {
             console.log(error);
+            setProperties([]);
         }
+    }
+
+    const HandleCardClick = (listingId) => {
+        console.log('dsfdgd', listingId);
+        
+        // navigate({
+        //     pathname: `/previewListing/`,
+        //     search: createSearchParams({
+        //         id: listingId
+        //     }).toString(),
+        // })
+        navigate(`/previewListing/?id=${listingId}`);
+        navigate(0)
     }
 
     const PropertiesByPropertyType = () => {
         return properties.map((item, k) => {
             return (
                 <div className="properties--group-card__card" key={k}>
-                    <Card key={k} className="properties--group-card__card-item">
-                        <div className="properties--group-card__card-image">
-                            <img src={item.photo} alt={item.Name} />
-                        </div>
-                        <div className="properties--group-card__card--tags">
-                            <div className="tag--top">
-                                <div className="properties--group-card--tag-wrapper">
-                                    <div className="tag-value--text">
-                                        <p>{item.saleType}</p>
-                                    </div>
-                                </div>
-                                <div className="properties--group-card--tag-wrapper">
-                                    <div className="tag-icon">
-                                        <CameraFilled className="tag-icon__camera" />
-                                    </div>
-                                    <div className="tag-value">
-                                        <div className="tag-value--text">
-                                            <p>{item.imageCount}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="tag--bottom">
-                                <div className="properties--group-card--tag-wrapper tag--heart">
-                                    <div className="tag-icon icon-heart">
-                                        <HeartOutlined className="tag-icon__heart" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="properties--group-card__details">
-                            <div className="properties--group-card__details--top">
-                                <p>{item.title}</p>
-                                {/* <p>Newly Built and Furnished Condominium dsdsffdsd dsds This is some long text that will not fit in the box.</p> */}
-                            </div>
-                            <div className="properties--group-card__details--middle">
-                                <p>{item.subtitle}</p>
-                            </div>
-                            <div className="properties--group-card__details--bottom">
-                                <div className="properties--group-card__details--bottom-left">
-                                    <p>{item.price}</p>
-                                </div>
-                                <div className="properties--group-card__details--bottom-right">
-                                    {
-                                        Features(item.bedrooms, item.bathrooms, item.area)
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </Card>
+                    <PropertyCard
+                        item={item}
+                        HandleCardClick={HandleCardClick}
+                    />
                 </div>
             )
         })
     }
 
-    const Features = (no_of_beds, no_of_bathrooms, lot) => {
+    const SwiperCarouselProperties = () => {
         return (
-            <div className="more-properties__features">
+            <Swiper
+                slidesPerView={'auto'}
+                centeredSlides={true}
+                spaceBetween={30}
+                effect={'coverflow'}
+                grabCursor={true}
+                coverflowEffect={{
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: false,
+                }}
+                navigation={isNavigated}
+                pagination={isPaginated}
+                modules={[
+                    EffectCoverflow,
+                    Pagination,
+                    Navigation
+                ]}
+                className="mySwiper"
+            >
                 {
-                    parseInt(no_of_beds) > 0 && (
-                        <div className="feature-content">
-                            <>
-                                <BedOutlinedIcon />
-                                <p className="feature-detail">{no_of_beds}</p>
-                            </>
-                        </div>
-                    )
+                    properties.map((item, index) => (
+                        <SwiperSlide key={index} virtualIndex={index}>
+                            <div className="properties--group-card__card" key={index}>
+                                <PropertyCard
+                                    item={item}
+                                    HandleCardClick={HandleCardClick}
+                                />
+                            </div>
+                        </SwiperSlide>
+                    ))
                 }
-                {
-                    parseInt(no_of_bathrooms) > 0 && (
-                        <div className="feature-content">
-                            <>
-                                <ShowerOutlinedIcon />
-                                <p className="feature-detail">{no_of_bathrooms}</p>
-                            </>
-                        </div>
-                    )
-                }
-                {
-                    lot && (
-                        <div className="feature-content">
-                            {/* <img src={Sqm} alt="sqm" className="feature-icon" /> */}
-                            <ShortcutOutlinedIcon />
-                            <p className="feature-detail">{lot} SqM</p>
-                        </div>
-                    )
-                }
-            </div>
+            </Swiper>
         )
     }
 
@@ -191,34 +175,43 @@ const MorePropertiesComponent = ({
 
         searchProperty.forEach((item, i) => {
             if (i == 0) {
-				params += `${item.key}=${item.value}`;
-			} else {
-				params += `&${item.key}=${item.value}`;
-			}
+                params += `${item.key}=${item.value}`;
+            } else {
+                params += `&${item.key}=${item.value}`;
+            }
         })
 
         navigate(`/search/?${params}`)
     }
 
     return (
-        <div className="properties--group-card">
-            <div className="properties--group-card__header">
-                <div className="properties--group-card__title">
-                    <h2>{title}</h2>
-                </div>
-                <div className="properties--group-card__sub-title">
-                    <p>{subtitle}</p>
-                </div>
-            </div>
-            <div className="properties--group-card__cards">
-                <PropertiesByPropertyType />
-            </div>
-            <div className="properties--group-card__button">
-                <Button size="large" className="properties--group-card__button" onClick={HandleClickView}>
-                    View more properties
-                </Button>
-            </div>
-        </div>
+        <>
+            {
+                properties.length > 0 && (
+                    <div className="properties--group-card">
+                        <div className="properties--group-card__header">
+                            <div className="properties--group-card__title">
+                                <h2>{title}</h2>
+                            </div>
+                            <div className="properties--group-card__sub-title">
+                                <p>{subtitle}</p>
+                            </div>
+                        </div>
+                        <div className="properties--group-card__cards properties__grid">
+                            <PropertiesByPropertyType />
+                        </div>
+                        <div className="properties--group-card__cards properties__swiper">
+                            <SwiperCarouselProperties />
+                        </div>
+                        <div className="properties--group-card__button">
+                            <Button size="large" className="properties--group-card__button" onClick={HandleClickView}>
+                                View more properties
+                            </Button>
+                        </div>
+                    </div>
+                )
+            }
+        </>
     )
 }
 
