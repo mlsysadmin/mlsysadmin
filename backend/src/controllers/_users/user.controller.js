@@ -434,7 +434,7 @@ module.exports = {
         }
     },
 
-    UserLogin: async () => {
+    UserLogin: async (req, res, next) => {
         try {
             const { cellphoneNumber, pin } = req.body.payload;
 
