@@ -193,7 +193,7 @@ listing search */
 	/* background-color: #fff; */
 	color: white;
 	height: auto;
-	width: 100%;
+	width: var(--default-page-size);
 	/* margin: 50px 0px 0px 50px; */
 	border-radius: 8px;
 	display: flex;
@@ -208,7 +208,7 @@ listing search */
 	height: auto;
 	display: flex;
 	flex-direction: column;
-	width: 68%;
+	width: var(--default-page-size);
 	padding: 20px;
 }
 
