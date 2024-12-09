@@ -24,6 +24,7 @@ const LoginComponent = () => {
 	const [otp, setOtp] = useState(Array(6).fill(""));
 	const [isOtpValid, setIsOtpValid] = useState(true);
 	const [otpError, setOtpError] = useState("");
+	const [birthdateError, setBirthdateError] = useState(false);
 	const [otpTimer, setotpTimer] = useState(120);
 	const [resend, setResend] = useState(true);
 
@@ -72,8 +73,15 @@ const LoginComponent = () => {
 		const sanitizedNumber = cleanPhonenumber(val);
 
 		setCountryCode(curCode);
-		setPhone(sanitizedNumber.replace("+63", "0"));
-		// setPhone(curCode + sanitizedNumber.replace(curCode, ""));
+
+		if (sanitizedNumber.startsWith("0") || sanitizedNumber.startsWith("9")) {
+			setPhone(sanitizedNumber.replace(sanitizedNumber, "+63"));
+			// setPhone(sanitizedNumber.replace("9", "+63"));
+		} else {
+			setCountryCode(curCode);
+			setPhone(sanitizedNumber.replace("+63", "0"));
+		}
+
 		validatePhoneNumber(sanitizedNumber, data.dialCode);
 	};
 
@@ -133,6 +141,15 @@ const LoginComponent = () => {
 		setSelectedYear(value);
 	};
 	const handleSignIn = () => {
+		const userBdate = userDetails?.birthDate;
+		const selectedBirthdate = `${selectedYear}-${selectedMonth}-${isDateNumber}`;
+
+		if (userBdate !== selectedBirthdate) {
+			setBirthdateError(true);
+			return;
+		}
+
+		setBirthdateError(false);
 		if (isValidPhone) {
 			setShowOtpScreen(true);
 			setOtp(Array(6).fill(""));
@@ -165,6 +182,23 @@ const LoginComponent = () => {
 	};
 	const handleOtpVerification = () => {
 		console.log("Success");
+		if (userDetails) {
+			if (
+				userDetails?.tier?.label !== "BUYER" ||
+				userDetails?.tier?.label !== "SEMI-VERIFIED"
+			) {
+				window.location.href = "/";
+			} else {
+				// window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+				// 	redirectUrl
+				// )}`;
+			}
+		} else {
+			// window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+			// 	redirectUrl
+			// )}`;
+			window.location.href = "/login";
+		}
 	};
 	useEffect(() => {
 		if (otpTimer > 0) {
@@ -263,60 +297,69 @@ const LoginComponent = () => {
 									<div className="sub-groups-userdetails">
 										<span>Is this you? Continue with your date of birth:</span>
 										<div className="user-action-group-login">
-											<div className="sub-groups-user-bdate">
-												<div className="user-bdate-month">
-													<Select
-														className="month-select-options"
-														onChange={handleMonthChange}
-														value={selectedMonth}
-														style={{ width: "100%" }}
-													>
-														<Option value="1">JANUARY</Option>
-														<Option value="2">FEBRUARY</Option>
-														<Option value="3">MARCH</Option>
-														<Option value="4">APRIL</Option>
-														<Option value="5">MAY</Option>
-														<Option value="6">JUNE</Option>
-														<Option value="7">JULY</Option>
-														<Option value="8">AUGUST</Option>
-														<Option value="9">SEPTEMBER</Option>
-														<Option value="10">OCTOBER</Option>
-														<Option value="11">NOVEMBER</Option>
-														<Option value="12">DECEMBER</Option>
-													</Select>
-												</div>
-												<div className="user-bdate-day">
-													<Select
-														className="date-select-options"
-														onChange={handleDateNumberChange}
-														value={isDateNumber}
-													>
-														{Array.from({ length: 31 }, (_, i) => i + 1).map(
-															(day) => (
-																<Option key={day} value={day}>
-																	{day}
+											<div className="bdate-with-error">
+												<div className="sub-groups-user-bdate">
+													<div className="user-bdate-month">
+														<Select
+															className="month-select-options"
+															onChange={handleMonthChange}
+															value={selectedMonth}
+															style={{ width: "100%" }}
+														>
+															<Option value="1">JANUARY</Option>
+															<Option value="2">FEBRUARY</Option>
+															<Option value="3">MARCH</Option>
+															<Option value="4">APRIL</Option>
+															<Option value="5">MAY</Option>
+															<Option value="6">JUNE</Option>
+															<Option value="7">JULY</Option>
+															<Option value="8">AUGUST</Option>
+															<Option value="9">SEPTEMBER</Option>
+															<Option value="10">OCTOBER</Option>
+															<Option value="11">NOVEMBER</Option>
+															<Option value="12">DECEMBER</Option>
+														</Select>
+													</div>
+													<div className="user-bdate-day">
+														<Select
+															className="date-select-options"
+															onChange={handleDateNumberChange}
+															value={isDateNumber}
+														>
+															{Array.from({ length: 31 }, (_, i) => i + 1).map(
+																(day) => (
+																	<Option key={day} value={day}>
+																		{day}
+																	</Option>
+																)
+															)}
+														</Select>
+													</div>
+													<div className="user-bdate-year">
+														<Select
+															className="year-select-options"
+															onChange={handleYearChange}
+															value={selectedYear}
+														>
+															{Array.from(
+																{ length: 2024 - 1905 + 1 },
+																(_, i) => 1905 + i
+															).map((year) => (
+																<Option key={year} value={year}>
+																	{year}
 																</Option>
-															)
-														)}
-													</Select>
+															))}
+														</Select>
+													</div>
 												</div>
-												<div className="user-bdate-year">
-													<Select
-														className="year-select-options"
-														onChange={handleYearChange}
-														value={selectedYear}
-													>
-														{Array.from(
-															{ length: 2024 - 1905 + 1 },
-															(_, i) => 1905 + i
-														).map((year) => (
-															<Option key={year} value={year}>
-																{year}
-															</Option>
-														))}
-													</Select>
-												</div>
+												{birthdateError && (
+													<p style={{ color: "red", marginTop: "8px" , fontSize:"12px", textAlign:"center"}}>
+														Birthdate does not match with the existing
+														data.
+													</p>
+												)}
 											</div>
+
 											<div className="user-logged-in">
 												<button id="back-login-button" onClick={handleReturn}>
 													Back

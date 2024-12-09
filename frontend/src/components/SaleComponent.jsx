@@ -10,18 +10,33 @@ import {
 import Card from "./custom/cards/Card";
 import property from "../images/Guest/property.png";
 import Pagination from "./custom/pagination/Pagination";
-import { FooterComponent, CustomMlFooter, ListingSearch, MainLayout, SearchPropertiesSoration } from ".";
-import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
+import {
+	FooterComponent,
+	CustomMlFooter,
+	ListingSearch,
+	MainLayout,
+	SearchPropertiesSoration,
+} from ".";
+import {
+	GetPropertiesBySaleStatus,
+	GetUnitPhotos,
+} from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
-import { CapitalizeString, FillLocationFilter, CapitalizeStringwithSymbol, GetPropertyTitle, SortListings } from "../utils/StringFunctions.utils";
+import {
+	CapitalizeString,
+	FillLocationFilter,
+	CapitalizeStringwithSymbol,
+	GetPropertyTitle,
+	SortListings,
+} from "../utils/StringFunctions.utils";
 import { CardSkeleton } from "./Skeleton";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
-import DefaultPropertyImage from '../asset/fallbackImage.png';
+import DefaultPropertyImage from "../asset/fallbackImage.png";
+import { getCookieData } from "../utils/CookieChecker";
 import NoDataAvailable from "./NoDataFoundComponent";
 import { Breadcrumb } from "antd";
 
 const SaleComponent = () => {
-
 	const navigate = useNavigate();
 	const location = useLocation();
 	const [loading, setLoading] = useState(true);
@@ -36,13 +51,13 @@ const SaleComponent = () => {
 			img: DefaultPropertyImage,
 			no_of_bathrooms: 0,
 			lot: 0,
-			property_no: '',
-			isFeatured: '',
-			sale_type: '',
-			no_of_beds: '',
-			property_type: '',
-			city: ''
-		}
+			property_no: "",
+			isFeatured: "",
+			sale_type: "",
+			no_of_beds: "",
+			property_type: "",
+			city: "",
+		},
 	]);
 	const [propertyType, setPropertyType] = useState("house-and-lot");
 	const [currentPage, setCurrentPage] = useState(1);
@@ -51,22 +66,25 @@ const SaleComponent = () => {
 	const [headerText, setHeaderText] = useState("House and Lot For Sale");
 	const [searchParams, setSearchParams] = useState({
 		location: null,
-        price_min: 1000,
-        price_max: 100000000,
-        keyword: null,
-        property_type: null,
-        bedrooms: null,
-        bathrooms: null,
-        parking: null,
-        sale_type: null,
-        lot_area: null,
+		price_min: 1000,
+		price_max: 100000000,
+		keyword: null,
+		property_type: null,
+		bedrooms: null,
+		bathrooms: null,
+		parking: null,
+		sale_type: null,
+		lot_area: null,
 	});
+	const accountDetails = getCookieData();
+
+	let number = accountDetails?.mobileNumber || null;
 	const [breadCrumbItems, setBreadCrumbItems] = useState([
 		{
-			title: 'For Sale',
+			title: "For Sale",
 		},
 		{
-			title: 'House and Lot',
+			title: "House and Lot",
 		},
 	]);
 
@@ -81,79 +99,78 @@ const SaleComponent = () => {
 			const dataresp = res;
 
 			if (dataresp.length == 0) {
-				setPublicListing([])
+				setPublicListing([]);
 			} else {
-
 				const removeSpecialChar = (ch) => {
-					
 					return ch.toLowerCase().replace(/[/_-]/g, " ").trim();
-				}
+				};
 
 				console.log("remove", removeSpecialChar(property_type));
-				console.log("data", dataresp.filter((listing) =>
-					["sale"].includes(listing.SaleType.toLowerCase())));
-				
+				console.log(
+					"data",
+					dataresp.filter((listing) =>
+						["sale"].includes(listing.SaleType.toLowerCase())
+					)
+				);
 
-				const listingRes = dataresp.filter((listing) =>
-					["sale"].includes(listing.SaleType.toLowerCase())
-					&& 
-					removeSpecialChar(listing.PropertyType) == removeSpecialChar(property_type)
+				const listingRes = dataresp.filter(
+					(listing) =>
+						["sale"].includes(listing.SaleType.toLowerCase()) &&
+						removeSpecialChar(listing.PropertyType) ==
+							removeSpecialChar(property_type)
 					// listing.PropertyType.toLowerCase().replace(/[/_-]/g, " ").trim() == (property_type.toLowerCase().replace(/[/_-]/g, " ")).trim()
 					// listing.PropertyType.toLowerCase().replace(/[/_-]/g, " ").trim() == (property_type.toLowerCase().replace(/[/_-]/g, " ")).trim()
 				);
-				
+
 				console.log("listingRes", listingRes);
-				
+
 				if (listingRes.length !== 0) {
-					const newListing = await Promise.all(listingRes.map(async (item, i) => {
+					const newListing = await Promise.all(
+						listingRes.map(async (item, i) => {
+							const getPhotoGallery = await GetUnitPhotos(item.id);
 
-						const getPhotoGallery = await GetUnitPhotos(item.id);
+							const gallery = getPhotoGallery.data;
 
-						const gallery = getPhotoGallery.data;
+							const image = GetPhotoWithUrl(item.Photo);
 
-						const image = GetPhotoWithUrl(item.Photo);
-
-						return {
-							id: item.id,
-							title: CapitalizeString(item.UnitName),
-							price: AmountFormatterGroup(item.Price),
-							status: "For Sale",
-							pics: image ? gallery.length + 1 : 0,
-							img: image,
-							no_of_bathrooms: item.BathRooms,
-							lot: item.LotArea,
-							property_no: item.PropertyNo,
-							isFeatured: item.IsFeatured,
-							sale_type: CapitalizeString(item.SaleType),
-							no_of_beds: item.BedRooms,
-							property_type:
-								item.PropertyType === "hotel/resort"
-									? CapitalizeStringwithSymbol(item.PropertyType)
-									: CapitalizeString(item.PropertyType),
-							city: item.City,
-						};
-					}))
+							return {
+								id: item.id,
+								title: CapitalizeString(item.UnitName),
+								price: AmountFormatterGroup(item.Price),
+								status: "For Sale",
+								pics: image ? gallery.length + 1 : 0,
+								img: image,
+								no_of_bathrooms: item.BathRooms,
+								lot: item.LotArea,
+								property_no: item.PropertyNo,
+								isFeatured: item.IsFeatured,
+								sale_type: CapitalizeString(item.SaleType),
+								no_of_beds: item.BedRooms,
+								property_type:
+									item.PropertyType === "hotel/resort"
+										? CapitalizeStringwithSymbol(item.PropertyType)
+										: CapitalizeString(item.PropertyType),
+								city: item.City,
+							};
+						})
+					);
 					const location = FillLocationFilter(dataresp);
 					setFilterLocation(location);
 					setPublicListing(newListing);
 					setLoading(false);
-
 				} else {
 					setPublicListing([]);
 					setLoading(false);
 				}
-
 			}
-
 		} catch (error) {
 			console.error("ERROROR", error);
 			setPublicListing([]);
 			setLoading(false);
 		}
-	}
+	};
 
 	useEffect(() => {
-
 		const search = location.search;
 		console.log(search);
 
@@ -161,26 +178,27 @@ const SaleComponent = () => {
 		const getPropertyType = queryParams.get("property_type");
 
 		if (queryParams.size !== 0) {
-
 			let title = "";
 
-			getPropertyType.trim().replace(/[\/_-]/g, " ").split(' ').forEach((st) => {
-				title += CapitalizeString(st) + " ";
-			})
+			getPropertyType
+				.trim()
+				.replace(/[\/_-]/g, " ")
+				.split(" ")
+				.forEach((st) => {
+					title += CapitalizeString(st) + " ";
+				});
 			title.trim();
-			
+
 			allPublicListing(getPropertyType);
 			setPropertyType(getPropertyType);
 			setHeaderText(`${title} For Sale`);
-			setBreadCrumbItems([{ title: "For Sale" }, { title: title }])
-
+			setBreadCrumbItems([{ title: "For Sale" }, { title: title }]);
 		} else {
 			allPublicListing("house-and-lot");
 			setPropertyType("house-and-lot");
 			setHeaderText("House and Lot For Sale");
 		}
-
-	}, [])
+	}, []);
 
 	const [selectedSort, setSelectedSort] = useState("Most relevant");
 	const indexOfLastCard = currentPage * cardsPerPage;
@@ -190,7 +208,6 @@ const SaleComponent = () => {
 	const totalPages = Math.ceil(publiclisting?.length / cardsPerPage);
 
 	const HandleSort = (e) => {
-
 		setSelectedSort(e.domEvent.target.innerText);
 		const sortKey = e.key;
 		let sortListing;
@@ -198,25 +215,30 @@ const SaleComponent = () => {
 		sortListing = SortListings(sortKey, sortListing, publiclisting);
 
 		currentCards = sortListing;
-	}
+	};
 
 	return (
 		<>
 			<div className="rent">
 				<div className="topbar">
-					<ListingSearch location={filterLocation} searchParams={searchParams} setSearchFilters={setSearchParams} />
+					<ListingSearch
+						location={filterLocation}
+						searchParams={searchParams}
+						setSearchFilters={setSearchParams}
+					/>
 				</div>
 				<div className="rentContainer">
 					<Breadcrumb
 						separator=">"
 						items={breadCrumbItems}
-						className="rent-h1 breadcrumb--search" />
+						className="rent-h1 breadcrumb--search"
+					/>
 					<span className="rent-h1">{headerText}</span>
 					<SearchPropertiesSoration
 						properties_count={publiclisting.length}
 						current_properties_count={currentCards.length}
 						selectedSort={selectedSort}
-                        setSelectedSort={setSelectedSort}
+						setSelectedSort={setSelectedSort}
 						HandleSort={HandleSort}
 					/>
 					{!loading ? (
@@ -238,6 +260,9 @@ const SaleComponent = () => {
 											data.property_type
 										)} For ${CapitalizeString(data.sale_type)}`}
 										handleClick={() => handleCardClick(data.property_no)}
+										propertyNo={data.property_no}
+										vendorId={data.vendorId}
+										number={number}
 									/>
 								))}
 							</div>
@@ -278,6 +303,6 @@ const SaleComponent = () => {
 			<FooterComponent />
 		</>
 	);
-}
+};
 
 export default SaleComponent;

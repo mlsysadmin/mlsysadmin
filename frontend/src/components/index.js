@@ -103,6 +103,10 @@ import ApprovalSectionComponent from "./support/ApprovalSectionComponent";
 
 import SearchListingComponent from "./SearchListingComponent";
 import SavedPropertiesComponent from "./SavedPropertiesComponent";
+
+import CustomTag from "./custom/tags/Tags.custom";
+import FloatBtnGroup from "./custom/buttons/FloatBtnGroup";
+
 export {
 	ActiveListingDetails,
 	SavedPropertiesComponent,
@@ -180,4 +184,6 @@ export {
 	FaqsComponent,
 	SearchListingComponent,
 	LoginComponent,
+	CustomTag,
+	FloatBtnGroup
 };

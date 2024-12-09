@@ -3,18 +3,22 @@
   flex-direction: column;
   padding: 0px 30px 50px 30px;
   font-size: var(--d-body-text);
+  background: var(--white) ;
   /* max-width: var(--default-page-size); */
 }
 .savedPropertiesBackgroundComponent {
-  background: #f5f6f7;
+  background: var(--white) ;
   color: black;
 }
 .savedPropertiesContent {
-  background: #f5f6f7;
+  background: var(--white);
   max-width: var(--default-page-size);
   margin: auto;
   /* flex-direction: row;
   flex-wrap: wrap; */
+}
+.ant-tabs-nav .ant-tabs-nav-wrap{
+  border-bottom: 1px solid #8c909452;
 }
 
 /* Cellphone */

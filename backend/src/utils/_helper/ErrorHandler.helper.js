@@ -44,6 +44,8 @@ const ErrorHandler = async (error, request, response, next) => {
         response.status(error.status).send(err);
 
     } catch (e) {
+        console.log("e", e);
+        
 
         if (Object.keys(error).includes('response')) {
 
@@ -53,7 +55,7 @@ const ErrorHandler = async (error, request, response, next) => {
                     method: request.method,
                     query: request.query,
                     params: request.params,
-                    body: {...request.body},
+                    body: JSON.stringify({...request.body}),
                 },
                 RES: {
                     URL: error.config.baseURL + ' ' + error.config.url,
