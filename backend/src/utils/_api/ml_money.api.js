@@ -82,12 +82,13 @@ module.exports = {
     },
     ExternalLogin: async (mobileNumber, otpCode) => {
         try {
-            const endpoint = `/api/v3/login/external`
+            const endpoint = `/api/v3/login/external`;
+            const EXTERNAL_LOGIN_SERVICE = process.env.EXTERNAL_LOGIN_SERVICE;
 
             const postData = {
                 mobileNumber,
                 otpCode,
-                service: "ML_PROPERTIES"
+                service: EXTERNAL_LOGIN_SERVICE
             }
 
             const login = await ML_MONEY_API.post(endpoint, postData);
