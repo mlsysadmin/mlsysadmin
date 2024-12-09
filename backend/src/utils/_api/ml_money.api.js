@@ -1,10 +1,11 @@
 'use strict'
 
-const { CKYC_API, ML_MONEY_API } = require('./axios.util');
+const { ML_MONEY_API } = require('./axios.util');
 const DataResponseHandler = require('../_helper/DataResponseHandler.helper');
 const SuccessLoggerHelper = require('../_helper/SuccessLogger.helper');
 
 const Logger = require('../../config/_log/mlbrokerage.logger');
+const { SignatureGenerator } = require('../_helper/hash.helper');
 
 const ErrLogger = Logger.Get_logger("error");
 
@@ -84,15 +85,72 @@ module.exports = {
             const endpoint = `/api/v3/login/external`
 
             const postData = {
-                mobileNumber: mobileNumber,
-                otpCode: otpCode,
+                mobileNumber,
+                otpCode,
                 service: "ML_PROPERTIES"
             }
 
             const login = await ML_MONEY_API.post(endpoint, postData);
 
             // if (login) {
-                
+
+            // }
+
+            let data;
+            let message;
+            let code;
+
+            let request = {
+                url: URL,
+                method: 'POST',
+                query: {},
+                params: {},
+                body: postData,
+                headers: config
+            }
+
+            let response = {
+                data,
+                status: login.status,
+                code: login.statusText.toUpperCase(),
+                message: "User Logged in Successfully"
+            }
+
+            message = "User Logged in Successfully";
+            code = "USER_LOGGED_IN"
+
+            SuccessLoggerHelper(request, response);
+
+            return { login, message, code }
+
+        } catch (error) {
+            throw error;
+        }
+    },
+    ExternalSendOtp: async (mobileNumber, isMlWalletRequired) => {
+        try {
+
+            const endpoint = `/api/auth/external-send-otp`;
+            const ML_MONEY_X_API_KEY = process.env.ML_MONEY_X_API_KEY;
+            const ML_MONEY_HASH_SECRET_KEY = process.env.ML_MONEY_HASH_SECRET_KEY;
+
+            const postData = {
+                mobileNumber,
+                isMlWalletRequired,
+            }
+
+            const passPhrase = postData + "|" + ML_MONEY_HASH_SECRET_KEY;
+
+            const x_hash = SignatureGenerator(passPhrase);
+
+            const config = {
+                "x-api-key": ML_MONEY_X_API_KEY
+            }
+
+            const login = await ML_MONEY_API.post(endpoint, postData, config);
+
+            // if (login) {
+
             // }
 
             let data;

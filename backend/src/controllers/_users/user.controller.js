@@ -434,6 +434,15 @@ module.exports = {
         }
     },
 
+    UserSendOtp: async () => {
+        try {
+            
+
+
+        } catch (error) {
+            next(error);
+        }
+    },
     UserLogin: async (req, res, next) => {
         try {
             const { cellphoneNumber, pin } = req.body.payload;

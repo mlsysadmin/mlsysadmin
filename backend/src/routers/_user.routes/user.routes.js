@@ -25,5 +25,6 @@ USER_ROUTER.post('/send-otp', verifyApiKey, Validation(otpProperty, 'body', 'pay
 USER_ROUTER.post('/validate-otp', verifyApiKey, Validation(validateOtp, 'body', 'payload'), ValidateOTP);
 USER_ROUTER.post('/register-kyc', verifyApiKey, Validation(registerKyc, 'body', 'payload'), RegisterKyc);
 USER_ROUTER.post('/external-login', verifyApiKey, Validation(validateOtp, 'body', 'payload'), UserLogin);
+// USER_ROUTER.post('/send-otp', verifyApiKey, Validation(otpProperty, 'body', 'payload'), SendOTP);
 
 module.exports = USER_ROUTER;
