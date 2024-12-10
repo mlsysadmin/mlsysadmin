@@ -1,11 +1,11 @@
 'use strict'
 
 require('dotenv').config();
-const { SendEmail, EmailTemplate } = require('../../services/email.service.js');
-const { StringToArray } = require('../../utils/_helper/DataFunctions.helper.js');
-const DataResponseHandler = require('../../utils/_helper/DataResponseHandler.helper.js');
-const SuccessFormatter = require('../../utils/_helper/SuccessFormatter.helper.js');
-const SuccessLoggerHelper = require('../../utils/_helper/SuccessLogger.helper.js');
+const { SendEmail, EmailTemplate } = require('../../../services/email.service.js');
+const { StringToArray } = require('../../../utils/_helper/DataFunctions.helper.js');
+const DataResponseHandler = require('../../../utils/_helper/DataResponseHandler.helper.js');
+const SuccessFormatter = require('../../../utils/_helper/SuccessFormatter.helper.js');
+const SuccessLoggerHelper = require('../../../utils/_helper/SuccessLogger.helper.js');
 
 module.exports = {
     SendInquiry: async (req, res, next) => {
