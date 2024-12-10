@@ -2,6 +2,12 @@
 	padding: 0;
 	margin: 0;
 }
+.rent-page-content{
+	width: var(--default-page-size);
+}
+.buy-component-content{
+	width: var(--default-page-size);
+}
 
 .topbar {
 	display: flex;
@@ -12,13 +18,10 @@
 
 .rentContainer {
 	justify-content: start;
-	/* align-items: center; */
-	padding: 50px;
-	/* padding: 50px; */
+ margin: 30px 0;
+	gap: 10px;
 	display: flex;
 	flex-direction: column;
-	/* width: 100%; */
-	/* justify-content: start; */
 	font-weight: normal;
 }
 
@@ -28,32 +31,23 @@
 	/* width: 100%; */
 	justify-content: center;
 	align-items: center;
+
 	/* gap: 100px; */
 	height: auto;
 	/* background-color: white; */
 }
 
 .rent-h1 {
-	/* margin: 50px 0px 20px 120px; */
-	font-size: 30px;
-	/* margin: 0px 0px 20px 90px; */
+	font-size: var(--d-h2-text) !important;
 	font-weight: bold;
-	/* padding: 0px 125px; */
-
-	    /* margin: 0px 20px 0px 20px; */
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		/* align-items: flex-start; */
-		/* gap: 300px; */
-		width: 1500px;
-		margin: 0px auto;
-		padding: 0px 100px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 .rent-h1.breadcrumb--search{
 	font-size: 18px !important;
 	font-weight: 500;
-	margin: auto auto 0px;
+	/* margin: auto auto 0px; */
   }
 
 .rentContent {

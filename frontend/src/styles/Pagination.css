@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 460px;
+  gap: 345px;
   width: 100%;
   /* margin: auto; */
   margin-top: 50px;
@@ -69,10 +69,10 @@
   pointer-events: none;
 }
 
-@media only screen and (min-width: 320px) and (max-width: 359px) {
+@media (max-width: 575px){
   .custom-pagination {
     width: 100%;
-    gap: 70px;
+    gap: 100px;
   }
 
   .custom-pagination span {
@@ -236,18 +236,6 @@
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* Cellphone */
 @media screen and (min-width: 320px) and (max-width: 399px) {
 	.cardBackgroundSavedProperties .custom-pagination {
@@ -294,31 +282,6 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @media screen and (min-width: 1025px) and (max-width: 1099px) {
   .custom-pagination {
     gap: 310px !important;
@@ -330,7 +293,6 @@
     margin: 50px 0px;
   }
   .custom-pagination span {
-    /* margin: 20px 0px; */
     padding: 5px;
     font-size: 18px;
   }
@@ -341,12 +303,11 @@
   }
 }
 @media screen and (min-width: 1141px) and (max-width: 1199px) {
-  .custom-pagination {
+  /* .custom-pagination {
     gap: 330px;
     margin: 50px 0px;
   }
   .custom-pagination span {
-    /* margin: 20px 0px; */
     padding: 5px;
     font-size: 18px;
   }
@@ -354,13 +315,13 @@
   .custom-pagination .pagination-numbers span {
     margin: 0 10px;
     padding: 15px 20px;
-  }
+  } */
   .cardBackgroundSavedProperties .custom-pagination {
     gap: 320px;
   }
 }
 @media screen and (min-width: 1201px) and (max-width: 1299px) {
-  .custom-pagination {
+  /* .custom-pagination {
     margin-bottom: 20px;
     width: 100%;
     display: flex;
@@ -388,48 +349,48 @@
     gap: 0px;
     width: 110px;
     font-size: 18px;
-  }
+  } */
   .cardBackgroundSavedProperties .custom-pagination {
     gap: 300px;
     padding: 0px 0px;
   }
 }
 @media screen and (min-width: 1300px) and (max-width: 1350px) {
-  .custom-pagination {
+  /* .custom-pagination {
     gap: 410px !important;
     margin-bottom: 20px;
-  }
+  } */
   .cardBackgroundSavedProperties .custom-pagination {
     gap: 340px !important;
   }
 }
 @media screen and (min-width: 1351px) and (max-width: 1400px) {
-  .custom-pagination {
+  /* .custom-pagination {
     gap: 430px;
     margin-bottom: 20px;
-  }
+  } */
   .cardBackgroundSavedProperties .custom-pagination {
     gap: 320px;
   }
 }
 @media screen and (min-width: 1401px) and (max-width: 1600px) {
-  .custom-pagination .next {
+  /* .custom-pagination .next {
     margin-right: 15px;
   }
   .custom-pagination {
     gap: 470px;
-  }
+  } */
   .cardBackgroundSavedProperties .custom-pagination {
     gap: 340px;
   }
 }
 @media screen and (min-width: 1601px) {
-  .custom-pagination .next {
+  /* .custom-pagination .next {
     margin-right: 15px;
   }
   .custom-pagination {
     gap: 470px;
-  }
+  } */
   .cardBackgroundSavedProperties .custom-pagination {
     gap: 340px;
   }
