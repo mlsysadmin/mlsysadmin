@@ -34,6 +34,7 @@ import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import DefaultPropertyImage from "../asset/fallbackImage.png";
 import { CardSkeleton } from "./Skeleton";
 import NoDataAvailable from "./NoDataFoundComponent";
+import { getCookieData } from "../utils/CookieChecker";
 import { Breadcrumb } from "antd";
 
 const RentComponent = () => {
@@ -57,9 +58,12 @@ const RentComponent = () => {
 			sale_type: "",
 			no_of_beds: "",
 			property_type: "",
-			city: ''
+			city: "",
 		},
 	]);
+	const accountDetails = getCookieData();
+
+	let number = accountDetails?.mobileNumber || null;
 	const [propertyType, setPropertyType] = useState("house-and-lot");
 	const [currentPage, setCurrentPage] = useState(1);
 	const cardsPerPage = 9;
@@ -67,22 +71,22 @@ const RentComponent = () => {
 	const [headerText, setHeaderText] = useState("House and Lot For Sale");
 	const [searchParams, setSearchParams] = useState({
 		location: null,
-        price_min: 1000,
-        price_max: 100000000,
-        keyword: null,
-        property_type: null,
-        bedrooms: null,
-        bathrooms: null,
-        parking: null,
-        sale_type: null,
-        lot_area: null,
+		price_min: 1000,
+		price_max: 100000000,
+		keyword: null,
+		property_type: null,
+		bedrooms: null,
+		bathrooms: null,
+		parking: null,
+		sale_type: null,
+		lot_area: null,
 	});
 	const [breadCrumbItems, setBreadCrumbItems] = useState([
 		{
-			title: 'For Rent',
+			title: "For Rent",
 		},
 		{
-			title: 'House and Lot',
+			title: "House and Lot",
 		},
 	]);
 
@@ -100,18 +104,21 @@ const RentComponent = () => {
 				setPublicListing([]);
 			} else {
 				const removeSpecialChar = (ch) => {
-
 					return ch.toLowerCase().replace(/[_-]/g, " ");
-				}
-				console.log("data", dataresp.filter(
-					(listing) =>
-						["rent"].includes(listing.SaleType.toLowerCase())));
-
+				};
+				console.log(
+					"data",
+					dataresp.filter((listing) =>
+						["rent"].includes(listing.SaleType.toLowerCase())
+					)
+				);
 
 				const listingRes = dataresp.filter(
 					(listing) =>
 						["rent"].includes(listing.SaleType.toLowerCase()) &&
-						listing.PropertyType.toLowerCase().replace(/[-_]/g, " ").includes(property_type.toLowerCase().replace(/[-_]/g, " "))
+						listing.PropertyType.toLowerCase()
+							.replace(/[-_]/g, " ")
+							.includes(property_type.toLowerCase().replace(/[-_]/g, " "))
 				);
 
 				if (listingRes.length !== 0) {
@@ -136,10 +143,13 @@ const RentComponent = () => {
 								isFeatured: item.IsFeatured,
 								sale_type: CapitalizeString(item.SaleType),
 								no_of_beds: item.BedRooms,
-								property_type:item.PropertyType === "hotel/resort"
-									? CapitalizeStringwithSymbol(item.PropertyType)
-									: item.PropertyType,
-								city: item.City
+								property_type:
+									item.PropertyType === "hotel/resort"
+										? CapitalizeStringwithSymbol(item.PropertyType)
+										: item.PropertyType,
+								city: item.City,
+								date: item.created_at,
+								vendorId: item.VendorId,
 							};
 						})
 					);
@@ -160,7 +170,6 @@ const RentComponent = () => {
 	};
 
 	useEffect(() => {
-
 		const search = location.search;
 		console.log(search);
 
@@ -168,25 +177,27 @@ const RentComponent = () => {
 		const getPropertyType = queryParams.get("property_type");
 
 		if (queryParams.size !== 0) {
-
 			let title = "";
 
-			getPropertyType.trim().replace(/[\/_-]/g, " ").split(' ').forEach((st) => {
-				title += CapitalizeString(st) + " ";
-			})
+			getPropertyType
+				.trim()
+				.replace(/[\/_-]/g, " ")
+				.split(" ")
+				.forEach((st) => {
+					title += CapitalizeString(st) + " ";
+				});
 			title.trim();
 
 			allPublicListing(getPropertyType);
 			setPropertyType(getPropertyType);
 			setHeaderText(`${title} For Rent`);
-			setBreadCrumbItems([{ title: "For Rent" }, { title: title }])
+			setBreadCrumbItems([{ title: "For Rent" }, { title: title }]);
 		} else {
 			allPublicListing("house-and-lot");
 			setPropertyType("house-and-lot");
 			setHeaderText("House and Lot For Rent");
 		}
-
-	}, [])
+	}, []);
 
 	const [selectedSort, setSelectedSort] = useState("Most relevant");
 	const indexOfLastCard = currentPage * cardsPerPage;
@@ -196,7 +207,6 @@ const RentComponent = () => {
 	const totalPages = Math.ceil(publiclisting?.length / cardsPerPage);
 
 	const HandleSort = (e) => {
-
 		setSelectedSort(e.domEvent.target.innerText);
 		const sortKey = e.key;
 		let sortListing;
@@ -204,21 +214,24 @@ const RentComponent = () => {
 		sortListing = SortListings(sortKey, sortListing, publiclisting);
 
 		currentCards = sortListing;
-	}
+	};
 
 	return (
 		<div className="rent">
 			<div className="topbar">
-				<ListingSearch location={filterLocation} searchParams={searchParams} setSearchFilters={setSearchParams} />
+				<ListingSearch
+					location={filterLocation}
+					searchParams={searchParams}
+					setSearchFilters={setSearchParams}
+				/>
 			</div>
 			<div className="rentContainer">
 				<Breadcrumb
 					separator=">"
 					items={breadCrumbItems}
-					className="rent-h1 breadcrumb--search" />
-				<span className="rent-h1">
-					{headerText}
-				</span>
+					className="rent-h1 breadcrumb--search"
+				/>
+				<span className="rent-h1">{headerText}</span>
 				{/* <span className="rent-h1">{headerText}</span> */}
 				<SearchPropertiesSoration
 					properties_count={publiclisting.length}
@@ -246,12 +259,17 @@ const RentComponent = () => {
 										data.property_type
 									)} For ${CapitalizeString(data.sale_type)}`}
 									handleClick={() => handleCardClick(data.property_no)}
+									propertyNo={data.property_no}
+									vendorId={data.vendorId}
+									number={number}
 								/>
 							))}
 						</div>
 					) : (
 						<NoDataAvailable
-							message={`No available ${CapitalizeEachWord(propertyType)} For Rent`}
+							message={`No available ${CapitalizeEachWord(
+								propertyType
+							)} For Rent`}
 						/>
 					)
 				) : (

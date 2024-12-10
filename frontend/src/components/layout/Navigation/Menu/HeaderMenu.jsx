@@ -88,6 +88,9 @@ const HeaderMenu = () => {
 
 		if (currentPath.includes("/rent")) {
 			setCurrent("rent");
+		} 
+		if (currentPath.includes("/new")) {
+			setCurrent("new");
 		} else if (currentPath.includes("/sale")) {
 			setCurrent("buy");
 		} else if (currentPath.includes("/discover-home")) {
@@ -468,17 +471,36 @@ const HeaderMenu = () => {
 					onClick={handleMenuOnClick}
 					className="header--menu"
 				></Menu>
-				<RoundBtn
-					type="primary"
-					className="menu-buttons"
-					style={{
-						background: "#D90000",
-						boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-						margin: "0px 0px 0px 0px",
-					}}
-					label="List Your Property"
-					onClick={handleListPropertyClick}
-				/>
+				{!isMLWWSPresent && (
+					<>
+						<RoundBtn
+							type="primary"
+							className="menu-buttons"
+							style={{
+								background: "#D90000",
+								boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+								margin: "0px 0px 0px 0px",
+							}}
+							label="List Your Property"
+							onClick={handleListPropertyClick}
+						/>
+						<RoundBtn
+							type="primary"
+							className="menu-buttons"
+							style={{
+								color: "#D90000",
+								backgroundColor: "transparent",
+								border: "1px solid #d90000",
+								boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+								padding: "5px 5px",
+								cursor: "pointer",
+								margin: "0px 0px 0px 10px",
+							}}
+							label="Join Our Team"
+							onClick={handleJoinTeamClick}
+						/>
+					</>
+				)}
 				{showUpgradeModal && (
 					<UpgradeTierModal
 						isVisible={showUpgradeModal}
@@ -488,33 +510,25 @@ const HeaderMenu = () => {
 				)}
 				{/* {!isMLWWSPresent&&
 					( */}
-				<RoundBtn
-					type="primary"
-					className="menu-buttons"
-					style={{
-						color: "#D90000",
-						backgroundColor: "transparent",
-						border: "1px solid #d90000",
-						boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-						padding: "5px 5px",
-						cursor: "pointer",
-						margin: "0px 0px 0px 10px",
-					}}
-					label="Join Our Team"
-					onClick={handleJoinTeamClick}
-				/>
 
 				{/* )} */}
 				{/* {showModal && (
 					<WorkingOnItModal isOpen={showModal} onClose={toggleModal} />
 				)} */}
 
-				{showModal && <JoinTeam toggleModal={toggleModal} />}
+				{showModal && !isMLWWSPresent && (
+					<>
+						<JoinTeam
+							toggleModal={toggleModal}
+							isMLWWSPresent={isMLWWSPresent}
+						/>
+					</>
+				)}
 				<Row align={"middle"} className="menu-buttons">
 					{isMLWWSPresent ? (
 						userDetails?.tier?.label !== "BUYER" ||
 						userDetails?.tier?.label !== "SEMI-VERIFIED" ? (
-							<SellerLogInButtonDropdown />
+							<SellerLogInButtonDropdown isMLWWSPresent={isMLWWSPresent} />
 						) : (
 							<img
 								src={userProfile}

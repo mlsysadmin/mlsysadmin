@@ -74,21 +74,25 @@ const SellerLogInButtonDropdown = () => {
 	// 	};
 	// }, []);
 
-const handleLogout = async() =>{
-const logoutURL = process.env.REACT_APP_LOGOUT_URL;
-const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
+	const handleLogout = async () => {
+		const logoutURL = process.env.REACT_APP_LOGOUT_URL;
+		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 
-window.location.href  = `${logoutURL}?redirect_url=${encodeURIComponent(redirectUrl)}`;
-}
+		window.location.href = `${logoutURL}?redirect_url=${encodeURIComponent(
+			redirectUrl
+		)}`;
+	};
 
-const toPascalCase = (name) => {
-    return name
-        .split(' ') 
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1)) 
-        .join(' '); 
-}
+	const toPascalCase = (name) => {
+		return name
+			.split(" ")
+			.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+			.join(" ");
+	};
 
-	const firstName = accountDetails ? accountDetails.firstName.toLowerCase() : "User";
+	const firstName = accountDetails
+		? accountDetails.firstName.toLowerCase()
+		: "User";
 	const formatFirstname = toPascalCase(firstName);
 	const lastNameInitial =
 		accountDetails && accountDetails.lastName
@@ -108,7 +112,7 @@ const toPascalCase = (name) => {
 					borderRadius: "5px",
 					display: "flex",
 					alignItems: "center",
-					justifyContent:"space-between"
+					justifyContent: "space-between",
 				}}
 				onClick={handleButtonClick}
 				className="seller-button-dropdown"
@@ -163,11 +167,15 @@ const toPascalCase = (name) => {
 							<a
 								style={{
 									textDecoration: "none",
-									color: isActive("/listing") ? "#d90000" : "white",
-									fontWeight: isActive("/listing") ? "bold" : "",
+									color:
+										window.location.hash === "#listingForm"
+											? "#d90000"
+											: "white",
+									fontWeight:
+										window.location.hash === "#listingForm" ? "bold" : "",
 									cursor: "pointer",
 								}}
-								href="/listing"
+								href="/saved-properties#listingForm"
 							>
 								List Your Property
 							</a>
@@ -176,14 +184,55 @@ const toPascalCase = (name) => {
 							<a
 								style={{
 									textDecoration: "none",
-									color: showModal ? "#d90000" : "white",
+									color:
+										window.location.hash === "#propertyListings"
+											? "#d90000"
+											: "white",
+									cursor: "pointer",
+									fontWeight:
+										window.location.hash === "#propertyListings" ? "bold" : "",
+								}}
+								href="/saved-properties#propertyListings"
+							>
+								Property Listings
+							</a>
+						</li>
+						<li>
+							<a
+								style={{
+									textDecoration: "none",
+									color:
+										window.location.hash === "#savedProperties"
+											? "#d90000"
+											: "white",
+									fontWeight:
+										window.location.hash === "#savedProperties" ? "bold" : "",
 									cursor: "pointer",
 								}}
-								onClick={handleJoinTeamClick}
+								href="/saved-properties#savedProperties"
+							>
+								Saved Properties
+							</a>
+						</li>
+						<li>
+							<a
+								style={{
+									textDecoration: "none",
+									color:
+										window.location.hash === "#joinOurTeam"
+											? "#d90000"
+											: "white",
+									cursor: "pointer",
+									fontWeight:
+										window.location.hash === "#joinOurTeam" ? "bold" : "",
+								}}
+								// onClick={handleJoinTeamClick}
+								href="/saved-properties#joinOurTeam"
 							>
 								Join Our Team
 							</a>
 						</li>
+
 						{showModal && <JoinTeam toggleModal={toggleModal} />}
 						{/* <li>{accountDetails.email}</li> */}
 						{/* <li>{userDetails.tier.label} TIER</li> */}
@@ -232,16 +281,14 @@ const toPascalCase = (name) => {
 						>
 							<li>Client Management</li>
 						</a> */}
-					
-							<a
-								style={{
-									color: "white",
-									cursor: "pointer",
-								}}
-							>
-								<li onClick={handleLogout}>Logout</li>
-							</a>
-
+						<a
+							style={{
+								color: "white",
+								cursor: "pointer",
+							}}
+						>
+							<li onClick={handleLogout}>Logout</li>
+						</a>
 						{/* <li
 							style={{
 								color: "white",

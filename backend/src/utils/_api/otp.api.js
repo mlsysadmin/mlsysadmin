@@ -1,130 +1,130 @@
-'use strict'
+"use strict";
 
-const { OTP_API } = require('./axios.util');
-const SuccessLoggerHelper = require('../_helper/SuccessLogger.helper');
+const { OTP_API } = require("./axios.util");
+const SuccessLoggerHelper = require("../_helper/SuccessLogger.helper");
 
-const Logger = require('../../config/_log/mlbrokerage.logger');
+const Logger = require("../../config/_log/mlbrokerage.logger");
 
 const ErrLogger = Logger.Get_logger("error");
 
 module.exports = {
-    SendOtp: async (mobile_number) => {
-        try {
-            const endpoint = '/sendOTP';
-            const opt_username = process.env.OTP_USERNAME;
-            const otp_pass = process.env.OTP_PASSWORD;
-            const otp_limit = process.env.OTP_LIMIT;
-            const otp_message = process.env.OTP_MESSAGE;
+	SendOtp: async (mobile_number) => {
+		try {
+			const endpoint = "/sendOTP";
+			const opt_username = process.env.OTP_USERNAME;
+			const otp_pass = process.env.OTP_PASSWORD;
+			const otp_limit = process.env.OTP_LIMIT;
+			const otp_message = process.env.OTP_MESSAGE;
 
-            let message = "";
-            let code = "";
+			let message = "";
+			let code = "";
 
-            const postData = {
-                username: opt_username,
-                password: otp_pass,
-                mobileno: mobile_number,
-                otp_msg: otp_message,
-                timeLimit: otp_limit,
-                service_type: "ML Properties"
-            }
+			const postData = {
+				username: opt_username,
+				password: otp_pass,
+				mobileno: mobile_number,
+				otp_msg: otp_message,
+				timeLimit: otp_limit,
+				service_type: "ML Properties",
+			};
 
-            const send_otp = await OTP_API.post(endpoint, postData);
+			const send_otp = await OTP_API.post(endpoint, postData);
 
-            if (send_otp.data.error) {
-                message = send_otp.data.message;
-                code = "ERORR_OTP"
-            } else {
-                message = "Otp Sent Successfully";
-                code = "OTP_SENT"
-            }
+			if (send_otp.data.error) {
+				message = send_otp.data.message;
+				code = "ERORR_OTP";
+			} else {
+				message = "Otp Sent Successfully";
+				code = "OTP_SENT";
+			}
 
-            let request = {
-                endpoint: endpoint,
-                method: 'POST',
-                query: {},
-                params: {},
-                body: postData,
-                headers: {}
-            }
+			let request = {
+				endpoint: endpoint,
+				method: "POST",
+				query: {},
+				params: {},
+				body: postData,
+				headers: {},
+			};
 
-            let response = {
-                data: send_otp.data,
-                status: send_otp.status,
-                code: send_otp.code,
-                message: message
-            }
+			let response = {
+				data: send_otp.data,
+				status: send_otp.status,
+				code: send_otp.code,
+				message: message,
+			};
 
-            SuccessLoggerHelper(request, response);
+			SuccessLoggerHelper(request, response);
 
-            return {
-                send_otp, message, code
-            }
+			return {
+				send_otp,
+				message,
+				code,
+			};
+		} catch (error) {
+			throw error;
+		}
+	},
+	ValidateOtp: async (mobile_number, pin) => {
+		try {
+			const endpoint = "/validateOTP";
+			const opt_username = process.env.OTP_USERNAME;
+			const otp_pass = process.env.OTP_PASSWORD;
+			const otp_limit = process.env.OTP_LIMIT;
 
-        } catch (error) {
+			let message = "";
+			let code = "";
 
-            throw (error)
-        }
-    },
-    ValidateOtp: async (mobile_number, pin) => {
-        try {
-            const endpoint = '/validateOTP';
-            const opt_username = process.env.OTP_USERNAME;
-            const otp_pass = process.env.OTP_PASSWORD;
-            const otp_limit = process.env.OTP_LIMIT;
+			const postData = {
+				username: opt_username,
+				password: otp_pass,
+				mobileno: mobile_number,
+				pin: pin,
+				timeLimit: otp_limit,
+			};
 
-            let message = "";
-            let code = "";
+			const validate_otp = await OTP_API.post(endpoint, postData);
 
-            const postData = {
-                username: opt_username,
-                password: otp_pass,
-                mobileno: mobile_number,
-                pin: pin,
-                timeLimit: otp_limit,
-            }
+			if (validate_otp.data.error) {
+				const response = {
+					data: validate_otp.data,
+					code: "OTP_INVALID",
+					status: 400,
+					success: false,
+					message: validate_otp.data.message,
+				};
 
-            const validate_otp = await OTP_API.post(endpoint, postData);
+				throw response;
+			} else {
+				message = "Otp Validated Successfully";
+				code = "OTP_VALIDATED";
+			}
 
-            if (validate_otp.data.error) {
-                const response = {
-                    data: validate_otp.data,
-                    code: "OTP_INVALID",
-                    status: 400,
-                    success: false,
-                    message: validate_otp.data.message
-                }
+			let request = {
+				endpoint: endpoint,
+				method: "POST",
+				query: {},
+				params: {},
+				body: postData,
+				headers: {},
+			};
 
-                throw response;
-            } else {
-                message = "Otp Validated Successfully";
-                code = "OTP_VALIDATED"
-            }
+			let response = {
+				data: validate_otp.data,
+				status: validate_otp.status,
+				code: validate_otp.code,
+				message: message,
+			};
 
-            let request = {
-                endpoint: endpoint,
-                method: 'POST',
-                query: {},
-                params: {},
-                body: postData,
-                headers: {}
-            }
+			SuccessLoggerHelper(request, response);
 
-            let response = {
-                data: validate_otp.data,
-                status: validate_otp.status,
-                code: validate_otp.code,
-                message: message
-            }
-
-            SuccessLoggerHelper(request, response);
-
-            return {
-                validate_otp, message, code
-            }
-
-        } catch (error) {
-
-            throw (error)
-        }
-    }
-}
+			return {
+				validate_otp,
+				message,
+				code,
+			};
+		} catch (error) {
+			throw error;
+		}
+	},
+};
