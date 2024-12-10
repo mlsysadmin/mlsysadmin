@@ -508,7 +508,7 @@ module.exports = {
             SuccessLoggerHelper(req, login);
 
             res.cookie('access_token', generateSessionToken, tokenCookieOptions);
-            res.cookie('user_details', userLogin.login.data, useCookieOptions);
+            res.cookie('account_details', userLogin.login.data, useCookieOptions);
 
             res.status(200).send(login);
 

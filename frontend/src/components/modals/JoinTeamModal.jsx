@@ -10,7 +10,7 @@ import { Select } from "antd";
 import { AddAgent, GetControlLastNumber } from "../../api/Public/Agent.api";
 import { notification } from "antd";
 
-const JoinTeam = ({ toggleModal, isMLWWSPresent }) => {
+const JoinTeam = ({ toggleModal, isSessionPresent }) => {
 	const { Option } = Select;
 	const [getCountry, setGetCountry] = useState([]);
 	const [getProvince, setGetProvince] = useState([]);
@@ -402,9 +402,9 @@ const JoinTeam = ({ toggleModal, isMLWWSPresent }) => {
 	//     })
 	//     .join(" ");
 	// };
-	useEffect(() => {}, [isMLWWSPresent]);
+	useEffect(() => {}, [isSessionPresent]);
 
-	if (!isMLWWSPresent) {
+	if (!isSessionPresent) {
 		return (
 			<div className="join-modal-container">
 				{contextHolder}

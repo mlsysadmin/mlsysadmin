@@ -7,6 +7,7 @@ import { searchKyc } from "../api/Public/User.api";
 import BrokerageLogo from "../assets/BrokerageLogo.png";
 import { DatePicker, Select } from "antd";
 import PreviewLoadingModal from "./modals/PreviewLoadingModal";
+import { SendOtp, ValidateOtpLogin } from "../api/Public/OtpLogin.api";
 
 const { Option } = Select;
 
@@ -29,7 +30,7 @@ const LoginComponent = () => {
 	const [resend, setResend] = useState(true);
 
 	const [showOtpScreen, setShowOtpScreen] = useState(false);
-
+	
 	const cleanPhonenumber = (val) => {
 		return val.replace(/\D+/g, "");
 	};
@@ -140,22 +141,42 @@ const LoginComponent = () => {
 	const handleYearChange = (value) => {
 		setSelectedYear(value);
 	};
-	const handleSignIn = () => {
-		const userBdate = userDetails?.birthDate;
-		const selectedBirthdate = `${selectedYear}-${selectedMonth}-${isDateNumber}`;
+	const handleSignIn = async () => {
+		try {
 
-		if (userBdate !== selectedBirthdate) {
-			setBirthdateError(true);
-			return;
+			const userBdate = userDetails?.birthDate;
+			console.log(isDateNumber);
+
+			const paddedDate = isDateNumber.toString().padStart(2, "0");
+
+			const selectedBirthdate = `${selectedYear}-${selectedMonth}-${paddedDate}`;
+
+			if (userBdate !== selectedBirthdate) {
+				console.log(userBdate, selectedBirthdate);
+				setBirthdateError(true);
+				return;
+			}else{
+
+				setBirthdateError(false);
+				if (isValidPhone) {
+					
+					setIsSubmitting(true);
+					await SendOtp(phone);
+
+					setIsSubmitting(false);
+					setShowOtpScreen(true);
+					setOtp(Array(6).fill(""));
+					// sendOtpToPhone(phone);
+				}
+			}
+
+
+		} catch (error) {
+			setBirthdateError(false);
+			console.log("handleSignIn", error);
+
 		}
 
-		setBirthdateError(false);
-		if (isValidPhone) {
-			setShowOtpScreen(true);
-			setOtp(Array(6).fill(""));
-
-			// sendOtpToPhone(phone);
-		}
 	};
 
 	const handleOtpInput = (e, index) => {
@@ -180,25 +201,29 @@ const LoginComponent = () => {
 			}
 		}
 	};
-	const handleOtpVerification = () => {
+	const handleOtpVerification = async () => {
 		console.log("Success");
-		if (userDetails) {
-			if (
-				userDetails?.tier?.label !== "BUYER" ||
-				userDetails?.tier?.label !== "SEMI-VERIFIED"
-			) {
-				window.location.href = "/";
-			} else {
-				// window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-				// 	redirectUrl
-				// )}`;
-			}
-		} else {
-			// window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-			// 	redirectUrl
-			// )}`;
-			window.location.href = "/login";
-		}
+		console.log(phone, otp);
+		
+		// const validateLogin = await ValidateOtpLogin(phone, otp);
+
+		// if (userDetails) {
+		// 	if (
+		// 		userDetails?.tier?.label !== "BUYER" ||
+		// 		userDetails?.tier?.label !== "SEMI-VERIFIED"
+		// 	) {
+		// 		window.location.href = "/";
+		// 	} else {
+		// 		// window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+		// 		// 	redirectUrl
+		// 		// )}`;
+		// 	}
+		// } else {
+		// 	// window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+		// 	// 	redirectUrl
+		// 	// )}`;
+		// 	window.location.href = "/login";
+		// }
 	};
 	useEffect(() => {
 		if (otpTimer > 0) {
@@ -262,7 +287,7 @@ const LoginComponent = () => {
 										</div>
 										<p className="resend-otp">
 											<span onClick={handleResendOtp}>
-												Resend OTP: {Math.floor(otpTimer / 60)}:
+												Resend OTP  {Math.floor(otpTimer / 60)}:
 												{(otpTimer % 60).toString().padStart(2, "0")}
 											</span>
 										</p>
@@ -353,7 +378,7 @@ const LoginComponent = () => {
 													</div>
 												</div>
 												{birthdateError && (
-													<p style={{ color: "red", marginTop: "8px" , fontSize:"12px", textAlign:"center"}}>
+													<p style={{ color: "red", marginTop: "8px", fontSize: "12px", textAlign: "center" }}>
 														Birthdate does not match with the existing
 														data.
 													</p>

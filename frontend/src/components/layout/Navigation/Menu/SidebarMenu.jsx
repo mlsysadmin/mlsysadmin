@@ -41,17 +41,16 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 		setShowUpgradeModal(false);
-		window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-			redirectUrl
-		)}`;
+		navigate('/login')
 	};
 	const handleLogout = async () => {
 		const logoutURL = process.env.REACT_APP_LOGOUT_URL;
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 
-		window.location.href = `${logoutURL}?redirect_url=${encodeURIComponent(
-			redirectUrl
-		)}`;
+		// window.location.href = `${logoutURL}?redirect_url=${encodeURIComponent(
+		// 	redirectUrl
+		// )}`;
+		navigate('/')
 	};
 	
 	const handleProfileClick = () => {

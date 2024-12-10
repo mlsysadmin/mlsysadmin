@@ -37,7 +37,8 @@ const HeaderMenu = () => {
 
 	const sessionCookieName = process.env.REACT_APP_SESSION_COOKIE_NAME;
 	const accountCookieName = process.env.REACT_APP_ACCOUNT_COOKIE_NAME;
-	const isMLWWSPresent = isCookiePresent(sessionCookieName);
+
+	const isSessionPresent = isCookiePresent(sessionCookieName);
 	const isAccountDetailsPresent = isCookiePresent(accountCookieName);
 	const [userDetails, setUserDetails] = useState(null);
 
@@ -78,10 +79,10 @@ const HeaderMenu = () => {
 	};
 
 	useEffect(() => {
-		if (isMLWWSPresent && isAccountDetailsPresent) {
+		if (isSessionPresent && isAccountDetailsPresent) {
 			fetchUserDetails();
 		}
-	}, [isMLWWSPresent, isAccountDetailsPresent]);
+	}, [isSessionPresent, isAccountDetailsPresent]);
 
 	useEffect(() => {
 		const currentPath = location.pathname;
@@ -109,7 +110,7 @@ const HeaderMenu = () => {
 	}, [location.pathname]);
 
 	const handleListPropertyClick = () => {
-		if (isMLWWSPresent && isAccountDetailsPresent) {
+		if (isSessionPresent && isAccountDetailsPresent) {
 			if (
 				userDetails?.tier?.label !== "BUYER" ||
 				userDetails?.tier?.label !== "SEMI-VERIFIED"
@@ -159,7 +160,7 @@ const HeaderMenu = () => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 
-		if (isMLWWSPresent && isAccountDetailsPresent) {
+		if (isSessionPresent && isAccountDetailsPresent) {
 			if (
 				userDetails?.tier?.label !== "BUYER" ||
 				userDetails?.tier?.label !== "SEMI-VERIFIED"
@@ -193,18 +194,17 @@ const HeaderMenu = () => {
 
 	const handleListingRedirect = () => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
+		// const loginUrl = process.env.REACT_APP_LOGIN_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 
-		if (isMLWWSPresent && isAccountDetailsPresent) {
+		if (isSessionPresent && isAccountDetailsPresent) {
 			if (
 				userDetails?.tier?.label !== "BUYER" ||
 				userDetails?.tier?.label !== "SEMI-VERIFIED"
 			) {
 				window.location.href = "/listing";
 			} else {
-				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-					`${redirectUrl}/listing`
-				)}`;
+				navigate('/login');
 				handleLogout();
 				setTierUpgrade(true);
 			}
@@ -221,9 +221,7 @@ const HeaderMenu = () => {
 			// 	setTierUpgrade(true);
 			// }
 		} else {
-			window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-				`${redirectUrl}/listing`
-			)}`;
+			navigate('/login');
 		}
 	};
 	//modals
@@ -475,7 +473,7 @@ const HeaderMenu = () => {
 					onClick={handleMenuOnClick}
 					className="header--menu"
 				></Menu>
-				{!isMLWWSPresent && (
+				{!isSessionPresent && (
 					<>
 						<RoundBtn
 							type="primary"
@@ -512,7 +510,7 @@ const HeaderMenu = () => {
 						showLogin={handleListingRedirect}
 					/>
 				)}
-				{/* {!isMLWWSPresent&&
+				{/* {!isSessionPresent&&
 					( */}
 
 				{/* )} */}
@@ -520,19 +518,19 @@ const HeaderMenu = () => {
 					<WorkingOnItModal isOpen={showModal} onClose={toggleModal} />
 				)} */}
 
-				{showModal && !isMLWWSPresent && (
+				{showModal && !isSessionPresent && (
 					<>
 						<JoinTeam
 							toggleModal={toggleModal}
-							isMLWWSPresent={isMLWWSPresent}
+							isSessionPresent={isSessionPresent}
 						/>
 					</>
 				)}
 				<Row align={"middle"} className="menu-buttons">
-					{isMLWWSPresent ? (
+					{isSessionPresent ? (
 						userDetails?.tier?.label !== "BUYER" ||
 						userDetails?.tier?.label !== "SEMI-VERIFIED" ? (
-							<SellerLogInButtonDropdown isMLWWSPresent={isMLWWSPresent} />
+							<SellerLogInButtonDropdown isSessionPresent={isSessionPresent} />
 						) : (
 							<img
 								src={userProfile}
