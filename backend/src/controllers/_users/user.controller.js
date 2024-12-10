@@ -17,7 +17,7 @@ const { GenerateURL, GoogleAuth } = require('../../services/google.auth.service'
 const { google } = require('googleapis');
 const { UpdateTokenVersion } = require('../../utils/_helper/Jwt.helper');
 const { SendOtp, ValidateOtp } = require('../../utils/_api/otp.api');
-const { RegisterUserKyc, ExternalLogin } = require('../../utils/_api/ml_money.api');
+const { RegisterUserKyc, ExternalLogin, ExternalSendOtp } = require('../../utils/_api/ml_money.api');
 
 module.exports = {
     Login: async (req, res, next) => {
@@ -434,10 +434,24 @@ module.exports = {
         }
     },
 
-    UserSendOtp: async () => {
+    UserSendOtp: async (req, res, next) => {
         try {
             
+            const { cellphoneNumber } = req.body.payload;
 
+            const userOtp = await ExternalSendOtp(cellphoneNumber);
+
+            const otp = DataResponseHandler(
+                userOtp.userOtp.data,
+                userOtp.code,
+                200,
+                true,
+                userOtp.message
+            );
+
+            SuccessLoggerHelper(req, otp);
+
+            res.status(200).send(otp);
 
         } catch (error) {
             next(error);
@@ -453,10 +467,6 @@ module.exports = {
                 return res.status(404).send({ message: 'User not found' });
             }
 
-            // const isValid = await bcrypt.compare(pin, user.pin);
-            // if (!isValid) {
-            //     return res.status(401).send({ message: 'Invalid pin' });
-            // }
             const uniqId = userLogin.login.data.ckycId;
 
             const generateSessionToken = JwtSign(uniqId);
@@ -498,7 +508,7 @@ module.exports = {
             SuccessLoggerHelper(req, login);
 
             res.cookie('access_token', generateSessionToken, tokenCookieOptions);
-            res.cookie('user_details', verifyUser, useCookieOptions);
+            res.cookie('user_details', userLogin.login.data, useCookieOptions);
 
             res.status(200).send(login);
 

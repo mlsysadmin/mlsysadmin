@@ -44,7 +44,7 @@ const ErrorHandler = async (error, request, response, next) => {
         response.status(error.status).send(err);
 
     } catch (e) {
-        console.log("e", e.response.status);
+        console.log("e", e);
         let err;
 
         if (Object.keys(error).includes('response')) {
