@@ -246,10 +246,10 @@ const NewPageComponent = () => {
 							/>
 						</div>
 					</div>
-					<CustomMlFooter />
-					<FooterComponent />
 				</div>
 			</div>
+			<CustomMlFooter />
+			<FooterComponent />
 		</div>
 	);
 };
