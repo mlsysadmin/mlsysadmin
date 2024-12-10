@@ -218,82 +218,85 @@ const RentComponent = () => {
 
 	return (
 		<div className="rent">
-			<div className="topbar">
-				<ListingSearch
-					location={filterLocation}
-					searchParams={searchParams}
-					setSearchFilters={setSearchParams}
-				/>
-			</div>
-			<div className="rentContainer">
-				<Breadcrumb
-					separator=">"
-					items={breadCrumbItems}
-					className="rent-h1 breadcrumb--search"
-				/>
-				<span className="rent-h1">{headerText}</span>
-				{/* <span className="rent-h1">{headerText}</span> */}
-				<SearchPropertiesSoration
-					properties_count={publiclisting.length}
-					current_properties_count={currentCards.length}
-					selectedSort={selectedSort}
-					setSelectedSort={setSelectedSort}
-					HandleSort={HandleSort}
-				/>
-				{!loading ? (
-					currentCards.length !== 0 ? (
-						<div className="card-container">
-							{currentCards.map((data, index) => (
-								<Card
-									key={index}
-									id={data.id}
-									title={data.title}
-									price={`PHP ${data.price}`}
-									imgSrc={data.img}
-									beds={data.no_of_beds}
-									baths={data.no_of_bathrooms}
-									size={data.lot}
-									likes={data.pics}
-									forsale={data.status}
-									subtitle={`${CapitalizeString(
-										data.property_type
-									)} For ${CapitalizeString(data.sale_type)}`}
-									handleClick={() => handleCardClick(data.property_no)}
-									propertyNo={data.property_no}
-									vendorId={data.vendorId}
-									number={number}
-								/>
-							))}
-						</div>
+			<div className="rent-page-content">
+				<div className="topbar">
+					<ListingSearch
+						location={filterLocation}
+						searchParams={searchParams}
+						setSearchFilters={setSearchParams}
+					/>
+				</div>
+				<div className="rentContainer">
+					<Breadcrumb
+						separator=">"
+						items={breadCrumbItems}
+						className="rent-h1 breadcrumb--search"
+					/>
+					<span className="rent-h1">{headerText}</span>
+					{/* <span className="rent-h1">{headerText}</span> */}
+					<SearchPropertiesSoration
+						properties_count={publiclisting.length}
+						current_properties_count={currentCards.length}
+						selectedSort={selectedSort}
+						setSelectedSort={setSelectedSort}
+						HandleSort={HandleSort}
+					/>
+					{!loading ? (
+						currentCards.length !== 0 ? (
+							<div className="card-container">
+								{currentCards.map((data, index) => (
+									<Card
+										key={index}
+										id={data.id}
+										title={data.title}
+										price={`PHP ${data.price}`}
+										imgSrc={data.img}
+										beds={data.no_of_beds}
+										baths={data.no_of_bathrooms}
+										size={data.lot}
+										likes={data.pics}
+										forsale={data.status}
+										subtitle={`${CapitalizeString(
+											data.property_type
+										)} For ${CapitalizeString(data.sale_type)}`}
+										handleClick={() => handleCardClick(data.property_no)}
+										propertyNo={data.property_no}
+										vendorId={data.vendorId}
+										number={number}
+									/>
+								))}
+							</div>
+						) : (
+							<NoDataAvailable
+								message={`No available ${CapitalizeEachWord(
+									propertyType
+								)} For Rent`}
+							/>
+						)
 					) : (
-						<NoDataAvailable
-							message={`No available ${CapitalizeEachWord(
-								propertyType
-							)} For Rent`}
-						/>
-					)
-				) : (
-					<div
-						className="card-skeleton-loading"
-						style={{
-							display: "flex",
-							justifyContent: "center",
-							gap: "20px",
-						}}
-					>
-						{Array(3)
-							.fill(null)
-							.map((_, i) => (
-								<CardSkeleton key={i} />
-							))}
-					</div>
-				)}
-				<Pagination
-					currentPage={currentPage}
-					totalPages={totalPages}
-					paginate={setCurrentPage}
-				/>
+						<div
+							className="card-skeleton-loading"
+							style={{
+								display: "flex",
+								justifyContent: "center",
+								gap: "20px",
+							}}
+						>
+							{Array(3)
+								.fill(null)
+								.map((_, i) => (
+									<CardSkeleton key={i} />
+								))}
+						</div>
+					)}
+					<Pagination
+						currentPage={currentPage}
+						totalPages={totalPages}
+						paginate={setCurrentPage}
+					/>
+				</div>
 			</div>
+
 			<CustomMlFooter />
 			<FooterComponent />
 		</div>

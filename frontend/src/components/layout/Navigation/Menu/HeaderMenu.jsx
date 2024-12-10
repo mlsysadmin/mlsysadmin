@@ -266,45 +266,47 @@ const HeaderMenu = () => {
 			setrentPopUpOpen(false);
 			setbuyPopUpOpen(false);
 			sethomeLoanPopUpOpen(false);
-			setpreSellingPopUpOpen(false);
+			// setpreSellingPopUpOpen(false);
 			// sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(true);
 		} else if (menu.key === "rent") {
 			setrentPopUpOpen(true);
 			setbuyPopUpOpen(false);
 			sethomeLoanPopUpOpen(false);
-			setpreSellingPopUpOpen(false);
+			// setpreSellingPopUpOpen(false);
 			// sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(false);
 		} else if (menu.key === "buy") {
 			setrentPopUpOpen(false);
 			setbuyPopUpOpen(true);
 			sethomeLoanPopUpOpen(false);
-			setpreSellingPopUpOpen(false);
+			// setpreSellingPopUpOpen(false);
 			// sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(false);
 		} else if (menu.key === "home-loan") {
 			setrentPopUpOpen(false);
 			setbuyPopUpOpen(false);
-			setpreSellingPopUpOpen(false);
+			// setpreSellingPopUpOpen(false);
 			sethomeLoanPopUpOpen(true);
 			// sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(false);
-		} else if (menu.key === "pre-selling") {
-			setrentPopUpOpen(false);
-			setbuyPopUpOpen(false);
-			setpreSellingPopUpOpen(true);
-			sethomeLoanPopUpOpen(false);
-			// sethomeInsurancePopUpOpen(false);
-			setotherServicesPopUpOpen(false);
-		} else {
+		} 
+		// else if (menu.key === "pre-selling") {
+		// 	setrentPopUpOpen(false);
+		// 	setbuyPopUpOpen(false);
+		// 	setpreSellingPopUpOpen(true);
+		// 	sethomeLoanPopUpOpen(false);
+
+		// 	setotherServicesPopUpOpen(false);
+		// } 
+		else {
 			navigate({
 				pathname: menu.item.props.link,
 			});
 			setrentPopUpOpen(false);
 			setbuyPopUpOpen(false);
 			sethomeLoanPopUpOpen(false);
-			setpreSellingPopUpOpen(false);
+			// setpreSellingPopUpOpen(false);
 			// sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(false);
 		}
@@ -317,14 +319,16 @@ const HeaderMenu = () => {
 		sethomeLoanPopUpOpen(false);
 		// sethomeInsurancePopUpOpen(false);
 		setotherServicesPopUpOpen(false);
-		setpreSellingPopUpOpen(false);
+		// setpreSellingPopUpOpen(false);
 		setrentPopUpOpen(false);
 
 		if (menuKey === "rent") {
 			setrentPopUpOpen(true);
-		} else if (menuKey === "pre-selling") {
-			setpreSellingPopUpOpen(true);
-		} else if (menuKey === "buy") {
+		} 
+		// else if (menuKey === "pre-selling") {
+		// 	setpreSellingPopUpOpen(true);
+		// } 
+		else if (menuKey === "buy") {
 			setbuyPopUpOpen(true);
 		} else if (menuKey === "home-loan") {
 			sethomeLoanPopUpOpen(true);
@@ -337,7 +341,7 @@ const HeaderMenu = () => {
 	const handleMouseLeave = () => {
 		setbuyPopUpOpen(false);
 		sethomeLoanPopUpOpen(false);
-		setpreSellingPopUpOpen(false);
+		// setpreSellingPopUpOpen(false);
 		// sethomeInsurancePopUpOpen(false);
 		setotherServicesPopUpOpen(false);
 		setrentPopUpOpen(false);
@@ -346,9 +350,9 @@ const HeaderMenu = () => {
 	const RentMenuPopContent = <MenuPopupContent submenu={SubMenu.rent} />;
 
 	const BuyMenuPopContent = <MenuPopupContent submenu={SubMenu.buy} />;
-	const PreSellingPopContent = (
-		<MenuPopupContent submenu={SubMenu.preSelling} />
-	);
+	// const PreSellingPopContent = (
+	// 	<MenuPopupContent submenu={SubMenu.preSelling} />
+	// );
 
 	const HomeLoanMenuPopContent = (
 		<MenuPopupContent submenu={SubMenu.homeLoan} />
@@ -380,15 +384,15 @@ const HeaderMenu = () => {
 		/>
 	);
 
-	const PreSellingMenu = () => (
-		<MenuPopup
-			title={""}
-			popUpOpen={preSellingPopUpOpen}
-			label={"Pre-Selling"}
-			content={PreSellingPopContent}
-			menuKey={"pre-selling"}
-		/>
-	);
+	// const PreSellingMenu = () => (
+	// 	<MenuPopup
+	// 		title={""}
+	// 		popUpOpen={preSellingPopUpOpen}
+	// 		label={"Pre-Selling"}
+	// 		content={PreSellingPopContent}
+	// 		menuKey={"pre-selling"}
+	// 	/>
+	// );
 
 	const HomeLoanMenu = () => (
 		<MenuPopup
@@ -426,7 +430,7 @@ const HeaderMenu = () => {
 		{ label: "Sell", key: "sell", link: "/sell" },
 		{ label: <BuyMenu />, key: "buy" },
 		{ label: <RentMenu />, key: "rent" },
-		{ label: <PreSellingMenu />, key: "pre-selling" },
+		// { label: <PreSellingMenu />, key: "pre-selling" },
 		{ label: <HomeLoanMenu />, key: "home-loan" },
 		{
 			// label: <HomeInsuranceMenu />,
