@@ -45,7 +45,7 @@ const ErrorHandler = async (error, request, response, next) => {
 
     } catch (e) {
         console.log("e", e);
-        
+        let err;
 
         if (Object.keys(error).includes('response')) {
 
@@ -67,15 +67,16 @@ const ErrorHandler = async (error, request, response, next) => {
             }]
             FatalLogger.addContext('context', `Logging.. | ML BROKERAGE`);
             FatalLogger.fatal(...errorContext);
+            err = ErrorFormatter(error.code, error.response.status, error.message, error.response.data);
         }
 
         else {
             FatalLogger.addContext('context', `Logging.. | ML BROKERAGE`);
             FatalLogger.fatal(e.toString());
+            err = ErrorFormatter("SERVER_ERROR", 500, "We're sorry, something went wrong on our end. Please try again later or contact our support team.")
         }
 
-        let err = ErrorFormatter("SERVER_ERROR", 500, "We're sorry, something went wrong on our end. Please try again later or contact our support team.")
-        response.status(500).send(err)
+        response.status(err.data.status).send(err);
     }
 }
 
