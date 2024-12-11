@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col } from 'antd';
-import mllogo from "../../asset/icons/mllogo.png";
+import mllogo from "../../assets/BrokerageLogo.png"
 import applestore from "../../asset/icons/applestore.png";
 import gplaystore from "../../asset/icons/gplaystore.png";
 import huaweistore from "../../asset/icons/huaweistore.png";
