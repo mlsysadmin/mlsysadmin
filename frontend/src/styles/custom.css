@@ -581,15 +581,16 @@ listing search */
 	font-size: 14px;
 }
 
-@media (max-width: 575px){
+@media screen and (min-width: 320px) and (max-width: 359px) {
 	.first-content {
-	 width: 100%;
+		width: 100%;
+		margin: 20px 0px 0px 5px;
 	}
 	.first-content .sub-content1 {
 		display: flex;
 		flex-direction: column;
 		height: 920px;
-		width: 300px;
+		width: 400px;
 	}
 	.first-content .subcontent-inputs-1 {
 		width: 95%;
@@ -683,7 +684,7 @@ listing search */
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		width: 360px;
+		width: 100%;
 		/* margin: 40px 5px 0px 10px; */
 	}
 	.first-content .sub-content1 {
@@ -694,7 +695,7 @@ listing search */
 		/* padding: 10px; */
 		padding-bottom: 100px;
 		/* height: 960px; */
-		width: 90%;
+		width: 80%;
 	}
 	.first-content .subcontent-inputs-1 {
 		width: 100%;
@@ -772,11 +773,11 @@ listing search */
 		display: flex;
 		height: 40px !important;
 		position: absolute !important;
-		margin-left: 190px !important;
+		margin-left: 150px !important;
 	}
 	.advance-searchdropdown .custom-range-button {
 		margin-top: 890px;
-		margin-left: 50px;
+		margin-left: 0px;
 		position: absolute;
 	}
 	.advance-searchdropdown .ant-slider-track,
@@ -808,7 +809,8 @@ listing search */
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin: 40px 5px 0px 10px;
+		width: 100%;
+		/* margin: 40px 5px 0px 10px; */
 	}
 	.first-content .sub-content1 {
 		display: flex;
@@ -817,7 +819,7 @@ listing search */
 		align-items: center;
 		/* padding: 10px; */
 		padding-bottom: 100px;
-		width: 90%;
+		width: 80%;
 	}
 	.first-content .subcontent-inputs-1 {
 		width: 100%;
@@ -884,11 +886,11 @@ listing search */
 		display: flex;
 		height: 40px !important;
 		position: absolute !important;
-		margin-left: 240px !important;
+		margin-left: 200px !important;
 	}
 	.advance-searchdropdown .custom-range-button {
 		margin-top: 890px;
-		margin-left: 90px;
+		margin-left: 50px;
 		position: absolute;
 	}
 	.advance-searchdropdown .ant-slider-track,
@@ -912,7 +914,7 @@ listing search */
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin: 40px 5px 0px 10px;
+		width: 100%;
 	}
 	.first-content .sub-content1 {
 		display: flex;
@@ -1012,7 +1014,7 @@ listing search */
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin: 40px 5px 0px 10px;
+		width: 100%;
 	}
 	.first-content .sub-content1 {
 		display: flex;
@@ -1607,12 +1609,14 @@ listing search */
 	.first-content {
 		margin-left: 15px;
 		height: 550px;
+		width: 100%;
 	}
 	.first-content .sub-content1 {
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: row;
-		margin-left: 5px;
+		/* margin-left: 5px; */
+		width: 90%;
 	}
 	.subcontent-inputs-1 {
 		display: flex;
@@ -1901,13 +1905,12 @@ listing search */
 		background-image: none;
 	}
 }
-
 @media screen and (min-width: 610px) and (max-width: 1024px) {
 	.first-content .sub-content1 {
 		display: flex;
 		flex-wrap: wrap;
 		/* margin-left: 5px; */
-		width: 90%;
+		width: 92%;
 	}
 	.advance-searchdropdown {
 		display: flex;
@@ -1957,7 +1960,7 @@ listing search */
 	.first-content .sub-content1 {
 		display: flex;
 		flex-wrap: wrap;
-		/* width: 90%; */
+		width: 100%;
 	}
 	.advance-searchdropdown {
 		display: flex;
@@ -2015,7 +2018,7 @@ listing search */
 		margin: 0px;
 	}
 	.sub-content1 {
-		width: 89%;
+		width: 100%;
 		margin: 0px;
 	}
 }
@@ -2026,7 +2029,7 @@ listing search */
 		margin: 0px;
 	}
 	.sub-content1 {
-		width: 92%;
+		width: 100%;
 		margin: 0px;
 	}
 }
@@ -2037,7 +2040,7 @@ listing search */
 		margin: 0px;
 	}
 	.sub-content1 {
-		width: 85%;
+		width: 100%;
 		margin: 0px;
 	}
 }
@@ -2047,7 +2050,7 @@ listing search */
 		flex-direction: column;
 	}
 }
-@media screen and (min-width: 769px) and (max-width: 794px) {
+/* @media screen and (min-width: 769px) and (max-width: 794px) {
 	.subcontent-inputs-1 .right-button {
 		position: absolute;
 		margin-left: 600px !important;
@@ -2059,8 +2062,8 @@ listing search */
 		padding-left: 10px;
 		margin: 0px;
 	}
-}
-@media screen and (min-width: 710px) and (max-width: 718px) {
+} */
+/* @media screen and (min-width: 710px) and (max-width: 718px) {
 	.subcontent-inputs-1 .right-button {
 		position: absolute;
 		margin-left: 520px !important;
@@ -2076,9 +2079,9 @@ listing search */
 		width: 100%;
 		margin: 50px 20px;
 	}
-}
+} */
 
-@media screen and (min-width: 710px) and (max-width: 742px) {
+/* @media screen and (min-width: 710px) and (max-width: 742px) {
 	.subcontent-inputs-1 .right-button {
 		position: absolute;
 		margin-left: 560px;
@@ -2120,6 +2123,6 @@ listing search */
 	}
 	.first-content {
 		width: 100%;
-		/* margin: 50px 20px; */
+	
 	}
-}
+} */
