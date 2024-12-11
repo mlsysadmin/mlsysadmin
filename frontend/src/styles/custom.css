@@ -2043,6 +2043,7 @@ listing search */
 		width: 100%;
 		margin: 0px;
 	}
+
 }
 
 @media screen and (min-width: 315px) and (max-width: 500px) {
@@ -2050,6 +2051,7 @@ listing search */
 		flex-direction: column;
 	}
 }
+
 /* @media screen and (min-width: 769px) and (max-width: 794px) {
 	.subcontent-inputs-1 .right-button {
 		position: absolute;
