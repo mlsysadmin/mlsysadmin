@@ -148,7 +148,7 @@
 @media screen and (min-width: 401px) and (max-width: 480px) {
   .custom-pagination {
     width: 100%;
-    gap: 85px;
+    gap: 120px;
   }
 
   .custom-pagination span {
@@ -170,7 +170,7 @@
   .custom-pagination {
     gap: 0px;
     justify-content: space-between;
-    width: 80%;
+    width: 100%;
     margin-bottom: 20px;
   }
 
@@ -203,8 +203,9 @@
 }
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .custom-pagination {
-    gap: 210px;
+    gap: 270px;
     margin: 50px 0px;
+    width: 100%;
   }
   .custom-pagination span {
     /* margin: 20px 0px; */
@@ -218,8 +219,9 @@
 }
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
   .custom-pagination {
-    gap: 270px;
+    gap: 380px;
     margin: 50px 0px;
+    width: 100%;
   }
   .cardBackgroundSavedProperties .custom-pagination {
     gap: 320px;
@@ -236,7 +238,7 @@
   }
 }
 
-/* Cellphone */
+
 @media screen and (min-width: 320px) and (max-width: 399px) {
 	.cardBackgroundSavedProperties .custom-pagination {
         gap: 20%;
