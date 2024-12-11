@@ -114,7 +114,7 @@ const HeaderMenu = () => {
 				userDetails?.tier?.label !== "BUYER" ||
 				userDetails?.tier?.label !== "SEMI-VERIFIED"
 			) {
-				window.location.href = "/listing";
+				window.location.href = "/saved-properties#listingForm";
 			} else {
 				console.log("User is a buyer and cannot list properties.");
 				openUpgradeModal();
