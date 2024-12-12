@@ -436,7 +436,7 @@ module.exports = {
 
     UserSendOtp: async (req, res, next) => {
         try {
-            
+
             const { cellphoneNumber } = req.body.payload;
 
             const userOtp = await ExternalSendOtp(cellphoneNumber);
@@ -472,29 +472,31 @@ module.exports = {
             const generateSessionToken = JwtSign(uniqId);
 
             const tokenCookieOptions = {
-                expires: new Date(Date.now() + 300000),
-                maxAge: 300000, // 5 min
+                // expires: new Date(Date.now() + 300000),
+                // maxAge: 300000, // 5 min
                 // path: '/',
                 // httOnly: true,
                 // secure: true,
                 // sameSite: true,
                 // domain: process.env.CLIENT_APP_URL,
-                // httOnly: process.env.COOKIE_HTTP_ONLY,
+                httpOnly: process.env.COOKIE_HTTP_ONLY,
                 // secure: process.env.COOKIE_SECURE,
                 domain: process.env.COOKIE_DOMAIN,
-                signed: true
-                // expires: new Date(Date.now() + 900000)
+                signed: true,
+                maxAge: 3600000, // 1 hour in milliseconds
+                // expires: new Date(Date.now() + 3600000), // 1 hour from now
             }
 
             const useCookieOptions = {
-                expires: new Date(Date.now() + 300000),
-                maxAge: 300000, // 5 min
+                // expires: new Date(Date.now() + 300000),
+                // maxAge: 300000, // 5 min
                 // path: '/',
-                // httOnly: process.env.COOKIE_HTTP_ONLY,
+                httpOnly: process.env.COOKIE_HTTP_ONLY,
                 // secure: process.env.COOKIE_SECURE,
                 // sameSite: true,
                 domain: process.env.COOKIE_DOMAIN,
-                // expires: new Date(Date.now() + 900000)
+                maxAge: 3600000, // 1 hour in milliseconds
+                // expires: new Date(Date.now() + 3600000), // 1 hour from now
             }
 
             const login = DataResponseHandler(
@@ -511,6 +513,42 @@ module.exports = {
             res.cookie('account_details', userLogin.login.data, useCookieOptions);
 
             res.status(200).send(login);
+
+        } catch (error) {
+            next(error);
+        }
+    },
+    CheckSession: async (req, res, next) => {
+        try {
+
+            const sessionCookie = req.signedCookies.access_token;
+            const accountDetails = req.cookies.account_details;
+            console.log("req", req.cookies);
+            console.log("access", req.signedCookies.access_token);
+        
+            if (sessionCookie) {
+
+                const isSessionCheck = DataResponseHandler(
+                    { isLoggedIn: true, accountDetails },
+                    "COOKIE_PRESENT",
+                    200,
+                    true,
+                    "Cookie is still present"
+                );
+
+                res.send(isSessionCheck);
+            } else {
+                const isSessionCheck = DataResponseHandler(
+                    { isLoggedIn: false, accountDetails: [] },
+                    "COOKIE_EXPIRED",
+                    200,
+                    true,
+                    "Cookie is not present"
+                );
+
+                res.send(isSessionCheck);
+            }
+
 
         } catch (error) {
             next(error);

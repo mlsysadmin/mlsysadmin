@@ -10,31 +10,37 @@ import "../../../styles/sellerdropdown.css";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { isCookiePresent } from "../../../utils/CookieChecker";
+import { useAuth } from "../../../Context/AuthContext";
 
 const SellerLogInButtonDropdown = () => {
 	const [showDropdown, setShowDropdown] = useState(false);
 	const [showModal, setShowModal] = useState(false);
-	const [userDetails, setUserDetails] = useState(null);
+	// const [userDetails, setUserDetails] = useState(null);
 	const [areCookiesPresent, setAreCookiesPresent] = useState(false);
 	const [activeItem, setActiveItem] = useState(null);
 	const [sessionExpired, setSessionExpired] = useState(false);
+	const [fullName, setFullName] = useState("");
 
 	const navigate = useNavigate();
 
-	const accountDetails = getCookieData();
-	console.log("details:", accountDetails);
-	console.log("mobile number", accountDetails.mobileNumber);
+	const {
+		isAuthenticated, userDetails, logout
+	} = useAuth()
 
-	const fetchUserDetails = async () => {
-		try {
-			const response = await searchKyc(accountDetails.mobileNumber);
-			const respData = response.data.data;
-			console.log("API Response:", respData);
-			setUserDetails(respData);
-		} catch (error) {
-			console.error("Error fetching user details:", error);
-		}
-	};
+	// const accountDetails = getCookieData();
+	// console.log("details:", accountDetails);
+	// console.log("mobile number", accountDetails.mobileNumber);
+
+	// const fetchUserDetails = async () => {
+	// 	try {
+	// 		const response = await searchKyc(accountDetails.mobileNumber);
+	// 		const respData = response.data.data;
+	// 		console.log("API Response:", respData);
+	// 		setUserDetails(respData);
+	// 	} catch (error) {
+	// 		console.error("Error fetching user details:", error);
+	// 	}
+	// };
 	const handleButtonClick = () => {
 		setShowDropdown(!showDropdown);
 	};
@@ -56,10 +62,10 @@ const SellerLogInButtonDropdown = () => {
 
 	const location = useLocation();
 	const isActive = (path) => location.pathname === path;
-	useEffect(() => {
-		fetchUserDetails();
-		console.log("user", userDetails);
-	}, []);
+	// useEffect(() => {
+	// 	fetchUserDetails();
+	// 	console.log("user", userDetails);
+	// }, []);
 	// const SessionExpiredInitialization = () => {
 	// 	setTimeout(() => {
 	// 		setSessionExpired(true);
@@ -75,29 +81,27 @@ const SellerLogInButtonDropdown = () => {
 	// }, []);
 
 	const handleLogout = async () => {
-		const logoutURL = process.env.REACT_APP_LOGOUT_URL;
-		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
-
-		window.location.href = `${logoutURL}?redirect_url=${encodeURIComponent(
-			redirectUrl
-		)}`;
+		logout();
 	};
 
 	const toPascalCase = (name) => {
 		return name
 			.split(" ")
-			.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+			.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
 			.join(" ");
 	};
 
-	const firstName = accountDetails
-		? accountDetails.firstName.toLowerCase()
-		: "User";
-	const formatFirstname = toPascalCase(firstName);
-	const lastNameInitial =
-		accountDetails && accountDetails.lastName
-			? accountDetails.lastName.charAt(0).toUpperCase() + "."
-			: "";
+	useEffect(() => {
+		if (isAuthenticated && userDetails) {
+			
+			const firstName = toPascalCase(userDetails.firstName);
+	
+			const lastNameInitial = userDetails.lastName.charAt(0).toUpperCase() + ".";
+			const fullname = toPascalCase(`${firstName} ${lastNameInitial}`);
+	
+			setFullName(fullname);
+		}
+	}, [userDetails, isAuthenticated])
 
 	return (
 		<div className="user-dropdown-group">
@@ -122,7 +126,7 @@ const SellerLogInButtonDropdown = () => {
 					alt="User Profile"
 					style={{ marginRight: "5px", height: "20px" }}
 				/>
-				{formatFirstname} {lastNameInitial}
+				{fullName}
 				<img
 					src={profileDropdown}
 					alt=""
@@ -160,9 +164,6 @@ const SellerLogInButtonDropdown = () => {
 							cursor: "pointer",
 						}}
 					>
-						{/* <li>
-							{firstName} {lastNameInitial}
-						</li> */}
 						<li>
 							<a
 								style={{
@@ -234,53 +235,6 @@ const SellerLogInButtonDropdown = () => {
 						</li>
 
 						{showModal && <JoinTeam toggleModal={toggleModal} />}
-						{/* <li>{accountDetails.email}</li> */}
-						{/* <li>{userDetails.tier.label} TIER</li> */}
-						{/* <li>───────────────────</li> */}
-						{/* <l1>
-							<button
-								style={{
-									minWidth: "200px",
-									height: "40px",
-									borderRadius: "20px",
-									backgroundColor: "rgb(217,217,217,42%)",
-									color: "white",
-								}}
-							>
-								<a
-									style={{
-										textDecoration: "none",
-										color: "white",
-									}}
-									href="/listing"
-								>
-									LIST YOUR PROPERTY
-								</a>
-							</button>
-						</l1> */}
-						{/* <a
-							style={{
-								color: "white",
-							}}
-						>
-							<li>Profile Settings</li>
-						</a>
-						<a
-							href="/listing-summary-lists"
-							style={{
-								color: "white",
-							}}
-						>
-							<li>Listings</li>
-						</a>
-						<a
-							href="/clientmanagement"
-							style={{
-								color: "white",
-							}}
-						>
-							<li>Client Management</li>
-						</a> */}
 						<a
 							style={{
 								color: "white",
@@ -289,11 +243,6 @@ const SellerLogInButtonDropdown = () => {
 						>
 							<li onClick={handleLogout}>Logout</li>
 						</a>
-						{/* <li
-							style={{
-								color: "white",
-							}}
-						></li> */}
 					</ul>
 				</div>
 			)}

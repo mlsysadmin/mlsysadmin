@@ -23,8 +23,13 @@ import SellerLogInButtonDropdown from "../../../custom/buttons/SellerLogInButton
 import { colors } from "@mui/material";
 import UpgradeTierModal from "../../../modals/UpgradeTierModal";
 import TierUpgradeModal from "../../../modals/TierUpgradeModal";
+import { useAuth } from "../../../../Context/AuthContext";
 
 const HeaderMenu = () => {
+	const {
+		isAuthenticated, logout, userDetails, isSeller
+	} = useAuth();
+	
 	const [currentMenu, setCurrent] = useState("");
 	const [rentPopUpOpen, setrentPopUpOpen] = useState(false);
 	const [buyPopUpOpen, setbuyPopUpOpen] = useState(false);
@@ -40,7 +45,7 @@ const HeaderMenu = () => {
 
 	const isSessionPresent = isCookiePresent(sessionCookieName);
 	const isAccountDetailsPresent = isCookiePresent(accountCookieName);
-	const [userDetails, setUserDetails] = useState(null);
+	// const [userDetails, setUserDetails] = useState(null);
 
 	const login = process.env.REACT_APP_LOGIN_URL;
 
@@ -48,14 +53,14 @@ const HeaderMenu = () => {
 
 	const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
-	const showLogin = () => {
-		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
-		const loginUrl = process.env.REACT_APP_LOGIN_URL;
-		setShowUpgradeModal(false);
-		window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-			redirectUrl
-		)}`;
-	};
+	// const showLogin = () => {
+	// 	const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
+	// 	const loginUrl = process.env.REACT_APP_LOGIN_URL;
+	// 	setShowUpgradeModal(false);
+	// 	window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
+	// 		redirectUrl
+	// 	)}`;
+	// };
 
 	const closeModal = () => {
 		setShowUpgradeModal(false);
@@ -66,30 +71,30 @@ const HeaderMenu = () => {
 
 	//get user DEtails
 
-	const accountDetails = getCookieData();
-	const fetchUserDetails = async () => {
-		try {
-			const response = await searchKyc(accountDetails.mobileNumber);
+	// const accountDetails = getCookieData();
+	// const fetchUserDetails = async () => {
+	// 	try {
+	// 		const response = await searchKyc(accountDetails.mobileNumber);
 
-			const respData = response.data.data;
-			setUserDetails(respData);
-		} catch (error) {
-			console.error("Error fetching user details:", error);
-		}
-	};
+	// 		const respData = response.data.data;
+	// 		setUserDetails(respData);
+	// 	} catch (error) {
+	// 		console.error("Error fetching user details:", error);
+	// 	}
+	// };
 
-	useEffect(() => {
-		if (isSessionPresent && isAccountDetailsPresent) {
-			fetchUserDetails();
-		}
-	}, [isSessionPresent, isAccountDetailsPresent]);
+	// useEffect(() => {
+	// 	if (isSessionPresent && isAccountDetailsPresent) {
+	// 		fetchUserDetails();
+	// 	}
+	// }, [isSessionPresent, isAccountDetailsPresent]);
 
 	useEffect(() => {
 		const currentPath = location.pathname;
 
 		if (currentPath.includes("/rent")) {
 			setCurrent("rent");
-		} 
+		}
 		if (currentPath.includes("/new")) {
 			setCurrent("new");
 		} else if (currentPath.includes("/sale")) {
@@ -117,7 +122,6 @@ const HeaderMenu = () => {
 			) {
 				window.location.href = "/listing";
 			} else {
-				console.log("User is a buyer and cannot list properties.");
 				openUpgradeModal();
 			}
 			// if (userDetails?.tier?.label === "FULLY VERIFIED") {
@@ -157,69 +161,18 @@ const HeaderMenu = () => {
 	};
 
 	const handleProfileClick = () => {
-		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
-		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 
-		if (isSessionPresent && isAccountDetailsPresent) {
-			if (
-				userDetails?.tier?.label !== "BUYER" ||
-				userDetails?.tier?.label !== "SEMI-VERIFIED"
-			) {
-				window.location.href = "/";
-			} else {
-				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-					redirectUrl
-				)}`;
-				handleLogout();
-				setTierUpgrade(true);
-			}
-			// if (userDetails?.tier?.label === "FULLY VERIFIED") {
-			// 	window.location.href = "/";
-			// } else if (
-			// 	userDetails?.tier?.label === "BUYER" ||
-			// 	userDetails?.tier?.label === "SEMI-VERIFIED"
-			// ) {
-			// 	window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-			// 		redirectUrl
-			// 	)}`;
-			// 	handleLogout();
-			// 	setTierUpgrade(true);
-			// }
+		if (isAuthenticated && userDetails) {
+			window.location.href = "/";
 		} else {
-			window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-				redirectUrl
-			)}`;
+			window.location.href = `/login`;
 		}
 	};
 
 	const handleListingRedirect = () => {
-		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
-		// const loginUrl = process.env.REACT_APP_LOGIN_URL;
-		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 
-		if (isSessionPresent && isAccountDetailsPresent) {
-			if (
-				userDetails?.tier?.label !== "BUYER" ||
-				userDetails?.tier?.label !== "SEMI-VERIFIED"
-			) {
-				window.location.href = "/listing";
-			} else {
-				navigate('/login');
-				handleLogout();
-				setTierUpgrade(true);
-			}
-			// if (userDetails?.tier?.label === "FULLY VERIFIED") {
-			// 	window.location.href = "/";
-			// } else if (
-			// 	userDetails?.tier?.label === "BUYER" ||
-			// 	userDetails?.tier?.label === "SEMI-VERIFIED"
-			// ) {
-			// 	window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-			// 		redirectUrl
-			// 	)}`;
-			// 	handleLogout();
-			// 	setTierUpgrade(true);
-			// }
+		if (isAuthenticated && userDetails) {
+			window.location.href = "/saved-properties#listingForm";
 		} else {
 			navigate('/login');
 		}
@@ -288,7 +241,7 @@ const HeaderMenu = () => {
 			sethomeLoanPopUpOpen(true);
 			// sethomeInsurancePopUpOpen(false);
 			setotherServicesPopUpOpen(false);
-		} 
+		}
 		// else if (menu.key === "pre-selling") {
 		// 	setrentPopUpOpen(false);
 		// 	setbuyPopUpOpen(false);
@@ -322,7 +275,7 @@ const HeaderMenu = () => {
 
 		if (menuKey === "rent") {
 			setrentPopUpOpen(true);
-		} 
+		}
 		// else if (menuKey === "pre-selling") {
 		// 	setpreSellingPopUpOpen(true);
 		// } 
@@ -473,7 +426,7 @@ const HeaderMenu = () => {
 					onClick={handleMenuOnClick}
 					className="header--menu"
 				></Menu>
-				{!isSessionPresent && (
+				{!isAuthenticated && (
 					<>
 						<RoundBtn
 							type="primary"
@@ -527,24 +480,22 @@ const HeaderMenu = () => {
 					</>
 				)}
 				<Row align={"middle"} className="menu-buttons">
-					{isSessionPresent ? (
-						userDetails?.tier?.label !== "BUYER" ||
-						userDetails?.tier?.label !== "SEMI-VERIFIED" ? (
-							<SellerLogInButtonDropdown isSessionPresent={isSessionPresent} />
-						) : (
+					{
+					isAuthenticated && userDetails
+						?
+						(
+							<SellerLogInButtonDropdown />
+						)
+						:
+						(
 							<img
 								src={userProfile}
 								style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
 								onClick={handleProfileClick}
 							/>
+							
 						)
-					) : (
-						<img
-							src={userProfile}
-							style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
-							onClick={handleProfileClick}
-						/>
-					)}
+					}
 				</Row>
 				{tierUpgrade && <TierUpgradeModal openModal={openTierUpgradeModal} />}
 			</div>

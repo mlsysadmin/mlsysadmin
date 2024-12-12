@@ -98,6 +98,26 @@ const searchKyc = async (cellphoneNumber) => {
 	}
 };
 
+const checkSession = async () => {
+	try {
+		
+        const config = {
+			headers: {
+				"Content-Type": "application/json",
+				"x-api-key": process.env.REACT_APP_API_KEY,
+			},
+		};
+
+		const response = await MLBROKERAGEAxiosInstance.post(
+			"/api/user/check-session", {}, config
+		);
+
+		return response.data;
+	} catch (error) {
+		console.error("",error);
+		throw error;
+	}
+};
 
 
-export { GoogleSignIn, Logout, searchKyc };
+export { GoogleSignIn, Logout, searchKyc, checkSession };

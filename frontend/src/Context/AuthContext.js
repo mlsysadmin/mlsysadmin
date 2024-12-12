@@ -1,56 +1,57 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+import { checkSession, searchKyc } from '../api/Public/User.api';
+import { isCookiePresent } from '../utils/CookieChecker';
 
 // Create a context for authentication
 const AuthContext = createContext();
 
 // AuthProvider component to wrap the app and provide auth state
 export const AuthProvider = ({ children }) => {
+
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [userDetails, setUserDetails] = useState(null);
 
     const [isMessageLoadingOpen, setIsMessageLoadingOpen] = useState(false);
     const [zIndex, setIndex] = useState(100);
-
-    const access_token = Cookies.get('access_token');
-    const user = Cookies.get('user_details');
-    console.log('isMessageLoadingOpen', isMessageLoadingOpen);
-
-    // const login = useCallback(user => {
-    //     setIsAuthenticated(true);
-    //     setUserDetails(user);
-    // }, []);
-
-    // const logout = useCallback(() => {
-    //     setIsAuthenticated(false);
-    //     setUserDetails(null);
-    //     // sessionStorage.removeItem('previous_path');
-    //     Cookies.remove('access_token');
-    //     Cookies.remove('user_details');
-    // }, []);
+    const [isSeller, setIsSeller] = useState(false);
+	const [pageLoad, setPageLoad] = useState(true);
 
     const logout = () => {
         setIsAuthenticated(false);
         setUserDetails(null);
-        // sessionStorage.removeItem('previous_path');
+        setIsSeller(false);
         Cookies.remove('access_token');
-        Cookies.remove('user_details');
+        Cookies.remove('account_details');
         setIsMessageLoadingOpen(true);
     };
 
     useEffect(() => {
-
-
+        
         const checkAuth = () => {
-
-            if (access_token) {
-                const userParse = JSON.parse(user)
-                // login(userParse);
-                setIsAuthenticated(true);
-                setUserDetails(userParse);
-            } else {
+            
+            checkSession().then(session => {
+                
+                const sessionData = session.data;
+                const isLoggedIn = sessionData.isLoggedIn;
+                const account_details = sessionData.accountDetails;
+                
+                if (isLoggedIn) {
+                    // const userParse = JSON.parse(user.slice(2)); // Remove the 'j:' prefix;
+                    setIsAuthenticated(isLoggedIn);
+                    setUserDetails(account_details);                    
+                }else{
+                    logout();
+                }
+            }).catch(err => {
+                console.log(err);
+                
                 logout();
-            }
+            }).finally(() =>{
+                setPageLoad(false);
+            })
+            
         }
 
         checkAuth();
@@ -58,7 +59,9 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, userDetails, logout, setIsMessageLoadingOpen, setIndex, zIndex }}>
+        <AuthContext.Provider value={{ isAuthenticated, userDetails, logout, 
+        setIsMessageLoadingOpen, setIndex, zIndex, isSeller, setIsSeller, pageLoad, setPageLoad
+         }}>
             {children}
         </AuthContext.Provider>
     );

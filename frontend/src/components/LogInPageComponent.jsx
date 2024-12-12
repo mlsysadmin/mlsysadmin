@@ -5,9 +5,10 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { searchKyc } from "../api/Public/User.api";
 import BrokerageLogo from "../assets/BrokerageLogo.png";
-import { DatePicker, Select } from "antd";
+import { DatePicker, Select, notification } from "antd";
 import PreviewLoadingModal from "./modals/PreviewLoadingModal";
 import { SendOtp, ValidateOtpLogin } from "../api/Public/OtpLogin.api";
+import { getCookieData } from "../utils/CookieChecker";
 
 const { Option } = Select;
 
@@ -23,14 +24,29 @@ const LoginComponent = () => {
 	const [selectedMonth, setSelectedMonth] = useState("January");
 	const [selectedYear, setSelectedYear] = useState("2024");
 	const [otp, setOtp] = useState(Array(6).fill(""));
-	const [isOtpValid, setIsOtpValid] = useState(true);
+	const [isOtpValid, setIsOtpValid] = useState(false);
 	const [otpError, setOtpError] = useState("");
 	const [birthdateError, setBirthdateError] = useState(false);
 	const [otpTimer, setotpTimer] = useState(120);
 	const [resend, setResend] = useState(true);
 
 	const [showOtpScreen, setShowOtpScreen] = useState(false);
-	
+	const [api, contextHolder] = notification.useNotification();
+
+	useEffect(() => {
+		if (otpTimer > 0) {
+
+			const timer = setInterval(() => {
+				setotpTimer((prevTime) => prevTime - 1);
+			}, 1000);
+			// setIsOtpValid(true);
+
+			return () => clearInterval(timer);
+		} else {
+			setResend(false);
+		}
+	}, [otpTimer]);
+
 	const cleanPhonenumber = (val) => {
 		return val.replace(/\D+/g, "");
 	};
@@ -114,6 +130,13 @@ const LoginComponent = () => {
 	};
 	const handleReturn = () => {
 		setIsContinued(false);
+		setOtp(Array(6).fill(""));
+		setotpTimer(120);
+		setDateNumber("1");
+		setSelectedMonth("January");
+		setSelectedYear("2024");
+		setBirthdateError(false);
+		setUserDetails(null);
 	};
 
 	const maskUserDetails = (name) => {
@@ -155,13 +178,17 @@ const LoginComponent = () => {
 				console.log(userBdate, selectedBirthdate);
 				setBirthdateError(true);
 				return;
-			}else{
+			} else {
 
 				setBirthdateError(false);
 				if (isValidPhone) {
-					
+
 					setIsSubmitting(true);
-					await SendOtp(phone);
+					const cleanPhone = cleanPhonenumber(phone);
+
+					const formatPhone = cleanPhone.search(/^\+?63/) != -1 ? cleanPhone.replace(/^\+?63/, "0") : cleanPhone;
+
+					await SendOtp(formatPhone);
 
 					setIsSubmitting(false);
 					setShowOtpScreen(true);
@@ -202,189 +229,125 @@ const LoginComponent = () => {
 		}
 	};
 	const handleOtpVerification = async () => {
-		console.log("Success");
-		console.log(phone, otp);
-		
-		// const validateLogin = await ValidateOtpLogin(phone, otp);
+		try {
+			console.log(otp.includes(""));
 
-		// if (userDetails) {
-		// 	if (
-		// 		userDetails?.tier?.label !== "BUYER" ||
-		// 		userDetails?.tier?.label !== "SEMI-VERIFIED"
-		// 	) {
-		// 		window.location.href = "/";
-		// 	} else {
-		// 		// window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-		// 		// 	redirectUrl
-		// 		// )}`;
-		// 	}
-		// } else {
-		// 	// window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-		// 	// 	redirectUrl
-		// 	// )}`;
-		// 	window.location.href = "/login";
-		// }
-	};
-	useEffect(() => {
-		if (otpTimer > 0) {
-			const timer = setInterval(() => {
-				setotpTimer((prevTime) => prevTime - 1);
-			}, 1000);
+			if (otp.includes("")) {
+				console.log(phone, otp);
+				return;
+			} else {
+				console.log("Success");
+				const otpCode = otp.join("").toString();
+				const cleanPhone = cleanPhonenumber(phone);
 
-			return () => clearInterval(timer);
-		} else {
-			setResend(false);
+				const formatPhone = cleanPhone.search(/^\+?63/) != -1 ? cleanPhone.replace(/^\+?63/, "0") : cleanPhone;
+				setIsSubmitting(true);
+				const validateLogin = await ValidateOtpLogin(formatPhone, otpCode);
+				setIsSubmitting(false);
+
+				console.log("validateLogin", validateLogin);
+				if (validateLogin.code == "USER_LOGGED_IN") {
+
+					const kyc = await searchKyc(formatPhone);
+
+					if (
+						kyc?.tier?.label !== "BUYER" ||
+						kyc?.tier?.label !== "SEMI-VERIFIED"
+					) {
+						window.location.href = "/";
+					} else {
+						window.location.href = "/login"
+					}
+				} else {
+					window.location.href = "/login"
+
+				}
+			}
+		} catch (error) {
+			setIsSubmitting(false);
+
+			console.log(error);
+			let message;
+			let description;
+			let notifType = "error";
+
+			if (Object.keys(error).includes('response')) {
+				let data = error.response.data.data.error;
+				if (data.status == 401) {
+
+					notifType = "warning";
+					message = "Invalid OTP";
+					description = data.data.message;
+
+				} else {
+					if (data.data?.code == "LOGIN_ACCOUNT_NOT_FOUND") {
+						message = "Not Found";
+						description = "We are unable to log you in using this mobile number. To create an account using this mobile number, please fill out fields to Register";
+						// setUserDetails(null);
+						// setShowOtpScreen(false);
+					}
+					else {
+						message = "Failed";
+						description = data.message;
+					}
+				}
+			} else {
+				message = "Failed";
+				description = "We're sorry something went wrong on our end. Please try again later.";
+			}
+
+			openNotificationWithIcon(
+				notifType,
+				message,
+				description
+			);
 		}
-	}, [otpTimer]);
+
+	};
 
 	const handleResendOtp = () => {
 		setotpTimer(120);
 		setResend(true);
 	};
+	const openNotificationWithIcon = (type, message, description) => {
+		api[type]({
+			message: message,
+			description: description,
+			placement: "bottomRight",
+			duration: type == "error" ? 4 : 3,
+		});
+	};
 
 	return (
-		<div className="login-container">
-			<div className="login-content-container">
-				<div className="login-content">
-					<div className="gen-content-login">
-						<div className="logo-area">
-							<img src={BrokerageLogo} alt="ML Brokerage Logo" />
-						</div>
-						{isContinued ? (
-							showOtpScreen ? (
-								<div className="otp-verification-container">
-									<p className="otp-header">
-										Enter the OTP we’ve sent to your phone.
-									</p>
-									<div className="otp-input-group">
-										{otp?.map((digit, index) => (
-											<input
-												onChange={(e) => handleOtpInput(e, index)}
-												key={index}
-												id={`otp-input-${index}`}
-												onKeyDown={(e) => handleKeyDown(e, index)}
-												type="text"
-												maxLength="1"
-												value={digit}
-											/>
-										))}
-									</div>
-									<div className="otp-and-submit">
-										<div className="user-logged-in">
-											<button id="back-login-button" onClick={handleReturn}>
-												Back
-											</button>
-											<button
-												id="continue-login-button"
-												style={{
-													backgroundColor: "var(--red)",
-													color: "white",
-												}}
-												onClick={handleOtpVerification}
-											>
-												Submit
-											</button>
-										</div>
-										<p className="resend-otp">
-											<span onClick={handleResendOtp}>
-												Resend OTP  {Math.floor(otpTimer / 60)}:
-												{(otpTimer % 60).toString().padStart(2, "0")}
-											</span>
+		<>
+			{contextHolder}
+			<div className="login-container">
+				<div className="login-content-container">
+					<div className="login-content">
+						<div className="gen-content-login">
+							<div className="logo-area" onClick={() => window.location.href = "/"}>
+								<img src={BrokerageLogo} alt="ML Brokerage Logo" />
+							</div>
+							{isContinued ? (
+								showOtpScreen ? (
+									<div className="otp-verification-container">
+										<p className="otp-header">
+											Enter the OTP we’ve sent to your phone.
 										</p>
-									</div>
-								</div>
-							) : userDetails ? (
-								<div className="success-login-userdetails">
-									<div className="userdetails-logged-group">
-										<div className="login-input-groups">
-											<div className="user-details-wrap">
-												<li className="user-details-label">
-													Mobile No. : <b>{userDetails.cellphoneNumber}</b>
-												</li>
-												<li className="user-details-label">
-													First Name :{" "}
-													<b>{maskUserDetails(userDetails.name.firstName)}</b>
-												</li>
-												<li className="user-details-label">
-													Middle Initial : <b>{userDetails.name.middleName}</b>
-												</li>
-												<li className="user-details-label">
-													Last Name :{" "}
-													<b>{maskUserDetails(userDetails.name.lastName)}</b>
-												</li>
-												<li className="user-details-label">
-													Address in:{" "}
-													<b>{userDetails.addresses.current.addressL2Name}</b>
-												</li>
-											</div>
+										<div className="otp-input-group">
+											{otp?.map((digit, index) => (
+												<input
+													onChange={(e) => handleOtpInput(e, index)}
+													key={index}
+													id={`otp-input-${index}`}
+													onKeyDown={(e) => handleKeyDown(e, index)}
+													type="text"
+													maxLength="1"
+													value={digit}
+												/>
+											))}
 										</div>
-									</div>
-									<div className="sub-groups-userdetails">
-										<span>Is this you? Continue with your date of birth:</span>
-										<div className="user-action-group-login">
-											<div className="bdate-with-error">
-												<div className="sub-groups-user-bdate">
-													<div className="user-bdate-month">
-														<Select
-															className="month-select-options"
-															onChange={handleMonthChange}
-															value={selectedMonth}
-															style={{ width: "100%" }}
-														>
-															<Option value="1">JANUARY</Option>
-															<Option value="2">FEBRUARY</Option>
-															<Option value="3">MARCH</Option>
-															<Option value="4">APRIL</Option>
-															<Option value="5">MAY</Option>
-															<Option value="6">JUNE</Option>
-															<Option value="7">JULY</Option>
-															<Option value="8">AUGUST</Option>
-															<Option value="9">SEPTEMBER</Option>
-															<Option value="10">OCTOBER</Option>
-															<Option value="11">NOVEMBER</Option>
-															<Option value="12">DECEMBER</Option>
-														</Select>
-													</div>
-													<div className="user-bdate-day">
-														<Select
-															className="date-select-options"
-															onChange={handleDateNumberChange}
-															value={isDateNumber}
-														>
-															{Array.from({ length: 31 }, (_, i) => i + 1).map(
-																(day) => (
-																	<Option key={day} value={day}>
-																		{day}
-																	</Option>
-																)
-															)}
-														</Select>
-													</div>
-													<div className="user-bdate-year">
-														<Select
-															className="year-select-options"
-															onChange={handleYearChange}
-															value={selectedYear}
-														>
-															{Array.from(
-																{ length: 2024 - 1905 + 1 },
-																(_, i) => 1905 + i
-															).map((year) => (
-																<Option key={year} value={year}>
-																	{year}
-																</Option>
-															))}
-														</Select>
-													</div>
-												</div>
-												{birthdateError && (
-													<p style={{ color: "red", marginTop: "8px", fontSize: "12px", textAlign: "center" }}>
-														Birthdate does not match with the existing
-														data.
-													</p>
-												)}
-											</div>
-
+										<div className="otp-and-submit">
 											<div className="user-logged-in">
 												<button id="back-login-button" onClick={handleReturn}>
 													Back
@@ -395,114 +358,230 @@ const LoginComponent = () => {
 														backgroundColor: "var(--red)",
 														color: "white",
 													}}
-													onClick={handleSignIn}
+													onClick={handleOtpVerification}
 												>
-													Continue
+													Submit
 												</button>
+											</div>
+											<p className="resend-otp">
+												<span onClick={handleResendOtp}>
+													Resend OTP  {Math.floor(otpTimer / 60)}:
+													{(otpTimer % 60).toString().padStart(2, "0")}
+												</span>
+											</p>
+										</div>
+									</div>
+								) : userDetails ? (
+									<div className="success-login-userdetails">
+										<div className="userdetails-logged-group">
+											<div className="login-input-groups">
+												<div className="user-details-wrap">
+													<li className="user-details-label">
+														Mobile No. : <b>{userDetails.cellphoneNumber}</b>
+													</li>
+													<li className="user-details-label">
+														First Name :{" "}
+														<b>{maskUserDetails(userDetails.name.firstName)}</b>
+													</li>
+													<li className="user-details-label">
+														Middle Initial : <b>{userDetails.name.middleName}</b>
+													</li>
+													<li className="user-details-label">
+														Last Name :{" "}
+														<b>{maskUserDetails(userDetails.name.lastName)}</b>
+													</li>
+													<li className="user-details-label">
+														Address in:{" "}
+														<b>{userDetails.addresses.current.addressL2Name}</b>
+													</li>
+												</div>
+											</div>
+										</div>
+										<div className="sub-groups-userdetails">
+											<span>Is this you? Continue with your date of birth:</span>
+											<div className="user-action-group-login">
+												<div className="bdate-with-error">
+													<div className="sub-groups-user-bdate">
+														<div className="user-bdate-month">
+															<Select
+																className="month-select-options"
+																onChange={handleMonthChange}
+																value={selectedMonth}
+																style={{ width: "100%" }}
+															>
+																<Option value="1">JANUARY</Option>
+																<Option value="2">FEBRUARY</Option>
+																<Option value="3">MARCH</Option>
+																<Option value="4">APRIL</Option>
+																<Option value="5">MAY</Option>
+																<Option value="6">JUNE</Option>
+																<Option value="7">JULY</Option>
+																<Option value="8">AUGUST</Option>
+																<Option value="9">SEPTEMBER</Option>
+																<Option value="10">OCTOBER</Option>
+																<Option value="11">NOVEMBER</Option>
+																<Option value="12">DECEMBER</Option>
+															</Select>
+														</div>
+														<div className="user-bdate-day">
+															<Select
+																className="date-select-options"
+																onChange={handleDateNumberChange}
+																value={isDateNumber}
+															>
+																{Array.from({ length: 31 }, (_, i) => i + 1).map(
+																	(day) => (
+																		<Option key={day} value={day}>
+																			{day}
+																		</Option>
+																	)
+																)}
+															</Select>
+														</div>
+														<div className="user-bdate-year">
+															<Select
+																className="year-select-options"
+																onChange={handleYearChange}
+																value={selectedYear}
+															>
+																{Array.from(
+																	{ length: 2024 - 1905 + 1 },
+																	(_, i) => 1905 + i
+																).map((year) => (
+																	<Option key={year} value={year}>
+																		{year}
+																	</Option>
+																))}
+															</Select>
+														</div>
+													</div>
+													{birthdateError && (
+														<p style={{ color: "red", marginTop: "8px", fontSize: "12px", textAlign: "center" }}>
+															Birthdate does not match with the existing
+															data.
+														</p>
+													)}
+												</div>
+
+												<div className="user-logged-in">
+													<button id="back-login-button" onClick={handleReturn}>
+														Back
+													</button>
+													<button
+														id="continue-login-button"
+														style={{
+															backgroundColor: "var(--red)",
+															color: "white",
+														}}
+														onClick={handleSignIn}
+													>
+														Continue
+													</button>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							) : (
-								<div className="user-not-found">
-									<div className="user-not-found-input-group">
-										<input
-											className="user-det-input"
-											placeholder="First Name"
-											type="text"
-										/>
-										<input
-											className="user-det-input"
-											placeholder="Middle Name"
-											type="text"
-										/>
-										<input
-											className="user-det-input"
-											placeholder="Last Name"
-											type="text"
-										/>
-										<div className="user-det-input">
-											<DatePicker />
-										</div>
+								) : (
+									<div className="user-not-found">
+										<div className="user-not-found-input-group">
+											<input
+												className="user-det-input"
+												placeholder="First Name"
+												type="text"
+											/>
+											<input
+												className="user-det-input"
+												placeholder="Middle Name"
+												type="text"
+											/>
+											<input
+												className="user-det-input"
+												placeholder="Last Name"
+												type="text"
+											/>
+											<div className="user-det-input">
+												<DatePicker />
+											</div>
 
-										<input
-											className="user-det-input"
-											placeholder="Email Address"
-											type="email"
-										/>
-									</div>
-									<div className="user-logged-in">
-										<button id="back-login-button" onClick={handleReturn}>
-											Back
-										</button>
-										<button
-											id="continue-login-button"
-											style={{
-												backgroundColor: "var(--red)",
-												color: "white",
-											}}
-											onClick={handleSignIn}
-										>
-											Continue
-										</button>
-									</div>
-								</div>
-							)
-						) : (
-							// Initial Login Flow
-							<div className="content-login-page">
-								<p id="no-account">Let’s start with your mobile number</p>
-								<div className="mobile-input-login-group">
-									<div className="login-input-groups">
-										<PhoneInput
-											country={"ph"}
-											value={phone}
-											onChange={handlePhoneNumberChange}
-											enableAreaCodes={true}
-											inputProps={{
-												name: "phone",
-												required: true,
-												autoFocus: true,
-											}}
-										/>
-										{errorMessage && (
-											<p
+											<input
+												className="user-det-input"
+												placeholder="Email Address"
+												type="email"
+											/>
+										</div>
+										<div className="user-logged-in">
+											<button id="back-login-button" onClick={handleReturn}>
+												Back
+											</button>
+											<button
+												id="continue-login-button"
 												style={{
-													color: "red",
-													fontSize: "0.9rem",
-													marginTop: "5px",
+													backgroundColor: "var(--red)",
+													color: "white",
+												}}
+												onClick={handleSignIn}
+											>
+												Continue
+											</button>
+										</div>
+									</div>
+								)
+							) : (
+								// Initial Login Flow
+								<div className="content-login-page">
+									<p id="no-account">Let’s start with your mobile number</p>
+									<div className="mobile-input-login-group">
+										<div className="login-input-groups">
+											<PhoneInput
+												country={"ph"}
+												value={phone}
+												onChange={handlePhoneNumberChange}
+												enableAreaCodes={true}
+												inputProps={{
+													name: "phone",
+													required: true,
+													autoFocus: true,
+												}}
+											/>
+											{errorMessage && (
+												<p
+													style={{
+														color: "red",
+														fontSize: "0.9rem",
+														marginTop: "5px",
+													}}
+												>
+													{errorMessage}
+												</p>
+											)}
+										</div>
+										<div className="login-slider">
+											<button id="back-login-button" onClick={handleBack}>
+												Back
+											</button>
+											<button
+												id="continue-login-button"
+												onClick={handleContinue}
+												style={{
+													backgroundColor: isValidPhone
+														? "var(--red)"
+														: "#d9d9d9",
+													color: isValidPhone ? "white" : "white",
+													cursor: isValidPhone ? "pointer" : "not-allowed",
 												}}
 											>
-												{errorMessage}
-											</p>
-										)}
-									</div>
-									<div className="login-slider">
-										<button id="back-login-button" onClick={handleBack}>
-											Back
-										</button>
-										<button
-											id="continue-login-button"
-											onClick={handleContinue}
-											style={{
-												backgroundColor: isValidPhone
-													? "var(--red)"
-													: "#d9d9d9",
-												color: isValidPhone ? "white" : "white",
-												cursor: isValidPhone ? "pointer" : "not-allowed",
-											}}
-										>
-											Continue
-										</button>
+												Continue
+											</button>
+										</div>
 									</div>
 								</div>
-							</div>
-						)}
+							)}
+						</div>
 					</div>
+					{isSubmitting && <PreviewLoadingModal />}
 				</div>
-				{isSubmitting && <PreviewLoadingModal />}
 			</div>
-		</div>
+		</>
 	);
 };
 export default LoginComponent;

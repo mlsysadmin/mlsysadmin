@@ -28,6 +28,7 @@ const SendOtp = async (cellphoneNumber) => {
 
 const ValidateOtpLogin = async (cellphoneNumber, pin) => {
     try {
+        console.log("cellphoneNumber", cellphoneNumber);
         
         const config = {
             headers: {
