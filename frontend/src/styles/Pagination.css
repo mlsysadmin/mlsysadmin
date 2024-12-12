@@ -2,42 +2,59 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 345px;
+  /* gap: 345px; */
   width: 100%;
   /* margin: auto; */
   margin-top: 50px;
 }
+.custom-pagination-content{
+  background-color: transparent;
+  width: 250px;
+  display: flex;
+  height: 50px;
+  gap: 10px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border-radius: 30px;
+}
 .custom-pagination .pagination-numbers span {
   margin: 0 5px;
-  padding: 10px 15px 10px 15px;
-  border: 1px solid #8c9094;
-  border-radius: 7px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  height: 40px;
+  width: 40px;
   cursor: pointer;
-  background-color: transparent;
-  color: #8c9094;
-  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fad3d3;
+  color: var(--mute-gray);
+  font-size: var(--d-body-text);
 }
 .custom-pagination .next,
 .custom-pagination .prev {
-  padding: 10px;
+ padding: 5px;
+  position: relative;
   display: flex;
   flex-direction: row;
-  gap: 10px;
-  border: 1px solid #e8e7e6;
-  border-radius: 5px;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  border:none;
+  border-radius: 20px;
   cursor: not-allowed;
-  background-color: transparent;
-  color: #e8e7e6;
+  background-color: #fad3d3;
+  color: #c5c3c1;
   font-weight: 300;
-  font-size: 18px;
-  width: 120px;
-  height: 50px;
+  font-size:var(--d-body-text);
 }
 .custom-pagination .next.active,
 .custom-pagination .prev.active {
-  border: 1px solid #8c9094;
-  background-color: transparent;
-  color: #8c9094;
+  border: none;
+  background-color: var(--red);
+  color: var(--white);
   cursor: pointer;
 }
 
@@ -46,9 +63,9 @@
 }
 
 .custom-pagination .pagination-numbers span.active {
-  background-color: #8c9094;
-  color: white;
-  border-color: #8c9094;
+  background-color: var(--red);
+  color: var(--white);
+  border: none;
 }
 
 .pagination-numbers {
@@ -82,8 +99,8 @@
   .custom-pagination .next,
   .custom-pagination .prev {
     padding: 0px;
-    width: 30px;
-    height: 40px;
+    /* width: 30px;
+    height: 40px; */
   }
   .custom-pagination .next.active,
   .custom-pagination .prev.active,
@@ -158,8 +175,8 @@
   .custom-pagination .next,
   .custom-pagination .prev {
     padding: 0px;
-    width: 30px;
-    height: 40px;
+    /* width: 30px;
+    height: 40px; */
   }
   .custom-pagination .prev label,
   .custom-pagination .next label {
@@ -169,7 +186,6 @@
 @media screen and (min-width: 481px) and (max-width: 768px) {
   .custom-pagination {
     gap: 0px;
-    justify-content: space-between;
     width: 100%;
     margin-bottom: 20px;
   }
