@@ -23,7 +23,7 @@
 }
 #card-listing .ant-card-body .listing-image,
 #card-listing .ant-card-body .listing-image .property-img {
-  height: 210px;
+  height: calc(var(--image-height));
 }
 
 #card-listing .ant-card-body .listing-image .tags {
@@ -113,7 +113,11 @@
   background-color: white;
   /* line-height: 1; */
 }
-
+.savedPropertiesContent .cardBackgroundSavedProperties #card-listing .ant-card-body .card-content {
+  height: 130px;
+  gap: 0px;
+  padding: 10px !important;
+}
 .cardBackgroundSavedProperties #card-listing .ant-card-body .card-content {
   height: 10%;
   gap: 0px;
@@ -641,7 +645,7 @@
   }
   #card-listing .ant-card-body .listing-image,
   #card-listing .ant-card-body .listing-image .property-img {
-    height: 200px;
+    height: calc(var(--image-height));
   }
   #card-listing .ant-card-body .card-content .card-content--title,
   #card-listing .ant-card-body .card-content .card-content--subtitle {

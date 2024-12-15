@@ -3,11 +3,11 @@
   flex-direction: column;
   padding: 0px 30px 50px 30px;
   font-size: var(--d-body-text);
-  background: var(--white) ;
+  background: var(--white);
   /* max-width: var(--default-page-size); */
 }
 .savedPropertiesBackgroundComponent {
-  background: var(--white) ;
+  background: var(--white);
   color: black;
 }
 .savedPropertiesContent {
@@ -17,27 +17,31 @@
   /* flex-direction: row;
   flex-wrap: wrap; */
 }
-.ant-tabs-nav .ant-tabs-nav-wrap{
+.ant-tabs-nav .ant-tabs-nav-wrap {
   border-bottom: 1px solid #8c909452;
 }
 
 /* Cellphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
-  .savedPropertiesBackgroundComponent .listing-carousel-saved-properties{
+  .savedPropertiesBackgroundComponent .listing-carousel-saved-properties {
     grid-template-columns: 1fr !important;
     font-size: var(--m-body-text);
   }
 }
 /* Big Size Cellphone */
 @media screen and (min-width: 481px) and (max-width: 769px) {
-  .savedPropertiesBackgroundComponent .listing-carousel-saved-properties{
+  .savedPropertiesBackgroundComponent .listing-carousel-saved-properties {
     grid-template-columns: 1fr 1fr !important;
   }
 }
 /* Tablets */
 @media screen and (min-width: 770px) and (max-width: 1024px) {
-  .cardBackgroundSavedProperties #card-listing .ant-card-body .card-content .card-content--title{
-  margin: 0px 0px 10px 0px !important;
+  .cardBackgroundSavedProperties
+    #card-listing
+    .ant-card-body
+    .card-content
+    .card-content--title {
+    margin: 0px 0px 10px 0px !important;
   }
 }
 .savedPropertiesBackgroundComponent
@@ -106,4 +110,10 @@
   ):not(.ant-pagination-size-changer):hover
   .ant-select-selector {
   border-color: #d9d9d9;
+}
+.savedPropertiesContent .cardBackgroundSavedProperties .listing-carousel-saved-properties #card-listing .ant-card-body .card-content .card-content--sub label {
+  margin-top: 25px;
+  font-size: var(--d-body-text);
+  color: #8c9094;
+  font-weight: 400;
 }

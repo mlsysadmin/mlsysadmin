@@ -544,6 +544,7 @@ listing search */
 	position: absolute;
 	top: 10%;
 	background: white;
+	text-align: center;
 	border-radius: 10px;
 	width: 400px;
 	display: flex;
