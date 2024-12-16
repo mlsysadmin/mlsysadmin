@@ -115,7 +115,7 @@
 }
 
 .cardBackgroundSavedProperties #card-listing .ant-card-body .card-content {
-  height: 10%;
+  height: 100px;
   gap: 0px;
   padding: 10px !important;
 }
@@ -148,7 +148,7 @@
   .card-content
   .card-content--subtitle
   .price {
-  font-size: 14px;
+  font-size: var(--d-body-text)-1;
   color: var(--red);
 }
 #card-listing .ant-card-body .card-content .card-content--subtitle .price {
@@ -213,7 +213,7 @@
   align-items: center;
   align-content: center;
   justify-content: space-between;
-  font-size: 16px;
+  font-size: var(--d-body-text)-1;
 }
 
 #card-listing
@@ -665,7 +665,7 @@
     .card-content--subtitle
     .card-features
     .feature-content {
-    font-size: 15px;
+    font-size: var(--d-body-text)-1;
   }
   #card-listing .ant-card-body .card-content {
     padding-top: 2px !important;
@@ -706,7 +706,7 @@
     .card-content--subtitle
     .card-features
     .feature-content {
-    font-size: 15px;
+    font-size: var(--d-body-text)-1;
   }
   #card-listing .ant-card-body .card-content {
     padding-top: 2px !important;

@@ -66,7 +66,25 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 		}
 		
 	}, [])
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (hash && items.some(item => item.key === hash)) {
+        onChange(hash); // Call onChange with the hash value
+      }
+    };
 
+    // Initial check on mount
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+
+    // Cleanup the event listener on unmount
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
 	const [filteredAndSortedListings, setFilteredAndSortedListings] = useState([
 		{
 			id: 0,
