@@ -11,7 +11,7 @@ const BathroomInputSlider = ({value, onChange}) => {
           className="bathroom-slider"
           type="range"
           min="0"
-          max="5"
+          max="20"
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />

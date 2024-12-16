@@ -66,7 +66,25 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 		}
 		
 	}, [])
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (hash && items.some(item => item.key === hash)) {
+        onChange(hash); // Call onChange with the hash value
+      }
+    };
 
+    // Initial check on mount
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+
+    // Cleanup the event listener on unmount
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
 	const [filteredAndSortedListings, setFilteredAndSortedListings] = useState([
 		{
 			id: 0,
@@ -409,7 +427,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 									display: "flex",
 								}}
 							>
-								{Array(3)
+								{Array(4)
 									.fill(null)
 									.map((_, i) => {
 										return <CardSkeleton key={i} />;
@@ -510,7 +528,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 										display: "flex",
 									}}
 								>
-									{Array(3)
+									{Array(4)
 										.fill(null)
 										.map((_, i) => {
 											return <CardSkeleton key={i} />;

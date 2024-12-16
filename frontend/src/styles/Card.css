@@ -2,15 +2,14 @@
 	/* width: 92%; */
 	display: flex;
 	flex-wrap: wrap;
-	margin: 30px 100px 10px 100px;
+	/* margin: 30px 100px 10px 100px; */
 	gap: 40px;
-	width: 1500px;
+	width: var(--default-page-size);
 }
 .card-container {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 25px;
-	
 }
 
 .card:hover {
@@ -21,16 +20,16 @@
 	opacity: 1;
 	object-fit: cover;
 	font-size: var(--d-body-text);
-	border-radius: 8px 8px 0 0 ;
+	border-radius: 8px 8px 0 0;
 }
-.card-img{
-height: calc(var(--image-height));
+.card-img {
+	height: calc(var(--image-height));
 }
-.card-listing-title-public{
-   height: 50px;
-    margin-bottom: 3px;
+.card-listing-title-public {
+	height: 50px;
+	margin-bottom: 3px;
 }
- 
+
 .cardImage {
 	position: relative;
 	height: calc(var(--image-height));
@@ -88,8 +87,6 @@ height: calc(var(--image-height));
 	top: 50px;
 }
 
-
-
 .likes {
 	position: absolute;
 	display: flex;
@@ -133,54 +130,50 @@ height: calc(var(--image-height));
 .icon .anticon {
 	font-size: 22px;
 }
-.card-container .card{
+.card-container .card {
 	position: relative;
 	border-radius: 0 0 8px 8px !important;
 }
-.card-tags-listings .card-tags-top{
-    justify-content: space-between;
-    top: 0;
-	    position: absolute;
-    width: 100%;
-    padding: 10px;
-    display: flex
-;
-}
-.card-tags-listings .card-tags-top p{
-    border-radius: var(--radius);
-    background-color: white;
-    display: flex
-;
-    gap: 7px;
-    padding: 2px 10px;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-  
-.card-tags-listings .card-tags-bottom{
-	justify-content: end;
-    top: 8.5rem;
+.card-tags-listings .card-tags-top {
+	justify-content: space-between;
+	top: 0;
 	position: absolute;
-    width: 100%;
-    padding: 10px;
-    display: flex
-;
+	width: 100%;
+	padding: 10px;
+	display: flex;
+}
+.card-tags-listings .card-tags-top p {
+	border-radius: var(--radius);
+	background-color: white;
+	display: flex;
+	gap: 7px;
+	padding: 2px 10px;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
 
+.card-tags-listings .card-tags-bottom {
+	justify-content: end;
+	top: 8.5rem;
+	position: absolute;
+	width: 100%;
+	padding: 10px;
+	display: flex;
 }
 
 .bot {
 	display: flex;
 	gap: 5px;
-    align-items: end;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    font-size: calc(var(--d-body-text) - 1px);
+	align-items: end;
+	width: 100%;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	font-size: calc(var(--d-body-text) - 1px);
 }
 .heart-icon:hover {
-  transform: scale(1.1);
-  transition: transform 0.2s ease-in-out;
+	transform: scale(1.1);
+	transition: transform 0.2s ease-in-out;
 }
 
 .bot .card-icons label {
@@ -195,13 +188,11 @@ height: calc(var(--image-height));
 	flex-direction: row;
 	color: #333333;
 	gap: 6px;
-    align-items: center;
+	align-items: center;
 }
 
-.bot .bot-left-card-text{
-	
+.bot .bot-left-card-text {
 }
-
 
 .bot .card-icons .card-icons--feature {
 	display: flex;
@@ -219,17 +210,15 @@ height: calc(var(--image-height));
 @media screen and (min-width: 360px) and (max-width: 480px) {
 	.card-container {
 		display: grid;
-        grid-template-columns: 1fr;
+		grid-template-columns: 1fr;
 		width: 100%;
 	}
 }
-@media screen and  (min-width: 481px) and (max-width: 601px) {
+@media screen and (min-width: 481px) and (max-width: 601px) {
 	.card-container {
-		        display: grid
-;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px 10px;
-	
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 15px 10px;
 	}
 	.card-skeleton-loading {
 		width: 100%;
@@ -239,19 +228,23 @@ height: calc(var(--image-height));
 		align-items: center;
 		margin: 0px;
 	}
-	.bot{
+	.bot {
 		display: flex;
 		flex-direction: column;
-		    font-size: calc(var(--d-body-text) - 1px);
+		align-items: start;
+		font-size: calc(var(--d-body-text) - 1px);
 	}
-	.card-listing-title-public{
-        margin-bottom: 10px;
+	.card-listing-title-public {
+		margin-bottom: 10px;
+	}
+	.card-listing-subtitle-public{
+		height: 50px;
 	}
 }
-@media screen and (min-width: 602px)  {
+@media screen and (min-width: 602px) {
 	.card-container {
 		display: grid;
-        grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(3, 1fr);
 	}
 	.card-skeleton-loading {
 		width: 100%;

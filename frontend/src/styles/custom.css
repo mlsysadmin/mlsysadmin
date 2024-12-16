@@ -84,11 +84,10 @@
 
 .advance-searchdropdown .advance-search-group1 {
 	display: flex;
-	flex-direction: row;
-	padding: 2px 20px;
+	flex-direction: column;
+	padding: 0px 10px;
 	/* justify-content: center; */
-	width: 80%;
-	gap: 0.6rem;
+	width: 100%;
 	border: 1px solid #8c9094;
 	border-radius: 3px;
 	/* padding: 2px; */
@@ -224,13 +223,14 @@ listing search */
 }
 
 .searh-custom-slider {
-	width: 85%;
+	width: 98%;
+	margin: 0px;
 	padding: 5px;
 }
 .subcontent-inputs-1 .select-field,
 .subcontent-inputs-2 .select-field,
 .subcontent-inputs-2 .select-field-features {
-	margin: 0 10px;
+	margin: 0 5px;
 	color: black;
 	padding: 12px;
 	height: 55px;
@@ -256,7 +256,7 @@ listing search */
 }
 .subcontent-inputs-1 .input-field,
 .subcontent-inputs-2 .input-field {
-	margin: 0 10px;
+	margin: 0 5px;
 	color: black;
 	padding: 12px;
 	height: 55px;
@@ -267,9 +267,12 @@ listing search */
 	border: 1px solid #8c9094;
 	display: flex;
 	justify-content: space-between;
-	padding: 0px 20px;
+	padding: 0px 5px;
 	background-image: none;
 	outline: none;
+}
+.subcontent-inputs-2 .input-field::placeholder {
+	padding: 0px 5px;
 }
 .subcontent-inputs-1 .select-field,
 .subcontent-inputs-2 .select-field,
