@@ -14,9 +14,6 @@ const RegistrationModal = () => {
     setShowRegistrationModal(false);
   };
 
-
-
-  
   return (
     <div className="App">
       <button onClick={() => setShowRegistrationModal(true)}>

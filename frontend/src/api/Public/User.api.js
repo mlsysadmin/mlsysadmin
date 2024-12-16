@@ -100,10 +100,4 @@ const searchKyc = async (cellphoneNumber) => {
 
 
 
-
-
-
-
-
-
 export { GoogleSignIn, Logout, searchKyc };
