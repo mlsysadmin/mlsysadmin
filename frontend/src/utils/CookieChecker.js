@@ -1,6 +1,6 @@
 const isCookiePresent = (cookieName) => {
 	const cookies = document.cookie.split(";");
-
+	
 	for (let i = 0; i < cookies.length; i++) {
 		const cookie = cookies[i].trim();
 		if (cookie.startsWith(cookieName + "=")) {
@@ -25,7 +25,8 @@ const getCookieData = () => {
 		const decodedValue = decodeURIComponent(value.trim());
 
 		if (name.trim() === "account_details") {
-			accountDetails = JSON.parse(decodedValue);
+			// accountDetails = JSON.parse(decodedValue);
+			accountDetails = decodedValue;
 		}
 	});
 

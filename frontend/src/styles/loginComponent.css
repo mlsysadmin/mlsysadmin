@@ -12,13 +12,13 @@
 .login-content {
 	background-color: white;
 	opacity: 0.9;
-	width: 324px;
+	width: 350px;
 	height: 460px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	/* justify-content: center; */
-	border-radius: 10px;
+	border-radius: var(--radius);
 	padding: 26px 0px;
 	gap: 20px;
 }
@@ -39,7 +39,7 @@
 	font-size: 15px;
 }
 .login-content .gen-content-login #no-account {
-	font-size: 12px;
+	font-size: calc(var(--d-body-text) - 1px);
 	padding-top: 88px;
 	text-align: center;
 }
@@ -54,15 +54,17 @@
 } */
 
 .login-input-groups .react-tel-input .form-control {
-	width: 236px;
-	height: 38px;
-	border-radius: 10px;
+	/* width: 236px; */
+	width: 100%;
+	height: 40px;
+	border-radius: var(--radius);
 	padding-left: 50px;
 	border: 1px solid rgba(140, 144, 148, 0.7);
+	font-size: var(--d-body-text);
 }
 .login-input-groups .react-tel-input .flag-dropdown,
 .login-input-groups .react-tel-input .flag-dropdown.open {
-	border-radius: 10px 0 0 10px;
+	border-radius: var(--radius) 0 0 var(--radius);
 	border: 1px solid rgba(140, 144, 148, 0.7);
 	width: 45px;
 	background-color: transparent;
@@ -87,10 +89,12 @@
 }
 .login-slider {
 	width: 100%;
-	display: flex;
+	/* display: flex; */
 	flex-direction: row;
 	flex-wrap: wrap;
-	gap: 10px;
+	gap: 15px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
 }
 .mobile-input-login-group {
 	display: flex;
@@ -103,27 +107,10 @@
 	padding-top: 21px;
 	/* padding-left: 52px; */
 }
-.login-slider #continue-login-button {
-	/* width: 221px;
-	height: 47px; */
-	background-color: var(--red);
-	color: white;
-	font-size: 12px;
-	border-radius: 10px;
-	border: none;
-	padding: 10px 20px;
-	width: 120px;
-}
-.login-slider #back-login-button {
-	font-size: 12px;
-	border-radius: 10px;
-	border: 1px solid rgba(160, 160, 160, 1);
-	width: 120px;
-	padding: 10px 20px;
-}
+
 .user-details-wrap li {
 	list-style-type: none;
-	font-size: 15px;
+	font-size: var(--d-body-text);
 }
 .user-details-wrap {
 	padding-top: 20px;
@@ -136,41 +123,59 @@
 	align-items: center;
 }
 .sub-groups-userdetails span {
-	font-size: 12px;
-	text-align: center;
+	font-size: calc(var(--d-body-text) - 1px);
+	/* text-align: center; */
+	text-overflow: inherit;
+	padding-inline-end: 0px !important;
 }
 .sub-groups-userdetails {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+	margin: 0 30px;
 }
 .sub-groups-user-bdate {
 	display: flex;
 	flex-direction: row;
 	margin-bottom: 0px;
 	justify-content: space-between;
+	gap: 10px;
+}
+.sub-groups-user-bdate .user-bdate-month{
+	width: 100%;
+}
+.user-bdate-day{
+	width: 50%;
+}
+.user-bdate-year{
+	width: 70%;
+}
+.user-bdate-month span.ant-select-selection-item{
+	text-overflow: unset;
 }
 .bdate-with-error{
-	height: 150px;
+	height: 100px;
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
 	flex-wrap: wrap;
-	width: 260px;
+	width: 100%;
+	/* width: 260px; */
 }
 .month-select-options,
 .date-select-options,
 .year-select-options {
-	width: 70px !important;
+	width: 100%;
+	/* width: 70px !important; */
 	height: 38px;
-	border-radius: 10px !important;
+	border-radius: var(--radius) !important;
 	border: 1px solid rgba(160, 160, 160, 1) !important;
 }
 
 .sub-groups-user-bdate .ant-select .ant-select-selector {
 	border: none;
 	background: none;
-	width: 70px !important;
+	/* width: 70px !important; */
 }
 .sub-groups-user-bdate .ant-select .ant-select-arrow {
 	width: 7px !important;
@@ -180,29 +185,37 @@
 }
 .user-logged-in {
 	width: 100%;
-	display: flex;
+	/* display: flex; */
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
 	flex-direction: row;
 	flex-wrap: wrap;
-	gap: 10px;
+	gap: 15px;
 	padding-bottom: 0px;
+	justify-content: center;
 }
-.user-logged-in #continue-login-button {
+.user-logged-in #continue-login-button,
+.login-slider #continue-login-button {
 	/* width: 221px;
 	height: 47px; */
 	background-color: var(--red);
 	color: white;
-	font-size: 12px;
-	border-radius: 10px;
 	border: none;
-	padding: 10px 20px;
-	width: 120px;
 }
-.user-logged-in #back-login-button {
-	font-size: 12px;
-	border-radius: 10px;
+.user-logged-in #back-login-button,
+.login-slider #back-login-button {
 	border: 1px solid rgba(160, 160, 160, 1);
-	width: 120px;
+}
+.user-logged-in #back-login-button,
+.user-logged-in #continue-login-button,
+.login-slider #continue-login-button,
+.login-slider #back-login-button{
 	padding: 10px 20px;
+	cursor: pointer;
+	font-size: var(--d-body-text);
+	border-radius: var(--radius);
+	/* width: 120px; */
+
 }
 .user-action-group-login {
 	display: flex;
@@ -210,14 +223,14 @@
 	justify-content: space-between;
 }
 .user-not-found {
-	padding-top: 40px;
+	padding-top: 30px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	justify-content: space-between;
 	height: 100%;
-	gap: 40px;
+	gap: 30px;
 }
 
 .user-not-found-input-group {
@@ -226,7 +239,7 @@
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	gap: 15px;
 }
 .user-not-found-input-group input {
 	width: 235px;
@@ -234,10 +247,11 @@
 	justify-content: center;
 	align-items: center;
 	display: flex;
-	border-radius: 10px;
+	border-radius: var(--radius);
 	padding: 0px 10px;
 	color: #444444;
 	border: 1px solid rgba(140, 144, 148, 1);
+	outline: none;
 }
 .user-det-input .ant-picker .ant-picker-outlined {
 	width: 245px;
@@ -277,18 +291,24 @@
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	padding-top: 130px;
+	padding-top: 50px;
+	gap: 10px;
 }
 .otp-verification-container .otp-header {
-	font-size: 13px;
+	/* font-size: va; */
 	text-align: center;
+}
+
+.otp-verification-container .otp-input-group{
+	margin-top: 20px;
 }
 .otp-verification-container .user-logged-in {
 	padding-top: 120px;
 }
 .otp-verification-container .resend-otp {
-	font-size: 12px;
+	font-size: calc(var(--d-body-text) - 2px);
 	color: rgba(160, 160, 160, 1);
+	padding: 15px 0;
 }
 .otp-input-group input {
 	width: 25px;
@@ -299,6 +319,7 @@
 	border: none;
 	box-shadow: none;
 	font-size: 18px;
+	outline: none;
 }
 .user-not-found-input-group input[type="date"] {
 	width: 245px;
@@ -309,6 +330,9 @@
 	align-items: center;
 	flex-direction: column;
 	gap: 10px;
+}
+.login-input-groups{
+	width: 100%;
 }
 /* .login-slider .ReactSwipeButton {
 	border-radius: 30px !important;
