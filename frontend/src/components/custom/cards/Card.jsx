@@ -172,11 +172,6 @@ const Card = ({
 						<b>{likes}</b>
 					</div>
 				</div>
-
-				{/* {
-					isFeatured ? <p className="featured feature-tag">Featured</p> : <></>
-				} */}
-
 				<div className="card-tags-bottom">
 					<div
 						className="icon"
@@ -185,11 +180,13 @@ const Card = ({
 					>
 						<Tooltip
 							color="var(--red)"
-							title="Added to favorites"
-							open={showTooltip}
+							title={isHeartFilled ? "Added to favorites" : "Add to favorites"}
 							placement="top"
-						></Tooltip>
-						{isHeartFilled ? <HeartFilled /> : <HeartOutlined />}
+						>
+							<div className="heart-icon">
+								{isHeartFilled ? <HeartFilled style={{color:"var(--red)"}} /> : <HeartOutlined />}
+							</div>
+						</Tooltip>
 					</div>
 
 					{/* <div className="icon">
@@ -206,7 +203,10 @@ const Card = ({
 				</div>
 
 				<div className="bot">
-					<p>{price}</p>
+					<div className="bot-left-card-text">
+						<p>{price}</p>
+					</div>
+
 					<div className="card-icons">
 						{beds > 0 && (
 							<div className="card-icons--feature">

@@ -48,7 +48,12 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 	const handleAdvancedSearchClick = () => {
 		setIsAdvancedSearchOpen(!isAdvancedSearchOpen);
 	};
-
+	const formatValue = (value) => {
+		if (value === undefined) {
+			return "N/A";
+		}
+		return value.toLocaleString();
+	};
 	const handleCertainFeatureClick = () => {
 		setcertainFeatureOpen(!iscertainFeatureOpen);
 	};
@@ -298,7 +303,7 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 						placeholder="Enter keyword"
 						value={newSearchParams["keyword"]}
 						onChange={(e) => HandleFieldChange(e, "keyword")}
-					// onBlur={(e) => onInputBlur(e,"keyword")}
+						// onBlur={(e) => onInputBlur(e,"keyword")}
 					/>
 					<RoundSelect
 						options={location}
@@ -343,6 +348,7 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 								// max={priceRange[1]}
 								step={10000}
 								value={priceRange}
+								tipFormatter={formatValue}
 								onChange={handleSliderChange}
 								defaultValue={[0, 100000000]}
 							/>
@@ -350,7 +356,7 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 						<div className="range-container">
 							<div className="range-border">
 								<p>
-									MIN &nbsp;
+									MIN &nbsp;<br></br>
 									{isCustomRange ? (
 										<span className="range-prefix">
 											<span style={{ marginRight: "2px" }}>PHP</span>
@@ -362,20 +368,20 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 												// value={newSearchParams['price_min']}
 												onChange={handleMinChange}
 												className="range-input"
-											// onBlur={() => onInputBlur('price_min', priceRange[0])}
+												// onBlur={() => onInputBlur('price_min', priceRange[0])}
 											/>
 										</span>
 									) : (
 										<b style={{ color: "#f60000" }}>
 											{/* PHP {priceRange[0].toLocaleString()} */}
-											PHP {newSearchParams['price_min']?.toLocaleString()}
+											PHP {newSearchParams["price_min"]?.toLocaleString()}
 										</b>
 									)}
 								</p>
 							</div>
 							<div className="range-border">
 								<p>
-									MAX &nbsp;
+									MAX &nbsp;<br></br>
 									{isCustomRange ? (
 										<span className="range-prefix">
 											<span style={{ marginRight: "2px" }}>PHP</span>
@@ -387,15 +393,13 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 												// value={newSearchParams['price_max']}
 												onChange={handleMaxChange}
 												className="range-input"
-											// onBlur={() => onInputBlur('price_min', priceRange[1])}
+												// onBlur={() => onInputBlur('price_min', priceRange[1])}
 											/>
 										</span>
 									) : (
 										<b style={{ color: "#f60000" }}>
 											{/* PHP {priceRange[1].toLocaleString()} */}
-											PHP {
-												newSearchParams['price_max']?.toLocaleString()
-											}
+											PHP {newSearchParams["price_max"]?.toLocaleString()}
 										</b>
 									)}
 								</p>
@@ -414,7 +418,7 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 							placeholder="Enter Lot Area"
 							value={newSearchParams["lot_area"]}
 							onChange={(e) => HandleFieldChange(e, "lot_area")}
-						// onBlur={(e) => onInputBlur(e,"lot_area")}
+							// onBlur={(e) => onInputBlur(e,"lot_area")}
 						/>
 						<RoundSelect
 							options={SelectNum()}
@@ -441,7 +445,9 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 							onSelectionChange={(e) => onSelectionChange(e, "parking")}
 						/>
 						<Dropdown
-							overlay={<CertainFeatureMenu setCheckFeatures={setCheckFeatures} />} // The content of the dropdown
+							overlay={
+								<CertainFeatureMenu setCheckFeatures={setCheckFeatures} />
+							} // The content of the dropdown
 							trigger={["click"]}
 							open={iscertainFeatureOpen}
 							onOpenChange={handleCertainFeatureClick}

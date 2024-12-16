@@ -241,6 +241,7 @@ const PostSellerListing = async (propertyFields = {}) => {
 			stack: error.stack,
 			response: error.response,
 		});
+		throw error;
 	}
 };
 
@@ -292,21 +293,14 @@ const GetVendorId = async () => {
 		);
 
 		if (response.status === 200 || response.status === 201) {
-			console.log("Control Last Number retrieved successfully:", response.data);
+			
 			return response.data;
-		} else {
-			console.error(
-				"Error retrieving control last number:",
-				response.statusText
-			);
 		}
+		
 	} catch (error) {
-		console.error("Error getting control last number:", error.message);
-		console.log("Error details:", {
-			message: error.message,
-			stack: error.stack,
-			response: error.response,
-		});
+		console.error("Error getting control last number:", error);
+
+		throw error;
 	}
 };
 
