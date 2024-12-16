@@ -180,7 +180,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 
 					if (dataresp.length === 0) {
 						setFilteredAndSortedListings([]);
-						setLoading(true);
+						setLoading(false);
 					} else {
 						let listingRes = [...dataresp];
 
@@ -237,7 +237,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 							);
 
 							setFilteredAndSortedListings(newListing);
-							setLoading(true);
+							setLoading(false);
 						}
 					}
 				} else {
@@ -316,7 +316,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 								);
 
 								setFilteredAndSortedListings(newListing);
-								setLoading(true);
+								setLoading(false);
 							}
 						}
 					}
