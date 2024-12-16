@@ -180,7 +180,7 @@ const CardListingComponent = ({
                       backgroundColor: "green",
                       borderColor: "green",
                       color: "white",
-                      borderRadius: "25px",
+                      borderRadius: "4px",
                     }}
                   />
                   <CustomTag
@@ -189,7 +189,7 @@ const CardListingComponent = ({
                       backgroundColor: "white",
                       borderColor: "white",
                       color: "black",
-                      borderRadius: "25px",
+                      borderRadius: "4px",
                     }}
                   />
                 </div>
@@ -200,7 +200,7 @@ const CardListingComponent = ({
                     backgroundColor: "#FBBC04",
                     borderColor: "#FBBC04",
                     color: "white",
-                    borderRadius: "25px",
+                    borderRadius: "4px",
                   }}
                 />
               ) : isSavedProperties.isRecordStatus === "rejected" ? (
@@ -210,7 +210,7 @@ const CardListingComponent = ({
                     backgroundColor: "white",
                     borderColor: "white",
                     color: "red",
-                    borderRadius: "25px",
+                    borderRadius: "4px",
                   }}
                 />
               ) : null
@@ -253,7 +253,7 @@ const CardListingComponent = ({
                     <HeartOutlined />
                   )
                 }
-                style={{ fontSize: "23px", color: "#333333" }}
+                style={{ fontSize: "20px", color: "#333333" }}
                 className="circle-tags heart"
                 checkable={true}
                 checked={checked}
@@ -280,7 +280,7 @@ const CardListingComponent = ({
         </div>
         <div className="card-content" onClick={handleClick}>
           <div className="card-content--title">
-            <p>{title}</p>
+            <p id="card-p-title">{title}</p>
           </div>
           <div className="card-content--sub">
             {isSavedProperties?.atSavedPropertiesPage ? (

@@ -30,12 +30,11 @@ font-size: var(--d-h2-text) !important;
 }
 
 .second-content {
-	    margin: 30px 0;
+	    margin: 40px 0;
 }
 .new-page-full-content{
    display: flex;
    justify-content: center;
-    gap: 20px;
     flex-direction: column;
     font-size: var(--d-body-text);
     cursor: pointer;
@@ -65,7 +64,7 @@ font-size: var(--d-h2-text) !important;
 	}
 	.new-page-full-content{
 		width:100%;
-		padding: 0px 40px;
+		padding: 0px 20px;
 	}
 	.newpage-contents{
 		justify-content: center;

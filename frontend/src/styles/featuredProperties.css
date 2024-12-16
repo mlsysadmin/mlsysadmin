@@ -152,7 +152,7 @@
 /* Responsive styles for screens between 320px and 568px */
 @media screen and (min-width: 320px) and (max-width: 499px) {
     .dashboard .discover{
-        margin-top: 50px;
+        margin-top: 0px;
     }
     #featured-properties{
         margin-bottom: 30px;

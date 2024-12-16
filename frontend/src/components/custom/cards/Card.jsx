@@ -180,11 +180,11 @@ const Card = ({
 					>
 						<Tooltip
 							color="var(--red)"
-							title={isHeartFilled ? "Added" : "Add to favorites"}
+							title={isHeartFilled ? "Added to favorites" : "Add to favorites"}
 							placement="top"
 						>
 							<div className="heart-icon">
-								{isHeartFilled ? <HeartFilled /> : <HeartOutlined />}
+								{isHeartFilled ? <HeartFilled style={{color:"var(--red)"}} /> : <HeartOutlined />}
 							</div>
 						</Tooltip>
 					</div>

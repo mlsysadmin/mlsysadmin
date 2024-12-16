@@ -52,8 +52,8 @@
   justify-content: space-between;
 }
 .circle-tags.heart:hover {
-  transform: scale(1.1); 
-  transition: transform 0.2s ease-in-out; 
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
   color: var(--red);
 }
 #card-listing .ant-card-body .listing-image .tags-right {
@@ -108,13 +108,25 @@
   border-radius: 20px;
   padding: 6px;
 }
-
+.savedPropertiesContent
+  #card-listing
+  .ant-card-body
+  .listing-image
+  .tags-right
+  .circle-tags {
+  border-radius: 20px;
+  padding: 2px;
+}
 #card-listing .ant-card-body .listing-image .tags-right .circle-tags.heart {
   background-color: white;
   /* line-height: 1; */
 }
-.savedPropertiesContent .cardBackgroundSavedProperties #card-listing .ant-card-body .card-content {
-  height: 130px;
+.savedPropertiesContent
+  .cardBackgroundSavedProperties
+  #card-listing
+  .ant-card-body
+  .card-content {
+  height: 90px;
   gap: 0px;
   padding: 10px !important;
 }
@@ -152,7 +164,7 @@
   .card-content
   .card-content--subtitle
   .price {
-  font-size: 14px;
+  font-size: var(--d-body-text)-1;
   color: var(--red);
 }
 #card-listing .ant-card-body .card-content .card-content--subtitle .price {
@@ -193,6 +205,10 @@
 #card-listing .ant-card-body .card-content .card-content--title {
   margin: 0px 5px 0px 5px;
   height: 100px;
+  font-size: var(--d-body-text);
+}
+#card-listing .ant-card-body .card-content .card-content--title #card-p-title {
+  font-size: var(--d-body-text)-20;
 }
 .cardBackgroundSavedProperties
   #card-listing
@@ -200,7 +216,6 @@
   .card-content
   .card-content--title {
   margin: 0px !important;
-  height: 40px;
 }
 #card-listing
   .ant-card-body
@@ -217,7 +232,7 @@
   align-items: center;
   align-content: center;
   justify-content: space-between;
-  font-size: 16px;
+  font-size: var(--d-body-text)-1;
 }
 
 #card-listing
@@ -289,19 +304,21 @@
     .card-content--title {
     height: 30px;
   }
-  .cardBackgroundSavedProperties #card-listing
+  .cardBackgroundSavedProperties
+    #card-listing
     .ant-card-body
     .card-content
     .card-content--subtitle
     .card-features,
-    .cardBackgroundSavedProperties #card-listing
+  .cardBackgroundSavedProperties
+    #card-listing
     .ant-card-body
     .card-content
     .card-content--subtitle
     .card-features
-    .feature-content{
-    font-size: var(--m-body-text) !important;
-    }
+    .feature-content {
+    font-size: var(--m-body-text)-1 !important;
+  }
 }
 /* Big Size Cellphone */
 @media screen and (min-width: 481px) and (max-width: 769px) {
@@ -316,7 +333,7 @@
     height: 30px;
   }
   .cardBackgroundSavedProperties #card-listing .ant-card-body .card-content {
-    height: 140px;
+    height: 110px !important;
   }
   .cardBackgroundSavedProperties
     #card-listing
@@ -324,7 +341,7 @@
     .card-content
     .card-content--subtitle {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
   }
   .cardBackgroundSavedProperties #card-listing {
@@ -432,7 +449,7 @@
     .card-content--subtitle
     .card-features
     .feature-content {
-    font-size: 14px;
+    font-size: var(--d-body-text)-1;
   }
 }
 
@@ -671,6 +688,33 @@
     .feature-content {
     font-size: 15px;
   }
+  .cardBackgroundSavedProperties
+    #card-listing
+    .ant-card-body
+    .card-content
+    .card-content--subtitle
+    .price,
+  #card-listing
+    .ant-card-body
+    .card-content
+    .card-content--subtitle
+    .card-features,
+  .cardBackgroundSavedProperties
+    #card-listing
+    .ant-card-body
+    .card-content
+    .card-content--subtitle
+    .card-features
+    .feature-content {
+    font-size: var(--m-body-text)-1;
+  }
+  .savedPropertiesContent
+    .cardBackgroundSavedProperties
+    #card-listing
+    .ant-card-body
+    .card-content {
+    height: 120px;
+  }
   #card-listing .ant-card-body .card-content {
     padding-top: 2px !important;
     gap: 0;
@@ -681,6 +725,20 @@
 }
 
 @media screen and (min-width: 1025px) and (max-width: 1239px) {
+  #card-listing .ant-card-body .card-content .card-content--subtitle .price,
+  #card-listing
+    .ant-card-body
+    .card-content
+    .card-content--subtitle
+    .card-features,
+  #card-listing
+    .ant-card-body
+    .card-content
+    .card-content--subtitle
+    .card-features
+    .feature-content {
+    font-size: var(--d-body-text)-1;
+  }
   #card-listing .ant-card-body {
     width: 300px;
   }
@@ -710,7 +768,7 @@
     .card-content--subtitle
     .card-features
     .feature-content {
-    font-size: 15px;
+    font-size: var(--d-body-text)-1;
   }
   #card-listing .ant-card-body .card-content {
     padding-top: 2px !important;
