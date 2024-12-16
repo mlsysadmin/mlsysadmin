@@ -21,7 +21,7 @@ const LoginComponent = () => {
 	const [errorMessage, setErrorMessage] = useState("");
 	const [isContinued, setIsContinued] = useState(false);
 	const [isDateNumber, setDateNumber] = useState("1");
-	const [selectedMonth, setSelectedMonth] = useState("January");
+	const [selectedMonth, setSelectedMonth] = useState("1");
 	const [selectedYear, setSelectedYear] = useState("2024");
 	const [otp, setOtp] = useState(Array(6).fill(""));
 	const [isOtpValid, setIsOtpValid] = useState(false);
@@ -133,7 +133,7 @@ const LoginComponent = () => {
 		setOtp(Array(6).fill(""));
 		setotpTimer(120);
 		setDateNumber("1");
-		setSelectedMonth("January");
+		setSelectedMonth("1");
 		setSelectedYear("2024");
 		setBirthdateError(false);
 		setUserDetails(null);
@@ -168,11 +168,11 @@ const LoginComponent = () => {
 		try {
 
 			const userBdate = userDetails?.birthDate;
-			console.log(isDateNumber);
 
 			const paddedDate = isDateNumber.toString().padStart(2, "0");
+			const paddedMonth = selectedMonth.toString().padStart(2, "0");
 
-			const selectedBirthdate = `${selectedYear}-${selectedMonth}-${paddedDate}`;
+			const selectedBirthdate = `${selectedYear}-${paddedMonth}-${paddedDate}`;
 
 			if (userBdate !== selectedBirthdate) {
 				console.log(userBdate, selectedBirthdate);
