@@ -427,7 +427,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 									display: "flex",
 								}}
 							>
-								{Array(3)
+								{Array(4)
 									.fill(null)
 									.map((_, i) => {
 										return <CardSkeleton key={i} />;
@@ -528,7 +528,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 										display: "flex",
 									}}
 								>
-									{Array(3)
+									{Array(4)
 										.fill(null)
 										.map((_, i) => {
 											return <CardSkeleton key={i} />;

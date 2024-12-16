@@ -4,7 +4,21 @@
     width: 380px;
     margin-bottom: 50px;
   }
-
+  .savedPropertiesContent .skeleton--card-listing,
+  .savedPropertiesContent .skeleton--card-listing .skeleton--card-img .ant-skeleton-image {
+    width: 235px;
+  }
+  .savedPropertiesContent .listing-carousel-dashboard{
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    padding: 0px;
+  }
   .skeleton--card-listing .skeleton--card-img {
     height: 180px !important;
   }
