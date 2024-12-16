@@ -66,31 +66,37 @@ import {
 } from "../utils/StringFunctions.utils";
 import { CardSkeleton, FeaturesSkeleton } from "./Skeleton";
 import { getCookieData, isCookiePresent } from "../utils/CookieChecker";
+import { useAuth } from "../Context/AuthContext";
 
 const { Option } = Select;
 
 const DashboardComponent = () => {
-	const [loading, setLoading] = useState(true);
-	const [loadingActive, setLoadingActive] = useState(true);
-	const [userLikes, setUserLikes] = useState([]);
-	const [publiclisting, setPublicListing] = useState([
-		{
-			id: 0,
-			title: "",
-			price: 0,
-			status: "",
-			pics: 0,
-			img: DefaultPropertyImage,
-			no_of_bathrooms: 0,
-			lot: 0,
-			property_no: "",
-			isFeatured: "",
-			sale_type: "",
-			no_of_beds: "",
-			city: "",
-			property_type: "",
-		},
-	]);
+
+  const {
+    isAuhtenticated, logout, userDetails
+  } = useAuth();
+
+  const [loading, setLoading] = useState(true);
+  const [loadingActive, setLoadingActive] = useState(true);
+  const [userLikes, setUserLikes] = useState([]);
+  const [publiclisting, setPublicListing] = useState([
+    {
+      id: 0,
+      title: "",
+      price: 0,
+      status: "",
+      pics: 0,
+      img: DefaultPropertyImage,
+      no_of_bathrooms: 0,
+      lot: 0,
+      property_no: "",
+      isFeatured: "",
+      sale_type: "",
+      no_of_beds: "",
+      city: "",
+      property_type: "",
+    },
+  ]);
 
 	const [isAdvanceSearchOpen, setAdvanceSearchOpen] = useState(false);
 	const [checkFeatures, setCheckFeatures] = useState([]);
@@ -224,50 +230,46 @@ const DashboardComponent = () => {
 
 	let number = accountDetails?.mobileNumber || null;
 
-	const handleUserProfileClick = () => {
-		if (!isMLWWSPresent && !isAccountDetailsPresent) {
-			window.location.href = `${login_url}?redirect_url=${redirect_url}`;
-		} else {
-			window.location.href = "/";
-		}
-	};
-	const handleClickedGetFreeAssistance = () => {
-		if (redirect_url) {
-			window.location.href = "/propertySearch";
-		}
-	};
-	const tags = [
-		{
-			key: "all",
-			label: "All",
-			link: "/all",
-		},
-		{
-			key: "new",
-			label: "New Listing",
-			link: "/new",
-		},
-		// {
-		//   key: "featured",
-		//   label: "Featured",
-		//   link: "/featured",
-		// },
-		{
-			key: "for-sale",
-			label: "For Sale",
-			link: "/all/?sale_type=sale",
-		},
-		{
-			key: "for-rent",
-			label: "For Rent",
-			link: "/all/?sale_type=rent",
-		},
-		{
-			key: "mortgage",
-			label: "Mortgage",
-			link: "/mortgage",
-		},
-	];
+  const handleUserProfileClick = () => {
+    if (!isAuhtenticated && !userDetails) {
+      window.location.href = `/login`;
+    } else {
+      window.location.href = '/';
+    }
+  };
+
+  const tags = [
+    {
+      key: "all",
+      label: "All",
+      link: "/all",
+    },
+    {
+      key: "new",
+      label: "New Listing",
+      link: "/new",
+    },
+    // {
+    //   key: "featured",
+    //   label: "Featured",
+    //   link: "/featured",
+    // },
+    {
+      key: "for-sale",
+      label: "For Sale",
+      link: "/all/?sale_type=sale",
+    },
+    {
+      key: "for-rent",
+      label: "For Rent",
+      link: "/all/?sale_type=rent",
+    },
+    {
+      key: "mortgage",
+      label: "Mortgage",
+      link: "/mortgage",
+    },
+  ];
 
 	const Tags = () => (
 		<div className="menu-tags">

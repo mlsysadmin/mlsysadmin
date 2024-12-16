@@ -60,7 +60,6 @@ const LocationDetailsComponent = ({
 
 	const allProvince = async () => {
 		const dataresprovince = await GetProvince();
-		console.log("dataresprovince: ", dataresprovince);
 
 		setGetProvince(dataresprovince);
 		// console.log("These are provinces:", dataresprovince);
@@ -68,7 +67,6 @@ const LocationDetailsComponent = ({
 
 	const handleProvinceChange = (province) => {
 		setSelectedProvince(province);
-		console.log("Selected Province:", province);
 
 		const normalizedProvince = province.toLowerCase();
 
@@ -92,7 +90,6 @@ const LocationDetailsComponent = ({
 			try {
 				await Promise.all([allCities(), allProvince()]);
 			} catch (error) {
-				console.error("Error fetching data:", error);
 			}
 		};
 
@@ -135,9 +132,7 @@ const LocationDetailsComponent = ({
 			if (data && data.length > 0) {
 				const { lat, lon } = data[0];
 				setPosition([parseFloat(lat), parseFloat(lon)]);
-				console.log("position:", position);
 			} else {
-				console.log("No results found for this location");
 			}
 		} catch (error) {
 			console.error("Error fetching geocode data: ", error);

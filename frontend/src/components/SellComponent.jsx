@@ -10,8 +10,16 @@ import { FooterComponent, CustomMlFooter, MainLayout } from "../components";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import WorkingOnItModal from "./ComingSoonComponent";
 import { buyFaqs, sellFaqs } from "../utils/FaqsData";
+import { useAuth } from "../Context/AuthContext";
 
 const SellComponent = () => {
+
+	const {
+		isAuthenticated,
+		logout,
+		userDetails
+	} = useAuth();
+
 	const [activeIndex, setActiveIndex] = useState(null);
 	const [value, setValue] = useState(1);
 	const [tierUpgrade, setTierUpgrade] = useState(false);
@@ -31,11 +39,6 @@ const SellComponent = () => {
 	};
 
 	const [showUpgradeModal, setShowUpgradeModal] = useState(false);
-	const sessionCookieName = process.env.REACT_APP_SESSION_COOKIE_NAME;
-	const accountCookieName = process.env.REACT_APP_ACCOUNT_COOKIE_NAME;
-	const isMLWWSPresent = isCookiePresent(sessionCookieName);
-	const isAccountDetailsPresent = isCookiePresent(accountCookieName);
-	const [userDetails, setUserDetails] = useState(null);
 
 	const openUpgradeModal = () => {
 		setShowUpgradeModal(true);
@@ -43,52 +46,21 @@ const SellComponent = () => {
 	const closeModal = () => {
 		setShowUpgradeModal(false);
 	};
-	const handleLogout = async () => {
-		const logoutURL = process.env.REACT_APP_LOGOUT_URL;
-		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 
-		window.location.href = `${logoutURL}?redirect_url=${encodeURIComponent(
-			redirectUrl
-		)}`;
-	};
+	const handleSignIn = () => {
 
-	const handleProfileClick = () => {
-		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
-		const loginUrl = process.env.REACT_APP_LOGIN_URL;
-
-		if (isMLWWSPresent && isAccountDetailsPresent) {
-			if (
-				userDetails?.tier?.label !== "BUYER" ||
-				userDetails?.tier?.label !== "SEMI-VERIFIED"
-			) {
-				window.location.href = "/";
-			} else {
-				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-					`${redirectUrl}/`
-				)}`;
-				handleLogout();
-				setTierUpgrade(true);
-			}
+		if (isAuthenticated && userDetails) {
+			navigate('/');
 		} else {
-			window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-				`${redirectUrl}/`
-			)}`;
+			window.location.href = `/login`;
 		}
 	};
 
 	const handleListPropertyClick = () => {
-		if (isMLWWSPresent && isAccountDetailsPresent) {
-			if (
-				userDetails?.tier?.label !== "BUYER" ||
-				userDetails?.tier?.label !== "SEMI-VERIFIED"
-			) {
-				window.location.href = "/listing";
-			} else {
-				console.log("User is a buyer and cannot list properties.");
-				openUpgradeModal();
-			}
+		if (isAuthenticated) {
+			window.location.href = "/saved-properties#listingForm";
 		} else {
-			setShowUpgradeModal(true);
+			openUpgradeModal();
 		}
 	};
 
@@ -98,13 +70,6 @@ const SellComponent = () => {
 		}
 	}, [location]);
 
-	const url_Redirect = process.env.REACT_APP_LOGIN_URL;
-
-	const handleSignIn = () => {
-		if (url_Redirect) {
-			window.location.href = url_Redirect;
-		}
-	};
 	const toggleFaq = (index) => {
 		if (activeIndex === index) {
 			setActiveIndex(null);
@@ -172,7 +137,7 @@ const SellComponent = () => {
 									label={"Sign In"}
 									id="signIn"
 									className={"sell--action-btn"}
-									handleClick={handleProfileClick}
+									handleClick={handleSignIn}
 								/>
 							</div>
 						</div>
@@ -198,7 +163,7 @@ const SellComponent = () => {
 									<UpgradeTierModal
 										isVisible={showUpgradeModal}
 										onClose={closeModal}
-										showLogin={handleProfileClick}
+										showLogin={handleSignIn}
 									/>
 								)}
 							</div>

@@ -144,13 +144,13 @@
 	margin-top: 0px;
 }
 .cardBackgroundSavedProperties
-	#card-listing
-	.ant-card-body
-	.card-content
-	.card-content--subtitle
-	.price {
-	font-size: 14px;
-	color: var(--red);
+  #card-listing
+  .ant-card-body
+  .card-content
+  .card-content--subtitle
+  .price {
+  font-size: var(--d-body-text)-1;
+  color: var(--red);
 }
 #card-listing .ant-card-body .card-content .card-content--subtitle .price {
 	color: var(--red);
@@ -430,6 +430,7 @@
 	}
 	#card-listing .ant-card-body .card-content .card-content--title {
 		margin: 0;
+    height: 60px;
 	}
 	#card-listing .ant-card-body .card-content .card-content--title h4 {
 		font-size: 16px;
@@ -683,7 +684,7 @@
 		.card-content--subtitle
 		.card-features
 		.feature-content {
-		font-size: 15px;
+	 font-size: var(--d-body-text)-1;
 	}
 	#card-listing .ant-card-body .card-content {
 		padding-top: 2px !important;
@@ -724,7 +725,7 @@
 		.card-content--subtitle
 		.card-features
 		.feature-content {
-		font-size: 15px;
+		 font-size: var(--d-body-text)-1;
 	}
 	#card-listing .ant-card-body .card-content {
 		padding-top: 2px !important;

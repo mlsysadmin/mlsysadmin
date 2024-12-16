@@ -25,8 +25,13 @@ import {
 } from "../utils/StringFunctions.utils";
 import { GetVendorByNumber } from "../api/PostListings";
 import "../styles/seller-broker/saved-properties.css";
+import { useAuth } from "../Context/AuthContext";
 
 const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
+	const {
+		isAuthenticated, userDetails, logout
+	} = useAuth();
+
 	const [selectedSort, setSelectedSort] = useState("dateAdded");
 	const [tabOpened, setTabOpened] = useState("");
 	const [loading, setLoading] = useState(true);
@@ -45,12 +50,41 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 			value: "lowestPrice",
 		},
 	]);
+	const [number, setNumber] = useState("");
+
 	useEffect(() => {
 		const hash = window.location.hash.replace("#", ""); 
 		setTabOpened(hash);
 	}, []);
 
+	useEffect(() => {
+		if (isAuthenticated) {
+			const accountDetails = userDetails;
+			setNumber(accountDetails.mobileNumber);
+		}else{
+			// logout();
+		}
+		
+	}, [])
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (hash && items.some(item => item.key === hash)) {
+        onChange(hash); // Call onChange with the hash value
+      }
+    };
 
+    // Initial check on mount
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+
+    // Cleanup the event listener on unmount
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
 	const [filteredAndSortedListings, setFilteredAndSortedListings] = useState([
 		{
 			id: 0,
@@ -87,13 +121,8 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 	const isSavedPropertiesRoute =
 	location.pathname.includes("/saved-properties");
 	const isSavedPropertiesTab = tabOpened === "savedProperties";
-	console.log("location:", location.pathname);
-	const accountDetails = getCookieData();
-
-	let number = accountDetails.mobileNumber;
 
 	const onChange = (key) => {
-		console.log("key: ", key);
 		setTabOpened(key);
 		window.location.hash = key; 
 		if (key === "propertyListings") {
@@ -141,13 +170,10 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 			setLoading(true);
 			try {
 				if (tabOpened === "savedProperties") {
-					console.log("vendordetails:", number);
 					const savedProperties = await GetSavedPropertiesBySellerNo(number);
 					const dataresp = savedProperties.data;
-					console.log("dataresp: ", dataresp);
 
 					if (!Array.isArray(dataresp)) {
-						console.error("Error: dataresp is not an array");
 						setFilteredAndSortedListings([]);
 						return;
 					}
@@ -157,12 +183,10 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 						setLoading(false);
 					} else {
 						let listingRes = [...dataresp];
-						console.log("listingRes:", listingRes);
 
 						if (listingRes.length === 0) {
 							console.log("No Data Found");
 						} else {
-							console.log("Filtered and Sorted Listings: ", listingRes);
 
 							if (selectedSort === "dateAdded") {
 								listingRes.sort(
@@ -177,12 +201,10 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 							} else if (selectedSort === "lowestPrice") {
 								listingRes.sort((a, b) => a.Price - b.Price);
 							} else {
-								console.warn("Unknown sorting option selected:", selectedSort);
 								listingRes = [];
 							}
 
 							if (listingRes.length === 0) {
-								console.log("No Data Found after sorting");
 								setFilteredAndSortedListings([]);
 							} else {
 								console.log("Filtered and Sorted Listings:", listingRes);
@@ -220,13 +242,11 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 					}
 				} else {
 					const vendorDetails = await GetVendorByNumber(number);
-					console.log("detais: ", vendorDetails);
 
 					if (vendorDetails.data) {
 						const vendorDataId = vendorDetails.data.VendorId;
 						const propertyListing = await PropertyListing(vendorDataId);
 						const dataresp = propertyListing;
-						console.log("dataresp: ", dataresp);
 						if (dataresp.length == 0) {
 							setFilteredAndSortedListings([]);
 						} else {
@@ -258,11 +278,6 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 							} else {
 								listingRes = [];
 							}
-							listingRes.forEach((listing) => {
-								console.log(
-									`Details: ${listing.UnitName},\n RecordStatus: ${listing.RecordStatus}`
-								);
-							});
 
 							if (listingRes.length === 0) {
 								setFilteredAndSortedListings([]);
@@ -307,7 +322,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 					}
 				}
 			} catch (error) {
-				console.error("Error fetching saved properties:", error);
+				// console.error("Error fetching saved properties:", error);
 			}
 		};
 		fetchSavedProperties();
@@ -319,10 +334,8 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 		navigate(`/previewListing/?id=${id}`, { state: id });
 	};
 	const handleSelect = (value) => {
-		console.log("vlaue: ", value);
 
 		setSelectedSort(value);
-		console.log("Selected sort type:", value);
 	};
 	const getListingLabel = (selectedSort) => {
 		return selectedSort === "allListings"
@@ -414,7 +427,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 									display: "flex",
 								}}
 							>
-								{Array(3)
+								{Array(4)
 									.fill(null)
 									.map((_, i) => {
 										return <CardSkeleton key={i} />;
@@ -515,7 +528,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 										display: "flex",
 									}}
 								>
-									{Array(3)
+									{Array(4)
 										.fill(null)
 										.map((_, i) => {
 											return <CardSkeleton key={i} />;
