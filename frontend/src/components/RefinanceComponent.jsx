@@ -20,10 +20,20 @@ const RefinanceComponent = () => {
     wrapUp: false,
   });
 
+
+
+
+
+
   const loanGroupRef = useRef(null);
   const PropertyGroupRef = useRef(null);
   const DetailsGroupRef = useRef(null);
   const WrapUpGroupRef = useRef(null);
+
+
+
+
+
 
   // Property state
   const [refPropquest1, setRefPropQuest1] = useState("");
@@ -168,6 +178,11 @@ const RefinanceComponent = () => {
         setCurrent(0);
       } else if (
         scrollTop >= loanGroupRect.top &&
+
+
+
+
+        
         scrollTop < detailsGroupRect.top
       ) {
         setCurrent(1);
