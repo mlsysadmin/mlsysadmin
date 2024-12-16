@@ -63,7 +63,7 @@ const FaqsComponent = () => {
 		<div className="faqs-container-page">
 			<div className="faqs-content-page">
 				<div className="faqs-page-header">
-					<h1 className="faq-title">Have questions? We are here to help.</h1>
+					<h2 className="faq-title">Have questions? We are here to help.</h2>
 					<span className="faq-subtitle">
 						Here are the most common questions about M Lhuillier Properties
 						Realty & Brokerage. Whether you're buying or selling, we're here to

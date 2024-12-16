@@ -141,37 +141,38 @@ const Card = ({
 					className="card-img"
 					onClick={handleClick}
 				/>
-				<p
-					className={isFeatured ? "featured" : ""}
-					style={{
-						color:
-							forsale === "New"
-								? "#ffffff"
-								: forsale === "For Sale"
-								? "#000000"
-								: forsale === "For Rent"
-								? "#000000"
-								: "White",
-						backgroundColor:
-							forsale === "New"
-								? "var(--red)"
-								: forsale === "For Sale"
-								? "#ffffff"
-								: forsale === "For Rent"
-								? "#ffffff"
-								: "var(--red)",
-					}}
-				>
-					{forsale}
-				</p>
-				{/* {
-					isFeatured ? <p className="featured feature-tag">Featured</p> : <></>
-				} */}
-				<div className="likes">
-					<CameraAltIcon />
-					<b>{likes}</b>
+			</div>
+			<div className="card-tags-listings">
+				<div className="card-tags-top">
+					<p
+						className={isFeatured ? "featured" : ""}
+						style={{
+							color:
+								forsale === "New"
+									? "#ffffff"
+									: forsale === "For Sale"
+									? "#000000"
+									: forsale === "For Rent"
+									? "#000000"
+									: "White",
+							backgroundColor:
+								forsale === "New"
+									? "var(--red)"
+									: forsale === "For Sale"
+									? "#ffffff"
+									: forsale === "For Rent"
+									? "#ffffff"
+									: "var(--red)",
+						}}
+					>
+						{forsale}
+					</p>
+					<div className="likes">
+						<CameraAltIcon />
+						<b>{likes}</b>
+					</div>
 				</div>
-				<div className="bottomicns">
+				<div className="card-tags-bottom">
 					<div
 						className="icon"
 						onClick={handleHeartClick}
@@ -179,11 +180,13 @@ const Card = ({
 					>
 						<Tooltip
 							color="var(--red)"
-							title="Added to favorites"
-							open={showTooltip}
+							title={isHeartFilled ? "Added to favorites" : "Add to favorites"}
 							placement="top"
-						></Tooltip>
-						{isHeartFilled ? <HeartFilled /> : <HeartOutlined />}
+						>
+							<div className="heart-icon">
+								{isHeartFilled ? <HeartFilled style={{color:"var(--red)"}} /> : <HeartOutlined />}
+							</div>
+						</Tooltip>
 					</div>
 
 					{/* <div className="icon">
@@ -193,14 +196,17 @@ const Card = ({
 			</div>
 			<div className="card-content" onClick={handleClick}>
 				<div className="card-listing-title-public">
-					<h3>{title}</h3>
+					<p>{title}</p>
 				</div>
 				<div className="card-listing-subtitle-public">
-					<h4>{subtitle}</h4>
+					<label>{subtitle}</label>
 				</div>
 
 				<div className="bot">
-					<p>{price}</p>
+					<div className="bot-left-card-text">
+						<p>{price}</p>
+					</div>
+
 					<div className="card-icons">
 						{beds > 0 && (
 							<div className="card-icons--feature">

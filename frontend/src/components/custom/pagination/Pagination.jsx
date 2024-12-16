@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
+import { CaretLeftOutlined, CaretRightOutlined } from "@ant-design/icons";
 import "../../../styles/Pagination.css";
 
 const Pagination = ({ currentPage, totalPages, paginate }) => {
@@ -19,34 +19,36 @@ const Pagination = ({ currentPage, totalPages, paginate }) => {
 
 	return (
 		<div className="custom-pagination">
-			<div
-				onClick={() => paginate(validCurrentPage - 1)}
-				className={`prev ${validCurrentPage > 1 ? "active" : "disabled"}`}
-			>
-				<ArrowLeftOutlined />
-				<label>Previous</label>
-			</div>
+			<div className="custom-pagination-content">
+				<div
+					onClick={() => paginate(validCurrentPage - 1)}
+					className={`prev ${validCurrentPage > 1 ? "active" : "disabled"}`}
+				>
+					<CaretLeftOutlined />
+					{/* <label>Prev</label> */}
+				</div>
 
-			<div className="pagination-numbers">
-				{pageNumbers.map((number) => (
-					<span
-						key={number}
-						onClick={() => paginate(number)}
-						className={validCurrentPage === number ? "active" : ""}
-					>
-						{number}
-					</span>
-				))}
-			</div>
+				<div className="pagination-numbers">
+					{pageNumbers.map((number) => (
+						<span
+							key={number}
+							onClick={() => paginate(number)}
+							className={validCurrentPage === number ? "active" : ""}
+						>
+							{number}
+						</span>
+					))}
+				</div>
 
-			<div
-				onClick={() => paginate(validCurrentPage + 1)}
-				className={`next ${
-					validCurrentPage < validTotalPages ? "active" : "disabled"
-				}`}
-			>
-				<label>Next</label>
-				<ArrowRightOutlined />
+				<div
+					onClick={() => paginate(validCurrentPage + 1)}
+					className={`next ${
+						validCurrentPage < validTotalPages ? "active" : "disabled"
+					}`}
+				>
+					{/* <label>Next</label> */}
+					<CaretRightOutlined />
+				</div>
 			</div>
 		</div>
 	);

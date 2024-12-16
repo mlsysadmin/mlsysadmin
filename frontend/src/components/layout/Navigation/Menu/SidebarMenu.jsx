@@ -41,17 +41,16 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 		setShowUpgradeModal(false);
-		window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-			redirectUrl
-		)}`;
+		navigate('/login')
 	};
 	const handleLogout = async () => {
 		const logoutURL = process.env.REACT_APP_LOGOUT_URL;
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 
-		window.location.href = `${logoutURL}?redirect_url=${encodeURIComponent(
-			redirectUrl
-		)}`;
+		// window.location.href = `${logoutURL}?redirect_url=${encodeURIComponent(
+		// 	redirectUrl
+		// )}`;
+		navigate('/')
 	};
 	
 	const handleProfileClick = () => {
@@ -100,7 +99,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 				userDetails?.tier?.label !== "BUYER" ||
 				userDetails?.tier?.label !== "SEMI-VERIFIED"
 			) {
-				window.location.href = "/listing";
+				window.location.href = "/saved-properties#listingForm";
 			} else {
 				console.log("User is a buyer and cannot list properties.");
 				openUpgradeModal();
@@ -146,9 +145,11 @@ useEffect(() => {
 		setCurrent("home-loan");
 	} else if (currentPath.includes("/buy-a-home")) {
 		setCurrent("home-loan");
-	} else if (currentPath.includes("/pre-selling")) {
-		setCurrent("pre-selling");
-	} else {
+	} 
+	// else if (currentPath.includes("/pre-selling")) {
+	// 	setCurrent("pre-selling");
+	// } 
+	else {
 		setCurrent("");
 	}
 }, [location.pathname]);
@@ -224,11 +225,11 @@ useEffect(() => {
 			key: "rent",
 			children: SubMenuChild(SubMenu.rent),
 		},
-		{
-			label: "Pre-Selling",
-			key: "pre-selling",
-			children: SubMenuChild(SubMenu.preSelling),
-		},
+		// {
+		// 	label: "Pre-Selling",
+		// 	key: "pre-selling",
+		// 	children: SubMenuChild(SubMenu.preSelling),
+		// },
 
 		{
 			label: "Loan",

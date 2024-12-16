@@ -99,7 +99,7 @@
 }
 
 .logo-ml {
-  width: 300px;
+  width: 180px;
 }
 .link-spans-footer{
   width: 100%;
@@ -146,7 +146,7 @@
   margin: 0px 0px 0px 0px;
 }
 .logo-ml {
-  width: 200px;
+  width: 150px;
   margin: 0px 0px 0px 0px;
 }
 .firstcol-icons{
@@ -262,7 +262,7 @@ flex-direction: row;
     font-size: 14px;
   }
   .logo-ml {
-    width: 250px;
+    width: 180px;
  }
  .row-footer-container{
   display: flex;
@@ -291,7 +291,7 @@ flex-direction: row;
     font-size: 14px;
   }
   .logo-ml {
-    width: 250px;
+    width: 180px;
  }
  .col-footer-name{
   max-width: 100%;
@@ -325,7 +325,7 @@ flex-direction: row;
     font-size: 14px;
   }
   .logo-ml {
-    width: 250px;
+    width: 180px;
  }
    .col-footer-container{
   display: flex;
@@ -351,7 +351,7 @@ flex-direction: row;
     font-size: 14px;
   }
   .logo-ml {
-    width: 250px;
+    width: 135px !important;
  }
  .col-footer-container{
   display: flex;

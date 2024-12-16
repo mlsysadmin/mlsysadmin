@@ -1,28 +1,24 @@
 'use strict'
 
-const { CKYC_API, ML_MONEY_API } = require('./axios.util');
-const DataResponseHandler = require('../_helper/DataResponseHandler.helper');
+const { ML_MONEY_API } = require('./axios.util');
 const SuccessLoggerHelper = require('../_helper/SuccessLogger.helper');
-
-const Logger = require('../../config/_log/mlbrokerage.logger');
-
-const ErrLogger = Logger.Get_logger("error");
 
 module.exports = {
     RegisterUserKyc: async (token, user) => {
         try {
             const endpoint = `/api/register/validated-basic-kyc`;
-            const X_API_KEY = process.env.X_API_KEY;
+            const ML_MONEY_X_API_KEY = process.env.ML_MONEY_X_API_KEY;
+
             const {
                 mobileNumber, otpCode, firstName, lastName, middleName,
-                suffix, email, addressL0Id, addressL1Id, addressL2Id, 
+                suffix, email, addressL0Id, addressL1Id, addressL2Id,
                 otherAddress, zipCode
             } = user;
 
             const config = {
                 headers: {
                     Authorization: `Bearer ${token}`,
-                    "x-api-key": X_API_KEY,
+                    "x-api-key": ML_MONEY_X_API_KEY,
                 },
             };
 
@@ -44,14 +40,14 @@ module.exports = {
             }
 
 
-            const register_ckyc = await ML_MONEY_API.post(endpoint, postData ,config);
+            const register_ckyc = await ML_MONEY_API.post(endpoint, postData, config);
 
             let data;
             let message;
             let code;
 
             let request = {
-                url: URL,
+                url: endpoint,
                 method: 'POST',
                 query: {},
                 params: {},
@@ -77,6 +73,105 @@ module.exports = {
             console.log(error);
 
             throw (error)
+        }
+    },
+    ExternalLogin: async (mobileNumber, otpCode) => {
+        try {
+            const endpoint = `/api/v3/login/external`;
+            const EXTERNAL_LOGIN_SERVICE = process.env.EXTERNAL_LOGIN_SERVICE;
+
+            const postData = {
+                mobileNumber,
+                otpCode,
+                service: EXTERNAL_LOGIN_SERVICE
+            }
+
+            const login = await ML_MONEY_API.post(endpoint, postData);
+
+            // if (login) {
+
+            // }
+            delete login.data["accessToken"];
+
+            let data;
+            let message;
+            let code;
+
+            let request = {
+                url: endpoint,
+                method: 'POST',
+                query: {},
+                params: {},
+                body: postData,
+                headers: {}
+            }
+
+            let response = {
+                data,
+                status: login.status,
+                code: login.statusText.toUpperCase(),
+                message: "User Logged in Successfully"
+            }
+
+            message = "User Logged in Successfully";
+            code = "USER_LOGGED_IN"
+
+            SuccessLoggerHelper(request, response);
+
+            return { login, message, code }
+
+        } catch (error) {
+            throw error;
+        }
+    },
+    ExternalSendOtp: async (mobileNumber) => {
+        try {
+
+            const endpoint = `/api/auth/external-send-otp`;
+            const ML_MONEY_X_API_KEY = process.env.ML_MONEY_X_API_KEY;
+
+            const postData = {
+                mobileNumber,
+                isMlWalletRequired: false,
+            }
+
+            const config = {
+                headers: {
+                    "x-api-key": ML_MONEY_X_API_KEY
+                }
+            }
+
+            const userOtp = await ML_MONEY_API.post(endpoint, postData, config);
+
+            let data;
+            let message;
+            let code;
+
+            let request = {
+                url: endpoint,
+                method: 'POST',
+                query: {},
+                params: {},
+                body: postData,
+                headers: config
+            }
+
+            let response = {
+                data,
+                status: userOtp.status,
+                code: userOtp.statusText.toUpperCase(),
+                message: userOtp.data.message
+            }
+
+            message = userOtp.data.message;
+            code = "OTP_SENT"
+
+            SuccessLoggerHelper(request, response);
+
+            return { userOtp, message, code }
+
+        } catch (error) {
+            throw error;
         }
     }
 }

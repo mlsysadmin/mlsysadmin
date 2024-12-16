@@ -17,7 +17,7 @@ const { GenerateURL, GoogleAuth } = require('../../services/google.auth.service'
 const { google } = require('googleapis');
 const { UpdateTokenVersion } = require('../../utils/_helper/Jwt.helper');
 const { SendOtp, ValidateOtp } = require('../../utils/_api/otp.api');
-const { RegisterUserKyc } = require('../../utils/_api/ml_money.api');
+const { RegisterUserKyc, ExternalLogin, ExternalSendOtp } = require('../../utils/_api/ml_money.api');
 
 module.exports = {
     Login: async (req, res, next) => {
@@ -431,6 +431,127 @@ module.exports = {
 
         } catch (error) {
             next(error)
+        }
+    },
+
+    UserSendOtp: async (req, res, next) => {
+        try {
+
+            const { cellphoneNumber } = req.body.payload;
+
+            const userOtp = await ExternalSendOtp(cellphoneNumber);
+
+            const otp = DataResponseHandler(
+                userOtp.userOtp.data,
+                userOtp.code,
+                200,
+                true,
+                userOtp.message
+            );
+
+            SuccessLoggerHelper(req, otp);
+
+            res.status(200).send(otp);
+
+        } catch (error) {
+            next(error);
+        }
+    },
+    UserLogin: async (req, res, next) => {
+        try {
+            const { cellphoneNumber, pin } = req.body.payload;
+
+            const userLogin = await ExternalLogin(cellphoneNumber, pin);
+
+            if (!userLogin) {
+                return res.status(404).send({ message: 'User not found' });
+            }
+
+            const uniqId = userLogin.login.data.ckycId;
+
+            const generateSessionToken = JwtSign(uniqId);
+
+            const tokenCookieOptions = {
+                // expires: new Date(Date.now() + 300000),
+                // maxAge: 300000, // 5 min
+                // path: '/',
+                // httOnly: true,
+                // secure: true,
+                // sameSite: true,
+                // domain: process.env.CLIENT_APP_URL,
+                httpOnly: process.env.COOKIE_HTTP_ONLY,
+                // secure: process.env.COOKIE_SECURE,
+                domain: process.env.COOKIE_DOMAIN,
+                signed: true,
+                maxAge: 3600000, // 1 hour in milliseconds
+                // expires: new Date(Date.now() + 3600000), // 1 hour from now
+            }
+
+            const useCookieOptions = {
+                // expires: new Date(Date.now() + 300000),
+                // maxAge: 300000, // 5 min
+                // path: '/',
+                httpOnly: process.env.COOKIE_HTTP_ONLY,
+                // secure: process.env.COOKIE_SECURE,
+                // sameSite: true,
+                domain: process.env.COOKIE_DOMAIN,
+                maxAge: 3600000, // 1 hour in milliseconds
+                // expires: new Date(Date.now() + 3600000), // 1 hour from now
+            }
+
+            const login = DataResponseHandler(
+                uniqId,
+                userLogin.code,
+                200,
+                true,
+                userLogin.message
+            );
+
+            SuccessLoggerHelper(req, login);
+
+            res.cookie('access_token', generateSessionToken, tokenCookieOptions);
+            res.cookie('account_details', userLogin.login.data, useCookieOptions);
+
+            res.status(200).send(login);
+
+        } catch (error) {
+            next(error);
+        }
+    },
+    CheckSession: async (req, res, next) => {
+        try {
+
+            const sessionCookie = req.signedCookies.access_token;
+            const accountDetails = req.cookies.account_details;
+            console.log("req", req.cookies);
+            console.log("access", req.signedCookies.access_token);
+        
+            if (sessionCookie) {
+
+                const isSessionCheck = DataResponseHandler(
+                    { isLoggedIn: true, accountDetails },
+                    "COOKIE_PRESENT",
+                    200,
+                    true,
+                    "Cookie is still present"
+                );
+
+                res.send(isSessionCheck);
+            } else {
+                const isSessionCheck = DataResponseHandler(
+                    { isLoggedIn: false, accountDetails: [] },
+                    "COOKIE_EXPIRED",
+                    200,
+                    true,
+                    "Cookie is not present"
+                );
+
+                res.send(isSessionCheck);
+            }
+
+
+        } catch (error) {
+            next(error);
         }
     }
 

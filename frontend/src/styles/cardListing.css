@@ -51,6 +51,11 @@
   display: flex;
   justify-content: space-between;
 }
+.circle-tags.heart:hover {
+  transform: scale(1.1); 
+  transition: transform 0.2s ease-in-out; 
+  color: var(--red);
+}
 #card-listing .ant-card-body .listing-image .tags-right {
   margin: 10px 10px;
   padding-top: 13px;
@@ -80,7 +85,7 @@
   font-weight: 500;
   font-size: 15px;
   margin-inline-end: 0px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   padding-top: 5px;
   padding-bottom: 5px;
   line-height: 15px;

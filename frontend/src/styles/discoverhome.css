@@ -639,7 +639,7 @@ margin-right: 5px;
 
 .mortgage-calc .year-term-options {
 	width: 100%;
-	height: 91px;
+	height: 51px;
 	/* padding: 50px 0px; */
 	border: transparent !important;
 }
@@ -1019,6 +1019,14 @@ h2 {
 	.discover-home .discover-words {
 		margin: 0;
 	}
+	.mortgage-calc .loan-term-value {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+	}
+	.mortgage-calc .year-term-options {
+	height:60px;
+}
 
 	.discover-home .smart-way-to-get-a,
 	.discover-home .home-loan {

@@ -187,67 +187,69 @@ const NewPageComponent = () => {
 						setSearchFilters={setSearchParams}
 					/>
 					<div className="second-content">
-						<h1 className="new-page-label">New Properties For Sale/Rent</h1>
-						<SearchPropertiesSoration
-							properties_count={publiclisting.length}
-							current_properties_count={currentCards.length}
-							selectedSort={selectedSort}
-							setSelectedSort={setSelectedSort}
-							HandleSort={HandleSort}
-						/>
-						{!loading ? (
-							currentCards.length > 0 && (
-								<div className="card-container">
-									{currentCards.map((data, index) => (
-										<Card
-											key={index}
-											id={data.id}
-											title={data.title}
-											price={`PHP ${data.price}`}
-											imgSrc={data.img}
-											beds={data.no_of_beds}
-											baths={data.no_of_bathrooms}
-											size={data.lot}
-											likes={data.pics}
-											forsale={data.status}
-											subtitle={`${CapitalizeEachWord(
-												data.property_type
-											)} For ${CapitalizeString(data.sale_type)}`}
-											handleClick={() => handleCardClick(data.property_no)}
-											propertyNo={data.property_no}
-											vendorId={data.vendorId}
-											number = {number}
-										/>
-									))}
+						<div className="new-page-full-content">
+							<h1 className="new-page-label">New Properties For Sale/Rent</h1>
+							<SearchPropertiesSoration
+								properties_count={publiclisting.length}
+								current_properties_count={currentCards.length}
+								selectedSort={selectedSort}
+								setSelectedSort={setSelectedSort}
+								HandleSort={HandleSort}
+							/>
+							{!loading ? (
+								currentCards.length > 0 && (
+									<div className="card-container">
+										{currentCards.map((data, index) => (
+											<Card
+												key={index}
+												id={data.id}
+												title={data.title}
+												price={`PHP ${data.price}`}
+												imgSrc={data.img}
+												beds={data.no_of_beds}
+												baths={data.no_of_bathrooms}
+												size={data.lot}
+												likes={data.pics}
+												forsale={data.status}
+												subtitle={`${CapitalizeEachWord(
+													data.property_type
+												)} For ${CapitalizeString(data.sale_type)}`}
+												handleClick={() => handleCardClick(data.property_no)}
+												propertyNo={data.property_no}
+												vendorId={data.vendorId}
+												number={number}
+											/>
+										))}
+									</div>
+								)
+							) : (
+								<div
+									className="card-skeleton-loading"
+									style={{
+										display: "flex",
+										justifyContent: "center",
+										gap: "20px",
+									}}
+								>
+									{Array(3)
+										.fill(null)
+										.map((_, i) => {
+											return <CardSkeleton />;
+										})}
 								</div>
-							)
-						) : (
-							<div
-								className="card-skeleton-loading"
-								style={{
-									display: "flex",
-									justifyContent: "center",
-									gap: "20px",
-								}}
-							>
-								{Array(3)
-									.fill(null)
-									.map((_, i) => {
-										return <CardSkeleton />;
-									})}
-							</div>
-						)}
+							)}
 
-						<Pagination
-							currentPage={currentPage}
-							totalPages={totalPages}
-							paginate={setCurrentPage}
-						/>
+							<Pagination
+								currentPage={currentPage}
+								totalPages={totalPages}
+								paginate={setCurrentPage}
+							/>
+						</div>
 					</div>
-					<CustomMlFooter />
-					<FooterComponent />
 				</div>
 			</div>
+			<CustomMlFooter />
+			<FooterComponent />
 		</div>
 	);
 };
