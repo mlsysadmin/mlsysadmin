@@ -129,11 +129,14 @@ const RentComponent = () => {
 							const gallery = getPhotoGallery.data;
 
 							const image = GetPhotoWithUrl(item.Photo);
+							 const isRent = item.SaleType == "rent";
 
 							return {
 								id: item.id,
 								title: CapitalizeString(item.UnitName),
-								price: AmountFormatterGroup(item.Price),
+								price: `PHP ${AmountFormatterGroup(item.Price)}${
+									isRent ? "/mos." : ""
+								}`,
 								status: "For Rent",
 								pics: image ? gallery.length + 1 : 0,
 								img: image,
