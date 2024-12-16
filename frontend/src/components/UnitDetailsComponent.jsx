@@ -7,6 +7,13 @@ import "../styles/listing-form.css";
 import floorlogo from "../assets/images/floorlogo.png";
 import property from "../assets/property.png";
 
+// icons
+import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
+import ShowerOutlinedIcon from "@mui/icons-material/ShowerOutlined";
+import ShortcutOutlinedIcon from "@mui/icons-material/ShortcutOutlined";
+import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
+import PhpOutlinedIcon from '@mui/icons-material/PhpOutlined';
+
 const UnitDetailsComponent = ({
 	onComplete,
 	priceInputError,
@@ -274,9 +281,8 @@ const UnitDetailsComponent = ({
 								<div className="currency-prefix">PHP</div>
 								<input
 									id="price-input"
-									className={`price-input ${
-										priceInputError ? "error-input" : ""
-									}`}
+									className={`price-input ${priceInputError ? "error-input" : ""
+										}`}
 									type="text"
 									value={formatPricenumber(price)}
 									onChange={(e) => {
@@ -307,9 +313,8 @@ const UnitDetailsComponent = ({
 										{["Yes", "No", "Semi"].map((tab) => (
 											<div
 												key={tab}
-												className={`furnish-tab ${
-													furnishing === tab ? "selected" : ""
-												}`}
+												className={`furnish-tab ${furnishing === tab ? "selected" : ""
+													}`}
 												onClick={() =>
 													!disabledPropertyFields && handleFurnishingClick(tab)
 												}
@@ -328,90 +333,91 @@ const UnitDetailsComponent = ({
 						</div>
 					</div>
 
-          {/* Beds */}
-          <div className="form-group">
-            <div className="text-wrapper-37">Beds</div>
-            <div className="listing-unit-input-group">
-              <label className="text-wrapper-38" htmlFor="beds">
-                How many beds?
-              </label>
-              <div className="beds-listing-unit-input-group">
-                <div className="overlap-10">
-                  <div className="beds-number">
-                    <input
-                      type="number"
-                      className="beds-input"
-                      value={noOfBeds}
-                      onChange={!disabledPropertyFields && handleBedChange}
-                      disabled={disabledPropertyFields}
-                      style={{
-                        marginLeft: "10px",
-                        width: "60px",
-                        textAlign: "center",
-                        cursor: disabledPropertyFields ? "not-allowed" : "auto",
-                      }}
-                    />
-                    <BedsInputSlider
-                      value={noOfBeds}
-                      onChange={(value) => !disabledPropertyFields && setNoOfBeds(Number(value))}
-                      disabled={disabledPropertyFields}
-                      style={{
-                        cursor: disabledPropertyFields ? "not-allowed" : "auto",
-                      }}
-                    />
-                  </div>
-                  <img
-                    className="beds-logo"
-                    alt="Beds logo"
-                    src="https://cdn.animaapp.com/projects/64e41d552340cba66b90f01a/releases/665420ac7606a0cc15aa6b94/img/hotel-bed-2--bed-double-bedroom-bedrooms-queen-king-full-hotel-h-5@2x.png"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+					{/* Beds */}
+					<div className="form-group">
+						<div className="text-wrapper-37">Beds</div>
+						<div className="listing-unit-input-group">
+							<label className="text-wrapper-38" htmlFor="beds">
+								How many beds?
+							</label>
+							<div className="beds-listing-unit-input-group">
+								<div className="overlap-10">
+									<div className="field--icon">
+										<BedOutlinedIcon
+											className="beds-logo"
+										/>
+									</div>
+									<div className="beds-number">
+										<input
+											type="number"
+											className="beds-input"
+											value={noOfBeds}
+											max={20}
+											min={0}
+											onChange={!disabledPropertyFields && handleBedChange}
+											disabled={disabledPropertyFields}
+											style={{
+												marginLeft: "10px",
+												width: "60px",
+												textAlign: "center",
+												cursor: disabledPropertyFields ? "not-allowed" : "auto",
+											}}
+										/>
+										<BedsInputSlider
+											value={noOfBeds}
+											onChange={(value) => !disabledPropertyFields && setNoOfBeds(Number(value))}
+											disabled={disabledPropertyFields}
+											style={{
+												cursor: disabledPropertyFields ? "not-allowed" : "auto",
+											}}
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-          {/* Parking */}
-          <div className="form-group">
-            <div className="text-wrapper-37">Parking</div>
-            <div className="listing-unit-input-group">
-              <label className="text-wrapper-38" htmlFor="parking">
-                How many parking slots?
-              </label>
-              <div className="parking-listing-unit-input-group">
-                <div className="overlap-10">
-                  <div className="parking-number">
-                    <input
-                      type="number"
-                      className="parking-input"
-                      value={Parking}
-                      min="0"
-                      onChange={!disabledPropertyFields && handleParkingChange}
-                      disabled={disabledPropertyFields}
-                      style={{
-                        marginLeft: "10px",
-                        width: "60px",
-                        textAlign: "center",
-                        cursor: disabledPropertyFields ? "not-allowed" : "auto",
-                      }}
-                    />
-                    <ParkingInputSlider
-                      value={Parking}
-                      onChange={(value) => !disabledPropertyFields && setParking(Number(value))}
-                      disabled={disabledPropertyFields}
-                      style={{
-                        cursor: disabledPropertyFields ? "not-allowed" : "auto",
-                      }}
-                    />
-                  </div>
-                  <img
-                    className="parking-logo"
-                    alt="Parking logo"
-                    src="https://cdn.animaapp.com/projects/64e41d552340cba66b90f01a/releases/665e706f7ae3ba3a45818d90/img/parking-sign--discount-coupon-parking-price-prices-hotel.svg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+					{/* Parking */}
+					<div className="form-group">
+						<div className="text-wrapper-37">Parking</div>
+						<div className="listing-unit-input-group">
+							<label className="text-wrapper-38" htmlFor="parking">
+								How many parking slots?
+							</label>
+							<div className="parking-listing-unit-input-group">
+								<div className="overlap-10">
+									<div className="field--icon">
+										<DirectionsCarFilledOutlinedIcon className="parking-logo" />
+									</div>
+									<div className="parking-number">
+										<input
+											type="number"
+											className="parking-input"
+											value={Parking}
+											min={0}
+											max={20}
+											onChange={!disabledPropertyFields && handleParkingChange}
+											disabled={disabledPropertyFields}
+											style={{
+												marginLeft: "10px",
+												width: "60px",
+												textAlign: "center",
+												cursor: disabledPropertyFields ? "not-allowed" : "auto",
+											}}
+										/>
+										<ParkingInputSlider
+											value={Parking}
+											onChange={(value) => !disabledPropertyFields && setParking(Number(value))}
+											disabled={disabledPropertyFields}
+											style={{
+												cursor: disabledPropertyFields ? "not-allowed" : "auto",
+											}}
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
 					{/* Floor Area */}
 					<div className="form-group">
@@ -422,17 +428,12 @@ const UnitDetailsComponent = ({
 							</label>
 							<div className="floor-input-container">
 								<div className="floor-logo">
-									<img
-										className="floor-logo-img"
-										alt="floor-logo"
-										src={floorlogo}
-									/>
+									<ShortcutOutlinedIcon className="floor-logo-img" />
 								</div>
 								<input
 									id="floorarea-input"
-									className={`floorarea-input ${
-										floorAreaInputError ? "error-input" : ""
-									}`}
+									className={`floorarea-input ${floorAreaInputError ? "error-input" : ""
+										}`}
 									type="number"
 									onChange={(e) => {
 										setFloorArea(e.target.value);
@@ -462,9 +463,8 @@ const UnitDetailsComponent = ({
 								<div className="currency-prefix">PHP</div>
 								<input
 									id="pricepersqm"
-									className={`pricepersqm-input ${
-										pricePerSqmInputError ? "error-input" : ""
-									}`}
+									className={`pricepersqm-input ${pricePerSqmInputError ? "error-input" : ""
+										}`}
 									type="text"
 									value={formatpricePerSqm(pricePerSqm)}
 									onChange={(e) => {
@@ -501,9 +501,8 @@ const UnitDetailsComponent = ({
 								<div className="currency-prefix">PHP</div>
 								<input
 									id="disc-price-input"
-									className={`disc-price-input ${
-										discPriceInputError ? "error-input" : ""
-									}`}
+									className={`disc-price-input ${discPriceInputError ? "error-input" : ""
+										}`}
 									type="text"
 									value={formatdiscountedPricenumber(discountedPrice)}
 									onChange={(e) => {
@@ -534,9 +533,8 @@ const UnitDetailsComponent = ({
 										{["Brand New", "Retail"].map((tab) => (
 											<div
 												key={tab}
-												className={`classification-tab ${
-													Classification === tab ? "selected" : ""
-												}`}
+												className={`classification-tab ${Classification === tab ? "selected" : ""
+													}`}
 												onClick={() =>
 													!disabledPropertyFields &&
 													handleClassificationClick(tab)
@@ -556,92 +554,95 @@ const UnitDetailsComponent = ({
 						</div>
 					</div>
 
-          {/* Bathrooms */}
-          <div className="form-group">
-            <div className="text-wrapper-37">Bathrooms</div>
-            <div className="listing-unit-input-group">
-              <label className="text-wrapper-38" htmlFor="bathrooms">
-                How many bathrooms?
-              </label>
-              <div className="bathroom-listing-unit-input-group">
-                <div className="overlap-10">
-                  <div className="bathroom-number">
-                    <input
-                      type="number"
-                      className="bathroom-input"
-                      value={noOfBathrooms}
-                      min="0"
-                      onChange={handleBathroomChange}
-                      disabled={!disabledPropertyFields && disabledPropertyFields}
-                      style={{
-                        marginLeft: "10px",
-                        width: "60px",
-                        textAlign: "center",
-                        cursor: disabledPropertyFields ? "not-allowed" : "auto",
-                      }}
-                    />
-                    <BathroomInputSlider
-                      value={noOfBathrooms}
-                      onChange={(value) => !disabledPropertyFields && setNoOfBathrooms(Number(value))}
-                      disabled={disabledPropertyFields}
-                      style={{
-                        cursor: disabledPropertyFields ? "not-allowed" : "auto",
-                      }}
-                    />
-                  </div>
-                  <img
-                    className="bathroom-logo"
-                    alt="bathroom-logo"
-                    src="https://cdn.animaapp.com/projects/64e41d552340cba66b90f01a/releases/665e706f7ae3ba3a45818d90/img/hotel-shower-head--bathe-bath-bathroom-shower-water-head-hotel@2x.png"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+					{/* Bathrooms */}
+					<div className="form-group">
+						<div className="text-wrapper-37">Bathrooms</div>
+						<div className="listing-unit-input-group">
+							<label className="text-wrapper-38" htmlFor="bathrooms">
+								How many bathrooms?
+							</label>
+							<div className="bathroom-listing-unit-input-group">
+								<div className="overlap-10">
+									<div className="field--icon">
+										<ShowerOutlinedIcon className="bathroom-logo" />
+									</div>
+									<div className="bathroom-number">
+										<input
+											type="number"
+											className="bathroom-input"
+											value={noOfBathrooms}
+											min={0}
+											max={20}
+											onChange={handleBathroomChange}
+											disabled={!disabledPropertyFields && disabledPropertyFields}
+											style={{
+												marginLeft: "10px",
+												width: "60px",
+												textAlign: "center",
+												cursor: disabledPropertyFields ? "not-allowed" : "auto",
+											}}
+										/>
+										<BathroomInputSlider
+											value={noOfBathrooms}
+											onChange={(value) => !disabledPropertyFields && setNoOfBathrooms(Number(value))}
+											disabled={disabledPropertyFields}
+											style={{
+												cursor: disabledPropertyFields ? "not-allowed" : "auto",
+											}}
+										/>
+									</div>
 
-          {/* No. of Floors */}
-          <div className="form-group">
-            <div className="text-wrapper-37">No. of Floors</div>
-            <div className="listing-unit-input-group">
-              <label className="text-wrapper-38" htmlFor="nofloors">
-                How many floors?
-              </label>
-              <div className="nofloors-listing-unit-input-group">
-                <div className="overlap-10">
-                  <div className="nofloors-number">
-                    <input
-                      type="number"
-                      className="no-of-floors-input"
-                      value={noOfFloors}
-                      min="0"
-                      onChange={handleFloorChange}
-                      disabled={!disabledPropertyFields && disabledPropertyFields}
-                      style={{
-                        marginLeft: "10px",
-                        width: "60px",
-                        textAlign: "center",
-                        cursor: disabledPropertyFields ? "not-allowed" : "auto",
-                      }}
-                    />
+								</div>
+							</div>
+						</div>
+					</div>
 
-                    <NoOfFloorsInputSlider
-                      value={noOfFloors}
-                      onChange={(value) => !disabledPropertyFields && setNoOfFloors(Number(value))}
-                      disabled={disabledPropertyFields}
-                      style={{
-                        cursor: disabledPropertyFields ? "not-allowed" : "auto",
-                      }}
-                    />
-                  </div>
-                  <img
-                    className="nofloors-logo"
-                    alt="nofloors-logo"
-                    src="https://cdn.animaapp.com/projects/64e41d552340cba66b90f01a/releases/665e706f7ae3ba3a45818d90/img/descending-number-order-1@2x.png"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
+					{/* No. of Floors */}
+					<div className="form-group">
+						<div className="text-wrapper-37">No. of Floors</div>
+						<div className="listing-unit-input-group">
+							<label className="text-wrapper-38" htmlFor="nofloors">
+								How many floors?
+							</label>
+							<div className="nofloors-listing-unit-input-group">
+								<div className="overlap-10">
+									<div className="field--icon">
+										<img
+											className="nofloors-logo"
+											alt="nofloors-logo"
+											src="https://cdn.animaapp.com/projects/64e41d552340cba66b90f01a/releases/665e706f7ae3ba3a45818d90/img/descending-number-order-1@2x.png"
+										/>
+									</div>
+									<div className="nofloors-number">
+										<input
+											type="number"
+											className="no-of-floors-input"
+											value={noOfFloors}
+											min={0}
+											max={20}
+											onChange={handleFloorChange}
+											disabled={!disabledPropertyFields && disabledPropertyFields}
+											style={{
+												marginLeft: "10px",
+												width: "60px",
+												textAlign: "center",
+												cursor: disabledPropertyFields ? "not-allowed" : "auto",
+											}}
+										/>
+
+										<NoOfFloorsInputSlider
+											value={noOfFloors}
+											onChange={(value) => !disabledPropertyFields && setNoOfFloors(Number(value))}
+											disabled={disabledPropertyFields}
+											style={{
+												cursor: disabledPropertyFields ? "not-allowed" : "auto",
+											}}
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
 					{/* Lot Area */}
 					<div className="form-group">
@@ -652,17 +653,12 @@ const UnitDetailsComponent = ({
 							</label>
 							<div className="lot-area-input-container">
 								<div className="lot-area-logo">
-									<img
-										className="lot-area-logo-img"
-										alt="lot-area-logo"
-										src={floorlogo}
-									/>
+									<DirectionsCarFilledOutlinedIcon className="lot-area-logo-img" />
 								</div>
 								<input
 									id="lot-area-input"
-									className={`lot-area-input ${
-										lotAreaInputError ? "error-input" : ""
-									}`}
+									className={`lot-area-input ${lotAreaInputError ? "error-input" : ""
+										}`}
 									type="text"
 									value={formatlotArea(lotArea)}
 									onChange={(e) => {
@@ -698,9 +694,8 @@ const UnitDetailsComponent = ({
 								</div>
 								<input
 									id="propid-input"
-									className={`propid-input ${
-										propIdInputError ? "error-input" : ""
-									}`}
+									className={`propid-input ${propIdInputError ? "error-input" : ""
+										}`}
 									type="text"
 									onChange={(e) => {
 										setPropId(e.target.value);
