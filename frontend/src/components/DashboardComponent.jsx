@@ -755,7 +755,7 @@ let number = accountDetails?.mobileNumber || null;
           </div>
           <div className="manualSearchingDashboardDiv">
             <div className="manual-searching-title">
-              <h3>Begin Your Property Search Today with Our Help!</h3>
+              <h2>Begin Your Property Search Today with Our Help!</h2>
             </div>
             <div className="manual-searching-desc">
               <p>

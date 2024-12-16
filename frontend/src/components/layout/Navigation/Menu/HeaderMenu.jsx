@@ -120,7 +120,7 @@ const HeaderMenu = () => {
 				userDetails?.tier?.label !== "BUYER" ||
 				userDetails?.tier?.label !== "SEMI-VERIFIED"
 			) {
-				window.location.href = "/listing";
+				window.location.href = "/saved-properties#listingForm";
 			} else {
 				openUpgradeModal();
 			}

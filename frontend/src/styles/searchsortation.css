@@ -6,6 +6,7 @@
 	/* align-items: flex-start; */
 	/* gap: 300px; */
 	width: var(--default-page-size);
+	margin-bottom: 20px;
 }
 .search-sortation .sort{
 	width: 50%;

@@ -99,7 +99,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 				userDetails?.tier?.label !== "BUYER" ||
 				userDetails?.tier?.label !== "SEMI-VERIFIED"
 			) {
-				window.location.href = "/listing";
+				window.location.href = "/saved-properties#listingForm";
 			} else {
 				console.log("User is a buyer and cannot list properties.");
 				openUpgradeModal();
@@ -145,9 +145,11 @@ useEffect(() => {
 		setCurrent("home-loan");
 	} else if (currentPath.includes("/buy-a-home")) {
 		setCurrent("home-loan");
-	} else if (currentPath.includes("/pre-selling")) {
-		setCurrent("pre-selling");
-	} else {
+	} 
+	// else if (currentPath.includes("/pre-selling")) {
+	// 	setCurrent("pre-selling");
+	// } 
+	else {
 		setCurrent("");
 	}
 }, [location.pathname]);
@@ -223,11 +225,11 @@ useEffect(() => {
 			key: "rent",
 			children: SubMenuChild(SubMenu.rent),
 		},
-		{
-			label: "Pre-Selling",
-			key: "pre-selling",
-			children: SubMenuChild(SubMenu.preSelling),
-		},
+		// {
+		// 	label: "Pre-Selling",
+		// 	key: "pre-selling",
+		// 	children: SubMenuChild(SubMenu.preSelling),
+		// },
 
 		{
 			label: "Loan",
