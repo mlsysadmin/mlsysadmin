@@ -180,7 +180,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 
 					if (dataresp.length === 0) {
 						setFilteredAndSortedListings([]);
-						setLoading(false);
+						setLoading(true);
 					} else {
 						let listingRes = [...dataresp];
 
@@ -237,7 +237,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 							);
 
 							setFilteredAndSortedListings(newListing);
-							setLoading(false);
+							setLoading(true);
 						}
 					}
 				} else {
@@ -316,7 +316,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 								);
 
 								setFilteredAndSortedListings(newListing);
-								setLoading(false);
+								setLoading(true);
 							}
 						}
 					}
@@ -427,7 +427,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 									display: "flex",
 								}}
 							>
-								{Array(3)
+								{Array(4)
 									.fill(null)
 									.map((_, i) => {
 										return <CardSkeleton key={i} />;
@@ -528,7 +528,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 										display: "flex",
 									}}
 								>
-									{Array(3)
+									{Array(4)
 										.fill(null)
 										.map((_, i) => {
 											return <CardSkeleton key={i} />;
