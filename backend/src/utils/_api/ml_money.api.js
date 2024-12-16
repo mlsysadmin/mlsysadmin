@@ -91,6 +91,7 @@ module.exports = {
             // if (login) {
 
             // }
+            delete login.data["accessToken"];
 
             let data;
             let message;

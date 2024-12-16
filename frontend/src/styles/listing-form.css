@@ -514,22 +514,19 @@ span.selected {
 } */
 
 .listing-unit-details-div {
-	display: flex;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
 	width: 100%;
 	flex-wrap: wrap;
-	justify-content: space-between;
-	flex-direction: row;
 	padding: 10px;
 	margin-top: 20px;
+	gap: 45px;
 }
 
 .listing-unit-details-left {
-	/* padding: 20px 30px; */
-	/* margin: 0px 0px 8px 50px; */
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	/* width: 50%; */
 }
 
 .listing-unit-details-right {
@@ -544,17 +541,17 @@ span.selected {
 
 .form-group {
 	display: flex;
-	align-items: center;
-	margin-bottom: 20px;
+	flex-direction: column;
+	/* margin-bottom: 20px; */
 }
 
 .listing-unit-details-left .form-group .text-wrapper-37 {
 	width: 130px;
 }
 
-.listing-unit-details-right .form-group .text-wrapper-37 {
+/* .listing-unit-details-right .form-group .text-wrapper-37 {
 	width: 170px;
-}
+} */
 
 .text-wrapper-37 {
 	color: #000000;
@@ -637,7 +634,7 @@ span.selected {
 .lot-area-input-container,
 .propid-input-container,
 .classification-tabs {
-	width: 270px;
+	width: 100%;
 	border: 1px solid #d9d9d9 !important;
 	border-radius: var(--radius) !important;
 	height: 45px !important;
@@ -684,16 +681,10 @@ span.selected {
 	width: 248px;
 }
 
-
 .beds-number .bed-form-group,
 .parking-listing-unit-input-group .overlap-10 .parking-group,
 .bathroom-group,
 .no-floor-group {
-	/* display: flex; */
-	/* flex-direction: row;
-	justify-content: center;
-	align-items: center; */
-	/* margin-top: 7px; */
 	width: 100%;
 }
 
@@ -705,17 +696,21 @@ span.selected {
 	display: grid;
     grid-template-columns: 15% auto;
 	gap: 0px;
-    padding: 0px 10px;
+    padding: 0px 10px 0px 5px;
 	align-items: center;
-	justify-content: center;
 }
 
-.field--icon{
+.field--icon,
+.lot-area-logo,
+.floor-logo{
 	text-align: center;
 	display: flex;
 	justify-content: center;
 }
-
+.lot-area-logo,
+.floor-logo{
+	padding-left: 5px;
+}
 .beds-number,
 .parking-number,
 .bathroom-number,
@@ -844,7 +839,7 @@ span.selected {
 	border: none;
 	outline: none;
 	padding: 0px 20px 0px 15px;
-	margin: 10px 0px 15px 0px;
+	margin: 10px 0px;
 	background-color: transparent;
 	font-weight: 500;
 	z-index: 2;

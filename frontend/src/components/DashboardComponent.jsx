@@ -66,10 +66,16 @@ import {
 } from "../utils/StringFunctions.utils";
 import { CardSkeleton, FeaturesSkeleton } from "./Skeleton";
 import { getCookieData, isCookiePresent } from "../utils/CookieChecker";
+import { useAuth } from "../Context/AuthContext";
 
 const { Option } = Select;
 
 const DashboardComponent = () => {
+
+  const {
+    isAuhtenticated, logout, userDetails
+  } = useAuth();
+
   const [loading, setLoading] = useState(true);
   const [loadingActive, setLoadingActive] = useState(true);
   const [userLikes, setUserLikes] = useState([]);
@@ -223,17 +229,13 @@ const DashboardComponent = () => {
 let number = accountDetails?.mobileNumber || null;
 
   const handleUserProfileClick = () => {
-    if (!isMLWWSPresent && !isAccountDetailsPresent) {
-      window.location.href = `${login_url}?redirect_url=${redirect_url}`;
+    if (!isAuhtenticated && !userDetails) {
+      window.location.href = `/login`;
     } else {
       window.location.href = '/';
     }
   };
-  const handleClickedGetFreeAssistance = () => {
-    if (redirect_url) {
-      window.location.href = "/propertySearch";
-    }
-  };
+
   const tags = [
     {
       key: "all",
@@ -753,7 +755,7 @@ let number = accountDetails?.mobileNumber || null;
           </div>
           <div className="manualSearchingDashboardDiv">
             <div className="manual-searching-title">
-              <h3>Begin Your Property Search Today with Our Help!</h3>
+              <h2>Begin Your Property Search Today with Our Help!</h2>
             </div>
             <div className="manual-searching-desc">
               <p>
