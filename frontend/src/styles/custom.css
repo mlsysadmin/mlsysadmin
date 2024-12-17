@@ -1970,7 +1970,6 @@ listing search */
 @media screen and (min-width: 1401px) and (max-width: 1500px) {
 	.first-content {
 		width: 100%;
-		padding: 40px 10px 40px 0px;
 		margin: 0px;
 	}
 	.sub-content1 {
@@ -1981,7 +1980,6 @@ listing search */
 @media screen and (min-width: 1501px) and (max-width: 1700px) {
 	.first-content {
 		width: 100%;
-		padding: 40px 10px 40px 0px;
 		margin: 0px;
 	}
 	.sub-content1 {

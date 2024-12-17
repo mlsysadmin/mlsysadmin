@@ -135,7 +135,7 @@ const RentComponent = () => {
 								id: item.id,
 								title: CapitalizeString(item.UnitName),
 								price: `PHP ${AmountFormatterGroup(item.Price)}${
-									isRent ? "/mos." : ""
+									isRent ? "/mo." : ""
 								}`,
 								status: "For Rent",
 								pics: image ? gallery.length + 1 : 0,
