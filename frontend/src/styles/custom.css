@@ -838,7 +838,7 @@ listing search */
 	.subcontent-inputs-1 .right-button {
 		display: flex;
 		height: auto !important;
-		margin-top: 270px;
+		margin-top: 255px !important;
 		width: 41.5%;
 		padding: 1px 0px !important;
 		position: absolute !important;
@@ -1744,7 +1744,7 @@ listing search */
 @media screen and (min-width: 620px) and (max-width: 725px) {
 	.first-content {
 		margin-left: 15px;
-		height: 400px;
+		height: 450px;
 	}
 	.first-content .sub-content1 {
 		display: flex;
@@ -1809,11 +1809,11 @@ listing search */
 		gap: 10px;
 	}
 	.subcontent-inputs-1 .right-button {
-		margin-top: 290px;
-		display: flex;
-		height: 40px;
-		position: absolute;
-		margin-left: 450px;
+		margin-top: 290px !important;
+		display: flex ;
+		height: 40px !important;
+		position: absolute !important;
+		margin-left: 450px !important;
 	}
 	.subcontent-inputs-2 .input-field,
 	.subcontent-inputs-2 .select-field {

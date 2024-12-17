@@ -30,6 +30,7 @@ import FeaturedPropertiesComponent from "./FeaturedPropertiesComponent";
 import RatingCarouselComponent from "./RatingCarouselComponent";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import PropertySearchModal from "./modals/PropertySearchModal";
+import LoginMessageModal from "./modals/LoginMessageModal";
 
 import { MockData } from "../utils/ListingMockData";
 import {
@@ -77,6 +78,7 @@ const DashboardComponent = () => {
   } = useAuth();
 
   const [loading, setLoading] = useState(true);
+  const [showLoginMessage, setShowLoginMessage] = useState(false);
   const [loadingActive, setLoadingActive] = useState(true);
   const [userLikes, setUserLikes] = useState([]);
   const [publiclisting, setPublicListing] = useState([
@@ -118,6 +120,9 @@ const DashboardComponent = () => {
 		// window.location.hasdref = `/previewListing/${id}`;
 		navigate(`/previewListing/?id=${id}`, { state: id });
 	};
+  	const handleShowLoginModal = () => {
+			setShowLoginMessage(true);
+		};
 
 	const propertiesBySaleStatus = useCallback(async () => {
 		try {
@@ -149,14 +154,16 @@ const DashboardComponent = () => {
 					listings.map(async (item, i) => {
 						const getPhotoGallery = await GetUnitPhotos(item.id);
 
-						const gallery = getPhotoGallery.data;
-
+						const gallery = getPhotoGallery.data; 
+            const isRent = item.SaleType == "rent";
 						const image = GetPhotoWithUrl(item.Photo);
 
 						return {
 							id: item.id,
 							title: CapitalizeString(item.UnitName),
-							price: AmountFormatterGroup(item.Price),
+								price: `PHP ${AmountFormatterGroup(item.Price)}${
+									isRent ? "/mo." : ""
+								}`,
 							status: "New",
 							pics: image ? gallery.length + 1 : 1,
 							img: image,
@@ -642,7 +649,7 @@ const DashboardComponent = () => {
 									return (
 										<CardListingComponent
 											title={item.title}
-											price={`PHP ${item.price}`}
+											price={item.price}
 											status={item.status}
 											pics={item.pics}
 											img={item.img}
@@ -666,9 +673,15 @@ const DashboardComponent = () => {
 												isRecordStatus: item.recordStatus,
 												isAccessType: item.accessType,
 											}}
+											handleShowLoginModalMessage={handleShowLoginModal}
 										/>
 									);
 								})}
+                  {showLoginMessage && (
+                    <LoginMessageModal
+                      setShowLoginMessage={setShowLoginMessage}
+                    />
+                  )}
 								<div
 									style={{
 										display: "none",
