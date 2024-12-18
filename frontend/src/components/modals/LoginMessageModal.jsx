@@ -6,6 +6,9 @@ const LoginMessageModal = ({setShowLoginMessage}) => {
 		const handleCloseLoginModal = () => {
 			setShowLoginMessage(false);
 		};
+        const handleLoginButtonClick = () =>{
+            window.location.href = "/login";
+        }
         
     return (
 		<div className="login-message-modal-overlay">
@@ -20,7 +23,7 @@ const LoginMessageModal = ({setShowLoginMessage}) => {
 				</div>
 
 				<div className="buttons-login-message">
-					<button id="login-message-btn">Login</button>
+					<button id="login-message-btn" onClick={handleLoginButtonClick}>Login</button>
 					<button
 						id="close-message-btn"
 						onClick={() => {

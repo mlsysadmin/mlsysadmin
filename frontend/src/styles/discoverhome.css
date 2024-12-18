@@ -32,13 +32,11 @@
 .mortgageexp .ms1-group {
 	width: 260px !important;
 	height: 220px !important;
-
 }
 
 .mortgageexp .ms2-group {
 	width: 300px !important;
 	height: 270px !important;
-
 }
 
 .mortgageexp .ms1-title,
@@ -63,7 +61,6 @@
 
 .mortgage-calc .home-price-frame-cont,
 .mortgage-calc .down-payment-frame-cont,
-.mortgage-calc .loan-term-frame-cont,
 .mortgage-calc .interest-rate-frame-cont {
 	border-radius: var(--radius) !important;
 	border: 1px solid var(--mute-gray);
@@ -73,6 +70,15 @@
 	flex-direction: column;
 	justify-content: center;
 	padding: 5px 10px 0px 10px;
+}
+.mortgage-calc .loan-term-frame-cont {
+	border-radius: var(--radius) !important;
+	border: 1px solid var(--mute-gray);
+	height: 65px;
+	width: 180px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .mortgage-calc .compute-mortgage,
@@ -142,7 +148,7 @@
 	font-family: "Poppins", Helvetica;
 	font-weight: 400;
 }
-.mortgage-calc .loan-term-value .ant-select span{
+.mortgage-calc .loan-term-value .ant-select span {
 	font-size: 18px !important;
 }
 .home-price-price-range input:focus,
@@ -160,8 +166,8 @@
 .mortgage-calc .range-group .ant-slider {
 	margin: 3px 5px 11px;
 }
-.loan-term-value .ant-select .ant-select-arrow{
-margin-right: 5px;
+.loan-term-value .ant-select .ant-select-arrow {
+	margin-right: 5px;
 }
 
 /* END */
@@ -350,7 +356,7 @@ margin-right: 5px;
 	font-size: 18px;
 	font-weight: 700;
 }
-.mortgage-title-mort-lg{
+.mortgage-title-mort-lg {
 	display: none;
 }
 .mortgage-title-mort,
@@ -416,14 +422,12 @@ margin-right: 5px;
 	font-size: 18px;
 	font-weight: 400;
 	border-radius: 20px;
-
 }
 
 .mortgage-calc .downpayment-amount-val {
 	display: flex;
 	flex-direction: row;
 }
-
 
 .mortgage-calc .amount-value {
 	font-weight: 700;
@@ -459,12 +463,16 @@ margin-right: 5px;
 	display: none;
 }
 
-.mortgage-calc:where(.css-dev-only-do-not-override-1uq9j6g).ant-slider:hover .ant-slider-rail {
+.mortgage-calc:where(.css-dev-only-do-not-override-1uq9j6g).ant-slider:hover
+	.ant-slider-rail {
 	background-color: rgba(0, 0, 0, 0.06);
 	border-radius: 20px;
 }
 
-.mortgage-calc:where(.css-dev-only-do-not-override-1uq9j6g).ant-slider-horizontal .ant-slider-rail {
+.mortgage-calc:where(
+		.css-dev-only-do-not-override-1uq9j6g
+	).ant-slider-horizontal
+	.ant-slider-rail {
 	width: 100%;
 	height: 13px;
 	background-color: #ced0d3;
@@ -486,7 +494,6 @@ margin-right: 5px;
 .mortgage-calc .getpre-approvedbtn a {
 	color: var(--black) !important;
 }
-
 
 /* mortgage-leftgorup */
 
@@ -600,7 +607,6 @@ margin-right: 5px;
 	/* font-size: 12px; */
 	display: flex;
 	margin-bottom: 5px;
-
 }
 
 .mortgage-calc .line-principal-group {
@@ -627,19 +633,18 @@ margin-right: 5px;
 } */
 
 .mortgage-calc .loan-term-value {
-	width: 170px;
+	width: 180px;
 	font-size: 18px;
 }
 
 .mortgage-calc .loan-term-value .ant-select-selector {
 	background-color: transparent;
-	padding: 0px;
-
+	padding: 0px 5px;
 }
 
 .mortgage-calc .year-term-options {
 	width: 100%;
-	height: 51px;
+	height: 56px;
 	/* padding: 50px 0px; */
 	border: transparent !important;
 }
@@ -649,7 +654,13 @@ margin-right: 5px;
 }
 
 .year-term-options .ant-select-selector,
-.ant-select .ant-select-outlined .year-term-options .ant-select-focused .ant-select-single .ant-select-show-arrow .ant-select-open {
+.ant-select
+	.ant-select-outlined
+	.year-term-options
+	.ant-select-focused
+	.ant-select-single
+	.ant-select-show-arrow
+	.ant-select-open {
 	font-size: 18px;
 	/* display: none; */
 	border: none !important;
@@ -739,15 +750,22 @@ h2 {
 	justify-content: space-between;
 }
 
-.discover-home-container:where(.css-dev-only-do-not-override-m4timi).ant-slider:hover .ant-slider-rail {
+.discover-home-container:where(
+		.css-dev-only-do-not-override-m4timi
+	).ant-slider:hover
+	.ant-slider-rail {
 	background-color: rgb(217, 0, 0, 26%);
 }
 
-.discover-home-container:where(.css-dev-only-do-not-override-m4timi).ant-slider-horizontal .ant-slider-step {
+.discover-home-container:where(
+		.css-dev-only-do-not-override-m4timi
+	).ant-slider-horizontal
+	.ant-slider-step {
 	background-color: rgb(217, 0, 0, 26%);
 }
 
-.discover-home-container:where(.css-dev-only-do-not-override-m4timi).ant-slider .ant-slider-handle::after {
+.discover-home-container:where(.css-dev-only-do-not-override-m4timi).ant-slider
+	.ant-slider-handle::after {
 	background-color: var(--red);
 }
 
@@ -1001,9 +1019,10 @@ h2 {
 	.discover-home .discover-overlap {
 		height: 350px;
 	}
-	.mortgage-calc, 
-	.mortgageexp .mortgage-cont, 
-	.dn-component, .faqs-container{
+	.mortgage-calc,
+	.mortgageexp .mortgage-cont,
+	.dn-component,
+	.faqs-container {
 		width: 93%;
 	}
 
@@ -1025,8 +1044,9 @@ h2 {
 		width: 100%;
 	}
 	.mortgage-calc .year-term-options {
-	height:60px;
-}
+		height: 60px;
+		width: 100%;
+	}
 
 	.discover-home .smart-way-to-get-a,
 	.discover-home .home-loan {
@@ -1150,11 +1170,14 @@ h2 {
 
 	.mortgage-calc .home-price-frame-cont,
 	.mortgage-calc .down-payment-frame-cont,
-	.mortgage-calc .loan-term-frame-cont,
 	.mortgage-calc .interest-rate-frame-cont {
 		border-radius: 10px;
 		height: 73px;
 		padding: 20px 15px 15px;
+		width: 100%;
+	}
+	.mortgage-calc .loan-term-frame-cont {
+		padding: 0px;
 		width: 100%;
 	}
 
@@ -1303,10 +1326,10 @@ h2 {
 }
 
 @media screen and (min-width: 481px) and (max-width: 700px) {
-	.mortgage-calc, 
-	.mortgageexp .mortgage-cont, 
-	.dn-component, 
-	.faqs-container{
+	.mortgage-calc,
+	.mortgageexp .mortgage-cont,
+	.dn-component,
+	.faqs-container {
 		width: 95% !important;
 	}
 }
@@ -1314,10 +1337,10 @@ h2 {
 	.discover-home .discover-overlap {
 		height: 350px;
 	}
-	.mortgage-calc, 
-	.mortgageexp .mortgage-cont, 
-	.dn-component, 
-	.faqs-container{
+	.mortgage-calc,
+	.mortgageexp .mortgage-cont,
+	.dn-component,
+	.faqs-container {
 		width: 700px;
 	}
 
@@ -1357,7 +1380,7 @@ h2 {
 		margin-top: 0;
 		gap: 20px;
 	}
-	.mortgageexp .mortgage-slide-group{
+	.mortgageexp .mortgage-slide-group {
 		flex-wrap: wrap;
 	}
 
@@ -1381,14 +1404,14 @@ h2 {
 		font-size: var(--m-header-2-fs) !important;
 		text-align: center;
 	}
-	.mortgageexp .mortgage-slide{
+	.mortgageexp .mortgage-slide {
 		width: 100%;
 		gap: 20px;
 		flex-wrap: wrap;
 	}
 
-	.mortgageexp .ms3-group, 
-	.mortgageexp .ms1-group{
+	.mortgageexp .ms3-group,
+	.mortgageexp .ms1-group {
 		/* width: 300px !important; */
 	}
 
@@ -1452,7 +1475,7 @@ h2 {
 		width: 47%;
 		align-items: center;
 	}
-	.mortgage-calc .mortgage-btn-group{
+	.mortgage-calc .mortgage-btn-group {
 		width: 100%;
 	}
 
@@ -1466,11 +1489,17 @@ h2 {
 
 	.mortgage-calc .home-price-frame-cont,
 	.mortgage-calc .down-payment-frame-cont,
-	.mortgage-calc .loan-term-frame-cont,
 	.mortgage-calc .interest-rate-frame-cont {
 		border-radius: 10px;
 		height: 73px;
 		padding: 20px 15px 15px;
+		width: 100%;
+	}
+	.mortgage-calc .loan-term-frame-cont {
+		padding: 0px;
+		width: 100%;
+	}
+	.mortgage-calc .loan-term-value{
 		width: 100%;
 	}
 
@@ -1618,7 +1647,10 @@ h2 {
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-	.mortgage-calc, .mortgageexp .mortgage-cont, .dn-component, .faqs-container{
+	.mortgage-calc,
+	.mortgageexp .mortgage-cont,
+	.dn-component,
+	.faqs-container {
 		max-width: 700px;
 	}
 	.discover-home .discover-overlap {
@@ -1667,11 +1699,11 @@ h2 {
 		display: block;
 		text-align: center;
 	}
-	.mortgage-title-mort-lg{
+	.mortgage-title-mort-lg {
 		display: block;
 		margin-top: 30px;
 	}
-	.mortgage-title-mort{
+	.mortgage-title-mort {
 		display: none;
 	}
 
@@ -1716,7 +1748,7 @@ h2 {
 		margin: 0;
 		font-size: var(--m-sub-label-fs) !important;
 	}
-	.mortgage-calc .payment-breakdown{
+	.mortgage-calc .payment-breakdown {
 		margin-top: 10px;
 	}
 
@@ -1744,7 +1776,8 @@ h2 {
 		gap: 60px;
 	}
 
-	.mortgage-calc .mortgage-cont1, .mortgage-calc .mortlabel{
+	.mortgage-calc .mortgage-cont1,
+	.mortgage-calc .mortlabel {
 		width: 100%;
 	}
 
@@ -1771,11 +1804,17 @@ h2 {
 
 	.mortgage-calc .home-price-frame-cont,
 	.mortgage-calc .down-payment-frame-cont,
-	.mortgage-calc .loan-term-frame-cont,
 	.mortgage-calc .interest-rate-frame-cont {
 		border-radius: 10px;
 		height: 73px;
 		padding: 20px 15px 15px;
+		width: 100%;
+	}
+		.mortgage-calc .loan-term-frame-cont {
+		padding: 0px;
+		width: 100%;
+	}
+	.mortgage-calc .loan-term-value{
 		width: 100%;
 	}
 
@@ -1830,7 +1869,6 @@ h2 {
 
 	.mortgage-calc .montly-pay-cal p {
 		font-size: var(--t-sub-label-fs) !important;
-
 	}
 
 	.interest-group-label .ant-progress-inner {
@@ -2352,7 +2390,6 @@ h2 {
     
 } */
 @media (min-width: 1280px) {
-
 	.mortgage-calc,
 	.mortgageexp .mortgage-cont,
 	.dn-component,

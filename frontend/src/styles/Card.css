@@ -265,6 +265,9 @@ font-size: var(--d-body-text);
 		grid-template-columns: 1fr;
 		width: 100%;
 	}
+	.login-card-message-modal-content{
+		margin: 0px 20px;
+	}
 }
 @media screen and (min-width: 481px) and (max-width: 601px) {
 	.card-container {
@@ -291,6 +294,9 @@ font-size: var(--d-body-text);
 	}
 	.card-listing-subtitle-public {
 		height: 50px;
+	}
+	.login-card-message-modal-content{
+		margin: 0px 20px;
 	}
 }
 @media screen and (min-width: 602px) {

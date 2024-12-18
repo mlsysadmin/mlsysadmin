@@ -186,6 +186,7 @@
 .advance-searchdropdown .ant-slider:hover .ant-slider-track {
 	background-color: #f1cac7;
 }
+
 /* 
 listing search */
 
@@ -873,8 +874,10 @@ listing search */
 
 	.ant-tooltip .ant-tooltip-inner {
 		font-size: 12px;
-		width: 70px;
-		padding: 0px 5px;
+		width: 80px;
+		padding: 0px;
+		text-align: center;
+		align-content: center;
 	}
 }
 @media screen and (min-width: 421px) and (max-width: 435px) {
