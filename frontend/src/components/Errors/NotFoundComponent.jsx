@@ -4,27 +4,24 @@ import '../../styles/Error.css';
 import SemiRoundBtn from '../custom/buttons/SemiRoundBtn.custom';
 import { useNavigate } from 'react-router-dom';
 
+import NotFoundImage from "../../asset/not-found-transparent.png";
+
 
 const NotFoundComponent = () => {
     const navigate = useNavigate();
 
     return (
         <Result
-            status="404"
-            title="404"
-            subTitle="Oops! The page you're looking for doesn't exist."
+            icon={
+                <>
+                    <div className="not-found--img-wrapper">
+                        <img src={NotFoundImage} className='not-found--img' />
+                    </div>
+                </>
+            }
             className='error-page'
+            title={<></>}
             extra={
-                // <SemiRoundBtn
-                //     type="primary"
-                //     label={'Back Home'}
-                //     size={'large'}
-                //     style={{
-                //         backgroundColor: '#D90000'
-                //     }}
-                //     handleClick={() => navigate('/')}
-                //     className={'not-found--btn'}
-                // />
                 <>
                     <p className="not-found-suggestion">
                         It might have been moved, deleted, or the URL might be incorrect.
