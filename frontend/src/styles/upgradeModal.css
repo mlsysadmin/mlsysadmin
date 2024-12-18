@@ -1,10 +1,20 @@
-
+.upgrade-modal-content{
+    font-size: var(--d-body-text) !important;
+}
 @media screen  and (min-width:320px) and (max-width:1200px) {
     .upgrade-modal-content{
         margin:15px !important;
-        padding:20px !important;
-        overflow-y: auto;
-        max-height: 70vh
+        padding: 40px 20px !important;
+    }
+}
+
+@media screen  and (min-width:320px) and (max-width:390px){
+    .upgrade-modal-content{
+        margin:15px !important;
+        padding: 20px !important;
+        overflow-y: scroll;
+        position:unset;
+        font-size: var(--m-body-text) !important;
     }
     .signin-button-upgrade{
         margin-top: 25px;
@@ -12,5 +22,9 @@
 
     .tier-upgrade-content{
        width: 80% !important;
+    }
+    .upgrade--title{
+        margin-top: 55px;
+        font-size: var(--m-h3-text) !important;
     }
 }

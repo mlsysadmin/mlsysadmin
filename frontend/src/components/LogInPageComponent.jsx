@@ -3,12 +3,13 @@ import "../styles/loginComponent.css";
 import { useState, useEffect } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { searchKyc } from "../api/Public/User.api";
+import { CreateLoginAttempt, FirstAttemptLogin, searchKyc } from "../api/Public/User.api";
 import BrokerageLogo from "../assets/BrokerageLogo.png";
 import { DatePicker, Select, notification } from "antd";
 import PreviewLoadingModal from "./modals/PreviewLoadingModal";
 import { SendOtp, ValidateOtpLogin } from "../api/Public/OtpLogin.api";
 import { getCookieData } from "../utils/CookieChecker";
+import { SortByText } from "../utils/StringFunctions.utils";
 
 const { Option } = Select;
 
@@ -32,6 +33,8 @@ const LoginComponent = () => {
 
 	const [showOtpScreen, setShowOtpScreen] = useState(false);
 	const [api, contextHolder] = notification.useNotification();
+	const [isFirstLogin, setIsFirstLogin] = useState(false);
+	const [currentYear, setCurrentYear] = useState();
 
 	useEffect(() => {
 		if (otpTimer > 0) {
@@ -47,19 +50,15 @@ const LoginComponent = () => {
 		}
 	}, [otpTimer]);
 
+	useEffect(() => {
+		const getCurrentYear = new Date().getFullYear();
+		setCurrentYear(getCurrentYear);
+	}, [])
+
 	const cleanPhonenumber = (val) => {
 		return val.replace(/\D+/g, "");
 	};
-	const fetchUserDetails = async (formattedPhone) => {
-		try {
-			const response = await searchKyc(formattedPhone);
-			const respData = response.data.data;
-			console.log("respData", respData);
-			setUserDetails(respData);
-		} catch (error) {
-			console.error("Error fetching user details:", error);
-		}
-	};
+
 	const validatePhoneNumber = (val, dialCode) => {
 		const sanitizedNumber = cleanPhonenumber(val);
 
@@ -115,11 +114,29 @@ const LoginComponent = () => {
 		}
 
 		try {
-			await fetchUserDetails(formattedPhone);
-			setIsContinued(true);
-			setIsSubmitting(false);
 
-			console.log("User details fetched:", userDetails);
+			const payload = {
+				cellphoneNumber: formattedPhone,
+			}
+
+			const firstAttemptLogin = await FirstAttemptLogin(payload);
+
+			const kyc = firstAttemptLogin.data.data.data; // data: {tier:{...}}
+			const isFirstAttempt = firstAttemptLogin.data.data.isFirstAttempt;
+
+			if (isFirstAttempt && kyc) {
+				setIsContinued(true);
+				setIsSubmitting(false);
+			} else if (!isFirstAttempt && kyc) {
+				handleSignIn();
+			}
+			else {
+				setIsContinued(true);
+				setIsSubmitting(false);
+			}
+			setUserDetails(kyc);
+			setIsFirstLogin(isFirstAttempt);
+
 		} catch (error) {
 			console.error("Error during continue:", error);
 			setIsSubmitting(false);
@@ -166,34 +183,43 @@ const LoginComponent = () => {
 	};
 	const handleSignIn = async () => {
 		try {
+			const cleanPhone = cleanPhonenumber(phone);
+			const formatPhone = cleanPhone.search(/^\+?63/) != -1 ? cleanPhone.replace(/^\+?63/, "0") : cleanPhone;
 
-			const userBdate = userDetails?.birthDate;
+			if (!isFirstLogin) {
+				await SendOtp(formatPhone);
 
-			const paddedDate = isDateNumber.toString().padStart(2, "0");
-			const paddedMonth = selectedMonth.toString().padStart(2, "0");
+				setIsSubmitting(false);
+				setIsContinued(true);
+				setShowOtpScreen(true);
+				setOtp(Array(6).fill(""));
+			}
+			else {
 
-			const selectedBirthdate = `${selectedYear}-${paddedMonth}-${paddedDate}`;
+				const userBdate = userDetails.birthDate;
 
-			if (userBdate !== selectedBirthdate) {
-				console.log(userBdate, selectedBirthdate);
-				setBirthdateError(true);
-				return;
-			} else {
+				const paddedDate = isDateNumber.toString().padStart(2, "0");
+				const paddedMonth = selectedMonth.toString().padStart(2, "0");
 
-				setBirthdateError(false);
-				if (isValidPhone) {
+				const selectedBirthdate = `${selectedYear}-${paddedMonth}-${paddedDate}`;
 
-					setIsSubmitting(true);
-					const cleanPhone = cleanPhonenumber(phone);
+				if (userBdate !== selectedBirthdate) {
+					setBirthdateError(true);
+					return;
+				} else {
 
-					const formatPhone = cleanPhone.search(/^\+?63/) != -1 ? cleanPhone.replace(/^\+?63/, "0") : cleanPhone;
+					setBirthdateError(false);
+					if (isValidPhone) {
 
-					await SendOtp(formatPhone);
+						setIsSubmitting(true);
 
-					setIsSubmitting(false);
-					setShowOtpScreen(true);
-					setOtp(Array(6).fill(""));
-					// sendOtpToPhone(phone);
+						await SendOtp(formatPhone);
+
+						setIsSubmitting(false);
+						setShowOtpScreen(true);
+						setOtp(Array(6).fill(""));
+						// sendOtpToPhone(phone);
+					}
 				}
 			}
 
@@ -201,7 +227,7 @@ const LoginComponent = () => {
 		} catch (error) {
 			setBirthdateError(false);
 			console.log("handleSignIn", error);
-
+			setIsSubmitting(false);
 		}
 
 	};
@@ -230,13 +256,10 @@ const LoginComponent = () => {
 	};
 	const handleOtpVerification = async () => {
 		try {
-			console.log(otp.includes(""));
 
 			if (otp.includes("")) {
-				console.log(phone, otp);
 				return;
 			} else {
-				console.log("Success");
 				const otpCode = otp.join("").toString();
 				const cleanPhone = cleanPhonenumber(phone);
 
@@ -245,15 +268,18 @@ const LoginComponent = () => {
 				const validateLogin = await ValidateOtpLogin(formatPhone, otpCode);
 				setIsSubmitting(false);
 
-				console.log("validateLogin", validateLogin);
 				if (validateLogin.code == "USER_LOGGED_IN") {
 
-					const kyc = await searchKyc(formatPhone);
+					const loginParams = {
+						ckycId: userDetails.ckycId,
+						tier: userDetails.tier.label
+					}
 
-					if (
-						kyc?.tier?.label !== "BUYER" ||
-						kyc?.tier?.label !== "SEMI-VERIFIED"
-					) {
+					const userAttempt = await CreateLoginAttempt(loginParams);
+
+					const isSeller = userAttempt.data.data.isSeller;
+
+					if (isSeller) {
 						window.location.href = "/";
 					} else {
 						window.location.href = "/login"
@@ -445,9 +471,9 @@ const LoginComponent = () => {
 																value={selectedYear}
 															>
 																{Array.from(
-																	{ length: 2024 - 1905 + 1 },
+																	{ length: currentYear - 1905 + 1 },
 																	(_, i) => 1905 + i
-																).map((year) => (
+																).sort((y, i) => SortByText(y, y)).map((year) => (
 																	<Option key={year} value={year}>
 																		{year}
 																	</Option>
