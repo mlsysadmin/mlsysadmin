@@ -52,6 +52,7 @@ import { getCookieData } from "../utils/CookieChecker";
 import { useAuth } from "../Context/AuthContext";
 import LoginMessageModal from "../components/modals/LoginMessageModal";
 import SemiRoundBtn from "../components/custom/buttons/SemiRoundBtn.custom";
+import NotFoundComponent from "../components/Errors/NotFoundComponent";
 
 const ListingPreview = () => {
 	const location = useLocation();
@@ -84,6 +85,8 @@ const ListingPreview = () => {
 	});
 	const [propertyDetails, setPropertyDetails] = useState([]);
 	const { userDetails } = useAuth();
+
+	const [isError, setisError] = useState(false);
 
 	const handleShowLoginModal = () => {
 		setShowLoginMessage(true);
@@ -197,9 +200,9 @@ const ListingPreview = () => {
 					dataresp.PricePerSqm =
 						dataresp.PricePerSqm > 0
 							? Number(dataresp.PricePerSqm).toLocaleString("en", {
-									minimumFractionDigits: 2,
-									maximumFractionDigits: 2,
-							  })
+								minimumFractionDigits: 2,
+								maximumFractionDigits: 2,
+							})
 							: "N/A";
 
 					setOneListing(dataresp);
@@ -212,8 +215,10 @@ const ListingPreview = () => {
 			}
 		} catch (error) {
 			setOneListing(null);
+			setisError(true);
 		} finally {
 			setIsLoading(false);
+
 		}
 	};
 	const GetFeaturesByPropertyNo = async (propertyNo) => {
@@ -234,28 +239,31 @@ const ListingPreview = () => {
 			setUnitPhotos([]);
 		}
 	};
+	const ToNumber = (val) => {
+		return parseInt(val, 10) || 0;
+	}
 
 	const FilterFeature = (property_type) => {
 		const feat = [
 			{
 				title: "Bedrooms",
 				iconSrc: <BedOutlinedIcon />,
-				value: oneListing.BedRooms,
+				value: ToNumber(oneListing.BedRooms),
 			},
 			{
 				title: "Bathrooms",
 				iconSrc: <ShowerOutlinedIcon />,
-				value: oneListing.BathRooms,
+				value: ToNumber(oneListing.BathRooms),
 			},
 			{
 				title: "Garage",
 				iconSrc: <DirectionsCarFilledOutlinedIcon />,
-				value: oneListing.Parking,
+				value: ToNumber(oneListing.Parking),
 			},
 			{
 				title: "Area",
 				iconSrc: <ShortcutOutlinedIcon />,
-				value: `${oneListing.LotArea} Sqm`,
+				value: `${ToNumber(oneListing.LotArea)}`,
 			},
 			{
 				title: "Price per SqM",
@@ -300,52 +308,6 @@ const ListingPreview = () => {
 		}
 	};
 
-	const columns = [
-		{
-			title: "Specifications",
-			dataIndex: "item_1",
-			key: "item_1",
-			render: (text) => <span style={{ fontWeight: "600" }}>{text}</span>,
-		},
-		{
-			dataIndex: "item_2",
-			key: "item_2",
-		},
-		{
-			dataIndex: "item_3",
-			key: "item_3",
-			render: (text) => <span style={{ fontWeight: "600" }}>{text}</span>,
-		},
-		{
-			dataIndex: "item_4",
-			key: "item_4",
-		},
-	];
-
-	const data = [
-		{
-			key: "1",
-			item_1: "Property ID",
-			item_2: 123456789,
-			item_3: "Floor Area",
-			item_4: "300 SqM",
-		},
-		{
-			key: "2",
-			item_1: "Listing Type",
-			item_2: "House for Sale",
-			item_3: "Lot Area",
-			item_4: "300 SqM",
-		},
-		{
-			key: "3",
-			item_1: "Furnishing",
-			item_2: "Furnished",
-			item_3: "Price per SqM",
-			item_4: "PHP400,000",
-		},
-	];
-
 	const HandleViewGallery = () => {
 		setOpen(true);
 	};
@@ -376,7 +338,7 @@ const ListingPreview = () => {
 					console.error("Error saving property:", error);
 				}
 			} else {
-                handleShowLoginModal()
+				handleShowLoginModal()
 				setTooltipMessage("Added to favorites.");
 				setShowTooltip(false);
 				setTimeout(() => setShowTooltip(false), 800);
@@ -480,7 +442,7 @@ const ListingPreview = () => {
 			{isLoading ? (
 				<PreviewLoadingModal />
 			) : (
-				oneListing && (
+				oneListing && !isError ? (
 					<>
 						<div className="listing-preview">
 							<div className="listing-preview--container">
@@ -518,95 +480,95 @@ const ListingPreview = () => {
 											<div className="listing-preview--tag tag__btn save-btn">
 												<div className="tag-icon">
 													<div className="preview-heart">
-                                                        {userDetails?.mobileNumber ? (
-<Tooltip
-															color="var(--red)"
-															title={tooltipMessage}
-															open={showTooltip}
-															className="preview-listing__tooltip"
-															placement="top"
-														>
-															<div
-																className="heart-icon-preview-listing"
-																onMouseEnter={() => {
-																	if (!checked) {
-																		setTooltipMessage("Add to favorite");
-																		setShowTooltip(true);
-																	}
-																}}
-																onMouseLeave={() => {
-																	if (!checked) setShowTooltip(false);
-																}}
+														{userDetails?.mobileNumber ? (
+															<Tooltip
+																color="var(--red)"
+																title={tooltipMessage}
+																open={showTooltip}
+																className="preview-listing__tooltip"
+																placement="top"
 															>
-																<CustomTag
-																	tagLabel={
-																		checked ? (
-																			<HeartFilled
-																				style={{ color: "var(--red)" }}
-																			/>
-																		) : (
-																			<HeartOutlined />
-																		)
-																	}
-																	style={{
-																		fontSize: "23px",
-																		color: "#333333",
+																<div
+																	className="heart-icon-preview-listing"
+																	onMouseEnter={() => {
+																		if (!checked) {
+																			setTooltipMessage("Add to favorite");
+																			setShowTooltip(true);
+																		}
 																	}}
-																	className="tag-icon__heart"
-																	checkable={true}
-																	checked={checked}
-																	handleChange={HandleChangeHeart}
-																	listingId={oneListing.PropertyNo}
-																/>
-																{/* {
+																	onMouseLeave={() => {
+																		if (!checked) setShowTooltip(false);
+																	}}
+																>
+																	<CustomTag
+																		tagLabel={
+																			checked ? (
+																				<HeartFilled
+																					style={{ color: "var(--red)" }}
+																				/>
+																			) : (
+																				<HeartOutlined />
+																			)
+																		}
+																		style={{
+																			fontSize: "23px",
+																			color: "#333333",
+																		}}
+																		className="tag-icon__heart"
+																		checkable={true}
+																		checked={checked}
+																		handleChange={HandleChangeHeart}
+																		listingId={oneListing.PropertyNo}
+																	/>
+																	{/* {
                                                         checked
                                                             ? <HeartFilled className="tag-icon__heart" />
                                                             : <HeartOutlined className="tag-icon__heart" />
                                                     } */}
-															</div>
-														</Tooltip>
-                                                        ):(
-                                                            <Tooltip
-															color="var(--red)"
-															title="Add to favorites"
-															open={showTooltip}
-															className="preview-listing__tooltip"
-															placement="top"
-														>
-															<div
-																className="heart-icon-preview-listing"
-																onMouseEnter={() => {
-																	if (!checked) {
-																		setTooltipMessage("Add to favorite");
-																		setShowTooltip(true);
-																	}
-																}}
-																onMouseLeave={() => {
-																	if (!checked) setShowTooltip(false);
-																}}
+																</div>
+															</Tooltip>
+														) : (
+															<Tooltip
+																color="var(--red)"
+																title="Add to favorites"
+																open={showTooltip}
+																className="preview-listing__tooltip"
+																placement="top"
 															>
-																<CustomTag
-																	tagLabel={<HeartOutlined />}
-																	style={{
-																		fontSize: "23px",
-																		color: "#333333",
+																<div
+																	className="heart-icon-preview-listing"
+																	onMouseEnter={() => {
+																		if (!checked) {
+																			setTooltipMessage("Add to favorite");
+																			setShowTooltip(true);
+																		}
 																	}}
-																	className="tag-icon__heart"
-																	checkable={true}
-																	checked={checked}
-																	handleChange={HandleChangeHeart}
-																	listingId={oneListing.PropertyNo}
-																/>
-																{/* {
+																	onMouseLeave={() => {
+																		if (!checked) setShowTooltip(false);
+																	}}
+																>
+																	<CustomTag
+																		tagLabel={<HeartOutlined />}
+																		style={{
+																			fontSize: "23px",
+																			color: "#333333",
+																		}}
+																		className="tag-icon__heart"
+																		checkable={true}
+																		checked={checked}
+																		handleChange={HandleChangeHeart}
+																		listingId={oneListing.PropertyNo}
+																	/>
+																	{/* {
                                                         checked
                                                             ? <HeartFilled className="tag-icon__heart" />
                                                             : <HeartOutlined className="tag-icon__heart" />
                                                     } */}
-															</div>
-														</Tooltip>
+																</div>
+															</Tooltip>
 
-                                                        )}
-														
+														)}
+
 													</div>
 												</div>
 												<div
@@ -665,22 +627,23 @@ const ListingPreview = () => {
 											<h4>About this property</h4>
 											<div className="listing-preview__listing-about--items">
 												{aboutFeatures.map((feature, index) => {
-													// if (feature.value && feature.value !== "0") {
-
-													return (
-														<div
-															className="listing-preview__listing-about--item"
-															key={index}
-														>
-															<div className="listing-preview__listing-about-item--title">
-																<p>{feature.title}</p>
+													const falsy = [null, "", 0, "0"];
+													if (!falsy.includes(feature.value)) {
+														return (
+															<div
+																className="listing-preview__listing-about--item"
+																key={index}
+															>
+																<div className="listing-preview__listing-about-item--title">
+																	<p>{feature.title}</p>
+																</div>
+																<div className="listing-preview__listing-about-item--value">
+																	{feature.iconSrc}
+																	<p>{feature.value}</p>
+																</div>
 															</div>
-															<div className="listing-preview__listing-about-item--value">
-																{feature.iconSrc}
-																<p>{feature.value}</p>
-															</div>
-														</div>
-													);
+														)
+													}
 												})}
 											</div>
 										</section>
@@ -922,31 +885,6 @@ const ListingPreview = () => {
 													isNavigated={false}
 													isEffectCoverFlow={true}
 												/>
-												{/* <MorePropertiesComponent
-                                                        title="More Properties Nearby"
-                                                        subtitle={`Discover more ${CapitalizeEachWord(oneListing.PropertyType)} options in ${CapitalizeEachWord(oneListing.ProvinceState)} — find your dream home today!`}
-                                                        propertyType={oneListing.PropertyType}
-                                                        saleType={oneListing.SaleType}
-                                                        filterValue={oneListing.ProvinceState}
-                                                        filterProperty={['ProvinceState']}
-                                                        searchProperty={[
-                                                            {
-                                                                key: "location",
-                                                                value: oneListing.ProvinceState
-                                                            },
-                                                            {
-                                                                key: "property_type",
-                                                                value: oneListing.PropertyType
-                                                            },
-                                                            {
-                                                                key: "sale_type",
-                                                                value: oneListing.SaleType
-                                                            }
-                                                        ]}
-                                                        isPaginated={true} 
-                                                        isNavigated={true} 
-                                                        isEffectCoverFlow={true}
-                                                    /> */}
 											</>
 										)}
 									</div>
@@ -1025,6 +963,14 @@ const ListingPreview = () => {
 						</div>
 					</>
 				)
+					:
+					<>
+						<NotFoundComponent />
+						<div className="preview--footer">
+							<CustomMlFooter />
+							<FooterComponent />
+						</div>
+					</>
 			)}
 		</>
 	);
