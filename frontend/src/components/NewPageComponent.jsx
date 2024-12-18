@@ -100,7 +100,8 @@ const NewPageComponent = () => {
 						const getPhotoGallery = await GetUnitPhotos(item.id);
 
 						const gallery = getPhotoGallery.data;
-                        const isRent = item.SaleType == "Rent" || "rent";
+                        const isRent =
+													item.SaleType == "Rent" || item.SaleType == "rent";
 						const image = GetPhotoWithUrl(item.Photo);
 
 						return {

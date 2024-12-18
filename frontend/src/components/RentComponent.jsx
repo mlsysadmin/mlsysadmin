@@ -135,7 +135,7 @@ const RentComponent = () => {
 							const gallery = getPhotoGallery.data;
 
 							const image = GetPhotoWithUrl(item.Photo);
-							const isRent = item.SaleType == "Rent" || "rent";
+							const isRent = item.SaleType == "Rent" || item.SaleType == "rent";
 
 							return {
 								id: item.id,

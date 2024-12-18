@@ -211,7 +211,8 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 								listingRes.map(async (item) => {
 									const getPhotoGallery = await GetUnitPhotos(item.id);
 									const gallery = getPhotoGallery.data;
-									const isRent = item.SaleType == "Rent" || "rent";
+									const isRent =
+										item.SaleType == "Rent" || item.SaleType ==  "rent";
 									const image = GetPhotoWithUrl(item.Photo);
 
 									return {
@@ -289,13 +290,16 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 										const getPhotoGallery = await GetUnitPhotos(item.id);
 
 										const gallery = getPhotoGallery.data;
+										const isRent =item.SaleType == "Rent" || item.SaleType == "rent";
 
 										const image = GetPhotoWithUrl(item.Photo);
 
 										return {
 											id: item.id,
 											title: CapitalizeString(item.UnitName),
-											price: AmountFormatterGroup(item.Price),
+											price: `PHP ${AmountFormatterGroup(item.Price)}${
+												isRent ? "/mo." : ""
+											}`,
 											status: "New",
 											pics: image ? gallery.length + 1 : 1,
 											img: image,
@@ -385,7 +389,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 										return (
 											<CardListingComponent
 												title={TruncateText(item.title)}
-												price={`PHP ${item.price}`}
+												price= {item.price}
 												status={item.status}
 												pics={item.pics}
 												img={item.img}
