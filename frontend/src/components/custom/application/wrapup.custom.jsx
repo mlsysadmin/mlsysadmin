@@ -18,7 +18,30 @@ const WrapUpDetails = ({
   setWrapUpComplete,
   setCustomerInfo,
   customerInfo,
+  isSubmitted
 }) => {
+  useEffect(()=>{
+    if (isSubmitted) {
+      setEmail("");
+      setMobileNumber("");
+      setFirstname("");
+      setLastname("");
+      setZipCode("");
+      setOtherAddress("");
+      setCustomerInfo({
+        mobile_number: "",
+        email: "",
+        last_name: "",
+        first_name: "",
+        country: "Philippines",
+        province: "",
+        city: "",
+        zipcode: "",
+        others: "",
+        source_of_income: "",
+      });
+    }
+  },[isSubmitted])
   const [email, setEmail] = useState("");
   const [mobile_number, setMobileNumber] = useState("");
   const [firstname, setFirstname] = useState("");
@@ -114,8 +137,6 @@ const WrapUpDetails = ({
     // console.log("errorFieldName: ", errorFieldName);
     console.log("fieldName: ", fieldName);
     console.log("value:", value);
-    console.log("`error_${fieldName}`: ", `error_${fieldName}`);
-
     const trimmedValue = value.trim();
     let isValid = true;
     const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
