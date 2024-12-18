@@ -34,6 +34,7 @@ import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import DefaultPropertyImage from "../asset/fallbackImage.png";
 import { CardSkeleton } from "./Skeleton";
 import NoDataAvailable from "./NoDataFoundComponent";
+import LoginMessageModal from "./modals/LoginMessageModal";
 import { getCookieData } from "../utils/CookieChecker";
 import { Breadcrumb } from "antd";
 
@@ -66,6 +67,7 @@ const RentComponent = () => {
 	let number = accountDetails?.mobileNumber || null;
 	const [propertyType, setPropertyType] = useState("house-and-lot");
 	const [currentPage, setCurrentPage] = useState(1);
+	const [showLoginMessage, setShowLoginMessage] = useState(false);
 	const cardsPerPage = 9;
 	const [filterLocation, setFilterLocation] = useState([]);
 	const [headerText, setHeaderText] = useState("House and Lot For Sale");
@@ -93,6 +95,9 @@ const RentComponent = () => {
 	const handleCardClick = (id) => {
 		navigate(`/previewListing/?id=${id}`, { state: id });
 	};
+		const handleShowLoginModal = () => {
+			setShowLoginMessage(true);
+		};
 
 	const allPublicListing = async (property_type) => {
 		try {
@@ -135,7 +140,7 @@ const RentComponent = () => {
 								id: item.id,
 								title: CapitalizeString(item.UnitName),
 								price: `PHP ${AmountFormatterGroup(item.Price)}${
-									isRent ? "/mos." : ""
+									isRent ? "/mo." : ""
 								}`,
 								status: "For Rent",
 								pics: image ? gallery.length + 1 : 0,
@@ -266,8 +271,14 @@ const RentComponent = () => {
 										propertyNo={data.property_no}
 										vendorId={data.vendorId}
 										number={number}
+										handleShowLoginModalMessage={handleShowLoginModal}
 									/>
 								))}
+								{showLoginMessage && (
+									<LoginMessageModal
+										setShowLoginMessage={setShowLoginMessage}
+									/>
+								)}
 							</div>
 						) : (
 							<NoDataAvailable

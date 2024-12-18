@@ -9,8 +9,10 @@ import OTPModal from "../../components/OTPModal";
 import { Select } from "antd";
 import { AddAgent, GetControlLastNumber } from "../../api/Public/Agent.api";
 import { notification } from "antd";
+import { useAuth } from "../../Context/AuthContext";
 
-const JoinTeam = ({ toggleModal, isSessionPresent }) => {
+const JoinTeam = ({ toggleModal }) => {
+	const { isAuthenticated, logout } = useAuth();
 	const { Option } = Select;
 	const [getCountry, setGetCountry] = useState([]);
 	const [getProvince, setGetProvince] = useState([]);
@@ -402,9 +404,9 @@ const JoinTeam = ({ toggleModal, isSessionPresent }) => {
 	//     })
 	//     .join(" ");
 	// };
-	useEffect(() => {}, [isSessionPresent]);
+	useEffect(() => {}, [isAuthenticated]);
 
-	if (!isSessionPresent) {
+	if (!isAuthenticated) {
 		return (
 			<div className="join-modal-container">
 				{contextHolder}

@@ -21,7 +21,7 @@ const RatingCarouselComponent = () => {
         <div className="rating" style={{
             textAlign: 'center'
         }}>
-            <Carousel arrows={true} infinite={true} className="rate-carousel" dots={false}>
+            <Carousel arrows={true} infinite={true} className="rate-carousel" dots={false} autoplay>
                 {
                     Ratings.map((rate, i) => {
                         return (
