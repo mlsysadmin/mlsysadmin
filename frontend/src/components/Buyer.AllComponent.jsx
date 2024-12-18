@@ -24,6 +24,7 @@ import {
 	FillLocationFilter,
 	GetPropertyTitle,
 	isPastAMonth,
+	TruncateText,
 	SortListings,
 } from "../utils/StringFunctions.utils";
 import NoListingAvailable from "./custom/custom.NoListingAvailable";
@@ -121,7 +122,7 @@ const AllComponent = () => {
 							const getPhotoGallery = await GetUnitPhotos(item.id);
 
 							const gallery = getPhotoGallery.data;
-							const isRent = item.SaleType == "rent";
+							const isRent = item.SaleType == "Rent" || "rent";
 							const image = GetPhotoWithUrl(item.Photo);
 
 							return {
@@ -249,7 +250,7 @@ const AllComponent = () => {
 											<Card
 												key={index}
 												id={data.id}
-												title={data.title}
+												title={TruncateText(data.title)}
 												price={data.price}
 												imgSrc={data.img}
 												beds={data.bedrooms}

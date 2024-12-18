@@ -26,6 +26,7 @@ import {
 	CapitalizeString,
 	FillLocationFilter,
 	CapitalizeStringwithSymbol,
+	TruncateText,
 	GetPropertyTitle,
 	SortListings,
 } from "../utils/StringFunctions.utils";
@@ -256,7 +257,7 @@ const SaleComponent = () => {
 										<Card
 											key={index}
 											id={data.id}
-											title={data.title}
+											title={TruncateText(data.title)}
 											price={data.price}
 											imgSrc={data.img}
 											beds={data.no_of_beds}
