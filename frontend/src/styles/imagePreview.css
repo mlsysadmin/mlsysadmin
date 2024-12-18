@@ -49,7 +49,7 @@
 /* Same Height Image wrapper and Image */
 .preview-group-image--wrapper,
 .preview-group-image{
-    height: calc(var(--image-height));
+    height: calc(var(--image-height) + 2px);
 }
 
 .preview-single-image,

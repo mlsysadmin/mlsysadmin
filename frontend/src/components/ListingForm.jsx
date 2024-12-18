@@ -3,15 +3,15 @@ import "../styles/listing-form.css";
 import { useNavigate } from "react-router-dom";
 import logo from "../asset/watermark.png";
 import {
-  PostSellerListing,
-  AddVendor,
-  GetVendorId,
-  GetPropertyNo,
-  AddFeature,
-  GetVendorByNumber,
-  savePropertyImages,
-  GetFeature,
-  AddAddedFeature,
+	PostSellerListing,
+	AddVendor,
+	GetVendorId,
+	GetPropertyNo,
+	AddFeature,
+	GetVendorByNumber,
+	savePropertyImages,
+	GetFeature,
+	AddAddedFeature,
 } from "../api/PostListings";
 import PropertyDetailsComponent from "../components/PropertyDetailsComponent";
 import UnitDetailsComponent from "../components/UnitDetailsComponent";
@@ -29,8 +29,14 @@ import { searchKyc } from "../api/Public/User.api";
 import { GetPropertiesBySaleStatus } from "../api/GetAllPublicListings";
 import AlertModal from "./modals/AlertModal";
 import PreviewLoadingModal from "./modals/PreviewLoadingModal";
+import { notification } from "antd";
+import { useAuth } from '../Context/AuthContext';
 
 export const ListingForm = () => {
+	const {
+		isAuthenticated, userDetails, logout
+	} = useAuth();
+
 	const [currentStep, setCurrentStep] = useState(0);
 	const [completedSteps, setCompletedSteps] = useState({});
 	const [isFocused, setIsFocused] = useState(false);
@@ -44,7 +50,7 @@ export const ListingForm = () => {
 	const [lotAreaInputError, setLotAreaInputError] = useState("");
 	const [propIdInputError, setPropIdInputError] = useState("");
 	const [showSuccessfulMsgModal, setShowSuccessfulMsgModal] = useState(false);
-	const [userDetails, setUserDetails] = useState(null);
+	// const [userDetails, setUserDetails] = useState(null);
 	const [postedPropertyNo, setPostedPropertyNo] = useState(null);
 	const [loadingModal, setShowLoadingModal] = useState(false);
 	const [publiclisting, setPublicListing] = useState([]);
@@ -54,22 +60,10 @@ export const ListingForm = () => {
 	const [addedVendorId, setAddedVendorId] = useState();
 	const [addedVendorName, setAddedVendorName] = useState();
 	const [isSubmitting, setIsSubmitting] = useState(false);
-  const[submitted, isSubmitted] = useState(false);
+	const [submitted, isSubmitted] = useState(false);
 	const [submitTINDisabled, setIsSubmitTINDisabled] = useState("");
 	const [tin, setTin] = useState(null);
-
-	const accountDetails = getCookieData();
-
-	const fetchUserDetails = async () => {
-		try {
-			const response = await searchKyc(accountDetails.mobileNumber);
-			const respData = response.data.data;
-			console.log("respData", respData);
-			setUserDetails(respData);
-		} catch (error) {
-			console.error("Error fetching user details:", error);
-		}
-	};
+	const [api, contextHolder] = notification.useNotification();
 
 	const [errors, setErrors] = useState({
 		0: false,
@@ -126,48 +120,48 @@ export const ListingForm = () => {
 		Approver3Status: "Pending",
 		Source: "Client",
 	});
-   useEffect(() => {
-			console.log("submitted na: ", submitted);
-			if (submitted) {
-				setPropertyFields({
-					PropertyNo: "",
-					VendorId: "",
-					VendorName: "",
-					City: "",
-					Location: "",
-					PropertyType: "",
-					Price: "",
-					UnitName: "",
-					SaleType: "",
-					BedRooms: "",
-					BathRooms: "",
-					Details: "",
-					ListingOwnerId: "",
-					ListingOwnerName: "",
-					IsModel: "no",
-					FloorArea: "",
-					LotArea: "",
-					DiscountedPrice: "",
-					Furnishing: "",
-					Classification: "",
-					PricePerSqm: "",
-					Parking: "",
-					PropertyIdNo: "",
-					NoOfFloor: "",
-					Country: "",
-					ProvinceState: "",
-					Zipcode: "",
-					MapLocation: "",
-					Photo: [],
-					Features: [],
-					AddedFeature: [],
-				});
-			}
-		}, [submitted]);
+	useEffect(() => {
+		console.log("submitted na: ", submitted);
+		if (submitted) {
+			setPropertyFields({
+				PropertyNo: "",
+				VendorId: "",
+				VendorName: "",
+				City: "",
+				Location: "",
+				PropertyType: "",
+				Price: "",
+				UnitName: "",
+				SaleType: "",
+				BedRooms: "",
+				BathRooms: "",
+				Details: "",
+				ListingOwnerId: "",
+				ListingOwnerName: "",
+				IsModel: "no",
+				FloorArea: "",
+				LotArea: "",
+				DiscountedPrice: "",
+				Furnishing: "",
+				Classification: "",
+				PricePerSqm: "",
+				Parking: "",
+				PropertyIdNo: "",
+				NoOfFloor: "",
+				Country: "",
+				ProvinceState: "",
+				Zipcode: "",
+				MapLocation: "",
+				Photo: [],
+				Features: [],
+				AddedFeature: [],
+			});
+		}
+	}, [submitted]);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
-		fetchUserDetails();
+
 	}, []);
 
 	const [tinError, serTinError] = useState("");
@@ -212,16 +206,12 @@ export const ListingForm = () => {
 	const handleVendorSubmit = async () => {
 		setIsSubmitting(false);
 		try {
-			if (Object.keys(accountDetails).length !== 0) {
-				let number = accountDetails.mobileNumber;
+			if (Object.keys(userDetails).length !== 0) {
+				let number = userDetails.mobileNumber;
 
 				try {
 					const vendorExists = await GetVendorByNumber(number);
 					console.log("vendorDetails", vendorExists.data);
-					// setShowLoadingModal({
-					// 	loading: true,
-					// 	text: "Just a moment",
-					// });
 
 					if (Object.keys(vendorExists.data).length !== 0) {
 						setShowVendorModal(false);
@@ -231,7 +221,7 @@ export const ListingForm = () => {
 							vendorExists.data.VendorName,
 							vendorExists.data.VendorId
 						);
-             isSubmitted(true);
+						isSubmitted(true);
 					} else {
 						const vendorName = `${userDetails?.name.firstName} ${userDetails?.name.lastName}`;
 						const generatedVendotId = await GetVendorId();
@@ -242,16 +232,17 @@ export const ListingForm = () => {
 					}
 				} catch (error) {
 					console.error("Error checking vendor existence:", error);
+					openNotificationWithIcon("error", "Submit Failed", "We're sorry, something went wrong. Please try again later.")
+
 				}
 			} else {
 				console.error("user is not logged in");
-
-				navigate(
-					`${process.env.REACT_APP_LOGIN}?redirect=${process.env.REACT_APP_REDIRECT_URL}/listing`
-				);
+				openNotificationWithIcon("error", "Submit Failed", "We're sorry, something went wrong. Please try again later.")
+				navigate('/login');
 			}
 		} catch (error) {
 			console.log("errr", error);
+			openNotificationWithIcon("error", "Submit Failed", "We're sorry, something went wrong. Please try again later.")
 		}
 	};
 
@@ -260,13 +251,7 @@ export const ListingForm = () => {
 		setIsSubmitting(true);
 		const propertyNo = await GetPropertyNo();
 
-		const propertyPhotos = propertyFields.Photo.map((photo) => photo.file);
-
 		const photosArray = propertyFields.Photo;
-
-		const Vendornumber = accountDetails.mobileNumber;
-		const existing = await GetVendorByNumber(Vendornumber);
-		console.log("VENDOR INFO", existing);
 
 		const imagePayload = new FormData();
 
@@ -275,41 +260,15 @@ export const ListingForm = () => {
 			"MainPhoto",
 			photosArray.length > 0 ? await addWatermark(photosArray[0].file) : null
 		);
-		console.log("photosArray.length: ", photosArray.length);
+
 		for (let i = 1; i < photosArray.length; i++) {
-			console.log("BeFORE");
-			console.log("photosArray: ", photosArray[i].file);
-			// const watermarkedImage = await addWatermark(photosArray[i].file);
 			imagePayload.append("Photo[]", await addWatermark(photosArray[i].file));
 
-			// const watermarkedImages = [];
-			// for (let i = 0; i < photosArray.length; i++) {
-			//   console.log("Processing photo:", photosArray[i].file.name);
-			//   try {
-			//     // Store watermarked image in the array
-			//     watermarkedImages.push({
-			//       file: await addWatermark(photosArray[i].file),
-			//       name: photosArray[i].file.name,
-			//     });
-			//     console.log("Watermarked image created for:", watermarkedImages);
-			//   } catch (error) {
-			//     console.error(`Error processing photo ${photosArray[i].name}:`, error);
-			//   }
-			// }
 			imagePayload.append("FileName[]", photosArray[i].file.name);
-			console.log("AFTER");
 		}
 
-		// watermarkedImages.forEach(({ file, name }) => {
-		//   imagePayload.append("Photo[]", file);
-		//   imagePayload.append("FileName[]", name);
-		//   console.log("Appended to payload:", { file, name });
-		// });
 		imagePayload.getAll("Photo");
 		imagePayload.getAll("FileName");
-
-		console.log("image:", imagePayload.getAll("Photo"));
-		console.log("filename:", imagePayload.getAll("FileName"));
 
 		const postFeatures = await handleFeatureChecking();
 		const updatedPropertyFields = {
@@ -321,7 +280,7 @@ export const ListingForm = () => {
 			VendorId: VendorId,
 			VendorName: VendorName,
 		};
-		console.log("Final listing data:", updatedPropertyFields);
+
 		const postData = await PostSellerListing(updatedPropertyFields);
 		setPostedPropertyNo(updatedPropertyFields);
 		setPropertyFields((prevFields) => ({
@@ -346,63 +305,6 @@ export const ListingForm = () => {
 			throw error;
 		}
 	};
-	// const addWatermark = async (imageFile) => {
-	//   const imageFiles = await imagePathToFile(logo, "watermark.png");
-
-	//   return new Promise((resolve, reject) => {
-	//     const img = new Image();
-	//     const watermarkImg = new Image();
-	//     img.src = URL.createObjectURL(imageFile);
-	//     console.log("Original image URL: ", img.src);
-	//     console.log("imageFiles: ", imageFiles);
-
-	//     img.onload = () => {
-	//       console.log("Original image loaded successfully.");
-	//       watermarkImg.src = URL.createObjectURL(imageFiles);
-	//       watermarkImg.style.opacity = 0.1;
-	//       watermarkImg.onload = () => {
-	//         console.log("Watermark image loaded successfully.");
-	//         const canvas = document.createElement("canvas");
-	//         const ctx = canvas.getContext("2d");
-	//         canvas.width = img.width;
-	//         canvas.height = img.height;
-	//         ctx.drawImage(img, 0, 0);
-	//         const watermarkX = img.width - watermarkImg.width - 150;
-	//         const watermarkY = img.height - watermarkImg.height - 200;
-	//         ctx.drawImage(watermarkImg, watermarkX, watermarkY);
-	//         canvas.toBlob((blob) => {
-	//           if (blob) {
-	//             console.log("imageFile.name: ",imageFile.name);
-	//             const watermarkedFile = new File([blob], imageFile.name, {
-	//               type: imageFile.type,
-	//             });
-	//             console.log("watermarkedFile: ", watermarkedFile);
-	//             resolve(watermarkedFile);
-	//           } else {
-	//             console.log("Oh My God I am else!");
-	//             reject(new Error("Could not create watermark"));
-	//           }
-	//         }, imageFile.type);
-	//       };
-	//       watermarkImg.onerror = (error) => {
-	//         console.error("Error loading watermark image: ", error);
-	//         reject(
-	//           new Error(
-	//             "Error loading watermark image: " + error.message || error
-	//           )
-	//         );
-	//       };
-	//       console.log(" I AM LOG!");
-	//     };
-
-	//     img.onerror = (error) => {
-	//       console.error("Error loading original image: ", error);
-	//       reject(
-	//         new Error("Error loading original image: " + error.message || error)
-	//       );
-	//     };
-	//   });
-	// };
 
 	const addWatermark = async (imageFile) => {
 		const imageFiles = await imagePathToFile(logo, "watermark.png");
@@ -651,8 +553,36 @@ export const ListingForm = () => {
 		</div>
 	);
 
+	const openNotificationWithIcon = (type, message, description) => {
+		api[type]({
+			message: message,
+			description: description,
+			placement: "bottomRight",
+			duration: type == "error" ? 4 : 3,
+		});
+	};
+	const el = document.querySelector(".listing-steps");
+	
+	useEffect(() => {
+		console.log(el);
+		
+		if (el) {
+			const stickyThreshold = parseInt(window.getComputedStyle(el).top) || 0; // Sticky position from CSS
+	
+			window.addEventListener("scroll", () => {
+				const currentTop = el.getBoundingClientRect().top;
+				el.classList.toggle("is-sticky", currentTop <= stickyThreshold);
+			});
+		} else {
+			console.error("Element with class 'listing-steps' not found.");
+		}
+	}, [el])
+
 	return (
 		<>
+			{
+				contextHolder
+			}
 			<div className="listing-ContentContainer">
 				<ListingBanner />
 				<div className="listing-application">
@@ -720,6 +650,7 @@ export const ListingForm = () => {
 									setPropertyFields={setPropertyDataFields}
 									selectedPropertyTab={propertyFields.PropertyType}
 									isSubmitted={submitted}
+									openNotificationWithIcon={openNotificationWithIcon}
 								/>
 								{/* {errors[1] && currentStep === 1 && (
 									<div

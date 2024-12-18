@@ -65,7 +65,7 @@ const DescriptionDetailsComponent = ({
 			<h1>Description</h1>
 			<div className="descriptionText">
 				<div className="titleText">
-					<h2 className="title">Title</h2>
+					<p className="title--description">Title</p>
 					<input
 						type="text"
 						placeholder="Enter title"

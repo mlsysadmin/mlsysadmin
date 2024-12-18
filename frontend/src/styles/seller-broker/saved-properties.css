@@ -27,6 +27,9 @@
     grid-template-columns: 1fr !important;
     font-size: var(--m-body-text);
   }
+  .wholeViewSavedProperties{
+    padding: 0 20px 50px ;
+  }
 }
 /* Big Size Cellphone */
 @media screen and (min-width: 481px) and (max-width: 769px) {
