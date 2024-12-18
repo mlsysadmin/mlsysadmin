@@ -1,5 +1,5 @@
 .error-page.ant-result {
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 50px;
     font-size: var(--d-body-text) !important;
 }
@@ -28,6 +28,9 @@
     color: #555;
     margin: 10px 0 20px !important;
   }
+  .ant-result .ant-result-icon{
+    margin-bottom: 0 !important;
+  }
   
   .not-found-links {
     display: flex;
@@ -54,9 +57,16 @@
     border: 1px solid var(--red);
     color: var(--red);
   }
+  .not-found--img-wrapper{
+    width: 400px;
+    margin: auto;
+  }
+  .not-found--img{
+    width: 100%;
+  }
   
 
-@media screen and (min-width: 360px) and (max-width: 480px) {
+@media screen and (min-width: 320px) and (max-width: 480px) {
 
     .ant-result .ant-result-image {
         width: 100%;
@@ -64,5 +74,12 @@
     }
     .not-found--btn{
         font-size: var(--m-body-text);
+    }
+    .not-found--img-wrapper{
+      width: 90%;
+      margin: auto;
+    }
+    .not-found-links{
+      gap: 5px;
     }
 }
