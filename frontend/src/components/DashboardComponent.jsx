@@ -63,6 +63,7 @@ import {
 	CapitalizeStringwithSymbol,
 	GetPropertyTitle,
 	isPastAMonth,
+  TruncateText,
 	SortByText,
 } from "../utils/StringFunctions.utils";
 import { CardSkeleton, FeaturesSkeleton } from "./Skeleton";
@@ -155,13 +156,13 @@ const DashboardComponent = () => {
 						const getPhotoGallery = await GetUnitPhotos(item.id);
 
 						const gallery = getPhotoGallery.data; 
-            const isRent = item.SaleType == "rent";
+            const isRent = item.SaleType == "Rent" || "rent";
 						const image = GetPhotoWithUrl(item.Photo);
 
 						return {
 							id: item.id,
 							title: CapitalizeString(item.UnitName),
-								price: `PHP ${AmountFormatterGroup(item.Price)}${
+							price: `PHP ${AmountFormatterGroup(item.Price)}${
 									isRent ? "/mo." : ""
 								}`,
 							status: "New",
@@ -648,7 +649,7 @@ const DashboardComponent = () => {
 								{publiclisting.map((item, i) => {
 									return (
 										<CardListingComponent
-											title={item.title}
+											title={TruncateText(item.title)}
 											price={item.price}
 											status={item.status}
 											pics={item.pics}

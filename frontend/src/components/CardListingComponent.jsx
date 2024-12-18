@@ -286,13 +286,15 @@ const CardListingComponent = ({
 										listingId={listingId}
 									/>{" "}
 									{showDeleteIcon && (
-										<div
-											className="icon"
-											onClick={handleDeleteClick}
-											style={{ top: "8px" }}
-										>
-											<DeleteOutlined />
-										</div>
+										<Tooltip title="Delete Saved Property" placement="top">
+											<div
+												className="icon"
+												onClick={handleDeleteClick}
+												style={{ top: "8px" }}
+											>
+												<DeleteOutlined />
+											</div>
+										</Tooltip>
 									)}
 								</div>
 							</Tooltip>

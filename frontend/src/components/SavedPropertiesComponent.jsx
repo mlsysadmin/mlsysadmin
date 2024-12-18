@@ -22,6 +22,7 @@ import {
 	CapitalizeEachWord,
 	CapitalizeString,
 	CapitalizeStringwithSymbol,
+	TruncateText,
 } from "../utils/StringFunctions.utils";
 import { GetVendorByNumber } from "../api/PostListings";
 import "../styles/seller-broker/saved-properties.css";
@@ -201,6 +202,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 
 							if (listingRes.length === 0) {
 								setFilteredAndSortedListings([]);
+								setLoading(false);
 							} else {
 								console.log("Filtered and Sorted Listings:", listingRes);
 							}
@@ -209,7 +211,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 								listingRes.map(async (item) => {
 									const getPhotoGallery = await GetUnitPhotos(item.id);
 									const gallery = getPhotoGallery.data;
-									const isRent = item.SaleType == "rent";
+									const isRent = item.SaleType == "Rent" || "rent";
 									const image = GetPhotoWithUrl(item.Photo);
 
 									return {
@@ -382,7 +384,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 									{currentItems.map((item, i) => {
 										return (
 											<CardListingComponent
-												title={item.title}
+												title={TruncateText(item.title)}
 												price={`PHP ${item.price}`}
 												status={item.status}
 												pics={item.pics}
@@ -426,7 +428,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 									display: "flex",
 								}}
 							>
-								{Array(4)
+								{Array(6)
 									.fill(null)
 									.map((_, i) => {
 										return <CardSkeleton key={i} />;
@@ -464,7 +466,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 					<div className="cardBackgroundSavedProperties">
 						<div className="cardBackgroundPerRows">
 							{!loading ? (
-								filteredAndSortedListings.length > 0 && (
+								filteredAndSortedListings.length !== 0 ? (
 									<div className="listing-carousel-saved-properties">
 										{filteredAndSortedListings.map((item, i) => {
 											return (
@@ -472,7 +474,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 													showDeleteIcon={
 														isSavedPropertiesRoute && isSavedPropertiesTab
 													}
-													title={item.title}
+													title={TruncateText(item.title)}
 													price={item.price}
 													status={item.status}
 													pics={item.pics}
@@ -519,6 +521,12 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 											/>
 										</div>
 									</div>
+								) : (
+									<NoDataAvailable
+										message={`No available Data that was been in ${getListingLabel(
+											selectedSort
+										)}`}
+									/>
 								)
 							) : (
 								<div
@@ -527,7 +535,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 										display: "flex",
 									}}
 								>
-									{Array(4)
+									{Array(6)
 										.fill(null)
 										.map((_, i) => {
 											return <CardSkeleton key={i} />;
