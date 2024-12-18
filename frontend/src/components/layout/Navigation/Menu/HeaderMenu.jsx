@@ -40,15 +40,6 @@ const HeaderMenu = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	const sessionCookieName = process.env.REACT_APP_SESSION_COOKIE_NAME;
-	const accountCookieName = process.env.REACT_APP_ACCOUNT_COOKIE_NAME;
-
-	const isSessionPresent = isCookiePresent(sessionCookieName);
-	const isAccountDetailsPresent = isCookiePresent(accountCookieName);
-	// const [userDetails, setUserDetails] = useState(null);
-
-	const login = process.env.REACT_APP_LOGIN_URL;
-
 	const [tierUpgrade, setTierUpgrade] = useState(false);
 
 	const [showUpgradeModal, setShowUpgradeModal] = useState(false);
@@ -115,7 +106,7 @@ const HeaderMenu = () => {
 	}, [location.pathname]);
 
 	const handleListPropertyClick = () => {
-		if (isSessionPresent && isAccountDetailsPresent) {
+		if (isAuthenticated && userDetails) {
 			if (
 				userDetails?.tier?.label !== "BUYER" ||
 				userDetails?.tier?.label !== "SEMI-VERIFIED"
@@ -472,11 +463,11 @@ const HeaderMenu = () => {
 					<WorkingOnItModal isOpen={showModal} onClose={toggleModal} />
 				)} */}
 
-				{showModal && !isSessionPresent && (
+				{showModal && !isAuthenticated && (
 					<>
 						<JoinTeam
 							toggleModal={toggleModal}
-							isSessionPresent={isSessionPresent}
+							isSessionPresent={isAuthenticated}
 						/>
 					</>
 				)}

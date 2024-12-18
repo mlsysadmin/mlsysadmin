@@ -81,7 +81,7 @@ const SellerLogInButtonDropdown = () => {
 	// }, []);
 
 	const handleLogout = async () => {
-		logout();
+		await logout();
 	};
 
 	const toPascalCase = (name) => {

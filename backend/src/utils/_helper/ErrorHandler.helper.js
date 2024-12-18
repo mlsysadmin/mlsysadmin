@@ -19,6 +19,8 @@ const ErrorHandler = async (error, request, response, next) => {
                 throw error;
             }
         })
+        console.log("dsdsfgghf");
+        
 
         let errorContext = [{
             REQ: {

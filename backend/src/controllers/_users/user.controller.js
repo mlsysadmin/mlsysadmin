@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const { Op } = require('sequelize');
 const { JwtSign } = require("../../services/jwt.auth.service");
-const { FindUserOne, FindOneSupportByEmail } = require("../../streamline/user.datastream");
+const { FindUserOne, FindOneSupportByEmail, InsertUserLoginAttempt } = require("../../streamline/user.datastream");
 const SuccessFormatter = require("../../utils/_helper/SuccessFormatter.helper");
 const { User, Role } = require("../../models/main.model");
 const SuccessLoggerHelper = require('../../utils/_helper/SuccessLogger.helper');
@@ -18,6 +18,11 @@ const { google } = require('googleapis');
 const { UpdateTokenVersion } = require('../../utils/_helper/Jwt.helper');
 const { SendOtp, ValidateOtp } = require('../../utils/_api/otp.api');
 const { RegisterUserKyc, ExternalLogin, ExternalSendOtp } = require('../../utils/_api/ml_money.api');
+const { StringToArray } = require('../../utils/_helper/DataFunctions.helper');
+const Sequelize = require('../../config/_db/mlbrokerage.db');
+
+const COOKIE_ACCOUNT_DETAILS = process.env.COOKIE_ACCOUNT_DETAILS;
+const COOKIE_ACCOUNT_SESSION = process.env.COOKIE_ACCOUNT_SESSION;
 
 module.exports = {
     Login: async (req, res, next) => {
@@ -328,6 +333,18 @@ module.exports = {
 
             const updatokenTokenVersion = UpdateTokenVersion(user_id);
 
+            res.clearCookie(COOKIE_ACCOUNT_SESSION, {
+                httpOnly: process.env.COOKIE_HTTP_ONLY,
+                // secure: process.env.COOKIE_SECURE,
+                domain: process.env.COOKIE_DOMAIN,
+            });
+
+            res.clearCookie(COOKIE_ACCOUNT_DETAILS, {
+                httpOnly: process.env.COOKIE_HTTP_ONLY,
+                // secure: process.env.COOKIE_SECURE,
+                domain: process.env.COOKIE_DOMAIN,
+            });
+
             res.send(updatokenTokenVersion);
 
         } catch (error) {
@@ -509,8 +526,8 @@ module.exports = {
 
             SuccessLoggerHelper(req, login);
 
-            res.cookie('access_token', generateSessionToken, tokenCookieOptions);
-            res.cookie('account_details', userLogin.login.data, useCookieOptions);
+            res.cookie(COOKIE_ACCOUNT_SESSION, generateSessionToken, tokenCookieOptions);
+            res.cookie(COOKIE_ACCOUNT_DETAILS, userLogin.login.data, useCookieOptions);
 
             res.status(200).send(login);
 
@@ -525,7 +542,7 @@ module.exports = {
             const accountDetails = req.cookies.account_details;
             console.log("req", req.cookies);
             console.log("access", req.signedCookies.access_token);
-        
+
             if (sessionCookie) {
 
                 const isSessionCheck = DataResponseHandler(
@@ -551,6 +568,165 @@ module.exports = {
 
 
         } catch (error) {
+            next(error);
+        }
+    },
+    FirstAttemptLogin: async (req, res, next) => {
+        try {
+
+            const {
+                cellphoneNumber
+            } = req.body.payload;
+
+            const params = {
+                cellphoneNumber
+            }
+
+            const getToken = await GenerateToken();
+
+            if ((getToken) && params) {
+                const token = getToken.data.token;
+
+                const searchkyc = await SearchUserKyc(token, params);
+
+                const kyc = searchkyc.search_ckyc.data.data;
+
+                let user;
+                let message;
+
+                if (kyc) {
+                    const tier = kyc.tier.label;
+                    const notAllowedTier = StringToArray(process.env.NOT_ALLOWED_SELLER_TIER, "|");
+
+                    const role = notAllowedTier.includes(tier.toUpperCase()) ? 2 : 1;
+
+                    const userParams = {
+                        ckyc_id: kyc.ckycId,
+                        role_id: role
+                    }
+
+
+                    const findUser = await FindUserOne(userParams);
+                    if (findUser) {
+
+                        user = {
+                            data: searchkyc.search_ckyc.data.data,
+                            isFirstAttempt: false
+                        };
+                        message = "Not First Login Attempt"
+
+                    } else {
+                        user = {
+                            data: searchkyc.search_ckyc.data.data,
+                            isFirstAttempt: true
+                        };
+                        message = "First Login Attempt"
+                    }
+                    const userResponse = DataResponseHandler(
+                        user,
+                        "SEARCH_USER",
+                        200,
+                        true,
+                        message
+                    )
+
+                    const success = SuccessFormatter(userResponse, 200, message);
+                    SuccessLoggerHelper(req, userResponse);
+
+                    res.status(200).send(success)
+                }else{
+
+                    user = {
+                        data: searchkyc.search_ckyc.data.data,
+                        isFirstAttempt: false
+                    };
+
+                    const userResponse = DataResponseHandler(user,
+                        "SEARCH_USER",
+                        200,
+                        true,
+                        "User has no existing kyc"
+                    )
+
+                    const success = SuccessFormatter(userResponse, 200, message);
+                    SuccessLoggerHelper(req, userResponse);
+
+                    res.status(200).send(success)
+                }
+
+            } else {
+                throw DataResponseHandler(
+                    { params, getToken },
+                    "SERVER_ERROR",
+                    500,
+                    false,
+                    "We're sorry, something went wrong on our end. Please try again later or contact our support team."
+                );
+            }
+
+        } catch (error) {
+            next(error);
+        }
+    },
+    CreateLoginAttempt: async (req, res, next) => {
+        try {
+
+            const {
+                ckycId,
+                tier
+            } = req.body.payload;
+
+            const notAllowedTier = StringToArray(process.env.NOT_ALLOWED_SELLER_TIER, "|");
+
+            const role = notAllowedTier.includes(tier.toUpperCase()) ? 2 : 1; // 1 == seller, 2 == buyer
+
+            const user = {
+                role,
+                ckyc_id: ckycId
+            }
+
+            await Sequelize.transaction(async (transaction) => {
+
+                const findOrCreateUser = await InsertUserLoginAttempt(user, transaction);
+                let userData;
+                let message;
+                let codeStatus;
+                let code;
+
+                userData = {
+                    ckycId,
+                    isAdded: findOrCreateUser,
+                    isSeller: role == 1 // seller
+                };
+
+                if (findOrCreateUser) {
+                    code = "USER_ADDED"
+                    codeStatus = 201
+                    message = "User added";
+
+                } else {
+                    code = "USER_EXIST"
+                    codeStatus = 200
+                    message = "User already exist";
+                }
+
+                const userResponse = DataResponseHandler(
+                    userData,
+                    code,
+                    codeStatus,
+                    true,
+                    message
+                )
+
+                const success = SuccessFormatter(userResponse, codeStatus, message);
+                SuccessLoggerHelper(req, userResponse);
+
+                res.status(codeStatus).send(success)
+
+            })
+
+        } catch (error) {
+            console.error("CreateLoginAttempt error:", error);
             next(error);
         }
     }
