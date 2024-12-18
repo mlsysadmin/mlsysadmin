@@ -13,13 +13,28 @@
 .savedPropertiesContent {
   background: var(--white);
   max-width: var(--default-page-size);
+
   margin: auto;
   /* flex-direction: row;
   flex-wrap: wrap; */
 }
+.ant-tabs-content-holder{
+  margin-top: 40px 0px;
+}
 .ant-tabs-nav .ant-tabs-nav-wrap{
   border-top: 1px solid #8c909452;
 }
+.wholeViewSavedProperties .listing-carousel-dashboard-skeleton{
+  width: var(--default-page-size);
+  padding: 0px;
+  justify-content: flex-start;
+}
+/* .cardBackgroundPerRows {
+    display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap:20px;
+		margin: 0px;
+  } */
 
 /* Cellphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
@@ -27,11 +42,42 @@
     grid-template-columns: 1fr !important;
     font-size: var(--m-body-text);
   }
+  .savedPropertiesContent{
+    padding-top: 20px;
+  }
+.wholeViewSavedProperties .listing-carousel-dashboard-skeleton {
+    display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		gap:20px;
+		margin: 0px;
+    width: 100%;
+  }
+  .cardBackgroundPerRows .listing-carousel-dashboard{
+    width: 100%;
+  }
 }
 /* Big Size Cellphone */
 @media screen and (min-width: 481px) and (max-width: 769px) {
   .savedPropertiesBackgroundComponent .listing-carousel-saved-properties{
     grid-template-columns: 1fr 1fr !important;
+  }
+  .cardBackgroundPerRows {
+   width: 100%;
+  }
+   .savedPropertiesContent{
+    padding-top: 20px;
+  }
+  .wholeViewSavedProperties .listing-carousel-dashboard-skeleton{
+     display: grid !important;
+		grid-template-columns: repeat(2, 1fr) !important;
+		gap: 15px 10px;
+    width: 100%;
+  }
+  .cardBackgroundSavedProperties{
+    width: 100%;
+  }
+  .cardBackgroundSavedProperties .skeleton--card-listing{
+    width: 200px;
   }
 }
 /* Tablets */
@@ -100,6 +146,7 @@
   grid-template-columns: repeat(3, 1fr);
   /* gap: 100px; */
   margin-top: 30px;
+  width: 100%;
 }
 .ant-select-outlined:not(.ant-select-disabled):not(
     .ant-select-customize-input

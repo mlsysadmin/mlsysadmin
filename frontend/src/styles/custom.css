@@ -186,6 +186,7 @@
 .advance-searchdropdown .ant-slider:hover .ant-slider-track {
 	background-color: #f1cac7;
 }
+
 /* 
 listing search */
 
@@ -838,7 +839,7 @@ listing search */
 	.subcontent-inputs-1 .right-button {
 		display: flex;
 		height: auto !important;
-		margin-top: 270px;
+		margin-top: 255px !important;
 		width: 41.5%;
 		padding: 1px 0px !important;
 		position: absolute !important;
@@ -873,8 +874,10 @@ listing search */
 
 	.ant-tooltip .ant-tooltip-inner {
 		font-size: 12px;
-		width: 70px;
-		padding: 0px 5px;
+		width: 80px;
+		padding: 0px;
+		text-align: center;
+		align-content: center;
 	}
 }
 @media screen and (min-width: 421px) and (max-width: 435px) {
@@ -1744,7 +1747,7 @@ listing search */
 @media screen and (min-width: 620px) and (max-width: 725px) {
 	.first-content {
 		margin-left: 15px;
-		height: 400px;
+		height: 450px;
 	}
 	.first-content .sub-content1 {
 		display: flex;
@@ -1809,11 +1812,11 @@ listing search */
 		gap: 10px;
 	}
 	.subcontent-inputs-1 .right-button {
-		margin-top: 290px;
-		display: flex;
-		height: 40px;
-		position: absolute;
-		margin-left: 450px;
+		margin-top: 290px !important;
+		display: flex ;
+		height: 40px !important;
+		position: absolute !important;
+		margin-left: 450px !important;
 	}
 	.subcontent-inputs-2 .input-field,
 	.subcontent-inputs-2 .select-field {
@@ -1970,7 +1973,6 @@ listing search */
 @media screen and (min-width: 1401px) and (max-width: 1500px) {
 	.first-content {
 		width: 100%;
-		padding: 40px 10px 40px 0px;
 		margin: 0px;
 	}
 	.sub-content1 {
@@ -1981,7 +1983,6 @@ listing search */
 @media screen and (min-width: 1501px) and (max-width: 1700px) {
 	.first-content {
 		width: 100%;
-		padding: 40px 10px 40px 0px;
 		margin: 0px;
 	}
 	.sub-content1 {
