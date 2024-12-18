@@ -2,8 +2,7 @@
     background-color: var(--red);
     color: white;
     padding: 10px;
- 
-    font-size: 18px;
+    font-size: var(--d-body-text);
     /* font-family: ; */
     width: 100%;
 
