@@ -349,7 +349,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 	const items = [
 		{
 			key: "listingForm",
-			label: "Listing Form",
+			label: "Create Listing",
 			children: (
 				<>
 					<div className="savedPropertiesContent">

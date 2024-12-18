@@ -8,11 +8,12 @@ import floorlogo from "../assets/images/floorlogo.png";
 import property from "../assets/property.png";
 
 // icons
-import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
-import ShowerOutlinedIcon from "@mui/icons-material/ShowerOutlined";
-import ShortcutOutlinedIcon from "@mui/icons-material/ShortcutOutlined";
-import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
-import PhpOutlinedIcon from '@mui/icons-material/PhpOutlined';
+import { 
+	UnfoldLessDoubleOutlined, RoofingOutlined, 
+	DirectionsCarOutlined, ShortcutOutlined,
+	ShowerOutlined, BedOutlined
+} from '@mui/icons-material';
+
 
 const UnitDetailsComponent = ({
 	onComplete,
@@ -32,6 +33,7 @@ const UnitDetailsComponent = ({
 	setPropertyFields,
 	selectedPropertyTab,
 	isSubmitted,
+	openNotificationWithIcon
 }) => {
 	const [price, setPrice] = useState("");
 	const [discountedPrice, setDiscountedPrice] = useState("");
@@ -45,17 +47,12 @@ const UnitDetailsComponent = ({
 	const [floorArea, setFloorArea] = useState("");
 	const [lotArea, setLotArea] = useState("");
 	const [propId, setPropId] = useState(null);
-
-
-	useEffect(() => {
-		console.log("isSubmitted unit details; ", isSubmitted);
-	}, []);
+	
 	useEffect(() => {
 		console.log("isSubmitted unit details1; ", isSubmitted);
 	}, [isSubmitted]);
 	useEffect(() => {
 		if (isSubmitted) {
-			console.log("i AM INSIDE THE isSubmitted");
 			setPrice("");
 			setDiscountedPrice("");
 			setPricePerSqm("");
@@ -87,24 +84,54 @@ const UnitDetailsComponent = ({
 	};
 
 	const handleBedChange = (e) => {
-		const value = e.target.value.replace(/,/g, "");
-		const parsedValue = parseInt(value, 10) || 0;
-		setNoOfBeds(parsedValue);
+		const value = e.target.value.replace(/,/g, "").trim();
+		const bedVal = Number(value);
+
+		if (bedVal <= 20 && bedVal >= 0) {
+			const parsedValue = parseInt(value, 10) || 0;
+			console.log(parsedValue);
+
+			setNoOfBeds(parsedValue);
+
+		} else {
+			openNotificationWithIcon("warning", "", "The maximum number allowed is 20.")
+		}
 	};
 	const handleFloorChange = (e) => {
-		const value = e.target.value.replace(/,/g, "");
-		const parsedValue = parseInt(value, 10) || 0;
-		setNoOfFloors(parsedValue);
+		const value = e.target.value.replace(/,/g, "").trim();
+		const floorVal = Number(value);
+
+		if (floorVal <= 20 && floorVal >= 0) {
+			const parsedValue = parseInt(value, 10) || 0;
+			setNoOfFloors(parsedValue);
+
+		} else {
+			openNotificationWithIcon("warning", "", "The maximum number allowed is 20.")
+		}
 	};
 	const handleParkingChange = (e) => {
-		const value = e.target.value.replace(/,/g, "");
-		const parsedValue = parseInt(value, 10) || 0;
-		setParking(parsedValue);
+		const value = e.target.value.replace(/,/g, "").trim();
+		const parkingVal = Number(value);
+
+		if (parkingVal <= 20 && parkingVal >= 0) {
+			const parsedValue = parseInt(value, 10) || 0;
+			setParking(parsedValue);
+
+		} else {
+			openNotificationWithIcon("warning", "", "The maximum number allowed is 20.")
+		}
 	};
 	const handleBathroomChange = (e) => {
-		const value = e.target.value.replace(/,/g, "");
-		const parsedValue = parseInt(value, 10) || 0;
-		setNoOfBathrooms(parsedValue);
+		const value = e.target.value.replace(/,/g, "").trim();
+		const bathVal = Number(value);
+
+		if (bathVal <= 20 && bathVal >= 0) {
+			const parsedValue = parseInt(value, 10) || 0;
+			setNoOfBathrooms(parsedValue);
+
+		} else {
+			openNotificationWithIcon("warning", "", "The maximum number allowed is 20.")
+		}
 	};
 
 	useEffect(() => {
@@ -343,13 +370,13 @@ const UnitDetailsComponent = ({
 							<div className="beds-listing-unit-input-group">
 								<div className="overlap-10">
 									<div className="field--icon">
-										<BedOutlinedIcon
+										<BedOutlined
 											className="beds-logo"
 										/>
 									</div>
 									<div className="beds-number">
 										<input
-											type="number"
+											type="text"
 											className="beds-input"
 											value={noOfBeds}
 											max={20}
@@ -387,11 +414,11 @@ const UnitDetailsComponent = ({
 							<div className="parking-listing-unit-input-group">
 								<div className="overlap-10">
 									<div className="field--icon">
-										<DirectionsCarFilledOutlinedIcon className="parking-logo" />
+										<DirectionsCarOutlined className="parking-logo" />
 									</div>
 									<div className="parking-number">
 										<input
-											type="number"
+											type="text"
 											className="parking-input"
 											value={Parking}
 											min={0}
@@ -428,13 +455,13 @@ const UnitDetailsComponent = ({
 							</label>
 							<div className="floor-input-container">
 								<div className="floor-logo">
-									<ShortcutOutlinedIcon className="floor-logo-img" />
+									<ShortcutOutlined className="floor-logo-img" />
 								</div>
 								<input
 									id="floorarea-input"
 									className={`floorarea-input ${floorAreaInputError ? "error-input" : ""
 										}`}
-									type="number"
+									type="text"
 									onChange={(e) => {
 										setFloorArea(e.target.value);
 										validateNumberInput(e.target.value, setFloorAreaInputError);
@@ -564,11 +591,11 @@ const UnitDetailsComponent = ({
 							<div className="bathroom-listing-unit-input-group">
 								<div className="overlap-10">
 									<div className="field--icon">
-										<ShowerOutlinedIcon className="bathroom-logo" />
+										<ShowerOutlined className="bathroom-logo" />
 									</div>
 									<div className="bathroom-number">
 										<input
-											type="number"
+											type="text"
 											className="bathroom-input"
 											value={noOfBathrooms}
 											min={0}
@@ -581,6 +608,7 @@ const UnitDetailsComponent = ({
 												textAlign: "center",
 												cursor: disabledPropertyFields ? "not-allowed" : "auto",
 											}}
+
 										/>
 										<BathroomInputSlider
 											value={noOfBathrooms}
@@ -607,15 +635,11 @@ const UnitDetailsComponent = ({
 							<div className="nofloors-listing-unit-input-group">
 								<div className="overlap-10">
 									<div className="field--icon">
-										<img
-											className="nofloors-logo"
-											alt="nofloors-logo"
-											src="https://cdn.animaapp.com/projects/64e41d552340cba66b90f01a/releases/665e706f7ae3ba3a45818d90/img/descending-number-order-1@2x.png"
-										/>
+										<UnfoldLessDoubleOutlined className="nofloors-logo"/>
 									</div>
 									<div className="nofloors-number">
 										<input
-											type="number"
+											type="text"
 											className="no-of-floors-input"
 											value={noOfFloors}
 											min={0}
@@ -653,7 +677,7 @@ const UnitDetailsComponent = ({
 							</label>
 							<div className="lot-area-input-container">
 								<div className="lot-area-logo">
-									<DirectionsCarFilledOutlinedIcon className="lot-area-logo-img" />
+									<ShortcutOutlined className="lot-area-logo-img" />
 								</div>
 								<input
 									id="lot-area-input"
@@ -686,11 +710,12 @@ const UnitDetailsComponent = ({
 							</label>
 							<div className="propid-input-container">
 								<div className="propid-logo">
-									<img
+									{/* <img
 										className="propid-logo-img"
 										alt="prop-id-logo"
 										src={property}
-									/>
+									/> */}
+									<RoofingOutlined className="propid-logo-img"/>
 								</div>
 								<input
 									id="propid-input"

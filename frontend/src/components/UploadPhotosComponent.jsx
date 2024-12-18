@@ -27,6 +27,10 @@ const UploadPhotosComponent = ({
 			setUploadError("You can only upload a maximum of 10 images.");
 			return;
 		}
+		// if (uploadedPhotos.length + acceptedFiles.length < 5) {
+		// 	setUploadError("You need to upload at least 5 images.");
+		// 	return;
+		// }
 		acceptedFiles.forEach((file) => {
 			if (validateFile(file)) {
 				Resizer.imageFileResizer(
@@ -77,8 +81,9 @@ const UploadPhotosComponent = ({
 		const upload_date_time = phtDate.toISOString();
 		const complete =
 			uploadedPhotos !== null &&
-			uploadedPhotos.length >= 1 &&
-			uploadedPhotos.length <= 10;
+			// uploadedPhotos.length >= 1 &&
+			uploadedPhotos.length <= 10 &&
+			uploadedPhotos.length >= 5;
 		if (complete) {
 			setPropertyFields({
 				Photo: uploadedPhotos,
@@ -124,6 +129,9 @@ const UploadPhotosComponent = ({
 						<p>Drag & drop photos here, or click to select photos</p>
 					</div>
 					{uploadError && <p className="error">{uploadError}</p>}
+					{
+						uploadedPhotos.length < 5 && uploadedPhotos.length >= 1 && <p>You need to upload at least 5 images.</p>
+					}
 					<div className="DisplayUploadedPhotoHere">
 						{uploadedPhotos.map((photo, index) => (
 							<div
@@ -135,8 +143,8 @@ const UploadPhotosComponent = ({
 									src={photo.preview}
 									alt={`Uploaded preview ${index}`}
 									style={{
-										width: "250px",
-										height: "160px",
+										width: "100%",
+										height: "150px",
 										// objectFit: "cover",
 									}}
 								/>
