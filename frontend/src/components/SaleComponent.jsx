@@ -136,7 +136,7 @@ const SaleComponent = () => {
 							const getPhotoGallery = await GetUnitPhotos(item.id);
 
 							const gallery = getPhotoGallery.data;
-							const isRent = item.SaleType == "rent";
+							const isRent = item.SaleType == "rent" || item.SaleType == "Rent";
 							const image = GetPhotoWithUrl(item.Photo);
 
 							return {
