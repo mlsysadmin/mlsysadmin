@@ -115,7 +115,7 @@ const FeaturedComponents = ({
 				Why is your property so great? Tell us more about your property so that
 				property seekers can learn even more about your offer.
 			</p>
-			<div className="features">
+			<div className="features--wrapper">
 				<FeaturesList
 					title="Indoor Features"
 					features={indooramenities}

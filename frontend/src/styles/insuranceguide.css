@@ -27,8 +27,11 @@
 
 .insurance-guide-content-four .insurance-header,
 .insurance-guide-content-five .i-questions-title {
-	font-size: var(--d-header-2-fs);
+	font-size: var(--d-h2-text);
 	margin-bottom: 50px;
+}
+.insurance-guide-content-five .dropdown-label .dropdown-content{
+font-size: var(--d-body-text) !important;
 }
 
 /* Content-One */
@@ -125,11 +128,11 @@
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	gap: 50px;
+	/* gap: 50px; */
 }
 
 .insurance-guide-tagline-two span {
-	font-size: var(--d-header-3-fs);
+	font-size: var(--d-h3-text);
 }
 
 .insurance-guide-tagline-two p {
@@ -166,7 +169,7 @@
 }
 
 .insurance-products .insurance-child {
-	font-size: var(--d-text-label-fs);
+	font-size: var(--d-body-text);
 	padding: 0 10px;
 	margin: 10px 0;
 }
@@ -219,14 +222,14 @@
 	width: 100% !important;
 	margin: 50px 0 90px;
 	gap: 3.5rem;
-	font-size: var(--d-header-3-fs);
+	font-size: var(--d-body-text);
 	text-align: left;
 	display: flex;
 	flex-direction: column;
 }
 
 .insurance-guide-content-five .questions .dropdown-label {
-	font-size: var(--d-text-label-fs) !important;
+	font-size: var(--d-body-text) !important;
 
 }
 

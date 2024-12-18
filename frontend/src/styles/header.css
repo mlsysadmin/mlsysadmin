@@ -80,7 +80,7 @@
 }
 .ant-popover .ant-popover-inner{
     padding: 20px 30px;
-    border-radius: 30px;
+    border-radius: var(--radius);
 }
 .ant-popover .ant-popover-title{
     font-weight: bold;
@@ -199,5 +199,20 @@
 @media screen and (min-width: 1376px) and (max-width: 1500px) {
     .header--menu.ant-menu li {
        padding: 5px;
+    }
+}
+
+@media screen and (max-width: 1524px) {
+    .ant-popover-content{
+        margin-right: 0;
+    }
+    .ant-popover{
+        font-size: var(--m-body-text) !important;
+    }
+    .ant-popover .ant-popover-inner{
+        padding: 15px;
+    }
+    .ant-popover .ant-popover-title, .gutter-row.submenu{
+        padding: 0 10px;
     }
 }

@@ -319,7 +319,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin: 20px 0px 0px 0px;
+    margin: 0px;
   }
 
   .wrap-up-inf .prop-content2-wrap-up .input-lock,
@@ -352,6 +352,13 @@
 
   .wrap-up-inf .prop-content2-wrap-up .wrap-up-dropdown-button {
     padding: 15px;
+  }
+}
+
+
+@media screen and (max-width: 999px) {
+  .wrap-up-inf .prop-content2-wrap-up{
+    gap: 10px;
   }
 }
 

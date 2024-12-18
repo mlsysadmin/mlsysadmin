@@ -425,6 +425,7 @@ const HeaderMenu = () => {
 					selectedKeys={[currentMenu]}
 					onClick={handleMenuOnClick}
 					className="header--menu"
+					disabledOverflow={true}
 				></Menu>
 				{!isAuthenticated && (
 					<>

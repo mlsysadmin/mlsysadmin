@@ -34,6 +34,7 @@ import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import NoDataAvailable from "./NoDataFoundComponent";
 import { capitalize } from "@mui/material";
 import { Breadcrumb } from "antd";
+import LoginMessageModal from "./modals/LoginMessageModal";
 import { getCookieData } from "../utils/CookieChecker";
 
 const AllComponent = () => {
@@ -66,6 +67,7 @@ const AllComponent = () => {
 		},
 	]);
 	const [filterLocation, setFilterLocation] = useState([]);
+	const [showLoginMessage, setShowLoginMessage] = useState(false);
 	const [headerText, setHeaderText] = useState("properties For Rent");
 	const [searchParams, setSearchParams] = useState({
 		location: null,
@@ -91,6 +93,10 @@ const AllComponent = () => {
 	const handleCardClick = (id) => {
 		navigate(`/previewListing/?id=${id}`, { state: id });
 	};
+	const handleShowLoginModal = () => {
+		setShowLoginMessage(true);
+	};
+
 
 	const getlistings = async (sale_type) => {
 		try {
@@ -115,13 +121,15 @@ const AllComponent = () => {
 							const getPhotoGallery = await GetUnitPhotos(item.id);
 
 							const gallery = getPhotoGallery.data;
-
+							const isRent = item.SaleType == "rent";
 							const image = GetPhotoWithUrl(item.Photo);
 
 							return {
 								id: item.id,
 								title: CapitalizeString(item.UnitName),
-								price: AmountFormatterGroup(item.Price),
+								price: `PHP ${AmountFormatterGroup(item.Price)}${
+									isRent ? "/mo." : ""
+								}`,
 								status: `For ${CapitalizeString(item.SaleType)}`,
 								pics: image ? gallery.length + 1 : 0,
 								img: image,
@@ -207,91 +215,102 @@ const AllComponent = () => {
 
 	return (
 		<div className="all-container">
-			<div className="all-searchcomponent">
-				<ListingSearch
-					location={filterLocation}
-					searchParams={searchParams}
-					setSearchFilters={setSearchParams}
-				/>
-			</div>
-			<div className="all-page-container">
-				<Breadcrumb
-					separator=">"
-					items={breadCrumbItems}
-					className="all-h1 breadcrumb--search"
-				/>
-				<span className="all-h1">
-					{/* Properties For {capitalize(saleType)} */}
-					{headerText}
-				</span>
-				{currentCards.length !== 0 ? (
-					<>
-						<SearchPropertiesSoration
-							properties_count={publiclisting.length}
-							current_properties_count={currentCards.length}
-							selectedSort={selectedSort}
-							setSelectedSort={setSelectedSort}
-							HandleSort={HandleSort}
-						/>
-						{!loading ? (
-							currentCards.length !== 0 ? (
-								<div className="card-container">
-									{currentCards.map((data, index) => (
-										<Card
-											key={index}
-											id={data.id}
-											title={data.title}
-											price={`PHP ${data.price}`}
-											imgSrc={data.img}
-											beds={data.bedrooms}
-											baths={data.bathrooms}
-											size={data.lot}
-											likes={data.pics}
-											forsale={data.status}
-											subtitle={`${CapitalizeEachWord(
-												data.property_type
-											)} For ${CapitalizeString(data.sale_type)}`}
-											handleClick={() => handleCardClick(data.property_no)}
-											propertyNo={data.property_no}
-											vendorId={data.vendorId}
-											number={number}
-										/>
-									))}
-								</div>
-							) : (
-								<NoDataAvailable
-									message={`No available properties for Rent/Sale`}
-								/>
-							)
-						) : (
-							<div
-								className="card-skeleton-loading"
-								style={{
-									display: "flex",
-									justifyContent: "center",
-									gap: "20px",
-								}}
-							>
-								{Array(3)
-									.fill(null)
-									.map((_, i) => (
-										<CardSkeleton key={i} />
-									))}
-							</div>
-						)}
-					</>
-				) : (
-					<NoDataAvailable message={`No available properties for Rent/Sale`} />
-				)}
-
-				{currentCards.length > 0 && (
-					<Pagination
-						currentPage={currentPage}
-						totalPages={totalPages}
-						paginate={setCurrentPage}
+			<div className="all-content-container">
+				<div className="all-searchcomponent">
+					<ListingSearch
+						location={filterLocation}
+						searchParams={searchParams}
+						setSearchFilters={setSearchParams}
 					/>
-				)}
+				</div>
+				<div className="all-page-container">
+					<Breadcrumb
+						separator=">"
+						items={breadCrumbItems}
+						className="all-h1 breadcrumb--search"
+					/>
+					<h2 className="all-h1">
+						{/* Properties For {capitalize(saleType)} */}
+						{headerText}
+					</h2>
+					{currentCards.length !== 0 ? (
+						<>
+							<SearchPropertiesSoration
+								properties_count={publiclisting.length}
+								current_properties_count={currentCards.length}
+								selectedSort={selectedSort}
+								setSelectedSort={setSelectedSort}
+								HandleSort={HandleSort}
+							/>
+							{!loading ? (
+								currentCards.length !== 0 ? (
+									<div className="card-container">
+										{currentCards.map((data, index) => (
+											<Card
+												key={index}
+												id={data.id}
+												title={data.title}
+												price={data.price}
+												imgSrc={data.img}
+												beds={data.bedrooms}
+												baths={data.bathrooms}
+												size={data.lot}
+												likes={data.pics}
+												forsale={data.status}
+												subtitle={`${CapitalizeEachWord(
+													data.property_type
+												)} For ${CapitalizeString(data.sale_type)}`}
+												handleClick={() => handleCardClick(data.property_no)}
+												propertyNo={data.property_no}
+												vendorId={data.vendorId}
+												number={number}
+												handleShowLoginModalMessage={handleShowLoginModal}
+											/>
+										))}
+										{showLoginMessage && (
+											<LoginMessageModal
+												setShowLoginMessage={setShowLoginMessage}
+											/>
+										)}
+									</div>
+								) : (
+									<NoDataAvailable
+										message={`No available properties for Rent/Sale`}
+									/>
+								)
+							) : (
+								<div
+									className="card-skeleton-loading"
+									style={{
+										display: "flex",
+										justifyContent: "center",
+										gap: "20px",
+									}}
+								>
+									{Array(3)
+										.fill(null)
+										.map((_, i) => (
+											<CardSkeleton key={i} />
+										))}
+								</div>
+							)}
+						</>
+					) : (
+						<NoDataAvailable
+							message={`No available properties for Rent/Sale`}
+						/>
+					)}
+
+					{currentCards.length > 0 && (
+						<Pagination
+							currentPage={currentPage}
+							totalPages={totalPages}
+							paginate={setCurrentPage}
+						/>
+					)}
+				</div>
 			</div>
+
 			<CustomMlFooter />
 			<FooterComponent />
 		</div>

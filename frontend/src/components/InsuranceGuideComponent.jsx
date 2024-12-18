@@ -104,7 +104,7 @@ const InsuranceGuideComponent = () => {
 							about the rest.
 						</span>
 						<br />
-						<p>We’re here to help. Connect with M Lhuillier today!</p>
+						<p>We’re here to help. Connect with <br/>M Lhuillier today!</p>
 					</div>
 				</div>
 				<div className="insurance-guide-content-four">

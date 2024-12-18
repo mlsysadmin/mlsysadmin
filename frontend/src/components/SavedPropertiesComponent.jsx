@@ -28,9 +28,7 @@ import "../styles/seller-broker/saved-properties.css";
 import { useAuth } from "../Context/AuthContext";
 
 const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
-	const {
-		isAuthenticated, userDetails, logout
-	} = useAuth();
+	const { isAuthenticated, userDetails, logout } = useAuth();
 
 	const [selectedSort, setSelectedSort] = useState("dateAdded");
 	const [tabOpened, setTabOpened] = useState("");
@@ -53,7 +51,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 	const [number, setNumber] = useState("");
 
 	useEffect(() => {
-		const hash = window.location.hash.replace("#", ""); 
+		const hash = window.location.hash.replace("#", "");
 		setTabOpened(hash);
 	}, []);
 
@@ -61,30 +59,29 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 		if (isAuthenticated) {
 			const accountDetails = userDetails;
 			setNumber(accountDetails.mobileNumber);
-		}else{
+		} else {
 			// logout();
 		}
-		
-	}, [])
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace("#", "");
-      if (hash && items.some(item => item.key === hash)) {
-        onChange(hash); // Call onChange with the hash value
-      }
-    };
+	}, []);
+	useEffect(() => {
+		const handleHashChange = () => {
+			const hash = window.location.hash.replace("#", "");
+			if (hash && items.some((item) => item.key === hash)) {
+				onChange(hash); // Call onChange with the hash value
+			}
+		};
 
-    // Initial check on mount
-    handleHashChange();
+		// Initial check on mount
+		handleHashChange();
 
-    // Listen for hash changes
-    window.addEventListener('hashchange', handleHashChange);
+		// Listen for hash changes
+		window.addEventListener("hashchange", handleHashChange);
 
-    // Cleanup the event listener on unmount
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange);
-    };
-  }, []);
+		// Cleanup the event listener on unmount
+		return () => {
+			window.removeEventListener("hashchange", handleHashChange);
+		};
+	}, []);
 	const [filteredAndSortedListings, setFilteredAndSortedListings] = useState([
 		{
 			id: 0,
@@ -119,12 +116,12 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 
 	const location = useLocation();
 	const isSavedPropertiesRoute =
-	location.pathname.includes("/saved-properties");
+		location.pathname.includes("/saved-properties");
 	const isSavedPropertiesTab = tabOpened === "savedProperties";
 
 	const onChange = (key) => {
 		setTabOpened(key);
-		window.location.hash = key; 
+		window.location.hash = key;
 		if (key === "propertyListings") {
 			setSelectedSort("allListings");
 			setSortTypes([
@@ -145,7 +142,6 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 					value: "deniedListings",
 				},
 			]);
-
 		} else if (key === "savedProperties") {
 			setSelectedSort("dateAdded");
 			setSortTypes([
@@ -187,7 +183,6 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 						if (listingRes.length === 0) {
 							console.log("No Data Found");
 						} else {
-
 							if (selectedSort === "dateAdded") {
 								listingRes.sort(
 									(a, b) => new Date(b.updated_at) - new Date(a.updated_at)
@@ -214,12 +209,15 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 								listingRes.map(async (item) => {
 									const getPhotoGallery = await GetUnitPhotos(item.id);
 									const gallery = getPhotoGallery.data;
+									const isRent = item.SaleType == "rent";
 									const image = GetPhotoWithUrl(item.Photo);
 
 									return {
 										id: item.id,
 										title: CapitalizeString(item.UnitName),
-										price: AmountFormatterGroup(item.Price),
+										price: `PHP ${AmountFormatterGroup(item.Price)}${
+											isRent ? "/mo." : ""
+										}`,
 										status: "New",
 										pics: image ? gallery.length + 1 : 1,
 										img: image,
@@ -334,7 +332,6 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 		navigate(`/previewListing/?id=${id}`, { state: id });
 	};
 	const handleSelect = (value) => {
-
 		setSelectedSort(value);
 	};
 	const getListingLabel = (selectedSort) => {
@@ -352,10 +349,12 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 	const items = [
 		{
 			key: "listingForm",
-			label: "Listing Form",
+			label: "Create Listing",
 			children: (
 				<>
-					<ListingForm  />
+					<div className="savedPropertiesContent">
+						<ListingForm />
+					</div>
 				</>
 			),
 		},
@@ -422,7 +421,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 							)
 						) : (
 							<div
-								className="listing-carousel-dashboard"
+								className="listing-carousel-dashboard-skeleton"
 								style={{
 									display: "flex",
 								}}
@@ -474,7 +473,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 														isSavedPropertiesRoute && isSavedPropertiesTab
 													}
 													title={item.title}
-													price={`PHP ${item.price}`}
+													price={item.price}
 													status={item.status}
 													pics={item.pics}
 													img={item.img}
@@ -523,7 +522,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 								)
 							) : (
 								<div
-									className="listing-carousel-dashboard"
+									className="listing-carousel-dashboard-skeleton"
 									style={{
 										display: "flex",
 									}}
@@ -545,7 +544,9 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 			label: "Join Our Team",
 			children: (
 				<>
-					<JoinTeam isMLWWSPresent={!isMLWWSPresent} />
+					<div className="savedPropertiesContent">
+						<JoinTeam isUserDetails={!userDetails} />
+					</div>
 				</>
 			),
 		},
@@ -555,12 +556,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 		<>
 			<div className="wholeViewSavedProperties">
 				<div className="savedPropertiesBackgroundComponent">
-					<Tabs
-
-						items={items}
-						onChange={onChange}
-						activeKey={tabOpened}
-					/>
+					<Tabs items={items} onChange={onChange} activeKey={tabOpened} />
 				</div>
 			</div>
 

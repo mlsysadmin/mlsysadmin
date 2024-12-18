@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Steps, Menu, Dropdown, Slider, notification } from "antd";
+import { notification } from "antd";
 import MainLayout from "./layout/layout.component";
 import SubmitApplicationCustom from "./custom/application/submitapplication.custom";
 import FooterComponent from "./layout/FooterComponent";
@@ -9,15 +9,19 @@ import "../styles/refinance.css";
 import RoundBtn from "./custom/buttons/RoundBtn.custom";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import { SendRefinance } from "../api/Public/Email.api";
+import Box from '@mui/material/Box';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+
 
 const RefinanceComponent = () => {
-  const { Step } = Steps;
   const [current, setCurrent] = useState(0);
   const [completedSteps, setCompletedSteps] = useState({
     property: false,
     loan: false,
     details: false,
-    wrapUp: false,
+    wrapup: false,
   });
 
   const loanGroupRef = useRef(null);
@@ -43,7 +47,7 @@ const RefinanceComponent = () => {
   const [mortpayments, setMortPayments] = useState("");
   const [creditscore, setCreditScore] = useState("");
   const [homeLocation, setHomeLocation] = useState("");
-
+  const [isSubmittedAlready, setIsSubmittedAlready] = useState(false);
   const [customerInfo, setCustomerInfo] = useState({
     mobile_number: "",
     email: "",
@@ -67,24 +71,34 @@ const RefinanceComponent = () => {
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
   };
-  const isValidEmail = (email) => {
-    // Regular expression for validating an email address
-    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(email);
-    if (!emailPattern) {
-      return false;
-    }else{ 
-      return true;
-    }
-  };
-  const handleKeyDown = (e) => {
-    // Regular expression to allow letters and symbols only
-    const validInputPattern = /^[A-Za-z\s!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+  // const isValidEmail = (email) => {
+  //   // Regular expression for validating an email address
+  //   const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(email);
+  //   if (!emailPattern) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // };
 
-    // Check if the key pressed is valid
-    if (!validInputPattern.test(e.key) && e.key !== 'Backspace' && e.key !== 'Tab') {
-      e.preventDefault(); // Prevent the default action if the key is invalid
-    }
-  };
+  useEffect(() => {
+    console.log("isWrapUpComplete: ", isWrapUpComplete);
+  },[isWrapUpComplete])
+
+  // const handleKeyDown = (e) => {
+  //   // Regular expression to allow letters and symbols only
+  //   const validInputPattern =
+  //     /^[A-Za-z\s!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+
+  //   // Check if the key pressed is valid
+  //   if (
+  //     !validInputPattern.test(e.key) &&
+  //     e.key !== "Backspace" &&
+  //     e.key !== "Tab"
+  //   ) {
+  //     e.preventDefault(); // Prevent the default action if the key is invalid
+  //   }
+  // };
   // Property handlers
   const handleRefPropQuest1 = (option) => {
     setRefPropQuest1(option);
@@ -141,18 +155,18 @@ const RefinanceComponent = () => {
   };
 
   // Scroll handler
-  const onChange = (value) => {
-    setCurrent(value);
-    if (value === 0) {
-      PropertyGroupRef.current.scrollIntoView({ behavior: "smooth" });
-    } else if (value === 1) {
-      loanGroupRef.current.scrollIntoView({ behavior: "smooth" });
-    } else if (value === 2) {
-      DetailsGroupRef.current.scrollIntoView({ behavior: "smooth" });
-    } else if (value === 3) {
-      WrapUpGroupRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  // const onChange = (value) => {
+  //   setCurrent(value);
+  //   if (value === 0) {
+  //     PropertyGroupRef.current.scrollIntoView({ behavior: "smooth" });
+  //   } else if (value === 1) {
+  //     loanGroupRef.current.scrollIntoView({ behavior: "smooth" });
+  //   } else if (value === 2) {
+  //     DetailsGroupRef.current.scrollIntoView({ behavior: "smooth" });
+  //   } else if (value === 3) {
+  //     WrapUpGroupRef.current.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -189,11 +203,18 @@ const RefinanceComponent = () => {
 
   useEffect(() => {
     if (isWrapUpComplete) {
-      setCompletedSteps((prev) => ({ ...prev, wrapUp: isWrapUpComplete }));
+      setCompletedSteps((prev) => ({ ...prev, wrapup: isWrapUpComplete }));
     } else {
-      setCompletedSteps((prev) => ({ ...prev, wrapUp: isWrapUpComplete }));
+      setCompletedSteps((prev) => ({ ...prev, wrapup: isWrapUpComplete }));
     }
   }, [isWrapUpComplete]);
+
+  const steps = [
+    'Property',
+    'Loan',
+    'Details',
+    'WrapUp',
+  ];
 
   const buttonGroup1 = [
     "Single family",
@@ -218,11 +239,11 @@ const RefinanceComponent = () => {
     "Secondary/Vacation",
     "Investment property",
   ];
-  const buttonGroup3 = [
-    "Primary residence",
-    "Secondary/Vacation",
-    "Investment property",
-  ];
+  // const buttonGroup3 = [
+  //   "Primary residence",
+  //   "Secondary/Vacation",
+  //   "Investment property",
+  // ];
 
   const property = {
     reason: refPropquest1,
@@ -305,14 +326,6 @@ const RefinanceComponent = () => {
     homeLocation,
   ]);
 
-  //Trigger Steps for Wrap Up
-  useEffect(() => {
-    if (isWrapUpComplete) {
-      setCompletedSteps((prev) => ({ ...prev, wrapUp: isWrapUpComplete }));
-    } else {
-      setCompletedSteps((prev) => ({ ...prev, wrapUp: isWrapUpComplete }));
-    }
-  }, [isWrapUpComplete]);
 
   const handleSubmitApplication = async () => {
     const combinedProperty = { ...property, ...customerInfo };
@@ -370,6 +383,20 @@ const RefinanceComponent = () => {
         "Success",
         "Great news! Your Pre-Approval Application has been successfully submitted. We’ll review it and get back to you shortly. Thanks for choosing us!"
       );
+      setRefPropQuest1("");
+      setRefPropQuest2("");
+      setSelectedDropdownOption("");
+      setsSelectedbtnprop("");
+      setRefinanceAmount("");
+      setLoanAmount("");
+      setAdditionalLoanAmount("");
+      setEmplStatus("");
+      setAnnualInc("");
+      setBankcruptcyStat("");
+      setMortPayments("");
+      setCreditScore("");
+      setHomeLocation("");
+      setIsSubmittedAlready(true);
       setLoading(false);
     } catch (error) {
       console.log("error", error);
@@ -387,12 +414,14 @@ const RefinanceComponent = () => {
       {contextHolder}
       <div className="refinance-content">
         <div className="refinance-group-one">
-          <Steps
+        <div className="radiobtn-group">
+          {/* <Steps
             current={current}
             onChange={onChange}
             percent={100}
             labelPlacement="vertical"
             size="small"
+            // type="inline"
             className="custom-steps"
           >
             <Step
@@ -411,12 +440,22 @@ const RefinanceComponent = () => {
               title="WrapUp"
               status={completedSteps.wrapUp ? "finish" : "wait"}
             />
-          </Steps>
+          </Steps> */}
+          <Box sx={{ width: "100%" }} className="custom-steps">
+            <Stepper activeStep={0} alternativeLabel>
+              {steps.map((label) => (
+                <Step key={label}completed={completedSteps[label.toLowerCase()]}>
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+          </Box>
+          </div>
         </div>
-        <br />
         <div className="refinance-property-group" ref={PropertyGroupRef}>
           <div className="refinance-property-group-one">
             <h4>Property</h4>
+            <br/>
             <span>Why do you want to refinance?</span>
             <div className="ref-btn-group">
               {[
@@ -476,7 +515,7 @@ const RefinanceComponent = () => {
             </div>
           </div>
           <div className="refinance-property-group-three">
-            <span>Why do you want to refinance?</span>
+            <span>What kind of home are you looking for?</span>
             <div className="ref-btn-group">
               {buttonGroup1.map((button, index) => (
                 <button
@@ -698,6 +737,7 @@ const RefinanceComponent = () => {
             setWrapUpComplete={setIsWrapUpComplete}
             setCustomerInfo={setCustomerInfo}
             customerInfo={customerInfo}
+            isSubmitted={isSubmittedAlready}
           />
         </div>
         <br />
