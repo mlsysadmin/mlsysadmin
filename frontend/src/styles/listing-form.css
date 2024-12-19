@@ -291,6 +291,7 @@ span.selected {
 
 .descriptionContent textarea {
 	height: 20vh;
+	text-align: justify;
 }
 
 .listing-property-details-info .b,
@@ -1020,6 +1021,12 @@ select.location-form-inputs {
 .listing-application .listing-steps {
 	margin-bottom: 150px;
 	/* top: 0; */
+}
+.floorarea-input, .lot-area-input,
+.price-input, .pricepersqm-input, .disc-price-input,
+.propid-input,
+.form-input{
+	font-size: var(--d-body-text) !important;
 }
 
 /* Responsive adjustments */
