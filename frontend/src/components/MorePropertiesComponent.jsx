@@ -89,7 +89,7 @@ const MorePropertiesComponent = ({
 				const listing = await Promise.all(
 					filteredListing.map(async (list, i) => {
 						const formatPrice = Number(list.Price).toLocaleString();
-						const isRent = list.SaleType == "rent";
+						const isRent = list.SaleType == "rent" || list.SaleType == "Rent";
 
 						const getPhotoGallery = await GetUnitPhotos(list.id);
 

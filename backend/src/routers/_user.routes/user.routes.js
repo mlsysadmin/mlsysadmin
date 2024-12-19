@@ -2,16 +2,18 @@ const express = require("express");
 const USER_ROUTER = express.Router();
 
 const auth = require("../../middleware/_auth/jwt.auth.middleware");
-const { Login, Register, SearchUser, SearchKyc, GoogleSignIn, UserLogout, SendOTP, ValidateOTP, RegisterKyc, UserLogin, UserSendOtp, CheckSession } = require("../../controllers/_users/user.controller");
+const { Login, Register, SearchUser, SearchKyc, GoogleSignIn, UserLogout, SendOTP, ValidateOTP, RegisterKyc, UserLogin, UserSendOtp, CheckSession, FirstAttemptLogin, CreateLoginAttempt } = require("../../controllers/_users/user.controller");
 const { Validation } = require("../../middleware/_validator/validator.middleware");
 const {
     searchKyc, LoginBody,
     otpProperty,
     validateOtp,
-    registerKyc
+    registerKyc,
+    addUserLogin
 } = require("../../utils/_helper/validationSchema.helper");
 const verifyApiKey = require("../../middleware/_auth/api.auth.middleware");
 const verifyToken = require("../../middleware/_auth/jwt.auth.middleware");
+const { InsertUserLoginAttempt } = require("../../streamline/user.datastream");
 
 USER_ROUTER.post('/login', Validation(LoginBody, "body"), Login);
 // USER_ROUTER.post('/register', Validation(ValidationSchema.RegisterBody, "body"), Register);
@@ -27,5 +29,8 @@ USER_ROUTER.post('/register-kyc', verifyApiKey, Validation(registerKyc, 'body', 
 USER_ROUTER.post('/external-login', verifyApiKey, Validation(validateOtp, 'body', 'payload'), UserLogin);
 USER_ROUTER.post('/external-send-otp', verifyApiKey, Validation(otpProperty, 'body', 'payload'), UserSendOtp);
 USER_ROUTER.post('/check-session', verifyApiKey, CheckSession);
+USER_ROUTER.post('/search/user-login-attempt', verifyApiKey, Validation(searchKyc, 'body', 'payload'), FirstAttemptLogin);
+USER_ROUTER.post('/insert/user-login-attempt', verifyApiKey, Validation(addUserLogin, 'body', 'payload'), CreateLoginAttempt);
+USER_ROUTER.get('/logout', verifyApiKey, verifyToken, UserLogout);
 
 module.exports = USER_ROUTER;

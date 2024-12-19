@@ -167,10 +167,16 @@ font-size: var(--d-body-text);
 	bottom: 10px;
 	right: 10px;
 }
+.icon:hover{
+	 background-color: var(--white);
+	 color: var(--red);
+	transform: scale(1.1);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
 .icon {
 	color: #333333;
-	background: #fff;
+	background: var(--white);
 	border-radius: 40px;
 	display: flex;
 	justify-content: center;
@@ -178,6 +184,7 @@ font-size: var(--d-body-text);
 	width: 39px;
 	height: 35px;
 	cursor: pointer;
+	transition: all 0.2s ease-in-out;
 }
 .icon .anticon {
 	font-size: 22px;

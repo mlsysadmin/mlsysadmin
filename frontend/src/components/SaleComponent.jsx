@@ -26,6 +26,7 @@ import {
 	CapitalizeString,
 	FillLocationFilter,
 	CapitalizeStringwithSymbol,
+	TruncateText,
 	GetPropertyTitle,
 	SortListings,
 } from "../utils/StringFunctions.utils";
@@ -135,7 +136,7 @@ const SaleComponent = () => {
 							const getPhotoGallery = await GetUnitPhotos(item.id);
 
 							const gallery = getPhotoGallery.data;
-							const isRent = item.SaleType == "rent";
+							const isRent = item.SaleType == "rent" || item.SaleType == "Rent";
 							const image = GetPhotoWithUrl(item.Photo);
 
 							return {
@@ -256,7 +257,7 @@ const SaleComponent = () => {
 										<Card
 											key={index}
 											id={data.id}
-											title={data.title}
+											title={TruncateText(data.title)}
 											price={data.price}
 											imgSrc={data.img}
 											beds={data.no_of_beds}

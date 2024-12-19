@@ -81,7 +81,7 @@ const SellerLogInButtonDropdown = () => {
 	// }, []);
 
 	const handleLogout = async () => {
-		logout();
+		await logout();
 	};
 
 	const toPascalCase = (name) => {
@@ -112,7 +112,7 @@ const SellerLogInButtonDropdown = () => {
 					backgroundColor: "#D90000",
 					color: "white",
 					border: "none",
-					padding: "6px 10px",
+					padding: "8px 10px",
 					borderRadius: "5px",
 					display: "flex",
 					alignItems: "center",

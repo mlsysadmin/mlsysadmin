@@ -18,7 +18,7 @@ import ListingSearch from "./custom/customsearch/custom.listingsearch";
 import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
-import { CapitalizeEachWord, CapitalizeStringwithSymbol, CapitalizeString, FillLocationFilter, GetPropertyTitle, isPastAMonth, SortByText, SortMaxPrice, SortPrice } from "../utils/StringFunctions.utils";
+import { CapitalizeEachWord, CapitalizeStringwithSymbol, CapitalizeString, FillLocationFilter, GetPropertyTitle, isPastAMonth, SortByText, SortMaxPrice, SortPrice, TruncateText} from "../utils/StringFunctions.utils";
 import DefaultPropertyImage from '../asset/fallbackImage.png';
 
 const NewPageComponent = () => {
@@ -100,7 +100,8 @@ const NewPageComponent = () => {
 						const getPhotoGallery = await GetUnitPhotos(item.id);
 
 						const gallery = getPhotoGallery.data;
-                        const isRent = item.SaleType == "rent";
+                        const isRent =
+													item.SaleType == "Rent" || item.SaleType == "rent";
 						const image = GetPhotoWithUrl(item.Photo);
 
 						return {
@@ -214,7 +215,7 @@ const NewPageComponent = () => {
 											<Card
 												key={index}
 												id={data.id}
-												title={data.title}
+												title={TruncateText(data.title)}
 												price={data.price}
 												imgSrc={data.img}
 												beds={data.no_of_beds}

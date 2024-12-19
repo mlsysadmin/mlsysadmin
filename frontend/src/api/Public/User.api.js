@@ -50,7 +50,7 @@ const GoogleSignIn = async () => {
 const Logout = async () => {
     try {
 
-        const endpoint = `api/user/support/logout`
+        const endpoint = `api/user/logout`
 
         const headers = {
             'x-api-key': process.env.REACT_APP_API_KEY
@@ -119,5 +119,55 @@ const checkSession = async () => {
 	}
 };
 
+const FirstAttemptLogin = async (payload) => {
+	try {
+		
+        const config = {
+			headers: {
+				"Content-Type": "application/json",
+				"x-api-key": process.env.REACT_APP_API_KEY,
+			},
+		};
 
-export { GoogleSignIn, Logout, searchKyc, checkSession };
+        const body = {
+            payload
+        }
+
+		const response = await MLBROKERAGEAxiosInstance.post(
+			"/api/user/search/user-login-attempt", body, config
+		);
+
+		return response.data;
+	} catch (error) {
+		console.error("",error);
+		throw error;
+	}
+};
+
+const CreateLoginAttempt = async (payload) => {
+	try {
+		
+        const config = {
+			headers: {
+				"Content-Type": "application/json",
+				"x-api-key": process.env.REACT_APP_API_KEY,
+			},
+		};
+
+        const body = {
+            payload
+        }
+
+		const response = await MLBROKERAGEAxiosInstance.post(
+			"/api/user/insert/user-login-attempt", body, config
+		);
+
+		return response.data;
+	} catch (error) {
+		console.error("",error);
+		throw error;
+	}
+};
+
+
+export { GoogleSignIn, Logout, searchKyc, checkSession, FirstAttemptLogin, CreateLoginAttempt };
