@@ -9,11 +9,10 @@ import "../styles/refinance.css";
 import RoundBtn from "./custom/buttons/RoundBtn.custom";
 import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import { SendRefinance } from "../api/Public/Email.api";
-import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-
+import Box from "@mui/material/Box";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
 
 const RefinanceComponent = () => {
   const [current, setCurrent] = useState(0);
@@ -28,6 +27,13 @@ const RefinanceComponent = () => {
   const PropertyGroupRef = useRef(null);
   const DetailsGroupRef = useRef(null);
   const WrapUpGroupRef = useRef(null);
+
+  const [isPropertyComplete, setIsPropertyComplete] = useState(false);
+  const [isLoanComplete, setIsLoanComplete] = useState(false);
+  const [isDetailsComplete, setIsDetailsComplete] = useState(false);
+  const [isWrapUpComplete, setIsWrapUpComplete] = useState(false);
+  const [isWrapUpResetComplete, setIsWrapUpResetComplete] = useState(false);
+
 
   // Property state
   const [refPropquest1, setRefPropQuest1] = useState("");
@@ -61,7 +67,6 @@ const RefinanceComponent = () => {
     source_of_income: "",
   });
   // Wrap-up state
-  const [isWrapUpComplete, setIsWrapUpComplete] = useState(false);
   const [api, contextHolder] = notification.useNotification();
   const [loading, setLoading] = useState(false);
 
@@ -83,7 +88,7 @@ const RefinanceComponent = () => {
 
   useEffect(() => {
     console.log("isWrapUpComplete: ", isWrapUpComplete);
-  },[isWrapUpComplete])
+  }, [isWrapUpComplete]);
 
   // const handleKeyDown = (e) => {
   //   // Regular expression to allow letters and symbols only
@@ -209,12 +214,7 @@ const RefinanceComponent = () => {
     }
   }, [isWrapUpComplete]);
 
-  const steps = [
-    'Property',
-    'Loan',
-    'Details',
-    'WrapUp',
-  ];
+  const steps = ["Property", "Loan", "Details", "WrapUp"];
 
   const buttonGroup1 = [
     "Single family",
@@ -278,8 +278,12 @@ const RefinanceComponent = () => {
       refinanceAmount === "";
 
     if (!isAnyFieldEmptyForProperty) {
+      setIsPropertyComplete(true);
       setCompletedSteps((prev) => ({ ...prev, property: true }));
     } else {
+      setIsPropertyComplete(false);
+      setLoanAmount("");
+      setAdditionalLoanAmount("");
       setCompletedSteps((prev) => ({ ...prev, property: false }));
     }
   }, [
@@ -294,10 +298,17 @@ const RefinanceComponent = () => {
   useEffect(() => {
     const isAnyFieldEmptyForLoans =
       loanAmount === "" || additionalLoanAmount === "";
-
     if (!isAnyFieldEmptyForLoans) {
+      setIsLoanComplete(true);
       setCompletedSteps((prev) => ({ ...prev, loan: true }));
     } else {
+      setIsLoanComplete(false);
+      setEmplStatus("");
+      setAnnualInc("");
+      setBankcruptcyStat("");
+      setMortPayments("");
+      setCreditScore("");
+      setHomeLocation("");
       setCompletedSteps((prev) => ({ ...prev, loan: false }));
     }
   }, [loanAmount, additionalLoanAmount]);
@@ -313,8 +324,23 @@ const RefinanceComponent = () => {
       homeLocation === "";
 
     if (!isAnyFieldEmptyForDetails) {
+      setIsDetailsComplete(true);
       setCompletedSteps((prev) => ({ ...prev, details: true }));
     } else {
+      setIsDetailsComplete(false);
+      setIsWrapUpResetComplete(true);
+      setCustomerInfo({
+        mobile_number: "",
+        email: "",
+        last_name: "",
+        first_name: "",
+        country: "Philippines",
+        province: "",
+        city: "",
+        zipcode: "",
+        others: "",
+        source_of_income: "",
+      })
       setCompletedSteps((prev) => ({ ...prev, details: false }));
     }
   }, [
@@ -325,7 +351,6 @@ const RefinanceComponent = () => {
     creditscore,
     homeLocation,
   ]);
-
 
   const handleSubmitApplication = async () => {
     const combinedProperty = { ...property, ...customerInfo };
@@ -388,8 +413,10 @@ const RefinanceComponent = () => {
       setSelectedDropdownOption("");
       setsSelectedbtnprop("");
       setRefinanceAmount("");
+
       setLoanAmount("");
       setAdditionalLoanAmount("");
+
       setEmplStatus("");
       setAnnualInc("");
       setBankcruptcyStat("");
@@ -414,8 +441,8 @@ const RefinanceComponent = () => {
       {contextHolder}
       <div className="refinance-content">
         <div className="refinance-group-one">
-        <div className="radiobtn-group">
-          {/* <Steps
+          <div className="radiobtn-group">
+            {/* <Steps
             current={current}
             onChange={onChange}
             percent={100}
@@ -441,21 +468,24 @@ const RefinanceComponent = () => {
               status={completedSteps.wrapUp ? "finish" : "wait"}
             />
           </Steps> */}
-          <Box sx={{ width: "100%" }} className="custom-steps">
-            <Stepper activeStep={0} alternativeLabel>
-              {steps.map((label) => (
-                <Step key={label}completed={completedSteps[label.toLowerCase()]}>
-                  <StepLabel>{label}</StepLabel>
-                </Step>
-              ))}
-            </Stepper>
-          </Box>
+            <Box sx={{ width: "100%" }} className="custom-steps">
+              <Stepper activeStep={0} alternativeLabel>
+                {steps.map((label) => (
+                  <Step
+                    key={label}
+                    completed={completedSteps[label.toLowerCase()]}
+                  >
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
+            </Box>
           </div>
         </div>
         <div className="refinance-property-group" ref={PropertyGroupRef}>
           <div className="refinance-property-group-one">
             <h4>Property</h4>
-            <br/>
+            <br />
             <span>Why do you want to refinance?</span>
             <div className="ref-btn-group">
               {[
@@ -505,7 +535,7 @@ const RefinanceComponent = () => {
                   onChange={handleDropdownOptionChange}
                 >
                   <option value="" disabled hidden>
-                    Select your current interest rate
+                    Select interest rate
                   </option>
                   <option value="15%">15%</option>
                   <option value="20%">20%</option>
@@ -567,12 +597,10 @@ const RefinanceComponent = () => {
             </div>
           </div>
         </div>
-        <br />
-        <br />
-        <br />
         <div className="refinance-loan-group" ref={loanGroupRef}>
           <div className="refinance-loan-group-one">
             <h4>Loans</h4>
+            <br />
             <span>What's your remaining balance of your current loan?</span>
             <span className="estimate">(an estimate is fine)</span>
             <div className="ref-btn-group">
@@ -588,6 +616,7 @@ const RefinanceComponent = () => {
                     e.preventDefault(); // Prevent non-numeric characters from being entered
                   }
                 }}
+                disabled={!isPropertyComplete}
               />
             </div>
           </div>
@@ -611,17 +640,16 @@ const RefinanceComponent = () => {
                     e.preventDefault(); // Prevent non-numeric characters from being entered
                   }
                 }}
+                disabled={!isPropertyComplete}
               />
             </div>
             {/* Remove the button */}
           </div>
         </div>
-        <br />
-        <br />
-        <br />
         <div className="refinance-details-group" ref={DetailsGroupRef}>
           <div className="refinance-details-group-one">
             <h4>Details</h4>
+            <br />
             <span>What is your current employment status?</span>
             <div className="ref-btn-group">
               {["Employed", "Self-employed", "Retired", "Not employed"].map(
@@ -632,6 +660,7 @@ const RefinanceComponent = () => {
                       empStatus === status ? "active" : `${status}`
                     }`}
                     onClick={() => handleEmploymentStatus(status)}
+                    disabled={!isLoanComplete}
                   >
                     {status}
                   </button>
@@ -651,6 +680,7 @@ const RefinanceComponent = () => {
                     annualInc === button ? "active" : ""
                   }`}
                   onClick={() => handleAnnualIncome(button)}
+                  disabled={!isLoanComplete}
                 >
                   {button}
                 </button>
@@ -667,6 +697,7 @@ const RefinanceComponent = () => {
                     bankcruptcyStat === answer ? "active" : ""
                   }`}
                   onClick={() => handleBankcrutpcyStatus(answer)}
+                  disabled={!isLoanComplete}
                 >
                   {answer}
                 </button>
@@ -685,6 +716,7 @@ const RefinanceComponent = () => {
                     mortpayments === answer ? "active" : ""
                   }`}
                   onClick={() => handleMortgagePayments(answer)}
+                  disabled={!isLoanComplete}
                 >
                   {answer}
                 </button>
@@ -708,6 +740,7 @@ const RefinanceComponent = () => {
                     creditscore === score ? "active" : ""
                   }`}
                   onClick={() => handleCreditScore(score)}
+                  disabled={!isLoanComplete}
                 >
                   {score}
                 </button>
@@ -726,6 +759,7 @@ const RefinanceComponent = () => {
                   placeholder="City or zip code"
                   value={homeLocation}
                   onChange={(e) => setHomeLocation(e.target.value)}
+                  disabled={!isLoanComplete}
                 />
               </div>
             </div>
@@ -737,15 +771,15 @@ const RefinanceComponent = () => {
             setWrapUpComplete={setIsWrapUpComplete}
             setCustomerInfo={setCustomerInfo}
             customerInfo={customerInfo}
+            isDetailsComplete={isDetailsComplete}
+            setIsWrapUpResetComplete={isWrapUpResetComplete}
             isSubmitted={isSubmittedAlready}
           />
         </div>
         <br />
-        <br />
-        <br />
         <span
           style={{
-            fontSize: "18px",
+            fontSize: "var(--d-body-text)",
             color: "#8C9094",
             width: "79%",
             margin: "auto",
