@@ -21,7 +21,7 @@
 .savedPropertiesContent {
   background: var(--white);
   max-width: var(--default-page-size);
-
+padding-top: 40px;
   margin: auto;
   /* flex-direction: row;
   flex-wrap: wrap; */
@@ -41,7 +41,8 @@
   justify-content: flex-start;
 }
 .no-saved-properties-container{
-  margin-top: 40px;
+  margin-top: 50px;
+  height: 210px;
 }
 .no-saved-property-content{
   display: flex;
@@ -218,4 +219,9 @@
   /* gap: 100px; */
   margin-top: 30px;
   width: 100%;
+}
+@media screen and (min-width: 360px) {
+  .no-saved-properties-container{
+    height: 100%;
+  }
 }
