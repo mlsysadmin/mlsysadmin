@@ -128,8 +128,6 @@ const DiscoverHomeComponent = () => {
 		;
 
 		console.log("totalMonthlyPayment:", totalMonthlyPayment);
-
-		// Yearly payment
 		const yearlyPayment = totalMonthlyPayment * 12;
 		setYearlyPayment(Math.round(yearlyPayment));
 
