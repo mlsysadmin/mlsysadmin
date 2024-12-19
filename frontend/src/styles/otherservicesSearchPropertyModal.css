@@ -44,7 +44,7 @@
 .why-choose-us h2, 
 .how-it-works h2,
 .form-section h3{
-  font-size: var(--d-header-3-fs) !important;
+ font-size: var(--d-h2-text) !important;
 }
 
 .toptitle .top-title {
@@ -54,7 +54,7 @@
 }
 
 .toptitle .top-description {
-  font-size: var(--d-text-label-fs);
+  font-size: var(--d-body-text);
   color: #555;
 }
 
@@ -79,7 +79,7 @@
 .why-choose-us ul {
   list-style: none;
   padding: 0;
-  font-size: var(--d-text-label-fs);
+  font-size: var(--d-body-text);
 }
 
 .why-choose-us li {
@@ -124,12 +124,14 @@
   font-size: 20px;
 }
 .how-it-works .step span {
-  margin-top: 20px;
+  margin-top: 10px;
+  height: 40px;
   font-weight: bold;
-  font-size: var(--d-sub-label-fs);
+  font-size: var(--d-h5-text);
 }
 .how-it-works .step p {
-  font-size: var(--d-text-label-fs);
+    font-size: var(--d-body-text);
+    text-align: baseline;
 }
 .form-section {
   margin-top: 30px;
@@ -142,7 +144,7 @@
   font-size: 30px;
 }
 .form-section p {
-  font-size: var(--d-text-label-fs);
+    font-size: var(--d-body-text);
 }
 .property-search-form {
   display: flex;
@@ -172,7 +174,7 @@
 .form-row .form-column select {
   flex: 1;
   padding: 10px;
-  font-size: var(--d-text-label-fs);
+  font-size: var(--d-body-text);
   border: 1px solid #ccc;
   border-radius: 5px;
   outline: none;
@@ -194,7 +196,7 @@
 }
 
 .form-section .property-search-form .form-row .form-column span {
-  font-size: var(--d-text-label-fs);
+  font-size: var(--d-body-text);
 }
 .submit-row button {
   background: red;

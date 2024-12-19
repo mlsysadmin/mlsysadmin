@@ -188,7 +188,7 @@ const AllComponent = () => {
 			// setLoading(false);
 			const bread = [
 				{ title: "All", href: "/all" },
-				{ title: "For Rent/For Sale/For Pre-Selling" },
+				{ title: "For Rent/For Sale/Pre-Selling" },
 			].map((sale) => {
 				return { title: sale.title, href: sale.href };
 			});

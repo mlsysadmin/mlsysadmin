@@ -222,7 +222,7 @@ const PropertySearch = () => {
       <div className="modal-content-searchprop">
         {contextHolder}
         <div className="toptitle">
-          <span className="top-title">Looking for Your Dream Property? </span>
+          <h2 className="top-title">Looking for Your Dream Property? </h2>
           <span className="top-description">
             Let us help you find the perfect place to call home! Whether you're
             searching for a luxurious estate, commercial lot for your business,
