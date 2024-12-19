@@ -164,15 +164,17 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 	};
 
 
-	const handleDiscoverHomeBtn = () =>{
+	const handleDiscoverHomeBtn = () => {
 		navigate("/new");
 	}
 
 	useEffect(() => {
 		const fetchSavedProperties = async () => {
 			setLoading(true);
+			
 			try {
 				if (tabOpened === "savedProperties") {
+					console.log("tabOpened", tabOpened);
 					const savedProperties = await GetSavedPropertiesBySellerNo(number);
 					const dataresp = savedProperties.data;
 
@@ -218,15 +220,14 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 									const getPhotoGallery = await GetUnitPhotos(item.id);
 									const gallery = getPhotoGallery.data;
 									const isRent =
-										item.SaleType == "Rent" || item.SaleType ==  "rent";
+										item.SaleType == "Rent" || item.SaleType == "rent";
 									const image = GetPhotoWithUrl(item.Photo);
 
 									return {
 										id: item.id,
 										title: CapitalizeString(item.UnitName),
-										price: `PHP ${AmountFormatterGroup(item.Price)}${
-											isRent ? "/mo." : ""
-										}`,
+										price: `PHP ${AmountFormatterGroup(item.Price)}${isRent ? "/mo." : ""
+											}`,
 										status: "New",
 										pics: image ? gallery.length + 1 : 1,
 										img: image,
@@ -296,16 +297,15 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 										const getPhotoGallery = await GetUnitPhotos(item.id);
 
 										const gallery = getPhotoGallery.data;
-										const isRent =item.SaleType == "Rent" || item.SaleType == "rent";
+										const isRent = item.SaleType == "Rent" || item.SaleType == "rent";
 
 										const image = GetPhotoWithUrl(item.Photo);
 
 										return {
 											id: item.id,
 											title: CapitalizeString(item.UnitName),
-											price: `PHP ${AmountFormatterGroup(item.Price)}${
-												isRent ? "/mo." : ""
-											}`,
+											price: `PHP ${AmountFormatterGroup(item.Price)}${isRent ? "/mo." : ""
+												}`,
 											status: "New",
 											pics: image ? gallery.length + 1 : 1,
 											img: image,
@@ -333,6 +333,8 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 				}
 			} catch (error) {
 				// console.error("Error fetching saved properties:", error);
+				setFilteredAndSortedListings([]);
+				setLoading(false);
 			}
 		};
 		fetchSavedProperties();
@@ -350,12 +352,12 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 		return selectedSort === "allListings"
 			? "All Listings"
 			: selectedSort === "pendingListings"
-			? "Pending Lists"
-			: selectedSort === "approvedListings"
-			? "Approved Lists"
-			: selectedSort === "deniedListings"
-			? "Denied Lists"
-			: "Unknown Listing";
+				? "Pending Lists"
+				: selectedSort === "approvedListings"
+					? "Approved Lists"
+					: selectedSort === "deniedListings"
+						? "Denied Lists"
+						: "Unknown Listing";
 	};
 
 	const items = [
@@ -394,7 +396,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 									{currentItems.map((item, i) => {
 										return (
 											<CardListingComponent
-												title={TruncateText(item.title)}
+												title={TruncateText(item.title, 100)}
 												price={item.price}
 												status={item.status}
 												pics={item.pics}
@@ -404,11 +406,10 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 												lot={item.lot}
 												key={i}
 												loading={loading}
-												subtitle={`${
-													item.property_type === "hotel/resort"
+												subtitle={`${item.property_type === "hotel/resort"
 														? CapitalizeStringwithSymbol(item.property_type)
 														: CapitalizeEachWord(item.property_type)
-												} For ${CapitalizeString(item.sale_type)}`}
+													} For ${CapitalizeString(item.sale_type)}`}
 												listingId={item.property_no}
 												handleClick={() => handleCardClick(item.property_no)}
 												sale_status={item.sale_type}
@@ -484,7 +485,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 													showDeleteIcon={
 														isSavedPropertiesRoute && isSavedPropertiesTab
 													}
-													title={TruncateText(item.title)}
+													title={TruncateText(item.title, 100)}
 													price={item.price}
 													status={item.status}
 													pics={item.pics}
@@ -494,11 +495,10 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 													lot={item.lot}
 													key={i}
 													loading={loading}
-													subtitle={`${
-														item.property_type === "hotel/resort"
+													subtitle={`${item.property_type === "hotel/resort"
 															? CapitalizeStringwithSymbol(item.property_type)
 															: CapitalizeEachWord(item.property_type)
-													} For ${CapitalizeString(item.sale_type)}`}
+														} For ${CapitalizeString(item.sale_type)}`}
 													listingId={item.property_no}
 													handleClick={() => handleCardClick(item.property_no)}
 													sale_status={item.sale_type}

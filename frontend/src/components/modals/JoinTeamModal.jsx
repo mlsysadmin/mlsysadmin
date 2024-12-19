@@ -213,9 +213,8 @@ const JoinTeam = ({ toggleModal }) => {
 			if (getControlLastNumber && isValid && getControlLastNumber.data !== "") {
 				const reqBody = {
 					AgentId: getControlLastNumber.data,
-					AgentName: `${formData.lastName}, ${formData.firstName} ${
-						formData.middleName
-					} ${formData.suffix === "None" ? "" : formData.suffix}`,
+					AgentName: `${formData.lastName}, ${formData.firstName} ${formData.middleName
+						} ${formData.suffix === "None" ? "" : formData.suffix}`,
 					Address: `${formData.address}, ${formData.city}, ${formData.province}, ${formData.country}`,
 					ContactNo: formData.mobileNumber,
 					Email: formData.email,
@@ -404,7 +403,7 @@ const JoinTeam = ({ toggleModal }) => {
 	//     })
 	//     .join(" ");
 	// };
-	useEffect(() => {}, [isAuthenticated]);
+	useEffect(() => { }, [isAuthenticated]);
 
 	if (!isAuthenticated) {
 		return (
@@ -455,7 +454,7 @@ const JoinTeam = ({ toggleModal }) => {
 							}}
 						>
 							<div className="modal-header">
-								<h2 style={{ color: "#000000", fontSize: "24px" }}>
+								<h2 style={{ color: "#000000" }}>
 									Join our innovative team at M Lhuillier.
 								</h2>
 								<span
@@ -466,7 +465,7 @@ const JoinTeam = ({ toggleModal }) => {
 									&times;
 								</span>
 							</div>
-							<p style={{ fontSize: "16px", color: "#000000" }}>
+							<p style={{ color: "#000000" }}>
 								Your expertise and passion are exactly what we need.
 							</p>
 							<div className="join-team-columns">
@@ -559,7 +558,7 @@ const JoinTeam = ({ toggleModal }) => {
 													}) // Corrected here
 											}
 											name="suffix"
-											// onChange={handleAddressChange}
+										// onChange={handleAddressChange}
 										>
 											<option value="" disabled selected hidden>
 												Select option
@@ -645,7 +644,7 @@ const JoinTeam = ({ toggleModal }) => {
 											value={formData.province}
 											onChange={(e) => handleProvinceChange(e.target.value)}
 											name="province"
-											// onChange={handleAddressChange}
+										// onChange={handleAddressChange}
 										>
 											<option value="" disabled selected hidden>
 												Select Province
@@ -777,15 +776,15 @@ const JoinTeam = ({ toggleModal }) => {
 										When did you start your affiliation as{" "}
 										{formData.brokerQuestion === "others"
 											? ["a", "e", "i", "o", "u"].includes(
-													othersInputValue.charAt(0).toLowerCase()
-											  )
+												othersInputValue.charAt(0).toLowerCase()
+											)
 												? "an"
 												: "a"
 											: ["a", "e", "i", "o", "u"].includes(
-													formData.brokerQuestion.charAt(0).toLowerCase()
-											  )
-											? "an"
-											: "a"}{" "}
+												formData.brokerQuestion.charAt(0).toLowerCase()
+											)
+												? "an"
+												: "a"}{" "}
 										{formData.brokerQuestion === "others"
 											? othersInputValue
 												? othersInputValue
@@ -841,7 +840,7 @@ const JoinTeam = ({ toggleModal }) => {
 					</div>
 					<p
 						className="sub-header-joinpage"
-						style={{ fontSize: "16px", color: "#000000" }}
+						style={{ color: "#000000" }}
 					>
 						Your expertise and passion are exactly what we need.
 					</p>
@@ -933,7 +932,7 @@ const JoinTeam = ({ toggleModal }) => {
 											}) // Corrected here
 									}
 									name="suffix"
-									// onChange={handleAddressChange}
+								// onChange={handleAddressChange}
 								>
 									<option value="" disabled selected hidden>
 										Select option
@@ -1017,7 +1016,7 @@ const JoinTeam = ({ toggleModal }) => {
 									value={formData.province}
 									onChange={(e) => handleProvinceChange(e.target.value)}
 									name="province"
-									// onChange={handleAddressChange}
+								// onChange={handleAddressChange}
 								>
 									<option value="" disabled selected hidden>
 										Select Province
@@ -1140,15 +1139,15 @@ const JoinTeam = ({ toggleModal }) => {
 								When did you start your affiliation as{" "}
 								{formData.brokerQuestion === "others"
 									? ["a", "e", "i", "o", "u"].includes(
-											othersInputValue.charAt(0).toLowerCase()
-									  )
+										othersInputValue.charAt(0).toLowerCase()
+									)
 										? "an"
 										: "a"
 									: ["a", "e", "i", "o", "u"].includes(
-											formData.brokerQuestion.charAt(0).toLowerCase()
-									  )
-									? "an"
-									: "a"}{" "}
+										formData.brokerQuestion.charAt(0).toLowerCase()
+									)
+										? "an"
+										: "a"}{" "}
 								{formData.brokerQuestion === "others"
 									? othersInputValue
 										? othersInputValue
@@ -1171,9 +1170,11 @@ const JoinTeam = ({ toggleModal }) => {
 							By proceeding, I agree and review that all information is correct.
 						</span>
 					</div>
-					<button onClick={handleSubmit} className="join-team-page-submit-button">
-						Submit Application
-					</button>
+					<div className="join__submit-btn--wrapper">
+						<button onClick={handleSubmit} className="join-team-page-submit-button">
+							Submit Application
+						</button>
+					</div>
 				</div>
 			)}
 		</div>

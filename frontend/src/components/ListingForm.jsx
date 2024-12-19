@@ -753,7 +753,7 @@ export const ListingForm = () => {
 								}}
 							>
 								<FeaturedComponents
-									onComplete={(completed) => handleStepComplete(5, completed)}
+									onComplete={(completed) => handleStepComplete(5, true)}
 									setPropertyFields={setPropertyDataFields}
 									selectedPropertyTab={propertyFields.PropertyType}
 									isSubmitted={submitted}

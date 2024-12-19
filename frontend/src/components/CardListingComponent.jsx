@@ -124,22 +124,22 @@ const CardListingComponent = ({
 		}
 	}, [showDeleteIcon, isDeleted]);
 
-	const loadProperties = async () => {
-		try {
-			const fetchedProperties = await GetSavedPropertiesBySellerNo(
-				userDetails.mobileNumber
-			);
-			setProperties(fetchedProperties.data);
-			console.log("Fetched properties:", fetchedProperties.data);
+	// const loadProperties = async () => {
+	// 	try {
+	// 		const fetchedProperties = await GetSavedPropertiesBySellerNo(
+	// 			userDetails.mobileNumber
+	// 		);
+	// 		setProperties(fetchedProperties.data);
+	// 		console.log("Fetched properties:", fetchedProperties.data);
 
-			return fetchedProperties.data;
-		} catch (error) {
-			console.error("Failed to load properties:", error);
-		}
-	};
-	useEffect(() => {
-		loadProperties();
-	}, []);
+	// 		return fetchedProperties.data;
+	// 	} catch (error) {
+	// 		console.error("Failed to load properties:", error);
+	// 	}
+	// };
+	// useEffect(() => {
+	// 	loadProperties();
+	// }, []);
 
 	const handleDeleteClick = async () => {
 		setIsDeleting(true);
@@ -162,11 +162,11 @@ const CardListingComponent = ({
 			setIsDeleting(false);
 		}
 	};
-	useEffect(() => {
-		if (isDeleted) {
-			loadProperties();
-		}
-	}, [isDeleted]);
+	// useEffect(() => {
+	// 	if (isDeleted) {
+	// 		loadProperties();
+	// 	}
+	// }, [isDeleted]);
 
 	return (
 		<div id="card-listing">
