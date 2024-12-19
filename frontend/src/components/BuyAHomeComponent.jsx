@@ -35,6 +35,12 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
     console.log("completedSteps: ", completedSteps);
   }, [completedSteps]);
 
+  const [isPropertyComplete, setIsPropertyComplete] = useState(false);
+  const [isLoanComplete, setIsLoanComplete] = useState(false);
+  const [isDetailsComplete, setIsDetailsComplete] = useState(false);
+  const [isWrapUpComplete, setIsWrapUpComplete] = useState(false);
+  const [isWrapUpResetComplete, setIsWrapUpResetComplete] = useState(false);
+
   const [current, setCurrent] = useState(0);
   const TimelineGroupRef = useRef(null);
   const PropertyGroupRef = useRef(null);
@@ -61,7 +67,6 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
   const [detailsquest7, setDetailsquest7] = useState("");
 
   // Wrap-up state
-  const [isWrapUpComplete, setIsWrapUpComplete] = useState(false);
   const [isSubmittedAlready, setIsSubmittedAlready] = useState(false);
 
   const steps = ["Property", "Timeline", "Details", "WrapUp"];
@@ -91,8 +96,12 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
       buttonClick === "";
 
     if (!isAnyFieldEmptyForProperty) {
+      setIsPropertyComplete(true);
       setCompletedSteps((prev) => ({ ...prev, property: true }));
     } else {
+      setIsPropertyComplete(false);
+      setTimelinequest1("");
+      setTimelinequest2("");
       setCompletedSteps((prev) => ({ ...prev, property: false }));
     }
   }, [selectedButton, selectedHomeButton, selectedNewHomeButton, buttonClick]);
@@ -102,8 +111,17 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
       timelinequest1 === "" || timelinequest2 === "";
 
     if (!isAnyFieldEmptyForTimeline) {
+      setIsLoanComplete(true);
       setCompletedSteps((prev) => ({ ...prev, timeline: true }));
     } else {
+      setIsLoanComplete(false);
+      setDetailsquest1("");
+      setDetailsquest2("");
+      setDetailsquest3("");
+      setDetailsquest4("");
+      setDetailsquest5("");
+      setDetailsquest6("");
+      setDetailsquest7("");
       setCompletedSteps((prev) => ({ ...prev, timeline: false }));
     }
   }, [timelinequest1, timelinequest2]);
@@ -116,10 +134,11 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
       detailsquest5 === "" ||
       detailsquest6 === "" ||
       detailsquest7 === "";
-
     if (!isAnyFieldEmptyForDetails) {
+      setIsDetailsComplete(true);
       setCompletedSteps((prev) => ({ ...prev, details: true }));
     } else {
+      setIsDetailsComplete(false);
       setCompletedSteps((prev) => ({ ...prev, details: false }));
     }
   }, [
@@ -469,8 +488,6 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                   </button>
                 ))}
               </div>
-              <br />
-              <br />
               <div className="prop-content2">
                 <span className="prop-quest">
                   What kind of home are you looking for?
@@ -496,8 +513,6 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                   ))}
                 </div>
               </div>
-              <br />
-              <br />
               <div className="prop-content3">
                 <span className="prop-quest">
                   How will you use your new home?
@@ -520,10 +535,6 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                   ))}
                 </div>
               </div>
-              <br />
-              <br />
-              <br />
-              <br />
               <div className="prop-content4">
                 <span className="prop-quest">
                   Do you have a real estate agent?
@@ -543,10 +554,6 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                 </div>
               </div>
             </div>
-            <br />
-            <br />
-            <br />
-            <br />
             {/* timeline */}
             <div className="prop-content1-timeline" ref={TimelineGroupRef}>
               <h3>Timeline</h3>
@@ -570,6 +577,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                       timelinequest1 === option ? "active" : ""
                     }`}
                     onClick={() => handleTimelineButtonClick(option)}
+                    disabled={!isPropertyComplete}
                   >
                     {option}
                   </button>
@@ -588,6 +596,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                         timelinequest2 === option ? "active" : ""
                       }`}
                       onClick={() => handleOwnershipButtonClick(option)}
+                      disabled={!isPropertyComplete}
                     >
                       {option}
                     </button>
@@ -613,13 +622,10 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
 							</div>
 						</div> */}
             </div>
-            <br />
-            <br />
-            <br />
-            <br />
             {/* Details */}
             <div className="prop-content5" ref={DetailsGroupRef}>
               <h3>Details</h3>
+              <br />
               <span className="prop-quest">Do you currently own a home?</span>
               <br />
               <div className="prop-info-btn-group-details">
@@ -634,6 +640,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                       detailsquest1 === option ? "active" : ""
                     }`}
                     onClick={() => handleDetailsquest1(option)}
+                    disabled={!isLoanComplete}
                   >
                     {option}
                   </button>
@@ -641,7 +648,6 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
               </div>
               <br />
               <div className="prop-content2">
-                <br />
                 <span className="prop-quest">
                   How much of a down payment would you like to make?
                 </span>
@@ -656,6 +662,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                           detailsquest2 === option ? "active" : ""
                         }`}
                         onClick={() => handleDetailsquest2(option)}
+                        disabled={!isLoanComplete}
                       >
                         {option}
                       </button>
@@ -663,8 +670,6 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                   )}
                 </div>
               </div>
-              <br />
-              <br />
               <div className="prop-content52">
                 <br />
                 <span className="prop-quest">
@@ -680,6 +685,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                           detailsquest3 === option ? "active" : ""
                         }`}
                         onClick={() => handleDetailsquest3(option)}
+                        disabled={!isLoanComplete}
                       >
                         {option}
                       </button>
@@ -687,8 +693,6 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                   )}
                 </div>
               </div>
-              <br />
-              <br />
               <div className="prop-content52">
                 <br />
                 <span className="prop-quest">
@@ -711,14 +715,13 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                         detailsquest4 === option ? "active" : ""
                       }`}
                       onClick={() => handleDetailsquest4(option)}
+                      disabled={!isLoanComplete}
                     >
                       {option}
                     </button>
                   ))}
                 </div>
               </div>
-              <br />
-              <br />
               <div className="prop-content4">
                 <br />
                 <span className="prop-quest">
@@ -733,14 +736,13 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                         detailsquest5 === option ? "active" : ""
                       }`}
                       onClick={() => handleDetailsquest5(option)}
+                      disabled={!isLoanComplete}
                     >
                       {option}
                     </button>
                   ))}
                 </div>
               </div>
-              <br />
-              <br />
               <div className="prop-content2">
                 <br />
                 <span className="prop-quest">
@@ -762,14 +764,13 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                         detailsquest6 === option ? "active" : ""
                       }`}
                       onClick={() => handleDetailsquest6(option)}
+                      disabled={!isLoanComplete}
                     >
                       {option}
                     </button>
                   ))}
                 </div>
               </div>
-              <br />
-              <br />
               <div className="prop-content-looking">
                 <br />
                 <span className="prop-quest">
@@ -787,29 +788,27 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                     placeholder="City or zip code"
                     style={{ padding: "0px 0px 0px 10px", fontSize: "15px" }}
                     onChange={(e) => handleDetailsquest7(e.target.value)}
+                    disabled={!isLoanComplete}
                   />
                 </div>
               </div>
             </div>
-            <br />
-            <br />
-            <br />
-            <br />
             {/* Wrap-up */}
             <div className="prop-content-wrap-up" ref={WrapUpGroupRef}>
               <WrapUpDetails
                 setWrapUpComplete={setIsWrapUpComplete}
                 setCustomerInfo={setCustomerInfo}
                 customerInfo={customerInfo}
+                isDetailsComplete={isDetailsComplete}
+                setIsWrapUpResetComplete={isWrapUpResetComplete}
                 isSubmitted={isSubmittedAlready}
               />
             </div>
             <br />
-            <br />
             <div className="preApproveDiv" style={{ textAlign: "center" }}>
               <div
                 style={{
-                  fontSize: "18px",
+                  fontSize: "var(--d-body-text)",
                   color: "#8C9094",
                   width: "79%",
                   margin: "auto auto 30px",
