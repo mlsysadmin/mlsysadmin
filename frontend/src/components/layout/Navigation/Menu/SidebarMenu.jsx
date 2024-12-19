@@ -15,8 +15,12 @@ import "../../../../styles/sellerdropdown.css";
 import TierUpgradeModal from "../../../modals/TierUpgradeModal";
 import SellerLogInButtonDropdown from "../../../custom/buttons/SellerLogInButtonDropdown";
 import { getCookieData } from "../../../../utils/CookieChecker";
+import { useAuth } from "../../../../Context/AuthContext";
 
 const SidebarMenu = ({ setOpenDrawer }) => {
+	const {
+		isAuthenticated, logout, userDetails, isSeller
+	} = useAuth();
 	const navigate = useNavigate();
 	const location = useLocation();
 	const [showUpgradeModal, setShowUpgradeModal] = useState(false);
@@ -25,7 +29,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 	const accountCookieName = process.env.REACT_APP_ACCOUNT_COOKIE_NAME;
 	const isMLWWSPresent = isCookiePresent(sessionCookieName);
 	const isAccountDetailsPresent = isCookiePresent(accountCookieName);
-	const [userDetails, setUserDetails] = useState(null);
+	// const [userDetails, setUserDetails] = useState(null);
 	const [tierUpgrade, setTierUpgrade] = useState(false);
 
 	const accountDetails = getCookieData();
@@ -52,39 +56,12 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 		// )}`;
 		navigate('/')
 	};
-	
+
 	const handleProfileClick = () => {
-		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
-		const loginUrl = process.env.REACT_APP_LOGIN_URL;
-		if (isMLWWSPresent && isAccountDetailsPresent) {
-			if (
-				userDetails?.tier?.label !== "BUYER" ||
-				userDetails?.tier?.label !== "SEMI-VERIFIED"
-			) {
-				window.location.href = "/";
-			} else {
-				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-					redirectUrl
-				)}`;
-				handleLogout();
-				setTierUpgrade(true);
-			}
-			// if (userDetails?.tier?.label === "FULLY VERIFIED") {
-			// 	window.location.href = "/";
-			// } else if (
-			// 	userDetails?.tier?.label === "BUYER" ||
-			// 	userDetails?.tier?.label === "SEMI-VERIFIED"
-			// ) {
-			// 	window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-			// 		redirectUrl
-			// 	)}`;
-			// 	handleLogout();
-			// 	setTierUpgrade(true);
-			// }
+		if (isAuthenticated && userDetails) {
+			window.location.href = "/";
 		} else {
-			window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-				redirectUrl
-			)}`;
+			window.location.href = `/login`;
 		}
 	};
 	const openTierUpgradeModal = () => {
@@ -92,73 +69,48 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 	};
 
 	const handleListPropertyClick = () => {
-		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
-		const loginUrl = process.env.REACT_APP_LOGIN_URL;
-		if (isMLWWSPresent && isAccountDetailsPresent) {
+		if (isAuthenticated && userDetails) {
 			if (
 				userDetails?.tier?.label !== "BUYER" ||
 				userDetails?.tier?.label !== "SEMI-VERIFIED"
 			) {
 				window.location.href = "/saved-properties#listingForm";
 			} else {
-				console.log("User is a buyer and cannot list properties.");
 				openUpgradeModal();
 			}
+
 		} else {
+
 			setShowUpgradeModal(true);
 		}
-
-		// const redirectUrl =
-		// 	isCookiePresent(sessionCookieName) && isCookiePresent(accountCookieName)
-		// 		? "/listing"
-		// 		: process.env.REACT_APP_LOGIN_URL;
-
-		// window.location.href = `${
-		// 	process.env.REACT_APP_REDIRECT_URL
-		// }?redirect_url=${encodeURIComponent(redirectUrl)}`;
 	};
-	const fetchUserDetails = async () => {
-		try {
-			const response = await searchKyc(accountDetails.mobileNumber);
-
-			const respData = response.data.data;
-			setUserDetails(respData);
-		} catch (error) {
-			console.error("Error fetching user details:", error);
-		}
-	};
-	
-useEffect(() => {
-	const currentPath = location.pathname;
-
-	if (currentPath.includes("/rent")) {
-		setCurrent("rent");
-	} if (currentPath.includes("/new")) {
-		setCurrent("new");
-	} else if (currentPath.includes("/sale")) {
-		setCurrent("buy");
-	} else if (currentPath.includes("/discover-home")) {
-		setCurrent("home-loan");
-	} else if (currentPath.includes("/loan-calculator")) {
-		setCurrent("home-loan");
-	} else if (currentPath.includes("/refinance")) {
-		setCurrent("home-loan");
-	} else if (currentPath.includes("/buy-a-home")) {
-		setCurrent("home-loan");
-	} 
-	// else if (currentPath.includes("/pre-selling")) {
-	// 	setCurrent("pre-selling");
-	// } 
-	else {
-		setCurrent("");
-	}
-}, [location.pathname]);
 
 	useEffect(() => {
-		if (isMLWWSPresent && isAccountDetailsPresent) {
-			fetchUserDetails();
+		const currentPath = location.pathname;
+
+		if (currentPath.includes("/rent")) {
+			setCurrent("rent");
+		} if (currentPath.includes("/new")) {
+			setCurrent("new");
+		} else if (currentPath.includes("/sale")) {
+			setCurrent("buy");
+		} else if (currentPath.includes("/discover-home")) {
+			setCurrent("home-loan");
+		} else if (currentPath.includes("/loan-calculator")) {
+			setCurrent("home-loan");
+		} else if (currentPath.includes("/refinance")) {
+			setCurrent("home-loan");
+		} else if (currentPath.includes("/buy-a-home")) {
+			setCurrent("home-loan");
 		}
-	}, [isMLWWSPresent, isAccountDetailsPresent]);
+		// else if (currentPath.includes("/pre-selling")) {
+		// 	setCurrent("pre-selling");
+		// } 
+		else {
+			setCurrent("");
+		}
+	}, [location.pathname]);
+
 	useEffect(() => {
 		const path = location.pathname.replace("/", "");
 
@@ -174,36 +126,36 @@ useEffect(() => {
 					// let childSub = sub.childSubMenu;
 					return Object.keys(sub).includes("childSubMenu")
 						? {
-								key: sub.childSubMenu.header,
-								label: sub.childSubMenu.header,
-								link: sub.link,
-								type: "group",
-								children: Object.keys(sub).includes("childSubMenu")
-									? sub.childSubMenu.submenu.map((i, k) => {
-											return {
-												key: i.header,
-												label: i.sub,
-											};
-									  })
-									: [],
-						  }
+							key: sub.childSubMenu.header,
+							label: sub.childSubMenu.header,
+							link: sub.link,
+							type: "group",
+							children: Object.keys(sub).includes("childSubMenu")
+								? sub.childSubMenu.submenu.map((i, k) => {
+									return {
+										key: i.header,
+										label: i.sub,
+									};
+								})
+								: [],
+						}
 						: Object.keys(sub).includes("sub_info")
-						? {
+							? {
 								key: sub.sub_info,
 								label: "Loan Dashboard",
 								link: sub.link,
-						  }
-						// : Object.keys(sub).includes("sub_info_insurance")
-						// ? {
-						// 		key: sub.sub_info_insurance,
-						// 		label: "Start Your Property Search Today!",
-						// 		link: sub.link,
-						//   }
-						: {
+							}
+							// : Object.keys(sub).includes("sub_info_insurance")
+							// ? {
+							// 		key: sub.sub_info_insurance,
+							// 		label: "Start Your Property Search Today!",
+							// 		link: sub.link,
+							//   }
+							: {
 								key: sub.sub,
 								label: sub.sub,
 								link: sub.link,
-						  };
+							};
 				}),
 			};
 		});
@@ -300,52 +252,55 @@ useEffect(() => {
 				}}
 				className="dropdown-user-gr"
 			>
-				<div
-					style={{
-						// gridRow: "1 / 3",
-						display: "flex",
-						flexDirection: "row",
-						justifyContent: "center",
-						alignItems: "center",
-						width: "100%",
-						gap: "10px",
-					}}
-					className="join-team-list-property"
-				>
-					<RoundBtn
-						type="primary"
-						id="list-prop"
-						className="menu-buttons"
-						style={{
-							background: "#D90000",
-						}}
-						label="List Your Property"
-						onClick={handleListPropertyClick}
-					/>
-					{showUpgradeModal && (
-						<UpgradeTierModal
-							isVisible={showUpgradeModal}
-							onClose={closeModal}
-							showLogin={showLogin}
-						/>
+				{
+					!isAuthenticated && (
+						<div
+							style={{
+								// gridRow: "1 / 3",
+								display: "flex",
+								flexDirection: "row",
+								justifyContent: "center",
+								alignItems: "center",
+								width: "100%",
+								gap: "10px",
+							}}
+							className="join-team-list-property"
+						>
+							<RoundBtn
+								type="primary"
+								id="list-prop"
+								className="menu-buttons"
+								style={{
+									background: "#D90000",
+								}}
+								label="List Your Property"
+								onClick={handleListPropertyClick}
+							/>
+							{showUpgradeModal && (
+								<UpgradeTierModal
+									isVisible={showUpgradeModal}
+									onClose={closeModal}
+									showLogin={showLogin}
+								/>
+							)}
+							<RoundBtn
+								type="primary"
+								id="join-team"
+								className="menu-buttons"
+								style={{
+									border: "#D90000 solid 1px",
+									background: "white",
+									color: "#D90000",
+								}}
+								label="Join Our Team"
+								onClick={handleJoinTeamClick}
+							/>
+						</div>
 					)}
-					<RoundBtn
-						type="primary"
-						id="join-team"
-						className="menu-buttons"
-						style={{
-							border: "#D90000 solid 1px",
-							background: "white",
-							color: "#D90000",
-						}}
-						label="Join Our Team"
-						onClick={handleJoinTeamClick}
-					/>
-				</div>
 				<Col className="menu-buttons">
-					{isMLWWSPresent ? (
-						userDetails?.tier?.label !== "BUYER" ||
-						userDetails?.tier?.label !== "SEMI-VERIFIED" ? (
+					{
+						// !isAuthenticated ? (
+						isAuthenticated && userDetails ? (
 							<SellerLogInButtonDropdown />
 						) : (
 							<img
@@ -354,13 +309,14 @@ useEffect(() => {
 								onClick={handleProfileClick}
 							/>
 						)
-					) : (
-						<img
-							src={userProfile}
-							style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
-							onClick={handleProfileClick}
-						/>
-					)}
+						// ) : (
+						// 	<img
+						// 		src={userProfile}
+						// 		style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
+						// 		onClick={handleProfileClick}
+						// 	/>
+						// )
+					}
 				</Col>
 				{tierUpgrade && <TierUpgradeModal openModal={openTierUpgradeModal} />}
 			</div>
