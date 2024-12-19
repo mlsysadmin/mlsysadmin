@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tabs } from "antd";
-import { CaretDownOutlined } from "@ant-design/icons";
+import { CaretDownOutlined, HeartOutlined } from "@ant-design/icons";
 import RoundSelect from "./custom/selects/RoundSelect.custom";
 import CardListingComponent from "./CardListingComponent";
 import DefaultPropertyImage from "../asset/fallbackImage.png";
@@ -27,6 +27,7 @@ import {
 import { GetVendorByNumber } from "../api/PostListings";
 import "../styles/seller-broker/saved-properties.css";
 import { useAuth } from "../Context/AuthContext";
+import { HearingOutlined } from "@mui/icons-material";
 
 const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 	const { isAuthenticated, userDetails, logout } = useAuth();
@@ -161,6 +162,11 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 			]);
 		}
 	};
+
+
+	const handleDiscoverHomeBtn = () =>{
+		navigate("/new");
+	}
 
 	useEffect(() => {
 		const fetchSavedProperties = async () => {
@@ -389,7 +395,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 										return (
 											<CardListingComponent
 												title={TruncateText(item.title)}
-												price= {item.price}
+												price={item.price}
 												status={item.status}
 												pics={item.pics}
 												img={item.img}
@@ -526,11 +532,36 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 										</div>
 									</div>
 								) : (
-									<NoDataAvailable
-										message={`No available Data that was been in ${getListingLabel(
-											selectedSort
-										)}`}
-									/>
+									<>
+										<div className="no-saved-properties-container">
+											<div className="no-saved-property-content">
+												<h2>Your Favorites List is Empty!</h2>
+												<div className="saved-property-text">
+													<div className="text-content-container">
+														<p>
+															Start your journey to finding the perfect home by
+															adding your favorites.
+														</p>
+														<span>
+															Tap the{" "}
+															<b style={{ color: "var(--red)" }}>
+																heart icon <HeartOutlined />{" "}
+															</b>{" "}
+															the on any listing to save it here!
+														</span>
+													</div>
+
+													<button
+														className="find-properties-btn"
+														onClick={handleDiscoverHomeBtn}
+													>
+														{" "}
+														Discover Your Dream Home{" "}
+													</button>
+												</div>
+											</div>
+										</div>
+									</>
 								)
 							) : (
 								<div

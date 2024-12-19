@@ -45,5 +45,21 @@ const GetControlLastNumber = async (idType) => {
       throw error;
     }
   };
+const GetAgentByAgentId = async (agentId) => {
+  try {
+    const response = await IGOTSOLUTIONSAxiosInstance.get(`api/getAgentByAgentId/${agentId}`)
+    console.log("agent data retrieved", response.data);
+    
+    return response.data;
+    
+  } catch (error) {
+     console.error("Error occurred while posting listing:", error);
+    console.log("Error details:", {
+      message: error.message,
+      stack: error.stack,
+      response: error.response, })
+  }
 
-export { AddAgent, GetControlLastNumber };
+}
+
+export { AddAgent, GetControlLastNumber, GetAgentByAgentId };

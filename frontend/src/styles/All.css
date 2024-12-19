@@ -49,7 +49,7 @@
 	font-weight: bold;
 }
 .all-h1.breadcrumb--search {
-	font-size: 18px !important;
+	font-size: var(--d-body-text)!important;
 	font-weight: 500;
 	/* margin: 40px auto 0; */
 }
@@ -115,7 +115,7 @@
 	.all-page-container .all-h1 {
 		font-size: 22px;
 		width: 100% !important;
-		margin: 30px auto 0px;
+		/* margin: 30px auto 0px; */
 	}
 	.all-searchcomponent, .all-content-container {
 		width: 100%;
@@ -250,6 +250,7 @@
 	}
 	.all-page-container {
 		width: 100%;
+		margin: 0px;
 	}
 
 	
@@ -327,18 +328,19 @@
 	}
 
 	.all-page-container .all-h1 {
-		font-size: 26px;
+		/* font-size: 26px; */
 		/* padding: 20px 0px 0px 45px; */
-		width: 1300px;
+		width: 100%;
 	}
 	.all-searchcomponent {
 		width: 100%;
+		
 	}
 	.all-page-container {
 		width: 100%;
 	}
 }
-@media screen and (min-width: 1201px) and (max-width: 1399px) {
+/* @media screen and (min-width: 1201px) and (max-width: 1399px) {
 	.all-page-container .all-h1 {
 		padding: 20px 0px 0px 80px !important;
 		width: 100%;
@@ -349,15 +351,16 @@
 	.all-page-container {
 		width: 100%;
 	}
-}
+} */
 @media screen and (min-width: 1401px) and (max-width: 1600px) {
 	.all-page-container .all-h1 {
-		font-size: 26px;
+		/* font-size: 26px; */
 		/* padding: 20px 0px 0px 0px !important; */
-		width: 1300px;
+		width:100%;
 	}
 	.all-searchcomponent {
 		width: 100%;
+		margin: 40px 0px;
 	}
 	.all-page-container {
 		width: 100%;

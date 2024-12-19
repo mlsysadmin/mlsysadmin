@@ -335,6 +335,22 @@ listing search */
 	margin-top: 0px;
 	border-color: var(--red) !important;
 }
+.subcontent-inputs-1 .right-button{
+background-color: var(--red) !important;
+	color: white;
+	border-radius: 5px;
+	padding: 10px 25px;
+	cursor: pointer;
+	font-weight: 500;
+	font-size:var(--d-body-text);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 55px;
+	width: 100px;
+	margin-top: 0px;
+	border-color: var(--red) !important;
+}
 
 .right-button:hover {
 	background-color: var(--red) !important;
@@ -841,12 +857,16 @@ listing search */
 	}
 	.subcontent-inputs-1 .right-button {
 		display: flex;
-		height: auto !important;
-		margin-top: 255px !important;
-		width: 41.5%;
+		height: 25px !important;
+		margin-top: 256px !important;
+		width: 41.5% !important;
 		padding: 1px 0px !important;
 		position: absolute !important;
 	    right: 30px;
+		text-align: center !important;
+		font-size: calc(var(--d-body-text) - 1px);
+	}
+	.subcontent-inputs-1 .right-button, .subcontent-inputs-1 .right-button.ant-btn:hover{
 		font-size: calc(var(--d-body-text) - 1px);
 	}
 	/* .advance-searchdropdown .custom-range-button {
