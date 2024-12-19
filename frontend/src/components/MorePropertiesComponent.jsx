@@ -98,7 +98,7 @@ const MorePropertiesComponent = ({
 						return {
 							title: CapitalizeString(list.UnitName),
 							photo: `${URL}/${list.Photo}`,
-							price: `PHP ${formatPrice}${isRent ? "/month" : ""}`,
+							price: `PHP ${formatPrice}${isRent ? "/mo." : ""}`,
 							subtitle: `${CapitalizeEachWord(
 								list.PropertyType
 							)} For ${CapitalizeString(list.SaleType)}`,
