@@ -74,13 +74,18 @@
            width:295px !important;
            padding:10px 0px 10px 0px !important;
            right: 12px !important;
-           top: 33px !important;
+           top: 35px !important;
+           border-top-left-radius: 0 !important;
+           border-top-right-radius: 0 !important;
+     }
+     .seller-drop-items ul{
+      gap: 15px !important;
      }
      #join-team{
         margin-top: 0px !important;
      }
      .seller-drop-items li  {
-         font-size: 15px !important;
+         font-size: var(--m-body-text) !important;;
       }
       .join-team-list-property .ant-btn{
          padding: 5px 15px;
