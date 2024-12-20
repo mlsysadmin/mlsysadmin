@@ -27,7 +27,7 @@
 
 .step-intro .p {
   color: #000000;
-  font-size: 18px;
+  font-size: calc(var(--d-body-text) + 1px);
   font-weight: 500;
   /* margin-top: 18px; */
   width: 100%;

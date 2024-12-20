@@ -34,7 +34,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 
 	const [selectedSort, setSelectedSort] = useState("dateAdded");
 	const [tabOpened, setTabOpened] = useState("");
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 	const [recordStatus, setIsRecordStatus] = useState("");
 	const [SortTypes, setSortTypes] = useState([
 		{
@@ -164,15 +164,17 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 	};
 
 
-	const handleDiscoverHomeBtn = () =>{
+	const handleDiscoverHomeBtn = () => {
 		navigate("/new");
 	}
 
 	useEffect(() => {
 		const fetchSavedProperties = async () => {
 			setLoading(true);
+			
 			try {
 				if (tabOpened === "savedProperties") {
+					console.log("tabOpened", tabOpened);
 					const savedProperties = await GetSavedPropertiesBySellerNo(number);
 					const dataresp = savedProperties.data;
 
@@ -218,15 +220,14 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 									const getPhotoGallery = await GetUnitPhotos(item.id);
 									const gallery = getPhotoGallery.data;
 									const isRent =
-										item.SaleType == "Rent" || item.SaleType ==  "rent";
+										item.SaleType == "Rent" || item.SaleType == "rent";
 									const image = GetPhotoWithUrl(item.Photo);
 
 									return {
 										id: item.id,
 										title: CapitalizeString(item.UnitName),
-										price: `PHP ${AmountFormatterGroup(item.Price)}${
-											isRent ? "/mo." : ""
-										}`,
+										price: `PHP ${AmountFormatterGroup(item.Price)}${isRent ? "/mo." : ""
+											}`,
 										status: "New",
 										pics: image ? gallery.length + 1 : 1,
 										img: image,
@@ -249,9 +250,11 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 					}
 				} else {
 					const vendorDetails = await GetVendorByNumber(number);
-
+					console.log("vendorDetails: ",vendorDetails);
 					if (vendorDetails.data) {
 						const vendorDataId = vendorDetails.data.VendorId;
+						console.log("vendorDataId: ",vendorDataId);
+						
 						const propertyListing = await PropertyListing(vendorDataId);
 						const dataresp = propertyListing;
 						if (dataresp.length == 0) {
@@ -296,16 +299,15 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 										const getPhotoGallery = await GetUnitPhotos(item.id);
 
 										const gallery = getPhotoGallery.data;
-										const isRent =item.SaleType == "Rent" || item.SaleType == "rent";
+										const isRent = item.SaleType == "Rent" || item.SaleType == "rent";
 
 										const image = GetPhotoWithUrl(item.Photo);
 
 										return {
 											id: item.id,
 											title: CapitalizeString(item.UnitName),
-											price: `PHP ${AmountFormatterGroup(item.Price)}${
-												isRent ? "/mo." : ""
-											}`,
+											price: `PHP ${AmountFormatterGroup(item.Price)}${isRent ? "/mo." : ""
+												}`,
 											status: "New",
 											pics: image ? gallery.length + 1 : 1,
 											img: image,
@@ -333,6 +335,8 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 				}
 			} catch (error) {
 				// console.error("Error fetching saved properties:", error);
+				setFilteredAndSortedListings([]);
+				setLoading(false);
 			}
 		};
 		fetchSavedProperties();
@@ -350,12 +354,12 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 		return selectedSort === "allListings"
 			? "All Listings"
 			: selectedSort === "pendingListings"
-			? "Pending Lists"
-			: selectedSort === "approvedListings"
-			? "Approved Lists"
-			: selectedSort === "deniedListings"
-			? "Denied Lists"
-			: "Unknown Listing";
+				? "Pending Lists"
+				: selectedSort === "approvedListings"
+					? "Approved Lists"
+					: selectedSort === "deniedListings"
+						? "Denied Lists"
+						: "Unknown Listing";
 	};
 
 	const items = [
@@ -394,7 +398,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 									{currentItems.map((item, i) => {
 										return (
 											<CardListingComponent
-												title={TruncateText(item.title)}
+												title={item.title}
 												price={item.price}
 												status={item.status}
 												pics={item.pics}
@@ -404,11 +408,10 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 												lot={item.lot}
 												key={i}
 												loading={loading}
-												subtitle={`${
-													item.property_type === "hotel/resort"
+												subtitle={`${item.property_type === "hotel/resort"
 														? CapitalizeStringwithSymbol(item.property_type)
 														: CapitalizeEachWord(item.property_type)
-												} For ${CapitalizeString(item.sale_type)}`}
+													} For ${CapitalizeString(item.sale_type)}`}
 												listingId={item.property_no}
 												handleClick={() => handleCardClick(item.property_no)}
 												sale_status={item.sale_type}
@@ -484,7 +487,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 													showDeleteIcon={
 														isSavedPropertiesRoute && isSavedPropertiesTab
 													}
-													title={TruncateText(item.title)}
+													title={item.title}
 													price={item.price}
 													status={item.status}
 													pics={item.pics}
@@ -494,11 +497,10 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 													lot={item.lot}
 													key={i}
 													loading={loading}
-													subtitle={`${
-														item.property_type === "hotel/resort"
+													subtitle={`${item.property_type === "hotel/resort"
 															? CapitalizeStringwithSymbol(item.property_type)
 															: CapitalizeEachWord(item.property_type)
-													} For ${CapitalizeString(item.sale_type)}`}
+														} For ${CapitalizeString(item.sale_type)}`}
 													listingId={item.property_no}
 													handleClick={() => handleCardClick(item.property_no)}
 													sale_status={item.sale_type}
@@ -535,7 +537,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 									<>
 										<div className="no-saved-properties-container">
 											<div className="no-saved-property-content">
-												<h2>Your Favorites List is Empty!</h2>
+												<h3>Your Favorites List is Empty!</h3>
 												<div className="saved-property-text">
 													<div className="text-content-container">
 														<p>
@@ -547,7 +549,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 															<b style={{ color: "var(--red)" }}>
 																heart icon <HeartOutlined />{" "}
 															</b>{" "}
-															the on any listing to save it here!
+															on any listing to save it here!
 														</span>
 													</div>
 

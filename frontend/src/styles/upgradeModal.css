@@ -15,6 +15,8 @@
         overflow-y: scroll;
         position:unset;
         font-size: var(--m-body-text) !important;
+        /* top: 0%; */
+        height: 80vh;
     }
     .signin-button-upgrade{
         margin-top: 25px;
@@ -24,7 +26,15 @@
        width: 80% !important;
     }
     .upgrade--title{
-        margin-top: 55px;
+        margin-top: 20px !important;
+        margin-bottom: 10px !important;
         font-size: var(--m-h3-text) !important;
     }
+        .upgrade-modal-content {
+            padding: 0px 15px 10px 15px !important;
+        }
+        .upgrade-content .anticon {
+            right: 10px !important;
+            top: 20px !important;
+        }
 }

@@ -23,7 +23,7 @@ const ListingSteps = ({ current, setCurrent, completedSteps }) => {
   return (
     <div className="listing-steps-container">
       <div className="step-intro">
-        <p className="p">Steps to complete your listing</p>
+        <p className="p">Complete your listing</p>
       </div>
       <Steps
         className="steps listing--steps-container"

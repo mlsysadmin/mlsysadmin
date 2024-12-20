@@ -649,7 +649,7 @@ const DashboardComponent = () => {
 								{publiclisting.map((item, i) => {
 									return (
 										<CardListingComponent
-											title={TruncateText(item.title)}
+											title={item.title}
 											price={item.price}
 											status={item.status}
 											pics={item.pics}

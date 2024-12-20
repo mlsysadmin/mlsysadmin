@@ -35,11 +35,6 @@ const PropertyCard = ({
 	const [showTooltip, setShowTooltip] = useState(false);
 
 	const { userDetails } = useAuth();
-	const title = `100sqm House and Lot For Sale in Banilad Cebu City. 
-    100sqm House and Lot For Sale in Banilad Cebu City. 
-    100sqm House and Lot For Sale in Banilad Cebu City.
-    100sqm House and Lot For Sale in Banilad Cebu City. 
-    100sqm House and Lot For Sale in Banilad Cebu City.`;
 
 	const Features = (no_of_beds, no_of_bathrooms, lot) => {
 		return (
@@ -88,7 +83,6 @@ const PropertyCard = ({
 				try {
 					const save = await AddSavedProperty(number, item.propertyNo);
 					setSavedPropertyId(save.id);
-					console.log("Property saved with ID:", save.id);
 					setTooltipMessage("Added to favorites");
 					setShowTooltip(true);
 					setTimeout(() => setShowTooltip(false), 800);
@@ -101,15 +95,6 @@ const PropertyCard = ({
                 
 				setShowTooltip(false);
 				setTimeout(() => setShowTooltip(false), 800);
-				console.log("Reacted but items are not saved.");
-			}
-		} else if (number && item.propertyNo) {
-			if (savedPropertyId) {
-				console.log("Attempting to delete property with ID:", savedPropertyId);
-				const resApi = await DeleteSavedProperty(savedPropertyId);
-				console.log("Deleted property with ID:", resApi);
-			} else {
-				console.log("Property not found in saved properties");
 			}
 		} else {
 			console.log("Property not found in saved properties");
@@ -224,7 +209,7 @@ const PropertyCard = ({
 				<div className="properties--group-card__details--top">
 					<p>
 						{/* {TruncateText(CapitalizeString(title), 65)} */}
-						{TruncateText(CapitalizeString(item.title), 100)}
+						{TruncateText(CapitalizeString(item.title))}
 					</p>
 					{/* <p>Newly Built and Furnished Condominium dsdsffdsd dsds This is some long text that will not fit in the box.</p> */}
 				</div>

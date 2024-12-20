@@ -41,10 +41,10 @@
   flex-direction: column;
 }
 .toptitle .top-title,
-.why-choose-us h2, 
-.how-it-works h2,
+.why-choose-us h3, 
+.how-it-works h3,
 .form-section h3{
- font-size: var(--d-h2-text) !important;
+ font-size: var(--d-h3-text) !important;
 }
 
 .toptitle .top-title {
@@ -69,8 +69,8 @@
   display: flex;
   flex-direction: column;
 }
-.why-choose-us h2,
-.how-it-works h2 {
+.why-choose-us h3,
+.how-it-works h3 {
   font-size: 30px;
   margin-top: 20px;
   margin-bottom: 10px;
@@ -121,13 +121,13 @@
 }
 .how-it-works .step label {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
 }
 .how-it-works .step span {
   margin-top: 10px;
   height: 40px;
   font-weight: bold;
-  font-size: var(--d-h5-text);
+  font-size: 18px;
 }
 .how-it-works .step p {
     font-size: var(--d-body-text);
@@ -369,13 +369,14 @@
     width: 100%;
   }
   .how-it-works .steps {
-    display: flex;
+    display: flex !important;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: column !important;
     justify-content: center;
     align-items: center;
+    gap: 20px !important;
     width: 100%;
-    padding: 0px;
+    padding: 0px !important;
   }
   .how-it-works .step {
     width: 90%;
@@ -401,11 +402,11 @@
     display: flex;
     flex-direction: column;
   }
-  .form-column input[type="text"],
+  /* .whole-property-search-page .form-column input[type="text"],
   input[type="email"],
   input[type="number"] {
     width: 100%;
-  }
+  } */
   .left-form-row {
     display: flex;
     flex-direction: column;
@@ -564,6 +565,7 @@
   }
   .how-it-works .step span {
     font-size: 18px;
+    height: 100%;
   }
   .how-it-works .step p {
     font-size: 15px;

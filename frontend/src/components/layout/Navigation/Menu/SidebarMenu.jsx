@@ -18,9 +18,7 @@ import { getCookieData } from "../../../../utils/CookieChecker";
 import { useAuth } from "../../../../Context/AuthContext";
 
 const SidebarMenu = ({ setOpenDrawer }) => {
-	const {
-		isAuthenticated, logout, userDetails, isSeller
-	} = useAuth();
+	const { isAuthenticated, logout, userDetails, isSeller } = useAuth();
 	const navigate = useNavigate();
 	const location = useLocation();
 	const [showUpgradeModal, setShowUpgradeModal] = useState(false);
@@ -45,7 +43,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 		setShowUpgradeModal(false);
-		navigate('/login')
+		navigate('/login/?redirect=saved-properties#listingForm')
 	};
 	const handleLogout = async () => {
 		const logoutURL = process.env.REACT_APP_LOGOUT_URL;
@@ -54,7 +52,11 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 		// window.location.href = `${logoutURL}?redirect_url=${encodeURIComponent(
 		// 	redirectUrl
 		// )}`;
-		navigate('/')
+		navigate("/");
+	};
+	const handleJoinTeamClick = () => {
+		setShowModal(true);
+		// navigate("/comingsoon");
 	};
 
 	const handleProfileClick = () => {
@@ -78,9 +80,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 			} else {
 				openUpgradeModal();
 			}
-
 		} else {
-
 			setShowUpgradeModal(true);
 		}
 	};
@@ -90,7 +90,8 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 
 		if (currentPath.includes("/rent")) {
 			setCurrent("rent");
-		} if (currentPath.includes("/new")) {
+		}
+		if (currentPath.includes("/new")) {
 			setCurrent("new");
 		} else if (currentPath.includes("/sale")) {
 			setCurrent("buy");
@@ -105,7 +106,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 		}
 		// else if (currentPath.includes("/pre-selling")) {
 		// 	setCurrent("pre-selling");
-		// } 
+		// }
 		else {
 			setCurrent("");
 		}
@@ -126,36 +127,36 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 					// let childSub = sub.childSubMenu;
 					return Object.keys(sub).includes("childSubMenu")
 						? {
-							key: sub.childSubMenu.header,
-							label: sub.childSubMenu.header,
-							link: sub.link,
-							type: "group",
-							children: Object.keys(sub).includes("childSubMenu")
-								? sub.childSubMenu.submenu.map((i, k) => {
-									return {
-										key: i.header,
-										label: i.sub,
-									};
-								})
-								: [],
-						}
+								key: sub.childSubMenu.header,
+								label: sub.childSubMenu.header,
+								link: sub.link,
+								type: "group",
+								children: Object.keys(sub).includes("childSubMenu")
+									? sub.childSubMenu.submenu.map((i, k) => {
+											return {
+												key: i.header,
+												label: i.sub,
+											};
+									  })
+									: [],
+						  }
 						: Object.keys(sub).includes("sub_info")
-							? {
+						? {
 								key: sub.sub_info,
 								label: "Loan Dashboard",
 								link: sub.link,
-							}
-							// : Object.keys(sub).includes("sub_info_insurance")
-							// ? {
-							// 		key: sub.sub_info_insurance,
-							// 		label: "Start Your Property Search Today!",
-							// 		link: sub.link,
-							//   }
-							: {
+						  }
+						: // : Object.keys(sub).includes("sub_info_insurance")
+						  // ? {
+						  // 		key: sub.sub_info_insurance,
+						  // 		label: "Start Your Property Search Today!",
+						  // 		link: sub.link,
+						  //   }
+						  {
 								key: sub.sub,
 								label: sub.sub,
 								link: sub.link,
-							};
+						  };
 				}),
 			};
 		});
@@ -201,11 +202,26 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 		{ label: "Contact", key: "contact", link: "/contact-us" },
 	];
 
+	if (!isAuthenticated) {
+		MenuItems.push(
+			{
+				label: "List Your Property",
+				key: "list-property",
+				onClick: handleListPropertyClick,
+			},
+			{
+				label: "Join Our Team",
+				key: "join-team",
+				onClick: handleJoinTeamClick,
+			}
+		);
+	}
 	const items = MenuItems.map((item, index) => ({
 		key: item.key,
 		label: item.label,
 		link: item.link,
 		children: item.children,
+		onClick : item.onClick,
 	}));
 
 	const handleMenuOnClick = (menu) => {
@@ -213,15 +229,19 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 		setOpenDrawer(false);
 		const link = menu.item.props.link;
 		navigate(link);
+
+		 const clickedItem = items.find((item) => item.key === menu.key);
+
+		if (clickedItem?.onClick) {
+			clickedItem.onClick();
+			setOpenDrawer(true);
+		}
 	};
 	const [showModal, setShowModal] = useState(false);
 	const toggleModal = () => {
 		setShowModal(!showModal);
 	};
-	const handleJoinTeamClick = () => {
-		setShowModal(true);
-		// navigate("/comingsoon");
-	};
+
 	return (
 		<>
 			{showModal && <JoinTeam toggleModal={toggleModal} />}
@@ -237,8 +257,14 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 				className="sidebar-menu"
 				onClick={handleMenuOnClick}
 			/>
-
 			<Divider />
+			{showUpgradeModal && (
+				<UpgradeTierModal
+					isVisible={showUpgradeModal}
+					onClose={closeModal}
+					showLogin={showLogin}
+				/>
+			)}
 			<div
 				style={{
 					display: "flex",
@@ -252,62 +278,71 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 				}}
 				className="dropdown-user-gr"
 			>
-				{
-					!isAuthenticated && (
-						<div
+				{/* {!isAuthenticated && (
+					<div
+						style={{
+							// gridRow: "1 / 3",
+							display: "flex",
+							flexDirection: "row",
+							justifyContent: "center",
+							alignItems: "center",
+							width: "100%",
+							gap: "10px",
+						}}
+						className="join-team-list-property"
+					>
+						<RoundBtn
+							type="primary"
+							id="list-prop"
+							className="menu-buttons"
 							style={{
-								// gridRow: "1 / 3",
-								display: "flex",
-								flexDirection: "row",
-								justifyContent: "center",
-								alignItems: "center",
-								width: "100%",
-								gap: "10px",
+								background: "#D90000",
 							}}
-							className="join-team-list-property"
-						>
-							<RoundBtn
-								type="primary"
-								id="list-prop"
-								className="menu-buttons"
-								style={{
-									background: "#D90000",
-								}}
-								label="List Your Property"
-								onClick={handleListPropertyClick}
+							label="List Your Property"
+							onClick={handleListPropertyClick}
+						/>
+						{showUpgradeModal && (
+							<UpgradeTierModal
+								isVisible={showUpgradeModal}
+								onClose={closeModal}
+								showLogin={showLogin}
 							/>
-							{showUpgradeModal && (
-								<UpgradeTierModal
-									isVisible={showUpgradeModal}
-									onClose={closeModal}
-									showLogin={showLogin}
-								/>
-							)}
-							<RoundBtn
-								type="primary"
-								id="join-team"
-								className="menu-buttons"
-								style={{
-									border: "#D90000 solid 1px",
-									background: "white",
-									color: "#D90000",
-								}}
-								label="Join Our Team"
-								onClick={handleJoinTeamClick}
-							/>
-						</div>
-					)}
+						)}
+						<RoundBtn
+							type="primary"
+							id="join-team"
+							className="menu-buttons"
+							style={{
+								border: "#D90000 solid 1px",
+								background: "white",
+								color: "#D90000",
+							}}
+							label="Join Our Team"
+							onClick={handleJoinTeamClick}
+						/>
+					</div>
+				)} */}
 				<Col className="menu-buttons">
 					{
 						// !isAuthenticated ? (
 						isAuthenticated && userDetails ? (
 							<SellerLogInButtonDropdown />
 						) : (
-							<img
-								src={userProfile}
-								style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
+							<button
+								// src={userProfile}
+								style={{
+									cursor: "pointer",
+									backgroundColor: "rgb(217, 0, 0)",
+									color: "white",
+									border: "none",
+									padding: "8px 10px",
+									borderRadius: "5px",
+									width: "100%",
+								}}
 								onClick={handleProfileClick}
-							/>
+							>
+								Login
+							</button>
 						)
 						// ) : (
 						// 	<img

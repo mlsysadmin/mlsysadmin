@@ -105,18 +105,20 @@ const DiscoverHomeComponent = () => {
 		setTotalnumberMonths(totalNumberOfMonths);
 
 		// Monthly interest rate
-		const interestRateperMonth = interestRate / 100 / 12;
+		const interestRateperMonth = parseFloat(
+			(interestRate / 100 / 12).toFixed(7)
+		);
 		console.log("interestRateperMonth:", interestRateperMonth);
 
 		// Add 1 to interest rate
-		const addedOneinInterest = interestRateperMonth + 1;
+		const addedOneinInterest = (interestRateperMonth + 1);
 		console.log("addedOneinInterest:", addedOneinInterest);
 
 		// Exponentiate to the total number of months
-		const powerAddedOneinInterest = Math.pow(
+		const powerAddedOneinInterest = (Math.pow(
 			addedOneinInterest,
 			totalNumberOfMonths
-		);
+		)).toFixed(5);
 		console.log("powerAddedOneinInterest:", powerAddedOneinInterest);
 
 		// Total monthly payment using the mortgage formula
@@ -126,8 +128,6 @@ const DiscoverHomeComponent = () => {
 		;
 
 		console.log("totalMonthlyPayment:", totalMonthlyPayment);
-
-		// Yearly payment
 		const yearlyPayment = totalMonthlyPayment * 12;
 		setYearlyPayment(Math.round(yearlyPayment));
 

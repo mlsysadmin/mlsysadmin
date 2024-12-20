@@ -10,10 +10,14 @@ import PreviewLoadingModal from "./modals/PreviewLoadingModal";
 import { SendOtp, ValidateOtpLogin } from "../api/Public/OtpLogin.api";
 import { getCookieData } from "../utils/CookieChecker";
 import { SortByText } from "../utils/StringFunctions.utils";
+import { useLocation } from "react-router-dom";
 
 const { Option } = Select;
 
 const LoginComponent = () => {
+
+	const location = useLocation();
+
 	const [phone, setPhone] = useState("");
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [countryCode, setCountryCode] = useState("+63");
@@ -53,6 +57,7 @@ const LoginComponent = () => {
 	useEffect(() => {
 		const getCurrentYear = new Date().getFullYear();
 		setCurrentYear(getCurrentYear);
+
 	}, [])
 
 	const cleanPhonenumber = (val) => {
@@ -139,6 +144,7 @@ const LoginComponent = () => {
 
 		} catch (error) {
 			console.error("Error during continue:", error);
+			// openNotificationWithIcon('warning', 'Unable to login', '')
 			setIsSubmitting(false);
 		}
 	};
@@ -279,10 +285,23 @@ const LoginComponent = () => {
 
 					const isSeller = userAttempt.data.data.isSeller;
 
-					if (isSeller) {
-						window.location.href = "/";
-					} else {
-						window.location.href = "/login"
+					console.log(location);
+					const searchParams = new URLSearchParams(location.search);
+					console.log(searchParams.get('redirect'), location.hash);
+					const falsy = [null, "", "null"];
+					const redirect = searchParams.get('redirect');
+					const hash = location.hash;
+					const hasRedirect = !falsy.includes(redirect) && !falsy.includes(hash);
+
+					if (hasRedirect) {
+						if (isSeller) {
+							window.location.href = `/${redirect}${hash}`;
+						} else {
+							window.location.href = "/login"
+						}
+					}
+					else {
+						window.location.href = '/'
 					}
 				} else {
 					window.location.href = "/login"
