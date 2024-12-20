@@ -197,6 +197,7 @@ const ListingPreview = () => {
 						minimumFractionDigits: 2,
 						maximumFractionDigits: 2,
 					});
+					dataresp.Price = dataresp.SaleType.toLowerCase() == "rent" ? `${dataresp.Price} /mo.` : dataresp.Price;
 					dataresp.PricePerSqm =
 						dataresp.PricePerSqm > 0
 							? Number(dataresp.PricePerSqm).toLocaleString("en", {
