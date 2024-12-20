@@ -597,44 +597,55 @@ module.exports = {
                 if (kyc) {
                     const tier = kyc.tier.label;
                     const notAllowedTier = StringToArray(process.env.NOT_ALLOWED_SELLER_TIER, "|");
+                    const userTier = tier.replace(/\s+/g, "").trim().toUpperCase();
+                    
+                    if (!notAllowedTier.includes(userTier)) {
+                        const role = notAllowedTier.includes(tier.toUpperCase()) ? 2 : 1;
 
-                    const role = notAllowedTier.includes(tier.toUpperCase()) ? 2 : 1;
+                        const userParams = {
+                            ckyc_id: kyc.ckycId,
+                            role_id: role
+                        }
 
-                    const userParams = {
-                        ckyc_id: kyc.ckycId,
-                        role_id: role
+                        const findUser = await FindUserOne(userParams);
+                        if (findUser) {
+
+                            user = {
+                                data: searchkyc.search_ckyc.data.data,
+                                isFirstAttempt: false
+                            };
+                            message = "Not First Login Attempt"
+
+                        } else {
+                            user = {
+                                data: searchkyc.search_ckyc.data.data,
+                                isFirstAttempt: true
+                            };
+                            message = "First Login Attempt"
+                        }
+                        const userResponse = DataResponseHandler(
+                            user,
+                            "SEARCH_USER",
+                            200,
+                            true,
+                            message
+                        )
+
+                        const success = SuccessFormatter(userResponse, 200, message);
+                        SuccessLoggerHelper(req, userResponse);
+
+                        res.status(200).send(success)
                     }
-
-
-                    const findUser = await FindUserOne(userParams);
-                    if (findUser) {
-
-                        user = {
-                            data: searchkyc.search_ckyc.data.data,
-                            isFirstAttempt: false
-                        };
-                        message = "Not First Login Attempt"
-
-                    } else {
-                        user = {
-                            data: searchkyc.search_ckyc.data.data,
-                            isFirstAttempt: true
-                        };
-                        message = "First Login Attempt"
+                    else {
+                        throw DataResponseHandler(
+                            { tier: kyc.tier.label, cellphoneNumber },
+                            "USER_NOT_ALLOWED",
+                            400,
+                            false,
+                            "We're sorry, We’re unable to log you in right now. Please consider upgrading your tier."
+                        );
                     }
-                    const userResponse = DataResponseHandler(
-                        user,
-                        "SEARCH_USER",
-                        200,
-                        true,
-                        message
-                    )
-
-                    const success = SuccessFormatter(userResponse, 200, message);
-                    SuccessLoggerHelper(req, userResponse);
-
-                    res.status(200).send(success)
-                }else{
+                } else {
 
                     user = {
                         data: searchkyc.search_ckyc.data.data,

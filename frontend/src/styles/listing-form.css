@@ -300,7 +300,7 @@ span.selected {
 .descriptionDetails h1,
 .uploadPhotos h1,
 .featureList h2 {
-	font-size: var(--d-h5-text) !important;
+	font-size: calc(var(--d-h5-text) - 2px) !important;
 	font-weight: 800;
 }
 
@@ -935,7 +935,7 @@ select.location-form-inputs {
 .descriptionContent textarea {
 	padding: 10px 12px;
 	font-size: var(--d-body-text);
-	color: #8c9094;
+	color: black;
 	border-radius: var(--radius);
 	width: 100%;
 	margin-bottom: 10px;
