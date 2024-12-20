@@ -1,5 +1,6 @@
 import { Skeleton } from "antd";
 import React from "react";
+import '../styles/Skeleton.css';
 
 const CardSkeleton = () => {
     return (
@@ -83,7 +84,83 @@ const FeaturesSkeleton = () => {
         </div>
     )
 }
+
+const PreviewListingSkeleton = () => {
+    return (
+        <div className="preview--skeleton-container">
+            <div className="preview--skeleton-wrapper">
+                <div className="preview__photos">
+                    <div className="preview__skeleton--left-side">
+                        <Skeleton.Image
+                            active
+                            paragraph={false}
+                            className="p__skeleton-left--img"
+                            rootClassName="skeleton-left--img"
+                        />
+                    </div>
+                    <div className="preview__skeleton-right-side">
+                        <div className="preview__skeleton--right-top">
+                            <Skeleton.Image
+                                active
+                                paragraph={false}
+                                className="p__skeleton-right--img"
+                                rootClassName="skeleton-right--img"
+                            />
+                            <Skeleton.Image
+                                active
+                                paragraph={false}
+                                className="p__skeleton-right--img"
+                                rootClassName="skeleton-right--img"
+                            />
+                        </div>
+                        <div className="preview__skeleton--right-bottom">
+                            <Skeleton.Image
+                                active
+                                paragraph={false}
+                                className="p__skeleton-right--img"
+                                rootClassName="skeleton-right--img"
+                            />
+                            <Skeleton.Image
+                                active
+                                paragraph={false}
+                                className="p__skeleton-right--img"
+                                rootClassName="skeleton-right--img"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div className="preview__details">
+                    <div className="preview-details__skeleton--left-side">
+                        <Skeleton
+                            active
+                            paragraph={false}
+                            className="skeleton-left__card card-1"
+                        />
+                        <br />
+                        <Skeleton
+                            active
+                            paragraph={false}
+                            className="skeleton-left__card card-2"
+                        />
+                    </div>
+                    <div className="preview-details__skeleton-right-side">
+                        <Skeleton
+                            active
+                            paragraph={false}
+                            className="skeleton-right__card"
+                        />
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+        </div>
+    )
+}
+
 export {
     CardSkeleton,
-    FeaturesSkeleton
+    FeaturesSkeleton,
+    PreviewListingSkeleton
 }
