@@ -535,7 +535,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 									<>
 										<div className="no-saved-properties-container">
 											<div className="no-saved-property-content">
-												<h2>Your Favorites List is Empty!</h2>
+												<h3>Your Favorites List is Empty!</h3>
 												<div className="saved-property-text">
 													<div className="text-content-container">
 														<p>
@@ -547,7 +547,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 															<b style={{ color: "var(--red)" }}>
 																heart icon <HeartOutlined />{" "}
 															</b>{" "}
-															the on any listing to save it here!
+															on any listing to save it here!
 														</span>
 													</div>
 
