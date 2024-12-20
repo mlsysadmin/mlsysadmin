@@ -21,6 +21,7 @@ import PreviewLoadingModal from "./modals/PreviewLoadingModal";
 import { GetSavedPropertiesBySellerNo } from "../api/Public/SavedProperties.api";
 import { getCookieData } from "../utils/CookieChecker";
 import { useAuth } from "../Context/AuthContext";
+import { TruncateText } from "../utils/StringFunctions.utils";
 
 const CardListingComponent = ({
 	loading,
@@ -190,7 +191,7 @@ const CardListingComponent = ({
 											backgroundColor: "green",
 											borderColor: "green",
 											color: "white",
-											borderRadius: "4px",
+											borderRadius: "var(--radius)",
 										}}
 									/>
 									<CustomTag
@@ -199,7 +200,7 @@ const CardListingComponent = ({
 											backgroundColor: "white",
 											borderColor: "white",
 											color: "black",
-											borderRadius: "4px",
+											borderRadius: "var(--radius)",
 										}}
 									/>
 								</div>
@@ -210,7 +211,7 @@ const CardListingComponent = ({
 										backgroundColor: "#FBBC04",
 										borderColor: "#FBBC04",
 										color: "white",
-										borderRadius: "4px",
+										borderRadius: "var(--radius)",
 									}}
 								/>
 							) : isSavedProperties.isRecordStatus === "rejected" ? (
@@ -220,7 +221,7 @@ const CardListingComponent = ({
 										backgroundColor: "white",
 										borderColor: "white",
 										color: "red",
-										borderRadius: "4px",
+										borderRadius: "var(--radius)",
 									}}
 								/>
 							) : null
@@ -231,10 +232,14 @@ const CardListingComponent = ({
 									backgroundColor: "#d90000",
 									borderColor: "#d90000",
 									color: "#ffffff",
+									borderRadius: "var(--radius)"
 								}}
 							/>
 						)}
-						<CustomTag tagLabel={<ImageTag />} />
+						<CustomTag tagLabel={<ImageTag />}
+							style={{
+								borderRadius: "var(--radius)"
+							}} />
 					</div>
 					<div
 						className="tags-right"
@@ -350,7 +355,7 @@ const CardListingComponent = ({
 				</div>
 				<div className="card-content" onClick={handleClick}>
 					<div className="card-content--title">
-						<p>{title}</p>
+						<p>{TruncateText(title)}</p>
 					</div>
 					<div className="card-content--sub">
 						<h5>{subtitle}</h5>

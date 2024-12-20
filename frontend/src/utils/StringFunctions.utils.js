@@ -154,7 +154,8 @@ const CapitalizeEachWord = (word) => {
   }
 
 }
-const TruncateText = (text, length) => {
+const TruncateText = (text) => {
+  const length = 65;
   if (text.length <= length) return text;
   return text.substring(0, length) + "...";
 };

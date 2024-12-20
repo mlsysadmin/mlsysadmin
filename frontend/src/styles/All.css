@@ -215,7 +215,7 @@
 	.all-page-container {
 		display: flex;
 		flex-direction: column;
-		width: 100%;
+		width: 90%;
 		padding: 5px;
 	}
 
@@ -225,9 +225,6 @@
 		width: 100%;
 	}
 	.all-searchcomponent {
-		width: 100%;
-	}
-	.all-page-container {
 		width: 100%;
 	}
 		.all-container .card-skeleton-loading {
@@ -246,10 +243,10 @@
 		margin: 0px;
 	}
 		.all-searchcomponent {
-		width: 100%;
+		/* width: 100%; */
 	}
 	.all-page-container {
-		width: 100%;
+		/* width: 100%; */
 		margin: 0px;
 	}
 
@@ -282,7 +279,7 @@
 		width: 100%;
 	}
 	.all-page-container {
-		width: 100%;
+		width: 90%;
 	}
 }
 
@@ -290,19 +287,13 @@
 	.all-page-container {
 		display: flex;
 		flex-direction: column;
-		width: 100%;
+		/* width: 100%; */
 		padding: 5px;
 	}
 
 	.all-page-container .all-h1 {
 		font-size: 26px;
 		/* padding: 20px 0px 0px 40px; */
-		width: 100%;
-	}
-	.all-searchcomponent {
-		width: 100%;
-	}
-	.all-page-container {
 		width: 100%;
 	}
 }
@@ -312,10 +303,10 @@
 		width: 100% !important;
 	}
 	.all-searchcomponent {
-		width: 100%;
+		/* width: 100%; */
 	}
 	.all-page-container {
-		width: 100%;
+		/* width: 100%; */
 	}
 }
 
@@ -359,10 +350,10 @@
 		width:100%;
 	}
 	.all-searchcomponent {
-		width: 100%;
+		/* width: 100%; */
 		margin: 40px 0px;
 	}
 	.all-page-container {
-		width: 100%;
+		/* width: 100%; */
 	}
 }

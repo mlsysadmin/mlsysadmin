@@ -209,7 +209,7 @@ const PropertyCard = ({
 				<div className="properties--group-card__details--top">
 					<p>
 						{/* {TruncateText(CapitalizeString(title), 65)} */}
-						{TruncateText(CapitalizeString(item.title), 100)}
+						{TruncateText(CapitalizeString(item.title))}
 					</p>
 					{/* <p>Newly Built and Furnished Condominium dsdsffdsd dsds This is some long text that will not fit in the box.</p> */}
 				</div>

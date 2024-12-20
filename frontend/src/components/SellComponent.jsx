@@ -64,6 +64,14 @@ const SellComponent = () => {
 		}
 	};
 
+	const handleListPropertyLogin = () => {
+		if (isAuthenticated) {
+			window.location.href = "/saved-properties#listingForm";
+		} else {
+			window.location.href = `/login/?redirect=saved-properties#listingForm`;
+		}
+	};
+
 	useEffect(() => {
 		if (location.hash === "#sell") {
 			scrollToSection(topSellComponentDiv);
@@ -163,7 +171,7 @@ const SellComponent = () => {
 									<UpgradeTierModal
 										isVisible={showUpgradeModal}
 										onClose={closeModal}
-										showLogin={handleSignIn}
+										showLogin={handleListPropertyLogin}
 									/>
 								)}
 							</div>
