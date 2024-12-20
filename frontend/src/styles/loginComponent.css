@@ -401,3 +401,9 @@
 		width: 300px;
 	}
 }
+@media screen and (min-width: 360px) and (max-width: 840px) {
+	.login-content {
+		width: 320px !important;
+	}
+}
+
