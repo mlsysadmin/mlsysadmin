@@ -1,74 +1,75 @@
 .wholeViewSavedProperties {
-  display: flex;
-  flex-direction: column;
-  padding: 0px 30px 50px 30px;
-  font-size: var(--d-body-text);
-  background: var(--white);
-  /* max-width: var(--default-page-size); */
+	display: flex;
+	flex-direction: column;
+	padding: 0px 30px 50px 30px;
+	font-size: var(--d-body-text);
+	background: var(--white);
+	/* max-width: var(--default-page-size); */
 }
 
 .savedPropertiesBackgroundComponent {
-  background: var(--white);
-  color: black;
+	background: var(--white);
+	color: black;
 }
 
 .savedPropertiesBackgroundComponent
-  .ant-select
-  .ant-select-outlined
-  .ant-select-single
-  .ant-select-show-arrow {
+	.ant-select
+	.ant-select-outlined
+	.ant-select-single
+	.ant-select-show-arrow {
 }
 .savedPropertiesContent {
-  background: var(--white);
-  max-width: var(--default-page-size);
-padding-top: 40px;
-  margin: auto;
-  /* flex-direction: row;
+	background: var(--white);
+	max-width: var(--default-page-size);
+	padding-top: 40px;
+	margin: auto;
+	/* flex-direction: row;
   flex-wrap: wrap; */
 }
 
 .ant-tabs-content-holder {
-  margin-top: 40px 0px;
+	margin-top: 40px 0px;
 }
 
 .ant-tabs-nav .ant-tabs-nav-wrap {
-  border-top: 1px solid #8c909452;
+	border-top: 1px solid #8c909452;
 }
 
 .wholeViewSavedProperties .listing-carousel-dashboard-skeleton {
-  width: var(--default-page-size);
-  padding: 0px;
-  justify-content: flex-start;
+	width: var(--default-page-size);
+	padding: 0px;
+	justify-content: flex-start;
 }
-.no-saved-properties-container{
-  margin-top: 50px;
-  height: 210px;
+.no-saved-properties-container {
+	margin-top: 50px;
+	height: 210px;
 }
-.no-saved-property-content{
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.no-saved-property-content {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
-.saved-property-text p, .saved-property-text span {
-  font-size: var(--m-body-text);
+.saved-property-text p,
+.saved-property-text span {
+	font-size: var(--m-body-text);
 }
-.find-properties-btn{
-  margin-top: 20px;
-  background-color: var(--red);
-  border: none;
-  border-radius: 8px;
-  padding: 10px;
-  color: white;
-  font-size: var(--d-body-text);
-  font-weight: 500;
-  transition: all 0.2s ease-in-out;
+.find-properties-btn {
+	margin-top: 20px;
+	background-color: var(--red);
+	border: none;
+	border-radius: 8px;
+	padding: 10px;
+	color: white;
+	font-size: var(--d-body-text);
+	font-weight: 500;
+	transition: all 0.2s ease-in-out;
 }
-.find-properties-btn:hover{
-  background-color: var(--white);
-  color: var(--red);
-  transform: scale(1.1);
-  border: 1px solid #333333 ;
-  cursor: pointer;
+.find-properties-btn:hover {
+	background-color: var(--white);
+	color: var(--red);
+	transform: scale(1.1);
+	border: 1px solid #333333;
+	cursor: pointer;
 }
 
 /* .cardBackgroundPerRows {
@@ -80,92 +81,95 @@ padding-top: 40px;
 
 /* Cellphone */
 @media screen and (min-width: 320px) and (max-width: 480px) {
-  .savedPropertiesBackgroundComponent .listing-carousel-saved-properties {
-    grid-template-columns: 1fr !important;
-    font-size: var(--m-body-text);
-  }
+	.savedPropertiesBackgroundComponent .listing-carousel-saved-properties {
+		grid-template-columns: 1fr !important;
+		font-size: var(--m-body-text);
+	}
 
-  .wholeViewSavedProperties {
-    padding: 0 20px 50px;
-  }
+	.wholeViewSavedProperties {
+		padding: 0 20px 50px;
+	}
 
-  .savedPropertiesContent {
-    padding-top: 20px;
-  }
+	.savedPropertiesContent {
+		padding-top: 20px;
+	}
 
-  .wholeViewSavedProperties .listing-carousel-dashboard-skeleton {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 20px;
-    margin: 0px;
-    width: 100%;
-  }
+	.wholeViewSavedProperties .listing-carousel-dashboard-skeleton {
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+		gap: 20px;
+		margin: 0px;
+		width: 100%;
+	}
 
-  .cardBackgroundPerRows .listing-carousel-dashboard {
-    width: 100%;
-  }
+	.cardBackgroundPerRows .listing-carousel-dashboard {
+		width: 100%;
+	}
+	.cardBackgroundSavedProperties .skeleton--card-listing {
+		width: 100%;
+	}
 }
 
 /* Big Size Cellphone */
 @media screen and (min-width: 481px) and (max-width: 769px) {
-  .savedPropertiesBackgroundComponent .listing-carousel-saved-properties {
-    grid-template-columns: 1fr 1fr !important;
-  }
+	.savedPropertiesBackgroundComponent .listing-carousel-saved-properties {
+		grid-template-columns: 1fr 1fr !important;
+	}
 
-  .cardBackgroundPerRows {
-    width: 100%;
-  }
+	.cardBackgroundPerRows {
+		width: 100%;
+	}
 
-  .savedPropertiesContent {
-    padding-top: 20px;
-  }
+	.savedPropertiesContent {
+		padding-top: 20px;
+	}
 
-  .wholeViewSavedProperties .listing-carousel-dashboard-skeleton {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 15px 10px;
-    width: 100%;
-  }
+	.wholeViewSavedProperties .listing-carousel-dashboard-skeleton {
+		display: grid !important;
+		grid-template-columns: repeat(2, 1fr) !important;
+		gap: 15px 10px;
+		width: 100%;
+	}
 
-  .cardBackgroundSavedProperties {
-    width: 100%;
-  }
+	.cardBackgroundSavedProperties {
+		width: 100%;
+	}
 
-  .cardBackgroundSavedProperties .skeleton--card-listing {
-    width: 200px;
-  }
+	.cardBackgroundSavedProperties .skeleton--card-listing {
+		width: 200px;
+	}
 }
 
 /* Tablets */
 @media screen and (min-width: 770px) and (max-width: 1024px) {
-  .cardBackgroundSavedProperties
-    #card-listing
-    .ant-card-body
-    .card-content
-    .card-content--title {
-    margin: 0px 0px 10px 0px !important;
-  }
+	.cardBackgroundSavedProperties
+		#card-listing
+		.ant-card-body
+		.card-content
+		.card-content--title {
+		margin: 0px 0px 10px 0px !important;
+	}
 }
 
 .savedPropertiesBackgroundComponent
-  .ant-tabs
-  .ant-tabs-tab.ant-tabs-tab-active
-  .ant-tabs-tab-btn {
-  color: black;
-  font-weight: 500;
-  text-shadow: 0 0 0.25px currentcolor;
+	.ant-tabs
+	.ant-tabs-tab.ant-tabs-tab-active
+	.ant-tabs-tab-btn {
+	color: black;
+	font-weight: 500;
+	text-shadow: 0 0 0.25px currentcolor;
 }
 
 .savedPropertiesBackgroundComponent .ant-tabs .ant-tabs-tab-btn {
-  color: black;
+	color: black;
 }
 
 .savedPropertiesBackgroundComponent .ant-tabs .ant-tabs-ink-bar {
-  background: red;
+	background: red;
 }
 
 .savedPropertiesBackgroundComponent .ant-tabs-top > .ant-tabs-nav::before {
-  display: none;
+	display: none;
 }
 
 /* .savedPropertiesBackgroundComponent .ant-tabs .ant-tabs-content {
@@ -173,55 +177,55 @@ padding-top: 40px;
   padding-left: 17%;
 } */
 .savedPropertiesBackgroundComponent
-  .ant-tabs
-  .ant-tabs-content
-  #myPropertiesTextHeader {
-  color: black;
-  font-size: x-large;
-  font-weight: bold;
+	.ant-tabs
+	.ant-tabs-content
+	#myPropertiesTextHeader {
+	color: black;
+	font-size: x-large;
+	font-weight: bold;
 }
 
 .savedPropertiesBackgroundComponent .savedPropertiesContent .card-item.field {
-  margin-top: 15px;
-  width: 200px;
-  height: 40px;
-  color: black;
-  border: 1px solid #d9d9d9 !important;
-  border-radius: var(--radius);
+	margin-top: 15px;
+	width: 200px;
+	height: 40px;
+	color: black;
+	border: 1px solid #d9d9d9 !important;
+	border-radius: var(--radius);
 }
 /* .savedPropertiesBackgroundComponent .ant-select-selector {
   border: 1px solid #d9d9d9;
 } */
 
 .ant-select-dropdown
-  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-  background-color: transparent !important;
+	.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+	background-color: transparent !important;
 }
 
 .ant-select-item-option.ant-select-item-option-active:hover {
-  background-color: #d9d9d9 !important;
+	background-color: #d9d9d9 !important;
 }
 
 .savedPropertiesBackgroundComponent
-  .savedPropertiesContent
-  .ant-select-item-option-content {
-  color: black;
-  font-weight: 400;
+	.savedPropertiesContent
+	.ant-select-item-option-content {
+	color: black;
+	font-weight: 400;
 }
 
 .savedPropertiesBackgroundComponent .listing-carousel-saved-properties {
-  cursor: pointer;
-  display: grid;
-  /* flex-direction: row; */
-  /* flex-wrap: wrap; */
-  gap: 25px;
-  grid-template-columns: repeat(3, 1fr);
-  /* gap: 100px; */
-  margin-top: 30px;
-  width: 100%;
+	cursor: pointer;
+	display: grid;
+	/* flex-direction: row; */
+	/* flex-wrap: wrap; */
+	gap: 25px;
+	grid-template-columns: repeat(3, 1fr);
+	/* gap: 100px; */
+	margin-top: 30px;
+	width: 100%;
 }
 @media screen and (min-width: 360px) and (max-wdith: 1200px) {
-  .no-saved-properties-container{
-    height: 100%;
-  }
+	.no-saved-properties-container {
+		height: 100%;
+	}
 }

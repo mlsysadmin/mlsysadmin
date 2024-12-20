@@ -214,10 +214,9 @@ const JoinTeam = ({ toggleModal }) => {
 			const existingAgent = await GetAgentByContactNumber(
 				formData.mobileNumber
 			);
-
-			if (existingAgent !== null) {
-				console.log("Agent already exists: ");
-				setAgentRecordStatus(existingAgent.RecordStatus)
+			if (existingAgent && Object.keys(existingAgent).length > 0) {
+				console.log("Agent already exists: ", existingAgent);
+				setAgentRecordStatus(existingAgent.RecordStatus);
 				setShowAgentExistModalMessage(true);
 			} else {
 				const isValid = handleValidation();
@@ -397,38 +396,7 @@ const JoinTeam = ({ toggleModal }) => {
 	};
 	const Modal = ({ isVisible, onClose }) => {
 		if (!isVisible) return null;
-
-		// return (
-		//   <div className="modal-notice" onClick={handleCloseModal}>
-		//     <div className="modal-notice-content">
-		//       <h2>Important Notice</h2>
-		//       <p>
-		//         To join our team, you need to create an ML Wallet account. Follow
-		//         these three easy steps:
-		//       </p>
-		//       <ol>
-		//         <li>
-		//           Download and install the ML Wallet application from Google Play or
-		//           the App Store.
-		//         </li>
-		//         <li>Sign up for an ML Wallet account.</li>
-		//         <li>
-		//           Once successfully registered, return here and fill out this form
-		//           to become an M Lhuillier broker/agent.
-		//         </li>
-		//       </ol>
-		//     </div>
-		//   </div>
-		// );
 	};
-	// const formatCityLabel = (label) => {
-	//   return label
-	//     .split(" ")
-	//     .map((word) => {
-	//       return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-	//     })
-	//     .join(" ");
-	// };
 	useEffect(() => {}, [isAuthenticated]);
 
 	if (!isAuthenticated) {
@@ -849,6 +817,7 @@ const JoinTeam = ({ toggleModal }) => {
 
 	return (
 		<div className="join-page-container">
+			{contextHolder}
 			<Modal isVisible={isModalVisible} onClose={handleCloseModal} />
 			{showOtpModal && (
 				<OTPModal
