@@ -190,7 +190,7 @@ const CardListingComponent = ({
 											backgroundColor: "green",
 											borderColor: "green",
 											color: "white",
-											borderRadius: "25px",
+											borderRadius: "4px",
 										}}
 									/>
 									<CustomTag
@@ -199,7 +199,7 @@ const CardListingComponent = ({
 											backgroundColor: "white",
 											borderColor: "white",
 											color: "black",
-											borderRadius: "25px",
+											borderRadius: "4px",
 										}}
 									/>
 								</div>
@@ -210,7 +210,7 @@ const CardListingComponent = ({
 										backgroundColor: "#FBBC04",
 										borderColor: "#FBBC04",
 										color: "white",
-										borderRadius: "25px",
+										borderRadius: "4px",
 									}}
 								/>
 							) : isSavedProperties.isRecordStatus === "rejected" ? (
@@ -220,7 +220,7 @@ const CardListingComponent = ({
 										backgroundColor: "white",
 										borderColor: "white",
 										color: "red",
-										borderRadius: "25px",
+										borderRadius: "4px",
 									}}
 								/>
 							) : null
