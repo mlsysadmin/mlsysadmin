@@ -34,7 +34,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 
 	const [selectedSort, setSelectedSort] = useState("dateAdded");
 	const [tabOpened, setTabOpened] = useState("");
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 	const [recordStatus, setIsRecordStatus] = useState("");
 	const [SortTypes, setSortTypes] = useState([
 		{
@@ -250,9 +250,11 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 					}
 				} else {
 					const vendorDetails = await GetVendorByNumber(number);
-
+					console.log("vendorDetails: ",vendorDetails);
 					if (vendorDetails.data) {
 						const vendorDataId = vendorDetails.data.VendorId;
+						console.log("vendorDataId: ",vendorDataId);
+						
 						const propertyListing = await PropertyListing(vendorDataId);
 						const dataresp = propertyListing;
 						if (dataresp.length == 0) {
