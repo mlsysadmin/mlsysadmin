@@ -222,7 +222,7 @@ const PropertySearch = () => {
       <div className="modal-content-searchprop">
         {contextHolder}
         <div className="toptitle">
-          <h2 className="top-title">Looking for Your Dream Property? </h2>
+          <h3 className="top-title">Looking for Your Dream Property? </h3>
           <span className="top-description">
             Let us help you find the perfect place to call home! Whether you're
             searching for a luxurious estate, commercial lot for your business,
@@ -232,7 +232,7 @@ const PropertySearch = () => {
         </div>
 
         <div className="why-choose-us">
-          <h2>Why Choose Us?</h2>
+          <h3>Why Choose Us?</h3>
           <ul>
             <li>
               Personalized Service: We take the time to understand your unique
@@ -254,7 +254,7 @@ const PropertySearch = () => {
         </div>
 
         <div className="how-it-works">
-          <h2>How it Works?</h2>
+          <h3>How it Works?</h3>
           <div className="steps">
             <div className="step">
               <label>Step 1</label>

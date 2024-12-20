@@ -45,9 +45,19 @@ const GetControlLastNumber = async (idType) => {
       throw error;
     }
   };
-const GetAgentByAgentId = async (agentId) => {
+const GetAgentByContactNumber = async (number) => {
   try {
-    const response = await IGOTSOLUTIONSAxiosInstance.get(`api/getAgentByAgentId/${agentId}`)
+    const config = {
+			headers: {
+				"Content-Type": "application/json",
+				"x-api-key": process.env.REACT_APP_API_KEY,
+			},
+		};
+
+    const response = await IGOTSOLUTIONSAxiosInstance.get(
+			`api/getAgentByContactNo/${number}`,
+			config
+		);
     console.log("agent data retrieved", response.data);
     
     return response.data;
@@ -62,4 +72,4 @@ const GetAgentByAgentId = async (agentId) => {
 
 }
 
-export { AddAgent, GetControlLastNumber, GetAgentByAgentId };
+export { AddAgent, GetControlLastNumber, GetAgentByContactNumber };

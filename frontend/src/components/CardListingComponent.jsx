@@ -191,7 +191,7 @@ const CardListingComponent = ({
 											backgroundColor: "green",
 											borderColor: "green",
 											color: "white",
-											borderRadius: "25px",
+											borderRadius: "var(--radius)",
 										}}
 									/>
 									<CustomTag
@@ -200,7 +200,7 @@ const CardListingComponent = ({
 											backgroundColor: "white",
 											borderColor: "white",
 											color: "black",
-											borderRadius: "25px",
+											borderRadius: "var(--radius)",
 										}}
 									/>
 								</div>
@@ -211,7 +211,7 @@ const CardListingComponent = ({
 										backgroundColor: "#FBBC04",
 										borderColor: "#FBBC04",
 										color: "white",
-										borderRadius: "25px",
+										borderRadius: "var(--radius)",
 									}}
 								/>
 							) : isSavedProperties.isRecordStatus === "rejected" ? (
@@ -221,7 +221,7 @@ const CardListingComponent = ({
 										backgroundColor: "white",
 										borderColor: "white",
 										color: "red",
-										borderRadius: "25px",
+										borderRadius: "var(--radius)",
 									}}
 								/>
 							) : null
@@ -232,10 +232,14 @@ const CardListingComponent = ({
 									backgroundColor: "#d90000",
 									borderColor: "#d90000",
 									color: "#ffffff",
+									borderRadius: "var(--radius)"
 								}}
 							/>
 						)}
-						<CustomTag tagLabel={<ImageTag />} />
+						<CustomTag tagLabel={<ImageTag />}
+							style={{
+								borderRadius: "var(--radius)"
+							}} />
 					</div>
 					<div
 						className="tags-right"

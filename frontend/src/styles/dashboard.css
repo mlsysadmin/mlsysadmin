@@ -833,7 +833,7 @@
 		width: 100%;
 	}
 	.dashboard .discover .manualSearchingDashboardDiv .manual-searching-desc {
-	font-size: calc(var(--d-body-text) + 1px);
+	font-size: calc(var(--m-body-text) + 1px);
 	}
 
 	#dashboard .banner .banner-content {

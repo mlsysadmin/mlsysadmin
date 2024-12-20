@@ -7,9 +7,14 @@ import {
 } from "../../api/Public/Location.api";
 import OTPModal from "../../components/OTPModal";
 import { Select } from "antd";
-import { AddAgent, GetControlLastNumber } from "../../api/Public/Agent.api";
+import {
+	AddAgent,
+	GetControlLastNumber,
+	GetAgentByContactNumber,
+} from "../../api/Public/Agent.api";
 import { notification } from "antd";
 import { useAuth } from "../../Context/AuthContext";
+import AgentExistModalMessage from "./AgentExistModalMessage";
 
 const JoinTeam = ({ toggleModal }) => {
 	const { isAuthenticated, logout } = useAuth();
@@ -18,6 +23,9 @@ const JoinTeam = ({ toggleModal }) => {
 	const [getProvince, setGetProvince] = useState([]);
 	const [selectedProvince, setSelectedProvince] = useState("");
 	const [filteredCities, setFilteredCities] = useState([]);
+	const [showAgentExistModalMessage, setShowAgentExistModalMessage] =
+		useState(false);
+	const [agentRecordStatus, setAgentRecordStatus] = useState("");
 	const [getCities, setGetCities] = useState([]);
 	const [api, contextHolder] = notification.useNotification();
 
@@ -70,6 +78,9 @@ const JoinTeam = ({ toggleModal }) => {
 		const dataresprovince = await GetProvince();
 		setGetProvince(dataresprovince);
 		console.log("these are provinces:", dataresprovince);
+	};
+	const handleShowAgentExistModalMessage = () => {
+		setShowAgentExistModalMessage(true);
 	};
 
 	useEffect(() => {
@@ -200,69 +211,84 @@ const JoinTeam = ({ toggleModal }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const isValid = handleValidation();
-			const getControlLastNumber = await GetControlLastNumber("AgentId");
-			const today = new Date();
-			const yyyyMMdd =
-				today.getFullYear() +
-				"-" +
-				(today.getMonth() + 1) +
-				"-" +
-				today.getDate();
-			console.log("getControlLastNumber: ", getControlLastNumber);
-			if (getControlLastNumber && isValid && getControlLastNumber.data !== "") {
-				const reqBody = {
-					AgentId: getControlLastNumber.data,
-					AgentName: `${formData.lastName}, ${formData.firstName} ${formData.middleName
-						} ${formData.suffix === "None" ? "" : formData.suffix}`,
-					Address: `${formData.address}, ${formData.city}, ${formData.province}, ${formData.country}`,
-					ContactNo: formData.mobileNumber,
-					Email: formData.email,
-					FacebookLink: "-",
-					Designation:
-						formData.brokerQuestion === "others"
-							? othersInputValue
-							: formData.brokerQuestion,
-					TeamId: "-",
-					TeamName: "-",
-					Affiliated: formData.brokerYears,
-					TIN: "-",
-					BirthDate: yyyyMMdd,
-					Sex: "-",
-					HasPanel: "-",
-					IsFeatured: "-",
-					Description: "-",
-					RecordStatus: "pending",
-					PRCID: "-",
-					PRCExpiryDate: yyyyMMdd,
-					ReferredById: "-",
-					ReferredByName: "-",
-					BankName: "-",
-					BankAccountNo: "-",
-				};
-				const addAgent = await AddAgent(reqBody);
-				console.log("addAgent: ", addAgent);
+			const existingAgent = await GetAgentByContactNumber(
+				formData.mobileNumber
+			);
 
-				if (addAgent) {
-					openNotificationWithIcon(
-						"success",
-						`Successfully submitted`,
-						"Thank you for joining our team! We're excited to review it and will be in touch soon with the next steps."
-					);
+			if (existingAgent !== null) {
+				console.log("Agent already exists: ");
+				setAgentRecordStatus(existingAgent.RecordStatus)
+				setShowAgentExistModalMessage(true);
+			} else {
+				const isValid = handleValidation();
+				const getControlLastNumber = await GetControlLastNumber("AgentId");
+				const today = new Date();
+				const yyyyMMdd =
+					today.getFullYear() +
+					"-" +
+					(today.getMonth() + 1) +
+					"-" +
+					today.getDate();
+				console.log("getControlLastNumber: ", getControlLastNumber);
+				if (
+					getControlLastNumber &&
+					isValid &&
+					getControlLastNumber.data !== ""
+				) {
+					const reqBody = {
+						AgentId: getControlLastNumber.data,
+						AgentName: `${formData.lastName}, ${formData.firstName} ${
+							formData.middleName
+						} ${formData.suffix === "None" ? "" : formData.suffix}`,
+						Address: `${formData.address}, ${formData.city}, ${formData.province}, ${formData.country}`,
+						ContactNo: formData.mobileNumber,
+						Email: formData.email,
+						FacebookLink: "-",
+						Designation:
+							formData.brokerQuestion === "others"
+								? othersInputValue
+								: formData.brokerQuestion,
+						TeamId: "-",
+						TeamName: "-",
+						Affiliated: formData.brokerYears,
+						TIN: "-",
+						BirthDate: yyyyMMdd,
+						Sex: "-",
+						HasPanel: "-",
+						IsFeatured: "-",
+						Description: "-",
+						RecordStatus: "pending",
+						PRCID: "-",
+						PRCExpiryDate: yyyyMMdd,
+						ReferredById: "-",
+						ReferredByName: "-",
+						BankName: "-",
+						BankAccountNo: "-",
+					};
+					const addAgent = await AddAgent(reqBody);
+					console.log("addAgent: ", addAgent);
+
+					if (addAgent) {
+						openNotificationWithIcon(
+							"success",
+							`Successfully submitted`,
+							"Thank you for joining our team! We're excited to review it and will be in touch soon with the next steps."
+						);
+					} else {
+						openNotificationWithIcon(
+							"warning",
+							`Unable to proceed`,
+							"Unable to Submit your Application, Please retry later!."
+						);
+					}
+					console.log("formData: ", formData);
 				} else {
 					openNotificationWithIcon(
 						"warning",
-						`Unable to proceed`,
-						"Unable to Submit your Application, Please retry later!."
+						`Invalid Value`,
+						"Please provide the required fields!."
 					);
 				}
-				console.log("formData: ", formData);
-			} else {
-				openNotificationWithIcon(
-					"warning",
-					`Invalid Value`,
-					"Please provide the required fields!."
-				);
 			}
 
 			//   const addAgent = await AddAgent();
@@ -403,7 +429,7 @@ const JoinTeam = ({ toggleModal }) => {
 	//     })
 	//     .join(" ");
 	// };
-	useEffect(() => { }, [isAuthenticated]);
+	useEffect(() => {}, [isAuthenticated]);
 
 	if (!isAuthenticated) {
 		return (
@@ -558,7 +584,7 @@ const JoinTeam = ({ toggleModal }) => {
 													}) // Corrected here
 											}
 											name="suffix"
-										// onChange={handleAddressChange}
+											// onChange={handleAddressChange}
 										>
 											<option value="" disabled selected hidden>
 												Select option
@@ -644,7 +670,7 @@ const JoinTeam = ({ toggleModal }) => {
 											value={formData.province}
 											onChange={(e) => handleProvinceChange(e.target.value)}
 											name="province"
-										// onChange={handleAddressChange}
+											// onChange={handleAddressChange}
 										>
 											<option value="" disabled selected hidden>
 												Select Province
@@ -776,15 +802,15 @@ const JoinTeam = ({ toggleModal }) => {
 										When did you start your affiliation as{" "}
 										{formData.brokerQuestion === "others"
 											? ["a", "e", "i", "o", "u"].includes(
-												othersInputValue.charAt(0).toLowerCase()
-											)
+													othersInputValue.charAt(0).toLowerCase()
+											  )
 												? "an"
 												: "a"
 											: ["a", "e", "i", "o", "u"].includes(
-												formData.brokerQuestion.charAt(0).toLowerCase()
-											)
-												? "an"
-												: "a"}{" "}
+													formData.brokerQuestion.charAt(0).toLowerCase()
+											  )
+											? "an"
+											: "a"}{" "}
 										{formData.brokerQuestion === "others"
 											? othersInputValue
 												? othersInputValue
@@ -838,10 +864,7 @@ const JoinTeam = ({ toggleModal }) => {
 					<div className="page-content-jointeam-header">
 						<h2>Join our innovative team at M Lhuillier.</h2>
 					</div>
-					<p
-						className="sub-header-joinpage"
-						style={{ color: "#000000" }}
-					>
+					<p className="sub-header-joinpage" style={{ color: "#000000" }}>
 						Your expertise and passion are exactly what we need.
 					</p>
 					<div className="join-team-page-columns">
@@ -932,7 +955,7 @@ const JoinTeam = ({ toggleModal }) => {
 											}) // Corrected here
 									}
 									name="suffix"
-								// onChange={handleAddressChange}
+									// onChange={handleAddressChange}
 								>
 									<option value="" disabled selected hidden>
 										Select option
@@ -1016,7 +1039,7 @@ const JoinTeam = ({ toggleModal }) => {
 									value={formData.province}
 									onChange={(e) => handleProvinceChange(e.target.value)}
 									name="province"
-								// onChange={handleAddressChange}
+									// onChange={handleAddressChange}
 								>
 									<option value="" disabled selected hidden>
 										Select Province
@@ -1139,15 +1162,15 @@ const JoinTeam = ({ toggleModal }) => {
 								When did you start your affiliation as{" "}
 								{formData.brokerQuestion === "others"
 									? ["a", "e", "i", "o", "u"].includes(
-										othersInputValue.charAt(0).toLowerCase()
-									)
+											othersInputValue.charAt(0).toLowerCase()
+									  )
 										? "an"
 										: "a"
 									: ["a", "e", "i", "o", "u"].includes(
-										formData.brokerQuestion.charAt(0).toLowerCase()
-									)
-										? "an"
-										: "a"}{" "}
+											formData.brokerQuestion.charAt(0).toLowerCase()
+									  )
+									? "an"
+									: "a"}{" "}
 								{formData.brokerQuestion === "others"
 									? othersInputValue
 										? othersInputValue
@@ -1171,10 +1194,20 @@ const JoinTeam = ({ toggleModal }) => {
 						</span>
 					</div>
 					<div className="join__submit-btn--wrapper">
-						<button onClick={handleSubmit} className="join-team-page-submit-button">
+						<button
+							onClick={handleSubmit}
+							className="join-team-page-submit-button"
+						>
 							Submit Application
 						</button>
 					</div>
+					{showAgentExistModalMessage && (
+						<AgentExistModalMessage
+							setShowLoginMessage={setShowAgentExistModalMessage}
+							agentRecordStatus={agentRecordStatus}
+							resetForm={resetForm}
+						/>
+					)}
 				</div>
 			)}
 		</div>

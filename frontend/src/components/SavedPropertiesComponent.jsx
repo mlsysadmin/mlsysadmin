@@ -34,7 +34,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 
 	const [selectedSort, setSelectedSort] = useState("dateAdded");
 	const [tabOpened, setTabOpened] = useState("");
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 	const [recordStatus, setIsRecordStatus] = useState("");
 	const [SortTypes, setSortTypes] = useState([
 		{
@@ -250,9 +250,11 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 					}
 				} else {
 					const vendorDetails = await GetVendorByNumber(number);
-
+					console.log("vendorDetails: ",vendorDetails);
 					if (vendorDetails.data) {
 						const vendorDataId = vendorDetails.data.VendorId;
+						console.log("vendorDataId: ",vendorDataId);
+						
 						const propertyListing = await PropertyListing(vendorDataId);
 						const dataresp = propertyListing;
 						if (dataresp.length == 0) {
@@ -535,7 +537,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 									<>
 										<div className="no-saved-properties-container">
 											<div className="no-saved-property-content">
-												<h2>Your Favorites List is Empty!</h2>
+												<h3>Your Favorites List is Empty!</h3>
 												<div className="saved-property-text">
 													<div className="text-content-container">
 														<p>
@@ -547,7 +549,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 															<b style={{ color: "var(--red)" }}>
 																heart icon <HeartOutlined />{" "}
 															</b>{" "}
-															the on any listing to save it here!
+															on any listing to save it here!
 														</span>
 													</div>
 

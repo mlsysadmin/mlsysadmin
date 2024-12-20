@@ -18,10 +18,12 @@ const WrapUpDetails = ({
   setWrapUpComplete,
   setCustomerInfo,
   customerInfo,
+  isDetailsComplete,
+  setIsWrapUpResetComplete,
   isSubmitted
 }) => {
   useEffect(()=>{
-    if (isSubmitted) {
+    if (isSubmitted || !isDetailsComplete) {
       setEmail("");
       setMobileNumber("");
       setFirstname("");
@@ -41,10 +43,11 @@ const WrapUpDetails = ({
         source_of_income: "",
       });
     }
-  },[isSubmitted])
+  },[isSubmitted, isDetailsComplete])
   const [email, setEmail] = useState("");
   const [mobile_number, setMobileNumber] = useState("");
   const [firstname, setFirstname] = useState("");
+  const [middlename, setMiddlename] = useState("");
   const [lastname, setLastname] = useState("");
   const [incomeType, setIncomeType] = useState("");
   const [targetValue, setTargetvalue] = useState("");
@@ -122,6 +125,7 @@ const WrapUpDetails = ({
     error_email_address: "",
     error_last_name: "",
     error_first_name: "",
+    error_middle_name: "",
     error_province: "",
     error_city: "",
     error_zipcode: "",
@@ -378,6 +382,7 @@ const WrapUpDetails = ({
               handleBlurInput(e.target.value, "mobile_number", "Mobile Number")
             }
             maxLength={11}
+            disabled={!isDetailsComplete}
           />
           {errorMessage.error_mobile_number && (
             <p className="error-message">{errorMessage.error_mobile_number}</p>
@@ -397,6 +402,7 @@ const WrapUpDetails = ({
             onBlur={(e) =>
               handleBlurInput(e.target.value, "email", "Email address")
             }
+            disabled={!isDetailsComplete}
           />
           {errorMessage.error_email_address && (
             <p className="error-message">{errorMessage.error_email_address}</p>
@@ -415,6 +421,7 @@ const WrapUpDetails = ({
             onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
             onChange={(e) => handleInput(e.target.value, setLastname)}
             onBlur={(e) => handleBlurInput(e.target.value, "last_name")}
+            disabled={!isDetailsComplete}
           />
           {errorMessage.error_last_name && (
             <p className="error-message">{errorMessage.error_last_name}</p>
@@ -433,9 +440,28 @@ const WrapUpDetails = ({
 
             onChange={(e) => handleInput(e.target.value, setFirstname)}
             onBlur={(e) => handleBlurInput(e.target.value, "first_name")}
+            disabled={!isDetailsComplete}
           />
           {errorMessage.error_first_name && (
             <p className="error-message">{errorMessage.error_first_name}</p>
+          )}{" "}
+        </div>
+        <div className="middlename-group">
+          <span className="label">Middle Name</span>
+          <input
+            type="text"
+            className={`wrap-up-input ${
+              isMobileBlurred && errorMessage.error_middle_name ? "error" : ""
+            }`}
+            placeholder="Middle Name"
+            value={middlename}
+            onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
+            onChange={(e) => handleInput(e.target.value, setMiddlename)}
+            onBlur={(e) => handleBlurInput(e.target.value, "middle_name")}
+            disabled={!isDetailsComplete}
+          />
+          {errorMessage.error_middle_name && (
+            <p className="error-message">{errorMessage.error_middle_name}</p>
           )}{" "}
         </div>
         <div className="country-group">
@@ -486,6 +512,7 @@ const WrapUpDetails = ({
               onBlur={(e) =>
                 handleBlurSelect(e.target.value, "province", "Province")
               }
+              disabled={!isDetailsComplete}
             >
               <option value="" disabled selected hidden>
                 Select Province
@@ -517,6 +544,7 @@ const WrapUpDetails = ({
               value={customerInfo.city}
               onChange={(e) => handleSelect(e.target.value, "city")}
               onBlur={(e) => handleBlurSelect(e.target.value, "city", "City")}
+              disabled={!isDetailsComplete}
             >
               <option value="" disabled selected hidden>
                 Select City
@@ -545,6 +573,7 @@ const WrapUpDetails = ({
             onKeyDown={handleKeyDownForNumbers}
             onChange={(e) => handleInput(e.target.value, setZipCode)}
             onBlur={(e) => handleBlurInput(e.target.value, "zipcode")}
+            disabled={!isDetailsComplete}
           />
           {errorMessage.error_zipcode && (
             <p className="error-message">{errorMessage.error_zipcode}</p>
@@ -561,6 +590,7 @@ const WrapUpDetails = ({
             value={otherAddress}
             onChange={(e) => handleInput(e.target.value, setOtherAddress)}
             onBlur={(e) => handleBlurInput(e.target.value, "others")}
+            disabled={!isDetailsComplete}
           />
           {errorMessage.error_house_no && (
             <p className="error-message">{errorMessage.error_house_no}</p>
@@ -586,6 +616,7 @@ const WrapUpDetails = ({
                   "Source of Income"
                 )
               }
+              disabled={!isDetailsComplete}
             >
               <option value="" disabled selected hidden>
                 Select Source of Income

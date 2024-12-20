@@ -2,7 +2,26 @@
   background-color: #ffffff;
   width: 100%;
 }
-
+.prop-content32 {
+  margin-top: 30px;
+}
+.prop-content1-timeline,
+.prop-content5,
+.prop-content-wrap-up {
+  margin: 50px 0px 0px 0px;
+}
+.prop-content2,
+.prop-content3,
+.prop-content4 {
+  margin-top: 30px;
+}
+.prop-content1-timeline .ref-prop-btn:disabled {
+  color: #666; /* Darker gray text */
+  cursor: not-allowed; /* Change cursor to indicate it's not clickable */
+  opacity: 0.6; /* Make it slightly transparent */
+  border: 1px solid #d9d9d9 !important;
+  background: white !important;
+}
 .buy-a-home-contents {
   background-color: #ffffff;
   display: flex;
@@ -17,7 +36,7 @@
 .buy-a-home-content {
   gap: 20px;
   /* width: 70%; */
-  margin: 50px 0px 0px;
+  /* margin: 50px 0px 0px;x */
   font-family: "Poppins", sans-serif;
 }
 
@@ -65,11 +84,11 @@
   font-size: 24px;
 }
 .property-information-container .prop-quest {
-  font-size: 18px;
+  font-size: var(--d-body-text) !important;
   font-weight: bold;
 }
 .prop-quest-subheader {
-  font-size: 18px;
+  font-size: var(--d-body-text) !important;
   font-weight: bold;
 }
 .property-information-container .prop-info-btn-group {
@@ -81,9 +100,6 @@
 }
 .prop-info-btn-group-timeline .prop-btn {
   margin: 10px;
-}
-.prop-content32 {
-  margin-top: 50px;
 }
 
 @media screen and (max-width: 559px) {
@@ -176,6 +192,7 @@
       .prop-info-btn-group-timeline .prop-btn,
       .prop-info-btn-group .prop-btn
     ) {
+    max-width: 100% !important;
     margin: 0px;
   }
 }
@@ -204,7 +221,7 @@
   cursor: pointer;
   max-width: 250px; */
 }
-.property-information-container .prop-btn:hover,
+/* .property-information-container .prop-btn:hover, */
 .property-information-container .prop-btn.active {
   background: var(--red) !important;
   color: white;
@@ -215,11 +232,16 @@
   margin: 10px 0px 0px 0px;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
 }
-.property-information-container .prop-info-btn-group2 {
+
+.radiobtn-group
+  .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed
+  .property-information-container
+  .prop-info-btn-group2 {
   width: 60%;
   margin: 20px 0px 0px 0px;
+  color: black !important;
 }
 .property-information-container .prop-info-btn-group3 {
   display: flex;
@@ -227,16 +249,17 @@
   margin: 10px 0px 0px 0px;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
 }
 .property-information-container .prop-btn {
   border: 1px solid #d9d9d9 !important;
   max-width: 250px;
   width: 100%;
+  color: #000 !important;
   height: 55px !important;
   border-radius: 6px !important;
   background-color: transparent !important;
-  font-size: var(--d-body-text);
+  font-size: var(--d-body-text) !important;
   cursor: pointer;
   padding: 0px 5px;
 }
@@ -246,7 +269,7 @@
   /* justify-content: center;
   align-items: center; */
   width: 100%;
-  margin: 30px 0px 0px 0px;
+  /* margin: 30px 0px 0px 0px; */
 }
 .property-information-container .prop-info-btn-group-details {
   display: flex;
@@ -356,7 +379,7 @@
 
 .prop-btn.active {
   background-color: #4caf50;
-  color: white;
+  color: white !important;
 }
 
 @media screen and (min-width: 320px) and (max-width: 359px) {
@@ -518,7 +541,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    gap: 0px;
+    gap: 10px;
     margin: 10px 0px 0px 0px;
   }
   .prop-content1-timeline {
@@ -547,8 +570,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    gap: 0px;
-    margin: 30px 10px 10px 0px;
+    gap: 10px;
   }
   .prop-content51 .prop-quest {
     margin: 0px 0px 20px 0px;
@@ -602,7 +624,6 @@
     flex-direction: row;
     width: 100%;
     gap: 0px;
-    margin: 30px 0px 0px 0px;
   }
   .property-information-container .prop-info-wrap-up-input input {
     width: 90%;
@@ -647,7 +668,7 @@
   }
 }
 @media screen and (max-width: 944px) {
-  .property-information-container .prop-info-btn-group-details-input input{
+  .property-information-container .prop-info-btn-group-details-input input {
     width: 100% !important;
   }
 }
