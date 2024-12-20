@@ -156,7 +156,7 @@ const HeaderMenu = () => {
 		if (isAuthenticated && userDetails) {
 			window.location.href = "/saved-properties#listingForm";
 		} else {
-			navigate('/login');
+			navigate('/login/?redirect=saved-properties#listingForm');
 		}
 	};
 	//modals

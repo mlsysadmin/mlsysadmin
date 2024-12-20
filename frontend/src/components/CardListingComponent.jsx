@@ -21,6 +21,7 @@ import PreviewLoadingModal from "./modals/PreviewLoadingModal";
 import { GetSavedPropertiesBySellerNo } from "../api/Public/SavedProperties.api";
 import { getCookieData } from "../utils/CookieChecker";
 import { useAuth } from "../Context/AuthContext";
+import { TruncateText } from "../utils/StringFunctions.utils";
 
 const CardListingComponent = ({
 	loading,
@@ -350,7 +351,7 @@ const CardListingComponent = ({
 				</div>
 				<div className="card-content" onClick={handleClick}>
 					<div className="card-content--title">
-						<p>{title}</p>
+						<p>{TruncateText(title)}</p>
 					</div>
 					<div className="card-content--sub">
 						<h5>{subtitle}</h5>

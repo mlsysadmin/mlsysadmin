@@ -45,7 +45,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 		setShowUpgradeModal(false);
-		navigate('/login')
+		navigate('/login/?redirect=saved-properties#listingForm')
 	};
 	const handleLogout = async () => {
 		const logoutURL = process.env.REACT_APP_LOGOUT_URL;

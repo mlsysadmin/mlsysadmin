@@ -18,6 +18,7 @@ import { searchKyc } from "../../../api/Public/User.api";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useAuth } from "../../../Context/AuthContext";
 import { getCookieData } from "../../../utils/CookieChecker";
+import { TruncateText } from "../../../utils/StringFunctions.utils";
 
 const Card = ({
 	id,
@@ -200,7 +201,7 @@ const Card = ({
 
 			<div className="card-content" onClick={handleClick}>
 				<div className="card-listing-title-public">
-					<p>{title}</p>
+					<p>{TruncateText(title)}</p>
 				</div>
 				<div className="card-listing-subtitle-public">
 					<label>{subtitle}</label>

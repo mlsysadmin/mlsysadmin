@@ -297,6 +297,7 @@
 .otp-verification-container .otp-header {
 	/* font-size: va; */
 	text-align: center;
+	margin: 0 15px;
 }
 
 .otp-verification-container .otp-input-group{

@@ -396,7 +396,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 									{currentItems.map((item, i) => {
 										return (
 											<CardListingComponent
-												title={TruncateText(item.title, 100)}
+												title={item.title}
 												price={item.price}
 												status={item.status}
 												pics={item.pics}
@@ -485,7 +485,7 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 													showDeleteIcon={
 														isSavedPropertiesRoute && isSavedPropertiesTab
 													}
-													title={TruncateText(item.title, 100)}
+													title={item.title}
 													price={item.price}
 													status={item.status}
 													pics={item.pics}

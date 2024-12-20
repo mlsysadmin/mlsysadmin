@@ -257,7 +257,7 @@ const SaleComponent = () => {
 										<Card
 											key={index}
 											id={data.id}
-											title={TruncateText(data.title)}
+											title={data.title}
 											price={data.price}
 											imgSrc={data.img}
 											beds={data.no_of_beds}
