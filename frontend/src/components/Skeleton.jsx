@@ -159,8 +159,53 @@ const PreviewListingSkeleton = () => {
     )
 }
 
+const CreateListingSkeleton = () => {
+    return (
+        <div className="create--skeleton-container">
+            <div className="create--skeleton-wrapper">
+                <div className="create__cards-top create__cards">
+                    <div className="create__skeleton--top-side">
+                        <Skeleton
+                            active
+                            paragraph={false}
+                            className="p__skeleton-top--card"
+                            rootClassName="skeleton-top--card"
+                        />
+                    </div>
+                </div>
+                <br />
+                <div className="create__details">
+                    <div className="preview-details__skeleton-right-side create__listing-cards">
+                        <Skeleton
+                            active
+                            paragraph={false}
+                            className="skeleton-right__card create__listing-card-top"
+                        />
+                    </div>
+                    <div className="preview-details__skeleton--left-side create__listing-cards">
+                        <Skeleton
+                            active
+                            paragraph={false}
+                            className="skeleton-left__card card-1 create__listing-card-bottom"
+                        />
+                        <br />
+                        <Skeleton
+                            active
+                            paragraph={false}
+                            className="skeleton-left__card card-2 create__listing-card-bottom"
+                        />
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+        </div>
+    )
+}
+
 export {
     CardSkeleton,
     FeaturesSkeleton,
-    PreviewListingSkeleton
+    PreviewListingSkeleton,
+    CreateListingSkeleton
 }

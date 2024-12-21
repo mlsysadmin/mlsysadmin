@@ -119,6 +119,29 @@
 	height: 520px !important;
 }
 
+/* CREATE LISTING */
+.create__cards-top.create__cards,
+.p__skeleton-top--card .ant-skeleton-title {
+	height: 100px !important;
+	width: 100%;
+}
+
+.create__details {
+	display: grid;
+	grid-template-columns: 30% auto;
+	gap: 20px;
+}
+
+.create__listing-card-top .ant-skeleton-title {
+	height: 400px !important;
+	width: 100%;
+}
+
+.create__listing-card-bottom.card-2 .ant-skeleton-title {
+	height: 500px !important;
+	width: 100%;
+}
+
 @media screen and (min-width: 320px) and (max-width: 599px) {
 	/* .skeleton--card-listing {
 		width: 300px;
@@ -223,19 +246,28 @@
 	.preview--skeleton-container {
 		width: 90%;
 	}
-	.skeleton-left--img, .p__skeleton-left--img{
+
+	.skeleton-left--img,
+	.p__skeleton-left--img {
 		height: 300px !important;
 	}
-	.p__skeleton-right--img{
+
+	.p__skeleton-right--img {
 		height: 145px !important;
 	}
-	.skeleton-left__card.card-1, .skeleton-left__card.card-1 .ant-skeleton-title{
+
+	.skeleton-left__card.card-1,
+	.skeleton-left__card.card-1 .ant-skeleton-title {
 		height: 130px !important;
 	}
-	.skeleton-left__card.card-2, .skeleton-left__card.card-2 .ant-skeleton-title{
+
+	.skeleton-left__card.card-2,
+	.skeleton-left__card.card-2 .ant-skeleton-title {
 		height: 200px !important;
 	}
-	.skeleton-right__card, .skeleton-right__card .ant-skeleton-title{
+
+	.skeleton-right__card,
+	.skeleton-right__card .ant-skeleton-title {
 		height: 350px !important;
 	}
 }
@@ -245,39 +277,58 @@
 	.preview--skeleton-container {
 		width: 90%;
 	}
-	.skeleton-left--img, .p__skeleton-left--img{
+
+	.skeleton-left--img,
+	.p__skeleton-left--img {
 		height: 250px !important;
 	}
-	.p__skeleton-right--img{
+
+	.p__skeleton-right--img {
 		height: 120px !important;
 	}
-	.skeleton-left__card.card-1, .skeleton-left__card.card-1 .ant-skeleton-title{
+
+	.skeleton-left__card.card-1,
+	.skeleton-left__card.card-1 .ant-skeleton-title {
 		height: 110px !important;
 	}
-	.skeleton-left__card.card-2, .skeleton-left__card.card-2 .ant-skeleton-title{
+
+	.skeleton-left__card.card-2,
+	.skeleton-left__card.card-2 .ant-skeleton-title {
 		height: 160px !important;
 	}
-	.skeleton-right__card, .skeleton-right__card .ant-skeleton-title{
+
+	.skeleton-right__card,
+	.skeleton-right__card .ant-skeleton-title {
 		height: 295px !important;
 	}
 }
+
 @media screen and (min-width: 320px) and (max-width: 479px) {
 	.preview--skeleton-container {
 		width: 95%;
 	}
-	.skeleton-left--img, .p__skeleton-left--img{
+
+	.skeleton-left--img,
+	.p__skeleton-left--img {
 		height: 230px !important;
 	}
-	.p__skeleton-right--img{
+
+	.p__skeleton-right--img {
 		height: 110px !important;
 	}
-	.skeleton-left__card.card-1, .skeleton-left__card.card-1 .ant-skeleton-title{
+
+	.skeleton-left__card.card-1,
+	.skeleton-left__card.card-1 .ant-skeleton-title {
 		height: 90px !important;
 	}
-	.skeleton-left__card.card-2, .skeleton-left__card.card-2 .ant-skeleton-title{
+
+	.skeleton-left__card.card-2,
+	.skeleton-left__card.card-2 .ant-skeleton-title {
 		height: 130px !important;
 	}
-	.skeleton-right__card, .skeleton-right__card .ant-skeleton-title{
+
+	.skeleton-right__card,
+	.skeleton-right__card .ant-skeleton-title {
 		height: 243px !important;
 	}
 }

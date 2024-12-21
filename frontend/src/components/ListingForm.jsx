@@ -31,6 +31,7 @@ import AlertModal from "./modals/AlertModal";
 import PreviewLoadingModal from "./modals/PreviewLoadingModal";
 import { notification } from "antd";
 import { useAuth } from '../Context/AuthContext';
+import { CreateListingSkeleton } from "./Skeleton";
 
 export const ListingForm = () => {
 	const {
@@ -120,6 +121,9 @@ export const ListingForm = () => {
 		Approver3Status: "Pending",
 		Source: "Client",
 	});
+
+	const [isLoading, setIsLoading] = useState(true);
+
 	useEffect(() => {
 		console.log("submitted na: ", submitted);
 		if (submitted) {
@@ -161,7 +165,15 @@ export const ListingForm = () => {
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
-
+		
+	}, []);
+	useEffect(() => {
+		setTimeout(() => {
+			if (userDetails && isAuthenticated) {
+				setIsLoading(false);
+			}
+		}, 1500);
+		
 	}, []);
 
 	const [tinError, serTinError] = useState("");
@@ -562,13 +574,13 @@ export const ListingForm = () => {
 		});
 	};
 	const el = document.querySelector(".listing-steps");
-	
+
 	useEffect(() => {
 		console.log(el);
-		
+
 		if (el) {
 			const stickyThreshold = parseInt(window.getComputedStyle(el).top) || 0; // Sticky position from CSS
-	
+
 			window.addEventListener("scroll", () => {
 				const currentTop = el.getBoundingClientRect().top;
 				el.classList.toggle("is-sticky", currentTop <= stickyThreshold);
@@ -583,35 +595,41 @@ export const ListingForm = () => {
 			{
 				contextHolder
 			}
-			<div className="listing-ContentContainer">
-				<ListingBanner />
-				<div className="listing-application">
-					<div className="listing-steps">
-						<ListingSteps
-							current={currentStep}
-							setCurrent={setCurrentStep}
-							completedSteps={completedSteps}
-						/>
-					</div>
-					<div className="listing-form">
-						<div className="listing-form-application">
-							<div
-								ref={(el) => (stepRefs.current[0] = el)}
-								style={{
-									pointerEvents:
-										completedSteps[0] || currentStep === 0 ? "auto" : "none",
-									cursor:
-										completedSteps[0] || currentStep === 0
-											? "auto"
-											: "not-allowed",
-								}}
-							>
-								<PropertyDetailsComponent
-									onComplete={(completed) => handleStepComplete(0, completed)}
-									setPropertyFields={setPropertyDataFields}
-									isSubmitted={submitted}
-								/>
-								{/* {errors[0] && currentStep === 0 && (
+			{isLoading ? (
+				// <PreviewLoadingModal />
+				<>
+					<CreateListingSkeleton />
+				</>
+			) :
+				<div className="listing-ContentContainer">
+					<ListingBanner />
+					<div className="listing-application">
+						<div className="listing-steps">
+							<ListingSteps
+								current={currentStep}
+								setCurrent={setCurrentStep}
+								completedSteps={completedSteps}
+							/>
+						</div>
+						<div className="listing-form">
+							<div className="listing-form-application">
+								<div
+									ref={(el) => (stepRefs.current[0] = el)}
+									style={{
+										pointerEvents:
+											completedSteps[0] || currentStep === 0 ? "auto" : "none",
+										cursor:
+											completedSteps[0] || currentStep === 0
+												? "auto"
+												: "not-allowed",
+									}}
+								>
+									<PropertyDetailsComponent
+										onComplete={(completed) => handleStepComplete(0, completed)}
+										setPropertyFields={setPropertyDataFields}
+										isSubmitted={submitted}
+									/>
+									{/* {errors[0] && currentStep === 0 && (
 									<div
 										style={{
 											color: "red",
@@ -624,35 +642,35 @@ export const ListingForm = () => {
 										Please fill in the missing values.
 									</div>
 								)} */}
-							</div>
-							<div
-								ref={(el) => (stepRefs.current[1] = el)}
-								style={{
-									pointerEvents: completedSteps[0] ? "auto" : "none",
-									cursor: completedSteps[0] ? "auto" : "not-allowed",
-								}}
-							>
-								<UnitDetailsComponent
-									onComplete={(completed) => handleStepComplete(1, completed)}
-									priceInputError={priceInputError}
-									setPriceInputError={setPriceInputError}
-									selectedSellingPrice={selectedSellingPrice}
-									floorAreaInputError={floorAreaInputError}
-									setFloorAreaInputError={setFloorAreaInputError}
-									pricePerSqmInputError={pricePerSqmInputError}
-									setPricePerSqmInputError={setPricePerSqmInputError}
-									discPriceInputError={discPriceInputError}
-									setDiscPriceInputError={setDiscPriceInputError}
-									lotAreaInputError={lotAreaInputError}
-									setLotAreaInputError={setLotAreaInputError}
-									propIdInputError={propIdInputError}
-									setPropIdInputError={setPropIdInputError}
-									setPropertyFields={setPropertyDataFields}
-									selectedPropertyTab={propertyFields.PropertyType}
-									isSubmitted={submitted}
-									openNotificationWithIcon={openNotificationWithIcon}
-								/>
-								{/* {errors[1] && currentStep === 1 && (
+								</div>
+								<div
+									ref={(el) => (stepRefs.current[1] = el)}
+									style={{
+										pointerEvents: completedSteps[0] ? "auto" : "none",
+										cursor: completedSteps[0] ? "auto" : "not-allowed",
+									}}
+								>
+									<UnitDetailsComponent
+										onComplete={(completed) => handleStepComplete(1, completed)}
+										priceInputError={priceInputError}
+										setPriceInputError={setPriceInputError}
+										selectedSellingPrice={selectedSellingPrice}
+										floorAreaInputError={floorAreaInputError}
+										setFloorAreaInputError={setFloorAreaInputError}
+										pricePerSqmInputError={pricePerSqmInputError}
+										setPricePerSqmInputError={setPricePerSqmInputError}
+										discPriceInputError={discPriceInputError}
+										setDiscPriceInputError={setDiscPriceInputError}
+										lotAreaInputError={lotAreaInputError}
+										setLotAreaInputError={setLotAreaInputError}
+										propIdInputError={propIdInputError}
+										setPropIdInputError={setPropIdInputError}
+										setPropertyFields={setPropertyDataFields}
+										selectedPropertyTab={propertyFields.PropertyType}
+										isSubmitted={submitted}
+										openNotificationWithIcon={openNotificationWithIcon}
+									/>
+									{/* {errors[1] && currentStep === 1 && (
 									<div
 										style={{
 											color: "red",
@@ -666,231 +684,231 @@ export const ListingForm = () => {
 										Please fill in the missing values.
 									</div>
 								)} */}
-							</div>
-							<div
-								ref={(el) => (stepRefs.current[2] = el)}
-								style={{
-									pointerEvents: completedSteps[1] ? "auto" : "none",
-									cursor: completedSteps[1] ? "auto" : "not-allowed",
-								}}
-							>
-								<LocationDetailsComponent
-									onComplete={(completed) => handleStepComplete(2, completed)}
-									setPropertyFields={setPropertyDataFields}
-									isSubmitted={submitted}
-								/>
-								{/* {errors[2] && currentStep === 2 && (
-									<div
-										style={{
-											color: "red",
-											display: "flex",
-											justifyContent: "left",
-											marginBottom: "10px",
-										}}
-										className="error-m"
-									>
-										Please fill in the missing values.
-									</div>
-								)} */}
-							</div>
-							<div
-								ref={(el) => (stepRefs.current[3] = el)}
-								style={{
-									pointerEvents: completedSteps[2] ? "auto" : "none",
-									cursor: completedSteps[2] ? "auto" : "not-allowed",
-								}}
-							>
-								<DescriptionDetailsComponent
-									onComplete={(completed) => handleStepComplete(3, completed)}
-									setPropertyFields={setPropertyDataFields}
-									setIsFocused={setIsFocused}
-									isSubmitted={submitted}
-								/>
-								{/* {errors[3] && currentStep === 3 && (
-									<div
-										style={{
-											color: "red",
-											display: "flex",
-											justifyContent: "left",
-											marginBottom: "10px",
-										}}
-										className="error-m"
-									>
-										Please fill in the missing values.
-									</div>
-								)} */}
-							</div>
-							<div
-								ref={(el) => (stepRefs.current[4] = el)}
-								style={{
-									pointerEvents: completedSteps[3] ? "auto" : "none",
-									cursor: completedSteps[3] ? "auto" : "not-allowed",
-								}}
-							>
-								<UploadPhotosComponent
-									onComplete={(completed) => handleStepComplete(4, completed)}
-									setPropertyFields={setPropertyDataFields}
-									isSubmitted={submitted}
-								/>
-								{/* {errors[4] && currentStep === 4 && (
-									<div
-										style={{
-											color: "red",
-											display: "flex",
-											justifyContent: "left",
-											marginBottom: "10px",
-										}}
-									>
-										Please fill in the missing values.
-									</div>
-								)} */}
-							</div>
-							<div
-								ref={(el) => (stepRefs.current[5] = el)}
-								style={{
-									pointerEvents: completedSteps[4] ? "auto" : "none",
-									cursor: completedSteps[4] ? "auto" : "not-allowed",
-								}}
-							>
-								<FeaturedComponents
-									onComplete={(completed) => handleStepComplete(5, true)}
-									setPropertyFields={setPropertyDataFields}
-									selectedPropertyTab={propertyFields.PropertyType}
-									isSubmitted={submitted}
-								/>
-								{/* {errors[5] && currentStep === 5 && (
-									<div
-										style={{
-											color: "red",
-											display: "flex",
-											justifyContent: "left",
-											marginBottom: "10px",
-										}}
-										className="error-m"
-									>
-										Please fill in the missing values.
-									</div>
-								)} */}
-							</div>
-							<p style={{ fontWeight: "500" }} className="aggreement">
-								By proceeding, I agree and review that all information are
-								correct.
-							</p>
-							<div className="buttonSubmit">
-								<button
-									type="submit"
-									onClick={handleVendorSubmit}
-									disabled={!isFormComplete}
+								</div>
+								<div
+									ref={(el) => (stepRefs.current[2] = el)}
 									style={{
-										backgroundColor: isFormComplete ? "var(--red)" : "gray",
-										cursor: isFormComplete ? "pointer" : "not-allowed",
+										pointerEvents: completedSteps[1] ? "auto" : "none",
+										cursor: completedSteps[1] ? "auto" : "not-allowed",
 									}}
 								>
-									Submit Application
-								</button>
-								{/* TIN Modal */}
-								{showVendorModal && (
+									<LocationDetailsComponent
+										onComplete={(completed) => handleStepComplete(2, completed)}
+										setPropertyFields={setPropertyDataFields}
+										isSubmitted={submitted}
+									/>
+									{/* {errors[2] && currentStep === 2 && (
 									<div
-										className="vendor-modal-overlay"
-										onClick={() => setShowVendorModal(false)}
+										style={{
+											color: "red",
+											display: "flex",
+											justifyContent: "left",
+											marginBottom: "10px",
+										}}
+										className="error-m"
 									>
+										Please fill in the missing values.
+									</div>
+								)} */}
+								</div>
+								<div
+									ref={(el) => (stepRefs.current[3] = el)}
+									style={{
+										pointerEvents: completedSteps[2] ? "auto" : "none",
+										cursor: completedSteps[2] ? "auto" : "not-allowed",
+									}}
+								>
+									<DescriptionDetailsComponent
+										onComplete={(completed) => handleStepComplete(3, completed)}
+										setPropertyFields={setPropertyDataFields}
+										setIsFocused={setIsFocused}
+										isSubmitted={submitted}
+									/>
+									{/* {errors[3] && currentStep === 3 && (
+									<div
+										style={{
+											color: "red",
+											display: "flex",
+											justifyContent: "left",
+											marginBottom: "10px",
+										}}
+										className="error-m"
+									>
+										Please fill in the missing values.
+									</div>
+								)} */}
+								</div>
+								<div
+									ref={(el) => (stepRefs.current[4] = el)}
+									style={{
+										pointerEvents: completedSteps[3] ? "auto" : "none",
+										cursor: completedSteps[3] ? "auto" : "not-allowed",
+									}}
+								>
+									<UploadPhotosComponent
+										onComplete={(completed) => handleStepComplete(4, completed)}
+										setPropertyFields={setPropertyDataFields}
+										isSubmitted={submitted}
+									/>
+									{/* {errors[4] && currentStep === 4 && (
+									<div
+										style={{
+											color: "red",
+											display: "flex",
+											justifyContent: "left",
+											marginBottom: "10px",
+										}}
+									>
+										Please fill in the missing values.
+									</div>
+								)} */}
+								</div>
+								<div
+									ref={(el) => (stepRefs.current[5] = el)}
+									style={{
+										pointerEvents: completedSteps[4] ? "auto" : "none",
+										cursor: completedSteps[4] ? "auto" : "not-allowed",
+									}}
+								>
+									<FeaturedComponents
+										onComplete={(completed) => handleStepComplete(5, true)}
+										setPropertyFields={setPropertyDataFields}
+										selectedPropertyTab={propertyFields.PropertyType}
+										isSubmitted={submitted}
+									/>
+									{/* {errors[5] && currentStep === 5 && (
+									<div
+										style={{
+											color: "red",
+											display: "flex",
+											justifyContent: "left",
+											marginBottom: "10px",
+										}}
+										className="error-m"
+									>
+										Please fill in the missing values.
+									</div>
+								)} */}
+								</div>
+								<p style={{ fontWeight: "500" }} className="aggreement">
+									By proceeding, I agree and review that all information are
+									correct.
+								</p>
+								<div className="buttonSubmit">
+									<button
+										type="submit"
+										onClick={handleVendorSubmit}
+										disabled={!isFormComplete}
+										style={{
+											backgroundColor: isFormComplete ? "var(--red)" : "gray",
+											cursor: isFormComplete ? "pointer" : "not-allowed",
+										}}
+									>
+										Submit Application
+									</button>
+									{/* TIN Modal */}
+									{showVendorModal && (
 										<div
-											className="vendor-modal-content"
-											onClick={(e) => e.stopPropagation()}
-											style={{
-												display: "flex",
-												flexDirection: "column",
-												alignItems: "center",
-											}}
+											className="vendor-modal-overlay"
+											onClick={() => setShowVendorModal(false)}
 										>
-											<h2>Enter TIN</h2>
 											<div
-												className="tin-input-group"
+												className="vendor-modal-content"
+												onClick={(e) => e.stopPropagation()}
 												style={{
 													display: "flex",
 													flexDirection: "column",
-													justifyContent: "center",
 													alignItems: "center",
-													padding: "10px",
-													width: "250px",
 												}}
 											>
-												<label htmlFor="tin">
-													Tax Identification Number (TIN):
-												</label>
-												<input
-													type="text"
-													id="tin"
-													value={tin}
-													onChange={handleInputTINChange}
-													placeholder="Enter your 9 digit TIN"
-													style={{ padding: "10px", width: "100%" }}
-												/>
-												{tinError && (
-													<p
-														style={{
-															color: "var(--red)",
-															marginTop: "5px",
-															fontSize: "14px",
-														}}
-													>
-														{tinError}
-													</p>
-												)}
-											</div>
-
-											<button
-												disabled={submitTINDisabled}
-												onClick={handleSubmit}
-												style={{
-													padding: "10px 50px",
-													fontSize: "16px",
-													backgroundColor: submitTINDisabled
-														? "gray"
-														: "var(--red)",
-													cursor: submitTINDisabled ? "not-allowed" : "pointer",
-													marginRight: "0px",
-												}}
-											>
-												Submit
-											</button>
-										</div>
-									</div>
-								)}
-
-								{/* Success Modal */}
-								{showSuccessfulMsgModal && (
-									<div
-										className="success-modal-overlay"
-										onClick={() => setShowSuccessfulMsgModal(false)}
-									>
-										<div
-											className="success-modal-content-body"
-											onClick={(e) => e.stopPropagation()}
-										>
-											<h2 className="modal-success-header">
-												Successfully Submitted!
-											</h2>
-											<div className="success-details">
-												<p>
-													Waiting for Approval. Your listing has been submitted
-													and will undergo screening.
-												</p>
-												<button
-													className="buttonkyc"
-													onClick={() =>
-														handlePreviewListing(postedPropertyNo.PropertyNo)
-													}
+												<h2>Enter TIN</h2>
+												<div
+													className="tin-input-group"
+													style={{
+														display: "flex",
+														flexDirection: "column",
+														justifyContent: "center",
+														alignItems: "center",
+														padding: "10px",
+														width: "250px",
+													}}
 												>
-													Preview Listing
+													<label htmlFor="tin">
+														Tax Identification Number (TIN):
+													</label>
+													<input
+														type="text"
+														id="tin"
+														value={tin}
+														onChange={handleInputTINChange}
+														placeholder="Enter your 9 digit TIN"
+														style={{ padding: "10px", width: "100%" }}
+													/>
+													{tinError && (
+														<p
+															style={{
+																color: "var(--red)",
+																marginTop: "5px",
+																fontSize: "14px",
+															}}
+														>
+															{tinError}
+														</p>
+													)}
+												</div>
+
+												<button
+													disabled={submitTINDisabled}
+													onClick={handleSubmit}
+													style={{
+														padding: "10px 50px",
+														fontSize: "16px",
+														backgroundColor: submitTINDisabled
+															? "gray"
+															: "var(--red)",
+														cursor: submitTINDisabled ? "not-allowed" : "pointer",
+														marginRight: "0px",
+													}}
+												>
+													Submit
 												</button>
 											</div>
 										</div>
-									</div>
-								)}
+									)}
 
-								{isSubmitting && <PreviewLoadingModal />}
-								{/* {showAlert && (
+									{/* Success Modal */}
+									{showSuccessfulMsgModal && (
+										<div
+											className="success-modal-overlay"
+											onClick={() => setShowSuccessfulMsgModal(false)}
+										>
+											<div
+												className="success-modal-content-body"
+												onClick={(e) => e.stopPropagation()}
+											>
+												<h2 className="modal-success-header">
+													Successfully Submitted!
+												</h2>
+												<div className="success-details">
+													<p>
+														Waiting for Approval. Your listing has been submitted
+														and will undergo screening.
+													</p>
+													<button
+														className="buttonkyc"
+														onClick={() =>
+															handlePreviewListing(postedPropertyNo.PropertyNo)
+														}
+													>
+														Preview Listing
+													</button>
+												</div>
+											</div>
+										</div>
+									)}
+
+									{isSubmitting && <PreviewLoadingModal />}
+									{/* {showAlert && (
 									<AlertModal
 										title={showAlertModal.title}
 										text={showAlertModal.text}
@@ -923,11 +941,12 @@ export const ListingForm = () => {
 										}}
 									/>
 								)} */}
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			}
 		</>
 	);
 };
