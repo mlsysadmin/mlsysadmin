@@ -53,6 +53,7 @@ import { useAuth } from "../Context/AuthContext";
 import LoginMessageModal from "../components/modals/LoginMessageModal";
 import SemiRoundBtn from "../components/custom/buttons/SemiRoundBtn.custom";
 import NotFoundComponent from "../components/Errors/NotFoundComponent";
+import { PreviewListingSkeleton } from "../components/Skeleton";
 
 const ListingPreview = () => {
 	const location = useLocation();
@@ -197,6 +198,7 @@ const ListingPreview = () => {
 						minimumFractionDigits: 2,
 						maximumFractionDigits: 2,
 					});
+					dataresp.Price = dataresp.SaleType.toLowerCase() == "rent" ? `${dataresp.Price} /mo.` : dataresp.Price;
 					dataresp.PricePerSqm =
 						dataresp.PricePerSqm > 0
 							? Number(dataresp.PricePerSqm).toLocaleString("en", {
@@ -440,7 +442,14 @@ const ListingPreview = () => {
 		<>
 			{contextHolder}
 			{isLoading ? (
-				<PreviewLoadingModal />
+				// <PreviewLoadingModal />
+				<>
+					<PreviewListingSkeleton />
+					<div className="preview--footer">
+						<CustomMlFooter />
+						<FooterComponent />
+					</div>
+				</>
 			) : (
 				oneListing && !isError ? (
 					<>
