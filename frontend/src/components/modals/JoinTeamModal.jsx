@@ -14,6 +14,7 @@ import {
 } from "../../api/Public/Agent.api";
 import { notification } from "antd";
 import { useAuth } from "../../Context/AuthContext";
+import PreviewLoadingModal from "./PreviewLoadingModal";
 import AgentExistModalMessage from "./AgentExistModalMessage";
 
 const JoinTeam = ({ toggleModal }) => {
@@ -27,6 +28,7 @@ const JoinTeam = ({ toggleModal }) => {
 		useState(false);
 	const [agentRecordStatus, setAgentRecordStatus] = useState("");
 	const [getCities, setGetCities] = useState([]);
+	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [api, contextHolder] = notification.useNotification();
 
 	const [formData, setFormData] = useState({
@@ -210,21 +212,22 @@ const JoinTeam = ({ toggleModal }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setIsSubmitting(true);
 		try {
-			
 			const existingAgent = await GetAgentByContactNumber(
 				formData.mobileNumber
 			);
 			console.log("number:", formData.mobileNumber);
-			
 
 			console.log("existingAgent: ", existingAgent);
-			
+
 			if (existingAgent !== null && Object.keys(existingAgent).length > 0) {
 				if (existingAgent.RecordStatus !== "inactive") {
-				console.log("Agent already exists: ", existingAgent);
-				setAgentRecordStatus(existingAgent.RecordStatus);
-				setShowAgentExistModalMessage(true);
+					console.log("Agent already exists: ", existingAgent);
+					
+					setAgentRecordStatus(existingAgent.RecordStatus);
+					setIsSubmitting(false);
+					setShowAgentExistModalMessage(true);
 				} else {
 					const isValid = handleValidation();
 					const getControlLastNumber = await GetControlLastNumber("AgentId");
@@ -273,6 +276,7 @@ const JoinTeam = ({ toggleModal }) => {
 						};
 						const addAgent = await AddAgent(reqBody);
 						console.log("addAgent: ", addAgent);
+						setIsSubmitting(false);
 
 						if (addAgent) {
 							openNotificationWithIcon(
@@ -295,7 +299,6 @@ const JoinTeam = ({ toggleModal }) => {
 							"Please provide the required fields!."
 						);
 					}
-
 				}
 			} else {
 				const isValid = handleValidation();
@@ -345,6 +348,7 @@ const JoinTeam = ({ toggleModal }) => {
 					};
 					const addAgent = await AddAgent(reqBody);
 					console.log("addAgent: ", addAgent);
+					setIsSubmitting(false);
 					resetForm();
 
 					if (addAgent) {
@@ -892,6 +896,7 @@ const JoinTeam = ({ toggleModal }) => {
 						</div>
 					</div>
 				)}
+				{isSubmitting && <PreviewLoadingModal />}
 			</div>
 		);
 	}
@@ -1260,6 +1265,7 @@ const JoinTeam = ({ toggleModal }) => {
 					)}
 				</div>
 			)}
+			{isSubmitting && <PreviewLoadingModal />}
 		</div>
 	);
 };
