@@ -14,6 +14,7 @@ import {
 } from "../../api/Public/Agent.api";
 import { notification } from "antd";
 import { useAuth } from "../../Context/AuthContext";
+import PreviewLoadingModal from "./PreviewLoadingModal";
 import AgentExistModalMessage from "./AgentExistModalMessage";
 
 const JoinTeam = ({ toggleModal }) => {
@@ -27,6 +28,7 @@ const JoinTeam = ({ toggleModal }) => {
 		useState(false);
 	const [agentRecordStatus, setAgentRecordStatus] = useState("");
 	const [getCities, setGetCities] = useState([]);
+	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [api, contextHolder] = notification.useNotification();
 
 	const [formData, setFormData] = useState({
@@ -210,14 +212,94 @@ const JoinTeam = ({ toggleModal }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setIsSubmitting(true);
 		try {
 			const existingAgent = await GetAgentByContactNumber(
 				formData.mobileNumber
 			);
-			if (existingAgent && Object.keys(existingAgent).length > 0) {
-				console.log("Agent already exists: ", existingAgent);
-				setAgentRecordStatus(existingAgent.RecordStatus);
-				setShowAgentExistModalMessage(true);
+			console.log("number:", formData.mobileNumber);
+
+			console.log("existingAgent: ", existingAgent);
+
+			if (existingAgent !== null && Object.keys(existingAgent).length > 0) {
+				if (existingAgent.RecordStatus !== "inactive") {
+					console.log("Agent already exists: ", existingAgent);
+					
+					setAgentRecordStatus(existingAgent.RecordStatus);
+					setIsSubmitting(false);
+					setShowAgentExistModalMessage(true);
+				} else {
+					const isValid = handleValidation();
+					const getControlLastNumber = await GetControlLastNumber("AgentId");
+					const today = new Date();
+					const yyyyMMdd =
+						today.getFullYear() +
+						"-" +
+						(today.getMonth() + 1) +
+						"-" +
+						today.getDate();
+					console.log("getControlLastNumber: ", getControlLastNumber);
+					if (
+						getControlLastNumber &&
+						isValid &&
+						getControlLastNumber.data !== ""
+					) {
+						const reqBody = {
+							AgentId: getControlLastNumber.data,
+							AgentName: `${formData.lastName}, ${formData.firstName} ${
+								formData.middleName
+							} ${formData.suffix === "None" ? "" : formData.suffix}`,
+							Address: `${formData.address}, ${formData.city}, ${formData.province}, ${formData.country}`,
+							ContactNo: formData.mobileNumber,
+							Email: formData.email,
+							FacebookLink: "-",
+							Designation:
+								formData.brokerQuestion === "others"
+									? othersInputValue
+									: formData.brokerQuestion,
+							TeamId: "-",
+							TeamName: "-",
+							Affiliated: formData.brokerYears,
+							TIN: "-",
+							BirthDate: yyyyMMdd,
+							Sex: "-",
+							HasPanel: "-",
+							IsFeatured: "-",
+							Description: "-",
+							RecordStatus: "pending",
+							PRCID: "-",
+							PRCExpiryDate: yyyyMMdd,
+							ReferredById: "-",
+							ReferredByName: "-",
+							BankName: "-",
+							BankAccountNo: "-",
+						};
+						const addAgent = await AddAgent(reqBody);
+						console.log("addAgent: ", addAgent);
+						setIsSubmitting(false);
+
+						if (addAgent) {
+							openNotificationWithIcon(
+								"success",
+								`Successfully submitted`,
+								"Thank you for joining our team! We're excited to review it and will be in touch soon with the next steps."
+							);
+						} else {
+							openNotificationWithIcon(
+								"warning",
+								`Unable to proceed`,
+								"Unable to Submit your Application, Please retry later!."
+							);
+						}
+						console.log("formData: ", formData);
+					} else {
+						openNotificationWithIcon(
+							"warning",
+							`Invalid Value`,
+							"Please provide the required fields!."
+						);
+					}
+				}
 			} else {
 				const isValid = handleValidation();
 				const getControlLastNumber = await GetControlLastNumber("AgentId");
@@ -266,6 +348,8 @@ const JoinTeam = ({ toggleModal }) => {
 					};
 					const addAgent = await AddAgent(reqBody);
 					console.log("addAgent: ", addAgent);
+					setIsSubmitting(false);
+					resetForm();
 
 					if (addAgent) {
 						openNotificationWithIcon(
@@ -281,6 +365,7 @@ const JoinTeam = ({ toggleModal }) => {
 						);
 					}
 					console.log("formData: ", formData);
+					resetForm();
 				} else {
 					openNotificationWithIcon(
 						"warning",
@@ -811,6 +896,7 @@ const JoinTeam = ({ toggleModal }) => {
 						</div>
 					</div>
 				)}
+				{isSubmitting && <PreviewLoadingModal />}
 			</div>
 		);
 	}
@@ -1179,6 +1265,7 @@ const JoinTeam = ({ toggleModal }) => {
 					)}
 				</div>
 			)}
+			{isSubmitting && <PreviewLoadingModal />}
 		</div>
 	);
 };
