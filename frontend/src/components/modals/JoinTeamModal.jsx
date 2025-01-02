@@ -293,6 +293,7 @@ const JoinTeam = ({ toggleModal }) => {
 						}
 						console.log("formData: ", formData);
 					} else {
+						setIsSubmitting(false);
 						openNotificationWithIcon(
 							"warning",
 							`Invalid Value`,
@@ -367,18 +368,21 @@ const JoinTeam = ({ toggleModal }) => {
 					console.log("formData: ", formData);
 					resetForm();
 				} else {
+					setIsSubmitting(false);
 					openNotificationWithIcon(
 						"warning",
 						`Invalid Value`,
 						"Please provide the required fields!."
 					);
+					
+					
 				}
 			}
 
 			//   const addAgent = await AddAgent();
 		} catch (error) {
 			console.log("error: ", error);
-
+         setIsSubmitting(false);
 			openNotificationWithIcon(
 				"error",
 				"Message Failed",
