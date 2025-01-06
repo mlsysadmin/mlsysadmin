@@ -32,6 +32,10 @@
 	width: 85%;
 	height: 60px;
 }
+.opbcb-chat-container{
+    height: 500px !important;
+    margin-bottom: 0px !important;
+}
 /* .preselling-developers-card {
 	height: auto;
 } */

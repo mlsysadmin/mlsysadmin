@@ -821,15 +821,18 @@ const JoinTeam = ({ toggleModal }) => {
 											/>
 											Broker
 										</label>
-										<label>
-											<input
-												type="radio"
-												name="brokerQuestion"
-												value="others"
-												checked={formData.brokerQuestion === "others"}
-												onChange={handleInputChange}
-											/>
-											Others
+										<label className="other-status">
+											
+												<input
+													type="radio"
+													name="brokerQuestion"
+													value="others"
+													checked={formData.brokerQuestion === "others"}
+													onChange={handleInputChange}
+												/>
+												Others
+										
+
 											{formData.brokerQuestion === "others" && (
 												<div className="join-team-group">
 													<input
@@ -841,12 +844,10 @@ const JoinTeam = ({ toggleModal }) => {
 														onChange={handleInputOthers}
 														onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
 													/>
-													{errors.otherBrokerQuestion && (
-														<p className="error">
-															{errors.otherBrokerQuestion}
-														</p>
-													)}
 												</div>
+											)}
+											{errors.otherBrokerQuestion && (
+												<p className="error">{errors.otherBrokerQuestion}</p>
 											)}
 										</label>
 										{errors.brokerQuestion && (

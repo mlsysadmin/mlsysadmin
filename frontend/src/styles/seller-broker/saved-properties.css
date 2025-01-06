@@ -21,7 +21,7 @@
 .savedPropertiesContent {
 	background: var(--white);
 	max-width: var(--default-page-size);
-	padding-top: 40px;
+	padding-top: 20px;
 	margin: auto;
 	/* flex-direction: row;
   flex-wrap: wrap; */
@@ -223,6 +223,9 @@
 	/* gap: 100px; */
 	margin-top: 30px;
 	width: 100%;
+}
+.savedPropertiesBackgroundComponent .ant-skeleton-content .ant-skeleton-title{
+width: 100% !important;
 }
 @media screen and (min-width: 360px) and (max-wdith: 1200px) {
 	.no-saved-properties-container {

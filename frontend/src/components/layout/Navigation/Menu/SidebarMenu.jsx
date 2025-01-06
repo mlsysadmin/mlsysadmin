@@ -45,14 +45,8 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 		setShowUpgradeModal(false);
 		navigate('/login/?redirect=saved-properties#listingForm')
 	};
-	const handleLogout = async () => {
-		const logoutURL = process.env.REACT_APP_LOGOUT_URL;
-		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
-
-		// window.location.href = `${logoutURL}?redirect_url=${encodeURIComponent(
-		// 	redirectUrl
-		// )}`;
-		navigate("/");
+		const handleLogout = async () => {
+		await logout();
 	};
 	const handleJoinTeamClick = () => {
 		setShowModal(true);
@@ -183,7 +177,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 			key: "pre-selling",
 			link: "/pre-selling",
 		},
-		
+
 		// {
 		// 	label: "Pre-Selling",
 		// 	key: "pre-selling",
@@ -206,6 +200,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 		// 	children: SubMenuChild(SubMenu.otherServices),
 		// },
 		{ label: "Contact", key: "contact", link: "/contact-us" },
+	
 	];
 
 	if (!isAuthenticated) {
@@ -219,6 +214,34 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 				label: "Join Our Team",
 				key: "join-team",
 				onClick: handleJoinTeamClick,
+			},	
+		);
+	}else{
+		MenuItems.push(
+			{
+				label: "List Your Property",
+				key: "list-property",
+				link: "/saved-properties#listingForm",
+			},
+			{
+				label: "Property Listings",
+				key: "Property Listings",
+				link: "/saved-properties#propertyListings",
+			},
+			{
+				label: "Saved Properties",
+				key: "contact",
+				link: "/saved-properties#savedProperties",
+			},
+			{
+				label: "Join Our Team",
+				key: "join-team",
+				link: "/saved-properties#joinOurTeam",
+			},
+			{
+				label: "Logout",
+				key: "logout",
+				onClick: handleLogout,
 			}
 		);
 	}
@@ -250,7 +273,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 
 	return (
 		<>
-			{showModal && <JoinTeam toggleModal={toggleModal} />}
+			
 			<Menu
 				style={{
 					width: 256,
@@ -263,6 +286,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 				className="sidebar-menu"
 				onClick={handleMenuOnClick}
 			/>
+			{showModal && <JoinTeam toggleModal={toggleModal} />}
 			<Divider />
 			{showUpgradeModal && (
 				<UpgradeTierModal
