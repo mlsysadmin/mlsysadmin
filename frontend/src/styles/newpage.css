@@ -72,7 +72,7 @@
 
 @media screen and (min-width: 360px) and (max-width: 480px) {
 	.new-page-label {
-		font-size: var(--m-h2-text) !important;
+		font-size: var(--m-h4-text) !important;
 	}
 	.new-page-full-content {
 		width: 100%;

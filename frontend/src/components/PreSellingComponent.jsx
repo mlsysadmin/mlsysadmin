@@ -81,6 +81,7 @@ const PreSellingComponent = () => {
 			</div>
 			<CustomMlFooter />
 			<FooterComponent />
+			
 		</div>
 	);
 };
