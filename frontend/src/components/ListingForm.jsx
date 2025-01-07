@@ -319,7 +319,7 @@ export const ListingForm = () => {
 	};
 
 	const addWatermark = async (imageFile) => {
-		const imageFiles = await imagePathToFile(logo, "watermark.png");
+		const imageFiles = await imagePathToFile(logo, "watermarkSecondPart.png");
 		return new Promise((resolve, reject) => {
 			const img = new Image();
 			const watermarkImg = new Image();
