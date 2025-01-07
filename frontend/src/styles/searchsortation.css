@@ -28,13 +28,14 @@
 @media screen and (min-width: 360px) and (max-width: 480px) {
 	.search-sortation{
 width: 100%;
- font-size: var(--d-body-text) !important;
+ font-size: calc(var(--d-body-text) - 1px) !important;
  display: flex;
  flex-direction: column;
 }
 .search-sortation .sort, .search-sortation .sort-div-class{
 	width: 100%;
 	display: flex;
+	font-size: calc(var(--d-body-text) - 1px) !important;
 	justify-content: flex-start;
 }	   
 }

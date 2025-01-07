@@ -93,6 +93,12 @@
 	.savedPropertiesContent {
 		padding-top: 20px;
 	}
+	 #myPropertiesTextHeader{
+		font-size: var(--m-h4-text) !important;
+	 }
+	 #myPropertiesTextSubHeader{
+font-size: calc(var(--d-body-text)- 1px) !important;
+	 }
 
 	.wholeViewSavedProperties .listing-carousel-dashboard-skeleton {
 		display: grid;

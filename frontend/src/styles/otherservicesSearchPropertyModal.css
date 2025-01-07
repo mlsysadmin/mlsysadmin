@@ -582,6 +582,7 @@
   .form-row input:not(#featureAmenities),
   .form-row .form-column select {
     font-size: 15px;
+    width: 100% !important;
   }
   .property-search-form .form-row .form-column #featureAmenities {
     font-size: 15px;
