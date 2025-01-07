@@ -172,11 +172,11 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 			key: "rent",
 			children: SubMenuChild(SubMenu.rent),
 		},
-		{
-			label: "Developers",
-			key: "pre-selling",
-			link: "/pre-selling",
-		},
+		// {
+		// 	label: "Developers",
+		// 	key: "pre-selling",
+		// 	link: "/pre-selling",
+		// },
 
 		// {
 		// 	label: "Pre-Selling",
