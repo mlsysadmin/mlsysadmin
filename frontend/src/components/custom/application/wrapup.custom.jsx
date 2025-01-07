@@ -607,7 +607,7 @@ const WrapUpDetails = ({
               className={`wrap-up-input ${
                 isMobileBlurred && errorMessage.error_house_no ? "error" : ""
               }`}
-              placeholder="Enter Street"
+              placeholder="Enter House/Unit/Building/Street"
               value={otherAddress}
               onChange={(e) => handleInput(e.target.value, setOtherAddress)}
               onBlur={(e) => handleBlurInput(e.target.value, "others")}
