@@ -129,13 +129,13 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <p class="header" style="font-size: 18px;margin-top: 40px;">Hi {{{name}}},</p>
+                    <p class="header" style="font-size: 14px;margin-top: 40px;">Hi {{{name}}},</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <p style="margin-bottom: 2px;" class="content">Great News!</p>
-                    <p style="margin-top: 2px;margin-bottom: 20px;font-family: 'Poppins', sans-serif"
+                    <p class="content"  style="margin: 0px 0px 10px 0px;">Great News!</p>
+                    <p style="margin-top: 4px;margin-bottom: 20px;font-family: 'Poppins', sans-serif"
                         class="content">Your property
                         listing
                         has been approved and is now live on
@@ -150,12 +150,14 @@
 
                 <td colspan="2" class="listing-card">
                     <div class="image" style="border-top-right-radius: 20px;border-top-left-radius: 20px;">
-                        <img src={{{image_link}}} alt="listing_photo" height="230" width="400">
+                        <a href={{{link}}} target="_blank" rel="noopener noreferrer">
+                            <img src={{{image_link}}} alt="listing_photo" height="230" width="400">
+                        </a>
                     </div>
                     <div>
                         <a href={{{link}}} style="text-decoration-line: none;">
-                            <div class="details" style="margin-left: 15px;padding-top: 10px;padding-bottom: 5px">
-                                <p style="color: black;font-weight:500;padding-bottom: 7px"
+                            <div class="details" style="margin-left: 15px; padding-bottom: 5px">
+                                <p style="color: black;font-weight:500;padding-bottom: 7px; margin: 0px;"
                                     class="content-body">
                                     {{{property_title}}}</p>
                                 <p style="color: black;font-weight:500;" class="content-body">PHP

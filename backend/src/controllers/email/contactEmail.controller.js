@@ -241,7 +241,7 @@ module.exports = {
             })
 
             if (sale_type == "rent") {
-                price = `${price} / month`
+                price = `${price} / mo.`;
             }
 
             const image_link = `${process.env.IGOT_SOLUTION_BASE_URL}${image_path}`
@@ -258,7 +258,8 @@ module.exports = {
                 templateName = 'rejectedlisting.handlebars'
                 subject = 'Your Listing Needs Attention to Meet Approval Requirements'
             }
-
+            console.log("I am price: ",price);
+            
             const emailTemp = EmailTemplate(templateName, { name, image_link, property_title, sale_type, price, link, logo });
 
             const reference = new Date();
