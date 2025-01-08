@@ -633,7 +633,7 @@ background-color: var(--red) !important;
 	.ant-tooltip .ant-tooltip-inner {
 		font-size: 10px;
 		width: 60px;
-		padding: 0px 5px;
+		/* padding: 0px 5px; */
 	}
 
 	.advance-searchdropdown .slider-container {
