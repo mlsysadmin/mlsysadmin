@@ -746,7 +746,7 @@ const RefinanceComponent = () => {
           </div>
           <div className="refinance-details-group-six">
             <span>Where are you looking to buy?</span>
-            <p>
+            <p style={{ marginBottom: "10px"}}>
               Enter the city or zip code of the area where you are home shopping
             </p>
             <div className="ref-btn-group-input">

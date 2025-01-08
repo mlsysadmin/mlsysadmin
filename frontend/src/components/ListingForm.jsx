@@ -207,11 +207,11 @@ export const ListingForm = () => {
 			const nextStep = currentStep + 1;
 			setCurrentStep(nextStep);
 
-			if (stepRefs.current[nextStep]) {
-				if (!isFocused) {
-					stepRefs.current[nextStep].scrollIntoView({ behavior: "smooth" });
-				}
-			}
+			// if (stepRefs.current[nextStep]) {
+			// 	if (!isFocused) {
+			// 		stepRefs.current[nextStep].scrollIntoView({ behavior: "smooth" });
+			// 	}
+			// }
 		}
 	};
 
@@ -771,7 +771,7 @@ export const ListingForm = () => {
 									}}
 								>
 									<FeaturedComponents
-										onComplete={(completed) => handleStepComplete(5, true)}
+										onComplete={(completed) => handleStepComplete(5, completed)}
 										setPropertyFields={setPropertyDataFields}
 										selectedPropertyTab={propertyFields.PropertyType}
 										isSubmitted={submitted}

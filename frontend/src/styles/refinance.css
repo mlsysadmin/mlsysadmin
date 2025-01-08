@@ -201,11 +201,15 @@ h4 {
 .refinance-details-group-two,
 .refinance-details-group-three,
 .refinance-details-group-four,
-.refinance-details-group-five,
-.refinance-details-group-six {
+.refinance-details-group-five{
   display: flex;
   width: 100%;
   gap: 15px;
+  flex-direction: column;
+}
+.refinance-details-group-six{
+  display: flex;
+  width: 100%;
   flex-direction: column;
 }
 
@@ -253,7 +257,7 @@ h4 {
 .wrap-up--selection {
   position: relative;
   width: 31%;
-  border: 1px solid #d9d9d9 !important;
+  /* border: 1px solid #d9d9d9 !important; */
   color: black !important;
   border-radius: var(--radius) !important;
 }
