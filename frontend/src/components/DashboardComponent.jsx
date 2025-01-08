@@ -10,10 +10,13 @@ import {
 	Space,
 	Tag,
 	Dropdown,
+	FloatButton,
 	Skeleton,
 } from "antd";
 import {
 	CaretDownOutlined,
+	MessageOutlined,
+	CalculatorOutlined,
 	DotChartOutlined,
 	SearchOutlined,
 } from "@ant-design/icons";
@@ -23,6 +26,7 @@ import "../styles/dashboard.css";
 import "../styles/Skeleton.css";
 
 import RoundBtn from "./custom/buttons/RoundBtn.custom";
+import FloatBtnGroup from "./custom/buttons/FloatBtnGroup";
 import RoundInput from "./custom/inputs/RoundInput.custom";
 import RoundSelect from "./custom/selects/RoundSelect.custom";
 import CardListingComponent from "./CardListingComponent";
@@ -54,6 +58,7 @@ import { GetPhotoLength, GetPhotoWithUrl } from "../utils/GetPhoto";
 import { Link, useLocation } from "react-router-dom";
 import { Select } from "antd";
 import { GetProvince } from "../api/Public/Location.api";
+import CalculatorWidgetModal from "./modals/CalculatorWidgetModal";
 
 import DefaultPropertyImage from "../asset/fallbackImage.png";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
@@ -63,47 +68,59 @@ import {
 	CapitalizeStringwithSymbol,
 	GetPropertyTitle,
 	isPastAMonth,
-  TruncateText,
+	TruncateText,
 	SortByText,
 } from "../utils/StringFunctions.utils";
 import { CardSkeleton, FeaturesSkeleton } from "./Skeleton";
 import { getCookieData, isCookiePresent } from "../utils/CookieChecker";
 import { useAuth } from "../Context/AuthContext";
+import ContactUsWidget from "./modals/ContactUsWidget";
+
 
 const { Option } = Select;
 
 const DashboardComponent = () => {
-
-  const {
-    isAuhtenticated, logout, userDetails
-  } = useAuth();
-
-  const [loading, setLoading] = useState(true);
-  const [showLoginMessage, setShowLoginMessage] = useState(false);
-  const [loadingActive, setLoadingActive] = useState(true);
-  const [userLikes, setUserLikes] = useState([]);
-  const [publiclisting, setPublicListing] = useState([
-    {
-      id: 0,
-      title: "",
-      price: 0,
-      status: "",
-      pics: 0,
-      img: DefaultPropertyImage,
-      no_of_bathrooms: 0,
-      lot: 0,
-      property_no: "",
-      isFeatured: "",
-      sale_type: "",
-      no_of_beds: "",
-      city: "",
-      property_type: "",
-    },
-  ]);
+	const { isAuhtenticated, logout, userDetails } = useAuth();
+	const [isCalculatorVisible, setCalculatorVisible] = useState(false);
+	const [loading, setLoading] = useState(true);
+	const [showLoginMessage, setShowLoginMessage] = useState(false);
+	const [loadingActive, setLoadingActive] = useState(true);
+	const [userLikes, setUserLikes] = useState([]);
+	const [publiclisting, setPublicListing] = useState([
+		{
+			id: 0,
+			title: "",
+			price: 0,
+			status: "",
+			pics: 0,
+			img: DefaultPropertyImage,
+			no_of_bathrooms: 0,
+			lot: 0,
+			property_no: "",
+			isFeatured: "",
+			sale_type: "",
+			no_of_beds: "",
+			city: "",
+			property_type: "",
+		},
+	]);
 
 	const [isAdvanceSearchOpen, setAdvanceSearchOpen] = useState(false);
 	const [checkFeatures, setCheckFeatures] = useState([]);
 
+	const [isContactUsFormVisible, setContactUsFormVisible] = useState(false);
+	const toggleCalculator = () => {
+		setCalculatorVisible(!isCalculatorVisible);
+		setContactUsFormVisible(false);
+	};
+	const closeWidgetCalc = () => {
+		setCalculatorVisible(false);
+		setContactUsFormVisible(false)
+	};
+	const toogleContarctUsForm = () => {
+		setCalculatorVisible(false);
+		setContactUsFormVisible(!isContactUsFormVisible);
+	}
 	useEffect(() => {
 		console.log("checkFeatures", checkFeatures);
 		SetParamsAllField("features", checkFeatures);
@@ -121,9 +138,9 @@ const DashboardComponent = () => {
 		// window.location.hasdref = `/previewListing/${id}`;
 		navigate(`/previewListing/?id=${id}`, { state: id });
 	};
-  	const handleShowLoginModal = () => {
-			setShowLoginMessage(true);
-		};
+	const handleShowLoginModal = () => {
+		setShowLoginMessage(true);
+	};
 
 	const propertiesBySaleStatus = useCallback(async () => {
 		try {
@@ -155,16 +172,16 @@ const DashboardComponent = () => {
 					listings.map(async (item, i) => {
 						const getPhotoGallery = await GetUnitPhotos(item.id);
 
-						const gallery = getPhotoGallery.data; 
-            			const isRent = item.SaleType == "Rent" || item.SaleType == "rent";
+						const gallery = getPhotoGallery.data;
+						const isRent = item.SaleType == "Rent" || item.SaleType == "rent";
 						const image = GetPhotoWithUrl(item.Photo);
 
 						return {
 							id: item.id,
 							title: CapitalizeString(item.UnitName),
 							price: `PHP ${AmountFormatterGroup(item.Price)}${
-									isRent ? "/mo." : ""
-								}`,
+								isRent ? "/mo." : ""
+							}`,
 							status: "New",
 							pics: image ? gallery.length + 1 : 1,
 							img: image,
@@ -238,46 +255,46 @@ const DashboardComponent = () => {
 
 	let number = accountDetails?.mobileNumber || null;
 
-  const handleUserProfileClick = () => {
-    if (!isAuhtenticated && !userDetails) {
-      window.location.href = `/login`;
-    } else {
-      window.location.href = '/';
-    }
-  };
+	const handleUserProfileClick = () => {
+		if (!isAuhtenticated && !userDetails) {
+			window.location.href = `/login`;
+		} else {
+			window.location.href = "/";
+		}
+	};
 
-  const tags = [
-    {
-      key: "all",
-      label: "All",
-      link: "/all",
-    },
-    {
-      key: "new",
-      label: "New Listing",
-      link: "/new",
-    },
-    // {
-    //   key: "featured",
-    //   label: "Featured",
-    //   link: "/featured",
-    // },
-    {
-      key: "for-sale",
-      label: "For Sale",
-      link: "/all/?sale_type=sale",
-    },
-    {
-      key: "for-rent",
-      label: "For Rent",
-      link: "/all/?sale_type=rent",
-    },
-    {
-      key: "mortgage",
-      label: "Mortgage",
-      link: "/mortgage",
-    },
-  ];
+	const tags = [
+		{
+			key: "all",
+			label: "All",
+			link: "/all",
+		},
+		{
+			key: "new",
+			label: "New Listing",
+			link: "/new",
+		},
+		// {
+		//   key: "featured",
+		//   label: "Featured",
+		//   link: "/featured",
+		// },
+		{
+			key: "for-sale",
+			label: "For Sale",
+			link: "/all/?sale_type=sale",
+		},
+		{
+			key: "for-rent",
+			label: "For Rent",
+			link: "/all/?sale_type=rent",
+		},
+		{
+			key: "mortgage",
+			label: "Mortgage",
+			link: "/mortgage",
+		},
+	];
 
 	const Tags = () => (
 		<div className="menu-tags">
@@ -678,11 +695,11 @@ const DashboardComponent = () => {
 										/>
 									);
 								})}
-                  {showLoginMessage && (
-                    <LoginMessageModal
-                      setShowLoginMessage={setShowLoginMessage}
-                    />
-                  )}
+								{showLoginMessage && (
+									<LoginMessageModal
+										setShowLoginMessage={setShowLoginMessage}
+									/>
+								)}
 								<div
 									style={{
 										display: "none",
@@ -861,6 +878,42 @@ const DashboardComponent = () => {
 			</div>
 			<br />
 			<br />
+			<div className="listing__contact--form-btns-sticky">
+				<FloatBtnGroup
+					children={
+						<>
+							<a href="#contact-form">
+								<FloatButton
+									icon={
+										<MessageOutlined className="message-float__icon--icon" />
+									}
+									tooltip={isContactUsFormVisible ? "" : "Message us"}
+									className="float__icon message-float__icon"
+									onClick={toogleContarctUsForm}
+								/>
+							</a>
+							<FloatButton
+								icon={<CalculatorOutlined className="calculator-float__icon" />}
+								tooltip={isCalculatorVisible  ? "" : "Calculator"}
+								className="float__icon calculator-float__icon"
+								onClick={toggleCalculator}
+								// onClick={() => navigate("/discover-home#calculator")}
+							/>
+						</>
+					}
+				/>
+			</div>
+			{isCalculatorVisible && (
+				<CalculatorWidgetModal
+					toggleCalculator={toggleCalculator}
+					closeWidgetCalc={closeWidgetCalc}
+				/>
+			)}
+			{isContactUsFormVisible && (
+				<ContactUsWidget
+					closeWidgetCalc={closeWidgetCalc}
+				/>
+			)}
 			{/* <br /> */}
 			<PropertySearchModal
 				openModal={isPropSearchModalOpen}

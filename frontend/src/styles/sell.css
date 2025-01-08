@@ -256,7 +256,6 @@
 	justify-content: space-evenly;
 	font-size: 2.2rem;
 	text-align: center;
-	gap: 30px;
 }
 
 .cards h5 {
@@ -276,7 +275,7 @@
 	align-items: center;
 	background-color: #d9d9d9;
 	border-radius: 10px;
-	width: 230px;
+	width: 250px;
 	/* width: 20%; */
 	padding: 2% 2% 7% 2%;
 	height: 100%;
@@ -648,6 +647,9 @@
 	.sell-contents{
 		width: 100%;
 		margin-top: 0;
+	}
+	.sell-contents .cards{
+		gap: 20px;
 	}
 	.fourth-section, .second-section, .third-section{
 		width: 90%;

@@ -7,33 +7,59 @@ import HealthInsurance from "../asset/icons/healthinsurance.png";
 import TravelInsurance from "../asset/icons/travelinsurance.png";
 import MainLayout from "./layout/layout.component";
 import { useState } from "react";
-import { Dropdown, Menu } from "antd";
-import { DownOutlined, CheckCircleOutlined } from "@ant-design/icons";
+import { Dropdown, Menu, FloatButton } from "antd";
+import FloatBtnGroup from "./custom/buttons/FloatBtnGroup";
+import {
+	DownOutlined,
+	CheckCircleOutlined,
+	MessageOutlined,
+	CalculatorOutlined,
+} from "@ant-design/icons";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
+import CalculatorWidgetModal from "./modals/CalculatorWidgetModal";
+import ContactUsWidget from "./modals/ContactUsWidget";
 import FooterComponent from "./layout/FooterComponent";
 
 const InsuranceGuideComponent = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
+	const [activeIndex, setActiveIndex] = useState(null);
 
-  const toggleAccordion = (index) => {
-    setActiveIndex(index === activeIndex ? null : index);
-  };
+	const toggleAccordion = (index) => {
+		setActiveIndex(index === activeIndex ? null : index);
+	};
 
-  const accordionData = [
-    {
-      label: 'What are the insurance plans offered by M Lhuillier?',
-      answer: 'M Lhuillier offers the following insurance plans: Medical Insurance, Vehicle Insurance and Health Insurance. '
-    },
-    {
-      label: 'What are the requirements for insurance plans?',
-      answer: 'There are several requirements for each insurance plan offered by Mlhuillier. For more information please visit mlhuillier.com website.'
-    },
-    {
-      label: 'How can I claim the insurance?',
-      answer: 'To claim the insurance, you need to visit to the nearest branch or any Mlhuillier branch.'
-    }
-  ];
-  return (
+	const [isContactUsFormVisible, setContactUsFormVisible] = useState(false);
+	const [isCalculatorVisible, setCalculatorVisible] = useState(false);
+	const toggleCalculator = () => {
+		setCalculatorVisible(!isCalculatorVisible);
+		setContactUsFormVisible(false);
+	};
+	const closeWidgetCalc = () => {
+		setCalculatorVisible(false);
+		setContactUsFormVisible(false);
+	};
+	const toogleContarctUsForm = () => {
+		setCalculatorVisible(false);
+		setContactUsFormVisible(!isContactUsFormVisible);
+	};
+
+	const accordionData = [
+		{
+			label: "What are the insurance plans offered by M Lhuillier?",
+			answer:
+				"M Lhuillier offers the following insurance plans: Medical Insurance, Vehicle Insurance and Health Insurance. ",
+		},
+		{
+			label: "What are the requirements for insurance plans?",
+			answer:
+				"There are several requirements for each insurance plan offered by Mlhuillier. For more information please visit mlhuillier.com website.",
+		},
+		{
+			label: "How can I claim the insurance?",
+			answer:
+				"To claim the insurance, you need to visit to the nearest branch or any Mlhuillier branch.",
+		},
+	];
+	return (
 		<div className="insurance-guide-container">
 			<div className="insurance-guide-contents">
 				<div className="insurance-guide-content-one">
@@ -45,12 +71,10 @@ const InsuranceGuideComponent = () => {
 						</p>
 						<br />
 						<span>
-							Secure your home in uncertain
-							times. 
+							Secure your home in uncertain times.
 							<br />
-							ML Home Insurance will help you protect
-							and
-							<br /> 
+							ML Home Insurance will help you protect and
+							<br />
 							guard your home.
 						</span>
 					</div>
@@ -97,14 +121,16 @@ const InsuranceGuideComponent = () => {
 					</div>
 					<div className="insurance-guide-tagline-two">
 						<span>
-							<b style={{color:"var(--red)"}}>Choose an Insurance</b> <br />{" "}
+							<b style={{ color: "var(--red)" }}>Choose an Insurance</b> <br />{" "}
 							{/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */}
 							and let us worry <br />
 							{/* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  */}
 							about the rest.
 						</span>
 						<br />
-						<p>We’re here to help. Connect with <br/>M Lhuillier today!</p>
+						<p>
+							We’re here to help. Connect with <br />M Lhuillier today!
+						</p>
 					</div>
 				</div>
 				<div className="insurance-guide-content-four">
@@ -114,27 +140,27 @@ const InsuranceGuideComponent = () => {
 							<span className="insurance-title">Health Insurance</span>
 							<div className="insurance-child">
 								<p>
-									<CheckCircleOutlined className="check-icon"/>
+									<CheckCircleOutlined className="check-icon" />
 									&nbsp;&nbsp;&nbsp;Dengue Rx Insurance
 								</p>
 								<p>
-									<CheckCircleOutlined className="check-icon"/>
+									<CheckCircleOutlined className="check-icon" />
 									&nbsp;&nbsp;&nbsp;Emergency Room Insurance
 								</p>
 								<p>
-									<CheckCircleOutlined className="check-icon"/>
+									<CheckCircleOutlined className="check-icon" />
 									&nbsp;&nbsp;&nbsp;Medicare Plus Insurance
 								</p>
 								<p>
-									<CheckCircleOutlined className="check-icon"/>
+									<CheckCircleOutlined className="check-icon" />
 									&nbsp;&nbsp;&nbsp;Mediphone Insurance
 								</p>
 								<p>
-									<CheckCircleOutlined className="check-icon"/>
+									<CheckCircleOutlined className="check-icon" />
 									&nbsp;&nbsp;&nbsp;Personal Accident Insurance
 								</p>
 								<p>
-									<CheckCircleOutlined className="check-icon"/>
+									<CheckCircleOutlined className="check-icon" />
 									&nbsp;&nbsp;&nbsp;Virtual Medical Assistance
 								</p>
 							</div>
@@ -143,11 +169,11 @@ const InsuranceGuideComponent = () => {
 							<span className="insurance-title">Travel Insurance</span>
 							<div className="insurance-child">
 								<p>
-									<CheckCircleOutlined className="check-icon"/>
+									<CheckCircleOutlined className="check-icon" />
 									&nbsp;&nbsp;&nbsp;Global Travel Protect Insurance
 								</p>
 								<p>
-									<CheckCircleOutlined className="check-icon"/>
+									<CheckCircleOutlined className="check-icon" />
 									&nbsp;&nbsp;&nbsp;OFW Balik Manggagawa Insurance
 								</p>
 							</div>
@@ -156,7 +182,7 @@ const InsuranceGuideComponent = () => {
 							<span className="insurance-title">Auto Insurance</span>
 							<div className="insurance-child">
 								<p>
-									<CheckCircleOutlined className="check-icon"/>
+									<CheckCircleOutlined className="check-icon" />
 									&nbsp;&nbsp;&nbsp;CTPL Insurance
 								</p>
 								<div class="radio-buttons">
@@ -226,6 +252,41 @@ const InsuranceGuideComponent = () => {
 					</div>
 				</div>
 			</div>
+			<div className="listing__contact--form-btns-sticky">
+				<FloatBtnGroup
+					children={
+						<>
+							<a href="#contact-form">
+								<FloatButton
+									icon={
+										<MessageOutlined className="message-float__icon--icon" />
+									}
+									tooltip={isContactUsFormVisible ? "" : "Message us"}
+									className="float__icon message-float__icon"
+									onClick={toogleContarctUsForm}
+								/>
+							</a>
+							<FloatButton
+								icon={<CalculatorOutlined className="calculator-float__icon" />}
+								tooltip={isCalculatorVisible ? "" : "Calculator"}
+								className="float__icon calculator-float__icon"
+								onClick={toggleCalculator}
+								// onClick={() => navigate("/discover-home#calculator")}
+							/>
+						</>
+					}
+				/>
+			</div>
+			{isCalculatorVisible && (
+				<CalculatorWidgetModal
+					toggleCalculator={toggleCalculator}
+					closeWidgetCalc={closeWidgetCalc}
+				/>
+			)}
+			{isContactUsFormVisible && (
+				<ContactUsWidget closeWidgetCalc={closeWidgetCalc} />
+			)}
+
 			<br />
 			<br />
 			<CustomMlFooter />
