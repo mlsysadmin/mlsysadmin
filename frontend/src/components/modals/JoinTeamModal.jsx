@@ -222,7 +222,7 @@ const JoinTeam = ({ toggleModal }) => {
 			console.log("existingAgent: ", existingAgent);
 
 			if (existingAgent !== null && Object.keys(existingAgent).length > 0) {
-				if (existingAgent.RecordStatus !== "inactive") {
+				if (existingAgent.RecordStatus !== "rejected") {
 					console.log("Agent already exists: ", existingAgent);
 					
 					setAgentRecordStatus(existingAgent.RecordStatus);
@@ -358,6 +358,7 @@ const JoinTeam = ({ toggleModal }) => {
 							`Successfully submitted`,
 							"Thank you for joining our team! We're excited to review it and will be in touch soon with the next steps."
 						);
+						resetForm();
 					} else {
 						openNotificationWithIcon(
 							"warning",

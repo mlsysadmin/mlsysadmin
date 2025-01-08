@@ -6,6 +6,8 @@ import {
 	CameraFilled,
 	HeartOutlined,
 	ControlOutlined,
+	CalculatorOutlined,
+	MessageOutlined
 } from "@ant-design/icons";
 import Card from "./custom/cards/Card";
 import property from "../images/Guest/property.png";
@@ -37,7 +39,10 @@ import { CardSkeleton } from "./Skeleton";
 import NoDataAvailable from "./NoDataFoundComponent";
 import LoginMessageModal from "./modals/LoginMessageModal";
 import { getCookieData } from "../utils/CookieChecker";
-import { Breadcrumb } from "antd";
+import { Breadcrumb, FloatButton } from "antd";
+import {FloatBtnGroup} from "../components";
+import ContactUsWidget from "./modals/ContactUsWidget";
+import CalculatorWidgetModal from "./modals/CalculatorWidgetModal";
 
 const RentComponent = () => {
 	const [loading, setLoading] = useState(true);
@@ -93,12 +98,27 @@ const RentComponent = () => {
 		},
 	]);
 
+	const [isContactUsFormVisible, setContactUsFormVisible] = useState(false);
+	const [isCalculatorVisible, setCalculatorVisible] = useState(false);
+	const toggleCalculator = () => {
+		setCalculatorVisible(!isCalculatorVisible);
+		setContactUsFormVisible(false);
+	};
+	const closeWidgetCalc = () => {
+		setCalculatorVisible(false);
+		setContactUsFormVisible(false);
+	};
+	const toogleContarctUsForm = () => {
+		setCalculatorVisible(false);
+		setContactUsFormVisible(!isContactUsFormVisible);
+	};
+	
 	const handleCardClick = (id) => {
 		navigate(`/previewListing/?id=${id}`, { state: id });
 	};
-		const handleShowLoginModal = () => {
-			setShowLoginMessage(true);
-		};
+	const handleShowLoginModal = () => {
+		setShowLoginMessage(true);
+	};
 
 	const allPublicListing = async (property_type) => {
 		try {
@@ -311,6 +331,40 @@ const RentComponent = () => {
 					/>
 				</div>
 			</div>
+			<div className="listing__contact--form-btns-sticky">
+				<FloatBtnGroup
+					children={
+						<>
+							<a href="#contact-form">
+								<FloatButton
+									icon={
+										<MessageOutlined className="message-float__icon--icon" />
+									}
+									tooltip={isContactUsFormVisible ? "" : "Message us"}
+									className="float__icon message-float__icon"
+									onClick={toogleContarctUsForm}
+								/>
+							</a>
+							<FloatButton
+								icon={<CalculatorOutlined className="calculator-float__icon" />}
+								tooltip={isCalculatorVisible ? "" : "Calculator"}
+								className="float__icon calculator-float__icon"
+								onClick={toggleCalculator}
+								// onClick={() => navigate("/discover-home#calculator")}
+							/>
+						</>
+					}
+				/>
+			</div>
+			{isCalculatorVisible && (
+				<CalculatorWidgetModal
+					toggleCalculator={toggleCalculator}
+					closeWidgetCalc={closeWidgetCalc}
+				/>
+			)}
+			{isContactUsFormVisible && (
+				<ContactUsWidget closeWidgetCalc={closeWidgetCalc} />
+			)}
 
 			<CustomMlFooter />
 			<FooterComponent />

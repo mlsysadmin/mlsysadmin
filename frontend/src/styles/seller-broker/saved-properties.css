@@ -26,7 +26,9 @@
 	/* flex-direction: row;
   flex-wrap: wrap; */
 }
-
+.savedPropertiesContent .join-page-container, .savedPropertiesContent .page-content-jointeam{
+	padding-top: 0px;
+}
 .ant-tabs-content-holder {
 	margin-top: 40px 0px;
 }

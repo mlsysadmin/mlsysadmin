@@ -20,6 +20,11 @@ import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import { CapitalizeEachWord, CapitalizeStringwithSymbol, CapitalizeString, FillLocationFilter, GetPropertyTitle, isPastAMonth, SortByText, SortMaxPrice, SortPrice, TruncateText} from "../utils/StringFunctions.utils";
 import DefaultPropertyImage from '../asset/fallbackImage.png';
+import {FloatBtnGroup} from "../components";
+import {FloatButton} from "antd";
+import CalculatorWidgetModal from "./modals/CalculatorWidgetModal";
+import ContactUsWidget from "./modals/ContactUsWidget";
+import { MessageOutlined, CalculatorOutlined } from "@ant-design/icons";
 
 const NewPageComponent = () => {
 	const navigate = useNavigate();
@@ -57,6 +62,21 @@ const NewPageComponent = () => {
 		sale_type: null,
 		lot_area: null,
 	})
+
+	const [isContactUsFormVisible, setContactUsFormVisible] = useState(false);
+	const [isCalculatorVisible, setCalculatorVisible] = useState(false);
+	const toggleCalculator = () => {
+		setCalculatorVisible(!isCalculatorVisible);
+		setContactUsFormVisible(false);
+	};
+	const closeWidgetCalc = () => {
+		setCalculatorVisible(false);
+		setContactUsFormVisible(false);
+	};
+	const toogleContarctUsForm = () => {
+		setCalculatorVisible(false);
+		setContactUsFormVisible(!isContactUsFormVisible);
+	};
   const handleShowLoginModal = () => {
 		setShowLoginMessage(true);
 	};
@@ -234,7 +254,9 @@ const NewPageComponent = () => {
 											/>
 										))}
 										{showLoginMessage && (
-											<LoginMessageModal setShowLoginMessage={setShowLoginMessage} />
+											<LoginMessageModal
+												setShowLoginMessage={setShowLoginMessage}
+											/>
 										)}
 									</div>
 								)
@@ -264,6 +286,40 @@ const NewPageComponent = () => {
 					</div>
 				</div>
 			</div>
+			<div className="listing__contact--form-btns-sticky">
+				<FloatBtnGroup
+					children={
+						<>
+							<a href="#contact-form">
+								<FloatButton
+									icon={
+										<MessageOutlined className="message-float__icon--icon" />
+									}
+									tooltip={isContactUsFormVisible ? "" : "Message us"}
+									className="float__icon message-float__icon"
+									onClick={toogleContarctUsForm}
+								/>
+							</a>
+							<FloatButton
+								icon={<CalculatorOutlined className="calculator-float__icon" />}
+								tooltip={isCalculatorVisible ? "" : "Calculator"}
+								className="float__icon calculator-float__icon"
+								onClick={toggleCalculator}
+								// onClick={() => navigate("/discover-home#calculator")}
+							/>
+						</>
+					}
+				/>
+			</div>
+			{isCalculatorVisible && (
+				<CalculatorWidgetModal
+					toggleCalculator={toggleCalculator}
+					closeWidgetCalc={closeWidgetCalc}
+				/>
+			)}
+			{isContactUsFormVisible && (
+				<ContactUsWidget closeWidgetCalc={closeWidgetCalc} />
+			)}
 			<CustomMlFooter />
 			<FooterComponent />
 		</div>

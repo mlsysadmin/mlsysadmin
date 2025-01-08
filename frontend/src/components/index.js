@@ -50,7 +50,7 @@ import RentComponent from "./RentComponent";
 import SaleComponent from "./SaleComponent";
 import SellComponent from "./SellComponent";
 import FaqsComponent from "./FAQsComponent";
-import PreSellingComponent from "./PreSellingComponent";
+import PreSellingComponent from "./DeveloperComponent";
 import CardListingComponent from "./CardListingComponent";
 import AllPropertiesComponent from "./AllPropertiesComponent";
 import { ShowDetailsProcessing } from "./ShowDetailsProcessing";
@@ -185,5 +185,5 @@ export {
 	SearchListingComponent,
 	LoginComponent,
 	CustomTag,
-	FloatBtnGroup
+	FloatBtnGroup,
 };

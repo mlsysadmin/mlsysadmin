@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Tabs } from "antd";
-import { CaretDownOutlined, HeartOutlined } from "@ant-design/icons";
+import { Tabs, FloatButton } from "antd";
+import { CaretDownOutlined, HeartOutlined , CalculatorOutlined, MessageOutlined} from "@ant-design/icons";
 import RoundSelect from "./custom/selects/RoundSelect.custom";
 import CardListingComponent from "./CardListingComponent";
 import DefaultPropertyImage from "../asset/fallbackImage.png";
@@ -28,6 +28,9 @@ import { GetVendorByNumber } from "../api/PostListings";
 import "../styles/seller-broker/saved-properties.css";
 import { useAuth } from "../Context/AuthContext";
 import { HearingOutlined } from "@mui/icons-material";
+import {FloatBtnGroup} from "../components";
+import CalculatorWidgetModal from "./modals/CalculatorWidgetModal";
+import ContactUsWidget from "./modals/ContactUsWidget";
 
 const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 	const { isAuthenticated, userDetails, logout } = useAuth();
@@ -51,6 +54,23 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 		},
 	]);
 	const [number, setNumber] = useState("");
+
+	const [isContactUsFormVisible, setContactUsFormVisible] = useState(false);
+	const [isCalculatorVisible, setCalculatorVisible] = useState(false);
+	const toggleCalculator = () => {
+		setCalculatorVisible(!isCalculatorVisible);
+		setContactUsFormVisible(false);
+	};
+	const closeWidgetCalc = () => {
+		setCalculatorVisible(false);
+		setContactUsFormVisible(false);
+	};
+	const toogleContarctUsForm = () => {
+		setCalculatorVisible(false);
+		setContactUsFormVisible(!isContactUsFormVisible);
+	};
+
+	
 
 	useEffect(() => {
 		const hash = window.location.hash.replace("#", "");
@@ -604,6 +624,40 @@ const SavedPropertiesComponent = ({ isMLWWSPresent }) => {
 					<Tabs items={items} onChange={onChange} activeKey={tabOpened} />
 				</div>
 			</div>
+			<div className="listing__contact--form-btns-sticky">
+				<FloatBtnGroup
+					children={
+						<>
+							<a href="#contact-form">
+								<FloatButton
+									icon={
+										<MessageOutlined className="message-float__icon--icon" />
+									}
+									tooltip={isContactUsFormVisible ? "" : "Message us"}
+									className="float__icon message-float__icon"
+									onClick={toogleContarctUsForm}
+								/>
+							</a>
+							<FloatButton
+								icon={<CalculatorOutlined className="calculator-float__icon" />}
+								tooltip={isCalculatorVisible ? "" : "Calculator"}
+								className="float__icon calculator-float__icon"
+								onClick={toggleCalculator}
+								// onClick={() => navigate("/discover-home#calculator")}
+							/>
+						</>
+					}
+				/>
+			</div>
+			{isCalculatorVisible && (
+				<CalculatorWidgetModal
+					toggleCalculator={toggleCalculator}
+					closeWidgetCalc={closeWidgetCalc}
+				/>
+			)}
+			{isContactUsFormVisible && (
+				<ContactUsWidget closeWidgetCalc={closeWidgetCalc} />
+			)}
 
 			<CustomMlFooter />
 			<FooterComponent />

@@ -90,14 +90,14 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 							>
 								How to list your property?
 							</span>
-							<p
+							<span
 								style={{
 									fontWeight: "400",
 									lineHeight: "40px",
 								}}
 							>
 								You have two options to list your property:
-							</p>
+							</span>
 							<div
 								className="ol-group-upgrade"
 								style={{
@@ -134,10 +134,10 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 							>
 								How to upload your listing on our website? 
 							</span>
-							<p style={{ lineHeight: "40px" }}>
+							<span style={{ lineHeight: "25px", fontWeight: "400" }}>
 								Enter your mobile number to register or login using OTP
 								(One-Time Password).
-							</p>
+							</span>
 							<div
 								className="second-ol-group-upgrade"
 								style={{
