@@ -45,5 +45,61 @@ const GetControlLastNumber = async (idType) => {
       throw error;
     }
   };
+const GetAgentByContactNumber = async (number) => {
+  try {
+    const config = {
+			headers: {
+				"Content-Type": "application/json",
+				"x-api-key": process.env.REACT_APP_API_KEY,
+			},
+		};
 
-export { AddAgent, GetControlLastNumber };
+    const response = await IGOTSOLUTIONSAxiosInstance.get(
+			`api/getAgentByContactNo/${number}`,
+			config
+		);
+    console.log("agent data retrieved", response);
+    
+    return response.data;
+    
+  } catch (error) {
+     console.error("Error occurred while posting listing:", error);
+    console.log("Error details:", {
+      message: error.message,
+      stack: error.stack,
+      response: error.response, })
+  }
+
+}
+const GetAgentByRecordStatus = async () => {
+  try {
+     const config = {
+				headers: {
+					"Content-Type": "application/json",
+					"x-api-key": process.env.REACT_APP_API_KEY,
+				},
+			};
+      const response = await IGOTSOLUTIONSAxiosInstance.get(
+				`api/getAgentsByRecordStatus/active`,
+				config
+			);
+      console.log("active", response.data);
+       return response.data;
+      
+  } catch (error) {
+         console.error("Error occurred while posting listing:", error);
+					console.log("Error details:", {
+						message: error.message,
+						stack: error.stack,
+						response: error.response,
+					});
+  }
+
+}
+
+export {
+	AddAgent,
+	GetControlLastNumber,
+	GetAgentByContactNumber,
+	GetAgentByRecordStatus,
+};

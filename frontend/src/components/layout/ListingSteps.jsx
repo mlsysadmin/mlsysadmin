@@ -13,7 +13,7 @@ const ListingSteps = ({ current, setCurrent, completedSteps }) => {
     { title: "Description ", index: 3 },
     { title: "Upload Photos", index: 4 },
     { title: "Feature ", index: 5 },
-   
+
   ];
 
   const onChange = (value) => {
@@ -23,10 +23,10 @@ const ListingSteps = ({ current, setCurrent, completedSteps }) => {
   return (
     <div className="listing-steps-container">
       <div className="step-intro">
-        <p className="p">Steps to complete your listing</p>
+        <p className="p">Complete your listing</p>
       </div>
       <Steps
-        className="steps"
+        className="steps listing--steps-container"
         current={current}
         onChange={onChange}
         direction="vertical"
@@ -37,6 +37,8 @@ const ListingSteps = ({ current, setCurrent, completedSteps }) => {
             title={step.title}
             icon={completedSteps[step.index] ? <CheckOutlined className="check" /> : null}
             status={completedSteps[step.index] ? "finish" : "wait"}
+            className="listing--steps-wrapper"
+            
           />
         ))}
       </Steps>

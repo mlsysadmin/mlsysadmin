@@ -46,7 +46,7 @@
   display: flex;
   gap: 15px;
   color: var(--red);
-  padding: 20px 15px;
+  padding: 20px 0px;
 }
 
 
@@ -58,7 +58,6 @@
   font-size: 18px;
   font-weight: 500;
   padding-top: 10px;
-  padding-left: 15px;
 }
 .customer-care img{
   width: 18px;

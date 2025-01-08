@@ -12,7 +12,7 @@ const BedInputSlider = ({value, onChange}) => {
           className="beds-slider"
           type="range"
           min="0"
-          max="5"
+          max="20"
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />

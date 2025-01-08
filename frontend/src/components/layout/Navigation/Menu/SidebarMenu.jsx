@@ -15,8 +15,10 @@ import "../../../../styles/sellerdropdown.css";
 import TierUpgradeModal from "../../../modals/TierUpgradeModal";
 import SellerLogInButtonDropdown from "../../../custom/buttons/SellerLogInButtonDropdown";
 import { getCookieData } from "../../../../utils/CookieChecker";
+import { useAuth } from "../../../../Context/AuthContext";
 
 const SidebarMenu = ({ setOpenDrawer }) => {
+	const { isAuthenticated, logout, userDetails, isSeller } = useAuth();
 	const navigate = useNavigate();
 	const location = useLocation();
 	const [showUpgradeModal, setShowUpgradeModal] = useState(false);
@@ -25,7 +27,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 	const accountCookieName = process.env.REACT_APP_ACCOUNT_COOKIE_NAME;
 	const isMLWWSPresent = isCookiePresent(sessionCookieName);
 	const isAccountDetailsPresent = isCookiePresent(accountCookieName);
-	const [userDetails, setUserDetails] = useState(null);
+	// const [userDetails, setUserDetails] = useState(null);
 	const [tierUpgrade, setTierUpgrade] = useState(false);
 
 	const accountDetails = getCookieData();
@@ -41,50 +43,21 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 		setShowUpgradeModal(false);
-		navigate('/login')
+		navigate('/login/?redirect=saved-properties#listingForm')
 	};
-	const handleLogout = async () => {
-		const logoutURL = process.env.REACT_APP_LOGOUT_URL;
-		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
+		const handleLogout = async () => {
+		await logout();
+	};
+	const handleJoinTeamClick = () => {
+		setShowModal(true);
+		// navigate("/comingsoon");
+	};
 
-		// window.location.href = `${logoutURL}?redirect_url=${encodeURIComponent(
-		// 	redirectUrl
-		// )}`;
-		navigate('/')
-	};
-	
 	const handleProfileClick = () => {
-		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
-		const loginUrl = process.env.REACT_APP_LOGIN_URL;
-		if (isMLWWSPresent && isAccountDetailsPresent) {
-			if (
-				userDetails?.tier?.label !== "BUYER" ||
-				userDetails?.tier?.label !== "SEMI-VERIFIED"
-			) {
-				window.location.href = "/";
-			} else {
-				window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-					redirectUrl
-				)}`;
-				handleLogout();
-				setTierUpgrade(true);
-			}
-			// if (userDetails?.tier?.label === "FULLY VERIFIED") {
-			// 	window.location.href = "/";
-			// } else if (
-			// 	userDetails?.tier?.label === "BUYER" ||
-			// 	userDetails?.tier?.label === "SEMI-VERIFIED"
-			// ) {
-			// 	window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-			// 		redirectUrl
-			// 	)}`;
-			// 	handleLogout();
-			// 	setTierUpgrade(true);
-			// }
+		if (isAuthenticated && userDetails) {
+			window.location.href = "/";
 		} else {
-			window.location.href = `${loginUrl}?redirect_url=${encodeURIComponent(
-				redirectUrl
-			)}`;
+			window.location.href = `/login`;
 		}
 	};
 	const openTierUpgradeModal = () => {
@@ -92,73 +65,47 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 	};
 
 	const handleListPropertyClick = () => {
-		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
-		const loginUrl = process.env.REACT_APP_LOGIN_URL;
-		if (isMLWWSPresent && isAccountDetailsPresent) {
+		if (isAuthenticated && userDetails) {
 			if (
 				userDetails?.tier?.label !== "BUYER" ||
 				userDetails?.tier?.label !== "SEMI-VERIFIED"
 			) {
 				window.location.href = "/saved-properties#listingForm";
 			} else {
-				console.log("User is a buyer and cannot list properties.");
 				openUpgradeModal();
 			}
 		} else {
 			setShowUpgradeModal(true);
 		}
-
-		// const redirectUrl =
-		// 	isCookiePresent(sessionCookieName) && isCookiePresent(accountCookieName)
-		// 		? "/listing"
-		// 		: process.env.REACT_APP_LOGIN_URL;
-
-		// window.location.href = `${
-		// 	process.env.REACT_APP_REDIRECT_URL
-		// }?redirect_url=${encodeURIComponent(redirectUrl)}`;
 	};
-	const fetchUserDetails = async () => {
-		try {
-			const response = await searchKyc(accountDetails.mobileNumber);
-
-			const respData = response.data.data;
-			setUserDetails(respData);
-		} catch (error) {
-			console.error("Error fetching user details:", error);
-		}
-	};
-	
-useEffect(() => {
-	const currentPath = location.pathname;
-
-	if (currentPath.includes("/rent")) {
-		setCurrent("rent");
-	} if (currentPath.includes("/new")) {
-		setCurrent("new");
-	} else if (currentPath.includes("/sale")) {
-		setCurrent("buy");
-	} else if (currentPath.includes("/discover-home")) {
-		setCurrent("home-loan");
-	} else if (currentPath.includes("/loan-calculator")) {
-		setCurrent("home-loan");
-	} else if (currentPath.includes("/refinance")) {
-		setCurrent("home-loan");
-	} else if (currentPath.includes("/buy-a-home")) {
-		setCurrent("home-loan");
-	} 
-	// else if (currentPath.includes("/pre-selling")) {
-	// 	setCurrent("pre-selling");
-	// } 
-	else {
-		setCurrent("");
-	}
-}, [location.pathname]);
 
 	useEffect(() => {
-		if (isMLWWSPresent && isAccountDetailsPresent) {
-			fetchUserDetails();
+		const currentPath = location.pathname;
+
+		if (currentPath.includes("/rent")) {
+			setCurrent("rent");
 		}
-	}, [isMLWWSPresent, isAccountDetailsPresent]);
+		if (currentPath.includes("/new")) {
+			setCurrent("new");
+		} else if (currentPath.includes("/sale")) {
+			setCurrent("buy");
+		} else if (currentPath.includes("/discover-home")) {
+			setCurrent("home-loan");
+		} else if (currentPath.includes("/loan-calculator")) {
+			setCurrent("home-loan");
+		} else if (currentPath.includes("/refinance")) {
+			setCurrent("home-loan");
+		} else if (currentPath.includes("/buy-a-home")) {
+			setCurrent("home-loan");
+		}
+		// else if (currentPath.includes("/pre-selling")) {
+		// 	setCurrent("pre-selling");
+		// }
+		else {
+			setCurrent("");
+		}
+	}, [location.pathname]);
+
 	useEffect(() => {
 		const path = location.pathname.replace("/", "");
 
@@ -193,13 +140,13 @@ useEffect(() => {
 								label: "Loan Dashboard",
 								link: sub.link,
 						  }
-						// : Object.keys(sub).includes("sub_info_insurance")
-						// ? {
-						// 		key: sub.sub_info_insurance,
-						// 		label: "Start Your Property Search Today!",
-						// 		link: sub.link,
-						//   }
-						: {
+						: // : Object.keys(sub).includes("sub_info_insurance")
+						  // ? {
+						  // 		key: sub.sub_info_insurance,
+						  // 		label: "Start Your Property Search Today!",
+						  // 		link: sub.link,
+						  //   }
+						  {
 								key: sub.sub,
 								label: sub.sub,
 								link: sub.link,
@@ -226,6 +173,12 @@ useEffect(() => {
 			children: SubMenuChild(SubMenu.rent),
 		},
 		// {
+		// 	label: "Developers",
+		// 	key: "pre-selling",
+		// 	link: "/pre-selling",
+		// },
+
+		// {
 		// 	label: "Pre-Selling",
 		// 	key: "pre-selling",
 		// 	children: SubMenuChild(SubMenu.preSelling),
@@ -247,13 +200,57 @@ useEffect(() => {
 		// 	children: SubMenuChild(SubMenu.otherServices),
 		// },
 		{ label: "Contact", key: "contact", link: "/contact-us" },
+	
 	];
 
+	if (!isAuthenticated) {
+		MenuItems.push(
+			{
+				label: "List Your Property",
+				key: "list-property",
+				onClick: handleListPropertyClick,
+			},
+			{
+				label: "Join Our Team",
+				key: "join-team",
+				onClick: handleJoinTeamClick,
+			},	
+		);
+	}else{
+		MenuItems.push(
+			{
+				label: "List Your Property",
+				key: "list-property",
+				link: "/saved-properties#listingForm",
+			},
+			{
+				label: "Property Listings",
+				key: "Property Listings",
+				link: "/saved-properties#propertyListings",
+			},
+			{
+				label: "Saved Properties",
+				key: "contact",
+				link: "/saved-properties#savedProperties",
+			},
+			{
+				label: "Join Our Team",
+				key: "join-team",
+				link: "/saved-properties#joinOurTeam",
+			},
+			{
+				label: "Logout",
+				key: "logout",
+				onClick: handleLogout,
+			}
+		);
+	}
 	const items = MenuItems.map((item, index) => ({
 		key: item.key,
 		label: item.label,
 		link: item.link,
 		children: item.children,
+		onClick : item.onClick,
 	}));
 
 	const handleMenuOnClick = (menu) => {
@@ -261,18 +258,22 @@ useEffect(() => {
 		setOpenDrawer(false);
 		const link = menu.item.props.link;
 		navigate(link);
+
+		 const clickedItem = items.find((item) => item.key === menu.key);
+
+		if (clickedItem?.onClick) {
+			clickedItem.onClick();
+			setOpenDrawer(true);
+		}
 	};
 	const [showModal, setShowModal] = useState(false);
 	const toggleModal = () => {
 		setShowModal(!showModal);
 	};
-	const handleJoinTeamClick = () => {
-		setShowModal(true);
-		// navigate("/comingsoon");
-	};
+
 	return (
 		<>
-			{showModal && <JoinTeam toggleModal={toggleModal} />}
+			
 			<Menu
 				style={{
 					width: 256,
@@ -285,8 +286,15 @@ useEffect(() => {
 				className="sidebar-menu"
 				onClick={handleMenuOnClick}
 			/>
-
+			{showModal && <JoinTeam toggleModal={toggleModal} />}
 			<Divider />
+			{showUpgradeModal && (
+				<UpgradeTierModal
+					isVisible={showUpgradeModal}
+					onClose={closeModal}
+					showLogin={showLogin}
+				/>
+			)}
 			<div
 				style={{
 					display: "flex",
@@ -300,67 +308,80 @@ useEffect(() => {
 				}}
 				className="dropdown-user-gr"
 			>
-				<div
-					style={{
-						// gridRow: "1 / 3",
-						display: "flex",
-						flexDirection: "row",
-						justifyContent: "center",
-						alignItems: "center",
-						width: "100%",
-						gap: "10px",
-					}}
-					className="join-team-list-property"
-				>
-					<RoundBtn
-						type="primary"
-						id="list-prop"
-						className="menu-buttons"
+				{/* {!isAuthenticated && (
+					<div
 						style={{
-							background: "#D90000",
+							// gridRow: "1 / 3",
+							display: "flex",
+							flexDirection: "row",
+							justifyContent: "center",
+							alignItems: "center",
+							width: "100%",
+							gap: "10px",
 						}}
-						label="List Your Property"
-						onClick={handleListPropertyClick}
-					/>
-					{showUpgradeModal && (
-						<UpgradeTierModal
-							isVisible={showUpgradeModal}
-							onClose={closeModal}
-							showLogin={showLogin}
+						className="join-team-list-property"
+					>
+						<RoundBtn
+							type="primary"
+							id="list-prop"
+							className="menu-buttons"
+							style={{
+								background: "#D90000",
+							}}
+							label="List Your Property"
+							onClick={handleListPropertyClick}
 						/>
-					)}
-					<RoundBtn
-						type="primary"
-						id="join-team"
-						className="menu-buttons"
-						style={{
-							border: "#D90000 solid 1px",
-							background: "white",
-							color: "#D90000",
-						}}
-						label="Join Our Team"
-						onClick={handleJoinTeamClick}
-					/>
-				</div>
+						{showUpgradeModal && (
+							<UpgradeTierModal
+								isVisible={showUpgradeModal}
+								onClose={closeModal}
+								showLogin={showLogin}
+							/>
+						)}
+						<RoundBtn
+							type="primary"
+							id="join-team"
+							className="menu-buttons"
+							style={{
+								border: "#D90000 solid 1px",
+								background: "white",
+								color: "#D90000",
+							}}
+							label="Join Our Team"
+							onClick={handleJoinTeamClick}
+						/>
+					</div>
+				)} */}
 				<Col className="menu-buttons">
-					{isMLWWSPresent ? (
-						userDetails?.tier?.label !== "BUYER" ||
-						userDetails?.tier?.label !== "SEMI-VERIFIED" ? (
+					{
+						// !isAuthenticated ? (
+						isAuthenticated && userDetails ? (
 							<SellerLogInButtonDropdown />
 						) : (
-							<img
-								src={userProfile}
-								style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
+							<button
+								// src={userProfile}
+								style={{
+									cursor: "pointer",
+									backgroundColor: "rgb(217, 0, 0)",
+									color: "white",
+									border: "none",
+									padding: "8px 10px",
+									borderRadius: "5px",
+									width: "100%",
+								}}
 								onClick={handleProfileClick}
-							/>
+							>
+								Login
+							</button>
 						)
-					) : (
-						<img
-							src={userProfile}
-							style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
-							onClick={handleProfileClick}
-						/>
-					)}
+						// ) : (
+						// 	<img
+						// 		src={userProfile}
+						// 		style={{ margin: "0px 0px 0px 10px", cursor: "pointer" }}
+						// 		onClick={handleProfileClick}
+						// 	/>
+						// )
+					}
 				</Col>
 				{tierUpgrade && <TierUpgradeModal openModal={openTierUpgradeModal} />}
 			</div>

@@ -18,10 +18,36 @@ const WrapUpDetails = ({
   setWrapUpComplete,
   setCustomerInfo,
   customerInfo,
+  isDetailsComplete,
+  setIsWrapUpResetComplete,
+  isSubmitted,
 }) => {
+  useEffect(() => {
+    if (isSubmitted || !isDetailsComplete) {
+      setEmail("");
+      setMobileNumber("");
+      setFirstname("");
+      setLastname("");
+      setZipCode("");
+      setOtherAddress("");
+      setCustomerInfo({
+        mobile_number: "",
+        email: "",
+        last_name: "",
+        first_name: "",
+        country: "Philippines",
+        province: "",
+        city: "",
+        zipcode: "",
+        others: "",
+        source_of_income: "",
+      });
+    }
+  }, [isSubmitted, isDetailsComplete]);
   const [email, setEmail] = useState("");
   const [mobile_number, setMobileNumber] = useState("");
   const [firstname, setFirstname] = useState("");
+  const [middlename, setMiddlename] = useState("");
   const [lastname, setLastname] = useState("");
   const [incomeType, setIncomeType] = useState("");
   const [targetValue, setTargetvalue] = useState("");
@@ -91,7 +117,7 @@ const WrapUpDetails = ({
   };
 
   const handleInput = (value, setField) => {
-    console.log("value: ",value);
+    console.log("value: ", value);
     setField(value);
   };
   const [errorMessage, setErrorMessage] = useState({
@@ -99,6 +125,7 @@ const WrapUpDetails = ({
     error_email_address: "",
     error_last_name: "",
     error_first_name: "",
+    error_middle_name: "",
     error_province: "",
     error_city: "",
     error_zipcode: "",
@@ -114,8 +141,6 @@ const WrapUpDetails = ({
     // console.log("errorFieldName: ", errorFieldName);
     console.log("fieldName: ", fieldName);
     console.log("value:", value);
-    console.log("`error_${fieldName}`: ", `error_${fieldName}`);
-
     const trimmedValue = value.trim();
     let isValid = true;
     const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
@@ -204,7 +229,7 @@ const WrapUpDetails = ({
           }));
           isValid = false;
         }
-      } 
+      }
       if (fieldName === "last_name") {
         setErrorMessage((prevState) => ({
           ...prevState,
@@ -228,8 +253,7 @@ const WrapUpDetails = ({
           ...prevState,
           error_house_no: "",
         }));
-      }
-      else {
+      } else {
         setErrorMessage((prevState) => ({
           ...prevState,
           [fieldName]: "",
@@ -302,10 +326,15 @@ const WrapUpDetails = ({
   const wrapUpClassName = `wrap-up-inf`;
   const handleKeyDownForLettersAndSymbolsOnly = (e) => {
     // Regular expression to allow letters and symbols only
-    const validInputPattern = /^[A-Za-z\s!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+    const validInputPattern =
+      /^[A-Za-z\s!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
 
     // Check if the key pressed is valid
-    if (!validInputPattern.test(e.key) && e.key !== 'Backspace' && e.key !== 'Tab') {
+    if (
+      !validInputPattern.test(e.key) &&
+      e.key !== "Backspace" &&
+      e.key !== "Tab"
+    ) {
       e.preventDefault(); // Prevent the default action if the key is invalid
     }
   };
@@ -319,10 +348,10 @@ const WrapUpDetails = ({
       e.preventDefault();
     }
     if (currentLength === 0 && e.key !== "0") {
-      e.preventDefault(); 
+      e.preventDefault();
     }
     if (currentLength === 1 && e.key !== "9") {
-      e.preventDefault(); 
+      e.preventDefault();
     }
     if (
       !validInputPatternWrapUp.test(e.key) &&
@@ -341,101 +370,139 @@ const WrapUpDetails = ({
         </div>
       </span>
       <div className="prop-content2-wrap-up">
-        <div className="mobile-address-group">
-          <span className="label">Mobile Number</span>
-          <input
-            type="text"
-            className={`wrap-up-input ${
-              isMobileBlurred && errorMessage.error_mobile_number ? "error" : ""
-            }`}
-            placeholder="09"
-            value={mobile_number}
-            onKeyDown={handleKeyDownForNumbers}
-            onChange={(e) => handleInput(e.target.value, setMobileNumber)}
-            // Add handler if needed
-            onBlur={(e) =>
-              handleBlurInput(e.target.value, "mobile_number", "Mobile Number")
-            }
-            maxLength={11}
-          />
-          {errorMessage.error_mobile_number && (
-            <p className="error-message">{errorMessage.error_mobile_number}</p>
-          )}{" "}
+        <div className="divForMobileNumberAndEmailAddress">
+          <div className="mobile-address-group">
+            <span className="label">Mobile Number</span>
+            <input
+              type="text"
+              className={`wrap-up-input ${
+                isMobileBlurred && errorMessage.error_mobile_number
+                  ? "error"
+                  : ""
+              }`}
+              placeholder="09"
+              value={mobile_number}
+              onKeyDown={handleKeyDownForNumbers}
+              onChange={(e) => handleInput(e.target.value, setMobileNumber)}
+              // Add handler if needed
+              onBlur={(e) =>
+                handleBlurInput(
+                  e.target.value,
+                  "mobile_number",
+                  "Mobile Number"
+                )
+              }
+              maxLength={11}
+              disabled={!isDetailsComplete}
+            />
+            {errorMessage.error_mobile_number && (
+              <p className="error-message">
+                {errorMessage.error_mobile_number}
+              </p>
+            )}{" "}
+          </div>
+          <div className="email-address-group">
+            <span className="label">Email Address</span>
+            <input
+              type="email"
+              className={`wrap-up-input ${
+                isMobileBlurred && errorMessage.error_email_address
+                  ? "error"
+                  : ""
+              }`}
+              placeholder="Email Address"
+              value={email}
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              onChange={(e) => handleInput(e.target.value, setEmail)}
+              onBlur={(e) =>
+                handleBlurInput(e.target.value, "email", "Email address")
+              }
+              disabled={!isDetailsComplete}
+            />
+            {errorMessage.error_email_address && (
+              <p className="error-message">
+                {errorMessage.error_email_address}
+              </p>
+            )}{" "}
+            {/* Show error message */}
+          </div>
         </div>
-        <div className="email-address-group">
-          <span className="label">Email Address</span>
-          <input
-            type="email"
-            className={`wrap-up-input ${
-              isMobileBlurred && errorMessage.error_email_address ? "error" : ""
-            }`}
-            placeholder="Email Address"
-            value={email}
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-            onChange={(e) => handleInput(e.target.value, setEmail)}
-            onBlur={(e) =>
-              handleBlurInput(e.target.value, "email", "Email address")
-            }
-          />
-          {errorMessage.error_email_address && (
-            <p className="error-message">{errorMessage.error_email_address}</p>
-          )}{" "}
-          {/* Show error message */}
-        </div>
-        <div className="lastname-group">
-          <span className="label">Last Name</span>
-          <input
-            type="text"
-            className={`wrap-up-input ${
-              isMobileBlurred && errorMessage.error_last_name ? "error" : ""
-            }`}
-            placeholder="Last Name"
-            value={lastname}
-            onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
-            onChange={(e) => handleInput(e.target.value, setLastname)}
-            onBlur={(e) => handleBlurInput(e.target.value, "last_name")}
-          />
-          {errorMessage.error_last_name && (
-            <p className="error-message">{errorMessage.error_last_name}</p>
-          )}{" "}
-        </div>
-        <div className="firstname-group">
-          <span className="label">First Name</span>
-          <input
-            type="text"
-            className={`wrap-up-input ${
-              isMobileBlurred && errorMessage.error_first_name ? "error" : ""
-            }`}
-            placeholder="First Name"
-            value={firstname}
-            onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
 
-            onChange={(e) => handleInput(e.target.value, setFirstname)}
-            onBlur={(e) => handleBlurInput(e.target.value, "first_name")}
-          />
-          {errorMessage.error_first_name && (
-            <p className="error-message">{errorMessage.error_first_name}</p>
-          )}{" "}
-        </div>
-        <div className="country-group">
-          <span className="label">Country</span>
-          <select
-            name="country"
-            id="country"
-            placeholder="Select Country"
-            className="wrap-up-dropdown-button"
-            value={customerInfo.country}
-            onChange={(e) => handleSelect(e.target.value, "country")}
-            style={{ backgroundColor: "rgb(164,161,161, 27%)" }}
-            disabled
-          >
-            {/* <option value="" disabled selected hidden>
+        <div className="divForOtherDetails">
+          <div className="lastname-group">
+            <span className="label">Last Name</span>
+            <input
+              type="text"
+              className={`wrap-up-input ${
+                isMobileBlurred && errorMessage.error_last_name ? "error" : ""
+              }`}
+              placeholder="Last Name"
+              value={lastname}
+              onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
+              onChange={(e) => handleInput(e.target.value, setLastname)}
+              onBlur={(e) => handleBlurInput(e.target.value, "last_name")}
+              disabled={!isDetailsComplete}
+            />
+            {errorMessage.error_last_name && (
+              <p className="error-message">{errorMessage.error_last_name}</p>
+            )}{" "}
+          </div>
+          <div className="firstname-group">
+            <span className="label">First Name</span>
+            <input
+              type="text"
+              className={`wrap-up-input ${
+                isMobileBlurred && errorMessage.error_first_name ? "error" : ""
+              }`}
+              placeholder="First Name"
+              value={firstname}
+              onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
+              onChange={(e) => handleInput(e.target.value, setFirstname)}
+              onBlur={(e) => handleBlurInput(e.target.value, "first_name")}
+              disabled={!isDetailsComplete}
+            />
+            {errorMessage.error_first_name && (
+              <p className="error-message">{errorMessage.error_first_name}</p>
+            )}{" "}
+          </div>
+          <div className="middlename-group">
+            <span className="label">Middle Name</span>
+            <input
+              type="text"
+              className={`wrap-up-input ${
+                isMobileBlurred && errorMessage.error_middle_name ? "error" : ""
+              }`}
+              placeholder="Middle Name"
+              value={middlename}
+              onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
+              onChange={(e) => handleInput(e.target.value, setMiddlename)}
+              onBlur={(e) => handleBlurInput(e.target.value, "middle_name")}
+              disabled={!isDetailsComplete}
+            />
+            {errorMessage.error_middle_name && (
+              <p className="error-message">{errorMessage.error_middle_name}</p>
+            )}{" "}
+          </div>
+
+          <div className="country-group">
+            <span className="label">Country</span>
+            <select
+              name="country"
+              id="country"
+              placeholder="Select Country"
+              className="wrap-up-dropdown-button"
+              value={customerInfo.country}
+              onChange={(e) => handleSelect(e.target.value, "country")}
+              style={{ backgroundColor: "rgb(164,161,161, 27%)" }}
+              disabled
+            >
+              {/* <option value="" disabled selected hidden>
 							Select Country
 						</option> */}
-            <option value="Philippines" disabled>
-              Philippines
-            </option>
-            {/* {getCountry.map((country, index) => (
+              <option value="Philippines" disabled>
+                Philippines
+              </option>
+              {/* {getCountry.map((country, index) => (
 							<option
 								key={index}
 								value={
@@ -447,139 +514,147 @@ const WrapUpDetails = ({
 									country.name.slice(1).toLowerCase()}
 							</option>
 						))} */}
-          </select>
-        </div>
-        <div className="province-group">
-          <span className="label">Province/State</span>
-          <div className="wrap-up--select">
-            <select
-              name="province"
-              id="province"
-
-              className={`wrap-up-dropdown-button ${
-                isProvinceBlurred && errorMessage.error_province ? "error" : ""
-              }`}
-              value={customerInfo.province}
-              onChange={(e) => handleSelect(e.target.value, "province")}
-              // onChange={handleAddressChange}
-              onBlur={(e) =>
-                handleBlurSelect(e.target.value, "province", "Province")
-              }
-            >
-              <option value="" disabled selected hidden>
-                Select Province
-              </option>
-              {getProvince.map((province, index) => (
-                <option
-                  key={index}
-                  style={{ maxHeight: "20px", overflowY: "auto" }}
-                  value={pascalTextFormatter(province.name)}
-                >
-                  {pascalTextFormatter(province.name)}
+            </select>
+          </div>
+          <div className="province-group">
+            <span className="label">Province/State</span>
+            <div className="wrap-up--select">
+              <select
+                name="province"
+                id="province"
+                className={`wrap-up-dropdown-button ${
+                  isProvinceBlurred && errorMessage.error_province
+                    ? "error"
+                    : ""
+                }`}
+                value={customerInfo.province}
+                onChange={(e) => handleSelect(e.target.value, "province")}
+                // onChange={handleAddressChange}
+                onBlur={(e) =>
+                  handleBlurSelect(e.target.value, "province", "Province")
+                }
+                disabled={!isDetailsComplete}
+              >
+                <option value="" disabled selected hidden>
+                  Select Province
                 </option>
-              ))}
-            </select>
-            {errorMessage.error_province && (
-              <p className="error-message">{errorMessage.error_province}</p>
-            )}
+                {getProvince.map((province, index) => (
+                  <option
+                    key={index}
+                    style={{ maxHeight: "20px", overflowY: "auto" }}
+                    value={pascalTextFormatter(province.name)}
+                  >
+                    {pascalTextFormatter(province.name)}
+                  </option>
+                ))}
+              </select>
+              {errorMessage.error_province && (
+                <p className="error-message">{errorMessage.error_province}</p>
+              )}
+            </div>
           </div>
-        </div>
-        <div className="city-town-group">
-          <span className="label">City/Town</span>
-          <div className="wrap-up--select">
-            <select
-              name="city"
-              id="city"
-              className={`wrap-up-dropdown-button ${
-                isCityBlurred && errorMessage.error_city ? "error" : ""
-              }`}
-              value={customerInfo.city}
-              onChange={(e) => handleSelect(e.target.value, "city")}
-              onBlur={(e) => handleBlurSelect(e.target.value, "city", "City")}
-            >
-              <option value="" disabled selected hidden>
-                Select City
-              </option>
-              {filteredCities.map((city, index) => (
-                <option key={index} value={pascalTextFormatter(city.name)}>
-                  {pascalTextFormatter(city.name)}
+          <div className="city-town-group">
+            <span className="label">City/Town</span>
+            <div className="wrap-up--select">
+              <select
+                name="city"
+                id="city"
+                className={`wrap-up-dropdown-button ${
+                  isCityBlurred && errorMessage.error_city ? "error" : ""
+                }`}
+                value={customerInfo.city}
+                onChange={(e) => handleSelect(e.target.value, "city")}
+                onBlur={(e) => handleBlurSelect(e.target.value, "city", "City")}
+                disabled={!isDetailsComplete}
+              >
+                <option value="" disabled selected hidden>
+                  Select City
                 </option>
-              ))}
-            </select>
-            {errorMessage.error_city && (
-              <p className="error-message">{errorMessage.error_city}</p>
-            )}
+                {filteredCities.map((city, index) => (
+                  <option key={index} value={pascalTextFormatter(city.name)}>
+                    {pascalTextFormatter(city.name)}
+                  </option>
+                ))}
+              </select>
+              {errorMessage.error_city && (
+                <p className="error-message">{errorMessage.error_city}</p>
+              )}
+            </div>
           </div>
-        </div>
-        <div className="zipcode-group">
-          <span className="label">Zipcode</span>
-          <input
-            type="text"
-            className={`wrap-up-input ${
-              isMobileBlurred && errorMessage.error_zipcode ? "error" : ""
-            }`}
-            placeholder="Enter Zipcode"
-            // Add handler if needed
-            value={zipcode}
-            onKeyDown={handleKeyDownForNumbers}
-            onChange={(e) => handleInput(e.target.value, setZipCode)}
-            onBlur={(e) => handleBlurInput(e.target.value, "zipcode")}
-          />
-          {errorMessage.error_zipcode && (
-            <p className="error-message">{errorMessage.error_zipcode}</p>
-          )}{" "}
-        </div>
-        <div className="housenumber-group">
-          <span className="label">House No/Unit/Building Name/Street</span>
-          <input
-            type="text"
-            className={`wrap-up-input ${
-              isMobileBlurred && errorMessage.error_house_no ? "error" : ""
-            }`}
-            placeholder="Enter Street"
-            value={otherAddress}
-            onChange={(e) => handleInput(e.target.value, setOtherAddress)}
-            onBlur={(e) => handleBlurInput(e.target.value, "others")}
-          />
-          {errorMessage.error_house_no && (
-            <p className="error-message">{errorMessage.error_house_no}</p>
-          )}{" "}
-        </div>
-        <div className="source-income-group">
-          <span className="label">Source of Income</span>
-          <div className="wrap-up--select">
-            <select
-              name="source_of_income"
-              value={customerInfo.source_of_income}
-              className={`wrap-up-dropdown-button ${
-                isSourceOfIncomeBlurred && errorMessage.error_source_of_income
-                  ? "error"
-                  : ""
+          <div className="zipcode-group">
+            <span className="label">Zipcode</span>
+            <input
+              type="text"
+              className={`wrap-up-input ${
+                isMobileBlurred && errorMessage.error_zipcode ? "error" : ""
               }`}
-              style={{ margin: "0px" }}
-              onChange={(e) => handleSelect(e.target.value, "source_of_income")}
-              onBlur={(e) =>
-                handleBlurSelect(
-                  e.target.value,
-                  "source_of_income",
-                  "Source of Income"
-                )
-              }
-            >
-              <option value="" disabled selected hidden>
-                Select Source of Income
-              </option>
-              {incomeTypeOptions.map((option) => (
-                <option key={option}>{option}</option>
-              ))}
-            </select>
-            {errorMessage.error_source_of_income && (
-              <p className="error-message">
-                {errorMessage.error_source_of_income}
-              </p>
-            )}
+              placeholder="Enter Zipcode"
+              // Add handler if needed
+              value={zipcode}
+              onKeyDown={handleKeyDownForNumbers}
+              onChange={(e) => handleInput(e.target.value, setZipCode)}
+              onBlur={(e) => handleBlurInput(e.target.value, "zipcode")}
+              disabled={!isDetailsComplete}
+            />
+            {errorMessage.error_zipcode && (
+              <p className="error-message">{errorMessage.error_zipcode}</p>
+            )}{" "}
           </div>
-          {/* <button className="wrap-up-dropdown-button" style={{ margin: "0px" }}>
+          <div className="housenumber-group">
+            <span className="label">House/Unit/Building/Street</span>
+            <input
+              type="text"
+              className={`wrap-up-input ${
+                isMobileBlurred && errorMessage.error_house_no ? "error" : ""
+              }`}
+              placeholder="Enter Street"
+              value={otherAddress}
+              onChange={(e) => handleInput(e.target.value, setOtherAddress)}
+              onBlur={(e) => handleBlurInput(e.target.value, "others")}
+              disabled={!isDetailsComplete}
+            />
+            {errorMessage.error_house_no && (
+              <p className="error-message">{errorMessage.error_house_no}</p>
+            )}{" "}
+          </div>
+          <div className="source-income-group">
+            <span className="label">Source of Income</span>
+            <div className="wrap-up--select">
+              <select
+                name="source_of_income"
+                value={customerInfo.source_of_income}
+                className={`wrap-up-dropdown-button ${
+                  isSourceOfIncomeBlurred && errorMessage.error_source_of_income
+                    ? "error"
+                    : ""
+                }`}
+                style={{ margin: "0px" }}
+                onChange={(e) =>
+                  handleSelect(e.target.value, "source_of_income")
+                }
+                onBlur={(e) =>
+                  handleBlurSelect(
+                    e.target.value,
+                    "source_of_income",
+                    "Source of Income"
+                  )
+                }
+                disabled={!isDetailsComplete}
+              >
+                <option value="" disabled selected hidden>
+                  Select Source of Income
+                </option>
+                {incomeTypeOptions.map((option) => (
+                  <option key={option}>{option}</option>
+                ))}
+              </select>
+              {errorMessage.error_source_of_income && (
+                <p className="error-message">
+                  {errorMessage.error_source_of_income}
+                </p>
+              )}
+            </div>
+            {/* <button className="wrap-up-dropdown-button" style={{ margin: "0px" }}>
             <Dropdown
               menu={
                 <Menu onClick={(e) => handleIncomeType(e.key)}>
@@ -597,7 +672,8 @@ const WrapUpDetails = ({
                 <DownOutlined />
               </a>
             </Dropdown> */}
-          {/* </button> */}
+            {/* </button> */}
+          </div>
         </div>
       </div>
     </div>

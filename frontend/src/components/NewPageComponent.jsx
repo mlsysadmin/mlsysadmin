@@ -11,13 +11,14 @@ import { CaretDownOutlined } from "@ant-design/icons";
 import { cardData } from "../utils/ListingMockData";
 import { CardSkeleton } from "./Skeleton";
 import { getCookieData } from "../utils/CookieChecker";
+import LoginMessageModal from "./modals/LoginMessageModal";
 
 import property from "../images/Guest/property.png";
 import ListingSearch from "./custom/customsearch/custom.listingsearch";
 import { GetPropertiesBySaleStatus, GetUnitPhotos } from "../api/GetAllPublicListings";
 import { GetPhotoWithUrl, GetPhotoLength } from "../utils/GetPhoto";
 import { AmountFormatterGroup } from "../utils/AmountFormatter";
-import { CapitalizeEachWord, CapitalizeStringwithSymbol, CapitalizeString, FillLocationFilter, GetPropertyTitle, isPastAMonth, SortByText, SortMaxPrice, SortPrice } from "../utils/StringFunctions.utils";
+import { CapitalizeEachWord, CapitalizeStringwithSymbol, CapitalizeString, FillLocationFilter, GetPropertyTitle, isPastAMonth, SortByText, SortMaxPrice, SortPrice, TruncateText} from "../utils/StringFunctions.utils";
 import DefaultPropertyImage from '../asset/fallbackImage.png';
 
 const NewPageComponent = () => {
@@ -42,6 +43,7 @@ const NewPageComponent = () => {
 		}
 	]);
 	const [loading, setLoading] = useState(true);
+	 const [showLoginMessage, setShowLoginMessage] = useState(false);
 	const [filterLocation, setFilterLocation] = useState([]);
 	const [searchParams, setSearchParams] = useState({
 		location: null,
@@ -55,7 +57,13 @@ const NewPageComponent = () => {
 		sale_type: null,
 		lot_area: null,
 	})
+  const handleShowLoginModal = () => {
+		setShowLoginMessage(true);
+	};
 
+   const handleCloseLoginModal = () => {
+		setShowLoginMessage(false);
+	};
 	const handleCardClick = (id) => {
 		navigate(`/previewListing/?id=${id}`, { state: id });
 	};
@@ -92,13 +100,16 @@ const NewPageComponent = () => {
 						const getPhotoGallery = await GetUnitPhotos(item.id);
 
 						const gallery = getPhotoGallery.data;
-
+                        const isRent =
+													item.SaleType == "Rent" || item.SaleType == "rent";
 						const image = GetPhotoWithUrl(item.Photo);
 
 						return {
 							id: item.id,
 							title: CapitalizeString(item.UnitName),
-							price: AmountFormatterGroup(item.Price),
+							price: `PHP ${AmountFormatterGroup(item.Price)}${
+								isRent ? "/mo." : ""
+							}`,
 							status: "New",
 							pics: image ? gallery.length + 1 : 0,
 							img: image,
@@ -108,9 +119,10 @@ const NewPageComponent = () => {
 							isFeatured: item.IsFeatured,
 							sale_type: CapitalizeString(item.SaleType),
 							no_of_beds: item.BedRooms,
-							property_type: item.PropertyType === "hotel/resort"
-								? CapitalizeStringwithSymbol(item.PropertyType)
-								: item.PropertyType,
+							property_type:
+								item.PropertyType === "hotel/resort"
+									? CapitalizeStringwithSymbol(item.PropertyType)
+									: item.PropertyType,
 							city: item.City,
 							date: item.created_at,
 							vendorId: item.VendorId,
@@ -204,7 +216,7 @@ const NewPageComponent = () => {
 												key={index}
 												id={data.id}
 												title={data.title}
-												price={`PHP ${data.price}`}
+												price={data.price}
 												imgSrc={data.img}
 												beds={data.no_of_beds}
 												baths={data.no_of_bathrooms}
@@ -218,8 +230,12 @@ const NewPageComponent = () => {
 												propertyNo={data.property_no}
 												vendorId={data.vendorId}
 												number={number}
+												handleShowLoginModalMessage={handleShowLoginModal}
 											/>
 										))}
+										{showLoginMessage && (
+											<LoginMessageModal setShowLoginMessage={setShowLoginMessage} />
+										)}
 									</div>
 								)
 							) : (

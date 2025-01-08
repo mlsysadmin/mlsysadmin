@@ -26,6 +26,7 @@ import {
 	CapitalizeString,
 	FillLocationFilter,
 	CapitalizeStringwithSymbol,
+	TruncateText,
 	GetPropertyTitle,
 	SortListings,
 } from "../utils/StringFunctions.utils";
@@ -34,6 +35,7 @@ import { AmountFormatterGroup } from "../utils/AmountFormatter";
 import DefaultPropertyImage from "../asset/fallbackImage.png";
 import { getCookieData } from "../utils/CookieChecker";
 import NoDataAvailable from "./NoDataFoundComponent";
+import LoginMessageModal from "./modals/LoginMessageModal";
 import { Breadcrumb } from "antd";
 
 const SaleComponent = () => {
@@ -61,6 +63,7 @@ const SaleComponent = () => {
 	]);
 	const [propertyType, setPropertyType] = useState("house-and-lot");
 	const [currentPage, setCurrentPage] = useState(1);
+	const [showLoginMessage, setShowLoginMessage] = useState(false);
 	const cardsPerPage = 9;
 	const [filterLocation, setFilterLocation] = useState([]);
 	const [headerText, setHeaderText] = useState("House and Lot For Sale");
@@ -90,6 +93,9 @@ const SaleComponent = () => {
 
 	const handleCardClick = (id) => {
 		navigate(`/previewListing/?id=${id}`, { state: id });
+	};
+	const handleShowLoginModal = () => {
+		setShowLoginMessage(true);
 	};
 
 	const allPublicListing = async (property_type) => {
@@ -130,13 +136,15 @@ const SaleComponent = () => {
 							const getPhotoGallery = await GetUnitPhotos(item.id);
 
 							const gallery = getPhotoGallery.data;
-
+							const isRent = item.SaleType == "rent" || item.SaleType == "Rent";
 							const image = GetPhotoWithUrl(item.Photo);
 
 							return {
 								id: item.id,
 								title: CapitalizeString(item.UnitName),
-								price: AmountFormatterGroup(item.Price),
+								price: `PHP ${AmountFormatterGroup(item.Price)}${
+									isRent ? "/mo." : ""
+								}`,
 								status: "For Sale",
 								pics: image ? gallery.length + 1 : 0,
 								img: image,
@@ -250,7 +258,7 @@ const SaleComponent = () => {
 											key={index}
 											id={data.id}
 											title={data.title}
-											price={`PHP ${data.price}`}
+											price={data.price}
 											imgSrc={data.img}
 											beds={data.no_of_beds}
 											baths={data.no_of_bathrooms}
@@ -264,8 +272,14 @@ const SaleComponent = () => {
 											propertyNo={data.property_no}
 											vendorId={data.vendorId}
 											number={number}
+											handleShowLoginModalMessage={handleShowLoginModal}
 										/>
 									))}
+									{showLoginMessage && (
+										<LoginMessageModal
+											setShowLoginMessage={setShowLoginMessage}
+										/>
+									)}
 								</div>
 							) : (
 								<NoDataAvailable

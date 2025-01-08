@@ -277,6 +277,10 @@ const ValidationSchema = {
 
             return value;
         }).required(),
+    }),
+    addUserLogin: Joi.object().keys({
+        ckycId: Joi.string().required(),
+        tier: Joi.string().required()
     })
 
 }

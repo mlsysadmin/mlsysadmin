@@ -7,16 +7,28 @@ import {
 } from "../../api/Public/Location.api";
 import OTPModal from "../../components/OTPModal";
 import { Select } from "antd";
-import { AddAgent, GetControlLastNumber } from "../../api/Public/Agent.api";
+import {
+	AddAgent,
+	GetControlLastNumber,
+	GetAgentByContactNumber,
+} from "../../api/Public/Agent.api";
 import { notification } from "antd";
+import { useAuth } from "../../Context/AuthContext";
+import PreviewLoadingModal from "./PreviewLoadingModal";
+import AgentExistModalMessage from "./AgentExistModalMessage";
 
-const JoinTeam = ({ toggleModal, isSessionPresent }) => {
+const JoinTeam = ({ toggleModal }) => {
+	const { isAuthenticated, logout } = useAuth();
 	const { Option } = Select;
 	const [getCountry, setGetCountry] = useState([]);
 	const [getProvince, setGetProvince] = useState([]);
 	const [selectedProvince, setSelectedProvince] = useState("");
 	const [filteredCities, setFilteredCities] = useState([]);
+	const [showAgentExistModalMessage, setShowAgentExistModalMessage] =
+		useState(false);
+	const [agentRecordStatus, setAgentRecordStatus] = useState("");
 	const [getCities, setGetCities] = useState([]);
+	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [api, contextHolder] = notification.useNotification();
 
 	const [formData, setFormData] = useState({
@@ -68,6 +80,9 @@ const JoinTeam = ({ toggleModal, isSessionPresent }) => {
 		const dataresprovince = await GetProvince();
 		setGetProvince(dataresprovince);
 		console.log("these are provinces:", dataresprovince);
+	};
+	const handleShowAgentExistModalMessage = () => {
+		setShowAgentExistModalMessage(true);
 	};
 
 	useEffect(() => {
@@ -197,77 +212,177 @@ const JoinTeam = ({ toggleModal, isSessionPresent }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setIsSubmitting(true);
 		try {
-			const isValid = handleValidation();
-			const getControlLastNumber = await GetControlLastNumber("AgentId");
-			const today = new Date();
-			const yyyyMMdd =
-				today.getFullYear() +
-				"-" +
-				(today.getMonth() + 1) +
-				"-" +
-				today.getDate();
-			console.log("getControlLastNumber: ", getControlLastNumber);
-			if (getControlLastNumber && isValid && getControlLastNumber.data !== "") {
-				const reqBody = {
-					AgentId: getControlLastNumber.data,
-					AgentName: `${formData.lastName}, ${formData.firstName} ${
-						formData.middleName
-					} ${formData.suffix === "None" ? "" : formData.suffix}`,
-					Address: `${formData.address}, ${formData.city}, ${formData.province}, ${formData.country}`,
-					ContactNo: formData.mobileNumber,
-					Email: formData.email,
-					FacebookLink: "-",
-					Designation:
-						formData.brokerQuestion === "others"
-							? othersInputValue
-							: formData.brokerQuestion,
-					TeamId: "-",
-					TeamName: "-",
-					Affiliated: formData.brokerYears,
-					TIN: "-",
-					BirthDate: yyyyMMdd,
-					Sex: "-",
-					HasPanel: "-",
-					IsFeatured: "-",
-					Description: "-",
-					RecordStatus: "pending",
-					PRCID: "-",
-					PRCExpiryDate: yyyyMMdd,
-					ReferredById: "-",
-					ReferredByName: "-",
-					BankName: "-",
-					BankAccountNo: "-",
-				};
-				const addAgent = await AddAgent(reqBody);
-				console.log("addAgent: ", addAgent);
+			const existingAgent = await GetAgentByContactNumber(
+				formData.mobileNumber
+			);
+			console.log("number:", formData.mobileNumber);
 
-				if (addAgent) {
-					openNotificationWithIcon(
-						"success",
-						`Successfully submitted`,
-						"Thank you for joining our team! We're excited to review it and will be in touch soon with the next steps."
-					);
+			console.log("existingAgent: ", existingAgent);
+
+			if (existingAgent !== null && Object.keys(existingAgent).length > 0) {
+				if (existingAgent.RecordStatus !== "inactive") {
+					console.log("Agent already exists: ", existingAgent);
+					
+					setAgentRecordStatus(existingAgent.RecordStatus);
+					setIsSubmitting(false);
+					setShowAgentExistModalMessage(true);
 				} else {
+					const isValid = handleValidation();
+					const getControlLastNumber = await GetControlLastNumber("AgentId");
+					const today = new Date();
+					const yyyyMMdd =
+						today.getFullYear() +
+						"-" +
+						(today.getMonth() + 1) +
+						"-" +
+						today.getDate();
+					console.log("getControlLastNumber: ", getControlLastNumber);
+					if (
+						getControlLastNumber &&
+						isValid &&
+						getControlLastNumber.data !== ""
+					) {
+						const reqBody = {
+							AgentId: getControlLastNumber.data,
+							AgentName: `${formData.lastName}, ${formData.firstName} ${
+								formData.middleName
+							} ${formData.suffix === "None" ? "" : formData.suffix}`,
+							Address: `${formData.address}, ${formData.city}, ${formData.province}, ${formData.country}`,
+							ContactNo: formData.mobileNumber,
+							Email: formData.email,
+							FacebookLink: "-",
+							Designation:
+								formData.brokerQuestion === "others"
+									? othersInputValue
+									: formData.brokerQuestion,
+							TeamId: "-",
+							TeamName: "-",
+							Affiliated: formData.brokerYears,
+							TIN: "-",
+							BirthDate: yyyyMMdd,
+							Sex: "-",
+							HasPanel: "-",
+							IsFeatured: "-",
+							Description: "-",
+							RecordStatus: "pending",
+							PRCID: "-",
+							PRCExpiryDate: yyyyMMdd,
+							ReferredById: "-",
+							ReferredByName: "-",
+							BankName: "-",
+							BankAccountNo: "-",
+						};
+						const addAgent = await AddAgent(reqBody);
+						console.log("addAgent: ", addAgent);
+						setIsSubmitting(false);
+
+						if (addAgent) {
+							openNotificationWithIcon(
+								"success",
+								`Successfully submitted`,
+								"Thank you for joining our team! We're excited to review it and will be in touch soon with the next steps."
+							);
+						} else {
+							openNotificationWithIcon(
+								"warning",
+								`Unable to proceed`,
+								"Unable to Submit your Application, Please retry later!."
+							);
+						}
+						console.log("formData: ", formData);
+					} else {
+						setIsSubmitting(false);
+						openNotificationWithIcon(
+							"warning",
+							`Invalid Value`,
+							"Please provide the required fields!."
+						);
+					}
+				}
+			} else {
+				const isValid = handleValidation();
+				const getControlLastNumber = await GetControlLastNumber("AgentId");
+				const today = new Date();
+				const yyyyMMdd =
+					today.getFullYear() +
+					"-" +
+					(today.getMonth() + 1) +
+					"-" +
+					today.getDate();
+				console.log("getControlLastNumber: ", getControlLastNumber);
+				if (
+					getControlLastNumber &&
+					isValid &&
+					getControlLastNumber.data !== ""
+				) {
+					const reqBody = {
+						AgentId: getControlLastNumber.data,
+						AgentName: `${formData.lastName}, ${formData.firstName} ${
+							formData.middleName
+						} ${formData.suffix === "None" ? "" : formData.suffix}`,
+						Address: `${formData.address}, ${formData.city}, ${formData.province}, ${formData.country}`,
+						ContactNo: formData.mobileNumber,
+						Email: formData.email,
+						FacebookLink: "-",
+						Designation:
+							formData.brokerQuestion === "others"
+								? othersInputValue
+								: formData.brokerQuestion,
+						TeamId: "-",
+						TeamName: "-",
+						Affiliated: formData.brokerYears,
+						TIN: "-",
+						BirthDate: yyyyMMdd,
+						Sex: "-",
+						HasPanel: "-",
+						IsFeatured: "-",
+						Description: "-",
+						RecordStatus: "pending",
+						PRCID: "-",
+						PRCExpiryDate: yyyyMMdd,
+						ReferredById: "-",
+						ReferredByName: "-",
+						BankName: "-",
+						BankAccountNo: "-",
+					};
+					const addAgent = await AddAgent(reqBody);
+					console.log("addAgent: ", addAgent);
+					setIsSubmitting(false);
+					resetForm();
+
+					if (addAgent) {
+						openNotificationWithIcon(
+							"success",
+							`Successfully submitted`,
+							"Thank you for joining our team! We're excited to review it and will be in touch soon with the next steps."
+						);
+					} else {
+						openNotificationWithIcon(
+							"warning",
+							`Unable to proceed`,
+							"Unable to Submit your Application, Please retry later!."
+						);
+					}
+					console.log("formData: ", formData);
+					resetForm();
+				} else {
+					setIsSubmitting(false);
 					openNotificationWithIcon(
 						"warning",
-						`Unable to proceed`,
-						"Unable to Submit your Application, Please retry later!."
+						`Invalid Value`,
+						"Please provide the required fields!."
 					);
+					
+					
 				}
-				console.log("formData: ", formData);
-			} else {
-				openNotificationWithIcon(
-					"warning",
-					`Invalid Value`,
-					"Please provide the required fields!."
-				);
 			}
 
 			//   const addAgent = await AddAgent();
 		} catch (error) {
 			console.log("error: ", error);
-
+         setIsSubmitting(false);
 			openNotificationWithIcon(
 				"error",
 				"Message Failed",
@@ -370,41 +485,10 @@ const JoinTeam = ({ toggleModal, isSessionPresent }) => {
 	};
 	const Modal = ({ isVisible, onClose }) => {
 		if (!isVisible) return null;
-
-		// return (
-		//   <div className="modal-notice" onClick={handleCloseModal}>
-		//     <div className="modal-notice-content">
-		//       <h2>Important Notice</h2>
-		//       <p>
-		//         To join our team, you need to create an ML Wallet account. Follow
-		//         these three easy steps:
-		//       </p>
-		//       <ol>
-		//         <li>
-		//           Download and install the ML Wallet application from Google Play or
-		//           the App Store.
-		//         </li>
-		//         <li>Sign up for an ML Wallet account.</li>
-		//         <li>
-		//           Once successfully registered, return here and fill out this form
-		//           to become an M Lhuillier broker/agent.
-		//         </li>
-		//       </ol>
-		//     </div>
-		//   </div>
-		// );
 	};
-	// const formatCityLabel = (label) => {
-	//   return label
-	//     .split(" ")
-	//     .map((word) => {
-	//       return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-	//     })
-	//     .join(" ");
-	// };
-	useEffect(() => {}, [isSessionPresent]);
+	useEffect(() => {}, [isAuthenticated]);
 
-	if (!isSessionPresent) {
+	if (!isAuthenticated) {
 		return (
 			<div className="join-modal-container">
 				{contextHolder}
@@ -453,7 +537,7 @@ const JoinTeam = ({ toggleModal, isSessionPresent }) => {
 							}}
 						>
 							<div className="modal-header">
-								<h2 style={{ color: "#000000", fontSize: "24px" }}>
+								<h2 style={{ color: "#000000" }}>
 									Join our innovative team at M Lhuillier.
 								</h2>
 								<span
@@ -464,7 +548,7 @@ const JoinTeam = ({ toggleModal, isSessionPresent }) => {
 									&times;
 								</span>
 							</div>
-							<p style={{ fontSize: "16px", color: "#000000" }}>
+							<p style={{ color: "#000000" }}>
 								Your expertise and passion are exactly what we need.
 							</p>
 							<div className="join-team-columns">
@@ -737,15 +821,18 @@ const JoinTeam = ({ toggleModal, isSessionPresent }) => {
 											/>
 											Broker
 										</label>
-										<label>
-											<input
-												type="radio"
-												name="brokerQuestion"
-												value="others"
-												checked={formData.brokerQuestion === "others"}
-												onChange={handleInputChange}
-											/>
-											Others
+										<label className="other-status">
+											
+												<input
+													type="radio"
+													name="brokerQuestion"
+													value="others"
+													checked={formData.brokerQuestion === "others"}
+													onChange={handleInputChange}
+												/>
+												Others
+										
+
 											{formData.brokerQuestion === "others" && (
 												<div className="join-team-group">
 													<input
@@ -757,12 +844,10 @@ const JoinTeam = ({ toggleModal, isSessionPresent }) => {
 														onChange={handleInputOthers}
 														onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
 													/>
-													{errors.otherBrokerQuestion && (
-														<p className="error">
-															{errors.otherBrokerQuestion}
-														</p>
-													)}
 												</div>
+											)}
+											{errors.otherBrokerQuestion && (
+												<p className="error">{errors.otherBrokerQuestion}</p>
 											)}
 										</label>
 										{errors.brokerQuestion && (
@@ -816,12 +901,14 @@ const JoinTeam = ({ toggleModal, isSessionPresent }) => {
 						</div>
 					</div>
 				)}
+				{isSubmitting && <PreviewLoadingModal />}
 			</div>
 		);
 	}
 
 	return (
 		<div className="join-page-container">
+			{contextHolder}
 			<Modal isVisible={isModalVisible} onClose={handleCloseModal} />
 			{showOtpModal && (
 				<OTPModal
@@ -837,10 +924,7 @@ const JoinTeam = ({ toggleModal, isSessionPresent }) => {
 					<div className="page-content-jointeam-header">
 						<h2>Join our innovative team at M Lhuillier.</h2>
 					</div>
-					<p
-						className="sub-header-joinpage"
-						style={{ fontSize: "16px", color: "#000000" }}
-					>
+					<p className="sub-header-joinpage" style={{ color: "#000000" }}>
 						Your expertise and passion are exactly what we need.
 					</p>
 					<div className="join-team-page-columns">
@@ -1169,11 +1253,24 @@ const JoinTeam = ({ toggleModal, isSessionPresent }) => {
 							By proceeding, I agree and review that all information is correct.
 						</span>
 					</div>
-					<button onClick={handleSubmit} className="join-team-page-submit-button">
-						Submit Application
-					</button>
+					<div className="join__submit-btn--wrapper">
+						<button
+							onClick={handleSubmit}
+							className="join-team-page-submit-button"
+						>
+							Submit Application
+						</button>
+					</div>
+					{showAgentExistModalMessage && (
+						<AgentExistModalMessage
+							setShowLoginMessage={setShowAgentExistModalMessage}
+							agentRecordStatus={agentRecordStatus}
+							resetForm={resetForm}
+						/>
+					)}
 				</div>
 			)}
+			{isSubmitting && <PreviewLoadingModal />}
 		</div>
 	);
 };

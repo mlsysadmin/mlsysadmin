@@ -68,17 +68,17 @@ const User = Sequelize.define("users", {
   //     allowNull: false,
   //     type: DataTypes.ENUM("I'm a licensed real estate broker", "I'm a real estate agent", "I'm looking for my nexthome Buy/Rent", "I'm looking to Sell/Rent")
   // },
-  // role_id: {
-  //     allowNull: false,
-  //     type: DataTypes.INTEGER.UNSIGNED,
-  //     references: {
-  //       model: {
-  //         model: "Role",
-  //         tableName: 'roles',
-  //       },
-  //       key: 'role_id',
-  //     },
-  // },
+  role_id: {
+      allowNull: false,
+      type: DataTypes.INTEGER.UNSIGNED,
+      references: {
+        model: {
+          model: "Role",
+          tableName: 'roles',
+        },
+        key: 'role_id',
+      },
+  },
   // license: {
   //   allowNull: true,
   //   validate: {
@@ -90,11 +90,14 @@ const User = Sequelize.define("users", {
   // },
   createdAt: {
     type: DataTypes.DATE,
-    allowNull: false
+    allowNull: false,
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
   },
   updatedAt: {
     type: DataTypes.DATE,
-    allowNull: true
+    allowNull: true,
+    onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
   }
 },{
   modelName: 'User',

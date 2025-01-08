@@ -63,21 +63,21 @@ const FeaturedComponents = ({
 	};
 
 	useEffect(() => {
-		const requiresAdditionalFields = ![
-			"commercial land/lot",
-			"lot",
-			"farm lot",
-			"service office",
-			"office space",
-			"shop/retail",
-			"warehouse",
-			"hotel/resort",
-		].includes(selectedPropertyTab);
-		if (!requiresAdditionalFields) {
-			onComplete(true);
-			// setPropertyFields({ Features: [] });
-			return;
-		}
+		// const requiresAdditionalFields = ![
+		// 	"commercial land/lot",
+		// 	"lot",
+		// 	"farm lot",
+		// 	"service office",
+		// 	"office space",
+		// 	"shop/retail",
+		// 	"warehouse",
+		// 	"hotel/resort",
+		// ].includes(selectedPropertyTab);
+		// if (!requiresAdditionalFields) {
+		// 	onComplete(true);
+		// 	// setPropertyFields({ Features: [] });
+		// 	return;
+		// }
 
 		const featuresComplete =
 			indoorSelectedFeatures.length > 0 || outdoorSelectedFeatures.length > 0;
@@ -115,7 +115,7 @@ const FeaturedComponents = ({
 				Why is your property so great? Tell us more about your property so that
 				property seekers can learn even more about your offer.
 			</p>
-			<div className="features">
+			<div className="features--wrapper">
 				<FeaturesList
 					title="Indoor Features"
 					features={indooramenities}

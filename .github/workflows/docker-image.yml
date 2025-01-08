@@ -15,7 +15,7 @@ jobs:
 
     # Set the custom token as an environment variable
     - name: Set custom token
-      run: echo "ACCESS_TOKEN=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" >> $GITHUB_ENV
+      run: echo "ACCESS_TOKEN=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" >> $GITHUB_ENV
     
     - name: Setup Node.js
       uses: actions/setup-node@v4

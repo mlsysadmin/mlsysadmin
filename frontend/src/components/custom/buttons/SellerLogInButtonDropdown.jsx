@@ -23,6 +23,29 @@ const SellerLogInButtonDropdown = () => {
 
 	const navigate = useNavigate();
 
+
+	function useWindowSize() {
+		const [windowSize, setWindowSize] = useState({
+			width: undefined,
+			height: undefined,
+		});
+
+		useEffect(() => {
+			function handleResize() {
+				setWindowSize({
+					width: window.innerWidth,
+					height: window.innerHeight,
+				});
+			}
+
+			window.addEventListener("resize", handleResize);
+			handleResize(); // Initialize on mount
+			return () => window.removeEventListener("resize", handleResize);
+		}, []);
+
+		return windowSize;
+	}
+
 	const {
 		isAuthenticated, userDetails, logout
 	} = useAuth()
@@ -50,6 +73,9 @@ const SellerLogInButtonDropdown = () => {
 	const handleJoinTeamClick = () => {
 		setShowModal(true);
 	};
+
+	const size = useWindowSize();
+	const isMobile = size.width >= 360 && size.width <= 768;
 
 	// const handleLogout = () => {
 	// 	document.cookie.split(";").forEach((cookie) => {
@@ -81,7 +107,7 @@ const SellerLogInButtonDropdown = () => {
 	// }, []);
 
 	const handleLogout = async () => {
-		logout();
+		await logout();
 	};
 
 	const toPascalCase = (name) => {
@@ -112,29 +138,33 @@ const SellerLogInButtonDropdown = () => {
 					backgroundColor: "#D90000",
 					color: "white",
 					border: "none",
-					padding: "6px 10px",
+					padding: "8px 10px",
 					borderRadius: "5px",
 					display: "flex",
 					alignItems: "center",
-					justifyContent: "space-between",
+					justifyContent: "center",
 				}}
 				onClick={handleButtonClick}
 				className="seller-button-dropdown"
 			>
-				<img
-					src={userProfileLogIn}
-					alt="User Profile"
-					style={{ marginRight: "5px", height: "20px" }}
-				/>
-				{fullName}
-				<img
-					src={profileDropdown}
-					alt=""
-					profileDropdown
-					style={{ width: "10px", marginLeft: "5px" }}
-				></img>
+				{!isMobile && (
+					<img
+						src={userProfileLogIn}
+						alt="User Profile"
+						style={{ marginRight: "5px", height: "20px" }}
+					/>
+				)}
+				<div className="user-name-label">{fullName}</div>
+				{!isMobile && (
+					<img
+						src={profileDropdown}
+						alt=""
+						profileDropdown
+						style={{ width: "10px", marginLeft: "5px" }}
+					></img>
+				)}
 			</button>
-			{showDropdown && (
+			{showDropdown && !isMobile && (
 				<div
 					style={{
 						position: "absolute",

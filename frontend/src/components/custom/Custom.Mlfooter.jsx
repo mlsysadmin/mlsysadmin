@@ -70,14 +70,14 @@ const CustomMlFooter = () => {
 										About Us
 									</a>
 								</div>
-								<div>
+								{/* <div>
 									<a
 										href="https://webcareers.mlhuillier.com/"
 										style={{ textDecoration: "none", color: "#4F4F4F" }}
 									>
 										Careers
 									</a>
-								</div>
+								</div> */}
 							</div>
 						</Col>
 						<Col className="col-footer-name" span={5}>

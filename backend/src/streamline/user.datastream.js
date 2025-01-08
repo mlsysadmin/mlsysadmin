@@ -114,4 +114,30 @@ module.exports = {
             throw error
         }
     },
+    InsertUserLoginAttempt: async (user, transaction) => {
+        try {
+
+            const [findOrCreateUser, created] = await User.findOrCreate({
+                where: {
+                    ckyc_id: user.ckyc_id
+                },
+                defaults: {
+                    role_id: user.role,
+                    ckyc_id: user.ckyc_id,
+                },
+                include: [
+                    {
+                        model: Role
+                    },
+
+                ],
+                transaction
+            });
+
+            return created;
+
+        } catch (error) {
+            throw error
+        }
+    }
 }

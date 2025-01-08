@@ -26,7 +26,7 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 				style={{
 					backgroundColor: "white",
 					padding: "40px",
-					borderRadius: "30px",
+					borderRadius: "var(--radius)",
 					boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
 					display: "flex",
 					flexDirection: "column",
@@ -43,24 +43,23 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 						flexDirection: "column",
 					}}
 				>
-					<h2
+					<h3
 						style={{
 							fontWeight: "bold",
 							marginBottom: "20px",
 							color: "var(--red)",
 							textAlign: "center",
-							fontSize: "18px",
 						}}
+						className="upgrade--title"
 					>
 						Property Listing Guide
-					</h2>
+					</h3>
 					<CloseOutlined
 						onClick={onClose}
 						style={{
 							position: "absolute",
 							right: "30px",
 							top: "30px",
-							fontSize: "14px",
 						}}
 					/>
 					<div
@@ -85,7 +84,6 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 						>
 							<span
 								style={{
-									fontSize: "14px",
 									fontWeight: "bold",
 									lineHeight: "40px",
 								}}
@@ -94,7 +92,6 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 							</span>
 							<p
 								style={{
-									fontSize: "14px",
 									fontWeight: "400",
 									lineHeight: "40px",
 								}}
@@ -108,10 +105,10 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 									paddingLeft: "20px",
 								}}
 							>
-								<ol style={{ fontSize: "14px", fontWeight: "400" }}>
+								<ol style={{ fontWeight: "400" }}>
 									1. Upload your listing details on our website
 								</ol>
-								<ol style={{ fontSize: "14px", fontWeight: "400" }}>
+								<ol style={{ fontWeight: "400" }}>
 									2. Visit nearest ML Branch and FLA will assist you with
 									listing your property.
 								</ol>
@@ -131,15 +128,15 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 						>
 							<span
 								style={{
-									fontSize: "14px",
 									fontWeight: "bold",
 									lineHeight: "40px",
 								}}
 							>
-								How to Upload Your Listing on OurWebsite? 
+								How to upload your listing on our website? 
 							</span>
-							<p style={{ fontSize: "14px", lineHeight: "40px" }}>
-								Follow these steps to upload your property listing online:
+							<p style={{ lineHeight: "40px" }}>
+								Enter your mobile number to register or login using OTP
+								(One-Time Password).
 							</p>
 							<div
 								className="second-ol-group-upgrade"
@@ -148,16 +145,17 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 									paddingLeft: "20px",
 								}}
 							>
-								<ol style={{ fontSize: "14px", fontWeight: "400" }}>
-									1. Download and Install ML Wallet app.
+								{/* <ol style={{ fontWeight: "400" }}>
+									Enter your mobile number to register or login using OTP
+									(One-Time Password).
 								</ol>
-								<ol style={{ fontSize: "14px", fontWeight: "400" }}>
+								<ol style={{ fontWeight: "400" }}>
 									2. Register and ensure your account is fully verified. 
 									<p
 										style={{
 											fontStyle: "italic",
 											paddingLeft: "15px",
-											fontSize: "14px",
+
 											fontWeight: "400",
 										}}
 									>
@@ -165,9 +163,9 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 										Branch to upgrade it.
 									</p>
 								</ol>
-								<ol style={{ fontSize: "14px", fontWeight: "400" }}>
+								<ol style={{ fontWeight: "400" }}>
 									3. Once approved, scan the QR Code on ML Website to login. 
-								</ol>
+								</ol> */}
 							</div>
 						</div>
 					</div>

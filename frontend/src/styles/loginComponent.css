@@ -297,6 +297,7 @@
 .otp-verification-container .otp-header {
 	/* font-size: va; */
 	text-align: center;
+	margin: 0 15px;
 }
 
 .otp-verification-container .otp-input-group{
@@ -387,6 +388,14 @@
 	background-color: white !important;
 	
 } */
+@media screen and (min-width: 320px) and (max-width: 359px) {
+	.login-content{
+		width: 90%;
+	}
+	.otp-verification-container{
+		padding: 50px 10px 0;
+	}
+}
 
 @media screen and (min-width: 360px) and (max-width: 1024px) {
 	.login-content {

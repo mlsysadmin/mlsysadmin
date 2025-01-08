@@ -16,7 +16,9 @@ import { GetSavedPropertiesBySellerNo } from "../../../api/Public/SavedPropertie
 import { searchKyc } from "../../../api/Public/User.api";
 
 import { DeleteOutlined } from "@ant-design/icons";
+import { useAuth } from "../../../Context/AuthContext";
 import { getCookieData } from "../../../utils/CookieChecker";
+import { TruncateText } from "../../../utils/StringFunctions.utils";
 
 const Card = ({
 	id,
@@ -33,48 +35,30 @@ const Card = ({
 	propertyNo,
 	isFeatured,
 	showDeleteIcon,
-	number,
+	handleShowLoginModalMessage,
 }) => {
 	// const isFeatured = forsale.toLowerCase() === "featured";
 	const [isHeartFilled, setIsHeartFilled] = useState(false);
 	const [showTooltip, setShowTooltip] = useState(false);
 	const [properties, setProperties] = useState([]);
 	const [isDeleted, setIsDeleted] = useState(false);
+
 	const [savedProperties, setSavedProperties] = useState([]);
 	const [savedPropertyId, setSavedPropertyId] = useState([]);
-	const [userDetails, setUserDetails] = useState(null);
+	// const [userDetails, setUserDetails] = useState(null);
+
+	const { userDetails } = useAuth();
 
 	const loadProperties = async () => {
 		try {
-			const fetchedProperties = await GetSavedPropertiesBySellerNo(number);
+			const fetchedProperties = await GetSavedPropertiesBySellerNo(
+				userDetails.mobileNumber
+			);
 			setProperties(fetchedProperties.data);
 			console.log("Fetched properties:", fetchedProperties.data);
 			return fetchedProperties.data;
 		} catch (error) {
 			console.error("Failed to load properties:", error);
-		}
-	};
-
-	const handleDeleteClick = async () => {
-		try {
-			const resApi = await DeleteSavedProperty(id);
-			notification.success({
-				message: "Property Deleted",
-				description:
-					"This property has been successfully deleted from your saved list.",
-				placement: "topLeft",
-			});
-			if (showDeleteIcon) {
-				await loadProperties();
-				window.location.reload();	
-			} else {
-				console.log("No reload triggered because showDeleteIcon is false.");
-			}
-			console.log("Successfully deleted", resApi);
-
-			setIsDeleted(true);
-		} catch (error) {
-			console.error("Failed to delete the property", error);
 		}
 	};
 
@@ -85,16 +69,18 @@ const Card = ({
 	}, [isDeleted]);
 
 	const handleHeartClick = async () => {
-		const accountDetails = getCookieData();
-		const contactNum = accountDetails?.mobileNumber || null;
+		// const accountDetails = getCookieData();
+		const contactNum = userDetails?.mobileNumber || null;
 		setIsHeartFilled(!isHeartFilled);
 		if (!contactNum) {
+			handleShowLoginModalMessage();
+			setShowTooltip(false);
 			console.log("Reacted but items are not saved.");
 			return;
 		}
 
 		if (!isHeartFilled) {
-			if (number && propertyNo) {
+			if (contactNum && propertyNo) {
 				try {
 					const save = await AddSavedProperty(contactNum, propertyNo);
 					console.log("Saved properties after save:", save);
@@ -106,17 +92,17 @@ const Card = ({
 				} catch (error) {
 					console.error("Error saving property:", error);
 				}
-				
 			} else {
+				handleShowLoginModalMessage();
 				alert("Reacted but items are not saved.");
 				return;
 			}
-		} else if (number && propertyNo) {
+		} else if (contactNum && propertyNo) {
 			if (savedPropertyId) {
 				console.log("Attempting to delete property with ID:", savedPropertyId);
 				const resApi = await DeleteSavedProperty(savedPropertyId);
 				console.log("Deleted property with ID:", resApi);
-				
+
 				// handleDeleteClick(savedPropertyId);
 			} else {
 				console.log("Property not ");
@@ -178,15 +164,33 @@ const Card = ({
 						onClick={handleHeartClick}
 						style={{ display: "flex", flexDirection: "column" }}
 					>
-						<Tooltip
-							color="var(--red)"
-							title={isHeartFilled ? "Added to favorites" : "Add to favorites"}
-							placement="top"
-						>
-							<div className="heart-icon">
-								{isHeartFilled ? <HeartFilled style={{color:"var(--red)"}} /> : <HeartOutlined />}
-							</div>
-						</Tooltip>
+						{userDetails?.mobileNumber ? (
+							<Tooltip
+								color="var(--red)"
+								title={
+									isHeartFilled ? "Added to favorites" : "Add to favorites"
+								}
+								placement="top"
+							>
+								<div className="heart-icon">
+									{isHeartFilled ? (
+										<HeartFilled style={{ color: "var(--red)" }} />
+									) : (
+										<HeartOutlined />
+									)}
+								</div>
+							</Tooltip>
+						) : (
+							<Tooltip
+								color="var(--red)"
+								title="Add to favorites"
+								placement="top"
+							>
+								<div className="heart-icon">
+										<HeartOutlined />
+								</div>
+							</Tooltip>
+						)}
 					</div>
 
 					{/* <div className="icon">
@@ -194,9 +198,10 @@ const Card = ({
           </div> */}
 				</div>
 			</div>
+
 			<div className="card-content" onClick={handleClick}>
 				<div className="card-listing-title-public">
-					<p>{title}</p>
+					<p>{TruncateText(title)}</p>
 				</div>
 				<div className="card-listing-subtitle-public">
 					<label>{subtitle}</label>

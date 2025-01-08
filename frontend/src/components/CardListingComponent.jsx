@@ -20,6 +20,8 @@ import { notification } from "antd";
 import PreviewLoadingModal from "./modals/PreviewLoadingModal";
 import { GetSavedPropertiesBySellerNo } from "../api/Public/SavedProperties.api";
 import { getCookieData } from "../utils/CookieChecker";
+import { useAuth } from "../Context/AuthContext";
+import { TruncateText } from "../utils/StringFunctions.utils";
 
 const CardListingComponent = ({
 	loading,
@@ -39,17 +41,20 @@ const CardListingComponent = ({
 	isSavedProperties,
 	showDeleteIcon,
 	id,
+	handleShowLoginModalMessage,
 	propertyNo,
-	number,
 }) => {
 	const [checked, setIsChecked] = useState(false);
 	const [likes, setLikes] = useState([]);
+	const [tooltipMessage, setTooltipMessage] = useState("Add to favorite");
 	const [showTooltip, setShowTooltip] = useState(false);
 	const [properties, setProperties] = useState([]);
 	const [isDeleted, setIsDeleted] = useState(false);
 	const [savedProperties, setSavedProperties] = useState([]);
 	const [savedPropertyId, setSavedPropertyId] = useState([]);
 	const [isDeleting, setIsDeleting] = useState(false);
+
+	const { userDetails } = useAuth();
 
 	const ImageTag = () => (
 		<div className="image-tag">
@@ -66,9 +71,8 @@ const CardListingComponent = ({
 
 	const handleChange = async (isChecked, tag, listingId) => {
 		const id = listingId;
-		const accountDetails = getCookieData();
 
-		let number = accountDetails?.mobileNumber || null ;
+		let number = userDetails?.mobileNumber || null;
 
 		const nextSelectedTags =
 			isChecked && !likes.includes(id)
@@ -78,20 +82,24 @@ const CardListingComponent = ({
 		setLikes(nextSelectedTags);
 		setIsChecked(isChecked);
 		if (isChecked) {
-			 if (number && propertyNo) {
-					
-					try {
-						const save = await AddSavedProperty(number, propertyNo);
-						setSavedPropertyId(save.id);
-						console.log("Property saved with ID:", save.id);
-						setShowTooltip(true);
-						setTimeout(() => setShowTooltip(false), 800);
-					} catch (error) {
-						console.error("Error saving property:", error);
-					}
-				} else {
-					console.log("Reacted but items are not saved.");
+			if (number && propertyNo) {
+				try {
+					const save = await AddSavedProperty(number, propertyNo);
+					setSavedPropertyId(save.id);
+					console.log("Property saved with ID:", save.id);
+					setTooltipMessage("Added to favorites");
+					setShowTooltip(true);
+					setTimeout(() => setShowTooltip(false), 800);
+				} catch (error) {
+					console.error("Error saving property:", error);
 				}
+			} else {
+				handleShowLoginModalMessage();
+				console.log("Reacted but items are not saved.");
+				setTooltipMessage("Added to favorites");
+				setShowTooltip(false);
+				setTimeout(() => setShowTooltip(false), 800);
+			}
 		} else if (number && propertyNo) {
 			if (savedPropertyId) {
 				console.log("Attempting to delete property with ID:", savedPropertyId);
@@ -117,20 +125,22 @@ const CardListingComponent = ({
 		}
 	}, [showDeleteIcon, isDeleted]);
 
-	const loadProperties = async () => {
-		try {
-			const fetchedProperties = await GetSavedPropertiesBySellerNo(number);
-			setProperties(fetchedProperties.data);
-			console.log("Fetched properties:", fetchedProperties.data);
+	// const loadProperties = async () => {
+	// 	try {
+	// 		const fetchedProperties = await GetSavedPropertiesBySellerNo(
+	// 			userDetails.mobileNumber
+	// 		);
+	// 		setProperties(fetchedProperties.data);
+	// 		console.log("Fetched properties:", fetchedProperties.data);
 
-			return fetchedProperties.data;
-		} catch (error) {
-			console.error("Failed to load properties:", error);
-		}
-	};
-	useEffect(() => {
-		loadProperties();
-	}, []);
+	// 		return fetchedProperties.data;
+	// 	} catch (error) {
+	// 		console.error("Failed to load properties:", error);
+	// 	}
+	// };
+	// useEffect(() => {
+	// 	loadProperties();
+	// }, []);
 
 	const handleDeleteClick = async () => {
 		setIsDeleting(true);
@@ -140,7 +150,7 @@ const CardListingComponent = ({
 			console.log("Successfully deleted", resApi);
 
 			if (resApi !== null) {
-				await GetSavedPropertiesBySellerNo(number);
+				await GetSavedPropertiesBySellerNo(userDetails.mobileNumber);
 				window.location.reload();
 				window.addEventListener("load", () => {
 					setIsDeleting(false);
@@ -153,11 +163,11 @@ const CardListingComponent = ({
 			setIsDeleting(false);
 		}
 	};
-	useEffect(() => {
-		if (isDeleted) {
-			loadProperties();
-		}
-	}, [isDeleted]);
+	// useEffect(() => {
+	// 	if (isDeleted) {
+	// 		loadProperties();
+	// 	}
+	// }, [isDeleted]);
 
 	return (
 		<div id="card-listing">
@@ -181,7 +191,7 @@ const CardListingComponent = ({
 											backgroundColor: "green",
 											borderColor: "green",
 											color: "white",
-											borderRadius: "25px",
+											borderRadius: "var(--radius)",
 										}}
 									/>
 									<CustomTag
@@ -190,7 +200,7 @@ const CardListingComponent = ({
 											backgroundColor: "white",
 											borderColor: "white",
 											color: "black",
-											borderRadius: "25px",
+											borderRadius: "var(--radius)",
 										}}
 									/>
 								</div>
@@ -201,7 +211,7 @@ const CardListingComponent = ({
 										backgroundColor: "#FBBC04",
 										borderColor: "#FBBC04",
 										color: "white",
-										borderRadius: "25px",
+										borderRadius: "var(--radius)",
 									}}
 								/>
 							) : isSavedProperties.isRecordStatus === "rejected" ? (
@@ -211,7 +221,7 @@ const CardListingComponent = ({
 										backgroundColor: "white",
 										borderColor: "white",
 										color: "red",
-										borderRadius: "25px",
+										borderRadius: "var(--radius)",
 									}}
 								/>
 							) : null
@@ -222,66 +232,130 @@ const CardListingComponent = ({
 									backgroundColor: "#d90000",
 									borderColor: "#d90000",
 									color: "#ffffff",
+									borderRadius: "var(--radius)"
 								}}
 							/>
 						)}
-						<CustomTag tagLabel={<ImageTag />} />
+						<CustomTag tagLabel={<ImageTag />}
+							style={{
+								borderRadius: "var(--radius)"
+							}} />
 					</div>
 					<div
 						className="tags-right"
 						style={{ display: "flex", flexDirection: "column" }}
 					>
-						<div
-							className="tags-tooltip"
-							style={{ display: "flex", flexDirection: "row" }}
-						>
+						{userDetails?.mobileNumber ? (
 							<Tooltip
 								color="var(--red)"
-								title="Added to favorites"
+								title={tooltipMessage}
 								visible={showTooltip}
 								placement="top"
-							></Tooltip>
-							<CustomTag
-								tagLabel={
-									checked ? (
-										<HeartFilled
-											style={{
-												color: showDeleteIcon ? "var(--red)" : "",
-												pointerEvents: showDeleteIcon ? "none" : "auto",
-											}}
-										/>
-									) : (
-										<HeartOutlined />
-									)
-								}
-								style={{ fontSize: "23px", color: "#333333" }}
-								className="circle-tags heart"
-								checkable={true}
-								checked={checked}
-								handleChange={(newChecked) => {
-									if (!showDeleteIcon) {
-										setIsChecked(newChecked);
-										handleChange(newChecked);
-									}
-								}}
-								listingId={listingId}
-							/>{" "}
-							{showDeleteIcon && (
+							>
 								<div
-									className="icon"
-									onClick={handleDeleteClick}
-									style={{ top: "8px" }}
+									className="tags-tooltip"
+									style={{ display: "flex", flexDirection: "row" }}
+									onMouseEnter={() => {
+										if (!checked) {
+											setTooltipMessage("Add to favorite");
+											setShowTooltip(true);
+										}
+									}}
+									onMouseLeave={() => {
+										if (!checked) setShowTooltip(false);
+									}}
 								>
-									<DeleteOutlined />
+									<CustomTag
+										tagLabel={
+											checked ? (
+												<HeartFilled
+													style={{
+														color: showDeleteIcon ? "var(--red)" : "var(--red)",
+														pointerEvents: showDeleteIcon ? "none" : "auto",
+													}}
+												/>
+											) : (
+												<HeartOutlined />
+											)
+										}
+										style={{ fontSize: "23px", color: "#333333" }}
+										className="circle-tags heart"
+										checkable={true}
+										checked={checked}
+										handleChange={(newChecked) => {
+											if (!showDeleteIcon) {
+												setIsChecked(newChecked);
+												handleChange(newChecked);
+											}
+										}}
+										listingId={listingId}
+									/>{" "}
+									{showDeleteIcon && (
+										<Tooltip title="Delete Saved Property" placement="top">
+											<div
+												className="icon"
+												onClick={handleDeleteClick}
+												style={{ top: "8px" }}
+											>
+												<DeleteOutlined />
+											</div>
+										</Tooltip>
+									)}
 								</div>
-							)}
-						</div>
+							</Tooltip>
+						) : (
+							<Tooltip
+								color="var(--red)"
+								title={"Add to favorites"}
+								visible={showTooltip}
+								placement="top"
+							>
+								<div
+									className="tags-tooltip"
+									style={{ display: "flex", flexDirection: "row" }}
+									onMouseEnter={() => {
+										if (!checked) {
+											setTooltipMessage("Add to favorite");
+											setShowTooltip(true);
+										}
+									}}
+									onMouseLeave={() => {
+										if (!checked) setShowTooltip(false);
+									}}
+								>
+									<CustomTag
+										tagLabel={<HeartOutlined />}
+										style={{ fontSize: "23px", color: "#333333" }}
+										className="circle-tags heart"
+										checkable={true}
+										checked={checked}
+										handleChange={(newChecked) => {
+											if (!showDeleteIcon) {
+												setIsChecked(newChecked);
+												handleChange(newChecked);
+											}
+										}}
+										listingId={listingId}
+									/>{" "}
+									{showDeleteIcon && (
+										<div
+											className="icon"
+											onClick={handleDeleteClick}
+											style={{ top: "8px" }}
+										>
+											<DeleteOutlined />
+										</div>
+									)}
+								</div>
+							</Tooltip>
+						)}
+
 						{/* <CustomTag tagLabel={<Filter />} className="circle-tags" /> */}
 					</div>
 				</div>
 				<div className="card-content" onClick={handleClick}>
 					<div className="card-content--title">
-						<p>{title}</p>
+						<p>{TruncateText(title)}</p>
 					</div>
 					<div className="card-content--sub">
 						<h5>{subtitle}</h5>
@@ -289,7 +363,7 @@ const CardListingComponent = ({
 					<Row className="card-content--subtitle">
 						<p className="price">
 							{price}
-							{sale_status.toLowerCase() == "rent" ? "/month" : ""}
+							{/* {sale_status.toLowerCase() == "rent" ? "/month" : ""} */}
 						</p>
 						<div className="card-features">
 							{/* <Features /> */}

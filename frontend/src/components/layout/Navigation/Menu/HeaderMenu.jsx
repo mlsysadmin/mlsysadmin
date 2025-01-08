@@ -40,15 +40,6 @@ const HeaderMenu = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	const sessionCookieName = process.env.REACT_APP_SESSION_COOKIE_NAME;
-	const accountCookieName = process.env.REACT_APP_ACCOUNT_COOKIE_NAME;
-
-	const isSessionPresent = isCookiePresent(sessionCookieName);
-	const isAccountDetailsPresent = isCookiePresent(accountCookieName);
-	// const [userDetails, setUserDetails] = useState(null);
-
-	const login = process.env.REACT_APP_LOGIN_URL;
-
 	const [tierUpgrade, setTierUpgrade] = useState(false);
 
 	const [showUpgradeModal, setShowUpgradeModal] = useState(false);
@@ -115,7 +106,7 @@ const HeaderMenu = () => {
 	}, [location.pathname]);
 
 	const handleListPropertyClick = () => {
-		if (isSessionPresent && isAccountDetailsPresent) {
+		if (isAuthenticated && userDetails) {
 			if (
 				userDetails?.tier?.label !== "BUYER" ||
 				userDetails?.tier?.label !== "SEMI-VERIFIED"
@@ -151,15 +142,6 @@ const HeaderMenu = () => {
 		// }?redirect_url=${encodeURIComponent(redirectUrl)}`;
 	};
 
-	const handleLogout = async () => {
-		const logoutURL = process.env.REACT_APP_LOGOUT_URL;
-		const redirectUrl = process.env.REACT_APP_REDIRECT_URL;
-
-		window.location.href = `${logoutURL}?redirect_url=${encodeURIComponent(
-			redirectUrl
-		)}`;
-	};
-
 	const handleProfileClick = () => {
 
 		if (isAuthenticated && userDetails) {
@@ -174,7 +156,7 @@ const HeaderMenu = () => {
 		if (isAuthenticated && userDetails) {
 			window.location.href = "/saved-properties#listingForm";
 		} else {
-			navigate('/login');
+			navigate('/login/?redirect=saved-properties#listingForm');
 		}
 	};
 	//modals
@@ -381,7 +363,7 @@ const HeaderMenu = () => {
 		{ label: "Sell", key: "sell", link: "/sell" },
 		{ label: <BuyMenu />, key: "buy" },
 		{ label: <RentMenu />, key: "rent" },
-		// { label: <PreSellingMenu />, key: "pre-selling" },
+		// { label: "Developers", key: "pre-selling" , link:"/pre-selling"},
 		{ label: <HomeLoanMenu />, key: "home-loan" },
 		{
 			// label: <HomeInsuranceMenu />,
@@ -425,6 +407,7 @@ const HeaderMenu = () => {
 					selectedKeys={[currentMenu]}
 					onClick={handleMenuOnClick}
 					className="header--menu"
+					disabledOverflow={true}
 				></Menu>
 				{!isAuthenticated && (
 					<>
@@ -471,11 +454,11 @@ const HeaderMenu = () => {
 					<WorkingOnItModal isOpen={showModal} onClose={toggleModal} />
 				)} */}
 
-				{showModal && !isSessionPresent && (
+				{showModal && !isAuthenticated && (
 					<>
 						<JoinTeam
 							toggleModal={toggleModal}
-							isSessionPresent={isSessionPresent}
+							isSessionPresent={isAuthenticated}
 						/>
 					</>
 				)}

@@ -2,17 +2,68 @@
 	/* width: 92%; */
 	display: flex;
 	flex-wrap: wrap;
-	margin: 30px 100px 10px 100px;
+	/* margin: 30px 100px 10px 100px; */
 	gap: 40px;
-	width: 1500px;
+	width: var(--default-page-size);
 }
 .card-container {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 25px;
-	
 }
 
+.login-message-modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(95, 94, 94, 0.6);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999;
+
+}
+.login-card-message-modal-content {
+	background:var(--white);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 350px;
+	padding: 30px 20px 40px 20px;
+	border-radius: 8px;
+	text-align: center;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+	gap: 30px;
+	color: #444444 !important;
+	
+}
+.login-card-message-modal-content img {
+width: 200px;
+}
+.login-message-phrase p{
+font-size: var(--d-body-text);
+}
+.buttons-login-message{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	gap: 10px;
+}
+.buttons-login-message button{
+	padding: 5px 20px;
+	border-radius: 20px;
+	border: none;
+	cursor: pointer;
+	font-size: var(--d-body-text);
+}
+.buttons-login-message #login-message-btn{
+	background-color: var(--red);
+	color: var(--white);
+}
 .card:hover {
 	transform: scale(1.01);
 }
@@ -21,16 +72,16 @@
 	opacity: 1;
 	object-fit: cover;
 	font-size: var(--d-body-text);
-	border-radius: 8px 8px 0 0 ;
+	border-radius: 8px 8px 0 0;
 }
-.card-img{
-height: calc(var(--image-height));
+.card-img {
+	height: calc(var(--image-height));
 }
-.card-listing-title-public{
-   height: 50px;
-    margin-bottom: 3px;
+.card-listing-title-public {
+	height: 50px;
+	margin-bottom: 3px;
 }
- 
+
 .cardImage {
 	position: relative;
 	height: calc(var(--image-height));
@@ -88,8 +139,6 @@ height: calc(var(--image-height));
 	top: 50px;
 }
 
-
-
 .likes {
 	position: absolute;
 	display: flex;
@@ -118,10 +167,16 @@ height: calc(var(--image-height));
 	bottom: 10px;
 	right: 10px;
 }
+.icon:hover{
+	 background-color: var(--white);
+	 color: var(--red);
+	transform: scale(1.1);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
 .icon {
 	color: #333333;
-	background: #fff;
+	background: var(--white);
 	border-radius: 40px;
 	display: flex;
 	justify-content: center;
@@ -129,58 +184,55 @@ height: calc(var(--image-height));
 	width: 39px;
 	height: 35px;
 	cursor: pointer;
+	transition: all 0.2s ease-in-out;
 }
 .icon .anticon {
 	font-size: 22px;
 }
-.card-container .card{
+.card-container .card {
 	position: relative;
 	border-radius: 0 0 8px 8px !important;
 }
-.card-tags-listings .card-tags-top{
-    justify-content: space-between;
-    top: 0;
-	    position: absolute;
-    width: 100%;
-    padding: 10px;
-    display: flex
-;
-}
-.card-tags-listings .card-tags-top p{
-    border-radius: var(--radius);
-    background-color: white;
-    display: flex
-;
-    gap: 7px;
-    padding: 2px 10px;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-  
-.card-tags-listings .card-tags-bottom{
-	justify-content: end;
-    top: 8.5rem;
+.card-tags-listings .card-tags-top {
+	justify-content: space-between;
+	top: 0;
 	position: absolute;
-    width: 100%;
-    padding: 10px;
-    display: flex
-;
+	width: 100%;
+	padding: 10px;
+	display: flex;
+}
+.card-tags-listings .card-tags-top p {
+	border-radius: var(--radius);
+	background-color: white;
+	display: flex;
+	gap: 7px;
+	padding: 2px 10px;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
 
+.card-tags-listings .card-tags-bottom {
+	justify-content: end;
+	top: 8.5rem;
+	position: absolute;
+	width: 100%;
+	padding: 10px;
+	display: flex;
 }
 
 .bot {
 	display: flex;
 	gap: 5px;
-    align-items: end;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    font-size: calc(var(--d-body-text) - 1px);
+	align-items: end;
+	width: 100%;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	font-size: calc(var(--d-body-text) - 1px);
 }
 .heart-icon:hover {
-  transform: scale(1.1);
-  transition: transform 0.2s ease-in-out;
+	transform: scale(1.1);
+	transition: transform 0.2s ease-in-out;
 }
 
 .bot .card-icons label {
@@ -195,13 +247,11 @@ height: calc(var(--image-height));
 	flex-direction: row;
 	color: #333333;
 	gap: 6px;
-    align-items: center;
+	align-items: center;
 }
 
-.bot .bot-left-card-text{
-	
+.bot .bot-left-card-text {
 }
-
 
 .bot .card-icons .card-icons--feature {
 	display: flex;
@@ -219,39 +269,18 @@ height: calc(var(--image-height));
 @media screen and (min-width: 360px) and (max-width: 480px) {
 	.card-container {
 		display: grid;
-        grid-template-columns: 1fr;
+		grid-template-columns: 1fr;
 		width: 100%;
 	}
-}
-@media screen and  (min-width: 481px) and (max-width: 601px) {
-	.card-container {
-		        display: grid
-;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px 10px;
-	
-	}
-	.card-skeleton-loading {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		margin: 0px;
-	}
-	.bot{
-		display: flex;
-		flex-direction: column;
-		    font-size: calc(var(--d-body-text) - 1px);
-	}
-	.card-listing-title-public{
-        margin-bottom: 10px;
+	.login-card-message-modal-content{
+		margin: 0px 20px;
 	}
 }
-@media screen and (min-width: 602px)  {
+@media screen and (min-width: 481px) and (max-width: 601px) {
 	.card-container {
 		display: grid;
-        grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
+		gap: 15px 10px;
 	}
 	.card-skeleton-loading {
 		width: 100%;
@@ -260,6 +289,41 @@ height: calc(var(--image-height));
 		justify-content: center;
 		align-items: center;
 		margin: 0px;
+	}
+	.bot {
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+		font-size: calc(var(--d-body-text) - 1px);
+	}
+	.card-listing-title-public {
+		margin-bottom: 10px;
+	}
+	.card-listing-subtitle-public {
+		height: 50px;
+	}
+	.login-card-message-modal-content{
+		margin: 0px 20px;
+	}
+}
+@media screen and (min-width: 602px) {
+	.card-container {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	.card-skeleton-loading {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin: 0px;
+	}
+}
+@media screen and (min-width: 602px) and (max-width: 1000px) {
+	.card-content {
+		height: 160px;
 	}
 }
 
