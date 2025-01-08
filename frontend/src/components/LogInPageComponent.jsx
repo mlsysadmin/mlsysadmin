@@ -25,6 +25,7 @@ const LoginComponent = () => {
 	const [isValidPhone, setIsValidPhone] = useState(false);
 	const [errorMessage, setErrorMessage] = useState("");
 	const [isContinued, setIsContinued] = useState(false);
+	const [isRegistration, setIsRegistration] = useState(false);
 	const [isDateNumber, setDateNumber] = useState("1");
 	const [selectedMonth, setSelectedMonth] = useState("1");
 	const [selectedYear, setSelectedYear] = useState("2024");
@@ -59,6 +60,11 @@ const LoginComponent = () => {
 		setCurrentYear(getCurrentYear);
 
 	}, [])
+	// useEffect(() => {
+	// 	console.log(userDetails, isContinued);
+
+
+	// }, [userDetails, isContinued])
 
 	const cleanPhonenumber = (val) => {
 		return val.replace(/\D+/g, "");
@@ -136,6 +142,8 @@ const LoginComponent = () => {
 				handleSignIn();
 			}
 			else {
+				console.log(kyc);
+				setIsRegistration(true);
 				setIsContinued(true);
 				setIsSubmitting(false);
 			}
@@ -189,6 +197,7 @@ const LoginComponent = () => {
 	};
 	const handleSignIn = async () => {
 		try {
+			setIsSubmitting(true);
 			const cleanPhone = cleanPhonenumber(phone);
 			const formatPhone = cleanPhone.search(/^\+?63/) != -1 ? cleanPhone.replace(/^\+?63/, "0") : cleanPhone;
 
@@ -266,46 +275,53 @@ const LoginComponent = () => {
 			if (otp.includes("")) {
 				return;
 			} else {
-				const otpCode = otp.join("").toString();
-				const cleanPhone = cleanPhonenumber(phone);
+				if (isRegistration) {
+					console.log('registering...');
 
-				const formatPhone = cleanPhone.search(/^\+?63/) != -1 ? cleanPhone.replace(/^\+?63/, "0") : cleanPhone;
-				setIsSubmitting(true);
-				const validateLogin = await ValidateOtpLogin(formatPhone, otpCode);
-				setIsSubmitting(false);
-
-				if (validateLogin.code == "USER_LOGGED_IN") {
-
-					const loginParams = {
-						ckycId: userDetails.ckycId,
-						tier: userDetails.tier.label
-					}
-
-					const userAttempt = await CreateLoginAttempt(loginParams);
-
-					const isSeller = userAttempt.data.data.isSeller;
-
-					console.log(location);
-					const searchParams = new URLSearchParams(location.search);
-					console.log(searchParams.get('redirect'), location.hash);
-					const falsy = [null, "", "null"];
-					const redirect = searchParams.get('redirect');
-					const hash = location.hash;
-					const hasRedirect = !falsy.includes(redirect) && !falsy.includes(hash);
-
-					if (hasRedirect) {
-						if (isSeller) {
-							window.location.href = `/${redirect}${hash}`;
-						} else {
-							window.location.href = "/login"
-						}
-					}
-					else {
-						window.location.href = '/'
-					}
+					setIsSubmitting(true);
 				} else {
-					window.location.href = "/login"
 
+					const otpCode = otp.join("").toString();
+					const cleanPhone = cleanPhonenumber(phone);
+
+					const formatPhone = cleanPhone.search(/^\+?63/) != -1 ? cleanPhone.replace(/^\+?63/, "0") : cleanPhone;
+					setIsSubmitting(true);
+					const validateLogin = await ValidateOtpLogin(formatPhone, otpCode);
+					setIsSubmitting(false);
+
+					if (validateLogin.code == "USER_LOGGED_IN") {
+
+						const loginParams = {
+							ckycId: userDetails.ckycId,
+							tier: userDetails.tier.label
+						}
+
+						const userAttempt = await CreateLoginAttempt(loginParams);
+
+						const isSeller = userAttempt.data.data.isSeller;
+
+						console.log(location);
+						const searchParams = new URLSearchParams(location.search);
+						console.log(searchParams.get('redirect'), location.hash);
+						const falsy = [null, "", "null"];
+						const redirect = searchParams.get('redirect');
+						const hash = location.hash;
+						const hasRedirect = !falsy.includes(redirect) && !falsy.includes(hash);
+
+						if (hasRedirect) {
+							if (isSeller) {
+								window.location.href = `/${redirect}${hash}`;
+							} else {
+								window.location.href = "/login"
+							}
+						}
+						else {
+							window.location.href = '/'
+						}
+					} else {
+						window.location.href = "/login"
+
+					}
 				}
 			}
 		} catch (error) {
@@ -350,9 +366,21 @@ const LoginComponent = () => {
 
 	};
 
-	const handleResendOtp = () => {
-		setotpTimer(120);
-		setResend(true);
+	const handleResendOtp = async () => {
+		console.log(otpTimer);
+		const cleanPhone = cleanPhonenumber(phone);
+		const formatPhone = cleanPhone.search(/^\+?63/) != -1 ? cleanPhone.replace(/^\+?63/, "0") : cleanPhone;
+
+		if (otpTimer == 0) {
+			setResend(true);
+			setIsSubmitting(true);
+			
+			await SendOtp(formatPhone);
+			setIsSubmitting(false);
+			setotpTimer(120);
+		} else {
+			return;
+		}
 	};
 	const openNotificationWithIcon = (type, message, description) => {
 		api[type]({
@@ -410,7 +438,12 @@ const LoginComponent = () => {
 											</div>
 											<p className="resend-otp">
 												<span onClick={handleResendOtp}>
-													Resend OTP  {Math.floor(otpTimer / 60)}:
+													<span
+														style={{
+															color: `${otpTimer == 0 ? 'var(--red)' : ''}`,
+															fontWeight: '500',
+															cursor: `${otpTimer == 0 ? 'pointer' : ''}`,
+														}}>Resend OTP</span>  {Math.floor(otpTimer / 60)}:
 													{(otpTimer % 60).toString().padStart(2, "0")}
 												</span>
 											</p>
@@ -545,7 +578,7 @@ const LoginComponent = () => {
 												type="text"
 											/>
 											<div className="user-det-input">
-												<DatePicker />
+												<DatePicker placeholder="Date of Birth" className="birthdate--picker" popupClassName="birthdate--picker-pop-up" />
 											</div>
 
 											<input
