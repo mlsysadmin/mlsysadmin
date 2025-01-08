@@ -263,7 +263,7 @@ module.exports = {
             name = ToPascalCase(name);
 
             if (sale_type == "rent") {
-                price = `${price} / month`
+                price = `${price} / mo.`;
             }
 
             const image_link = `${process.env.IGOT_SOLUTION_BASE_URL}${image_path}`
