@@ -335,6 +335,11 @@
 .login-input-groups{
 	width: 100%;
 }
+.birthdate--picker-pop-up div.ant-picker-date-panel,
+.birthdate--picker-pop-up div.ant-picker-year-panel,
+.birthdate--picker-pop-up div.ant-picker-month-panel{
+	width: 260px !important;
+}
 /* .login-slider .ReactSwipeButton {
 	border-radius: 30px !important;
     overflow: hidden !important;
