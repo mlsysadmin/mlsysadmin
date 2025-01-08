@@ -1,11 +1,31 @@
 'use strict'
 
 require('dotenv').config();
-const { SendEmail, EmailTemplate } = require('../../services/email.service.js');
-const { StringToArray } = require('../../utils/_helper/DataFunctions.helper.js');
-const DataResponseHandler = require('../../utils/_helper/DataResponseHandler.helper.js');
-const SuccessFormatter = require('../../utils/_helper/SuccessFormatter.helper.js');
-const SuccessLoggerHelper = require('../../utils/_helper/SuccessLogger.helper.js');
+const { SendEmail, EmailTemplate } = require('../../../services/email.service.js');
+const { StringToArray, ToPascalCase } = require('../../../utils/_helper/DataFunctions.helper.js');
+const DataResponseHandler = require('../../../utils/_helper/DataResponseHandler.helper.js');
+const SuccessFormatter = require('../../../utils/_helper/SuccessFormatter.helper.js');
+const SuccessLoggerHelper = require('../../../utils/_helper/SuccessLogger.helper.js');
+const fs = require('fs');
+const axios = require('axios');
+
+// Function to encode image as Base64
+async function encodeImageUrlToBase64(imageUrl) {
+    try {
+        // Fetch the image as binary data
+        const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
+
+        // Convert binary data to Base64
+        const base64 = Buffer.from(response.data).toString('base64');
+console.log(response.headers);
+
+        // Return the Base64 with MIME type
+        return `data:${response.headers['content-type']};base64,${base64}`;
+    } catch (error) {
+        console.error('Error encoding image to Base64:', error.message);
+        return null;
+    }
+}
 
 module.exports = {
     SendInquiry: async (req, res, next) => {
@@ -238,7 +258,9 @@ module.exports = {
             price = price.toLocaleString({
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
-            })
+            });
+
+            name = ToPascalCase(name);
 
             if (sale_type == "rent") {
                 price = `${price} / mo.`;
@@ -246,28 +268,32 @@ module.exports = {
 
             const image_link = `${process.env.IGOT_SOLUTION_BASE_URL}${image_path}`
             const link = `${process.env.CLIENT_APP_URL}/previewListing/?id=${property_no}`;
-            const logo = `${process.env.IGOT_SOLUTION_BASE_URL}/assets/logo.png`
+            const logo = `${process.env.IGOT_SOLUTION_BASE_URL}/assets/logo.png`;
+
+            // const cardPhoto = await encodeImageUrlToBase64(image_link);
+            const logoPhoto = await encodeImageUrlToBase64(logo);
+            console.log(logoPhoto);
             
+
             let templateName;
             let subject;
 
             if (approval_status.toLowerCase() == "approved") {
                 templateName = 'approvedlisting.handlebars'
                 subject = 'Great News! Your Listing Is Now Live'
-            }else{
+            } else {
                 templateName = 'rejectedlisting.handlebars'
                 subject = 'Your Listing Needs Attention to Meet Approval Requirements'
             }
-            console.log("I am price: ",price);
-            
-            const emailTemp = EmailTemplate(templateName, { name, image_link, property_title, sale_type, price, link, logo });
+
+            const emailTemp = EmailTemplate(templateName, { name, image_link, property_title, sale_type, price, link, logoPhoto });
 
             const reference = new Date();
 
             const sendMessage = await SendEmail(emailTemp, subject, reference, email);
 
             const mail = DataResponseHandler(
-                {response: sendMessage.response, accepted: sendMessage.accepted, rejected: sendMessage.rejected},
+                { response: sendMessage.response, accepted: sendMessage.accepted, rejected: sendMessage.rejected },
                 "EMAIL_SENT",
                 200,
                 true,

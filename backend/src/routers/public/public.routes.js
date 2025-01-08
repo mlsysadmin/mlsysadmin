@@ -5,7 +5,7 @@ const PUBLIC_ROUTER = express.Router();
 
 const { GetProvince, GetCities, GetCountries } = require("../../controllers/public/location.controller");
 const { GetAllMasterListings, GetMasterListingDetails } = require("../../controllers/public/listing.contoller");
-const { SendInquiry, SendMessage, SendRefinancing, SendBuyHome, SendSearchProperty, SendListingApproved } = require("../../controllers/email/contactEmail.controller");
+const { SendInquiry, SendMessage, SendRefinancing, SendBuyHome, SendSearchProperty, SendListingApproved } = require("../../controllers/email/public/contactEmail.controller");
 const { Validation } = require("../../middleware/_validator/validator.middleware");
 const { ListingEmail } = require("../../utils/_helper/validationSchema.helper");
 

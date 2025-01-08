@@ -281,6 +281,19 @@ const ValidationSchema = {
     addUserLogin: Joi.object().keys({
         ckycId: Joi.string().required(),
         tier: Joi.string().required()
+    }),
+    AgentAccountReg: Joi.object().keys({
+        name: Joi.string().required(), 
+        email: Joi.string().required(),
+        token: Joi.string().required(),
+        redirect_url: Joi.string().required(),
+    }),
+    ResetPassword: Joi.object().keys({
+        name: Joi.string().required(), 
+        email: Joi.string().required(),
+        token: Joi.string().required(),
+        redirect_url: Joi.string().required(),
+        expiration_date: Joi.date().required()
     })
 
 }
