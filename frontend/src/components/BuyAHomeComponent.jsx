@@ -776,7 +776,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                 <span className="prop-quest">
                   Where are you looking to buy?
                 </span>
-                <br />
+                {/* <br /> */}
                 <span>
                   Enter the city or zip code of the area where you are home
                   shopping
@@ -807,7 +807,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
             <br />
             <div className="preApproveDiv" style={{ textAlign: "start" }}>
               <div
-              id="WarmingText "
+              id="WarmingText"
                 style={{
                   fontSize: "var(--d-body-text)",
                   color: "#8C9094",

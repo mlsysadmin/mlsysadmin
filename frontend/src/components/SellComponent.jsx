@@ -2,7 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/sell.css";
 import { isCookiePresent } from "../utils/CookieChecker";
-import { DownOutlined } from "@ant-design/icons";
+import {
+	DownOutlined,
+	MessageOutlined,
+	CalculatorOutlined,
+} from "@ant-design/icons";
 import bannerImg from "../asset/banners/house_car_LE_auto_x2-transformed.jpeg";
 import { Button, Radio } from "antd";
 import UpgradeTierModal from "./modals/UpgradeTierModal";
@@ -11,14 +15,13 @@ import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import WorkingOnItModal from "./ComingSoonComponent";
 import { buyFaqs, sellFaqs } from "../utils/FaqsData";
 import { useAuth } from "../Context/AuthContext";
+import { FloatBtnGroup } from "../components";
+import { FloatButton } from "antd";
+import ContactUsWidget from "./modals/ContactUsWidget";
+import CalculatorWidgetModal from "./modals/CalculatorWidgetModal";
 
 const SellComponent = () => {
-
-	const {
-		isAuthenticated,
-		logout,
-		userDetails
-	} = useAuth();
+	const { isAuthenticated, logout, userDetails } = useAuth();
 
 	const [activeIndex, setActiveIndex] = useState(null);
 	const [value, setValue] = useState(1);
@@ -39,7 +42,21 @@ const SellComponent = () => {
 	};
 
 	const [showUpgradeModal, setShowUpgradeModal] = useState(false);
-
+	
+	const [isContactUsFormVisible, setContactUsFormVisible] = useState(false);
+	const [isCalculatorVisible, setCalculatorVisible] = useState(false);
+	const toggleCalculator = () => {
+		setCalculatorVisible(!isCalculatorVisible);
+		setContactUsFormVisible(false);
+	};
+	const closeWidgetCalc = () => {
+		setCalculatorVisible(false);
+		setContactUsFormVisible(false);
+	};
+	const toogleContarctUsForm = () => {
+		setCalculatorVisible(false);
+		setContactUsFormVisible(!isContactUsFormVisible);
+	};
 	const openUpgradeModal = () => {
 		setShowUpgradeModal(true);
 	};
@@ -48,9 +65,8 @@ const SellComponent = () => {
 	};
 
 	const handleSignIn = () => {
-
 		if (isAuthenticated && userDetails) {
-			navigate('/');
+			navigate("/");
 		} else {
 			window.location.href = `/login`;
 		}
@@ -325,6 +341,40 @@ const SellComponent = () => {
 			</div>
 			{showModal && (
 				<WorkingOnItModal onClose={toggleModal} isOpen={showModal} />
+			)}
+			<div className="listing__contact--form-btns-sticky">
+				<FloatBtnGroup
+					children={
+						<>
+							<a href="#contact-form">
+								<FloatButton
+									icon={
+										<MessageOutlined className="message-float__icon--icon" />
+									}
+									tooltip={isContactUsFormVisible ? "" : "Message us"}
+									className="float__icon message-float__icon"
+									onClick={toogleContarctUsForm}
+								/>
+							</a>
+							<FloatButton
+								icon={<CalculatorOutlined className="calculator-float__icon" />}
+								tooltip={isCalculatorVisible ? "" : "Calculator"}
+								className="float__icon calculator-float__icon"
+								onClick={toggleCalculator}
+								// onClick={() => navigate("/discover-home#calculator")}
+							/>
+						</>
+					}
+				/>
+			</div>
+			{isCalculatorVisible && (
+				<CalculatorWidgetModal
+					toggleCalculator={toggleCalculator}
+					closeWidgetCalc={closeWidgetCalc}
+				/>
+			)}
+			{isContactUsFormVisible && (
+				<ContactUsWidget closeWidgetCalc={closeWidgetCalc} />
 			)}
 		</div>
 	);
