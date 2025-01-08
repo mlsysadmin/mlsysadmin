@@ -24,7 +24,7 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, message }) => {
         style={{
           background: "white",
           padding: "20px",
-          borderRadius: "5px",
+          borderRadius: "10px",
           width: "400px",
         }}
       >
@@ -42,7 +42,7 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, message }) => {
               width: "24px",
               height: "24px",
               marginRight: "10px",
-              color: "#4CAF50",
+              color: "rgb(243 4 4)",
             }}
             viewBox="0 0 24 24"
             fill="none"
@@ -68,32 +68,32 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, message }) => {
           }}
         >
           <button
-            className="confirm-button"
-            style={{
-              backgroundColor: "#4CAF50" /* Green */,
-              color: "white",
-              border: "none",
-              padding: "10px 20px",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-            onClick={onConfirm}
-          >
-            Confirm
-          </button>
-          <button
             className="cancel-button"
             style={{
               backgroundColor: "#f44336" /* Red */,
               color: "white",
               border: "none",
-              padding: "10px 20px",
+              padding: "10px 10px",
               borderRadius: "5px",
               cursor: "pointer",
             }}
             onClick={onClose}
           >
-            Cancel
+            No, Go Back
+          </button>
+          <button
+            className="confirm-button"
+            style={{
+              backgroundColor: "#4CAF50" /* Green */,
+              color: "white",
+              border: "none",
+              padding: "10px 10px",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+            onClick={onConfirm}
+          >
+            Confirm Submission  
           </button>
         </div>
       </div>
