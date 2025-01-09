@@ -14,6 +14,7 @@ import {
 } from "../../api/Public/Agent.api";
 import { notification } from "antd";
 import { useAuth } from "../../Context/AuthContext";
+import PreviewLoadingModal from "./PreviewLoadingModal";
 import AgentExistModalMessage from "./AgentExistModalMessage";
 
 const JoinTeam = ({ toggleModal }) => {
@@ -27,6 +28,7 @@ const JoinTeam = ({ toggleModal }) => {
 		useState(false);
 	const [agentRecordStatus, setAgentRecordStatus] = useState("");
 	const [getCities, setGetCities] = useState([]);
+	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [api, contextHolder] = notification.useNotification();
 
 	const [formData, setFormData] = useState({
@@ -210,15 +212,95 @@ const JoinTeam = ({ toggleModal }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setIsSubmitting(true);
 		try {
 			const existingAgent = await GetAgentByContactNumber(
 				formData.mobileNumber
 			);
+			console.log("number:", formData.mobileNumber);
 
-			if (existingAgent !== null) {
-				console.log("Agent already exists: ");
-				setAgentRecordStatus(existingAgent.RecordStatus)
-				setShowAgentExistModalMessage(true);
+			console.log("existingAgent: ", existingAgent);
+
+			if (existingAgent !== null && Object.keys(existingAgent).length > 0) {
+				if (existingAgent.RecordStatus !== "rejected") {
+					console.log("Agent already exists: ", existingAgent);
+					
+					setAgentRecordStatus(existingAgent.RecordStatus);
+					setIsSubmitting(false);
+					setShowAgentExistModalMessage(true);
+				} else {
+					const isValid = handleValidation();
+					const getControlLastNumber = await GetControlLastNumber("AgentId");
+					const today = new Date();
+					const yyyyMMdd =
+						today.getFullYear() +
+						"-" +
+						(today.getMonth() + 1) +
+						"-" +
+						today.getDate();
+					console.log("getControlLastNumber: ", getControlLastNumber);
+					if (
+						getControlLastNumber &&
+						isValid &&
+						getControlLastNumber.data !== ""
+					) {
+						const reqBody = {
+							AgentId: getControlLastNumber.data,
+							AgentName: `${formData.lastName}, ${formData.firstName} ${
+								formData.middleName
+							} ${formData.suffix === "None" ? "" : formData.suffix}`,
+							Address: `${formData.address}, ${formData.city}, ${formData.province}, ${formData.country}`,
+							ContactNo: formData.mobileNumber,
+							Email: formData.email,
+							FacebookLink: "-",
+							Designation:
+								formData.brokerQuestion === "others"
+									? othersInputValue
+									: formData.brokerQuestion,
+							TeamId: "-",
+							TeamName: "-",
+							Affiliated: formData.brokerYears,
+							TIN: "-",
+							BirthDate: yyyyMMdd,
+							Sex: "-",
+							HasPanel: "-",
+							IsFeatured: "-",
+							Description: "-",
+							RecordStatus: "pending",
+							PRCID: "-",
+							PRCExpiryDate: yyyyMMdd,
+							ReferredById: "-",
+							ReferredByName: "-",
+							BankName: "-",
+							BankAccountNo: "-",
+						};
+						const addAgent = await AddAgent(reqBody);
+						console.log("addAgent: ", addAgent);
+						setIsSubmitting(false);
+
+						if (addAgent) {
+							openNotificationWithIcon(
+								"success",
+								`Successfully submitted`,
+								"Thank you for joining our team! We're excited to review it and will be in touch soon with the next steps."
+							);
+						} else {
+							openNotificationWithIcon(
+								"warning",
+								`Unable to proceed`,
+								"Unable to Submit your Application, Please retry later!."
+							);
+						}
+						console.log("formData: ", formData);
+					} else {
+						setIsSubmitting(false);
+						openNotificationWithIcon(
+							"warning",
+							`Invalid Value`,
+							"Please provide the required fields!."
+						);
+					}
+				}
 			} else {
 				const isValid = handleValidation();
 				const getControlLastNumber = await GetControlLastNumber("AgentId");
@@ -267,6 +349,8 @@ const JoinTeam = ({ toggleModal }) => {
 					};
 					const addAgent = await AddAgent(reqBody);
 					console.log("addAgent: ", addAgent);
+					setIsSubmitting(false);
+					resetForm();
 
 					if (addAgent) {
 						openNotificationWithIcon(
@@ -274,6 +358,7 @@ const JoinTeam = ({ toggleModal }) => {
 							`Successfully submitted`,
 							"Thank you for joining our team! We're excited to review it and will be in touch soon with the next steps."
 						);
+						resetForm();
 					} else {
 						openNotificationWithIcon(
 							"warning",
@@ -282,19 +367,23 @@ const JoinTeam = ({ toggleModal }) => {
 						);
 					}
 					console.log("formData: ", formData);
+					resetForm();
 				} else {
+					setIsSubmitting(false);
 					openNotificationWithIcon(
 						"warning",
 						`Invalid Value`,
 						"Please provide the required fields!."
 					);
+					
+					
 				}
 			}
 
 			//   const addAgent = await AddAgent();
 		} catch (error) {
 			console.log("error: ", error);
-
+         setIsSubmitting(false);
 			openNotificationWithIcon(
 				"error",
 				"Message Failed",
@@ -397,38 +486,7 @@ const JoinTeam = ({ toggleModal }) => {
 	};
 	const Modal = ({ isVisible, onClose }) => {
 		if (!isVisible) return null;
-
-		// return (
-		//   <div className="modal-notice" onClick={handleCloseModal}>
-		//     <div className="modal-notice-content">
-		//       <h2>Important Notice</h2>
-		//       <p>
-		//         To join our team, you need to create an ML Wallet account. Follow
-		//         these three easy steps:
-		//       </p>
-		//       <ol>
-		//         <li>
-		//           Download and install the ML Wallet application from Google Play or
-		//           the App Store.
-		//         </li>
-		//         <li>Sign up for an ML Wallet account.</li>
-		//         <li>
-		//           Once successfully registered, return here and fill out this form
-		//           to become an M Lhuillier broker/agent.
-		//         </li>
-		//       </ol>
-		//     </div>
-		//   </div>
-		// );
 	};
-	// const formatCityLabel = (label) => {
-	//   return label
-	//     .split(" ")
-	//     .map((word) => {
-	//       return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-	//     })
-	//     .join(" ");
-	// };
 	useEffect(() => {}, [isAuthenticated]);
 
 	if (!isAuthenticated) {
@@ -764,15 +822,18 @@ const JoinTeam = ({ toggleModal }) => {
 											/>
 											Broker
 										</label>
-										<label>
-											<input
-												type="radio"
-												name="brokerQuestion"
-												value="others"
-												checked={formData.brokerQuestion === "others"}
-												onChange={handleInputChange}
-											/>
-											Others
+										<label className="other-status">
+											
+												<input
+													type="radio"
+													name="brokerQuestion"
+													value="others"
+													checked={formData.brokerQuestion === "others"}
+													onChange={handleInputChange}
+												/>
+												Others
+										
+
 											{formData.brokerQuestion === "others" && (
 												<div className="join-team-group">
 													<input
@@ -784,12 +845,10 @@ const JoinTeam = ({ toggleModal }) => {
 														onChange={handleInputOthers}
 														onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
 													/>
-													{errors.otherBrokerQuestion && (
-														<p className="error">
-															{errors.otherBrokerQuestion}
-														</p>
-													)}
 												</div>
+											)}
+											{errors.otherBrokerQuestion && (
+												<p className="error">{errors.otherBrokerQuestion}</p>
 											)}
 										</label>
 										{errors.brokerQuestion && (
@@ -843,12 +902,14 @@ const JoinTeam = ({ toggleModal }) => {
 						</div>
 					</div>
 				)}
+				{isSubmitting && <PreviewLoadingModal />}
 			</div>
 		);
 	}
 
 	return (
 		<div className="join-page-container">
+			{contextHolder}
 			<Modal isVisible={isModalVisible} onClose={handleCloseModal} />
 			{showOtpModal && (
 				<OTPModal
@@ -1210,6 +1271,7 @@ const JoinTeam = ({ toggleModal }) => {
 					)}
 				</div>
 			)}
+			{isSubmitting && <PreviewLoadingModal />}
 		</div>
 	);
 };

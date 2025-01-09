@@ -1,0 +1,103 @@
+.calculator-widget-form {
+	padding: 20px 10px;
+}
+.form-widget-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	gap: 10px;
+}
+.form-widget {
+	border: 1px solid #ccc;
+	padding: 0px 5px;
+	border-radius: 5px;
+}
+.form-widget-select {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+.form-widget-select .ant-select-single,
+.form-widget .ant-select-selector {
+	width: 100%;
+}
+.form-widget-select
+	.ant-select-outlined:not(.ant-select-customize-input)
+	.ant-select-selector {
+	width: 100%;
+	border: none !important;
+	padding: 0px;
+}
+.form-widget-select
+	.ant-select-single
+	.ant-select-selector
+	.ant-select-selection-item {
+	padding: 0px 5px;
+}
+.widget-calculate-btn {
+	border: none;
+	background-color: var(--red);
+	color: var(--white);
+	padding: 10px;
+	border-radius: 10px;
+	font-weight: bold;
+}
+.widget-payment-container {
+	padding-top: 10px;
+	text-align: center;
+}
+.form-widget .ant-slider .ant-slider-handle::after {
+	background-color: var(--red) !important;
+	color: var(--red) !important;
+	outline: 0px solid transparent;
+	box-shadow: 0 0 0 2px var(--red);
+}
+.contact--form-group {
+	padding-top: 10px;
+	gap: 10px;
+	display: flex;
+	flex-direction: column;
+}
+.contact--form-group-control {
+	gap: 10px;
+	display: flex;
+	flex-direction: column;
+}
+.btn-send {
+	background-color: var(--red);
+	color: var(--white);
+	font-weight: bold;
+}
+.contact-us-widget-form {
+	padding: 20px 10px;
+}
+.contact-us-widget-container {
+	display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+.contact-us-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+@media screen and (max-width: 768px) {
+	.widget-calculator-container {
+		bottom: 0px !important;
+		right: 20 !important;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 90%;
+	}
+	.contact-us-widget {
+		justify-content: center;
+		align-items: center;
+		bottom: 0px !important;
+		right: 20 !important;
+		transform: translateX(-50%);
+		width: 90%;
+		left: 50%;
+	}
+}

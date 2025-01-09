@@ -43,18 +43,17 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 						flexDirection: "column",
 					}}
 				>
-					<h2
+					<h3
 						style={{
 							fontWeight: "bold",
 							marginBottom: "20px",
 							color: "var(--red)",
 							textAlign: "center",
-							fontSize: "18px",
 						}}
 						className="upgrade--title"
 					>
 						Property Listing Guide
-					</h2>
+					</h3>
 					<CloseOutlined
 						onClick={onClose}
 						style={{
@@ -91,14 +90,14 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 							>
 								How to list your property?
 							</span>
-							<p
+							<span
 								style={{
 									fontWeight: "400",
 									lineHeight: "40px",
 								}}
 							>
 								You have two options to list your property:
-							</p>
+							</span>
 							<div
 								className="ol-group-upgrade"
 								style={{
@@ -133,11 +132,12 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 									lineHeight: "40px",
 								}}
 							>
-								How to Upload Your Listing on OurWebsite? 
+								How to upload your listing on our website? 
 							</span>
-							<p style={{ lineHeight: "40px" }}>
-								Follow these steps to upload your property listing online:
-							</p>
+							<span style={{ lineHeight: "25px", fontWeight: "400" }}>
+								Enter your mobile number to register or login using OTP
+								(One-Time Password).
+							</span>
 							<div
 								className="second-ol-group-upgrade"
 								style={{
@@ -145,16 +145,17 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 									paddingLeft: "20px",
 								}}
 							>
-								<ol style={{  fontWeight: "400" }}>
-									1. Download and Install ML Wallet app.
+								{/* <ol style={{ fontWeight: "400" }}>
+									Enter your mobile number to register or login using OTP
+									(One-Time Password).
 								</ol>
-								<ol style={{  fontWeight: "400" }}>
+								<ol style={{ fontWeight: "400" }}>
 									2. Register and ensure your account is fully verified. 
 									<p
 										style={{
 											fontStyle: "italic",
 											paddingLeft: "15px",
-											
+
 											fontWeight: "400",
 										}}
 									>
@@ -162,9 +163,9 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 										Branch to upgrade it.
 									</p>
 								</ol>
-								<ol style={{  fontWeight: "400" }}>
+								<ol style={{ fontWeight: "400" }}>
 									3. Once approved, scan the QR Code on ML Website to login. 
-								</ol>
+								</ol> */}
 							</div>
 						</div>
 					</div>

@@ -2,7 +2,10 @@
 	box-shadow: none;
 	font-family: var(--font-family);
 }
+.tags .image-tag .css-i4bv87-MuiSvgIcon-root{
+	color: #333333;
 
+}
 
 #card-listing .ant-card-body {
 	padding: 0px;

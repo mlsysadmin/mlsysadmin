@@ -4,7 +4,6 @@
 }
 
 @supports (-webkit-touch-callout: none) {
-
 	.join-team-group input,
 	.join-team-group select {
 		width: 200px;
@@ -67,7 +66,10 @@
 	border: 1px solid #d9d9d9;
 }
 
-.join-team-group:where(.css-dev-only-do-not-override-1uq9j6g).ant-select-outlined.ant-select-disabled:not(.ant-select-customize-input) .ant-select-selector {
+.join-team-group:where(
+		.css-dev-only-do-not-override-1uq9j6g
+	).ant-select-outlined.ant-select-disabled:not(.ant-select-customize-input)
+	.ant-select-selector {
 	border: 1px solid #d9d9d9;
 	background-color: #d9d9d9;
 }
@@ -77,7 +79,12 @@
 	padding: 0;
 }
 
-.join-team-group:where(.css-dev-only-do-not-override-1uq9j6g).ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover .ant-select-selector {
+.join-team-group:where(
+		.css-dev-only-do-not-override-1uq9j6g
+	).ant-select-outlined:not(.ant-select-disabled):not(
+		.ant-select-customize-input
+	):not(.ant-pagination-size-changer):hover
+	.ant-select-selector {
 	border: 1px solid #ffffff;
 	border-style: none;
 	box-shadow: none;
@@ -89,7 +96,11 @@
 	width: 200px;
 }
 
-.join-team-group .ant-select-item .ant-select-item-option .ant-select-item-option-active .ant-select-item-option-selected {
+.join-team-group
+	.ant-select-item
+	.ant-select-item-option
+	.ant-select-item-option-active
+	.ant-select-item-option-selected {
 	border: 1px solid #ffffff;
 }
 
@@ -150,7 +161,13 @@
 	margin-right: 20px;
 	font-size: 14px;
 }
-
+.other-status{
+	text-align: center;
+	justify-content: center !important;
+	display: flex;
+	flex-direction: row;
+	align-items: center !important;
+}
 .broker-questions-jointeam .broker-number-of-years {
 	display: flex;
 	flex-direction: column;
@@ -159,7 +176,7 @@
 
 .broker-questions-jointeam .broker-number-of-years input[type="date"] {
 	width: 200px;
-	height: 40px !important;
+	height: 40px;
 	border: 1px solid #d9d9d9 !important;
 	padding: 10px;
 	border-radius: var(--radius);
@@ -368,6 +385,10 @@ input[type="file"] {
 	line-height: normal;
 	margin-top: 15px;
 }
+.other-status {
+	display: flex;
+	flex-direction: row;
+}
 
 .modal-notice-content ol {
 	line-height: normal;
@@ -417,7 +438,7 @@ input[type="file"] {
 	font-size: var(--d-body-text);
 }
 
-.join__submit-btn--wrapper{
+.join__submit-btn--wrapper {
 	margin: 40px auto 15px;
 }
 .join-team-page-submit-button {
@@ -436,7 +457,7 @@ input[type="file"] {
 }
 
 .join-our-team-page-selector,
-.join-team-page-group input{
+.join-team-page-group input {
 	width: 220px;
 	padding: 10px;
 	border-radius: var(--radius);
@@ -472,7 +493,7 @@ input[type="file"] {
 	}
 }
 
-@media only screen and (min-width: 901px) and (max-width:1024px) {
+@media only screen and (min-width: 901px) and (max-width: 1024px) {
 	.page-content-jointeam {
 		width: 880px;
 		flex-direction: column;
@@ -528,7 +549,7 @@ input[type="file"] {
 }
 
 @media only screen and (min-width: 576px) and (max-width: 900px) {
-	.join-page-container{
+	.join-page-container {
 		padding: 0;
 	}
 	.page-content-jointeam {
@@ -828,7 +849,6 @@ input[type="file"] {
 		background-color: #d9d9d9;
 		color: #8c9094;
 	}
-
 }
 
 @media only screen and (min-width: 519px) and (max-width: 575px) {
@@ -979,7 +999,7 @@ input[type="file"] {
 		font-size: 16px;
 	}
 
-	.join-page-container{
+	.join-page-container {
 		padding: 0;
 	}
 }
@@ -1131,7 +1151,7 @@ input[type="file"] {
 		display: flex;
 		font-size: 16px;
 	}
-	.join-page-container{
+	.join-page-container {
 		padding: 0;
 	}
 }
@@ -1140,7 +1160,9 @@ input[type="file"] {
 	.broker-questions-jointeam .broker-number-of-years input[type="date"] {
 		width: 95%;
 	}
-
+	.modal-content-jointeam {
+		margin: 0px 20px !important;
+	}
 	.join-team-group {
 		width: 100%;
 	}
@@ -1287,7 +1309,7 @@ input[type="file"] {
 		display: flex;
 		font-size: 16px;
 	}
-	.join-page-container{
+	.join-page-container {
 		padding: 0;
 	}
 }
@@ -1299,6 +1321,9 @@ input[type="file"] {
 
 	.join-team-group {
 		width: 100%;
+	}
+	.modal-content-jointeam {
+		margin: 0px 20px !important;
 	}
 
 	.join-team-group input,
@@ -1448,6 +1473,9 @@ input[type="file"] {
 @media only screen and (min-width: 429px) and (max-width: 461px) {
 	.broker-questions-jointeam .broker-number-of-years input[type="date"] {
 		width: 95%;
+	}
+	.modal-content-jointeam {
+		margin: 0px 20px !important;
 	}
 
 	.join-team-group {
@@ -1604,6 +1632,9 @@ input[type="file"] {
 		justify-content: space-between;
 		margin-left: 50px;
 	}
+	.modal-content-jointeam {
+		margin: 0px 15px !important;
+	}
 
 	.radio-button-broker-question {
 		margin: 20px 20px 20px 20px;
@@ -1622,7 +1653,6 @@ input[type="file"] {
 	}
 
 	.join-team-group input {
-		width: 320px;
 		height: 20px;
 		border: 1px solid var(--mute-gray);
 		padding: 10px;
@@ -1636,10 +1666,12 @@ input[type="file"] {
 		gap: 10px;
 		flex-wrap: wrap;
 	}
+	.join-team-group{
+		width: 100%;
+	}
 
 	.broker-questions-jointeam .broker-number-of-years input {
-		width: 330px;
-		height: 20px;
+		height: 20px !important;
 		border: 1px solid #8c9094;
 		padding: 10px;
 		border-radius: 5px;
@@ -1647,7 +1679,6 @@ input[type="file"] {
 	}
 
 	.join-team-group .ant-select {
-		width: 340px;
 		height: 40px;
 		border: 1px solid var(--mute-gray);
 		padding: 10px;
@@ -1676,8 +1707,8 @@ input[type="file"] {
 		justify-content: center;
 		border-radius: 10px;
 		cursor: pointer;
-		margin: 10px;
-		width: 320px;
+		margin: 10px 0px;
+		width: 100%;
 		display: flex;
 		font-size: 16px;
 		font-weight: bold;
@@ -1743,6 +1774,9 @@ input[type="file"] {
 		justify-content: space-between;
 		margin-left: 50px;
 	}
+	.modal-content-jointeam {
+		margin: 0px 10px !important;
+	}
 
 	.radio-button-broker-question {
 		margin: 20px 20px 20px 20px;
@@ -1755,13 +1789,23 @@ input[type="file"] {
 		height: 20px;
 		width: 200px;
 	}
+	.radio-button-broker-question{
+		gap: 0px;
+	}
+	.other-status {
+		display: flex;
+		flex-direction: column;
+	}
+	.others-label-propsearch {
+		display: flex;
+		flex-direction: row;
+	}
 
 	.radio-button-container label {
 		margin-right: 20px;
 	}
 
 	.join-team-group input {
-		width: 290px;
 		height: 20px;
 		border: 1px solid var(--mute-gray);
 		padding: 10px;
@@ -1778,7 +1822,7 @@ input[type="file"] {
 
 	.broker-questions-jointeam .broker-number-of-years input {
 		width: 500px;
-		height: 20px;
+		height: 20px !important;
 		border: 1px solid #8c9094;
 		padding: 10px;
 		border-radius: 5px;
@@ -1786,7 +1830,6 @@ input[type="file"] {
 	}
 
 	.join-team-group .join-our-team-selector {
-		width: 310px;
 		height: 40px;
 		border: 1px solid var(--mute-gray);
 		padding: 10px;
@@ -1815,9 +1858,9 @@ input[type="file"] {
 		justify-content: center;
 		border-radius: 10px;
 		cursor: pointer;
-		margin: 10px;
-		width: 290px;
+		margin: 10px 0px;
 		display: flex;
+		width: 100%;
 		font-size: 16px;
 		font-weight: bold;
 	}
@@ -1926,18 +1969,36 @@ input[type="file"] {
 		display: flex;
 		font-size: 16px;
 	}
+	.modal-content-jointeam {
+		margin: 0px 10px !important;
+	}
+		.join-team-group{
+width: 100% !important;
+	}
 }
 
 @media only screen and (min-width: 332px) and (max-width: 365px) {
 	.join-team-group {
 		width: 100%;
 	}
-
-	.join-team-group input,
+	.other-status {
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+		align-items: left;
+	}
+	.others-label-propsearch {
+		display: flex;
+		flex-direction: row;
+	}
+	.join-team-columns {
+		margin: 10px 0px;
+	}
+	/* .join-team-group input,
 	.radio-button-broker-question input[type="text"],
 	.join-team-group .join-our-team-selector {
 		width: 98%;
-	}
+	} */
 
 	.radio-button-container {
 		display: flex;
@@ -1954,7 +2015,7 @@ input[type="file"] {
 
 	#othersBrokerQuestion {
 		height: 20px;
-		width: 165px;
+		/* width: 165px; */
 	}
 
 	.radio-button-container label {
@@ -1962,12 +2023,15 @@ input[type="file"] {
 	}
 
 	.join-team-group input {
-		width: 255px;
+		/* width: 100%; */
 		height: 20px;
 		border: 1px solid var(--mute-gray);
 		padding: 10px;
 		border-radius: 5px;
 		color: var(--mute-gray);
+	}
+	.join-team-group{
+width: 100% !important;
 	}
 
 	.join-team-column-group {
@@ -1975,6 +2039,12 @@ input[type="file"] {
 		flex-direction: row;
 		gap: 10px;
 		flex-wrap: wrap;
+	}
+	.radio-button-broker-question {
+		flex-wrap: wrap;
+	}
+	.radio-button-broker-question label {
+		margin-right: 0px;
 	}
 
 	.broker-questions-jointeam .broker-number-of-years input[type="date"] {
@@ -1984,6 +2054,15 @@ input[type="file"] {
 		padding: 10px;
 		border-radius: 5px;
 		color: black;
+	}
+	.other-status .join-team-group input[type="text"] {
+		border-radius: 5px;
+		font-size: 14px;
+		margin: 0px;
+		width: 85%;
+	}
+	.modal-content-jointeam {
+		margin: 0px 10px !important;
 	}
 
 	.join-team-group .ant-select {
@@ -2168,20 +2247,21 @@ input[type="file"] {
 	}
 }
 @media only screen and (min-width: 320px) and (max-width: 481px) {
-	.page-content-jointeam{
+	.page-content-jointeam {
 		width: 90%;
 		padding: 0;
 	}
-	.join-team-page-column-group{
+	.join-team-page-column-group {
 		display: grid;
 		grid-template-columns: repeat(1, 1fr);
 	}
-	.join-team-page-group input, .join-our-team-page-selector{
+	.join-team-page-group input,
+	.join-our-team-page-selector {
 		width: 100% !important;
 	}
-	.radio-button-broker-question{
+	.radio-button-broker-question {
 		flex-direction: row !important;
-		margin: 20px 10px;
+		margin: 20px 0px;
 	}
 	.join-team-page-submit-button {
 		padding: 15px 10px;
@@ -2190,7 +2270,49 @@ input[type="file"] {
 		width: 250px;
 		font-size: var(--m-body-text);
 	}
-	.join__submit-btn--wrapper{
+	.join__submit-btn--wrapper {
 		margin-top: 20px;
 	}
+	.other-status {
+		display: flex !important;
+		flex-direction: row !important;
+		gap: 10px !important;
+		align-items: left !important;
+	}
+	.others-label-propsearch {
+		display: flex !important;
+		flex-direction: row !important;
+	}
+	.join-team-columns {
+		margin: 10px 0px !important;
+	}
+	.radio-button-broker-question {
+		flex-wrap: wrap !important;
+	}
+	.radio-button-broker-question .other-status {
+		margin-right: 0px !important;
+	}
+	    .other-status .join-team-group input[type="text"] {
+        border-radius: 5px !important;
+        font-size: 14px !important;
+        margin: 0px !important;
+        width: 85% !important;
+    }
+	    .modal-content-jointeam {
+        margin: 0px 15px !important;
+    }
+	.radio-button-broker-question .other-status input[type="radio"]:checked{
+		width: 35px !important;
+	}
+	.broker-questions-jointeam .broker-number-of-years input[type="date"]{
+		width: 95% !important;
+	}
+		.radio-button-broker-question{
+		gap: 10px !important;
+	}
+	.radio-button-broker-question label
+	{
+		margin-right: 0px !important;
+	}
+	
 }

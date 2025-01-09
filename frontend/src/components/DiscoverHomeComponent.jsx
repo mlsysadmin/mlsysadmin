@@ -1,19 +1,24 @@
 import React, { useRef } from "react";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CustomMlFooter from "./custom/Custom.Mlfooter";
 import FooterComponent from "./layout/FooterComponent";
 import MainLayout from "./layout/layout.component";
 import { Slider, Progress, Menu, Select } from "antd";
 import iconcalcu from "../assets/icons/previewlisting/calculatorsign.png";
-import { DownOutlined } from "@ant-design/icons";
+import { DownOutlined, MessageOutlined, CalculatorOutlined } from "@ant-design/icons";
 import homeicon from "../asset/icons/homeicon.png";
 import { homeloanFaqs, mortgageFaqs } from "../utils/FaqsData";
 import dollaricon from "../asset/icons/dollar-icon.png";
 import "../styles/discoverhome.css";
+import {FloatButton} from "antd";
+import FloatBtnGroup from "./custom/buttons/FloatBtnGroup";
+import ContactUsWidget from "./modals/ContactUsWidget";
+import CalculatorWidgetModal from "./modals/CalculatorWidgetModal";
 import Title from "antd/es/skeleton/Title";
 
 const DiscoverHomeComponent = () => {
+	const navigate= useNavigate();
 	const [activeIndex, setActiveIndex] = useState(null);
 	const [monthlyPayment, setMonthlyPayment] = useState(0);
 	const [HomepriceRange, setHomePriceRange] = useState(100000);
@@ -25,6 +30,23 @@ const DiscoverHomeComponent = () => {
 	const [progressBarVal, setProgressBarVal] = useState(HomepriceRange);
 	const [totalNumberMonths, setTotalnumberMonths] = useState(0);
 	const [principalWithInterest, setPrincipalwithInterest] = useState(0);
+
+
+	const [isContactUsFormVisible, setContactUsFormVisible] = useState(false);
+	const [isCalculatorVisible, setCalculatorVisible] = useState(false);
+	const toggleCalculator = () => {
+		setCalculatorVisible(!isCalculatorVisible);
+		setContactUsFormVisible(false);
+	};
+	const closeWidgetCalc = () => {
+		setCalculatorVisible(false);
+		setContactUsFormVisible(false);
+	};
+	const toogleContarctUsForm = () => {
+		setCalculatorVisible(false);
+		setContactUsFormVisible(!isContactUsFormVisible);
+	};
+
 
 	const handleHomePriceRangeChange = (values) => {
 		setHomePriceRange(values);
@@ -250,7 +272,7 @@ const DiscoverHomeComponent = () => {
 				</div>
 			</div>
 			<div className="mortgage-calc">
-			<div className="mortgage-title-mort-lg">Mortgage Calculator</div>
+				<div className="mortgage-title-mort-lg">Mortgage Calculator</div>
 				<div className="mortgage-calc-cont">
 					<div className="mortgage-cont1">
 						<div className="mortrange" ref={calculatorRef}>
@@ -583,6 +605,41 @@ const DiscoverHomeComponent = () => {
 					})}
 				</div>
 			</div>
+			<div className="listing__contact--form-btns-sticky">
+				<FloatBtnGroup
+					children={
+						<>
+							<a href="#contact-form">
+								<FloatButton
+									icon={
+										<MessageOutlined className="message-float__icon--icon" />
+									}
+									tooltip={isContactUsFormVisible ? "" : "Message us"}
+									className="float__icon message-float__icon"
+									onClick={toogleContarctUsForm}
+								/>
+							</a>
+							<FloatButton
+								icon={<CalculatorOutlined className="calculator-float__icon" />}
+								tooltip={isCalculatorVisible ? "" : "Calculator"}
+								className="float__icon calculator-float__icon"
+								// onClick={toggleCalculator}
+								onClick={() => navigate("/discover-home#calculator")}
+							/>
+						</>
+					}
+				/>
+			</div>
+			{isCalculatorVisible && (
+				<CalculatorWidgetModal
+					toggleCalculator={toggleCalculator}
+					closeWidgetCalc={closeWidgetCalc}
+				/>
+			)}
+			{isContactUsFormVisible && (
+				<ContactUsWidget closeWidgetCalc={closeWidgetCalc} />
+			)}
+
 			<CustomMlFooter />
 			<FooterComponent />
 		</div>

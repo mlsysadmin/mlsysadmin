@@ -40,13 +40,13 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
 
 		if (isChecked) {
 			setShowTooltip(true);
-			setTimeout(() => setShowTooltip(false), 800);
+			setTimeout(() => setShowTooltip(true), 800);
 		}
 	};
   const handleSaveClick = () =>{
     setIsChecked(true);
     setShowTooltip(true);
-		setTimeout(() => setShowTooltip(false), 800);
+		setTimeout(() => setShowTooltip(true), 800);
   }
 
   const nextImage = () => {
@@ -107,7 +107,7 @@ const PropertyListing = ({ oneListing, unitPhotos }) => {
            <Tooltip
            color="var(--red)"
             title="Added to favorites" 
-            visible={showTooltip} 
+            visible={true} 
           ></Tooltip>
           <button className={styles.saveButton}>
             <CustomTag

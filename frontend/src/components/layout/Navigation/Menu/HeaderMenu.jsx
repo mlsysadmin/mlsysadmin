@@ -363,7 +363,7 @@ const HeaderMenu = () => {
 		{ label: "Sell", key: "sell", link: "/sell" },
 		{ label: <BuyMenu />, key: "buy" },
 		{ label: <RentMenu />, key: "rent" },
-		// { label: <PreSellingMenu />, key: "pre-selling" },
+		// { label: "Developers", key: "pre-selling" , link:"/pre-selling"},
 		{ label: <HomeLoanMenu />, key: "home-loan" },
 		{
 			// label: <HomeInsuranceMenu />,

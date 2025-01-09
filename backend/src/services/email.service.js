@@ -40,7 +40,6 @@ const MailTransporter = async () => {
 
 const EmailTemplate = (filePath, data) => {
     try {
-        
         const templatePath = path.resolve(__dirname,'../views/template', filePath);
         console.log("template path", templatePath);
         

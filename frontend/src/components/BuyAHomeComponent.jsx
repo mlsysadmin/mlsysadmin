@@ -776,7 +776,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                 <span className="prop-quest">
                   Where are you looking to buy?
                 </span>
-                <br />
+                {/* <br /> */}
                 <span>
                   Enter the city or zip code of the area where you are home
                   shopping
@@ -805,20 +805,20 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
               />
             </div>
             <br />
-            <div className="preApproveDiv" style={{ textAlign: "center" }}>
+            <div className="preApproveDiv" style={{ textAlign: "start" }}>
               <div
+              id="WarmingText"
                 style={{
                   fontSize: "var(--d-body-text)",
                   color: "#8C9094",
                   width: "79%",
-                  margin: "auto auto 30px",
                 }}
               >
                 By submitting, I agree my information may be shared and that I
                 may be contacted at this number including through emails. I
                 agree to the privacy policy and terms.
               </div>
-              <div>
+              <div className="submitDivBuyAtHome">
                 <SemiRoundBtn
                   label={"Submit Pre-approval"}
                   className="submit-pre-approval round-btn"

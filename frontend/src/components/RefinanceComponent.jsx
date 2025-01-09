@@ -34,7 +34,6 @@ const RefinanceComponent = () => {
   const [isWrapUpComplete, setIsWrapUpComplete] = useState(false);
   const [isWrapUpResetComplete, setIsWrapUpResetComplete] = useState(false);
 
-
   // Property state
   const [refPropquest1, setRefPropQuest1] = useState("");
   const [refPropquest2, setRefPropQuest2] = useState("");
@@ -340,7 +339,7 @@ const RefinanceComponent = () => {
         zipcode: "",
         others: "",
         source_of_income: "",
-      })
+      });
       setCompletedSteps((prev) => ({ ...prev, details: false }));
     }
   }, [
@@ -600,7 +599,6 @@ const RefinanceComponent = () => {
         <div className="refinance-loan-group" ref={loanGroupRef}>
           <div className="refinance-loan-group-one">
             <h4>Loans</h4>
-            <br />
             <span>What's your remaining balance of your current loan?</span>
             <span className="estimate">(an estimate is fine)</span>
             <div className="ref-btn-group">
@@ -649,7 +647,6 @@ const RefinanceComponent = () => {
         <div className="refinance-details-group" ref={DetailsGroupRef}>
           <div className="refinance-details-group-one">
             <h4>Details</h4>
-            <br />
             <span>What is your current employment status?</span>
             <div className="ref-btn-group">
               {["Employed", "Self-employed", "Retired", "Not employed"].map(
@@ -749,7 +746,7 @@ const RefinanceComponent = () => {
           </div>
           <div className="refinance-details-group-six">
             <span>Where are you looking to buy?</span>
-            <p>
+            <p style={{ marginBottom: "10px"}}>
               Enter the city or zip code of the area where you are home shopping
             </p>
             <div className="ref-btn-group-input">
@@ -777,26 +774,20 @@ const RefinanceComponent = () => {
           />
         </div>
         <br />
-        <span
-          style={{
-            fontSize: "var(--d-body-text)",
-            color: "#8C9094",
-            width: "79%",
-            margin: "auto",
-            textAlign: "center",
-          }}
-        >
+        <span id="WarningText">
           By submitting, I agree my information may be shared and that I may be
           contacted at this number including through emails. I agree to the
           privacy policy and terms.
         </span>
-        <SemiRoundBtn
-          label={"Submit Pre-approval"}
-          className="submit-pre-approval round-btn"
-          handleClick={handleSubmitApplication}
-          loading={loading}
-          disabled={!isFormValid()}
-        />
+        <div className="submitDiv">
+          <SemiRoundBtn
+            label={"Submit Pre-approval"}
+            className="submit-pre-approval round-btn"
+            handleClick={handleSubmitApplication}
+            loading={loading}
+            disabled={!isFormValid()}
+          />
+        </div>
         {/* <SubmitApplicationCustom /> */}
       </div>
       <div>

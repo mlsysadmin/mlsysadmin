@@ -13,7 +13,8 @@ const {
     SELLER_ROUTER,
     SUPPORT_ROUTER,
     PUBLIC_ROUTER,
-    GOOGLE_ROUTER
+    GOOGLE_ROUTER,
+    ADMIN_EMAIL
 } = require('../routers/router.main');
 const Logger = require('../config/_log/mlbrokerage.logger');
 const ErrorHandler = require('../utils/_helper/ErrorHandler.helper');
@@ -42,6 +43,7 @@ const corsOptions = {
         const allowedOrigins = origins.split('|');
 
         console.log("allowedOrigins", allowedOrigins);
+        console.log("origin", origin);
         // allow requests with no origin (like mobile apps or curl requests)
         if (!origin) return callback(null, true);
         if (allowedOrigins.includes(origin)) {
@@ -73,6 +75,7 @@ app.use('/api/listing', LISTING_ROUTER);
 app.use('/api/seller', SELLER_ROUTER);
 app.use('/api/support', verifyToken, verifyApiKey, SUPPORT_ROUTER);
 app.use('/api/public', verifyApiKey, PUBLIC_ROUTER);
+app.use('/api/admin', verifyApiKey, ADMIN_EMAIL);
 
 
 // If accessing non-existing route - 404 --------------------------------------------------

@@ -2,7 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/sell.css";
 import { isCookiePresent } from "../utils/CookieChecker";
-import { DownOutlined } from "@ant-design/icons";
+import {
+	DownOutlined,
+	MessageOutlined,
+	CalculatorOutlined,
+} from "@ant-design/icons";
 import bannerImg from "../asset/banners/house_car_LE_auto_x2-transformed.jpeg";
 import { Button, Radio } from "antd";
 import UpgradeTierModal from "./modals/UpgradeTierModal";
@@ -11,14 +15,13 @@ import SemiRoundBtn from "./custom/buttons/SemiRoundBtn.custom";
 import WorkingOnItModal from "./ComingSoonComponent";
 import { buyFaqs, sellFaqs } from "../utils/FaqsData";
 import { useAuth } from "../Context/AuthContext";
+import { FloatBtnGroup } from "../components";
+import { FloatButton } from "antd";
+import ContactUsWidget from "./modals/ContactUsWidget";
+import CalculatorWidgetModal from "./modals/CalculatorWidgetModal";
 
 const SellComponent = () => {
-
-	const {
-		isAuthenticated,
-		logout,
-		userDetails
-	} = useAuth();
+	const { isAuthenticated, logout, userDetails } = useAuth();
 
 	const [activeIndex, setActiveIndex] = useState(null);
 	const [value, setValue] = useState(1);
@@ -39,7 +42,21 @@ const SellComponent = () => {
 	};
 
 	const [showUpgradeModal, setShowUpgradeModal] = useState(false);
-
+	
+	const [isContactUsFormVisible, setContactUsFormVisible] = useState(false);
+	const [isCalculatorVisible, setCalculatorVisible] = useState(false);
+	const toggleCalculator = () => {
+		setCalculatorVisible(!isCalculatorVisible);
+		setContactUsFormVisible(false);
+	};
+	const closeWidgetCalc = () => {
+		setCalculatorVisible(false);
+		setContactUsFormVisible(false);
+	};
+	const toogleContarctUsForm = () => {
+		setCalculatorVisible(false);
+		setContactUsFormVisible(!isContactUsFormVisible);
+	};
 	const openUpgradeModal = () => {
 		setShowUpgradeModal(true);
 	};
@@ -48,9 +65,8 @@ const SellComponent = () => {
 	};
 
 	const handleSignIn = () => {
-
 		if (isAuthenticated && userDetails) {
-			navigate('/');
+			navigate("/");
 		} else {
 			window.location.href = `/login`;
 		}
@@ -111,7 +127,7 @@ const SellComponent = () => {
 				<div className="sell-contents">
 					<div className="first-section">
 						<div className="sell-banner-bg">
-						<img src={bannerImg} alt="" />
+							<img src={bannerImg} alt="" />
 						</div>
 						<div className="bannerbg">
 							<span className="sell-header">
@@ -223,45 +239,45 @@ const SellComponent = () => {
 							<div className="cards">
 								<div className="card1">
 									<h5>Step 1:</h5>
-									<p>Register in ML Wallet app</p>
+									<p> Enter your mobile number to register</p>
 								</div>
 								<div className="card2">
 									<h5>Step 2:</h5>
-									<p>Visit the nearest ML Branch to upgrade your tier</p>
+									<p>Once registered, you’re good to go!</p>
 								</div>
 								<div className="card3">
 									<h5>Step 3:</h5>
-									<p>Once approved, you’re good to go!</p>
+									<p>Login your mobile number to receive OTP.</p>
 								</div>
-								<div className="card4">
+								{/* <div className="card4">
 									<h5>Step 4:</h5>
 									<p>Scan QR Code in the ML Website to login your account.</p>
-								</div>
+								</div> */}
 							</div>
 						</div>
 						<div className="non-wallet-user-group">
 							<span>
-								If you’re a non-wallet user, please visit the nearest M
-								Lhuillier Branch and seek assistance from our FLAs for your
-								listings.
+								If you are not an MCash user or have not registered, please
+								visit the nearest M Lhuillier branch and seek assistance from
+								our FLAs for your listings.
 							</span>
 							<div className="non-wallet-user-step">
 								<ul style={{ listStyleType: "none", padding: 0 }}>
 									<li>
 										<span style={{ fontWeight: "bold" }}>Step 1:</span> Bring
-										your listing documents to the ML Branch.
+										your listing documents to the M Lhuillier branch.
 									</li>
 									<li>
 										<span style={{ fontWeight: "bold" }}>Step 2:</span> An FLA
-										will list your documents.
+										will process your documents.
 									</li>
 									<li>
 										<span style={{ fontWeight: "bold" }}>Step 3:</span> Wait for
-										verification; the review will take 3-5 working days.
+										verification. The review process will take 3–5 working days.
 									</li>
 									<li>
 										<span style={{ fontWeight: "bold" }}>Step 4:</span> Once
-										approved, an ML Agent will contact you.
+										approved, an M Lhuillier Agent will contact you.
 									</li>
 								</ul>
 							</div>
@@ -325,6 +341,40 @@ const SellComponent = () => {
 			</div>
 			{showModal && (
 				<WorkingOnItModal onClose={toggleModal} isOpen={showModal} />
+			)}
+			<div className="listing__contact--form-btns-sticky">
+				<FloatBtnGroup
+					children={
+						<>
+							<a href="#contact-form">
+								<FloatButton
+									icon={
+										<MessageOutlined className="message-float__icon--icon" />
+									}
+									tooltip={isContactUsFormVisible ? "" : "Message us"}
+									className="float__icon message-float__icon"
+									onClick={toogleContarctUsForm}
+								/>
+							</a>
+							<FloatButton
+								icon={<CalculatorOutlined className="calculator-float__icon" />}
+								tooltip={isCalculatorVisible ? "" : "Calculator"}
+								className="float__icon calculator-float__icon"
+								onClick={toggleCalculator}
+								// onClick={() => navigate("/discover-home#calculator")}
+							/>
+						</>
+					}
+				/>
+			</div>
+			{isCalculatorVisible && (
+				<CalculatorWidgetModal
+					toggleCalculator={toggleCalculator}
+					closeWidgetCalc={closeWidgetCalc}
+				/>
+			)}
+			{isContactUsFormVisible && (
+				<ContactUsWidget closeWidgetCalc={closeWidgetCalc} />
 			)}
 		</div>
 	);

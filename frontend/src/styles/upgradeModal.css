@@ -1,40 +1,46 @@
-.upgrade-modal-content{
-    font-size: var(--d-body-text) !important;
+.upgrade-modal-content {
+	font-size: var(--d-body-text) !important;
 }
-@media screen  and (min-width:320px) and (max-width:1200px) {
-    .upgrade-modal-content{
-        margin:15px !important;
-        padding: 40px 20px !important;
-    }
+.upgrade-modal-content h3{
+font-size: 22px;
+}
+@media screen and (min-width: 320px) and (max-width: 1200px) {
+	.upgrade-modal-content {
+		margin: 15px !important;
+		padding: 40px 20px !important;
+	}
 }
 
-@media screen  and (min-width:320px) and (max-width:390px){
-    .upgrade-modal-content{
-        margin:15px !important;
-        padding: 20px !important;
-        overflow-y: scroll;
-        position:unset;
-        font-size: var(--m-body-text) !important;
-        /* top: 0%; */
-        height: 80vh;
-    }
-    .signin-button-upgrade{
-        margin-top: 25px;
-    }
+@media screen and (min-width: 320px) and (max-width: 390px) {
+	.upgrade-modal-content {
+		margin: 15px !important;
+		padding: 20px !important;
+		overflow-y: scroll;
+		position: unset;
+		font-size: var(--m-body-text) !important;
+		/* top: 0%; */
+		/* height: 80vh; */
+	}
+	.signin-button-upgrade {
+		margin-top: 25px;
+	}
 
-    .tier-upgrade-content{
-       width: 80% !important;
-    }
-    .upgrade--title{
-        margin-top: 20px !important;
-        margin-bottom: 10px !important;
-        font-size: var(--m-h3-text) !important;
-    }
-        .upgrade-modal-content {
-            padding: 0px 15px 10px 15px !important;
-        }
-        .upgrade-content .anticon {
-            right: 10px !important;
-            top: 20px !important;
-        }
+	.tier-upgrade-content {
+		width: 80% !important;
+	}
+	.how-to-upload-prop p {
+		line-height: 0px !important;
+	}
+	.upgrade--title {
+		margin-top: 20px !important;
+		margin-bottom: 10px !important;
+		font-size: 18px !important;
+	}
+	.upgrade-modal-content {
+		padding: 0px 15px 10px 15px !important;
+	}
+	.upgrade-content .anticon {
+		right: 10px !important;
+		top: 20px !important;
+	}
 }
