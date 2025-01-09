@@ -128,7 +128,7 @@
 
 .create__details {
 	display: grid;
-	grid-template-columns: 30% auto;
+	grid-template-columns: auto;
 	gap: 20px;
 }
 
