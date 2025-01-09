@@ -34,7 +34,17 @@
 	display: flex;
 	flex-direction: column;
 }
-
+.join-team-page-group
+	.ant-select
+	.ant-select-outlined
+	.join-our-team-selector:hover {
+	border: none;
+}
+.join-team-page-group
+	.ant-select-outlined:not(.ant-select-customize-input)
+	.ant-select-selector {
+	border: 1px solid #d9d9d9 !important  ;
+}
 .ant-select-selector {
 	width: 250px;
 	/* Increase the width of the select dropdown */
@@ -46,14 +56,43 @@
 }
 
 .join-team-group input,
-.radio-button-broker-question input[type="text"],
-.join-team-group .join-our-team-selector {
+.radio-button-broker-question input[type="text"] {
 	height: 40px;
 	border: 1px solid var(--mute-gray);
 	padding: 10px;
 	border-radius: 5px;
 	color: var(--mute-gray);
 	outline: none;
+	width: 185px;
+}
+.join-team-group .ant-select-single {
+	height: 40px;
+	padding: 0px !important;
+	font-size: var(--d-body-text);
+	border: 1px solid var(--mute-gray) !important;
+	border-radius: 5px !important;
+	outline: none !important;
+	width: 185px;
+	box-shadow: none !important;
+}
+.join-team-group .ant-select .ant-select-selector {
+	border: none !important;
+	padding: 10px;
+	background-color: transparent !important;
+}
+.join-team-group .ant-select .ant-select-selector {
+	padding: 10px !important;
+}
+.join-team-group .ant-select-item {
+	padding: 10px !important;
+	font-size: var(--d-body-text);
+	background-color: #fff;
+	color: #333;
+	width: 100%;
+}
+.join-our-team-selector .ant-select .ant-select-arrow {
+	color: #000 !important;
+	font-size: 10px !important;
 }
 
 .join-team-group input:disabled,
@@ -147,6 +186,15 @@
   cursor: pointer;
   margin-left: 10px;
 } */
+.join-team-page-group .join-our-team-selector {
+	height: 45px !important;
+	padding: 0px !important;
+	font-size: var(--d-body-text);
+	border-radius: 5px !important;
+	outline: none !important;
+	width: 220px;
+	box-shadow: none !important;
+}
 
 .radio-button-broker-question input[type="radio"]:checked {
 	background-color: #000000;
@@ -161,7 +209,7 @@
 	margin-right: 20px;
 	font-size: 14px;
 }
-.other-status{
+.other-status {
 	text-align: center;
 	justify-content: center !important;
 	display: flex;
@@ -174,16 +222,29 @@
 	gap: 10px;
 }
 
-.broker-questions-jointeam .broker-number-of-years input[type="date"] {
+.join-team-page-group .ant-select-single {
+	border-color: 1px solid var(--mute-gray) !important;
+}
+.broker-questions-jointeam .broker-number-of-years .ant-picker-outlined {
 	width: 200px;
 	height: 40px;
 	border: 1px solid #d9d9d9 !important;
-	padding: 10px;
+	padding: 10px !important;
 	border-radius: var(--radius);
-	color: rgba(0, 0, 0, 0.719);
+	color: rgba(0, 0, 0, 0.719) !important;
 	background-color: #f9f9f9;
 	font-size: 15px;
 	outline: none;
+}
+.broker-questions-jointeam .broker-number-of-years .ant-picker-input input {
+	width: 100%;
+}
+.broker-questions-jointeam
+	.broker-number-of-years
+	.ant-picker
+	.ant-picker-input
+	input::placeholder {
+	color: rgba(0, 0, 0, 0.719) !important;
 }
 
 .broker-questions-review span {
@@ -300,10 +361,6 @@ input[type="file"] {
 	display: none;
 }
 
-.join-team-submit-button {
-	margin-top: 10px;
-}
-
 .photo-button {
 	display: flex;
 	gap: 2px;
@@ -320,7 +377,11 @@ input[type="file"] {
 	background-color: #d9d9d9;
 	color: #8c9094;
 }
-
+.button-container-join-team {
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+}
 .join-team-submit-button {
 	background-color: #d90000;
 	color: #fff;
@@ -330,10 +391,8 @@ input[type="file"] {
 	justify-content: center;
 	border-radius: 10px;
 	cursor: pointer;
-	margin: 20px 0px 0px 300px;
-	width: 250px;
-	display: flex;
-	font-size: 16px;
+	width: 180px;
+	font-size: 15px;
 	font-weight: bold;
 }
 
@@ -342,10 +401,11 @@ input[type="file"] {
 	line-height: normal;
 }
 
-.modal-header {
+.modal-overlay-jointeam .modal-header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	margin-bottom: 10px;
 }
 
 .close-modal {
@@ -439,7 +499,9 @@ input[type="file"] {
 }
 
 .join__submit-btn--wrapper {
-	margin: 40px auto 15px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
 }
 .join-team-page-submit-button {
 	background-color: #d90000;
@@ -467,11 +529,11 @@ input[type="file"] {
 	color: rgba(0, 0, 0, 0.719);
 }
 
-.join-our-team-page-selector:hover,
+/* .join-our-team-page-selector:hover,
 .join-team-page-group input:hover,
 .broker-questions-jointeam .broker-number-of-years input[type="date"]:hover {
 	border-color: var(--red) !important;
-}
+} */
 
 @media only screen and (min-width: 1098px) {
 	#city.join-our-team-selector {
@@ -904,7 +966,6 @@ input[type="file"] {
 	.broker-questions-jointeam .broker-number-of-years input {
 		width: 430px;
 		height: 20px;
-		border: 1px solid #8c9094;
 		padding: 10px;
 		border-radius: 5px;
 		color: #8c9094;
@@ -1666,13 +1727,12 @@ input[type="file"] {
 		gap: 10px;
 		flex-wrap: wrap;
 	}
-	.join-team-group{
+	.join-team-group {
 		width: 100%;
 	}
 
 	.broker-questions-jointeam .broker-number-of-years input {
 		height: 20px !important;
-		border: 1px solid #8c9094;
 		padding: 10px;
 		border-radius: 5px;
 		color: #8c9094;
@@ -1789,7 +1849,7 @@ input[type="file"] {
 		height: 20px;
 		width: 200px;
 	}
-	.radio-button-broker-question{
+	.radio-button-broker-question {
 		gap: 0px;
 	}
 	.other-status {
@@ -1811,6 +1871,10 @@ input[type="file"] {
 		padding: 10px;
 		border-radius: 5px;
 		color: var(--mute-gray);
+		width: 93% !important;
+	}
+	.join-team-group input::placeholder {
+		font-size: 14px !important;
 	}
 
 	.join-team-column-group {
@@ -1818,23 +1882,16 @@ input[type="file"] {
 		flex-direction: row;
 		gap: 10px;
 		flex-wrap: wrap;
-	}
-
-	.broker-questions-jointeam .broker-number-of-years input {
-		width: 500px;
-		height: 20px !important;
-		border: 1px solid #8c9094;
-		padding: 10px;
-		border-radius: 5px;
-		color: #8c9094;
+		width: 100% !important;
 	}
 
 	.join-team-group .join-our-team-selector {
 		height: 40px;
-		border: 1px solid var(--mute-gray);
+		border: 1px solid var(--mute-gray) !important;
 		padding: 10px;
 		border-radius: 5px;
 		color: var(--mute-gray);
+		width: 100% !important;
 	}
 
 	.verification-section {
@@ -1858,13 +1915,15 @@ input[type="file"] {
 		justify-content: center;
 		border-radius: 10px;
 		cursor: pointer;
-		margin: 10px 0px;
 		display: flex;
 		width: 100%;
 		font-size: 16px;
 		font-weight: bold;
 	}
-
+	.button-container-join-team {
+		justify-content: center;
+		align-items: center;
+	}
 	.join-team-page-submit-button {
 		padding: 10px;
 		align-items: center;
@@ -1926,7 +1985,7 @@ input[type="file"] {
 	.join-team-page-columns {
 		display: flex;
 		flex-direction: column;
-		gap: 20px;
+		gap: 10px;
 	}
 
 	.join-team-page-column-group {
@@ -1939,6 +1998,7 @@ input[type="file"] {
 		display: flex;
 		flex-direction: column;
 		font-size: var(--m-text-label-fs);
+		gap: 0px;
 	}
 
 	.page-content-jointeam-header h2 {
@@ -1972,8 +2032,8 @@ input[type="file"] {
 	.modal-content-jointeam {
 		margin: 0px 10px !important;
 	}
-		.join-team-group{
-width: 100% !important;
+	.join-team-group {
+		width: 100% !important;
 	}
 }
 
@@ -2023,15 +2083,16 @@ width: 100% !important;
 	}
 
 	.join-team-group input {
-		/* width: 100%; */
+		width: 93%;
 		height: 20px;
 		border: 1px solid var(--mute-gray);
 		padding: 10px;
 		border-radius: 5px;
 		color: var(--mute-gray);
 	}
-	.join-team-group{
-width: 100% !important;
+
+	.join-team-group {
+		width: 100% !important;
 	}
 
 	.join-team-column-group {
@@ -2039,6 +2100,7 @@ width: 100% !important;
 		flex-direction: row;
 		gap: 10px;
 		flex-wrap: wrap;
+		width: 100%;
 	}
 	.radio-button-broker-question {
 		flex-wrap: wrap;
@@ -2066,7 +2128,7 @@ width: 100% !important;
 	}
 
 	.join-team-group .ant-select {
-		width: 280px;
+		width: 100%;
 		height: 40px;
 		border: 1px solid var(--mute-gray);
 		padding: 10px;
@@ -2254,10 +2316,14 @@ width: 100% !important;
 	.join-team-page-column-group {
 		display: grid;
 		grid-template-columns: repeat(1, 1fr);
+		gap: 10px;
 	}
 	.join-team-page-group input,
 	.join-our-team-page-selector {
 		width: 100% !important;
+	}
+	.modal-content-jointeam .modal-header h2 {
+		font-size: 19px !important;
 	}
 	.radio-button-broker-question {
 		flex-direction: row !important;
@@ -2271,7 +2337,9 @@ width: 100% !important;
 		font-size: var(--m-body-text);
 	}
 	.join__submit-btn--wrapper {
-		margin-top: 20px;
+		margin-top: 0px;
+		justify-content: center;
+		align-items: center;
 	}
 	.other-status {
 		display: flex !important;
@@ -2292,27 +2360,44 @@ width: 100% !important;
 	.radio-button-broker-question .other-status {
 		margin-right: 0px !important;
 	}
-	    .other-status .join-team-group input[type="text"] {
-        border-radius: 5px !important;
-        font-size: 14px !important;
-        margin: 0px !important;
-        width: 85% !important;
-    }
-	    .modal-content-jointeam {
-        margin: 0px 15px !important;
-    }
-	.radio-button-broker-question .other-status input[type="radio"]:checked{
+	.other-status .join-team-group input[type="text"] {
+		border-radius: 5px !important;
+		font-size: 14px !important;
+		margin: 0px !important;
+		width: 85% !important;
+		height: 20px !important;
+	}
+	.modal-content-jointeam {
+		margin: 0px 15px !important;
+	}
+	.radio-button-broker-question .other-status input[type="radio"]:checked {
 		width: 35px !important;
 	}
-	.broker-questions-jointeam .broker-number-of-years input[type="date"]{
-		width: 95% !important;
+	.broker-questions-jointeam .broker-number-of-years .ant-picker-outlined {
+		width: 100% !important;
+		height: 40px !important;
+		background: none !important;
+		border: 1px solid var(--mute-gray) !important;
 	}
-		.radio-button-broker-question{
+	.broker-questions-jointeam
+		.broker-number-of-years
+		input[type="date"]::placeholder {
+		color: #8c9094 !important;
+	}
+	.radio-button-broker-question {
 		gap: 10px !important;
 	}
-	.radio-button-broker-question label
-	{
+	.radio-button-broker-question label {
 		margin-right: 0px !important;
 	}
-	
+	.button-container-join-team {
+		justify-content: center;
+		align-items: center;
+		margin-top: 10px;
+	}
+	.join-team-page-group .join-our-team-selector {
+		height: 40px !important;
+		border-color: 1px solid var(--mute-gray) !important;
+		width: 100%;
+	}
 }

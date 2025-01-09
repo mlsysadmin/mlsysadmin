@@ -85,7 +85,7 @@ const PreSellingComponent = () => {
 							<Select placeholder="Location" allowClear>
 								<Select.Option value="All">All</Select.Option>
 							</Select>
-							<Select placeholder="listing Type" allowClear>
+							<Select placeholder="Listing Type" allowClear>
 								<Select.Option value="All">For Sale</Select.Option>
 								<Select.Option value="All">Pre Selling</Select.Option>
 							</Select>

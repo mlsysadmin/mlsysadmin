@@ -2,7 +2,7 @@
 	font-size: var(--d-body-text) !important;
 }
 .upgrade-modal-content h3{
-font-size: 22px;
+font-size: 22px !important;
 }
 @media screen and (min-width: 320px) and (max-width: 1200px) {
 	.upgrade-modal-content {
@@ -36,6 +36,7 @@ font-size: 22px;
 		margin-bottom: 10px !important;
 		font-size: 18px !important;
 	}
+
 	.upgrade-modal-content {
 		padding: 0px 15px 10px 15px !important;
 	}
