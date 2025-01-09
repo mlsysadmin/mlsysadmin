@@ -294,7 +294,10 @@ const ValidationSchema = {
         token: Joi.string().required(),
         redirect_url: Joi.string().required(),
         expiration_date: Joi.date().required()
-    })
+    }),
+    AddFeaturesVal: Joi.object().keys({
+        features: Joi.array().required(), 
+    }),
 
 }
 
