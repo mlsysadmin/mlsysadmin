@@ -356,14 +356,14 @@ module.exports = {
 
             const {
                 mobileNumber, otpCode, firstName, lastName, middleName,
-                suffix, email, addressL0Id, addressL1Id, addressL2Id,
-                otherAddress, zipCode
+                email
             } = req.body.payload;
+
+            const addressL0Id = 1; // PHILIPPINES
 
             const user = {
                 mobileNumber, otpCode, firstName, lastName, middleName,
-                suffix, email, addressL0Id, addressL1Id, addressL2Id,
-                otherAddress, zipCode
+                email, addressL0Id
             }
 
             const getToken = await GenerateToken();
@@ -707,7 +707,8 @@ module.exports = {
                 userData = {
                     ckycId,
                     isAdded: findOrCreateUser,
-                    isSeller: role == 1 // seller
+                    // isSeller: role == 1 // seller
+                    isSeller: true // allow all tiers
                 };
 
                 if (findOrCreateUser) {
@@ -740,6 +741,63 @@ module.exports = {
             console.error("CreateLoginAttempt error:", error);
             next(error);
         }
-    }
+    },
+    LoginAfterRegister: async (req, res, next) => {
+        try {
+
+            const { ckycId } = req.body.payload;
+            const userData = req.body.payload;
+
+            const uniqId = ckycId;
+
+            const generateSessionToken = JwtSign(uniqId);
+
+            const tokenCookieOptions = {
+                // expires: new Date(Date.now() + 300000),
+                // maxAge: 300000, // 5 min
+                // path: '/',
+                // httOnly: true,
+                // secure: true,
+                // sameSite: true,
+                // domain: process.env.CLIENT_APP_URL,
+                httpOnly: process.env.COOKIE_HTTP_ONLY,
+                // secure: process.env.COOKIE_SECURE,
+                domain: process.env.COOKIE_DOMAIN,
+                signed: true,
+                maxAge: 3600000, // 1 hour in milliseconds
+                // expires: new Date(Date.now() + 3600000), // 1 hour from now
+            }
+
+            const userCookieOptions = {
+                // expires: new Date(Date.now() + 300000),
+                // maxAge: 300000, // 5 min
+                // path: '/',
+                httpOnly: process.env.COOKIE_HTTP_ONLY,
+                // secure: process.env.COOKIE_SECURE,
+                // sameSite: true,
+                domain: process.env.COOKIE_DOMAIN,
+                maxAge: 3600000, // 1 hour in milliseconds
+                // expires: new Date(Date.now() + 3600000), // 1 hour from now
+            }
+
+            const login = DataResponseHandler(
+                uniqId,
+                "USER_LOGGED_IN",
+                200,
+                true,
+                "User Logged in Successfully"
+            );
+
+            SuccessLoggerHelper(req, login);
+
+            res.cookie(COOKIE_ACCOUNT_SESSION, generateSessionToken, tokenCookieOptions);
+            res.cookie(COOKIE_ACCOUNT_DETAILS, userData, userCookieOptions);
+
+            res.status(200).send(login);
+
+        } catch (error) {
+            next(error);
+        }
+    },
 
 }

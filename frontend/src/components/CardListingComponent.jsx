@@ -60,7 +60,7 @@ const CardListingComponent = ({
   const ImageTag = () => (
     <div className="image-tag">
       <CameraAltIcon />
-      <p>{pics}</p>
+      <b style={{ fontSize: "15px" }}>{pics}</b>
     </div>
   );
 
@@ -193,10 +193,11 @@ const CardListingComponent = ({
                       borderColor: "white",
                       color: "green",
                       borderRadius: "var(--radius)",
-					  alignItems: "center",
+                      alignItems: "center",
                       justifyContent: "center",
                       textAlign: "center",
                       display: "flex",
+                      fontSize: "15px",
                     }}
                   />
                   <CustomTag
@@ -206,10 +207,11 @@ const CardListingComponent = ({
                       borderColor: "white",
                       color: "black",
                       borderRadius: "var(--radius)",
-					  alignItems: "center",
+                      alignItems: "center",
                       justifyContent: "center",
                       textAlign: "center",
                       display: "flex",
+                      fontSize: "15px",
                     }}
                   />
                 </div>
@@ -221,10 +223,11 @@ const CardListingComponent = ({
                     borderColor: "white",
                     color: "black",
                     borderRadius: "var(--radius)",
-					alignItems: "center",
-					justifyContent: "center",
-					textAlign: "center",
-					display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    display: "flex",
+                    fontSize: "15px",
                   }}
                 />
               ) : isSavedProperties.isRecordStatus === "rejected" ? (
@@ -235,10 +238,11 @@ const CardListingComponent = ({
                     borderColor: "white",
                     color: "red",
                     borderRadius: "var(--radius)",
-					alignItems: "center",
-					justifyContent: "center",
-					textAlign: "center",
-					display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    display: "flex",
+                    fontSize: "15px",
                   }}
                 />
               ) : null
@@ -250,10 +254,11 @@ const CardListingComponent = ({
                   borderColor: "#d90000",
                   color: "#ffffff",
                   borderRadius: "var(--radius)",
-				  alignItems: "center",
-				  justifyContent: "center",
-				  textAlign: "center",
-				  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                  display: "flex",
+                  fontSize: "15px",
                 }}
               />
             )}
@@ -261,10 +266,11 @@ const CardListingComponent = ({
               tagLabel={<ImageTag />}
               style={{
                 borderRadius: "var(--radius)",
-				alignItems: "center",
-				justifyContent: "center",
-				textAlign: "center",
-				display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+                display: "flex",
+                fontSize: "15px",
               }}
             />
           </div>

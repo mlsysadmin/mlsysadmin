@@ -83,13 +83,7 @@ const ValidationSchema = {
         firstName: Joi.string().required(),
         lastName: Joi.string().required(),
         middleName: Joi.string().optional(),
-        suffix: Joi.string().optional(),
         email: Joi.string().required(),
-        addressL0Id: Joi.string().required(),
-        addressL1Id: Joi.string().required(),
-        addressL2Id: Joi.string().required(),
-        otherAddress: Joi.string().optional(),
-        zipCode: Joi.string().optional()
     }),
     ListingBody: Joi.object().keys({
         seller: Joi.string().required(),

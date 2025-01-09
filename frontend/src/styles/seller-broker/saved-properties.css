@@ -27,7 +27,7 @@
   flex-wrap: wrap; */
 }
 .savedPropertiesContent .join-page-container, .savedPropertiesContent .page-content-jointeam{
-	padding-top: 0px;
+	padding: 0px 0px ;
 }
 .ant-tabs-content-holder {
 	margin-top: 40px 0px;
@@ -93,7 +93,7 @@
 	}
 
 	.savedPropertiesContent {
-		padding-top: 20px;
+		padding-top: 0px;
 	}
 	 #myPropertiesTextHeader{
 		font-size: var(--m-h4-text) !important;

@@ -173,11 +173,38 @@
 .form-row input:not(#featureAmenities),
 .form-row .form-column select {
   flex: 1;
+  padding: 10px !important;
+  font-size: var(--d-body-text);
+  border: 1px solid #ccc !important;
+  border-radius: 5px !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.form-column .ant-select-single {
+  flex: 1;
+  padding: 0px !important;
+  font-size: var(--d-body-text);
+  border: 1px solid #ccc !important;
+  border-radius: 5px !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.form-column .ant-select .ant-select-selector{
+border: none !important;
+padding: 10px;
+  height: 42px !important;
+background-color: transparent !important;
+}
+.form-column .ant-select .ant-select-arrow{
+  color: #000 !important;
+  font-size: 10px !important;
+}
+
+.form-row .form-column select option {
   padding: 10px;
   font-size: var(--d-body-text);
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  outline: none;
+  background-color: #fff;
+  color: #333;
 }
 .form-row input:disabled,
 .form-row select:disabled {
@@ -253,7 +280,7 @@
 }
 .property-search-form .form-row .form-column #featureAmenities {
   height: 45px;
-  padding: 10px;
+  padding: 10px !important;
   font-size: var(--d-text-label-fs);
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -339,6 +366,9 @@
     display: flex;
     flex-direction: column;
   }
+  .form-column #featureAmenities {
+    width: 300px !important;
+  }
 }
 
 @media screen and (min-width: 360px) and (max-width: 480px) {
@@ -349,6 +379,7 @@
     width: 95%;
     display: flex;
     flex-wrap: wrap;
+    padding-top: 00px;
     /* margin: 10px; */
     /* padding-left: 40px; */
   }
@@ -411,6 +442,12 @@
     display: flex;
     flex-direction: column;
   }
+  .property-search-form .form-row .form-column #featureAmenities {
+width: 100%;
+}
+.form-column .ant-select-single {
+  width: 100% !important;
+}
 }
 
 @media screen and (min-width: 481px) and (max-width: 768px) {

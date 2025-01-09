@@ -33,30 +33,17 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, message }) => {
           style={{
             display: "flex",
             alignItems: "center",
+            marginBottom: "auto"
           }}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="modal-icon"
+          <p
             style={{
-              width: "24px",
-              height: "24px",
-              marginRight: "10px",
-              color: "rgb(243 4 4)",
+              fontSize: "15px",
+              fontWeight: "500"
             }}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
           >
-            <path d="M12 2L2 7h20L12 2z" />
-            <path d="M2 7v10l10 5 10-5V7" />
-            <path d="M12 12v4" />
-            <path d="M12 8v2" />
-          </svg>
-          <h2>Confirm Action</h2>
+            Confirm Action
+          </p>
         </div>
         <p>{message}</p>
         <div
@@ -70,11 +57,13 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, message }) => {
           <button
             className="cancel-button"
             style={{
-              backgroundColor: "#f44336" /* Red */,
-              color: "white",
-              border: "none",
+              backgroundColor: "white" /* Red */,
+              color: "#f44336",
+              border: "1px solid var(--red)",
               padding: "10px 10px",
               borderRadius: "5px",
+              fontSize: "var(--d-body-text) !important",
+              fontWeight: "normal",
               cursor: "pointer",
             }}
             onClick={onClose}
@@ -84,16 +73,18 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, message }) => {
           <button
             className="confirm-button"
             style={{
-              backgroundColor: "#4CAF50" /* Green */,
-              color: "white",
+              backgroundColor: "var(--red)" /* Green */,
+              color: "#fff",
               border: "none",
               padding: "10px 10px",
-              borderRadius: "5px",
+              borderRadius: "var(--radius)",
+              marginLeft: "10px",
               cursor: "pointer",
+              fontWeight: "normal",
             }}
             onClick={onConfirm}
           >
-            Confirm Submission  
+            Confirm Submission
           </button>
         </div>
       </div>
