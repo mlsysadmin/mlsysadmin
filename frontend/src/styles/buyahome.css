@@ -295,12 +295,12 @@
   margin: 10px 0px 0px 0px;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 15px;
 }
 .property-information-container .prop-info-btn-group-details-input input {
   border: 1px solid #d9d9d9;
-  border-radius: 10px;
-  width: 30%;
+  border-radius: 6px !important;
+  width: 26%;
   height: 40px;
   margin: 20px 0px 0px 0px;
   font-size: 18px;

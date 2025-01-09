@@ -192,17 +192,17 @@ const PreviewListing = () => {
             style={{ display: "flex", width: "100%", gap: "1rem" }}
           >
             <div className="real-estate-listing-card">
-              <PropertyListing
+              {/* <PropertyListing
                 oneListing={oneListing}
                 unitPhotos={unitPhotos}
-              />
+              /> */}
               <div className="midContent">
-                <PreviewListLeftContent
+                {/* <PreviewListLeftContent
                   oneListing={oneListing}
                   features={features}
                   amenities={amenities}
                   includes={includes}
-                />
+                /> */}
                 <div className="widerRightSideContent">
                   <PreviewListRightSideContent oneListing={oneListing} />
                 </div>

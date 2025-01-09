@@ -563,8 +563,8 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
               </span>
               <div className="prop-info-btn-group-timeline">
                 {[
-                  "Immediately: I have a signed purchase agreement",
-                  "ASAP: I have found a house /offer pending",
+                  "Now: Signed agreement",
+                  "ASAP: Offer pending.",
                   "Within 30 days",
                   "2 - 3 months",
                   "3 - 6 months",
@@ -632,7 +632,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                 {[
                   "Yes, I currently own a home",
                   "No, I am currently renting",
-                  "No, I have other living arrangements",
+                  "No, other arrangements",
                 ].map((option, index) => (
                   <button
                     key={index}

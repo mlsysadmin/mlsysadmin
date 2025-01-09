@@ -92,11 +92,6 @@ const CustomMlFooter = () => {
 									</a>
 								</div>
 								<div>
-									<a style={{ textDecoration: "none", color: "#4F4F4F" }}>
-										Contact Us
-									</a>
-								</div>
-								<div>
 									<a
 										href="https://mlhuillier.com/privacy-notice/"
 										style={{ textDecoration: "none", color: "#4F4F4F" }}
