@@ -3,11 +3,11 @@ import "../styles/loginComponent.css";
 import { useState, useEffect } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { CreateLoginAttempt, FirstAttemptLogin, searchKyc } from "../api/Public/User.api";
+import { CreateLoginAttempt, FirstAttemptLogin, NewUserLogin, RegisterKyc, searchKyc } from "../api/Public/User.api";
 import BrokerageLogo from "../assets/BrokerageLogo.png";
 import { DatePicker, Select, notification } from "antd";
 import PreviewLoadingModal from "./modals/PreviewLoadingModal";
-import { SendOtp, ValidateOtpLogin } from "../api/Public/OtpLogin.api";
+import { SendOtp, SendOtpCode, ValidateOtpLogin } from "../api/Public/OtpLogin.api";
 import { getCookieData } from "../utils/CookieChecker";
 import { SortByText } from "../utils/StringFunctions.utils";
 import { useLocation } from "react-router-dom";
@@ -40,6 +40,12 @@ const LoginComponent = () => {
 	const [api, contextHolder] = notification.useNotification();
 	const [isFirstLogin, setIsFirstLogin] = useState(false);
 	const [currentYear, setCurrentYear] = useState();
+	const [regKyc, setRegKyc] = useState({
+		firstName: '',
+		lastName: '',
+		email: '',
+		middleName: '',
+	});
 
 	useEffect(() => {
 		if (otpTimer > 0) {
@@ -135,20 +141,22 @@ const LoginComponent = () => {
 			const kyc = firstAttemptLogin.data.data.data; // data: {tier:{...}}
 			const isFirstAttempt = firstAttemptLogin.data.data.isFirstAttempt;
 
+			setUserDetails(kyc);
+			setIsFirstLogin(isFirstAttempt);
+
 			if (isFirstAttempt && kyc) {
 				setIsContinued(true);
 				setIsSubmitting(false);
 			} else if (!isFirstAttempt && kyc) {
 				handleSignIn();
 			}
-			else {
-				console.log(kyc);
+			else if (!isFirstAttempt && !kyc) {
 				setIsRegistration(true);
 				setIsContinued(true);
+				setShowOtpScreen(false);
 				setIsSubmitting(false);
 			}
-			setUserDetails(kyc);
-			setIsFirstLogin(isFirstAttempt);
+
 
 		} catch (error) {
 			console.error("Error during continue:", error);
@@ -168,6 +176,12 @@ const LoginComponent = () => {
 		setSelectedYear("2024");
 		setBirthdateError(false);
 		setUserDetails(null);
+		setRegKyc({
+			firstName: '',
+			lastName: '',
+			email: '',
+			middleName: '',
+		})
 	};
 
 	const maskUserDetails = (name) => {
@@ -197,11 +211,46 @@ const LoginComponent = () => {
 	};
 	const handleSignIn = async () => {
 		try {
-			setIsSubmitting(true);
 			const cleanPhone = cleanPhonenumber(phone);
 			const formatPhone = cleanPhone.search(/^\+?63/) != -1 ? cleanPhone.replace(/^\+?63/, "0") : cleanPhone;
 
-			if (!isFirstLogin) {
+			if (!isFirstLogin && isRegistration) {
+				const values = Object.values(regKyc);
+				const keys = Object.keys(regKyc);
+				const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+				if (values.includes("")) {
+					openNotificationWithIcon(
+						"warning",
+						`Required Field`,
+						"Please fill in required fields."
+					);
+				}
+				else if (
+					keys.filter((key) => key == "email" && !emailRegex.test(regKyc[key]))
+						.length !== 0
+				) {
+					openNotificationWithIcon(
+						"warning",
+						`Invalid Value`,
+						"Please provide a valid email address."
+					);
+				}
+				else {
+					setIsSubmitting(true);
+
+					await SendOtpCode(formatPhone);
+
+					setIsSubmitting(false);
+					setIsContinued(true);
+					setShowOtpScreen(true);
+					setotpTimer(120);
+					setOtp(Array(6).fill(""));
+				}
+			}
+			else if (!isFirstLogin && !isRegistration) {
+				setIsSubmitting(true);
+
 				await SendOtp(formatPhone);
 
 				setIsSubmitting(false);
@@ -271,20 +320,64 @@ const LoginComponent = () => {
 	};
 	const handleOtpVerification = async () => {
 		try {
+			const cleanPhone = cleanPhonenumber(phone);
+			const formatPhone = cleanPhone.search(/^\+?63/) != -1 ? cleanPhone.replace(/^\+?63/, "0") : cleanPhone;
 
 			if (otp.includes("")) {
 				return;
 			} else {
+
+				const otpCode = otp.join("").toString();
+
 				if (isRegistration) {
 					console.log('registering...');
+					console.log(regKyc);
 
 					setIsSubmitting(true);
+
+					const kycPayload = {
+						mobileNumber: formatPhone,
+						otpCode,
+						firstName: regKyc.firstName,
+						lastName: regKyc.lastName,
+						middleName: regKyc.middleName,
+						email: regKyc.email
+					}
+
+					const registerKyc = await RegisterKyc(kycPayload);
+
+					const login = await NewUserLogin(registerKyc.data.data);
+					
+					const loginParams = {
+						ckycId: login.ckycId,
+						tier: login.tierLabel
+					}
+					
+					const userAttempt = await CreateLoginAttempt(loginParams);
+					
+					const isSeller = userAttempt.data.data.isSeller;
+					
+					const searchParams = new URLSearchParams(location.search);
+					console.log(searchParams.get('redirect'), location.hash);
+					const falsy = [null, "", "null"];
+					const redirect = searchParams.get('redirect');
+					const hash = location.hash;
+					const hasRedirect = !falsy.includes(redirect) && !falsy.includes(hash);
+					
+					setIsSubmitting(false);
+					if (hasRedirect) {
+						if (isSeller) {
+							window.location.href = `/${redirect}${hash}`;
+						} else {
+							window.location.href = "/login"
+						}
+					}
+					else {
+						window.location.href = '/'
+					}
+
 				} else {
 
-					const otpCode = otp.join("").toString();
-					const cleanPhone = cleanPhonenumber(phone);
-
-					const formatPhone = cleanPhone.search(/^\+?63/) != -1 ? cleanPhone.replace(/^\+?63/, "0") : cleanPhone;
 					setIsSubmitting(true);
 					const validateLogin = await ValidateOtpLogin(formatPhone, otpCode);
 					setIsSubmitting(false);
@@ -374,7 +467,7 @@ const LoginComponent = () => {
 		if (otpTimer == 0) {
 			setResend(true);
 			setIsSubmitting(true);
-			
+
 			await SendOtp(formatPhone);
 			setIsSubmitting(false);
 			setotpTimer(120);
@@ -390,6 +483,16 @@ const LoginComponent = () => {
 			duration: type == "error" ? 4 : 3,
 		});
 	};
+
+	const handleRegChange = (e, name) => {
+		const value = e.target.value;
+		console.log(value);
+
+		setRegKyc((prevState) => ({
+			...prevState,
+			[name]: value,
+		}));
+	}
 
 	return (
 		<>
@@ -566,25 +669,39 @@ const LoginComponent = () => {
 												className="user-det-input"
 												placeholder="First Name"
 												type="text"
+												value={regKyc.firstName}
+												onChange={(e) => handleRegChange(e, "firstName")}
 											/>
 											<input
 												className="user-det-input"
 												placeholder="Middle Name"
 												type="text"
+												value={regKyc.middleName}
+												onChange={(e) => handleRegChange(e, "middleName")}
 											/>
 											<input
 												className="user-det-input"
 												placeholder="Last Name"
 												type="text"
+												value={regKyc.lastName}
+												onChange={(e) => handleRegChange(e, "lastName")}
 											/>
 											<div className="user-det-input">
-												<DatePicker placeholder="Date of Birth" className="birthdate--picker" popupClassName="birthdate--picker-pop-up" />
+												<DatePicker
+													placeholder="Date of Birth"
+													className="birthdate--picker"
+													popupClassName="birthdate--picker-pop-up"
+												// onChange={(e) => handleRegChange(e, "")}
+												// format={}
+												/>
 											</div>
 
 											<input
 												className="user-det-input"
 												placeholder="Email Address"
 												type="email"
+												value={regKyc.email}
+												onChange={(e) => handleRegChange(e, "email")}
 											/>
 										</div>
 										<div className="user-logged-in">
