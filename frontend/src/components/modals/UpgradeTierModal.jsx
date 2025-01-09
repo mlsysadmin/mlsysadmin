@@ -43,7 +43,7 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 						flexDirection: "column",
 					}}
 				>
-					<h3
+					<h4
 						style={{
 							fontWeight: "bold",
 							marginBottom: "20px",
@@ -53,7 +53,7 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 						className="upgrade--title"
 					>
 						Property Listing Guide
-					</h3>
+					</h4>
 					<CloseOutlined
 						onClick={onClose}
 						style={{

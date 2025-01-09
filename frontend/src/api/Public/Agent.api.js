@@ -26,14 +26,16 @@ const AddAgent = async (reqBody) => {
 				headers: response.headers,
 				data: response.data,
 			});
-		}
+	}
   } catch (error) {
     console.error("Error occurred while posting listing:", error);
     console.log("Error details:", {
       message: error.message,
       stack: error.stack,
       response: error.response, })
+	  throw error;
   }
+  
 };
 const GetControlLastNumber = async (idType) => {
     try {

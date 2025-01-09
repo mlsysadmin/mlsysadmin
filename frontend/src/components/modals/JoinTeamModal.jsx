@@ -6,7 +6,7 @@ import {
 	GetProvince,
 } from "../../api/Public/Location.api";
 import OTPModal from "../../components/OTPModal";
-import { Select } from "antd";
+import { DatePicker, Select } from "antd";
 import {
 	AddAgent,
 	GetControlLastNumber,
@@ -15,6 +15,7 @@ import {
 import { notification } from "antd";
 import { useAuth } from "../../Context/AuthContext";
 import PreviewLoadingModal from "./PreviewLoadingModal";
+import dayjs from "dayjs";
 import AgentExistModalMessage from "./AgentExistModalMessage";
 
 const JoinTeam = ({ toggleModal }) => {
@@ -30,6 +31,8 @@ const JoinTeam = ({ toggleModal }) => {
 	const [getCities, setGetCities] = useState([]);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [api, contextHolder] = notification.useNotification();
+
+	const dateFormat = "YYYY/MM/DD";
 
 	const [formData, setFormData] = useState({
 		mobileNumber: "",
@@ -178,6 +181,7 @@ const JoinTeam = ({ toggleModal }) => {
 		Object.keys(formData).forEach((key) => {
 			if (
 				key !== "middleName" &&
+				typeof formData[key] === "string" &&
 				(!formData[key] || formData[key].trim() === "")
 			) {
 				isValid = false;
@@ -214,181 +218,188 @@ const JoinTeam = ({ toggleModal }) => {
 		e.preventDefault();
 		setIsSubmitting(true);
 		try {
-			const existingAgent = await GetAgentByContactNumber(
-				formData.mobileNumber
-			);
-			console.log("number:", formData.mobileNumber);
+			// const existingAgent = await GetAgentByContactNumber(
+			// 	formData.mobileNumber
+			// );
+			// console.log("number:", formData.mobileNumber);
 
-			console.log("existingAgent: ", existingAgent);
+			// console.log("existingAgent: ", existingAgent);
 
-			if (existingAgent !== null && Object.keys(existingAgent).length > 0) {
-				if (existingAgent.RecordStatus !== "rejected") {
-					console.log("Agent already exists: ", existingAgent);
-					
-					setAgentRecordStatus(existingAgent.RecordStatus);
-					setIsSubmitting(false);
-					setShowAgentExistModalMessage(true);
-				} else {
-					const isValid = handleValidation();
-					const getControlLastNumber = await GetControlLastNumber("AgentId");
-					const today = new Date();
-					const yyyyMMdd =
-						today.getFullYear() +
-						"-" +
-						(today.getMonth() + 1) +
-						"-" +
-						today.getDate();
-					console.log("getControlLastNumber: ", getControlLastNumber);
-					if (
-						getControlLastNumber &&
-						isValid &&
-						getControlLastNumber.data !== ""
-					) {
-						const reqBody = {
-							AgentId: getControlLastNumber.data,
-							AgentName: `${formData.lastName}, ${formData.firstName} ${
-								formData.middleName
-							} ${formData.suffix === "None" ? "" : formData.suffix}`,
-							Address: `${formData.address}, ${formData.city}, ${formData.province}, ${formData.country}`,
-							ContactNo: formData.mobileNumber,
-							Email: formData.email,
-							FacebookLink: "-",
-							Designation:
-								formData.brokerQuestion === "others"
-									? othersInputValue
-									: formData.brokerQuestion,
-							TeamId: "-",
-							TeamName: "-",
-							Affiliated: formData.brokerYears,
-							TIN: "-",
-							BirthDate: yyyyMMdd,
-							Sex: "-",
-							HasPanel: "-",
-							IsFeatured: "-",
-							Description: "-",
-							RecordStatus: "pending",
-							PRCID: "-",
-							PRCExpiryDate: yyyyMMdd,
-							ReferredById: "-",
-							ReferredByName: "-",
-							BankName: "-",
-							BankAccountNo: "-",
-						};
-						const addAgent = await AddAgent(reqBody);
-						console.log("addAgent: ", addAgent);
-						setIsSubmitting(false);
+			// if (existingAgent !== null && Object.keys(existingAgent).length > 0) {
+			// 	if (existingAgent.RecordStatus !== "rejected") {
+			// 		console.log("Agent already exists: ", existingAgent);
 
-						if (addAgent) {
-							openNotificationWithIcon(
-								"success",
-								`Successfully submitted`,
-								"Thank you for joining our team! We're excited to review it and will be in touch soon with the next steps."
-							);
-						} else {
-							openNotificationWithIcon(
-								"warning",
-								`Unable to proceed`,
-								"Unable to Submit your Application, Please retry later!."
-							);
-						}
-						console.log("formData: ", formData);
-					} else {
-						setIsSubmitting(false);
-						openNotificationWithIcon(
-							"warning",
-							`Invalid Value`,
-							"Please provide the required fields!."
-						);
-					}
-				}
-			} else {
-				const isValid = handleValidation();
-				const getControlLastNumber = await GetControlLastNumber("AgentId");
-				const today = new Date();
-				const yyyyMMdd =
-					today.getFullYear() +
-					"-" +
-					(today.getMonth() + 1) +
-					"-" +
-					today.getDate();
-				console.log("getControlLastNumber: ", getControlLastNumber);
-				if (
-					getControlLastNumber &&
-					isValid &&
-					getControlLastNumber.data !== ""
-				) {
-					const reqBody = {
-						AgentId: getControlLastNumber.data,
-						AgentName: `${formData.lastName}, ${formData.firstName} ${
-							formData.middleName
-						} ${formData.suffix === "None" ? "" : formData.suffix}`,
-						Address: `${formData.address}, ${formData.city}, ${formData.province}, ${formData.country}`,
-						ContactNo: formData.mobileNumber,
-						Email: formData.email,
-						FacebookLink: "-",
-						Designation:
-							formData.brokerQuestion === "others"
-								? othersInputValue
-								: formData.brokerQuestion,
-						TeamId: "-",
-						TeamName: "-",
-						Affiliated: formData.brokerYears,
-						TIN: "-",
-						BirthDate: yyyyMMdd,
-						Sex: "-",
-						HasPanel: "-",
-						IsFeatured: "-",
-						Description: "-",
-						RecordStatus: "pending",
-						PRCID: "-",
-						PRCExpiryDate: yyyyMMdd,
-						ReferredById: "-",
-						ReferredByName: "-",
-						BankName: "-",
-						BankAccountNo: "-",
-					};
-					const addAgent = await AddAgent(reqBody);
-					console.log("addAgent: ", addAgent);
-					setIsSubmitting(false);
-					resetForm();
+			// 		setAgentRecordStatus(existingAgent.RecordStatus);
+			// 		setIsSubmitting(false);
+			// 		setShowAgentExistModalMessage(true);
+			// 	} else if (existingAgent.RecordStatus === "rejected") {
+			// 		const isValid = handleValidation();
+			// 		const getControlLastNumber = await GetControlLastNumber("AgentId");
+			// 		const today = new Date();
+			// 		const yyyyMMdd =
+			// 			today.getFullYear() +
+			// 			"-" +
+			// 			(today.getMonth() + 1) +
+			// 			"-" +
+			// 			today.getDate();
+			// 		console.log("getControlLastNumber: ", getControlLastNumber);
+			// 		if (
+			// 			getControlLastNumber &&
+			// 			isValid &&
+			// 			getControlLastNumber.data !== ""
+			// 		) {
+			// 			const reqBody = {
+			// 				AgentId: getControlLastNumber.data,
+			// 				AgentName: `${formData.lastName}, ${formData.firstName} ${
+			// 					formData.middleName
+			// 				} ${formData.suffix === "None" ? "" : formData.suffix}`,
+			// 				Address: `${formData.address}, ${formData.city}, ${formData.province}, ${formData.country}`,
+			// 				ContactNo: formData.mobileNumber,
+			// 				Email: formData.email,
+			// 				FacebookLink: "-",
+			// 				Designation:
+			// 					formData.brokerQuestion === "others"
+			// 						? othersInputValue
+			// 						: formData.brokerQuestion,
+			// 				TeamId: "-",
+			// 				TeamName: "-",
+			// 				Affiliated: formData.brokerYears,
+			// 				TIN: "-",
+			// 				BirthDate: yyyyMMdd,
+			// 				Sex: "-",
+			// 				HasPanel: "-",
+			// 				IsFeatured: "-",
+			// 				Description: "-",
+			// 				RecordStatus: "pending",
+			// 				PRCID: "-",
+			// 				PRCExpiryDate: yyyyMMdd,
+			// 				ReferredById: "-",
+			// 				ReferredByName: "-",
+			// 				BankName: "-",
+			// 				BankAccountNo: "-",
+			// 			};
+			// 			const addAgent = await AddAgent(reqBody);
+			// 			console.log("addAgent: ", addAgent);
+			// 			setIsSubmitting(false);
 
-					if (addAgent) {
-						openNotificationWithIcon(
-							"success",
-							`Successfully submitted`,
-							"Thank you for joining our team! We're excited to review it and will be in touch soon with the next steps."
-						);
-						resetForm();
-					} else {
-						openNotificationWithIcon(
-							"warning",
-							`Unable to proceed`,
-							"Unable to Submit your Application, Please retry later!."
-						);
-					}
-					console.log("formData: ", formData);
+			// 			if (addAgent) {
+			// 				openNotificationWithIcon(
+			// 					"success",
+			// 					`Successfully submitted`,
+			// 					"Thank you for joining our team! We're excited to review it and will be in touch soon with the next steps."
+			// 				);
+			// 			} else {
+			// 				openNotificationWithIcon(
+			// 					"warning",
+			// 					`Unable to proceed`,
+			// 					"Unable to Submit your Application, Please retry later!."
+			// 				);
+			// 			}
+			// 			console.log("formData: ", formData);
+			// 		} else {
+			// 			setIsSubmitting(false);
+			// 			openNotificationWithIcon(
+			// 				"warning",
+			// 				`Invalid Value`,
+			// 				"Please provide the required fields!."
+			// 			);
+			// 		}
+			// 	}
+			// 	else{
+			// 		setIsSubmitting(false);
+			// 		console.log("error occured!");
+
+			// 	}
+			// } else {
+			const isValid = handleValidation();
+			const getControlLastNumber = await GetControlLastNumber("AgentId");
+			const today = new Date();
+			const yyyyMMdd =
+				today.getFullYear() +
+				"-" +
+				(today.getMonth() + 1) +
+				"-" +
+				today.getDate();
+			console.log("getControlLastNumber: ", getControlLastNumber);
+			if (getControlLastNumber && isValid && getControlLastNumber.data !== "") {
+				const reqBody = {
+					AgentId: getControlLastNumber.data,
+					AgentName: `${formData.lastName}, ${formData.firstName} ${
+						formData.middleName
+					} ${formData.suffix === "None" ? "" : formData.suffix}`,
+					Address: `${formData.address}, ${formData.city}, ${formData.province}, ${formData.country}`,
+					ContactNo: formData.mobileNumber,
+					Email: formData.email,
+					FacebookLink: "-",
+					Designation:
+						formData.brokerQuestion === "others"
+							? othersInputValue
+							: formData.brokerQuestion,
+					TeamId: "-",
+					TeamName: "-",
+					Affiliated: formData.brokerYears,
+					TIN: "-",
+					BirthDate: yyyyMMdd,
+					Sex: "-",
+					HasPanel: "-",
+					IsFeatured: "-",
+					Description: "-",
+					RecordStatus: "pending",
+					PRCID: "-",
+					PRCExpiryDate: yyyyMMdd,
+					ReferredById: "-",
+					ReferredByName: "-",
+					BankName: "-",
+					BankAccountNo: "-",
+				};
+				const addAgent = await AddAgent(reqBody);
+				console.log("addAgent: ", addAgent);
+				setIsSubmitting(false);
+				resetForm();
+
+				if (addAgent) {
+					openNotificationWithIcon(
+						"success",
+						`Successfully submitted`,
+						"Thank you for joining our team! We're excited to review it and will be in touch soon with the next steps."
+					);
 					resetForm();
 				} else {
-					setIsSubmitting(false);
 					openNotificationWithIcon(
 						"warning",
-						`Invalid Value`,
-						"Please provide the required fields!."
+						`Unable to proceed`,
+						"Unable to Submit your Application, Please retry later!."
 					);
-					
-					
 				}
+				console.log("formData: ", formData);
+				resetForm();
+			} else {
+				setIsSubmitting(false);
+				openNotificationWithIcon(
+					"warning",
+					`Invalid Value`,
+					"Please provide the required fields!."
+				);
 			}
 
 			//   const addAgent = await AddAgent();
 		} catch (error) {
-			console.log("error: ", error);
-         setIsSubmitting(false);
-			openNotificationWithIcon(
-				"error",
-				"Message Failed",
-				"We're sorry, but your application couldn't be submitted. We're already working on resolving the issue. Thank you for your patience!"
-			);
+			console.log("me: ", error);
+			if (error.response.status === 404) {
+				const responsestat = error.response.data.status;
+				if (responsestat === "active" || responsestat === "pending") {
+					setIsSubmitting(false);
+					setAgentRecordStatus(responsestat);
+					setShowAgentExistModalMessage(true);
+				}
+			} else {
+				setIsSubmitting(false);
+				openNotificationWithIcon(
+					"error",
+					"Message Failed",
+					"We're sorry, but your application couldn't be submitted. We're already working on resolving the issue. Thank you for your patience!"
+				);
+			}
 		}
 
 		// const isValid = handleValidation();
@@ -631,30 +642,30 @@ const JoinTeam = ({ toggleModal }) => {
 									<div className="join-team-group">
 										<span>Suffix</span>
 
-										<select
+										<Select
 											id="suffix"
 											className="join-our-team-selector"
 											value={formData.suffix}
 											onChange={
 												(e) =>
 													handleInputChange({
-														target: { name: "suffix", value: e.target.value },
+														target: { name: "suffix", value: e },
 													}) // Corrected here
 											}
 											name="suffix"
 											// onChange={handleAddressChange}
 										>
-											<option value="" disabled selected hidden>
+											<Select.Option value="" disabled selected hidden>
 												Select option
-											</option>
-											<option value="None">None</option>
-											<option value="jr">Jr.</option>
-											<option value="sr">Sr.</option>
-											<option value="I">I</option>
-											<option value="II">II</option>
-											<option value="III">III</option>
-											<option value="IV">IV</option>
-										</select>
+											</Select.Option>
+											<Select.Option value="None">None</Select.Option>
+											<Select.Option value="jr">Jr.</Select.Option>
+											<Select.Option value="sr">Sr.</Select.Option>
+											<Select.Option value="I">I</Select.Option>
+											<Select.Option value="II">II</Select.Option>
+											<Select.Option value="III">III</Select.Option>
+											<Select.Option value="IV">IV</Select.Option>
+										</Select>
 
 										{/* <Select
                     name="suffix"
@@ -722,55 +733,56 @@ const JoinTeam = ({ toggleModal }) => {
                       </Option>
                     ))}
                   </Select> */}
-										<select
+										<Select
 											id="province"
 											className="join-our-team-selector"
 											value={formData.province}
-											onChange={(e) => handleProvinceChange(e.target.value)}
+											onChange={(e) =>
+												handleProvinceChange({ name: "province", value: e })
+											}
 											name="province"
 											// onChange={handleAddressChange}
 										>
-											<option value="" disabled selected hidden>
+											<Select.Option value="" disabled selected hidden>
 												Select Province
-											</option>
+											</Select.Option>
 											{getProvince?.map((province, index) => (
-												<option
+												<Select.Option
 													key={index}
 													style={{ maxHeight: "20px", overflowY: "auto" }}
 													value={pascalTextFormatter(province.name)}
 												>
 													{pascalTextFormatter(province.name)}
-												</option>
+												</Select.Option>
 											))}
-										</select>
+										</Select>
 										{errors.province && (
 											<p className="error">{errors.province}</p>
 										)}
 									</div>
 									<div className="join-team-group">
 										<span>City/Town</span>
-										<select
+										<Select
 											name="city"
 											id="city"
 											className="join-our-team-selector"
 											value={formData.city}
-											onChange={
-												(e) =>
-													handleInputChange({
-														target: { name: "city", value: e.target.value },
-													}) // Corrected here
+											onChange={(e) =>
+												handleInputChange({
+													target: { name: "city", value: e },
+												})
 											}
 										>
-											<option value="" disabled selected hidden>
+											<Select.Option value="" disabled selected hidden>
 												Select City
-											</option>
+											</Select.Option>
 											{filteredCities.map((city, index) => (
-												<option
+												<Select.Option
 													key={index}
 													value={pascalTextFormatter(city.name)}
 												>
 													{pascalTextFormatter(city.name)}
-												</option>
+												</Select.Option>
 											))}
 
 											{/* {filteredCities?.map((city, index) => (
@@ -778,7 +790,7 @@ const JoinTeam = ({ toggleModal }) => {
                         {formatCityLabel(city.name)}
                       </Option>
                     ))} */}
-										</select>
+										</Select>
 
 										{errors.city && <p className="error">{errors.city}</p>}
 									</div>
@@ -823,17 +835,14 @@ const JoinTeam = ({ toggleModal }) => {
 											Broker
 										</label>
 										<label className="other-status">
-											
-												<input
-													type="radio"
-													name="brokerQuestion"
-													value="others"
-													checked={formData.brokerQuestion === "others"}
-													onChange={handleInputChange}
-												/>
-												Others
-										
-
+											<input
+												type="radio"
+												name="brokerQuestion"
+												value="others"
+												checked={formData.brokerQuestion === "others"}
+												onChange={handleInputChange}
+											/>
+											Others
 											{formData.brokerQuestion === "others" && (
 												<div className="join-team-group">
 													<input
@@ -877,13 +886,30 @@ const JoinTeam = ({ toggleModal }) => {
 											: formData.brokerQuestion}
 										?
 									</span>
-									<input
+									<DatePicker
+										name="brokerYears"
+										placeholder="Select Date"
+										value={
+											formData.brokerYears
+												? dayjs(formData.brokerYears, dateFormat)
+												: null
+										}
+										onChange={(date) => {
+											const formattedDate = date
+												? dayjs(date).format(dateFormat)
+												: null;
+											handleInputChange({
+												target: { name: "brokerYears", value: formattedDate },
+											});
+										}}
+									/>
+									{/* <input
 										type="date"
 										name="brokerYears"
 										placeholder="Enter Number"
 										value={formData.brokerYears}
 										onChange={handleInputChange}
-									/>
+									/> */}
 									{errors.brokerYears && (
 										<p className="error">{errors.brokerYears}</p>
 									)}
@@ -893,12 +919,14 @@ const JoinTeam = ({ toggleModal }) => {
 									correct.
 								</span>
 							</div>
-							<button
-								onClick={handleSubmit}
-								className="join-team-submit-button"
-							>
-								Submit Application
-							</button>
+							<div className="button-container-join-team">
+								<button
+									onClick={handleSubmit}
+									className="join-team-submit-button"
+								>
+									Submit Application
+								</button>
+							</div>
 						</div>
 					</div>
 				)}
@@ -1005,30 +1033,30 @@ const JoinTeam = ({ toggleModal }) => {
 							<div className="join-team-page-group">
 								<span>Suffix</span>
 
-								<select
+								<Select
 									id="suffix"
-									className="join-our-team-page-selector"
+									className="join-our-team-selector"
 									value={formData.suffix}
 									onChange={
 										(e) =>
 											handleInputChange({
-												target: { name: "suffix", value: e.target.value },
+												target: { name: "suffix", value: e },
 											}) // Corrected here
 									}
 									name="suffix"
 									// onChange={handleAddressChange}
 								>
-									<option value="" disabled selected hidden>
+									<Select.Option value="" disabled selected hidden>
 										Select option
-									</option>
-									<option value="None">None</option>
-									<option value="jr">Jr.</option>
-									<option value="sr">Sr.</option>
-									<option value="I">I</option>
-									<option value="II">II</option>
-									<option value="III">III</option>
-									<option value="IV">IV</option>
-								</select>
+									</Select.Option>
+									<Select.Option value="None">None</Select.Option>
+									<Select.Option value="jr">Jr.</Select.Option>
+									<Select.Option value="sr">Sr.</Select.Option>
+									<Select.Option value="I">I</Select.Option>
+									<Select.Option value="II">II</Select.Option>
+									<Select.Option value="III">III</Select.Option>
+									<Select.Option value="IV">IV</Select.Option>
+								</Select>
 
 								{/* <Select
                     name="suffix"
@@ -1094,50 +1122,54 @@ const JoinTeam = ({ toggleModal }) => {
                       </Option>
                     ))}
                   </Select> */}
-								<select
+								<Select
 									id="province"
-									className="join-our-team-page-selector"
+									className="join-our-team-selector"
 									value={formData.province}
-									onChange={(e) => handleProvinceChange(e.target.value)}
+									onChange={(e) =>
+										handleProvinceChange({ name: "province", value: e })
+									}
 									name="province"
 									// onChange={handleAddressChange}
 								>
-									<option value="" disabled selected hidden>
+									<Select.Option value="" disabled selected hidden>
 										Select Province
-									</option>
+									</Select.Option>
 									{getProvince?.map((province, index) => (
-										<option
+										<Select.Option
 											key={index}
 											style={{ maxHeight: "20px", overflowY: "auto" }}
 											value={pascalTextFormatter(province.name)}
 										>
 											{pascalTextFormatter(province.name)}
-										</option>
+										</Select.Option>
 									))}
-								</select>
+								</Select>
 								{errors.province && <p className="error">{errors.province}</p>}
 							</div>
 							<div className="join-team-page-group">
 								<span>City/Town</span>
-								<select
+								<Select
 									name="city"
 									id="city"
-									className="join-our-team-page-selector"
+									className="join-our-team-selector"
 									value={formData.city}
-									onChange={
-										(e) =>
-											handleInputChange({
-												target: { name: "city", value: e.target.value },
-											}) // Corrected here
+									onChange={(e) =>
+										handleInputChange({
+											target: { name: "city", value: e },
+										})
 									}
 								>
-									<option value="" disabled selected hidden>
+									<Select.Option value="" disabled selected hidden>
 										Select City
-									</option>
+									</Select.Option>
 									{filteredCities.map((city, index) => (
-										<option key={index} value={pascalTextFormatter(city.name)}>
+										<Select.Option
+											key={index}
+											value={pascalTextFormatter(city.name)}
+										>
 											{pascalTextFormatter(city.name)}
-										</option>
+										</Select.Option>
 									))}
 
 									{/* {filteredCities?.map((city, index) => (
@@ -1145,7 +1177,7 @@ const JoinTeam = ({ toggleModal }) => {
                         {formatCityLabel(city.name)}
                       </Option>
                     ))} */}
-								</select>
+								</Select>
 
 								{errors.city && <p className="error">{errors.city}</p>}
 							</div>
@@ -1187,7 +1219,7 @@ const JoinTeam = ({ toggleModal }) => {
 									/>
 									Broker
 								</label>
-								<label>
+								<label className="other-status">
 									<input
 										type="radio"
 										name="brokerQuestion"
@@ -1207,10 +1239,10 @@ const JoinTeam = ({ toggleModal }) => {
 												onChange={handleInputOthers}
 												onKeyDown={handleKeyDownForLettersAndSymbolsOnly}
 											/>
-											{errors.otherBrokerQuestion && (
-												<p className="error">{errors.otherBrokerQuestion}</p>
-											)}
 										</div>
+									)}
+									{errors.otherBrokerQuestion && (
+										<p className="error">{errors.otherBrokerQuestion}</p>
 									)}
 								</label>
 								{errors.brokerQuestion && (
@@ -1239,12 +1271,22 @@ const JoinTeam = ({ toggleModal }) => {
 									: formData.brokerQuestion}
 								?
 							</span>
-							<input
-								type="date"
+							<DatePicker
 								name="brokerYears"
-								placeholder="Enter Number"
-								value={formData.brokerYears}
-								onChange={handleInputChange}
+								placeholder="Select Date"
+								value={
+									formData.brokerYears
+										? dayjs(formData.brokerYears, dateFormat)
+										: null
+								}
+								onChange={(date) => {
+									const formattedDate = date
+										? dayjs(date).format(dateFormat)
+										: null;
+									handleInputChange({
+										target: { name: "brokerYears", value: formattedDate },
+									});
+								}}
 							/>
 							{errors.brokerYears && (
 								<p className="error">{errors.brokerYears}</p>
