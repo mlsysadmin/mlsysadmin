@@ -308,7 +308,7 @@ module.exports = {
             return await Sequelize.transaction(async (transaction) => {
 
                 const findFeaturesLists = await FeaturesLists.findAll({
-                    attributes: { exclude: ['createdAt', 'updatedAt', 'feature_list_id', 'deletedAt'] },
+                    attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
                     transaction
                 });
 
