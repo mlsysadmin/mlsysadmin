@@ -437,30 +437,31 @@ const JoinTeam = ({ toggleModal }) => {
 		setIsModalVisible(false);
 		resetForm();
 	};
-	const handleProvinceChange = (province) => {
-		setFormData((prevFormData) => ({
-			...prevFormData,
-			province: province,
-		}));
-		console.log("Selected Province:", province);
+	const handleProvinceChange = (provinceName) => {
+		setSelectedProvince(provinceName);
+
+		const normalizedProvince = provinceName.toLowerCase(); // Now it's a string
 
 		const provinceData = getProvince.find(
-			(p) =>
-				p.name.charAt(0).toUpperCase() + p.name.slice(1).toLowerCase() ===
-				province
+			(p) => p.name.toLowerCase() === normalizedProvince
 		);
 		if (provinceData) {
 			const provinceId = provinceData.addressL1Id;
 			const filtered = getCities.filter((city) => {
-				// console.log("Checking city:", city.name);
-				return city.addressL1Id === provinceId;
+				return city.addressL1Id === provinceId; // Filter cities based on the addressL1Id
 			});
-			// console.log("Filtered cities:", filtered);
 			setFilteredCities(filtered);
 		} else {
 			setFilteredCities([]);
 		}
 	};
+	useEffect(() => {
+		setFormData((prevFormData) => ({
+			...prevFormData,
+			province: selectedProvince,
+		}));
+	}, [selectedProvince]);
+
 	const handleKeyDownForLettersAndSymbolsOnly = (e) => {
 		const validInputPattern =
 			/^[A-Za-z\s!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
@@ -498,7 +499,6 @@ const JoinTeam = ({ toggleModal }) => {
 	const Modal = ({ isVisible, onClose }) => {
 		if (!isVisible) return null;
 	};
-	useEffect(() => {}, [isAuthenticated]);
 
 	if (!isAuthenticated) {
 		return (
@@ -737,10 +737,9 @@ const JoinTeam = ({ toggleModal }) => {
 											id="province"
 											className="join-our-team-selector"
 											value={formData.province}
-											onChange={(e) =>
-												handleProvinceChange({ name: "province", value: e })
-											}
+											onChange={(value) => handleProvinceChange(value)}
 											name="province"
+
 											// onChange={handleAddressChange}
 										>
 											<Select.Option value="" disabled selected hidden>
@@ -756,6 +755,7 @@ const JoinTeam = ({ toggleModal }) => {
 												</Select.Option>
 											))}
 										</Select>
+
 										{errors.province && (
 											<p className="error">{errors.province}</p>
 										)}
@@ -931,6 +931,13 @@ const JoinTeam = ({ toggleModal }) => {
 					</div>
 				)}
 				{isSubmitting && <PreviewLoadingModal />}
+				{showAgentExistModalMessage && (
+					<AgentExistModalMessage
+						setShowLoginMessage={setShowAgentExistModalMessage}
+						agentRecordStatus={agentRecordStatus}
+						resetForm={resetForm}
+					/>
+				)}
 			</div>
 		);
 	}
@@ -1126,10 +1133,9 @@ const JoinTeam = ({ toggleModal }) => {
 									id="province"
 									className="join-our-team-selector"
 									value={formData.province}
-									onChange={(e) =>
-										handleProvinceChange({ name: "province", value: e })
-									}
+									onChange={(value) => handleProvinceChange(value)}
 									name="province"
+
 									// onChange={handleAddressChange}
 								>
 									<Select.Option value="" disabled selected hidden>
