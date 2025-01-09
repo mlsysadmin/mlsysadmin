@@ -98,7 +98,7 @@
 #card-listing .ant-card-body .listing-image .image-tag {
 	display: flex;
 	align-items: center;
-	color: var(--red);
+	color: black;
 	gap: 2px;
 }
 
