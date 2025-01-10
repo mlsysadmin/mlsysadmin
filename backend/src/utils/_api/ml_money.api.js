@@ -11,8 +11,7 @@ module.exports = {
 
             const {
                 mobileNumber, otpCode, firstName, lastName, middleName,
-                suffix, email, addressL0Id, addressL1Id, addressL2Id,
-                otherAddress, zipCode
+                email, addressL0Id
             } = user;
 
             const config = {
@@ -28,17 +27,11 @@ module.exports = {
                 firstName,
                 lastName,
                 middleName, // optional
-                suffix, // optional
                 email,
                 address: {
-                    addressL0Id,
-                    addressL1Id,
-                    addressL2Id,
-                    otherAddress, // optional
-                    zipCode, // optional
+                    addressL0Id
                 }
             }
-
 
             const register_ckyc = await ML_MONEY_API.post(endpoint, postData, config);
 

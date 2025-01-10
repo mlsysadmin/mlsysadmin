@@ -20,6 +20,20 @@ const CalculatorWidgetModal = ({ closeWidgetCalc }) => {
 		}
 		return value.toLocaleString();
 	};
+
+	const handleDpInputChange = (e) => {
+		const inputValue = e.target.value.replace(/PHP\s*/i, "").replace(/,/g, "");
+		if (!isNaN(inputValue)) {
+			setDpHomePriceRange(parseInt(inputValue, 10) || 0);
+		}
+	};
+	const handleHomePriceInputChange = (e) => {
+		const inputValue = e.target.value.replace(/PHP\s*/i, "").replace(/,/g, "");
+		if (!isNaN(inputValue)) {
+			setHomePriceRange(parseInt(inputValue, 10) || 0);
+		}
+	};
+
 	const computeMortgage = () => {
 		const principalAmnt = HomepriceRange - DppriceRange;
 		const totalNumberOfMonths = yearFixed * 12;
@@ -94,11 +108,25 @@ const CalculatorWidgetModal = ({ closeWidgetCalc }) => {
 			<div className="calculator-widget-form">
 				<div className="form-widget-container">
 					<div className="form-widget">
-						<label>Home Price &nbsp;</label>
-						<span className="amount-value">
-							<b>PHP</b>{" "}
-							{HomepriceRange ? HomepriceRange.toLocaleString() : "0"}{" "}
-						</span>
+						<div className="info-widget">
+							<label>Home Price &nbsp;</label>
+							<div className="hp-widget-value">
+								<input
+									type="text"
+									value={`PHP ${
+										HomepriceRange ? HomepriceRange.toLocaleString() : "0"
+									}`}
+									onChange={handleHomePriceInputChange}
+									style={{
+										fontSize: "15px",
+										borderStyle: "none !important",
+										paddingLeft: "5px",
+										backgroundColor: "transparent",
+									}}
+								/>
+							</div>
+						</div>
+
 						{/* <input
 							type="text"
 							value={HomepriceRange ? HomepriceRange.toLocaleString() : "0"}
@@ -110,6 +138,7 @@ const CalculatorWidgetModal = ({ closeWidgetCalc }) => {
 								backgroundColor: "transparent",
 							}}
 						/> */}
+
 						<Slider
 							range
 							min={100000}
@@ -124,12 +153,23 @@ const CalculatorWidgetModal = ({ closeWidgetCalc }) => {
 
 					<div className="form-widget">
 						<div className="downpayment-amount">
-							<div className="downpayment-amount-val">
+							<div className="info-widget-downpayment">
 								<label>Downpayment &nbsp;</label>
-								<span className="amount-value">
-									<b>Php</b>
-									{DppriceRange ? DppriceRange.toLocaleString() : "0"}
-								</span>
+								<div className="hp-widget-value">
+									<input
+										type="text"
+										value={`PHP ${
+											DppriceRange ? DppriceRange.toLocaleString() : "0"
+										}`}
+										onChange={handleDpInputChange}
+										style={{
+											fontSize: "15px",
+											border: "none !important",
+											paddingLeft: "5px",
+											backgroundColor: "transparent",
+										}}
+									/>
+								</div>
 							</div>
 							<Slider
 								range

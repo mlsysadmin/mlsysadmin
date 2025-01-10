@@ -1,6 +1,10 @@
 .calculator-widget-form {
 	padding: 20px 10px;
 }
+
+.form-widget .ant-slider-horizontal .ant-slider-rail {
+	height: 10px !important;
+}
 .form-widget-container {
 	display: flex;
 	flex-direction: column;
@@ -40,6 +44,30 @@
 	padding: 10px;
 	border-radius: 10px;
 	font-weight: bold;
+	font-size: 14px !important;
+}
+.info-widget {
+	display: grid;
+	grid-template-columns: 40% 60%;
+	width: 100%;
+	height: 20px;
+}
+.info-widget-downpayment {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	width: 100%;
+	height: 20px;
+}
+.info-widget label {
+	width: 100%;
+}
+.hp-widget-value {
+	align-items: center;
+	text-align: center;
+}
+.hp-widget-value input {
+	width: 100%;
+	border: none !important;
 }
 .widget-payment-container {
 	padding-top: 10px;
@@ -50,6 +78,8 @@
 	color: var(--red) !important;
 	outline: 0px solid transparent;
 	box-shadow: 0 0 0 2px var(--red);
+	width: 13px;
+	height: 13px;
 }
 .contact--form-group {
 	padding-top: 10px;
@@ -72,15 +102,14 @@
 }
 .contact-us-widget-container {
 	display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
+	flex-direction: column;
+	width: 100%;
+	gap: 10px;
 }
-.contact-us-form{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
+.contact-us-form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 @media screen and (max-width: 768px) {
@@ -99,5 +128,8 @@
 		transform: translateX(-50%);
 		width: 90%;
 		left: 50%;
+	}
+	.upgrade--title{
+font-size: 18px !important;
 	}
 }
