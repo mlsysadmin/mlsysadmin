@@ -540,11 +540,11 @@ const JoinTeam = ({ toggleModal }) => {
 								backgroundColor: "white",
 								borderRadius: "20px",
 								width: "auto",
-								maxHeight: "90vh",
+								height: "80vh",
 								display: "flex",
-								padding: "20px 30px",
+								padding: "20px 30px 10px 30px",
 								flexDirection: "column",
-								margin: "20px 0px",
+								margin: "0px 0px",
 								overflowY: "auto",
 							}}
 						>
