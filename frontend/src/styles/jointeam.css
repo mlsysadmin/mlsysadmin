@@ -68,7 +68,7 @@
 .join-team-group .ant-select-single {
 	height: 40px;
 	padding: 0px !important;
-	font-size: var(--d-body-text);
+	font-size: var(--d-body-text) !important;
 	border: 1px solid var(--mute-gray) !important;
 	border-radius: 5px !important;
 	outline: none !important;
@@ -1727,6 +1727,7 @@ input[type="file"] {
 		padding: 10px;
 		border-radius: 5px;
 		color: var(--mute-gray);
+		width: 93% !important;
 	}
 
 	.join-team-column-group {
@@ -1744,6 +1745,7 @@ input[type="file"] {
 		padding: 10px;
 		border-radius: 5px;
 		color: #8c9094;
+		width: 93% !important;
 	}
 
 	.join-team-group .ant-select {
@@ -1752,6 +1754,8 @@ input[type="file"] {
 		padding: 10px;
 		border-radius: 5px;
 		color: var(--mute-gray);
+		width: 100%;
+       
 	}
 
 	.verification-section {

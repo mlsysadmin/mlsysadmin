@@ -91,7 +91,7 @@ const LoginComponent = () => {
 		const isNumeric = /^\d+$/.test(numberWithoutCountryCode);
 
 		if (!isNumeric || numberWithoutCountryCode.length !== expectedLength) {
-			setErrorMessage(`Please enter a valid phone number.`);
+			setErrorMessage(`Please enter a valid number.`);
 			setIsValidPhone(false);
 		} else {
 			const formattedPhone = sanitizedNumber.replace("63", "0");
@@ -501,7 +501,10 @@ const LoginComponent = () => {
 				<div className="login-content-container">
 					<div className="login-content">
 						<div className="gen-content-login">
-							<div className="logo-area" onClick={() => window.location.href = "/"}>
+							<div
+								className="logo-area"
+								onClick={() => (window.location.href = "/")}
+							>
 								<img src={BrokerageLogo} alt="ML Brokerage Logo" />
 							</div>
 							{isContinued ? (
@@ -543,10 +546,14 @@ const LoginComponent = () => {
 												<span onClick={handleResendOtp}>
 													<span
 														style={{
-															color: `${otpTimer == 0 ? 'var(--red)' : ''}`,
-															fontWeight: '500',
-															cursor: `${otpTimer == 0 ? 'pointer' : ''}`,
-														}}>Resend OTP</span>  {Math.floor(otpTimer / 60)}:
+															color: `${otpTimer == 0 ? "var(--red)" : ""}`,
+															fontWeight: "500",
+															cursor: `${otpTimer == 0 ? "pointer" : ""}`,
+														}}
+													>
+														Resend OTP
+													</span>{" "}
+													{Math.floor(otpTimer / 60)}:
 													{(otpTimer % 60).toString().padStart(2, "0")}
 												</span>
 											</p>
@@ -565,7 +572,8 @@ const LoginComponent = () => {
 														<b>{maskUserDetails(userDetails.name.firstName)}</b>
 													</li>
 													<li className="user-details-label">
-														Middle Initial : <b>{userDetails.name.middleName}</b>
+														Middle Initial :{" "}
+														<b>{userDetails.name.middleName}</b>
 													</li>
 													<li className="user-details-label">
 														Last Name :{" "}
@@ -579,7 +587,9 @@ const LoginComponent = () => {
 											</div>
 										</div>
 										<div className="sub-groups-userdetails">
-											<span>Is this you? Continue with your date of birth:</span>
+											<span>
+												Is this you? Continue with your date of birth:
+											</span>
 											<div className="user-action-group-login">
 												<div className="bdate-with-error">
 													<div className="sub-groups-user-bdate">
@@ -610,13 +620,14 @@ const LoginComponent = () => {
 																onChange={handleDateNumberChange}
 																value={isDateNumber}
 															>
-																{Array.from({ length: 31 }, (_, i) => i + 1).map(
-																	(day) => (
-																		<Option key={day} value={day}>
-																			{day}
-																		</Option>
-																	)
-																)}
+																{Array.from(
+																	{ length: 31 },
+																	(_, i) => i + 1
+																).map((day) => (
+																	<Option key={day} value={day}>
+																		{day}
+																	</Option>
+																))}
 															</Select>
 														</div>
 														<div className="user-bdate-year">
@@ -628,18 +639,26 @@ const LoginComponent = () => {
 																{Array.from(
 																	{ length: currentYear - 1905 + 1 },
 																	(_, i) => 1905 + i
-																).sort((y, i) => SortByText(y, y)).map((year) => (
-																	<Option key={year} value={year}>
-																		{year}
-																	</Option>
-																))}
+																)
+																	.sort((y, i) => SortByText(y, y))
+																	.map((year) => (
+																		<Option key={year} value={year}>
+																			{year}
+																		</Option>
+																	))}
 															</Select>
 														</div>
 													</div>
 													{birthdateError && (
-														<p style={{ color: "red", marginTop: "8px", fontSize: "12px", textAlign: "center" }}>
-															Birthdate does not match with the existing
-															data.
+														<p
+															style={{
+																color: "red",
+																marginTop: "8px",
+																fontSize: "12px",
+																textAlign: "center",
+															}}
+														>
+															Birthdate does not match with the existing data.
 														</p>
 													)}
 												</div>
@@ -691,8 +710,8 @@ const LoginComponent = () => {
 													placeholder="Date of Birth"
 													className="birthdate--picker"
 													popupClassName="birthdate--picker-pop-up"
-												// onChange={(e) => handleRegChange(e, "")}
-												// format={}
+													// onChange={(e) => handleRegChange(e, "")}
+													// format={}
 												/>
 											</div>
 
@@ -742,7 +761,7 @@ const LoginComponent = () => {
 												<p
 													style={{
 														color: "red",
-														fontSize: "0.9rem",
+														fontSize:"calc(var(--d-body-text) - 1px);",
 														marginTop: "5px",
 													}}
 												>

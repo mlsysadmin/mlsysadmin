@@ -213,9 +213,13 @@
 	padding: 10px 20px;
 	cursor: pointer;
 	font-size: var(--d-body-text);
-	border-radius: var(--radius);
+	border-radius: var(--radius) !important;
+	
 	/* width: 120px; */
 
+}
+.login-slider #back-login-button{
+color: var(--font-color) !important;
 }
 .user-action-group-login {
 	display: flex;
