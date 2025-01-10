@@ -898,10 +898,10 @@ background-color: var(--red) !important;
 
 	.ant-tooltip .ant-tooltip-inner {
 		font-size: 12px;
-		width: 80px;
+		/* width: 80px;
 		padding: 0px;
 		text-align: center;
-		align-content: center;
+		align-content: center; */
 	}
 	.success-modal-content-body .success-details p{
 		font-size: var(--m-body-text);
