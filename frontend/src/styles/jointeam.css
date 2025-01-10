@@ -516,6 +516,7 @@ input[type="file"] {
 	display: flex;
 	font-size: var(--d-body-text);
 	font-weight: bold;
+	margin-right: 55px;
 }
 
 .join-our-team-page-selector,
@@ -607,6 +608,7 @@ input[type="file"] {
 		width: 220px;
 		display: flex;
 		font-size: 16px;
+		margin-right: 0px;
 	}
 }
 
@@ -673,6 +675,7 @@ input[type="file"] {
 		width: 260px;
 		display: flex;
 		font-size: 16px;
+		margin-right: 0px;
 	}
 }
 
@@ -1058,6 +1061,7 @@ input[type="file"] {
 		width: 260px;
 		display: flex;
 		font-size: 16px;
+		margin-right: 0px;
 	}
 
 	.join-page-container {
@@ -1211,6 +1215,7 @@ input[type="file"] {
 		width: 260px;
 		display: flex;
 		font-size: 16px;
+		margin-right: 0px;
 	}
 	.join-page-container {
 		padding: 0;
@@ -1369,6 +1374,7 @@ input[type="file"] {
 		width: 260px;
 		display: flex;
 		font-size: 16px;
+		margin-right: 0px;
 	}
 	.join-page-container {
 		padding: 0;
@@ -1528,6 +1534,7 @@ input[type="file"] {
 		width: 260px;
 		display: flex;
 		font-size: 16px;
+		margin-right: 0px;
 	}
 }
 
@@ -1684,6 +1691,7 @@ input[type="file"] {
 		width: 260px;
 		display: flex;
 		font-size: 16px;
+		margin-right: 0px;
 	}
 }
 
@@ -1825,6 +1833,7 @@ input[type="file"] {
 		width: 260px;
 		display: flex;
 		font-size: 16px;
+		margin-right: 0px;
 	}
 }
 
@@ -1934,6 +1943,7 @@ input[type="file"] {
 		width: 220px;
 		display: flex;
 		font-size: 16px;
+		margin-right: 0px;
 	}
 
 	.page-content-jointeam {
@@ -2028,6 +2038,7 @@ input[type="file"] {
 		width: 220px;
 		display: flex;
 		font-size: 16px;
+		margin-right: 0px;
 	}
 	.modal-content-jointeam {
 		margin: 0px 10px !important;
@@ -2214,6 +2225,7 @@ input[type="file"] {
 		width: 220px;
 		display: flex;
 		font-size: 16px;
+		margin-right: 0px;
 	}
 }
 
@@ -2335,6 +2347,7 @@ input[type="file"] {
 		justify-content: center;
 		width: 250px;
 		font-size: var(--m-body-text);
+		margin-right: 0px;
 	}
 	.join__submit-btn--wrapper {
 		margin-top: 0px;
@@ -2399,5 +2412,11 @@ input[type="file"] {
 		height: 40px !important;
 		border-color: 1px solid var(--mute-gray) !important;
 		width: 100%;
+	}
+	.modal-header .close-modal{
+		margin-top:0px !important;
+	}
+	.modal-overlay-jointeam .modal-header{
+		align-items: flex-start !important;
 	}
 }

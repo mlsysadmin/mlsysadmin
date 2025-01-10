@@ -44,6 +44,7 @@
 	padding: 10px;
 	border-radius: 10px;
 	font-weight: bold;
+	font-size: 14px !important;
 }
 .info-widget {
 	display: grid;
@@ -127,5 +128,8 @@
 		transform: translateX(-50%);
 		width: 90%;
 		left: 50%;
+	}
+	.upgrade--title{
+font-size: 18px !important;
 	}
 }
