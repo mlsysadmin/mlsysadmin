@@ -16,7 +16,12 @@
 	margin-top: 20px;
 
 }
-
+@media screen and (min-width: 320px) and (max-width: 899px){
+	.create__details{
+		display: grid;
+		grid-template-columns: 1fr !important;
+	}
+}
 .skeleton--card-listing .skeleton--card-img {
 	height: calc(var(--image-height)) !important;
 	width: 100%;
@@ -128,7 +133,7 @@
 
 .create__details {
 	display: grid;
-	grid-template-columns: auto;
+	grid-template-columns: 1fr 3fr;
 	gap: 20px;
 }
 
