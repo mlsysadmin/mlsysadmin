@@ -76,7 +76,6 @@
 .listing-carousel-skeleton-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  width: var(--default-page-size);
   gap: 25px;
 }
 
@@ -87,7 +86,6 @@
   align-items: center;
   /* margin: auto; */
   padding: 0px 30px;
-  height: -webkit-fill-available;
   gap: 15px;
 }
 
@@ -396,6 +394,7 @@
   padding: 70px 20px 0px 20px;
   /* padding: 20px 20px; */
   background-color: #f7f7f7;
+  width: 90%;
 }
 
 .dashboard .discover .discover--section-2 h3 {
@@ -1173,7 +1172,13 @@
     width: 100%;
   }
 }
-
+@media screen and (max-width: 1221px) {
+  .listing-carousel-skeleton-cards {
+    display: grid;
+    grid-template-columns: 2fr;
+    gap: 25px;
+  }
+}
 @media screen and (min-width: 602px) {
   .dashboard .card-content-container-dashboard {
     display: grid;
@@ -1183,7 +1188,7 @@
   }
   .react-multi-carousel-track {
     gap: 20px;
-	height: 365px;
+    height: 365px;
   }
   .react-multiple-carousel__arrow--left {
     left: calc(1% + 1px);
@@ -1206,6 +1211,7 @@
     flex-direction: column;
     align-items: center;
     padding: 0px 10px;
+    width: 90%;
   }
   .manual-searching-title {
     text-align: center;
