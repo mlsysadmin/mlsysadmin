@@ -648,21 +648,33 @@ const RefinanceComponent = () => {
           <div className="refinance-details-group-one">
             <h4>Details</h4>
             <span>What is your current employment status?</span>
-            <div className="ref-btn-group">
-              {["Employed", "Self-employed", "Retired", "Not employed"].map(
-                (status, index) => (
-                  <button
-                    key={index}
-                    className={`ref-prop-btn ${
-                      empStatus === status ? "active" : `${status}`
-                    }`}
-                    onClick={() => handleEmploymentStatus(status)}
-                    disabled={!isLoanComplete}
-                  >
-                    {status}
-                  </button>
-                )
-              )}
+            <div className="ref-btn-group" style={{ margin: "0px" }}>
+              {["Employed", "Self-employed"].map((status, index) => (
+                <button
+                  key={index}
+                  className={`ref-prop-btn ${
+                    empStatus === status ? "active" : `${status}`
+                  }`}
+                  onClick={() => handleEmploymentStatus(status)}
+                  disabled={!isLoanComplete}
+                >
+                  {status}
+                </button>
+              ))}
+            </div>
+            <div className="ref-btn-group" style={{ margin: "0px" }}>
+              {["Retired", "Not employed"].map((status, index) => (
+                <button
+                  key={index}
+                  className={`ref-prop-btn ${
+                    empStatus === status ? "active" : `${status}`
+                  }`}
+                  onClick={() => handleEmploymentStatus(status)}
+                  disabled={!isLoanComplete}
+                >
+                  {status}
+                </button>
+              ))}
             </div>
           </div>
           <div className="refinance-details-group-two">
@@ -746,7 +758,7 @@ const RefinanceComponent = () => {
           </div>
           <div className="refinance-details-group-six">
             <span>Where are you looking to buy?</span>
-            <p style={{ marginBottom: "10px"}}>
+            <p style={{ marginBottom: "10px" }}>
               Enter the city or zip code of the area where you are home shopping
             </p>
             <div className="ref-btn-group-input">
