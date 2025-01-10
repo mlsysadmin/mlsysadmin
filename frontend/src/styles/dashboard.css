@@ -70,9 +70,11 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	padding-top: 175px;
 	/* margin: auto; */
-	padding: 0px 30px;
-	height: -webkit-fill-available;
+	/* padding: 30px 30px; */
+	/* 
+	 */
 	gap: 15px;
 }
 
