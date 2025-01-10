@@ -115,7 +115,7 @@
 	}
 
 	.rentContainer .rent-h1 {
-		font-size: var(--m-h2-text) !important;
+		font-size: var(--m-h4-text) !important;
 		width: 100% !important;
 	}
 	.rent-h1.breadcrumb--search {

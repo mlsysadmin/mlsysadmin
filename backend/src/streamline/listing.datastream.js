@@ -5,6 +5,7 @@ const Sequelize = require('../config/_db/mlbrokerage.db');
 const { FeaturesLists, PropertyTypes, ListingTypes, UnitDetails, Location, CustomAmenities, CustomInclusions, Amenities, PropertyPhoto, PropertyListing, MasterPropertyList, Approvals, Approvers, User, Role, Highlight, Save } = require('../models/main.model');
 const DataResponseHandler = require('../utils/_helper/DataResponseHandler.helper');
 const Prefix = require('../models/Prefix');
+const FeaturesList = require('../models/FeaturesList');
 
 module.exports = {
     // CREATE
@@ -307,7 +308,7 @@ module.exports = {
             return await Sequelize.transaction(async (transaction) => {
 
                 const findFeaturesLists = await FeaturesLists.findAll({
-                    attributes: { exclude: ['createdAt', 'updatedAt', 'feature_list_id', 'deletedAt'] },
+                    attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
                     transaction
                 });
 
@@ -864,7 +865,7 @@ module.exports = {
                 where: {
                     ...fields_params
                 },
-                
+
                 transaction,
             })
 
@@ -886,7 +887,7 @@ module.exports = {
                 where: {
                     ...fields_params
                 },
-                
+
                 transaction,
             })
 
@@ -896,7 +897,7 @@ module.exports = {
             throw error
         }
     },
-    
+
 
 
     // PUBLIC
@@ -1233,5 +1234,104 @@ module.exports = {
         } catch (error) {
             throw error;
         }
-    }
+    },
+    CreateFeatures: async (features, transaction) => {
+        try {
+
+            const add_features = await FeaturesList.bulkCreate(
+                features,
+                { transaction }
+
+            );
+
+            console.log("add_features", add_features);
+
+            return add_features;
+
+        } catch (error) {
+            throw error
+        }
+    },
+    FindCompareFeatureLists: async (features, transaction) => {
+        try {
+
+            const findFeaturesLists = await FeaturesLists.findAll({
+                where: {
+                    feature_name: {
+                        [Op.in]: features.map((item) => item.feature_name),
+                    },
+                },
+                transaction
+            });
+
+            return findFeaturesLists;
+
+        } catch (error) {
+            throw error
+        }
+    },
+    UpdateFeature: async (feature, transaction) => {
+        try {
+
+            const updateFeature = await FeaturesLists.update(
+                { feature_name: feature.feature_name },
+                {
+                    where: { 
+                        feature_list_id: feature.feature_id 
+                    },
+                    transaction
+                }
+            );
+            if (updateFeature[0]) {
+                return {
+                    status: true,
+                    message: "Feature updated successfully",
+                    feature_id: feature.feature_id,
+                };
+            }else{
+
+                return {
+                    status: false,
+                    message: "Feature failed to update",
+                    feature_id: feature.feature_id,
+                };
+            }
+            
+
+        } catch (error) {
+            throw error
+        }
+    },
+    DestroyFeature: async (feature, transaction) => {
+        try {
+
+            const deleteFeature = await FeaturesLists.destroy(
+                {
+                    where: { 
+                        feature_list_id: feature.feature_id 
+                    },
+                    transaction
+                }
+            );
+            
+            if (deleteFeature) { // 1
+                return {
+                    status: true,
+                    message: "Feature deleted successfully",
+                    feature_id: feature.feature_id,
+                };
+            }else{
+
+                return {
+                    status: false,
+                    message: "Deletion failed. The ID either doesn't exist or has already been removed.",
+                    feature_id: feature.feature_id,
+                };
+            }
+            
+
+        } catch (error) {
+            throw error
+        }
+    },
 }

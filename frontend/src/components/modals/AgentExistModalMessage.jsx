@@ -12,17 +12,23 @@ const AgentExistModalMessage = ({
 		resetForm();
 	};
 	return (
-		<div className="login-message-modal-overlay">
+		<div className="login-message-modal-overlay" style={{ zIndex: 99999 }}>
 			<div className="login-card-message-modal-content">
 				<img src={mllogo} alt="Ml Brokerage Logo"></img>
 				<div className="login-message-phrase">
 					{agentRecordStatus === "pending" ? (
 						<>
-							<h4 style={{ color: "var(--red)" }}>
+							<span
+								style={{
+									color: "var(--red)",
+									fontWeight: "bold",
+									fontSize: "20px",
+								}}
+							>
 								Account Approval in Progress
-							</h4>
+							</span>
 							<br />
-							<p>
+							<p style={{ lineHeight: "20px" }}>
 								Your account is currently under review. Our team is working to
 								verify your details, and we will notify you as soon as your
 								account is approved. We appreciate your patience!
@@ -30,9 +36,17 @@ const AgentExistModalMessage = ({
 						</>
 					) : (
 						<>
-							<h4 style={{ color: "#06402B" }}>You’re Already an Agent!</h4>
-							<br />
-							<p>
+							<span
+								style={{
+									color: "#06402B",
+									fontWeight: "bold",
+									fontSize: "20px",
+								}}
+							>
+								You’re Already an Agent!
+							</span>
+
+							<p style={{ lineHeight: "20px" }}>
 								It looks like you’re already registered as an agent. You can now
 								manage your properties, connect with clients, and stay on top of
 								your listings.

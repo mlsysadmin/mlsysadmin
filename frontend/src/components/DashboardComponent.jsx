@@ -91,17 +91,27 @@ const DashboardComponent = () => {
   const responsive = {
     desktop: {
       breakpoint: { max: 5000, min: 1025 },
-      items: 2,
+      items: 3,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 3,
+      items: 2,
     },
     mobile: {
       breakpoint: { max: 463, min: 0 },
       items: 1,
     },
   };
+  const handleShowNav = () => {
+    const screen_width = window.screen.width;
+
+    setWhatIsScreenSize(screen_width);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleShowNav);
+
+    // return () => window.addEventListener("resize", handleShowNav);
+  }, [handleShowNav]);
   const [publiclisting, setPublicListing] = useState([
     {
       id: 0,
@@ -677,13 +687,59 @@ const DashboardComponent = () => {
             </div>
           </div>
         </Row>
-        {!true ? (
+        {!loading ? (
           publiclisting.length > 0 && (
             <div className="listing-carousel-dashboard">
               <div className="card-content-container-dashboard">
-                {whatIsScreenSize < 1024 ? (
-                  publiclisting.map((item, i) => {
-                    return (
+                {whatIsScreenSize < 601 ? (
+                  publiclisting.map((item, i) => (
+                    <CardListingComponent
+                      title={item.title}
+                      price={item.price}
+                      status={item.status}
+                      pics={item.pics}
+                      img={item.img}
+                      no_of_bathrooms={item.no_of_bathrooms}
+                      no_of_beds={item.no_of_beds}
+                      lot={item.lot}
+                      key={i}
+                      loading={loading}
+                      subtitle={`${
+                        item.property_type === "hotel/resort"
+                          ? CapitalizeStringwithSymbol(item.property_type)
+                          : CapitalizeEachWord(item.property_type)
+                      } For ${CapitalizeString(item.sale_type)}`}
+                      listingId={item.property_no}
+                      handleClick={() => handleCardClick(item.property_no)}
+                      sale_status={item.sale_type}
+                      propertyNo={item.property_no}
+                      number={number}
+                      isSavedProperties={{
+                        atSavedPropertiesPage: false,
+                        isRecordStatus: item.recordStatus,
+                        isAccessType: item.accessType,
+                      }}
+                      handleShowLoginModalMessage={handleShowLoginModal}
+                    />
+                  ))
+                ) : (
+                  <Carousel
+                    swipeable={true}
+                    draggable={false}
+                    showDots={false}
+                    responsive={responsive}
+                    ssr={true} // means to render carousel on server-side.
+                    infinite={true}
+                    keyBoardControl={true}
+                    customTransition="transform 300ms ease-in-out"
+                    transitionDuration={300}
+                    containerClass="carousel-container"
+                    dotListClass="custom-dot-list-style"
+                    itemClass="carousel-item-padding-40-px"
+                    centerMode
+                    autoPlay
+                  >
+                    {publiclisting.map((item, i) => (
                       <CardListingComponent
                         title={item.title}
                         price={item.price}
@@ -712,57 +768,7 @@ const DashboardComponent = () => {
                         }}
                         handleShowLoginModalMessage={handleShowLoginModal}
                       />
-                    );
-                  })
-                ) : (
-                  <Carousel
-                    swipeable={true}
-                    draggable={false}
-                    showDots={false}
-                    responsive={responsive}
-                    ssr={true} // means to render carousel on server-side.
-                    infinite={true}
-                    keyBoardControl={true}
-                    customTransition="transform 300ms ease-in-out"
-                    transitionDuration={300}
-                    containerClass="carousel-container"
-                    dotListClass="custom-dot-list-style"
-                    itemClass="carousel-item-padding-40-px"
-                    centerMode
-                    autoPlay
-                  >
-                    {publiclisting.map((item, i) => {
-                      return (
-                        <CardListingComponent
-                          title={item.title}
-                          price={item.price}
-                          status={item.status}
-                          pics={item.pics}
-                          img={item.img}
-                          no_of_bathrooms={item.no_of_bathrooms}
-                          no_of_beds={item.no_of_beds}
-                          lot={item.lot}
-                          key={i}
-                          loading={loading}
-                          subtitle={`${
-                            item.property_type === "hotel/resort"
-                              ? CapitalizeStringwithSymbol(item.property_type)
-                              : CapitalizeEachWord(item.property_type)
-                          } For ${CapitalizeString(item.sale_type)}`}
-                          listingId={item.property_no}
-                          handleClick={() => handleCardClick(item.property_no)}
-                          sale_status={item.sale_type}
-                          propertyNo={item.property_no}
-                          number={number}
-                          isSavedProperties={{
-                            atSavedPropertiesPage: false,
-                            isRecordStatus: item.recordStatus,
-                            isAccessType: item.accessType,
-                          }}
-                          handleShowLoginModalMessage={handleShowLoginModal}
-                        />
-                      );
-                    })}
+                    ))}
                   </Carousel>
                 )}
                 {showLoginMessage && (

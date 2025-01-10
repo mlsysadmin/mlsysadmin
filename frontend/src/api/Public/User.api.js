@@ -169,5 +169,56 @@ const CreateLoginAttempt = async (payload) => {
 	}
 };
 
+const RegisterKyc = async (payload) => {
+	try {
+		
+        const config = {
+			headers: {
+				"Content-Type": "application/json",
+				"x-api-key": process.env.REACT_APP_API_KEY,
+			},
+		};
 
-export { GoogleSignIn, Logout, searchKyc, checkSession, FirstAttemptLogin, CreateLoginAttempt };
+        const body = {
+            payload
+        }
+
+		const response = await MLBROKERAGEAxiosInstance.post(
+			"/api/user/register-kyc", body, config
+		);
+
+		return response.data;
+	} catch (error) {
+		console.error("",error);
+		throw error;
+	}
+};
+
+const NewUserLogin = async (payload) => {
+	try {
+		
+        const config = {
+			headers: {
+				"Content-Type": "application/json",
+				"x-api-key": process.env.REACT_APP_API_KEY,
+			},
+		};
+
+        const body = {
+            payload
+        }
+
+		const response = await MLBROKERAGEAxiosInstance.post(
+			"/api/user/new-user-login", body, config
+		);
+
+		return response.data;
+	} catch (error) {
+		console.error("errooorr",error);
+		throw error;
+	}
+};
+
+
+
+export { GoogleSignIn, Logout, searchKyc, checkSession, FirstAttemptLogin, CreateLoginAttempt, RegisterKyc, NewUserLogin };

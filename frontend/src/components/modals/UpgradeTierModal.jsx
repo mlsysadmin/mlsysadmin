@@ -25,7 +25,7 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 				className="upgrade-modal-content"
 				style={{
 					backgroundColor: "white",
-					padding: "40px",
+					padding: "30px",
 					borderRadius: "var(--radius)",
 					boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
 					display: "flex",
@@ -43,17 +43,18 @@ const UpgradeTierModal = ({ onClose, showLogin }) => {
 						flexDirection: "column",
 					}}
 				>
-					<h3
+					<span
 						style={{
 							fontWeight: "bold",
-							marginBottom: "20px",
+							marginBottom: "10px",
 							color: "var(--red)",
 							textAlign: "center",
+							fontSize: "20px",
 						}}
 						className="upgrade--title"
 					>
 						Property Listing Guide
-					</h3>
+					</span>
 					<CloseOutlined
 						onClick={onClose}
 						style={{
