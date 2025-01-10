@@ -30,9 +30,9 @@ LISTING_ROUTER.post('/post/update/features', verifyApiKey, Validation(AddFeature
 LISTING_ROUTER.post('/post/delete/features', verifyApiKey, Validation(AddFeaturesVal, "body", "payload"), DeleteAddedFeatures); // IGOTSOLUTIONS
 LISTING_ROUTER.get('/get/approver', GetApproverByLevel);
 LISTING_ROUTER.get('/get/one-listing', auth, Validation(listing_id, "query", ["listing_id"]), GetListingByMasterId);
-LISTING_ROUTER.post('/upload', upload.any('files'), UploadPhotos);
-LISTING_ROUTER.get('/get-upload', GetUploadPhotos);
-LISTING_ROUTER.delete('/delete', UploadPhotos);
+// LISTING_ROUTER.post('/upload', upload.any('files'), UploadPhotos);
+// LISTING_ROUTER.get('/get-upload', GetUploadPhotos);
+// LISTING_ROUTER.delete('/delete', UploadPhotos);
 
 // POST
 // LISTING_ROUTER.post('/add-listing', Validation(AddListing, "body", 'payload'), AddPropertyListing);

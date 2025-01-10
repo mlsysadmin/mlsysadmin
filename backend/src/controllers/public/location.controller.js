@@ -71,7 +71,7 @@ module.exports = {
                     "RETRIEVED_SUCCESSFULLY",
                     200,
                     true,
-                    "Provinces Retrieved Successfully"
+                    "Cities Retrieved Successfully"
                 )
 
                 const cities_logger = DataResponseHandler(
@@ -79,10 +79,10 @@ module.exports = {
                     "RETRIEVED_SUCCESSFULLY",
                     200,
                     true,
-                    "Provinces Retrieved Successfully"
+                    "Cities Retrieved Successfully"
                 )
 
-                const success = SuccessFormatter(cities, 200, "Provinces Retrieved Successfully");
+                const success = SuccessFormatter(cities, 200, "Cities Retrieved Successfully");
                 SuccessLoggerHelper(req, cities_logger);
 
                 res.status(200).send(success)
@@ -117,7 +117,7 @@ module.exports = {
                     "RETRIEVED_SUCCESSFULLY",
                     200,
                     true,
-                    "Provinces Retrieved Successfully"
+                    "Countries Retrieved Successfully"
                 )
 
                 const countries_logger = DataResponseHandler(
@@ -125,10 +125,10 @@ module.exports = {
                     "RETRIEVED_SUCCESSFULLY",
                     200,
                     true,
-                    "Provinces Retrieved Successfully"
+                    "Countries Retrieved Successfully"
                 )
 
-                const success = SuccessFormatter(countries, 200, "Provinces Retrieved Successfully");
+                const success = SuccessFormatter(countries, 200, "Countries Retrieved Successfully");
                 SuccessLoggerHelper(req, countries_logger);
 
                 res.status(200).send(success)
