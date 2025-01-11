@@ -175,13 +175,13 @@ const CreateListingSkeleton = () => {
                 </div>
                 <br />
                 <div className="create__details">
-                    {/* <div className="preview-details__skeleton-right-side create__listing-cards">
+                    <div className="preview-details__skeleton-right-side create__listing-cards">
                         <Skeleton
                             active
                             paragraph={false}
                             className="skeleton-right__card create__listing-card-top"
                         />
-                    </div> */}
+                    </div>
                     <div className="preview-details__skeleton--left-side create__listing-cards">
                         <Skeleton
                             active

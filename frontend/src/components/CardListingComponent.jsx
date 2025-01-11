@@ -23,6 +23,7 @@ import { GetSavedPropertiesBySellerNo } from "../api/Public/SavedProperties.api"
 import { getCookieData } from "../utils/CookieChecker";
 import { useAuth } from "../Context/AuthContext";
 import { TruncateText } from "../utils/StringFunctions.utils";
+import { Carousel } from "antd";
 
 const CardListingComponent = ({
   loading,
@@ -171,37 +172,53 @@ const CardListingComponent = ({
   // }, [isDeleted]);
 
   return (
-    <div id="card-listing">
-      <Card
-        // style={{
-        //     width: 350,
-        // }}
-        size="small"
-        bordered={false}
-        loading={loading}
-      >
-        <div className="listing-image">
-          <img src={img} className="property-img" onClick={handleClick}></img>
-          <div className="tags">
-            {isSavedProperties?.atSavedPropertiesPage ? (
-              isSavedProperties.isRecordStatus === "active" ? (
-                <div className="rightTag">
+      <div id="card-listing">
+        <Card
+          // style={{
+          //     width: 350,
+          // }}
+          size="small"
+          bordered={false}
+          loading={loading}
+        >
+          <div className="listing-image">
+            <img src={img} className="property-img" onClick={handleClick}></img>
+            <div className="tags">
+              {isSavedProperties?.atSavedPropertiesPage ? (
+                isSavedProperties.isRecordStatus === "active" ? (
+                  <div className="rightTag">
+                    <CustomTag
+                      tagLabel="Approved"
+                      style={{
+                        backgroundColor: "white",
+                        borderColor: "white",
+                        color: "green",
+                        borderRadius: "var(--radius)",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        textAlign: "center",
+                        display: "flex",
+                        fontSize: "15px",
+                      }}
+                    />
+                    <CustomTag
+                      tagLabel={isSavedProperties.isAccessType}
+                      style={{
+                        backgroundColor: "white",
+                        borderColor: "white",
+                        color: "black",
+                        borderRadius: "var(--radius)",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        textAlign: "center",
+                        display: "flex",
+                        fontSize: "15px",
+                      }}
+                    />
+                  </div>
+                ) : isSavedProperties.isRecordStatus === "pending" ? (
                   <CustomTag
-                    tagLabel="Approved"
-                    style={{
-                      backgroundColor: "white",
-                      borderColor: "white",
-                      color: "green",
-                      borderRadius: "var(--radius)",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      textAlign: "center",
-                      display: "flex",
-                      fontSize: "15px",
-                    }}
-                  />
-                  <CustomTag
-                    tagLabel={isSavedProperties.isAccessType}
+                    tagLabel={isSavedProperties.isRecordStatus}
                     style={{
                       backgroundColor: "white",
                       borderColor: "white",
@@ -214,14 +231,29 @@ const CardListingComponent = ({
                       fontSize: "15px",
                     }}
                   />
-                </div>
-              ) : isSavedProperties.isRecordStatus === "pending" ? (
+                ) : isSavedProperties.isRecordStatus === "rejected" ? (
+                  <CustomTag
+                    tagLabel="Denied"
+                    style={{
+                      backgroundColor: "white",
+                      borderColor: "white",
+                      color: "red",
+                      borderRadius: "var(--radius)",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      textAlign: "center",
+                      display: "flex",
+                      fontSize: "15px",
+                    }}
+                  />
+                ) : null
+              ) : (
                 <CustomTag
-                  tagLabel={isSavedProperties.isRecordStatus}
+                  tagLabel={status}
                   style={{
-                    backgroundColor: "white",
-                    borderColor: "white",
-                    color: "black",
+                    backgroundColor: "#d90000",
+                    borderColor: "#d90000",
+                    color: "#ffffff",
                     borderRadius: "var(--radius)",
                     alignItems: "center",
                     justifyContent: "center",
@@ -230,30 +262,12 @@ const CardListingComponent = ({
                     fontSize: "15px",
                   }}
                 />
-              ) : isSavedProperties.isRecordStatus === "rejected" ? (
-                <CustomTag
-                  tagLabel="Denied"
-                  style={{
-                    backgroundColor: "white",
-                    borderColor: "white",
-                    color: "red",
-                    borderRadius: "var(--radius)",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    textAlign: "center",
-                    display: "flex",
-                    fontSize: "15px",
-                  }}
-                />
-              ) : null
-            ) : (
+              )}
               <CustomTag
-                tagLabel={status}
+                tagLabel={<ImageTag />}
                 style={{
-                  backgroundColor: "#d90000",
-                  borderColor: "#d90000",
-                  color: "#ffffff",
                   borderRadius: "var(--radius)",
+                  borderColor: "white",
                   alignItems: "center",
                   justifyContent: "center",
                   textAlign: "center",
@@ -261,70 +275,106 @@ const CardListingComponent = ({
                   fontSize: "15px",
                 }}
               />
-            )}
-            <CustomTag
-              tagLabel={<ImageTag />}
-              style={{
-                borderRadius: "var(--radius)",
-                alignItems: "center",
-                justifyContent: "center",
-                textAlign: "center",
-                display: "flex",
-                fontSize: "15px",
-              }}
-            />
-          </div>
-          <div
-            className="tags-right"
-            style={{ display: "flex", flexDirection: "column" }}
-          >
-            {userDetails?.mobileNumber ? (
-              <Tooltip
-                color="var(--red)"
-                title={tooltipMessage}
-                visible={showTooltip}
-                placement="top"
-              >
-                <div
-                  className="tags-tooltip"
-                  style={{ display: "flex", flexDirection: "row" }}
-                  onMouseEnter={() => {
-                    if (!checked) {
-                      setTooltipMessage("Add to favorite");
-                      setShowTooltip(true);
-                    }
-                  }}
-                  onMouseLeave={() => {
-                    if (!checked) setShowTooltip(false);
-                  }}
+            </div>
+            <div
+              className="tags-right"
+              style={{ display: "flex", flexDirection: "column" }}
+            >
+              {userDetails?.mobileNumber ? (
+                <Tooltip
+                  color="var(--red)"
+                  title={tooltipMessage}
+                  visible={showTooltip}
+                  placement="top"
                 >
-                  <CustomTag
-                    tagLabel={
-                      checked ? (
-                        <HeartFilled
-                          style={{
-                            color: showDeleteIcon ? "var(--red)" : "var(--red)",
-                            pointerEvents: showDeleteIcon ? "none" : "auto",
-                          }}
-                        />
-                      ) : (
-                        <HeartOutlined />
-                      )
-                    }
-                    style={{ fontSize: "23px", color: "#333333" }}
-                    className="circle-tags heart"
-                    checkable={true}
-                    checked={checked}
-                    handleChange={(newChecked) => {
-                      if (!showDeleteIcon) {
-                        setIsChecked(newChecked);
-                        handleChange(newChecked);
+                  <div
+                    className="tags-tooltip"
+                    style={{ display: "flex", flexDirection: "row" }}
+                    onMouseEnter={() => {
+                      if (!checked) {
+                        setTooltipMessage("Add to favorite");
+                        setShowTooltip(true);
                       }
                     }}
-                    listingId={listingId}
-                  />{" "}
-                  {showDeleteIcon && (
-                    <Tooltip title="Delete Saved Property" placement="top">
+                    onMouseLeave={() => {
+                      if (!checked) setShowTooltip(false);
+                    }}
+                  >
+                    <CustomTag
+                      tagLabel={
+                        checked ? (
+                          <HeartFilled
+                            style={{
+                              color: showDeleteIcon
+                                ? "var(--red)"
+                                : "var(--red)",
+                              pointerEvents: showDeleteIcon ? "none" : "auto",
+                            }}
+                          />
+                        ) : (
+                          <HeartOutlined />
+                        )
+                      }
+                      style={{ fontSize: "23px", color: "#333333" }}
+                      className="circle-tags heart"
+                      checkable={true}
+                      checked={checked}
+                      handleChange={(newChecked) => {
+                        if (!showDeleteIcon) {
+                          setIsChecked(newChecked);
+                          handleChange(newChecked);
+                        }
+                      }}
+                      listingId={listingId}
+                    />{" "}
+                    {showDeleteIcon && (
+                      <Tooltip title="Delete Saved Property" placement="top">
+                        <div
+                          className="icon"
+                          onClick={handleDeleteClick}
+                          style={{ top: "8px" }}
+                        >
+                          <DeleteOutlined />
+                        </div>
+                      </Tooltip>
+                    )}
+                  </div>
+                </Tooltip>
+              ) : (
+                <Tooltip
+                  color="var(--red)"
+                  title={"Add to favorites"}
+                  visible={showTooltip}
+                  placement="top"
+                >
+                  <div
+                    className="tags-tooltip"
+                    style={{ display: "flex", flexDirection: "row" }}
+                    onMouseEnter={() => {
+                      if (!checked) {
+                        setTooltipMessage("Add to favorite");
+                        setShowTooltip(true);
+                      }
+                    }}
+                    onMouseLeave={() => {
+                      if (!checked) setShowTooltip(false);
+                    }}
+                  >
+                    <CustomTag
+                      tagLabel={<HeartOutlined />}
+                      style={{ fontSize: "23px", color: "#333333" }}
+                      className="circle-tags heart"
+                      checkable={true}
+                      checked={checked}
+                      handleChange={(newChecked) => {
+                        if (!showDeleteIcon) {
+                          setIsChecked(newChecked);
+                          handleChange(newChecked);
+                        }
+                      }}
+                      listingId={listingId}
+                    />{" "}
+                    {showDeleteIcon && (
                       <div
                         className="icon"
                         onClick={handleDeleteClick}
@@ -332,114 +382,68 @@ const CardListingComponent = ({
                       >
                         <DeleteOutlined />
                       </div>
-                    </Tooltip>
-                  )}
-                </div>
-              </Tooltip>
-            ) : (
-              <Tooltip
-                color="var(--red)"
-                title={"Add to favorites"}
-                visible={showTooltip}
-                placement="top"
-              >
-                <div
-                  className="tags-tooltip"
-                  style={{ display: "flex", flexDirection: "row" }}
-                  onMouseEnter={() => {
-                    if (!checked) {
-                      setTooltipMessage("Add to favorite");
-                      setShowTooltip(true);
-                    }
-                  }}
-                  onMouseLeave={() => {
-                    if (!checked) setShowTooltip(false);
-                  }}
-                >
-                  <CustomTag
-                    tagLabel={<HeartOutlined />}
-                    style={{ fontSize: "23px", color: "#333333" }}
-                    className="circle-tags heart"
-                    checkable={true}
-                    checked={checked}
-                    handleChange={(newChecked) => {
-                      if (!showDeleteIcon) {
-                        setIsChecked(newChecked);
-                        handleChange(newChecked);
-                      }
-                    }}
-                    listingId={listingId}
-                  />{" "}
-                  {showDeleteIcon && (
-                    <div
-                      className="icon"
-                      onClick={handleDeleteClick}
-                      style={{ top: "8px" }}
-                    >
-                      <DeleteOutlined />
-                    </div>
-                  )}
-                </div>
-              </Tooltip>
-            )}
+                    )}
+                  </div>
+                </Tooltip>
+              )}
 
-            {/* <CustomTag tagLabel={<Filter />} className="circle-tags" /> */}
+              {/* <CustomTag tagLabel={<Filter />} className="circle-tags" /> */}
+            </div>
           </div>
-        </div>
-        <div className="card-content" onClick={handleClick}>
-          <div className="card-content--title">
-            <p>{TruncateText(title)}</p>
-          </div>
-          <div className="card-content--sub">
-            <h5>{subtitle}</h5>
-          </div>
-          <Row className="card-content--subtitle">
-            <p className="price">
-              {price}
-              {/* {sale_status.toLowerCase() == "rent" ? "/month" : ""} */}
-            </p>
-            <div className="card-features">
-              {/* <Features /> */}
-              {parseInt(no_of_beds) > 0 && (
-                <div className="feature-content">
-                  <>
-                    {/* < img
+          <div className="card-content" onClick={handleClick}>
+            <div className="card-content--title">
+              <p>{TruncateText(title)}</p>
+            </div>
+            <div className="card-content--sub">
+              <h5>{subtitle}</h5>
+            </div>
+            <Row className="card-content--subtitle">
+              <p className="price">
+                {price}
+                {/* {sale_status.toLowerCase() == "rent" ? "/month" : ""} */}
+              </p>
+              <div className="card-features">
+                {/* <Features /> */}
+                {parseInt(no_of_beds) > 0 && (
+                  <div className="feature-content">
+                    <>
+                      {/* < img
                         src={HotelBed}
                         alt="sqm"
                         className="feature-icon"
                         style={{ color: "#333333" }}
                       /> */}
-                    <BedOutlinedIcon />
-                    <p className="feature-detail">{no_of_beds}</p>
-                  </>
-                </div>
-              )}
-              {parseInt(no_of_bathrooms) > 0 && (
-                <div className="feature-content">
-                  <>
-                    {/* < img
+                      <BedOutlinedIcon />
+                      <p className="feature-detail">{no_of_beds}</p>
+                    </>
+                  </div>
+                )}
+                {parseInt(no_of_bathrooms) > 0 && (
+                  <div className="feature-content">
+                    <>
+                      {/* < img
                         src={ShortcutOutlined}
                         alt="sqm"
                         className="feature-icon"
                         style={{ color: "#333333" }}
                       /> */}
-                    <ShowerOutlinedIcon />
-                    <p className="feature-detail">{no_of_bathrooms}</p>
-                  </>
-                </div>
-              )}
-              {lot && (
-                <div className="feature-content">
-                  {/* <img src={Sqm} alt="sqm" className="feature-icon" /> */}
-                  <ShortcutOutlined />
-                  <p className="feature-detail">{lot} SqM</p>
-                </div>
-              )}
-            </div>
-          </Row>
-        </div>
-      </Card>
-    </div>
+                      <ShowerOutlinedIcon />
+                      <p className="feature-detail">{no_of_bathrooms}</p>
+                    </>
+                  </div>
+                )}
+                {lot && (
+                  <div className="feature-content">
+                    {/* <img src={Sqm} alt="sqm" className="feature-icon" /> */}
+                    <ShortcutOutlined />
+                    <p className="feature-detail">{lot} SqM</p>
+                  </div>
+                )}
+              </div>
+            </Row>
+          </div>
+        </Card>
+      </div>
   );
 };
 

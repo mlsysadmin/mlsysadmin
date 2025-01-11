@@ -192,17 +192,27 @@ export const ListingForm = () => {
     }
     return "";
   };
-
+  const [ stepFourCompleted, setStepFourCompleted] = useState(false);
   const handleStepComplete = (stepIndex, isComplete) => {
     setCompletedSteps((prev) => {
       if (prev[stepIndex] === isComplete) {
         return prev;
+      }
+      console.log("stepIndex === 4: ",stepIndex === 4);
+      console.log("prev[stepIndex]: ",prev[stepIndex]);
+      console.log("isComplete: ", isComplete);
+      // console.log("prev[stepIndex] === isComplete: ",prev[stepIndex] === isComplete);
+      if (stepIndex === 4 && isComplete) {
+        console.log("stepIndex === 4 && prev[stepIndex] === isComplete");
+        setStepFourCompleted(true);
       }
       return {
         ...prev,
         [stepIndex]: isComplete,
       };
     });
+    // console.log("completedSteps: ",completedSteps);
+    
     setErrors((prev) => ({
       ...prev,
       [stepIndex]: !isComplete,
@@ -220,8 +230,10 @@ export const ListingForm = () => {
     }
   };
 useEffect(()=>{
-	
-},[isConfirmed])
+    console.log("completedSteps: ",completedSteps);
+	// console.log("stepFourCompleted: ",stepFourCompleted);
+},[stepFourCompleted])
+
   const handleVendorSubmit = async () => {
     setIsSubmitting(false);
 	setIsModalOpen(true);
@@ -631,6 +643,7 @@ useEffect(()=>{
                 current={currentStep}
                 setCurrent={setCurrentStep}
                 completedSteps={completedSteps}
+                isStepFourCompleted={stepFourCompleted}
               />
             </div>
             <div className="listing-form">
@@ -797,6 +810,7 @@ useEffect(()=>{
                     setPropertyFields={setPropertyDataFields}
                     selectedPropertyTab={propertyFields.PropertyType}
                     isSubmitted={submitted}
+                    isStepFourCompleted={stepFourCompleted}
                   />
                   {/* {errors[5] && currentStep === 5 && (
 									<div

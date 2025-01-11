@@ -4,7 +4,7 @@ import HouseForRentPage from "./HouseForRent.page";
 import DiscoverHomePage from "./DiscoverHome.page";
 import BuyAHomePage from "./BuyAHome.page";
 import RefinancePage from "./Refinance.page";
-import PreSellingPage from "./PreSelling.page";
+import DevelopersPage from "./Developers.page";
 import InsuranceGuidePage from "./InsuranceGuide.page";
 import MortgagePage from "./Mortgage.page";
 import SellPage from "./Sell.page";
@@ -36,7 +36,7 @@ import ActiveListingDetails from "./ActiveListingDetails.page";
 import SoldPropertyDetailsPage from "./SoldPropertyDetails.page";
 import ViewListingComponent from "./ViewListingComponent.page";
 import FaqsPage from "./Faqs.page";
-
+import ListingPreview from "./ListingPreview.page";
 
 
 //Application Pages
@@ -72,6 +72,9 @@ import SupportListingOutlet from './support/SupportListingOutlet';
 import SupportOutlet from "./support/SupportOutlet.page";
 import ComingSoonPage from "./WorkingOnIt.page";
 import TermsandConditionPage from "./TermsCondition.page";
+import DevelopersListing from "./DevelopersListing";
+import PreSelling from "./PreSelling.page";
+import ReadyForOccupancy from "./ReadyForOccupancy.page";
 
 export {
 	ViewListingComponent,
@@ -88,7 +91,7 @@ export {
 	ListingPage,
 	MainOutlet,
 	Dashboard,
-	PreSellingPage,
+	DevelopersPage,
 	HouseForRentPage,
 	DiscoverHomePage,
 	ComingSoonPage,
@@ -131,5 +134,9 @@ export {
 	SupportCreateListing,
 	FaqsPage,
 	TermsandConditionPage,
-	PropertySearchPage
+	PropertySearchPage,
+	DevelopersListing,
+	PreSelling,
+	ListingPreview,
+	ReadyForOccupancy
 };

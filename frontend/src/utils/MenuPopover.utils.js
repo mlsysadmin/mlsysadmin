@@ -139,7 +139,15 @@ const SubMenu = {
 				{
 					sub_info: (
 						<div className="sub-info">
-							<span>Reserve your spot now and save on future value!</span>
+							<span>Explore properties from top developers!</span>
+							<p style={{ marginTop: '50px' }}>
+								<a
+									href="/developers"
+									className="redirect"
+								>
+									Discover All Developers <RightOutlined />
+								</a>
+							</p>
 						</div>
 					),
 				},
@@ -154,13 +162,31 @@ const SubMenu = {
 					link: "/pre-selling/?property_type=house-and-lot",
 				},
 				{ sub: "Condominium", link: "/pre-selling/?property_type=condominium" },
-				{
-					sub: "Apartment ",
-					link: "/pre-selling/?property_type=townhouse",
-				},
+				// {
+				// 	sub: "Apartment ",
+				// 	link: "/pre-selling/?property_type=townhouse",
+				// },
 				{
 					sub: "Townhouse ",
 					link: "/pre-selling/?property_type=townhouse",
+				},
+			],
+		},
+		{
+			header: "Ready for Occupancy",
+			submenu: [
+				{
+					sub: "House and Lot",
+					link: "/ready-for-occupancy/?property_type=house-and-lot",
+				},
+				{ sub: "Condominium", link: "/ready-for-occupancy/?property_type=condominium" },
+				// {
+				// 	sub: "Apartment ",
+				// 	link: "/pre-selling/?property_type=townhouse",
+				// },
+				{
+					sub: "Townhouse ",
+					link: "/ready-for-occupancy/?property_type=townhouse",
 				},
 			],
 		},

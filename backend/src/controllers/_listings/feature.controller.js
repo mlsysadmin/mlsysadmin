@@ -54,9 +54,9 @@ module.exports = {
 
             const getAllAmenities = await FindAllFeaturesLists();
 
-            const indoor = getAllAmenities.filter((amenity, i) => amenity.feature_type === 'indoor');
-            const outdoor = getAllAmenities.filter((amenity, i) => amenity.feature_type === 'outdoor');
-
+            const indoor = getAllAmenities.filter((amenity, i) => amenity.feature_type === 'indoor').sort((a, b) => a.feature_name.localeCompare(b.feature_name));
+            const outdoor = getAllAmenities.filter((amenity, i) => amenity.feature_type === 'outdoor').sort((a, b) => a.feature_name.localeCompare(b.feature_name));
+            
             const data = {
                 features: { indoor, outdoor }
             }
