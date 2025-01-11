@@ -94,11 +94,29 @@ const GetUnitPhotos = async (propertyId) => {
     }
 }
 
+const GetPropertiesByDeveloperId = async (developerId) =>{
+    
+    try {
+        const response = await IGOTSOLUTIONSAxiosInstance.get(`/api/getPropertiesByDeveloperId/${developerId}`);
+
+        const isUnsold = response.data.filter((d) => d.SaleStatus === "unsold");
+
+        // console.log(isPublic);
+        
+        return isUnsold;
+        
+    } catch (error) {
+        console.log(error);
+        throw error
+    }
+}
+
 export {
 	GetPropertiesBySaleStatus,
 	GetPublicListingByID,
 	GetPublicListingCount,
 	GetUnitPhotos,
-    GetListingByRecordStatus
+    GetListingByRecordStatus,
 	// GetAllListing,
+    GetPropertiesByDeveloperId
 };

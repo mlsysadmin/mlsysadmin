@@ -106,6 +106,7 @@
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 	background-color: var(--white);
 	transition: transform 0.3s ease-in-out;
+	cursor: pointer;
 }
 
 .preselling-developers-card .developers-card:hover {
@@ -113,11 +114,15 @@
 	box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
 .developers-logo{
-	padding: 10px 20px;
+	padding: 20px 0px;
+	width: 80%;
+	margin: auto;
+	display: flex;
 }
 .developers-logo img {
 	width: 100%;
 	height: 120px;
+	object-fit: contain;
 }
 .developers-info {
 	width: 100%;
@@ -147,6 +152,30 @@
 
 .developers-status {
 	background-color: #e3fff0;
+}
+/* .developers-status,
+.developers-properties-number{
+	padding: 4px;
+} */
+
+.no-developers-found{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 30px;
+}
+.no-dev-found__image-wrapper{
+	width: 400px;
+}
+.no-dev-found__image-wrapper img{
+	width: 100%;
+}
+.no-dev-found__message{
+	margin: 20px 0 10px;
+}
+.no-dev-found__message p{
+	font-size: calc(var(--d-body-text) + 1px);
 }
 
 @media screen and (min-width: 360px) and (max-width: 480px) {
