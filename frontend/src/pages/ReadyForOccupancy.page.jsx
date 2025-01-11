@@ -44,7 +44,7 @@ import {FloatBtnGroup} from "../components";
 import ContactUsWidget from "../components/modals/ContactUsWidget";
 import CalculatorWidgetModal from "../components/modals/CalculatorWidgetModal";
 
-const PreSelling = () => {
+const ReadyForOccupancy = () => {
 	const [loading, setLoading] = useState(true);
 
 	const navigate = useNavigate();
@@ -91,7 +91,7 @@ const PreSelling = () => {
 	});
 	const [breadCrumbItems, setBreadCrumbItems] = useState([
 		{
-			title: "For Rent",
+			title: "Ready For Occupancy",
 		},
 		{
 			title: "House and Lot",
@@ -125,6 +125,8 @@ const PreSelling = () => {
 			const res = await GetPropertiesBySaleStatus();
 
 			const dataresp = res;
+			console.log(dataresp);
+			
 
 			if (dataresp.length == 0) {
 				setPublicListing([]);
@@ -135,13 +137,13 @@ const PreSelling = () => {
 				console.log(
 					"data",
 					dataresp.filter((listing) =>
-						["rent"].includes(listing.SaleType.toLowerCase())
+						["ready for occupancy"].includes(listing.SaleType.toLowerCase())
 					)
 				);
 
 				const listingRes = dataresp.filter(
 					(listing) =>
-						["pre-selling"].includes(listing.SaleType.toLowerCase()) &&
+						["Ready for Occupancy"].includes(listing.SaleType.toLowerCase()) &&
 						listing.PropertyType.toLowerCase()
 							.replace(/[-_]/g, " ")
 							.includes(property_type.toLowerCase().replace(/[-_]/g, " "))
@@ -160,7 +162,7 @@ const PreSelling = () => {
 								id: item.id,
 								title: CapitalizeString(item.UnitName),
 								price: `PHP ${AmountFormatterGroup(item.Price)}`,
-								status: "For Pre-Selling",
+								status: "Ready for occupancy",
 								pics: image ? gallery.length + 1 : 0,
 								img: image,
 								no_of_bathrooms: item.BathRooms,
@@ -216,12 +218,12 @@ const PreSelling = () => {
 
 			allPublicListing(getPropertyType);
 			setPropertyType(getPropertyType);
-			setHeaderText(`${title} For Pre-Selling`);
-			setBreadCrumbItems([{ title: "For Pre-Selling" }, { title: title }]);
+			setHeaderText(`${title} Ready for occupancy`);
+			setBreadCrumbItems([{ title: "Ready for occupancy" }, { title: title }]);
 		} else {
 			allPublicListing("house-and-lot");
 			setPropertyType("house-and-lot");
-			setHeaderText("House and Lot For Pre-Selling");
+			setHeaderText("House and Lot Ready for occupancy");
 		}
 	}, []);
 
@@ -369,4 +371,4 @@ const PreSelling = () => {
 	);
 };
 
-export default PreSelling;
+export default ReadyForOccupancy;

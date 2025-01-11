@@ -64,15 +64,17 @@ import {
 	ComingSoonPage,
 	FaqsPage,
 	TermsandConditionPage,
-	PreSellingPage,
+	DevelopersPage,
 	LoginPage,
+	DevelopersListing,
+	PreSelling,
+	ListingPreview,
+	ReadyForOccupancy
 } from "../pages";
 import { ProtectedRoute, BuyerSellerProtectedRoute } from "./ProtectedRoute";
 import { SaleComponent, SearchListingComponent } from "../components";
 import Error from "../components/ErrorComponent";
 import NotFoundComponent from "../components/Errors/NotFoundComponent";
-import ListingPreview from "../pages/ListingPreview.page";
-
 
 
 const Routes = [
@@ -129,8 +131,17 @@ const Routes = [
 				element: <SaleComponent />,
 			},
 			{
+				// path: "/pre-selling",
+				path: "/developers",
+				element: <DevelopersPage />,
+			},
+			{
 				path: "/pre-selling",
-				element: <PreSellingPage />,
+				element: <PreSelling />,
+			},
+			{
+				path: "/ready-for-occupancy",
+				element: <ReadyForOccupancy />,
 			},
 			{
 				path: "/sell",
@@ -246,6 +257,10 @@ const Routes = [
 			{
 				path: "/documents/mlprop_TermsCondition.pdf",
 			},
+			{
+				path: "/developer",
+				element: <DevelopersListing/>
+			}
 		],
 	},
 	{

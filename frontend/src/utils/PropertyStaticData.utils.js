@@ -121,6 +121,10 @@ const ListingTypes = [
 	{
 		label: "Pre-Selling",
 		value: "pre-selling",
+	},
+	{
+		label: "Ready for Occupancy",
+		value: "Ready for Occupancy",
 	}
 ]
 
