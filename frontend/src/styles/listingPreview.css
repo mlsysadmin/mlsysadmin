@@ -10,7 +10,7 @@
 @media screen and (min-width: 320px) and (max-width: 390px){
     .ant-tooltip .ant-tooltip-inner{
         width: 120px;
-        font-size: 11px;
+        font-size: 12px !important;
     }
 }
 .listing-preview .listing-preview--container {

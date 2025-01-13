@@ -70,6 +70,10 @@
   gap: 40px;
   margin-bottom: 50px;
 }
+#dashboard .ant-btn.ant-btn-round.ant-btn:hover{
+border-color: var(--red) !important;
+background-color: var(--red) !important;
+}
 .rating-container {
   width: var(--default-page-size);
 }
