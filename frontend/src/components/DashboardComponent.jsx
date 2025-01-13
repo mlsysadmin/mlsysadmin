@@ -3,6 +3,12 @@ import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
 import {
   Button,
   Card,
@@ -91,7 +97,7 @@ const DashboardComponent = () => {
   const responsive = {
     desktop: {
       breakpoint: { max: 5000, min: 1025 },
-      items: 3,
+      items: 2,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -130,6 +136,9 @@ const DashboardComponent = () => {
       property_type: "",
     },
   ]);
+  useEffect(()=>{
+    console.log("publiclisting: ",publiclisting);
+  },[publiclisting])
 
   const [isAdvanceSearchOpen, setAdvanceSearchOpen] = useState(false);
   const [checkFeatures, setCheckFeatures] = useState([]);
@@ -189,7 +198,7 @@ const DashboardComponent = () => {
         let listings = [];
 
         if (listingRes.length !== 0) {
-          listings = listingRes.slice(0, 3);
+          listings = listingRes;
         } else {
           listings = dataresp.slice(0, 3);
         }
@@ -735,7 +744,7 @@ const DashboardComponent = () => {
                     transitionDuration={300}
                     containerClass="carousel-container"
                     dotListClass="custom-dot-list-style"
-                    itemClass="carousel-item-padding-40-px"
+                    // itemClass="carousel-item-padding-20-px"
                     centerMode
                     autoPlay
                   >

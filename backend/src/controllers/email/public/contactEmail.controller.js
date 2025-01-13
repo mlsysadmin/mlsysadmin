@@ -272,9 +272,7 @@ module.exports = {
 
             // const cardPhoto = await encodeImageUrlToBase64(image_link);
             const logoPhoto = await encodeImageUrlToBase64(logo);
-            console.log(logoPhoto);
-            
-
+            // console.log(logoPhoto);
             let templateName;
             let subject;
 
@@ -285,13 +283,16 @@ module.exports = {
                 templateName = 'rejectedlisting.handlebars'
                 subject = 'Your Listing Needs Attention to Meet Approval Requirements'
             }
-
-            const emailTemp = EmailTemplate(templateName, { name, image_link, property_title, sale_type, price, link, logoPhoto });
-
+            console.log("logo: ",logo);
+            
+            const emailTemp = EmailTemplate(templateName, { name, image_link, property_title, sale_type, price, link, logo });
+            console.log("emailTemp:",emailTemp);
+            
             const reference = new Date();
 
             const sendMessage = await SendEmail(emailTemp, subject, reference, email);
-
+            console.log("sendMessage: ",sendMessage);
+            
             const mail = DataResponseHandler(
                 { response: sendMessage.response, accepted: sendMessage.accepted, rejected: sendMessage.rejected },
                 "EMAIL_SENT",
