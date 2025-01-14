@@ -44,7 +44,8 @@
 width: 200px;
 }
 .login-message-phrase p{
-font-size: var(--d-body-text);
+font-size: 14px !important;
+text-align: center;
 }
 .buttons-login-message{
 	display: flex;

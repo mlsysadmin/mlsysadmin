@@ -23,6 +23,7 @@ font-size: 22px !important;
 	}
 	.signin-button-upgrade {
 		margin-top: 25px;
+		font-size: var(--m-body-text) !important
 	}
 
 	.tier-upgrade-content {
