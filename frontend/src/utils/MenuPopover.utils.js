@@ -59,6 +59,7 @@ const SubMenu = {
 			header: "Leisure Properties for Sale",
 			submenu: [
 				{ sub: "Hotel/Resort", link: "/sale/?property_type=hotel/resort" },
+				{ sub: "Beach Lot", link: "/sale/?property_type=beach-lot" },
 				{
 					childSubMenu: {
 						header: "Agricultural for Sale",

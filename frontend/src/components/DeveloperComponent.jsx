@@ -213,6 +213,9 @@ const PreSellingComponent = () => {
 				console.log("Filtered data:", finalFilteredDevelopers);
 				setFilteredDevelopers(finalFilteredDevelopers);
 				setIsLoading(false);
+			}else{
+				setFilteredDevelopers(filteredDev);
+				setIsLoading(false);
 			}
 
 		} catch (error) {
@@ -240,7 +243,7 @@ const PreSellingComponent = () => {
 							/>
 						</div>
 						<div className="search-select-options">
-							<Select placeholder="Location" onChange={(e) => handleSearchDeveloper(e, "ProvinceState")}
+							<Select placeholder="Location" allowClear onChange={(e) => handleSearchDeveloper(e, "ProvinceState")}
 								value={searchParams.ProvinceState}
 								className="developer-search select--location"
 							>
@@ -251,7 +254,7 @@ const PreSellingComponent = () => {
 									})
 								}
 							</Select>
-							<Select placeholder="Listing Type" onChange={(e) => handleSearchDeveloper(e, "SaleType")} value={searchParams.SaleType} className="developer-search select--listing-type">
+							<Select placeholder="Listing Type" allowClear onChange={(e) => handleSearchDeveloper(e, "SaleType")} value={searchParams.SaleType} className="developer-search select--listing-type">
 								<Select.Option value="pre-selling">Pre Selling</Select.Option>
 								<Select.Option value="ready for occupancy">
 									Ready for Occupancy
