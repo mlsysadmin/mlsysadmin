@@ -10,15 +10,25 @@ import { getDevelopers } from "../api/GetDevelopers";
 
 import noDevFound from "../asset/no-developer-found.png";
 import { useNavigate } from "react-router-dom";
+import { FillLocationFilter } from "../utils/StringFunctions.utils";
+import { GetPropertiesByDeveloperId } from "../api/GetAllPublicListings";
 
 const PreSellingComponent = () => {
 	const navigate = useNavigate();
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const [developersData, setDevelopersData] = useState([]);
+	const [filteredDevelopers, setFilteredDevelopers] = useState(developersData);
 	const [developerName, setDeveloperName] = useState("");
 	const [developerLogo, setDeveloperLogo] = useState("");
-	const [saleType, setSaleType] = useState("");
+	const [searchParams, setSearchParams] = useState({
+		saleType: null,
+		location: null,
+		searchKey: "",
+	});
+	const [location, setLocation] = useState([]);
+
+	const falsy = [null, undefined, ""];
 
 	const TruncateDeveloperName = (text) => {
 		const length = 35;
@@ -27,68 +37,83 @@ const PreSellingComponent = () => {
 	};
 
 	const fetchDevelopers = async () => {
-		const developers = await getDevelopers();
-		const data = developers.data;
-		console.log("dev", data);
+		try {
 
-		const developersListings = data.map((developer) => {
-			const img = GetPhotoWithUrl(developer.LogoPath);
-			const updatedAt = new Date(developer.updated_at);
-			const currentTime = new Date();
-			const timeDifferenceInSeconds = Math.floor(
-				(currentTime - updatedAt) / 1000
+			const developers = await getDevelopers();
+			const data = developers.data;
+
+			const developersListings = data.map((developer) => {
+
+				const img = GetPhotoWithUrl(developer.LogoPath);
+				const updatedAt = new Date(developer.updated_at);
+				const currentTime = new Date();
+				const timeDifferenceInSeconds = Math.floor(
+					(currentTime - updatedAt) / 1000
+				);
+
+				let updated = "";
+				if (timeDifferenceInSeconds < 60) {
+					updated = `${timeDifferenceInSeconds}s`;
+				} else if (timeDifferenceInSeconds < 3600) {
+					updated = `${Math.floor(timeDifferenceInSeconds / 60)}m`;
+				} else if (timeDifferenceInSeconds < 86400) {
+					updated = `${Math.floor(timeDifferenceInSeconds / 3600)}h`;
+				} else if (timeDifferenceInSeconds < 432000) {
+					updated = `${Math.floor(timeDifferenceInSeconds / 86400)}d`;
+				} else {
+					const month = updatedAt.getMonth() + 1;
+					const day = updatedAt.getDate();
+					const year = updatedAt.getFullYear();
+					updated = `${month}-${day}-${year}`;
+				}
+
+				const isUpdatedBackground = timeDifferenceInSeconds < 86400;
+				return {
+					id: developer.VendorId,
+					logo: img,
+					developerName: developer.VendorName,
+					properties: developer.TotalUnits,
+					updated: updated,
+					updatedAt,
+					isUpdatedBackground,
+					ProvinceState: developer.ProvinceState
+				};
+
+			});
+
+			const sorteddata = developersListings.sort(
+				(a, b) => b.updatedAt - a.updatedAt
 			);
 
-			let updated = "";
-			if (timeDifferenceInSeconds < 60) {
-				updated = `${timeDifferenceInSeconds}s`;
-			} else if (timeDifferenceInSeconds < 3600) {
-				updated = `${Math.floor(timeDifferenceInSeconds / 60)}m`;
-			} else if (timeDifferenceInSeconds < 86400) {
-				updated = `${Math.floor(timeDifferenceInSeconds / 3600)}h`;
-			} else if (timeDifferenceInSeconds < 432000) {
-				updated = `${Math.floor(timeDifferenceInSeconds / 86400)}d`;
-			} else {
-				const month = updatedAt.getMonth() + 1;
-				const day = updatedAt.getDate();
-				const year = updatedAt.getFullYear();
-				updated = `${month}-${day}-${year}`;
-			}
+			setDevelopersData(sorteddata);
 
-			const isUpdatedBackground = timeDifferenceInSeconds < 86400;
-
-			return {
-				id: developer.VendorId,
-				logo: img,
-				developerName: developer.VendorName,
-				properties: developer.TotalUnits,
-				updated: updated,
-				updatedAt,
-				isUpdatedBackground,
-			};
-		});
-		const sorteddata = developersListings.sort(
-			(a, b) => b.updatedAt - a.updatedAt
-		);
-
-		setDevelopersData(sorteddata);
+		} catch (error) {
+			console.error(error);
+		}
 	};
 	useEffect(() => {
 		fetchDevelopers();
 	}, []);
 
+	useEffect(() => {
+		setFilteredDevelopers(developersData);
+		if (developersData) {
+			const location = FillLocationFilter(developersData);
+			setLocation(location);
+		}
+	}, [developersData])
+
 	const cardsPerPage = 15;
 	const indexOfLastCard = currentPage * cardsPerPage;
 	const indexOfFirstCard = indexOfLastCard - cardsPerPage;
 
-	let currentCards = developersData?.slice(indexOfFirstCard, indexOfLastCard);
-	const totalPages = Math.ceil(developersData?.length / cardsPerPage);
+	let currentCards = filteredDevelopers?.slice(indexOfFirstCard, indexOfLastCard);
+	const totalPages = Math.ceil(filteredDevelopers?.length / cardsPerPage);
 
 	const handleDeveloperListing = (developerId, developerName) => {
 		const params = {
 			d_id: developerId,
-			d_name: developerName,
-			sale_type: saleType,
+			d_name: developerName
 		};
 
 		const values = Object.keys(params);
@@ -97,20 +122,77 @@ const PreSellingComponent = () => {
 		const falsy = ["", "null", null, undefined];
 
 		values.forEach((p, i) => {
+
 			if (!falsy.includes(params[p]) && i === 0) {
-				searchParams += `${p}=${params[p]}`;
+				searchParams += `${p}=${params[p]}`
 			} else if (!falsy.includes(params[p])) {
-				searchParams += `&${p}=${params[p]}`;
+				searchParams += `&${p}=${params[p]}`
 			}
 		});
 
-		navigate(`/developers/?${searchParams}`);
-	};
+		navigate(`/developer/?${searchParams}`);
+	}
 
-	const handleSearchDeveloper = (e) => {
-		console.log(e);
-		setSaleType(e);
-	};
+	const handleSearchDeveloper = (e, name) => {
+		console.log(e, name);
+
+		setSearchParams((prevState) => ({
+			...prevState,
+			[name]: e,
+		}));
+
+	}
+	const handleDeveloperSearch = (event) => {
+
+		const value = event.target.value;
+		setDeveloperName(value);
+
+		if (falsy.includes(value)) {
+			setFilteredDevelopers(developersData); // Reset to original data when input is empty
+		} else {
+
+			const filtered = developersData.filter((developer) => {
+				return developer.developerName.toLowerCase().includes(value.toLowerCase());
+			})
+
+			setFilteredDevelopers(filtered);
+		}
+	}
+
+	const handleSearchClick = async () => {
+		try {
+
+			console.log("search", searchParams);
+			const searchKeys = Object.values(searchParams);
+			let searchData = [];
+
+			if (!falsy.includes(searchParams.saleType)) {
+				developersData.forEach(async (dev, i) => {
+					let data = [];
+					const properties = await GetPropertiesByDeveloperId(dev.id);
+					if (properties.length > 0) {
+
+						properties.forEach(element => {
+							console.log("Dsdsfdgd");
+							if (element.SaleType.toLowerCase().replace(/-/g, "") == searchParams.saleType.toLowerCase().replace(/-/g, "")) {
+								data.push(dev);
+							}
+						});
+					}
+					console.log("data", data);
+					searchData.push(data);
+
+				})
+				console.log("searchData", searchData);
+
+			}
+
+		} catch (error) {
+			console.log(error);
+
+		}
+	}
+
 	return (
 		<div className="pre-selling-container">
 			<div className="pre-selling-content">
@@ -124,29 +206,34 @@ const PreSellingComponent = () => {
 							<input
 								className="search-real-estate-developer"
 								type="text"
+								value={searchParams.searchKey}
 								placeholder="Search Real Estate Developer"
+								onChange={(e) => handleSearchDeveloper(e.target.value, "searchKey")}
 							/>
 						</div>
 						<div className="search-select-options">
-							<Select placeholder="Location" allowClear>
-								<Select.Option value="All">All</Select.Option>
-							</Select>
-							<Select
-								placeholder="Listing Type"
-								allowClear
-								onChange={handleSearchDeveloper}
+							<Select placeholder="Location" allowClear onChange={(e) => handleSearchDeveloper(e, "location")}
+								value={searchParams.location}
 							>
+								<Select.Option value="All">All</Select.Option>
+								{
+									location.map((l, i) => {
+										return <Select.Option key={i} value={l.value}>{l.label}</Select.Option>;
+									})
+								}
+							</Select>
+							<Select placeholder="Listing Type" allowClear onChange={(e) => handleSearchDeveloper(e, "saleType")} value={searchParams.saleType}>
 								<Select.Option value="pre-selling">Pre Selling</Select.Option>
 								<Select.Option value="ready for occupancy">
 									Ready for Occupancy
 								</Select.Option>
 							</Select>
 						</div>
-					</div>
-					<div className="preselling-search-button">
+					</div >
+					<div className="preselling-search-button" onClick={handleSearchClick}>
 						<button>Search</button>
 					</div>
-				</div>
+				</div >
 				{currentCards.length > 0 ? (
 					<div className="preselling-developers-card">
 						{currentCards?.map((developer, index) => (
@@ -179,7 +266,7 @@ const PreSellingComponent = () => {
 												backgroundColor: developer.isUpdatedBackground
 													? "#E3FFF0"
 													: "#f7f7f7",
-												color :developer.isUpdatedBackground ? "#007C14" : "#A4A1A1"
+												color: developer.isUpdatedBackground ? "#007C14" : "#A4A1A1"
 											}}
 										>
 											Updt {developer.updated}
