@@ -1705,6 +1705,10 @@ select.location-form-inputs {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 	}
+	.listing-tabs{
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+	}
 	.listing-unit-details-div{
 		grid-template-columns: repeat(1, 1fr);
 		gap: 20px;
@@ -1765,7 +1769,8 @@ select.location-form-inputs {
 		margin-left: 0 !important;
 	}
 	.listing-tabs .tab{
-		padding: 13px 25px;
+		padding: 13px 15px;
+		align-content: center;
 	}
 	.buttonSubmit button{
 		padding: 10px 15px;

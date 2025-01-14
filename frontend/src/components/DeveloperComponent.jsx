@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/preselling.css";
 import { FooterComponent, CustomMlFooter } from ".";
 import { useState, useEffect } from "react";
-import { Select } from "antd";
+import { Input, Select } from "antd";
 import Pagination from "./custom/pagination/Pagination";
 import developers from "../utils/DevelopersMockData";
 import { GetPhotoWithUrl } from "../utils/GetPhoto";
@@ -12,6 +12,7 @@ import noDevFound from "../asset/no-developer-found.png";
 import { useNavigate } from "react-router-dom";
 import { FillLocationFilter } from "../utils/StringFunctions.utils";
 import { GetPropertiesByDeveloperId } from "../api/GetAllPublicListings";
+import { DevelopersCardsSkeleton } from "./Skeleton";
 
 const PreSellingComponent = () => {
 	const navigate = useNavigate();
@@ -22,11 +23,12 @@ const PreSellingComponent = () => {
 	const [developerName, setDeveloperName] = useState("");
 	const [developerLogo, setDeveloperLogo] = useState("");
 	const [searchParams, setSearchParams] = useState({
-		saleType: null,
-		location: null,
-		searchKey: "",
+		SaleType: null,
+		ProvinceState: null,
+		VendorName: "",
 	});
 	const [location, setLocation] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	const falsy = [null, undefined, ""];
 
@@ -76,7 +78,8 @@ const PreSellingComponent = () => {
 					updated: updated,
 					updatedAt,
 					isUpdatedBackground,
-					ProvinceState: developer.ProvinceState
+					ProvinceState: developer.ProvinceState,
+					VendorName: developer.VendorName
 				};
 
 			});
@@ -86,9 +89,10 @@ const PreSellingComponent = () => {
 			);
 
 			setDevelopersData(sorteddata);
-
+			setIsLoading(false);
 		} catch (error) {
 			console.error(error);
+			setIsLoading(false);
 		}
 	};
 	useEffect(() => {
@@ -142,54 +146,78 @@ const PreSellingComponent = () => {
 		}));
 
 	}
-	const handleDeveloperSearch = (event) => {
-
-		const value = event.target.value;
-		setDeveloperName(value);
-
-		if (falsy.includes(value)) {
-			setFilteredDevelopers(developersData); // Reset to original data when input is empty
-		} else {
-
-			const filtered = developersData.filter((developer) => {
-				return developer.developerName.toLowerCase().includes(value.toLowerCase());
-			})
-
-			setFilteredDevelopers(filtered);
-		}
-	}
 
 	const handleSearchClick = async () => {
 		try {
+			setIsLoading(true);
 
-			console.log("search", searchParams);
-			const searchKeys = Object.values(searchParams);
-			let searchData = [];
+			let remainingParams = searchParams;
+			const searchKeys = Object.keys(remainingParams);
 
-			if (!falsy.includes(searchParams.saleType)) {
-				developersData.forEach(async (dev, i) => {
-					let data = [];
+
+			searchKeys.forEach((k, i) => {
+				if (falsy.includes(remainingParams[k])) {
+					delete remainingParams[k];
+				}
+			});
+
+			let filteredDev = developersData
+
+			let remainingKeys = Object.keys(remainingParams);
+
+			//DONE
+			searchVendorName()
+
+			function searchVendorName() {
+				if (remainingKeys.includes("VendorName")) {
+					filteredDev = filteredDev.filter((developer) => {
+						return developer.developerName.toLowerCase().includes(remainingParams["VendorName"].toLowerCase());
+					})
+				}
+			}
+
+			// Filter listing from the rest search params
+			if (remainingKeys.includes("ProvinceState")) {
+				const location = remainingParams["ProvinceState"];
+
+				if (location.toLowerCase() !== "all") {
+					filteredDev = filteredDev.filter((developer) => location.toLowerCase() == developer.ProvinceState.toLowerCase());
+				} else {
+					searchVendorName()
+				}
+			}
+
+			let finalFilteredDevelopers = [];
+
+			if (remainingKeys.includes("SaleType")) {
+				for (const dev of filteredDev) {
 					const properties = await GetPropertiesByDeveloperId(dev.id);
 					if (properties.length > 0) {
+						const matchingProperties = properties.filter(
+							(property) =>
+								property.SaleType.toLowerCase().replace(/-/g, "") === searchParams.SaleType.toLowerCase().replace(/-/g, "")
+						);
 
-						properties.forEach(element => {
-							console.log("Dsdsfdgd");
-							if (element.SaleType.toLowerCase().replace(/-/g, "") == searchParams.saleType.toLowerCase().replace(/-/g, "")) {
-								data.push(dev);
-							}
-						});
+						if (matchingProperties.length > 0) {
+							finalFilteredDevelopers.push(dev);
+						}
 					}
-					console.log("data", data);
-					searchData.push(data);
+				}
 
-				})
-				console.log("searchData", searchData);
+				// Remove duplicates based on developer ID (case-insensitive)
+				finalFilteredDevelopers = finalFilteredDevelopers.filter(
+					(value, index, self) =>
+						index === self.findIndex((t) => t.id.toLowerCase() === value.id.toLowerCase())
+				);
 
+				console.log("Filtered data:", finalFilteredDevelopers);
+				setFilteredDevelopers(finalFilteredDevelopers);
+				setIsLoading(false);
 			}
 
 		} catch (error) {
 			console.log(error);
-
+			setIsLoading(false);
 		}
 	}
 
@@ -206,14 +234,15 @@ const PreSellingComponent = () => {
 							<input
 								className="search-real-estate-developer"
 								type="text"
-								value={searchParams.searchKey}
+								value={searchParams.VendorName}
 								placeholder="Search Real Estate Developer"
-								onChange={(e) => handleSearchDeveloper(e.target.value, "searchKey")}
+								onChange={(e) => handleSearchDeveloper(e.target.value, "VendorName")}
 							/>
 						</div>
 						<div className="search-select-options">
-							<Select placeholder="Location" allowClear onChange={(e) => handleSearchDeveloper(e, "location")}
-								value={searchParams.location}
+							<Select placeholder="Location" onChange={(e) => handleSearchDeveloper(e, "ProvinceState")}
+								value={searchParams.ProvinceState}
+								className="developer-search select--location"
 							>
 								<Select.Option value="All">All</Select.Option>
 								{
@@ -222,7 +251,7 @@ const PreSellingComponent = () => {
 									})
 								}
 							</Select>
-							<Select placeholder="Listing Type" allowClear onChange={(e) => handleSearchDeveloper(e, "saleType")} value={searchParams.saleType}>
+							<Select placeholder="Listing Type" onChange={(e) => handleSearchDeveloper(e, "SaleType")} value={searchParams.SaleType} className="developer-search select--listing-type">
 								<Select.Option value="pre-selling">Pre Selling</Select.Option>
 								<Select.Option value="ready for occupancy">
 									Ready for Occupancy
@@ -231,61 +260,76 @@ const PreSellingComponent = () => {
 						</div>
 					</div >
 					<div className="preselling-search-button" onClick={handleSearchClick}>
-						<button>Search</button>
+						<button style={{ cursor: 'pointer' }}>Search</button>
 					</div>
 				</div >
-				{currentCards.length > 0 ? (
-					<div className="preselling-developers-card">
-						{currentCards?.map((developer, index) => (
-							<div
-								key={index}
-								className="developers-card"
-								onClick={() =>
-									handleDeveloperListing(developer.id, developer.developerName)
-								}
-							>
-								<div className="developers-logo">
-									<img
-										src={developer.logo}
-										alt={`${developer.developerName} Logo`}
-									/>
-								</div>
-								<div className="developers-info">
-									<div className="developers-name">
-										<span>
-											{TruncateDeveloperName(developer.developerName)}
-										</span>
+				{
+					!isLoading ?
+						<>
+							{
+								currentCards.length > 0 ? (
+									<div className="preselling-developers-card">
+										{currentCards?.map((developer, index) => (
+											<div
+												key={index}
+												className="developers-card"
+												onClick={() =>
+													handleDeveloperListing(developer.id, developer.developerName)
+												}
+											>
+												<div className="developers-logo">
+													<img
+														src={developer.logo}
+														alt={`${developer.developerName} Logo`}
+													/>
+												</div>
+												<div className="developers-info">
+													<div className="developers-name">
+														<span>
+															{TruncateDeveloperName(developer.developerName)}
+														</span>
+													</div>
+													<div className="developers-properties-stat">
+														<div className="developers-properties-number">
+															Properties:{developer.properties}
+														</div>
+														<div
+															className="developers-status"
+															style={{
+																backgroundColor: developer.isUpdatedBackground
+																	? "#E3FFF0"
+																	: "#f7f7f7",
+																color: developer.isUpdatedBackground ? "#007C14" : "#A4A1A1"
+															}}
+														>
+															Updt {developer.updated}
+														</div>
+													</div>
+												</div>
+											</div>
+										))}
 									</div>
-									<div className="developers-properties-stat">
-										<div className="developers-properties-number">
-											Properties:{developer.properties}
+								) : (
+									<div className="no-developers-found">
+										<div className="no-dev-found__image-wrapper">
+											<img src={noDevFound} alt="No Developers Found" />
 										</div>
-										<div
-											className="developers-status"
-											style={{
-												backgroundColor: developer.isUpdatedBackground
-													? "#E3FFF0"
-													: "#f7f7f7",
-												color: developer.isUpdatedBackground ? "#007C14" : "#A4A1A1"
-											}}
-										>
-											Updt {developer.updated}
+										<div className="no-dev-found__message">
+											<p>No Real Estate Developers Available</p>
 										</div>
 									</div>
-								</div>
-							</div>
-						))}
-					</div>
-				) : (
-					<div className="no-developers-found">
-						<div className="no-dev-found__image-wrapper">
-							<img src={noDevFound} alt="No Developers Found" />
+								)
+							}
+						</>
+						:
+						<div className="preselling-developers-card developers-card--skeleton-wrapper">
+							{Array(5)
+								.fill(null)
+								.map((_, i) => (
+									<DevelopersCardsSkeleton key={i} />
+								))}
 						</div>
-						<div className="no-dev-found__message">
-							<p>No Real Estate Developers Available</p>
-						</div>
-					</div>
-				)}
+				}
 
 				{currentCards.length > 0 && (
 					<Pagination
