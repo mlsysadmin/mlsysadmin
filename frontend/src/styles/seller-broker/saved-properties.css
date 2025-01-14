@@ -4,12 +4,16 @@
 	padding: 0px 30px 50px 30px;
 	font-size: var(--d-body-text);
 	background: var(--white);
+	height: 100%;
 	/* max-width: var(--default-page-size); */
 }
-
+.saved-prop-container{
+height: 100%;
+}
 .savedPropertiesBackgroundComponent {
 	background: var(--white);
 	color: black;
+	height: auto;
 }
 
 .savedPropertiesBackgroundComponent
@@ -26,8 +30,9 @@
 	/* flex-direction: row;
   flex-wrap: wrap; */
 }
-.savedPropertiesContent .join-page-container, .savedPropertiesContent .page-content-jointeam{
-	padding: 0px 0px ;
+.savedPropertiesContent .join-page-container,
+.savedPropertiesContent .page-content-jointeam {
+	padding: 0px 0px;
 }
 .ant-tabs-content-holder {
 	margin-top: 40px 0px;
@@ -44,7 +49,7 @@
 }
 .no-saved-properties-container {
 	margin-top: 50px;
-	height: 210px;
+	height: 230px;
 }
 .no-saved-property-content {
 	display: flex;
@@ -95,12 +100,12 @@
 	.savedPropertiesContent {
 		padding-top: 0px;
 	}
-	 #myPropertiesTextHeader{
+	#myPropertiesTextHeader {
 		font-size: var(--m-h4-text) !important;
-	 }
-	 #myPropertiesTextSubHeader{
-font-size: calc(var(--d-body-text)- 1px) !important;
-	 }
+	}
+	#myPropertiesTextSubHeader {
+		font-size: calc(var(--d-body-text)- 1px) !important;
+	}
 
 	.wholeViewSavedProperties .listing-carousel-dashboard-skeleton {
 		display: grid;
@@ -232,8 +237,8 @@ font-size: calc(var(--d-body-text)- 1px) !important;
 	margin-top: 30px;
 	width: 100%;
 }
-.savedPropertiesBackgroundComponent .ant-skeleton-content .ant-skeleton-title{
-width: 100% !important;
+.savedPropertiesBackgroundComponent .ant-skeleton-content .ant-skeleton-title {
+	width: 100% !important;
 }
 @media screen and (min-width: 360px) and (max-wdith: 1200px) {
 	.no-saved-properties-container {

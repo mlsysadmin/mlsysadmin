@@ -131,7 +131,7 @@ const PropertyDetailsComponent = ({
 							</div>
 							<div className="listing-tab-wrapper">
 								<div className="listing-tabs">
-									{["Rent", "Sale", "Pre Selling"].map((tab) => (
+									{["Rent", "Sale", "Ready for Occupancy"].map((tab) => (
 										<div
 											key={tab}
 											className={`tab ${
