@@ -126,10 +126,8 @@ export const ListingForm = () => {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const closeModal = () => setIsModalOpen(false);
   const handleConfirm = () => {
-	console.log("I clicked Confirm");
-	
-	setIsConfirmed(true);
-    closeModal();
+    console.log("I clicked Confirm");
+    setIsConfirmed(true);
   };
   useEffect(() => {
     console.log("submitted na: ", submitted);
@@ -180,7 +178,11 @@ export const ListingForm = () => {
       }
     }, 1500);
   }, []);
-
+  useEffect(() => {
+    if (isConfirmed) {
+      handleVendorSubmit();
+    }
+  }, [isConfirmed]);
   const [tinError, serTinError] = useState("");
   const TinValidation = (inputTin) => {
     const isNumericTin = /^\d+$/.test(inputTin);
@@ -192,14 +194,14 @@ export const ListingForm = () => {
     }
     return "";
   };
-  const [ stepFourCompleted, setStepFourCompleted] = useState(false);
+  const [stepFourCompleted, setStepFourCompleted] = useState(false);
   const handleStepComplete = (stepIndex, isComplete) => {
     setCompletedSteps((prev) => {
       if (prev[stepIndex] === isComplete) {
         return prev;
       }
-      console.log("stepIndex === 4: ",stepIndex === 4);
-      console.log("prev[stepIndex]: ",prev[stepIndex]);
+      console.log("stepIndex === 4: ", stepIndex === 4);
+      console.log("prev[stepIndex]: ", prev[stepIndex]);
       console.log("isComplete: ", isComplete);
       // console.log("prev[stepIndex] === isComplete: ",prev[stepIndex] === isComplete);
       if (stepIndex === 4 && isComplete) {
@@ -212,7 +214,7 @@ export const ListingForm = () => {
       };
     });
     // console.log("completedSteps: ",completedSteps);
-    
+
     setErrors((prev) => ({
       ...prev,
       [stepIndex]: !isComplete,
@@ -229,69 +231,78 @@ export const ListingForm = () => {
       // }
     }
   };
-useEffect(()=>{
-    console.log("completedSteps: ",completedSteps);
-	// console.log("stepFourCompleted: ",stepFourCompleted);
-},[stepFourCompleted])
+  useEffect(() => {
+    console.log("completedSteps: ", completedSteps);
+    // console.log("stepFourCompleted: ",stepFourCompleted);
+  }, [stepFourCompleted]);
 
   const handleVendorSubmit = async () => {
-    setIsSubmitting(false);
-	setIsModalOpen(true);
+    // setIsConfirmed(false); // Reset confirmation state
+    setIsModalOpen(true); // Open modal to confirm submission
+
+    console.log("isConfirmed: ", isConfirmed);
+
     if (isConfirmed) {
-		console.log("I am confirmed");
-		try {
-			if (Object.keys(userDetails).length !== 0) {
-			  let number = userDetails.mobileNumber;
-	  
-			  try {
-				const vendorExists = await GetVendorByNumber(number);
-				console.log("vendorDetails", vendorExists.data);
-	  
-				if (Object.keys(vendorExists.data).length !== 0) {
-				  setShowVendorModal(false);
-				  console.log("Vendor Exist:", vendorExists.data);
-				  setIsSubmitting(true);
-				  await handleCreateProperty(
-				  	vendorExists.data.VendorName,
-				  	vendorExists.data.VendorId
-				  );
-				  isSubmitted(true);
-				} else {
-				  const vendorName = `${userDetails?.name.firstName} ${userDetails?.name.lastName}`;
-				  const generatedVendotId = await GetVendorId();
-				  setAddedVendorId(generatedVendotId);
-				  setAddedVendorName(vendorName);
-				  setIsSubmitting(false);
-				  setShowVendorModal(true);
-				}
-			  } catch (error) {
-				console.error("Error checking vendor existence:", error);
-				openNotificationWithIcon(
-				  "error",
-				  "Submit Failed",
-				  "We're sorry, something went wrong. Please try again later."
-				);
-			  }
-			} else {
-			  console.error("user is not logged in");
-			  openNotificationWithIcon(
-				"error",
-				"Submit Failed",
-				"We're sorry, something went wrong. Please try again later."
-			  );
-			  navigate("/login");
-			}
-		  } catch (error) {
-			console.log("errr", error);
-			openNotificationWithIcon(
-			  "error",
-			  "Submit Failed",
-			  "We're sorry, something went wrong. Please try again later."
-			);
-		  }
-	}else{
-		console.log("I am cancel")
-	}
+      setIsSubmitting(true); // Indicate submission is in progress
+      console.log("I am confirmed");
+      try {
+        if (Object.keys(userDetails).length !== 0) {
+          const number = userDetails.mobileNumber;
+          try {
+            const vendorExists = await GetVendorByNumber(number);
+            console.log("vendorDetails", vendorExists.data);
+
+            if (Object.keys(vendorExists.data).length !== 0) {
+              setShowVendorModal(false);
+              console.log("Vendor Exist:", vendorExists.data);
+              await handleCreateProperty(
+                vendorExists.data.VendorName,
+                vendorExists.data.VendorId
+              );
+              isSubmitted(true);
+              setStepFourCompleted(false);
+              closeModal();
+              // Add your `handleCreateProperty` logic here if needed
+            } else {
+              const vendorName = `${userDetails?.name.firstName} ${userDetails?.name.lastName}`;
+              const generatedVendorId = await GetVendorId();
+              setAddedVendorId(generatedVendorId);
+              setAddedVendorName(vendorName);
+              setIsSubmitting(false);
+              setShowVendorModal(true);
+              setStepFourCompleted(false);
+              closeModal();
+            }
+          } catch (error) {
+            console.error("Error checking vendor existence:", error);
+            openNotificationWithIcon(
+              "error",
+              "Submit Failed",
+              "We're sorry, something went wrong. Please try again later."
+            );
+          }
+        } else {
+          console.error("User is not logged in");
+          openNotificationWithIcon(
+            "error",
+            "Submit Failed",
+            "We're sorry, something went wrong. Please try again later."
+          );
+          navigate("/login");
+        }
+      } catch (error) {
+        console.error("Submission error:", error);
+        openNotificationWithIcon(
+          "error",
+          "Submit Failed",
+          "We're sorry, something went wrong. Please try again later."
+        );
+      } finally {
+        setIsSubmitting(false); // Reset submitting state
+      }
+    } else {
+      console.log("I am cancel");
+    }
   };
 
   const handleCreateProperty = async (VendorName, VendorId) => {
@@ -304,14 +315,22 @@ useEffect(()=>{
     const imagePayload = new FormData();
 
     imagePayload.append("PropertyNo", propertyNo);
+
+    // {********Saving Photos With Image Watermark***********}
+    // imagePayload.append(
+    //   "MainPhoto",
+    //   photosArray.length > 0 ? await addWatermark(photosArray[0].file) : null
+    // );
     imagePayload.append(
       "MainPhoto",
-      photosArray.length > 0 ? await addWatermark(photosArray[0].file) : null
+      photosArray.length > 0 ? photosArray[0].file : null
     );
 
     for (let i = 1; i < photosArray.length; i++) {
-      imagePayload.append("Photo[]", await addWatermark(photosArray[i].file));
+      // {********Saving Photos With Image Watermark***********}
+      // imagePayload.append("Photo[]", await addWatermark(photosArray[i].file));
 
+      imagePayload.append("Photo[]", photosArray[i].file);
       imagePayload.append("FileName[]", photosArray[i].file.name);
     }
 
@@ -340,83 +359,83 @@ useEffect(()=>{
     setIsSubmitting(false);
     setShowSuccessfulMsgModal(true);
   };
-  const imagePathToFile = async (imagePath, fileName) => {
-    try {
-      const response = await fetch(imagePath);
-      const blob = await response.blob();
+  // const imagePathToFile = async (imagePath, fileName) => {
+  //   try {
+  //     const response = await fetch(imagePath);
+  //     const blob = await response.blob();
 
-      // Convert Blob to File
-      const file = new File([blob], fileName, { type: blob.type });
-      return file;
-    } catch (error) {
-      console.error("Error converting image path to file:", error);
-      throw error;
-    }
-  };
+  //     // Convert Blob to File
+  //     const file = new File([blob], fileName, { type: blob.type });
+  //     return file;
+  //   } catch (error) {
+  //     console.error("Error converting image path to file:", error);
+  //     throw error;
+  //   }
+  // };
 
-  const addWatermark = async (imageFile) => {
-    const imageFiles = await imagePathToFile(logo, "watermarkSecondPart.png");
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      const watermarkImg = new Image();
-      img.src = URL.createObjectURL(imageFile);
-      img.onload = () => {
-        watermarkImg.src = URL.createObjectURL(imageFiles);
-        watermarkImg.style.opacity = 0.1;
-        watermarkImg.onload = () => {
-          const canvas = document.createElement("canvas");
-          const ctx = canvas.getContext("2d");
+  // const addWatermark = async (imageFile) => {
+  //   const imageFiles = await imagePathToFile(logo, "watermarkSecondPart.png");
+  //   return new Promise((resolve, reject) => {
+  //     const img = new Image();
+  //     const watermarkImg = new Image();
+  //     img.src = URL.createObjectURL(imageFile);
+  //     img.onload = () => {
+  //       watermarkImg.src = URL.createObjectURL(imageFiles);
+  //       watermarkImg.style.opacity = 0.1;
+  //       watermarkImg.onload = () => {
+  //         const canvas = document.createElement("canvas");
+  //         const ctx = canvas.getContext("2d");
 
-          canvas.width = img.width;
-          canvas.height = img.height;
+  //         canvas.width = img.width;
+  //         canvas.height = img.height;
 
-          ctx.drawImage(img, 0, 0);
-          const scale = 0.3;
-          const watermarkWidth = img.width * scale;
-          const watermarkHeight =
-            (watermarkImg.height / watermarkImg.width) * watermarkWidth;
+  //         ctx.drawImage(img, 0, 0);
+  //         const scale = 0.3;
+  //         const watermarkWidth = img.width * scale;
+  //         const watermarkHeight =
+  //           (watermarkImg.height / watermarkImg.width) * watermarkWidth;
 
-          const watermarkX = (img.width - watermarkWidth) / 2;
-          const watermarkY = (img.height - watermarkHeight) / 2;
+  //         const watermarkX = (img.width - watermarkWidth) / 2;
+  //         const watermarkY = (img.height - watermarkHeight) / 2;
 
-          ctx.drawImage(
-            watermarkImg,
-            watermarkX,
-            watermarkY,
-            watermarkWidth,
-            watermarkHeight
-          );
+  //         ctx.drawImage(
+  //           watermarkImg,
+  //           watermarkX,
+  //           watermarkY,
+  //           watermarkWidth,
+  //           watermarkHeight
+  //         );
 
-          canvas.toBlob((blob) => {
-            if (blob) {
-              const watermarkedFile = new File([blob], imageFile.name, {
-                type: imageFile.type,
-              });
-              console.log("watermarkedFile: ", watermarkedFile);
-              resolve(watermarkedFile);
-            } else {
-              reject(new Error("Could not create watermark"));
-            }
-          }, imageFile.type);
-        };
-        watermarkImg.onerror = (error) => {
-          reject(
-            new Error(
-              "Error loading watermark image: " + error.message || error
-            )
-          );
-        };
-        console.log(" I AM LOG!");
-      };
+  //         canvas.toBlob((blob) => {
+  //           if (blob) {
+  //             const watermarkedFile = new File([blob], imageFile.name, {
+  //               type: imageFile.type,
+  //             });
+  //             console.log("watermarkedFile: ", watermarkedFile);
+  //             resolve(watermarkedFile);
+  //           } else {
+  //             reject(new Error("Could not create watermark"));
+  //           }
+  //         }, imageFile.type);
+  //       };
+  //       watermarkImg.onerror = (error) => {
+  //         reject(
+  //           new Error(
+  //             "Error loading watermark image: " + error.message || error
+  //           )
+  //         );
+  //       };
+  //       console.log(" I AM LOG!");
+  //     };
 
-      img.onerror = (error) => {
-        console.error("Error loading original image: ", error);
-        reject(
-          new Error("Error loading original image: " + error.message || error)
-        );
-      };
-    });
-  };
+  //     img.onerror = (error) => {
+  //       console.error("Error loading original image: ", error);
+  //       reject(
+  //         new Error("Error loading original image: " + error.message || error)
+  //       );
+  //     };
+  //   });
+  // };
 
   const handleFeatureChecking = async () => {
     try {
