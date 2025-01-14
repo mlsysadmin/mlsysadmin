@@ -98,16 +98,27 @@ const PropertyTypes = [
 		],
 	},
 	{
+		key: "leasureProperties",
+		label: <span>Leisure Properties</span>,
+		title: "leasureProperties",
+		options: [
+			{ label: "Hotel/Resort", value: "hotel-and-resort" },
+			{ label: "Beach Lot", value: "beach-lot" },
+		],
+	},
+	{
+		key: "agricultural",
+		label: <span>Agricultural</span>,
+		title: "Agricultural",
+		options: [{ label: "Farm Lot", value: "farm-lot" }],
+	},
+	{
 		key: "industrial",
 		label: <span>Industrial</span>,
 		title: "Industrial",
-		options: [
-			{ label: "Warehouse", value: "warehouse" },
-			{ label: "Farm Lot", value: "farm-lot" },
-			{ label: "Hotel/Resort", value: "hotel-and-resort" },
-		]
-	}
-]
+		options: [{ label: "Warehouse", value: "warehouse" }],
+	},
+];
 
 const ListingTypes = [
 	{

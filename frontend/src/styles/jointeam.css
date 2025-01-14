@@ -19,13 +19,13 @@
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	margin: 10px;
+	margin: 10px 0px;
 }
 
 .join-team-column-group {
 	display: flex;
 	flex-direction: row;
-	gap: 30px;
+	gap: 20px;
 	flex-wrap: wrap;
 }
 
@@ -33,6 +33,12 @@
 	text-align: left;
 	display: flex;
 	flex-direction: column;
+}
+.modal-overlay-jointeam .join-team-group .brgy-label {
+	width: 185px;
+	white-space: nowrap;
+	overflow-x: auto;
+	display: inline-block;
 }
 .join-team-page-group
 	.ant-select
@@ -226,7 +232,7 @@
 	border-color: 1px solid var(--mute-gray) !important;
 }
 .broker-questions-jointeam .broker-number-of-years .ant-picker-outlined {
-	width: 200px;
+	width: 185px;
 	height: 40px;
 	border: 1px solid #d9d9d9 !important;
 	padding: 10px !important;
@@ -236,6 +242,18 @@
 	font-size: 15px;
 	outline: none;
 }
+.join-page-container .broker-questions-jointeam .broker-number-of-years .ant-picker-outlined {
+	width: 220px;
+	height: 40px;
+	border: 1px solid #d9d9d9 !important;
+	padding: 10px !important;
+	border-radius: var(--radius);
+	color: rgba(0, 0, 0, 0.719) !important;
+	background-color: #f9f9f9;
+	font-size: 15px;
+	outline: none;
+}
+
 .broker-questions-jointeam .broker-number-of-years .ant-picker-input input {
 	width: 100%;
 }
@@ -695,7 +713,9 @@ input[type="file"] {
 		font-size: 16px;
 		font-weight: bold;
 	}
-
+	.join-team-page-group .join-our-team-selector {
+		width: 100%;
+	}
 	.join-team-columns {
 		display: flex;
 		flex-direction: column;
@@ -783,7 +803,6 @@ input[type="file"] {
 	.broker-questions-jointeam .broker-number-of-years input {
 		width: 200px;
 		height: 20px;
-		border: 1px solid #8c9094;
 		padding: 10px;
 		border-radius: 5px;
 		color: #8c9094;
@@ -1122,7 +1141,6 @@ input[type="file"] {
 	.broker-questions-jointeam .broker-number-of-years input {
 		width: 425px;
 		height: 20px;
-		border: 1px solid #8c9094;
 		padding: 10px;
 		border-radius: 5px;
 		color: #8c9094;
@@ -1755,7 +1773,6 @@ input[type="file"] {
 		border-radius: 5px;
 		color: var(--mute-gray);
 		width: 100%;
-       
 	}
 
 	.verification-section {
@@ -2394,7 +2411,7 @@ input[type="file"] {
 		width: 100% !important;
 		height: 40px !important;
 		background: none !important;
-		border: 1px solid var(--mute-gray) !important;
+		/* border: 1px solid var(--mute-gray) !important; */
 	}
 	.broker-questions-jointeam
 		.broker-number-of-years
@@ -2417,10 +2434,15 @@ input[type="file"] {
 		border-color: 1px solid var(--mute-gray) !important;
 		width: 100%;
 	}
-	.modal-header .close-modal{
-		margin-top:0px !important;
+	.modal-header .close-modal {
+		margin-top: 0px !important;
 	}
-	.modal-overlay-jointeam .modal-header{
+	.modal-overlay-jointeam .modal-header {
 		align-items: flex-start !important;
+	}
+	.modal-overlay-jointeam .join-team-group .brgy-label {
+		width: 100% !important;
+		white-space: nowrap;
+		overflow: unset;
 	}
 }

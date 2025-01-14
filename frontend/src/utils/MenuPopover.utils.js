@@ -59,6 +59,7 @@ const SubMenu = {
 			header: "Leisure Properties for Sale",
 			submenu: [
 				{ sub: "Hotel/Resort", link: "/sale/?property_type=hotel/resort" },
+				{ sub: "Beach Lot", link: "/sale/?property_type=beach-lot" },
 				{
 					childSubMenu: {
 						header: "Agricultural for Sale",
@@ -140,7 +141,7 @@ const SubMenu = {
 					sub_info: (
 						<div className="sub-info">
 							<span>Explore properties from top developers!</span>
-							<p style={{ marginTop: '50px' }}>
+							<p style={{ marginTop: '0px' }}>
 								<a
 									href="/developers"
 									className="redirect"

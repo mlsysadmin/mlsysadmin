@@ -33,12 +33,10 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 	}, []);
 
 	useEffect(() => {
-		console.log("newSearchParams", newSearchParams);
 		let params = {};
 		const keys = Object.keys(searchParams);
 
 		keys.forEach((key, i) => {
-			console.log("se", searchParams[key]);
 
 			params[key] = searchParams[key];
 		});
@@ -84,7 +82,6 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 	};
 
 	const handleSliderChange = (value) => {
-		console.log("value", value);
 
 		setPriceRange(value);
 		SetParamsAllField("price_min", value[0]);
@@ -149,11 +146,8 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 			setNewSearchParams((prevParams) => ({ ...prevParams, [name]: value }));
 		} else {
 			setNewSearchParams((prevSearchParams) => {
-				console.log("prev", prevSearchParams);
 
 				const existingParamIndex = prevSearchParams["features"];
-
-				console.log("exist", existingParamIndex);
 
 				// if (existingParamIndex !== -1) {
 				// 	if ((name === "features" && checkFeatures.length === 0)) {
@@ -287,8 +281,6 @@ const ListingSearch = ({ location, searchParams, setSearchFilters }) => {
 		// 		}
 		// 	}
 		// });
-		console.log("params: ", params);
-		console.log("new: ", newSearchParams);
 
 		navigate(`/search/?${params}`);
 		// navigate('/all')

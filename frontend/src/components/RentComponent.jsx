@@ -278,7 +278,7 @@ const RentComponent = () => {
 										key={index}
 										id={data.id}
 										title={data.title}
-										price={`PHP ${data.price}`}
+										price={data.price}
 										imgSrc={data.img}
 										beds={data.no_of_beds}
 										baths={data.no_of_bathrooms}

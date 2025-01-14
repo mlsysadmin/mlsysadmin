@@ -97,6 +97,8 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 			setCurrent("home-loan");
 		} else if (currentPath.includes("/buy-a-home")) {
 			setCurrent("home-loan");
+		}else if (currentPath.includes("/developers")) {
+			setCurrent("developers");
 		}
 		// else if (currentPath.includes("/pre-selling")) {
 		// 	setCurrent("pre-selling");
@@ -172,6 +174,12 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 			key: "rent",
 			children: SubMenuChild(SubMenu.rent),
 		},
+		{
+			label: "Developers",
+			key: "developers",
+			children: SubMenuChild(SubMenu.preSelling),
+			link: "/developers",
+		},
 		// {
 		// 	label: "Developers",
 		// 	key: "pre-selling",
@@ -200,7 +208,6 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 		// 	children: SubMenuChild(SubMenu.otherServices),
 		// },
 		{ label: "Contact", key: "contact", link: "/contact-us" },
-	
 	];
 
 	if (!isAuthenticated) {
@@ -359,8 +366,10 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 							<SellerLogInButtonDropdown />
 						) : (
 							<button
+							className="login-btn-sidemenu"
 								// src={userProfile}
 								style={{
+									
 									cursor: "pointer",
 									backgroundColor: "rgb(217, 0, 0)",
 									color: "white",
@@ -368,6 +377,7 @@ const SidebarMenu = ({ setOpenDrawer }) => {
 									padding: "8px 10px",
 									borderRadius: "5px",
 									width: "100%",
+									fontSize: "14px !important",
 								}}
 								onClick={handleProfileClick}
 							>

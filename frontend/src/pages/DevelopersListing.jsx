@@ -73,12 +73,9 @@ const DevelopersListing = () => {
 	const [headerText, setHeaderText] = useState("");
 	const [breadCrumbItems, setBreadCrumbItems] = useState([
 		{
-			title: "Home",
-			href: "/",
-		},
-		{
-			title: "Search Properties",
-		},
+			title: "Developers",
+			href: "/developers",
+		}
 	]);
 	const [searchParams, setSearchParams] = useState({
 		location: null,
@@ -121,13 +118,23 @@ const DevelopersListing = () => {
 		const getDeveloperId = queryParams.get("d_id");
 		const getDeveloperName = queryParams.get("d_name");
 		const getSaleType = queryParams.get("sale_type");
-		console.log("getSaleType", getSaleType);
-		
+
 
 		setDeveloperId(getDeveloperId);
 		setDeveloperName(getDeveloperName);
-		const searchHeader = `${getDeveloperName}${!getSaleType ? ` For ${CapitalizeStringwithSymbol(getSaleType)}` : ''}`
+		console.log(getSaleType);
+		
+		const searchHeader = `${getDeveloperName}${getSaleType ? ` For ${CapitalizeStringwithSymbol(getSaleType)}` : ''}`
 		setHeaderText(searchHeader);
+		setBreadCrumbItems([
+			{
+				title: "Developers",
+				href: "/developers",
+			},
+			{
+				title: getDeveloperName
+			}
+		])
 
 		let searchQueryParams = {};
 
@@ -148,8 +155,6 @@ const DevelopersListing = () => {
 			(key, i) => ![undefined, null, "null"].includes(queryParams.get(key))
 		);
 
-		console.log(filtersearchKeys);
-
 		filtersearchKeys.forEach((fsKey, i) => {
 			if (fsKey == "price_min" || fsKey == "price_max") {
 				setSearchParams((prevState) => ({
@@ -168,24 +173,19 @@ const DevelopersListing = () => {
 			}
 		});
 
-		console.log("Search Query Params: ", searchQueryParams);
-		console.log("Search Params: ", searchParams);
-
 		if (searchParams.length !== 0) {
-			getlistings(searchQueryParams);
+			getlistings(searchQueryParams, getDeveloperId);
 		} else {
-			getlistings(searchParams);
+			getlistings(searchParams, getDeveloperId);
 		}
 	}, [location]);
 
-	const getlistings = async (renderParams) => {
+	const getlistings = async (renderParams, developerId) => {
 		try {
-			console.log("renderParams", renderParams);
 
 			const res = await GetPropertiesByDeveloperId(developerId);
 			const dataresp = res;
-			console.log(dataresp);
-			
+			console.log("dataresp", dataresp);
 
 			if (dataresp.length !== 0) {
 				const formattedListings = dataresp
@@ -215,8 +215,6 @@ const DevelopersListing = () => {
 				// CHECK LOCATION AND KEYWORD
 				const hasLocation = Object.hasOwn(renderParams, "location");
 				const hasKeyword = Object.hasOwn(renderParams, "keyword");
-
-				console.log("has", hasLocation);
 
 				let listingByLocation = [];
 
@@ -253,7 +251,6 @@ const DevelopersListing = () => {
 					});
 				} else if (!hasLocation && hasKeyword) {
 					formattedListings.forEach((fl) => {
-						console.log("keywordMatched", keywordMatched(fl));
 						// const keywordMatched = Object.values(fl).every(e => e.includes('condominium'.toLowerCase()));
 
 						if (keywordMatched(fl)) {
@@ -329,7 +326,6 @@ const DevelopersListing = () => {
 				setLoading(false);
 			}
 		} catch (error) {
-			console.error("Error fetching public listings:", error);
 			setPublicListing([]);
 			setLoading(false);
 		}
@@ -379,7 +375,6 @@ const DevelopersListing = () => {
 
 			setFilterLocation(distinctProvince);
 		} catch (error) {
-			console.log("location", error);
 			return;
 		}
 	};
@@ -482,7 +477,7 @@ const DevelopersListing = () => {
 								tooltip={isCalculatorVisible ? "" : "Calculator"}
 								className="float__icon calculator-float__icon"
 								onClick={toggleCalculator}
-								// onClick={() => navigate("/discover-home#calculator")}
+							// onClick={() => navigate("/discover-home#calculator")}
 							/>
 						</>
 					}

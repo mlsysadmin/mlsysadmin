@@ -203,9 +203,41 @@ const CreateListingSkeleton = () => {
     )
 }
 
+const DevelopersCardsSkeleton = () => {
+    return (
+        <div className="developers-card developers-card--skeleton">
+            <Skeleton.Image
+                className="developers-logo developer-logo--skeleton"
+                active
+            />
+            <div className="developers-info developers-info--skeleton">
+                <Skeleton
+                    active
+                    paragraph={false}
+                    className="developers-name"
+                />
+                <div className="developers-properties-stat">
+                    {
+                        Array(2).fill(null).map((_, i) => (
+                            <Skeleton
+                                active
+                                paragraph={false}
+                                className="developers-properties-number"
+                                shape="square"
+                                key={i}
+                            />
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    )
+}
+
 export {
     CardSkeleton,
     FeaturesSkeleton,
     PreviewListingSkeleton,
-    CreateListingSkeleton
+    CreateListingSkeleton,
+    DevelopersCardsSkeleton
 }

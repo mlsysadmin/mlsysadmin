@@ -724,7 +724,7 @@ const LoginComponent = () => {
 											/>
 										</div>
 										<div className="user-logged-in">
-											<button id="back-login-button" onClick={handleReturn}>
+											<button id="back-login-button" style={{color:"black !important"}} onClick={handleReturn}>
 												Back
 											</button>
 											<button
