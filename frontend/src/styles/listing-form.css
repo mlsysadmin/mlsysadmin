@@ -1148,6 +1148,7 @@ select.location-form-inputs {
 	.listing-tabs {
 		display: flex;
 		flex-direction: column;
+		text-align: center;
 	}
 
 	.listing-application .listing-unit-details {
