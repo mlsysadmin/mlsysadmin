@@ -64,16 +64,24 @@ const UnitDetailsComponent = ({
       setNoOfFloors(0);
       setNoOfBathrooms(0);
       setParking(0);
-	  setPricePerSqm("");
+      setPricePerSqm("");
       setFloorArea("");
       setLotArea("");
       setPropId("");
     }
   }, [isSubmitted]);
+  useEffect(() => {
+    if (discountedPrice && parseFloat(discountedPrice) >= parseFloat(price)) {
+      setDiscPriceInputError("Must be less than selling price.");
+    } else {
+      setDiscPriceInputError("");
+    }
+  }, [discountedPrice, price]);
 
   const validateNumberInput = (value, setError) => {
     if (isNaN(value)) {
       setError("Please enter a valid number.");
+      console.log("value: ", value);
     } else {
       setError("");
     }
@@ -161,7 +169,7 @@ const UnitDetailsComponent = ({
     setParking(0);
     setFloorArea("");
     setLotArea("");
-	setPricePerSqm("");
+    setPricePerSqm("");
     setPropId("");
   }, [selectedPropertyTab]);
 
@@ -179,7 +187,7 @@ const UnitDetailsComponent = ({
     ) {
       setParking(0);
       setNoOfFloors(0);
-    //   setFloorArea(0);
+      //   setFloorArea(0);
       setNoOfBeds(0);
       setNoOfBathrooms(0);
     }
@@ -289,15 +297,15 @@ const UnitDetailsComponent = ({
     "hotel/resort",
   ].includes(selectedPropertyTab);
 
-//   const disabledPropertyFields = [
-//     "commercial land/lot",
-//     "lot",
-//     "farm lot",
-//     "service office",
-//     "office space",
-//     "shop/retail",
-//     "warehouse",
-//   ].includes(selectedPropertyTab);
+  //   const disabledPropertyFields = [
+  //     "commercial land/lot",
+  //     "lot",
+  //     "farm lot",
+  //     "service office",
+  //     "office space",
+  //     "shop/retail",
+  //     "warehouse",
+  //   ].includes(selectedPropertyTab);
 
   const formatPricenumber = () => {
     if (!price) return "";
@@ -371,9 +379,7 @@ const UnitDetailsComponent = ({
                         className={`furnish-tab ${
                           furnishing === tab ? "selected" : ""
                         }`}
-                        onClick={() =>
-                           handleFurnishingClick(tab)
-                        }
+                        onClick={() => handleFurnishingClick(tab)}
                       >
                         {tab}
                       </div>
@@ -420,9 +426,7 @@ const UnitDetailsComponent = ({
                           />
                           <BedsInputSlider
                             value={noOfBeds}
-                            onChange={(value) =>
-                              setNoOfBeds(Number(value))
-                            }
+                            onChange={(value) => setNoOfBeds(Number(value))}
                           />
                         </div>
                       </div>
@@ -458,9 +462,7 @@ const UnitDetailsComponent = ({
                           />
                           <ParkingInputSlider
                             value={Parking}
-                            onChange={(value) =>
-                              setParking(Number(value))
-                            }
+                            onChange={(value) => setParking(Number(value))}
                           />
                         </div>
                       </div>
@@ -587,9 +589,7 @@ const UnitDetailsComponent = ({
                         className={`classification-tab ${
                           Classification === tab ? "selected" : ""
                         }`}
-                        onClick={() =>
-                          handleClassificationClick(tab)
-                        }
+                        onClick={() => handleClassificationClick(tab)}
                       >
                         {tab}
                       </div>
@@ -631,7 +631,6 @@ const UnitDetailsComponent = ({
                               marginLeft: "10px",
                               width: "60px",
                               textAlign: "center",
-       
                             }}
                           />
                           <BathroomInputSlider
@@ -639,7 +638,6 @@ const UnitDetailsComponent = ({
                             onChange={(value) =>
                               setNoOfBathrooms(Number(value))
                             }
-    
                           />
                         </div>
                       </div>
@@ -667,7 +665,6 @@ const UnitDetailsComponent = ({
                             min={0}
                             max={20}
                             onChange={handleFloorChange}
-     
                             style={{
                               marginLeft: "10px",
                               width: "60px",
@@ -677,9 +674,7 @@ const UnitDetailsComponent = ({
 
                           <NoOfFloorsInputSlider
                             value={noOfFloors}
-                            onChange={(value) =>
-                              setNoOfFloors(Number(value))
-                            }
+                            onChange={(value) => setNoOfFloors(Number(value))}
                           />
                         </div>
                       </div>
@@ -744,7 +739,7 @@ const UnitDetailsComponent = ({
                     propIdInputError ? "error-input" : ""
                   }`}
                   type="text"
-				  value={propId}
+                  value={propId}
                   onChange={(e) => {
                     setPropId(e.target.value);
                     if (!e.target.value) {

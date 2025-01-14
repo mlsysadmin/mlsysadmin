@@ -140,7 +140,7 @@ const SubMenu = {
 					sub_info: (
 						<div className="sub-info">
 							<span>Explore properties from top developers!</span>
-							<p style={{ marginTop: '50px' }}>
+							<p style={{ marginTop: '0px' }}>
 								<a
 									href="/developers"
 									className="redirect"

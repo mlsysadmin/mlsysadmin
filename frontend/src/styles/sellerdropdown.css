@@ -12,7 +12,9 @@
     display: flex;
     flex-direction: column;
  }
-
+.login-btn-sidemenu{
+   font-size: 14px !important;
+}
  @media screen and (min-width: 320px) and (max-width: 359px) {
     .seller-button-dropdown {
        width: 90% !important;

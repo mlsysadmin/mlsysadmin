@@ -7,7 +7,8 @@ import Pagination from "./custom/pagination/Pagination";
 import developers from "../utils/DevelopersMockData";
 import { GetPhotoWithUrl } from "../utils/GetPhoto";
 import { getDevelopers } from "../api/GetDevelopers";
-import noDevFound from '../asset/no-developer-found.png';
+
+import noDevFound from "../asset/no-developer-found.png";
 import { useNavigate } from "react-router-dom";
 import { FillLocationFilter } from "../utils/StringFunctions.utils";
 import { GetPropertiesByDeveloperId } from "../api/GetAllPublicListings";
@@ -28,6 +29,12 @@ const PreSellingComponent = () => {
 	const [location, setLocation] = useState([]);
 
 	const falsy = [null, undefined, ""];
+
+	const TruncateDeveloperName = (text) => {
+		const length = 35;
+		if (!text) return "";
+		return text.length > length ? text.substring(0, length) + "..." : text;
+	};
 
 	const fetchDevelopers = async () => {
 		try {
@@ -54,22 +61,31 @@ const PreSellingComponent = () => {
 				} else if (timeDifferenceInSeconds < 432000) {
 					updated = `${Math.floor(timeDifferenceInSeconds / 86400)}d`;
 				} else {
-					const dateOptions = { year: "numeric", month: "short", day: "numeric" };
-					updated = updatedAt.toLocaleDateString(undefined, dateOptions);
+					const month = updatedAt.getMonth() + 1;
+					const day = updatedAt.getDate();
+					const year = updatedAt.getFullYear();
+					updated = `${month}-${day}-${year}`;
 				}
 
+				const isUpdatedBackground = timeDifferenceInSeconds < 86400;
 				return {
 					id: developer.VendorId,
 					logo: img,
 					developerName: developer.VendorName,
 					properties: developer.TotalUnits,
 					updated: updated,
+					updatedAt,
+					isUpdatedBackground,
 					ProvinceState: developer.ProvinceState
 				};
 
 			});
 
-			setDevelopersData(developersListings);
+			const sorteddata = developersListings.sort(
+				(a, b) => b.updatedAt - a.updatedAt
+			);
+
+			setDevelopersData(sorteddata);
 
 		} catch (error) {
 			console.error(error);
@@ -78,6 +94,7 @@ const PreSellingComponent = () => {
 	useEffect(() => {
 		fetchDevelopers();
 	}, []);
+
 	useEffect(() => {
 		setFilteredDevelopers(developersData);
 		if (developersData) {
@@ -102,7 +119,7 @@ const PreSellingComponent = () => {
 		const values = Object.keys(params);
 
 		let searchParams = "";
-		const falsy = ["", "null", null, undefined]
+		const falsy = ["", "null", null, undefined];
 
 		values.forEach((p, i) => {
 
@@ -154,7 +171,7 @@ const PreSellingComponent = () => {
 					let data = [];
 					const properties = await GetPropertiesByDeveloperId(dev.id);
 					if (properties.length > 0) {
-						
+
 						properties.forEach(element => {
 							console.log("Dsdsfdgd");
 							if (element.SaleType.toLowerCase().replace(/-/g, "") == searchParams.saleType.toLowerCase().replace(/-/g, "")) {
@@ -164,10 +181,10 @@ const PreSellingComponent = () => {
 					}
 					console.log("data", data);
 					searchData.push(data);
-					
+
 				})
 				console.log("searchData", searchData);
-				
+
 			}
 
 		} catch (error) {
@@ -207,52 +224,68 @@ const PreSellingComponent = () => {
 							</Select>
 							<Select placeholder="Listing Type" allowClear onChange={(e) => handleSearchDeveloper(e, "saleType")} value={searchParams.saleType}>
 								<Select.Option value="pre-selling">Pre Selling</Select.Option>
-								<Select.Option value="ready for occupancy">Ready for Occupancy</Select.Option>
+								<Select.Option value="ready for occupancy">
+									Ready for Occupancy
+								</Select.Option>
 							</Select>
 						</div>
-					</div>
+					</div >
 					<div className="preselling-search-button" onClick={handleSearchClick}>
 						<button>Search</button>
 					</div>
-				</div>
-				{
-					currentCards.length > 0 ?
-						<div className="preselling-developers-card">
-							{
-								currentCards?.map((developer, index) => (
-									<div key={index} className="developers-card"
-										onClick={() => handleDeveloperListing(developer.id, developer.developerName)}
-									>
-										<div className="developers-logo">
-											<img
-												src={developer.logo}
-												alt={`${developer.developerName} Logo`}
-											/>
+				</div >
+				{currentCards.length > 0 ? (
+					<div className="preselling-developers-card">
+						{currentCards?.map((developer, index) => (
+							<div
+								key={index}
+								className="developers-card"
+								onClick={() =>
+									handleDeveloperListing(developer.id, developer.developerName)
+								}
+							>
+								<div className="developers-logo">
+									<img
+										src={developer.logo}
+										alt={`${developer.developerName} Logo`}
+									/>
+								</div>
+								<div className="developers-info">
+									<div className="developers-name">
+										<span>
+											{TruncateDeveloperName(developer.developerName)}
+										</span>
+									</div>
+									<div className="developers-properties-stat">
+										<div className="developers-properties-number">
+											Properties:{developer.properties}
 										</div>
-										<div className="developers-info">
-											<div className="developers-name">
-												<span>{developer.developerName}</span>
-											</div>
-											<div className="developers-properties-stat">
-												<div className="developers-properties-number">
-													{developer.properties} properties
-												</div>
-												<div className="developers-status">{developer.updated}</div>
-											</div>
+										<div
+											className="developers-status"
+											style={{
+												backgroundColor: developer.isUpdatedBackground
+													? "#E3FFF0"
+													: "#f7f7f7",
+												color: developer.isUpdatedBackground ? "#007C14" : "#A4A1A1"
+											}}
+										>
+											Updt {developer.updated}
 										</div>
 									</div>
-								))
-							}
-						</div>
-						: <div className="no-developers-found">
-							<div className="no-dev-found__image-wrapper">
-								<img src={noDevFound} alt="No Developers Found" />
+								</div>
 							</div>
-							<div className="no-dev-found__message">
-								<p>No Real Estate Developers Available</p>
-							</div>
+						))}
+					</div>
+				) : (
+					<div className="no-developers-found">
+						<div className="no-dev-found__image-wrapper">
+							<img src={noDevFound} alt="No Developers Found" />
 						</div>
-				}
+						<div className="no-dev-found__message">
+							<p>No Real Estate Developers Available</p>
+						</div>
+					</div>
+				)}
 
 				{currentCards.length > 0 && (
 					<Pagination

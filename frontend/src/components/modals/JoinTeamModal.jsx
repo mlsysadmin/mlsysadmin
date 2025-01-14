@@ -795,7 +795,7 @@ const JoinTeam = ({ toggleModal }) => {
 										{errors.city && <p className="error">{errors.city}</p>}
 									</div>
 									<div className="join-team-group">
-										<span>House No/St/Sitio/Barangay</span>
+										<span className="brgy-label">House No/St/Sitio/Barangay</span>
 										<input
 											type="text"
 											name="address"
