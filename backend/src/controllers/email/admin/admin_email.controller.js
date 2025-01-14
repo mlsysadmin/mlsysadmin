@@ -21,7 +21,7 @@ module.exports = {
 
             const logoPhoto = await encodeImageUrlToBase64(logo);
             const link = `${redirect_url}/${token}`;
-            const apiUrl = `${process.env.SERVER_APP_URL}/api/admin/mail/reg-redirect`;
+            // const apiUrl = `${process.env.SERVER_APP_URL}/api/admin/mail/reg-redirect`; // to be removed
 
             let templateName = 'agentRegistration.handlebars';
 
