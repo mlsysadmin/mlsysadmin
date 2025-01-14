@@ -569,7 +569,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                   "2 - 3 months",
                   "3 - 6 months",
                   "6 + months",
-                  "I dont know",
+                  "Just exploring my options",
                 ].map((option) => (
                   <button
                     key={option}
@@ -701,12 +701,12 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
                 <br />
                 <div className="prop-info-btn-group1">
                   {[
-                    "Less than 50,000",
-                    "PHP100,000-50,000",
-                    "PHP300,000-200,000",
-                    "PHP500,000-400,000",
-                    "PHP700,000-600,000",
-                    "PHP1,000,000-800,000",
+                    "PHP50,000 -100,000",
+                    "PHP200,000-300,000",
+                    "PHP400,000-500,000",
+                    "PHP600,000-700,000",
+                    "PHP800,000-900,000",
+                    "PHP1,000,000-2,000,000",
                     "Greater than 2,000,000",
                   ].map((option, index) => (
                     <button
@@ -807,7 +807,7 @@ const BuyAHomeComponent = (firstname, lastname, email) => {
             <br />
             <div className="preApproveDiv" style={{ textAlign: "start" }}>
               <div
-              id="WarmingText"
+                id="WarmingText"
                 style={{
                   fontSize: "var(--d-body-text)",
                   color: "#8C9094",
