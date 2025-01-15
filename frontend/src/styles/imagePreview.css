@@ -1,0 +1,83 @@
+:root {
+    --image-height: 200px;
+}
+
+.preview-image--container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    /* position: absolute; */
+    border-radius: 50px;
+
+}
+/* 1st Large Image */
+.preview-image-side {
+    flex: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* 4 Images */
+.preview-image-group {
+    flex: 3;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 15px;
+    align-items: center;
+    /* border-top-right-radius: var(--radius); */
+}
+
+/* Image wrapper */
+.preview-image-side--wrapper,
+.preview-group-image--wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.preview-image-side--wrapper{
+    border-top-left-radius: var(--radius);
+    border-bottom-left-radius: var(--radius);
+}
+.preview-group-image--wrapper:nth-child(4){
+    border-bottom-right-radius: var(--radius);
+}
+.preview-group-image--wrapper:nth-child(2){
+    border-top-right-radius: var(--radius);
+}
+/* Same Height Image wrapper and Image */
+.preview-group-image--wrapper,
+.preview-group-image{
+    height: calc(var(--image-height) + 2px);
+}
+
+.preview-single-image,
+.preview-image-side--wrapper,
+.preview-image-group {
+    height: calc(var(--image-height) * 2 + 20px);
+    width:100%;
+}
+/* ------------------------------------------------- */
+.preview-group-image,
+.preview-single-image {
+    /* border-radius: var(--radius); */
+    opacity: 1;
+    width: 100%;
+    cursor: pointer;
+    /* Smooth zoom effect */
+    transition: transform 2s ease, opacity 1s;
+    object-fit: cover;
+}
+
+/* Slightly enlarge the image */
+.preview-single-image:hover,
+.preview-group-image:hover {
+    transform: scale(1.1);
+    opacity: 0.85;
+}
+
+.preview-group-image {
+    object-fit: cover;
+
+}

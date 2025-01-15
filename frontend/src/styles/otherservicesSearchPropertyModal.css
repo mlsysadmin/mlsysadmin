@@ -1,0 +1,653 @@
+.whole-property-search-page {
+  background: white;
+}
+
+.custom-modal-searchprop {
+  width: auto;
+}
+
+.custom-modal-searchprop .ant-modal-close {
+  display: none;
+}
+.ant-modal-body {
+  background-color: transparent;
+}
+.ant-modal .ant-modal-content {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0px;
+}
+.ant-modal .ant-modal-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.whole-property-search-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  flex-direction: column;
+}
+
+.toptitle {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.toptitle .top-title,
+.why-choose-us h3, 
+.how-it-works h3,
+.form-section h3{
+ font-size: var(--d-h3-text) !important;
+}
+
+.toptitle .top-title {
+  color: #000;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.toptitle .top-description {
+  font-size: var(--d-body-text);
+  color: #555;
+}
+
+.why-choose-us {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.how-it-works {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.why-choose-us h3,
+.how-it-works h3 {
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.why-choose-us ul {
+  list-style: none;
+  padding: 0;
+  font-size: var(--d-body-text);
+}
+
+.why-choose-us li {
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 30px;
+}
+
+.why-choose-us li::before {
+  content: "●";
+  color: red;
+  font-size: 20px;
+  position: absolute;
+  left: 0;
+  margin-bottom: 20px;
+  top: 0;
+}
+
+.how-it-works .steps {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0px;
+}
+
+.how-it-works .step {
+  background: #d9d9d9;
+  padding: 20px;
+  padding-bottom: 30px;
+  border-radius: 5px;
+  text-align: center;
+  margin: 10px;
+  width: 25%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+.how-it-works .step label {
+  font-weight: bold;
+  font-size: 18px;
+}
+.how-it-works .step span {
+  margin-top: 10px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 18px;
+}
+.how-it-works .step p {
+    font-size: var(--d-body-text);
+    text-align: baseline;
+}
+.form-section {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.form-section h3 {
+  font-size: 30px;
+}
+.form-section p {
+    font-size: var(--d-body-text);
+}
+.property-search-form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-top: 50px;
+  gap: 20px;
+  /* padding:10px; */
+  background-color: #f7f7f7;
+  padding: 40px 30px 10px;
+}
+
+.form-row {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+.left-form-row {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.form-row input:not(#featureAmenities),
+.form-row .form-column select {
+  flex: 1;
+  padding: 10px !important;
+  font-size: var(--d-body-text);
+  border: 1px solid #ccc !important;
+  border-radius: 5px !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.form-column .ant-select-single {
+  flex: 1;
+  padding: 0px !important;
+  font-size: var(--d-body-text);
+  border: 1px solid #ccc !important;
+  border-radius: 5px !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.form-column .ant-select .ant-select-selector{
+border: none !important;
+padding: 10px;
+  height: 42px !important;
+background-color: transparent !important;
+}
+.form-column .ant-select .ant-select-arrow{
+  color: #000 !important;
+  font-size: 10px !important;
+}
+
+.form-row .form-column select option {
+  padding: 10px;
+  font-size: var(--d-body-text);
+  background-color: #fff;
+  color: #333;
+}
+.form-row input:disabled,
+.form-row select:disabled {
+  border-color: #d9d9d9;
+  background-color: #d9d9d9;
+}
+.form-column {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  flex-direction: column;
+  width: 100%;
+}
+.submit-row {
+  justify-content: right;
+}
+
+.form-section .property-search-form .form-row .form-column span {
+  font-size: var(--d-body-text);
+}
+.submit-row button {
+  background: red;
+  color: white;
+  padding: 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.modal-content-searchprop {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  flex-wrap: wrap;
+  height: auto;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  margin-bottom: 100px !important;
+  width: 1000px;
+  margin: auto;
+
+}
+.success-modal-searchpro .ant-modal {
+  background-color: transparent;
+}
+.success-modal-content h2 {
+  color: #276638;
+  font-size: 18px;
+}
+.success-modal-content p {
+  font-size: 13px;
+}
+.success-modal-searchprop .ant-modal-close {
+  display: none;
+}
+.success-modal-searchprop .ant-modal-content {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+.success-modal-content {
+  background-color: #fff;
+  padding: 40px 10px;
+  border-radius: 8px;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 400px;
+}
+.property-search-form .form-row .form-column #featureAmenities {
+  height: 45px;
+  padding: 10px !important;
+  font-size: var(--d-text-label-fs);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+/* @media screen and (min-width: 1300px) and (max-width: 1502px) {
+  .property-search-form {
+    width: 100%;
+    padding: 40px 20px 10px;
+  }
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+}
+*/
+/* @media screen and (min-width: 1280px) {
+  .modal-content-searchprop {
+    width: 1000px;
+    margin: auto;
+    padding: 20px;
+  }
+} */
+@media screen and (min-width: 320px) and (max-width: 359px) {
+  .ant-modal .ant-modal-body {
+    width: 100%;
+  }
+  .modal-content-searchprop {
+    /* width: 250px; */
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+  }
+  .toptitle {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .toptitle h1 {
+    font-size: 20px;
+  }
+  .toptitle span {
+    font-size: 15px;
+  }
+  .how-it-works {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .how-it-works .steps {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0px;
+  }
+  .how-it-works .step {
+    width: 80%;
+  }
+  .form-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 50px;
+  }
+  .form-section h3 {
+    width: 100%;
+  }
+  .form-section p {
+    width: 100%;
+  }
+  .form-section .property-search-form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100px;
+  }
+  .form-row {
+    display: flex;
+    flex-direction: column;
+  }
+  .left-form-row {
+    display: flex;
+    flex-direction: column;
+  }
+  .form-column #featureAmenities {
+    width: 300px !important;
+  }
+}
+
+@media screen and (min-width: 360px) and (max-width: 480px) {
+  .ant-modal .ant-modal-body {
+    width: 100%;
+  }
+  .modal-content-searchprop {
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 00px;
+    /* margin: 10px; */
+    /* padding-left: 40px; */
+  }
+  .toptitle {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .toptitle h1 {
+    font-size: 20px;
+  }
+  .toptitle span {
+    font-size: 15px;
+  }
+  .how-it-works {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .how-it-works .steps {
+    display: flex !important;
+    flex-wrap: wrap;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+    gap: 20px !important;
+    width: 100%;
+    padding: 0px !important;
+  }
+  .how-it-works .step {
+    width: 90%;
+  }
+  .form-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .form-section h3 {
+    width: 100%;
+  }
+  .form-section p {
+    width: 100%;
+  }
+  .form-section .property-search-form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 95%;
+  }
+  .form-row {
+    display: flex;
+    flex-direction: column;
+  }
+  /* .whole-property-search-page .form-column input[type="text"],
+  input[type="email"],
+  input[type="number"] {
+    width: 100%;
+  } */
+  .left-form-row {
+    display: flex;
+    flex-direction: column;
+  }
+  .property-search-form .form-row .form-column #featureAmenities {
+width: 100%;
+}
+.form-column .ant-select-single {
+  width: 100% !important;
+}
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .left-form-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 15px;
+    margin-bottom: 0px;
+  }
+  .ant-modal .ant-modal-body {
+    width: 100%;
+  }
+  .modal-content-searchprop {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    padding-left: 10px;
+  }
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0px;
+  }
+  .toptitle {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .toptitle h1 {
+    font-size: 20px;
+  }
+  .toptitle span {
+    font-size: 15px;
+  }
+  .how-it-works {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .how-it-works .steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0px;
+  }
+  .how-it-works .step {
+    width: 100%;
+  }
+  .form-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .form-section h3 {
+    width: 100%;
+  }
+  .form-section p {
+    width: 100%;
+  }
+  .form-section .property-search-form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .left-form-row {
+    gap: 10%;
+  }
+  .how-it-works {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .how-it-works .steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    flex-direction: row;
+    width: 100%;
+    padding: 0px;
+  }
+  .how-it-works .step {
+    width: 30%;
+  }
+  .form-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .form-section h3 {
+    width: 100%;
+  }
+  .form-section p {
+    width: 100%;
+  }
+  .form-section .property-search-form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 98%;
+  }
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+  }
+  #featureAminities{
+    width: 100%;
+  }
+
+  .form-column {
+    width: 45%;
+  }
+  #form-column-featuresAmenities {
+    width: 100%;
+  }
+  .property-search-form .form-row .form-column #featureAmenities {
+    font-size: 17px;
+  }
+  .submit-row {
+    justify-content: right;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .toptitle .top-title {
+    font-size: 25px;
+  }
+  .why-choose-us h2,
+  .how-it-works h2 {
+    font-size: 25px;
+  }
+  .toptitle .top-description {
+    font-size: 15px;
+  }
+  .why-choose-us ul {
+    font-size: 15px;
+  }
+  .how-it-works .step label {
+    font-size: 20px;
+  }
+  .how-it-works .step span {
+    font-size: 18px;
+    height: 100%;
+  }
+  .how-it-works .step p {
+    font-size: 15px;
+  }
+  .form-section h3 {
+    font-size: 25px;
+  }
+  .form-section p {
+    font-size: 15px;
+  }
+  .form-section .property-search-form .form-row .form-column span {
+    font-size: 15px;
+  }
+  .form-row input:not(#featureAmenities),
+  .form-row .form-column select {
+    font-size: 15px;
+    width: 100% !important;
+  }
+  .property-search-form .form-row .form-column #featureAmenities {
+    font-size: 15px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .toptitle .top-title,
+  .form-section h3 .why-choose-us h2,
+  .how-it-works h2 {
+    font-size: 28px;
+  }
+  .how-it-works .step label {
+    font-size: 23px;
+  }
+  .how-it-works .step span {
+    font-size: 20px;
+  }
+  .property-search-form .form-row .form-column #featureAmenities,
+  .form-row input:not(#featureAmenities),
+  .form-section p,
+  .why-choose-us ul,
+  .toptitle .top-description,
+  .how-it-works .step p,
+  .form-row .form-column select,
+  .form-section .property-search-form .form-row .form-column span {
+    font-size: 18px;
+  }
+  .modal-content-searchprop{
+    max-width: 700px;
+  }
+}

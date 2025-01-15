@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrJJfecg.woff2) format('woff2');
+            /* unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; */
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .buy-container {
+            font-family: "Poppins", sans-serif !important;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="buy-container">
+        <div>
+            <p style="
+                font-weight: 600; 
+                margin-bottom: 5px;
+                font-size: 15px;">Customer Information</p>
+            <div>
+                <span>Name: </span>
+                <span>{{{customerInfo.name}}}</span>
+            </div>
+            <div>
+                <span>Mobile Number: </span>
+                <span>{{{customerInfo.mobile_number}}}</span>
+            </div>
+            <div>
+                <span>Email Address: </span>
+                <span>{{{customerInfo.email}}}</span>
+            </div>
+            <div>
+                <span>Country: </span>
+                <span>{{{customerInfo.country}}}</span>
+            </div>
+            <div>
+                <span>Province/State: </span>
+                <span>{{{customerInfo.province}}}</span>
+            </div>
+            <div>
+                <span>City/Town: </span>
+                <span>{{{customerInfo.city}}}</span>
+            </div>
+            <div>
+                <span>Zipcode: </span>
+                <span>{{{customerInfo.zipcode}}}</span>
+            </div>
+            <div>
+                <span>House No/Unit/Building Name/Street: </span>
+                <span>{{{customerInfo.others}}}</span>
+            </div>
+            <div>
+                <span>Source of Income: </span>
+                <span>{{{customerInfo.source_of_income}}}</span>
+            </div>
+        </div>
+        <div>
+            <p style="
+            font-weight: 600; 
+            margin-bottom: 5px;
+            font-size: 15px;">Property</p>
+            <div>
+                <span>How much do you plan to spend on your new home?</span>
+                <span>{{{property.estimated_price}}}</span>
+            </div>
+            <div>
+                <span>What kind of home are you looking for?</span>
+                <span>{{{property.property_type}}}</span>
+            </div>
+            <div>
+                <span>How will you use your new home?</span>
+                <span>{{{property.property_usage}}}</span>
+            </div>
+            <div>
+                <span>Do you have a real estate agent?</span>
+                <span>{{{property.real_estate_agent}}}</span>
+            </div>
+        </div>
+        <div>
+            <p style="
+                font-weight: 600; 
+                margin-bottom: 5px;
+                font-size: 15px;">Timeline</p>
+            <div>
+                <span>When are you planning to make your home purchase?</span>
+                <span>{{{timeline.purchase_plan_date}}}</span>
+            </div>
+            <div>
+                <span>Do you currently own a home?</span>
+                <span>{{{timeline.current_home_ownership}}}</span>
+            </div>
+            <div>
+                <span>Do you plan to sell your current home?</span>
+                <span>{{{timeline.plan_to_sell_current_home}}}</span>
+            </div>
+        </div>
+        <div>
+            <p style="
+                font-weight: 600; 
+                margin-bottom: 5px;
+                font-size: 15px;">Details</p>
+            <div>
+                <span>How much down payment would you like to make?</span>
+                <span>{{{details.estimated_downpayment}}}</span>
+            </div>
+            <div>
+                <span>What is your current employment status?</span>
+                <span>{{{details.employment_status}}}</span>
+            </div>
+            <div>
+                <span>What is your household gross (before taxes) annual income?</span>
+                <span>{{{details.annual_income}}}</span>
+            </div>
+            <div>
+                <span>Have you declared bankruptcy in the last 4 years?</span>
+                <span>{{{details.declared_bankruptcy}}}</span>
+            </div>
+            <div>
+                <span>What is your credit score range?</span>
+                <span>{{{details.current_credit_score}}}</span>
+            </div>
+            <div>
+                <span>Where are you looking to buy?</span>
+                <span>{{{details.home_location}}}</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

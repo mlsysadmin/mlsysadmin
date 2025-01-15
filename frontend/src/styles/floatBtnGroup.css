@@ -1,0 +1,47 @@
+.float-btn-group .float__btn-group{
+    inset-block-end: 40px;
+    inset-inline-end: 30px !important;
+    width: auto;
+}
+
+.float-btn-group .float__btn-group button div,
+/* .float-btn-group .float__btn-group button div:hover, */
+.float-btn-group .float__btn-group button.ant-float-btn
+{
+    background-color: var(--red);
+}
+
+.float-btn-group .float__btn-group button div:hover,
+.float-btn-group .float__btn-group button.ant-float-btn:hover{
+    opacity: 0.9;
+}
+.float-btn-group .float__btn-group button.ant-float-btn{
+    width: 50px !important;
+    height: 50px;
+    margin-top: 20px;
+}
+.float-btn-group .float__btn-group button.ant-float-btn div.ant-float-btn-body{
+    width: 100%;
+}
+.float-btn-group .float__btn-group button.ant-float-btn span{
+    color: white;
+}
+
+.float-btn-group .float__btn-group button.float__icon div.ant-float-btn-icon{
+    font-size: 20px;
+}
+
+@media (max-width: 575px) {
+    .float-btn-group .float__btn-group{
+        inset-block-end: 30px;
+        inset-inline-end: 20px !important;
+    }
+    .float-btn-group .float__btn-group button.ant-float-btn{
+        width: 53px !important;
+        height: 53px;
+    }
+    .float-btn-group .float__btn-group button.float__icon div.ant-float-btn-icon{
+        font-size: 26px;
+        width: 100%;
+    }
+}

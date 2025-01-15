@@ -1,0 +1,840 @@
+:root {
+	--sell-row-height: 80vh;
+}
+
+.sell {
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	min-height: 100vh;
+	max-height: auto;
+	position: relative;
+	background-color: white;
+}
+
+.section-container .options input[type="radio"] {
+	display: none;
+}
+
+.options .dot {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border: 2px solid red;
+	border-radius: 50%;
+	margin-right: 10px;
+	position: relative;
+}
+
+.options input[type="radio"]:checked + .dot::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 10px;
+	height: 10px;
+	background-color: red;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.sell-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	font-size: 4rem;
+	margin-bottom: 130px;
+}
+
+.sell-contents {
+	display: flex;
+	flex-direction: column;
+	width: 85%;
+	gap: 20px;
+	margin: 10px auto 0px;
+}
+
+.first-section {
+	font-weight: bold;
+	background-color: #fff;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	margin: 10px auto 0px;
+	justify-content: center;
+	/* align-items: center; */
+	
+}
+
+.fourth-section,
+.second-section,
+.third-section {
+	display: flex;
+	flex-direction: column;
+	margin: 100px auto 0px;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	width: 1070px;
+	padding: 0px 20px;
+}
+
+.first-section .sell-banner-bg{
+	width: 55%;	
+}
+.first-section img,
+.first-section .bannerbg{
+	height: 450px;
+}
+
+.first-section img {
+	width: 100%;
+	object-fit: cover;
+}
+
+.first-section .bannerbg {
+	background-color: #ededed;
+	width: 50%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 10px;
+	padding: 0% 0px 0% 3%;
+}
+
+.sell-header {
+	color: black;
+	text-align: left;
+	font-size: var(--d-header-1-fs);
+}
+
+.first-section .sell--action-btn,
+.fourth-section #contactUs {
+	border-radius: var(--radius);
+	font-weight: bold;
+	padding: 25px;
+	width: 170px;
+	height: 70px;
+	font-size: var(--d-sub-label-fs);
+}
+
+.first-section #contactUs {
+	color: #d90000;
+	border-color: #d90000;
+	background-color: transparent;
+	/* border-radius: 20px; */
+	padding: 25px;
+	border: 1px solid var(--red);
+	/* cursor: pointer; */
+}
+
+.first-section #contactUs:hover {
+	background: transparent;
+}
+
+.first-section #signIn {
+	color: #ffffff;
+	background-color: #d90000;
+	padding-left: 50px;
+	padding-right: 50px;
+	border: 1px solid var(--red);
+	/* cursor: pointer; */
+}
+
+.section-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.second-content-span {
+	color: black;
+	font-size: var(--d-header-2-fs);
+	font-weight: bold;
+	width: 100%;
+	margin: 10px 0;
+}
+
+.second-section .content #ListPropertybtn {
+	border: 1px solid var(--red);
+	width: 250px;
+	height: 70px;
+	color: #ffffff;
+	font-weight: bold;
+	background-color: #d90000;
+	border-radius: 10px;
+	padding: 35px;
+	font-size: var(--d-sub-label-fs);
+	margin: 50px 0px 0px 0px;
+	/* margin: 50px 0px 0px 100px; */
+	justify-content: center;
+	display: flex;
+	align-items: center;
+}
+
+.second-section .content p {
+	color: #000;
+	font-size:var(--d-sub-label-fs) ;
+	align-items: flex-start;
+	font-weight: lighter;
+	text-align: left;
+	line-height: 30px;
+}
+
+.options {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	font-size:var(--d-sub-label-fs) ;
+	font-weight: normal;
+	align-items: flex-start;
+	justify-content: left;
+	width: 40%;
+}
+
+.section-container .content {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: 40%;
+	gap: 20px;
+	box-shadow: none;
+	padding: 0;
+}
+
+.content-container {
+	display: flex;
+	flex-direction: row;
+}
+
+/*third*/
+.third-section {
+	margin-top: 5%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: normal;
+	gap: 2.5rem;
+	font-weight: normal;
+}
+
+.third-section .third-cont-guide {
+	color: #000;
+	font-weight: bold;
+	font-size: var(--d-header-2-fs);
+	/* margin-right: 74%; */
+	/* width: 100%; */
+}
+.third-section .third--subtitle {
+	display: flex;
+	flex-direction: row;
+	margin: auto 30px;
+	font-size: 2.2rem;
+	text-align: center;
+}
+.third-section .section-cont-guide {
+	color: #000;
+	font-size: var(--d-sub-label-fs);
+	font-weight: 300px;
+}
+
+/* .section-cards {
+   display: flex;
+   flex-direction: column;
+   gap: 3rem;
+ } */
+
+.cards {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-evenly;
+	font-size: 2.2rem;
+	text-align: center;
+}
+
+.cards h5 {
+	font-size: var(--d-label-fs);
+}
+
+.cards p {
+	margin-top: 25%;
+}
+
+.cards .card1,
+.card2,
+.card3,
+.card4 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #d9d9d9;
+	border-radius: 10px;
+	width: 250px;
+	/* width: 20%; */
+	padding: 2% 2% 7% 2%;
+	height: 100%;
+	height: auto;
+}
+
+.sell .non-wallet-user-group {
+	display: flex;
+	flex-direction: column;
+	margin: 30px 70px 0px 70px;
+}
+
+.sell .non-wallet-user-group li {
+	margin: 20px 0px 0px 0px;
+}
+
+/* BODY TEXT */
+.sell .non-wallet-user-group li,
+.sell .non-wallet-user-group span,
+.cards p,
+.fourth-section p,
+.sell-faqs-dropdown{
+	font-size: var(--d-text-label-fs);
+
+} 
+/*fourth*/
+.fourth-section {
+	gap: 2rem;
+	align-items: normal;
+}
+
+.fourth-section h1 {
+	color: black;
+	font-weight: bold;
+	font-size: var(--d-header-2-fs);
+	text-align: center;
+}
+
+.fourth-section p {
+	color: #000;
+	font-weight: lighter;
+	margin: 20px 50px 0;
+	text-align: center;
+}
+
+.fourth-section #contactUs {
+	color: #d90000;
+	font-weight: bold;
+	border-color: #d90000;
+	background-color: transparent;
+	/* border-radius: 20px; */
+	font-size: 24px;
+	padding: 1.5%;
+	/* width: 250px;
+    height: 80px;
+    cursor: pointer; */
+}
+.sell-component-faqs {
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+.sell-component-faqs-questions {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	padding: 30px 20px;
+}
+
+.sell-component-faqs-content {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	gap: 20px; 
+}
+
+.sell-faqs-dropdown {
+	font-weight: 400;
+	cursor: pointer;
+	padding-bottom: 15px;
+	border-bottom: 1px solid rgb(164, 161, 161, 27%);
+	justify-content: space-between;
+}
+
+.sell-faqs-dropdown-content{
+	font-size: var(--d-text-label-fs);
+}
+
+.sell-buy-faqs {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+.sell-buy-faqs h2{
+  font-size: 24px;
+}
+
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+	.sell-contents{
+		width: 100%;
+		margin-top: 0;
+	}
+	.fourth-section, .second-section, .third-section{
+		width: 100%;
+		margin-top: 30px;
+	}
+	.first-section{
+		flex-direction: column;
+		margin: 0;
+	}
+	.first-section img,
+	.first-section .sell-banner-bg,
+	.first-section .bannerbg{
+		height: 300px;
+	}
+	.sell-header{
+		font-size: var(--t-header-1-fs);
+	}
+	.first-section .sell--action-btn, .fourth-section #contactUs{
+		font-size: var(--l-sub-label-fs);
+		width: 140px;
+		height: 40px;
+	}
+	.second-content-span,
+	.third-section .third-cont-guide,
+	.fourth-section h1{
+		font-size: var(--m-header-2-fs)
+	}
+	.second-section .content p,
+	.second-section .content #ListPropertybtn,
+	.options,
+	.third-section .section-cont-guide{
+		font-size: var(--m-sub-label-fs);
+	}
+	.second-section .content #ListPropertybtn{
+		width: 200px;
+		margin-top: 15px;
+		height: 60px;
+		padding: 0;
+	}
+	.options{
+		margin: 10px auto !important;
+	}
+
+	.section-container{
+		flex-direction: column;
+		gap: 30px;
+	}
+	.section-container .content,
+	.options{
+		width: 100%;
+		margin: auto;
+	}
+	.third-section{
+		gap: 1.8rem;
+	}
+	.cards p{
+		margin-top: 15%;
+	}
+	.cards h5{
+		font-size: var(--m-label-fs);
+	}
+	.sell .non-wallet-user-group li, 
+	.sell .non-wallet-user-group span, 
+	.cards p, .fourth-section p, 
+	.sell-faqs-dropdown{
+		font-size: var(--m-sub-label-fs);
+	}
+	.cards{
+		gap: 15px;
+		flex-wrap: wrap;
+		justify-content:center;
+	}
+	.cards .card1, .card2, .card3, .card4{
+		padding: 5%;
+		width: 160px;
+	}
+	.sell .non-wallet-user-group{
+		margin: 20px 20px 0px;
+	}
+	.banner-buttons{
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+	}
+	.first-section .sell-banner-bg,
+	.first-section .bannerbg{
+		width: 100%;
+	}
+	.first-section .bannerbg{
+		padding: 20px 20px 20px 40px;
+		gap: 20px;
+	}
+	.fourth-section{
+		margin-top: 60px;
+	}
+	.sell-component-faqs-questions{
+		padding: 15px;
+	}
+	.fourth-section p{
+		margin: 20px 20px 0;
+	}
+}
+
+@media screen and (min-width: 481px) and (max-width: 654px) {
+	.sell-contents{
+		width: 100%;
+		margin-top: 0;
+	}
+	.fourth-section, .second-section, .third-section{
+		width: 95%;
+		margin-top: 50px;
+	}
+	.first-section{
+		flex-direction: column;
+		margin: 0;
+	}
+	.first-section img,
+	.first-section .sell-banner-bg,
+	.first-section .bannerbg{
+		height: 300px;
+	}
+	.sell-header{
+		font-size: var(--l-header-1-fs);
+	}
+	.first-section .sell--action-btn, .fourth-section #contactUs{
+		font-size: var(--l-sub-label-fs);
+		width: 140px;
+		height: 40px;
+	}
+	.second-content-span,
+	.third-section .third-cont-guide,
+	.fourth-section h1{
+		font-size: var(--l-header-2-fs)
+	}
+	.second-section .content p,
+	.second-section .content #ListPropertybtn,
+	.options,
+	.third-section .section-cont-guide{
+		font-size: var(--l-sub-label-fs);
+	}
+	.second-section .content #ListPropertybtn{
+		width: 200px;
+		margin-top: 25px;
+	}
+	.section-container{
+		flex-direction: column;
+		gap: 30px;
+	}
+	.section-container .content,
+	.options{
+		width: 100%;
+	}
+	.third-section{
+		gap: 1.8rem;
+	}
+	.cards p{
+		margin-top: 15%;
+	}
+	.cards h5{
+		font-size: var(--l-label-fs);
+	}
+	.sell .non-wallet-user-group li, 
+	.sell .non-wallet-user-group span, 
+	.cards p, .fourth-section p, 
+	.sell-faqs-dropdown{
+		font-size: var(--l-text-label-fs);
+	}
+	.cards{
+		gap: 20px;
+		flex-wrap: wrap;
+	}
+	.cards .card1, .card2, .card3, .card4{
+		padding: 2% 2% 5%;
+		width: 200px;
+	}
+	.sell .non-wallet-user-group{
+		margin: 30px 30px 0px;
+	}
+	.banner-buttons{
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+	}
+	.first-section .sell-banner-bg,
+	.first-section .bannerbg{
+		width: 100%;
+	}
+	.first-section .bannerbg{
+		padding: 20px 20px 20px 40px;
+		gap: 15px;
+	}
+}
+
+@media screen and (min-width: 655px) and (max-width: 799px) {
+	.sell-contents{
+		width: 100%;
+		margin-top: 0;
+	}
+	.fourth-section, .second-section, .third-section{
+		width: 95%;
+		margin-top: 40px;
+	}
+	/* .first-section img, .first-section .bannerbg{
+		height: 380px;
+	} */
+	.sell-header{
+		font-size: var(--l-header-1-fs);
+	}
+	.first-section .sell--action-btn, .fourth-section #contactUs{
+		font-size: var(--l-sub-label-fs);
+		width: 140px;
+		height: 40px;
+	}
+	.second-content-span,
+	.third-section .third-cont-guide,
+	.fourth-section h1{
+		font-size: var(--l-header-2-fs)
+	}
+	.second-section .content p,
+	.second-section .content #ListPropertybtn,
+	.options,
+	.third-section .section-cont-guide{
+		font-size: var(--l-sub-label-fs);
+	}
+	.third-section{
+		gap: 1.8rem;
+	}
+	.cards h5{
+		font-size: var(--l-label-fs);
+	}
+	.sell .non-wallet-user-group li, 
+	.sell .non-wallet-user-group span, 
+	.cards p, .fourth-section p, 
+	.sell-faqs-dropdown{
+		font-size: var(--l-text-label-fs);
+	}
+	.cards{
+		gap: 20px;
+	}
+	.cards .card1, .card2, .card3, .card4{
+		padding: 2% 2% 5%;
+		width: 270px;
+	}
+	.sell .non-wallet-user-group{
+		margin: 30px 45px 0px;
+	}
+	.banner-buttons{
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+	}
+	.first-section .sell-banner-bg,
+	.first-section .bannerbg{
+		width: 100%;
+	}
+	.first-section .bannerbg{
+        align-items: center;
+		padding: 20px;
+		gap: 15px;
+	}
+}
+
+@media (min-width: 800px) and (max-width: 1023px) {
+	.sell-contents{
+		width: 100%;
+		margin-top: 0;
+	}
+	.sell-contents .cards{
+		gap: 20px;
+	}
+	.fourth-section, .second-section, .third-section{
+		width: 90%;
+		margin-top: 70px;
+	}
+	.first-section img, .first-section .bannerbg{
+		height: 380px;
+	}
+	.sell-header{
+		font-size: var(--l-header-1-fs);
+	}
+	.first-section .sell--action-btn, .fourth-section #contactUs{
+		font-size: var(--l-sub-label-fs);
+		width: 150px;
+		height: 50px;
+	}
+	.second-content-span,
+	.third-section .third-cont-guide,
+	.fourth-section h1{
+		font-size: var(--l-header-2-fs)
+	}
+	.second-section .content p,
+	.second-section .content #ListPropertybtn,
+	.options,
+	.third-section .section-cont-guide{
+		font-size: var(--l-sub-label-fs);
+	}
+	.third-section{
+		gap: 1.8rem;
+	}
+	.cards h5{
+		font-size: var(--l-label-fs);
+	}
+	.sell .non-wallet-user-group li, 
+	.sell .non-wallet-user-group span, 
+	.cards p, .fourth-section p, 
+	.sell-faqs-dropdown{
+		font-size: var(--l-text-label-fs);
+	}
+	.cards .card1, .card2, .card3, .card4{
+		padding: 2% 2% 5%;
+	}
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+	.fourth-section, .second-section, .third-section{
+		width: 100%;
+	}
+}
+
+/* @media screen and (min-width: 1000px) and (max-width: 1400px) {
+	.sell {
+		width: 100%;
+	}
+
+	.sell-contents {
+		display: flex;
+		flex-direction: column;
+		margin: 0px;
+	}
+
+	.first-section {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		width: 100%;
+		margin: 0px;
+	}
+
+	.first-section img,
+	.first-section .bannerbg {
+		width: 50%;
+		height: 300px;
+	}
+
+	.first-section .bannerbg {
+		font-size: 30px;
+	}
+
+	.first-section .sell-header {
+		font-size: 30px;
+	}
+	.section-container {
+		justify-content: space-around;
+	}
+
+	.second-section {
+		margin: 0px;
+		height: auto;
+		gap: 3rem;
+	}
+
+	.second-content-span {
+		font-size: 29px;
+	}
+
+	.bannerbg .banner-buttons {
+		display: flex;
+		gap: 20px;
+	}
+
+	.banner-buttons #contactUs,
+	.banner-buttons #signIn {
+		padding: 5px;
+		font-size: 17px;
+		width: 135px;
+		height: 50px;
+	}
+
+	.sell .content p {
+		font-size: 20px;
+	}
+
+	.second-section .content #ListPropertybtn {
+		width: 250px;
+		height: 50px;
+		font-size: 20px;
+		padding: 5px;
+		margin: 20px 0px 0px 0px;
+	}
+
+	.sell .second-section .options {
+		font-size: 20px;
+	}
+
+	.sell .second-section .options p {
+		font-size: 20px;
+	}
+
+	.third-section {
+		margin-top: 50px;
+	}
+
+	.sell .third-section .third-cont-guide {
+		font-size: 29px;
+	}
+
+	.third-section .section-cont-guide {
+		font-size: 1.3rem;
+	}
+	.third-section .third--subtitle {
+		margin: auto 50px;
+	}
+
+	.third-section .non-wallet-user-group {
+		margin: 30px 50px 0px;
+	}
+
+	.third-section .cards p {
+		margin: 0px;
+	}
+
+	.sell .fourth-section .fourth-section-content {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	.fourth-section h1 {
+		font-size: 30px;
+	}
+
+	.sell .fourth-section p {
+		font-size: 20px;
+		text-align: center;
+	}
+
+	.sell .fourth-section #contactUs {
+		width: 200px;
+		height: 60px;
+		font-size: 20px;
+	}
+	.sell-component-faqs-questions {
+		width: 100%;
+		padding: 5px 5px 5px 10px;
+	}
+	.sell-component-faqs-content {
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+		padding: 20px 0px;
+	}
+	.sell-faqs-dropdown {
+		font-size: 18px;
+		font-weight: 400;
+		border-bottom: 1px solid #444444;
+	}
+} */

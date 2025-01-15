@@ -1,0 +1,109 @@
+.properties--group-card {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    font-size: var(--d-body-text);
+    cursor: pointer;
+}
+
+.properties--group-card__sub-title {
+    margin: 10px 0;
+}
+
+.properties--group-card__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+/* SWIPER */
+.properties__swiper{
+    display: none;
+}
+
+.swiper {
+    width: 100%;
+    height: 400px;
+}
+
+.swiper-slide {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.swiper-3d .swiper-slide-shadow-left,
+.swiper-3d .swiper-slide-shadow-right{
+    background-image: none;
+}
+.swiper-pagination-bullet-active{
+    background: var(--red);
+}
+/* Medium Devices (tablets) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .properties--group-card__cards {
+        display: block;
+    }
+    .properties--group-card__card{
+        width: 100%;
+    }
+    .properties__grid{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px 10px;
+    }
+    .properties__swiper{
+        display: none;
+    }
+}
+/* Small Devices (phones, landscape) */
+@media (min-width: 576px) and (max-width: 767px){
+    .properties--group-card__cards {
+        display: block;
+    }
+    .properties--group-card__card{
+        width: 100%;
+    }
+    .properties__grid{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px 10px;
+    }
+    .properties__swiper{
+        display: none;
+    }
+}
+
+/* Extra Small Devices (phones, portrait) */
+@media (max-width: 575px) {
+    .properties--group-card__cards {
+        display: block;
+    }
+    .properties--group-card__card{
+        width: 100%;
+    }
+    .properties__grid{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px 10px;
+    }
+    .properties__swiper{
+        display: none;
+    }
+}
+
+/* Extra Extra Small Devices (phones, portrait) */
+@media (min-width: 320px) and (max-width: 480px) {
+    .properties--group-card__cards {
+        display: block;
+    }
+    .properties--group-card__card{
+        width: 100%;
+    }
+    .properties__grid{
+        display: none !important;
+    }
+    .properties__swiper{
+        display: block !important;
+    }
+}
