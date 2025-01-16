@@ -47,5 +47,3 @@ outputArtifacts:
   - name: backendImage
     type: DOCKER_IMAGE
     location: nrt.ocir.io/nrcbpbtrtyz0/kcontainer:kmlbrokerbe:${BUILDRUN_HASH}
-
-#yesplease
