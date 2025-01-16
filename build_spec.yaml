@@ -43,7 +43,7 @@ steps:
 outputArtifacts:
   - name: frontendImage
     type: DOCKER_IMAGE
-    location: nrt.ocir.io/nrcbpbtrtyz0/kcontainer:kmlbroker:latest
+    location: nrt.ocir.io/nrcbpbtrtyz0/kcontainer:kmlbroker:${BUILDRUN_HASH}
   - name: backendImage
     type: DOCKER_IMAGE
-    location: nrt.ocir.io/nrcbpbtrtyz0/kcontainer:kmlbrokerbe:latest
+    location: nrt.ocir.io/nrcbpbtrtyz0/kcontainer:kmlbrokerbe:${BUILDRUN_HASH}
