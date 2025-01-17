@@ -23,10 +23,10 @@ steps:
     command: |
       echo "Building Docker image for frontend..."
       cd frontend
-      docker build -t ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH .
-      docker push ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH
+      docker build --pull --rm -t kmlbroker .
+      
 
 outputArtifacts:
   - name: frontend
     type: DOCKER_IMAGE
-    location: ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH
+    location: kmlbroker:latest
