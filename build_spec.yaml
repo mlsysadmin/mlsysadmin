@@ -30,7 +30,8 @@ steps:
     command: |
       echo "Building Docker image for backend..."
       cd backend
-      docker build -t nrt.ocir.io/nrcbpbtrtyz0/kcontainer:kmlbrokerbe .
+      docker build -t nrt.ocir.io/nrcbpbtrtyz0/kcontainer:kmlbrokerbe:${BUILDRUN_HASH} .
+      docker push nrt.ocir.io/nrcbpbtrtyz0/kcontainer:kmlbrokerbe:${BUILDRUN_HASH}
 
   - type: Command
     name: "Build Frontend Docker Image"
@@ -38,7 +39,8 @@ steps:
     command: |
       echo "Building Docker image for frontend..."
       cd frontend
-      docker build -t nrt.ocir.io/nrcbpbtrtyz0/kcontainer:kmlbroker .
+      docker build -t nrt.ocir.io/nrcbpbtrtyz0/kcontainer:kmlbroker:${BUILDRUN_HASH} .
+      docker push nrt.ocir.io/nrcbpbtrtyz0/kcontainer:kmlbroker:${BUILDRUN_HASH}
 
 outputArtifacts:
   - name: frontendImage
