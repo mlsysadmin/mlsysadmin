@@ -72,10 +72,10 @@ steps:
     timeoutInSeconds: 1200
     name: "Build container image"
     command: |
-      cd frontend
-      docker build --pull --rm -t kmlbroker .
+      cd backend
+      docker build --pull --rm -t kmlbrokerbe .
 
 outputArtifacts:
-  - name: frontend
+  - name: backend
     type: DOCKER_IMAGE
-    location: kmlbroker:latest
+    location: kmlbrokerbe:latest
