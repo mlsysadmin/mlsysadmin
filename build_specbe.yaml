@@ -23,10 +23,9 @@ steps:
     command: |
       echo "Building Docker image for backend..."
       cd backend
-      docker build -t ghcr.io/nrcbpbtrtyz0/kmlbrokerbe:$BUILDRUN_HASH .
-      docker push ghcr.io/nrcbpbtrtyz0/kmlbrokerbe:$BUILDRUN_HASH
+      docker build --pull --rm -t kmlbrokerbe .
 
 outputArtifacts:
   - name: backend
     type: DOCKER_IMAGE
-    location: ghcr.io/nrcbpbtrtyz0/kmlbrokerbe:$BUILDRUN_HASH
+    location: kmlbrokerbe:latest
