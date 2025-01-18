@@ -21,10 +21,22 @@ steps:
     name: "Build Frontend Docker Image"
     timeoutInSeconds: 1200
     command: |
-      echo "Building Docker image for frontend..."
+      # Authenticate Docker to GitHub Container Registry
+      echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
+      
+      # Build Docker image for frontend
+      echo "Building Docker image..."
       cd frontend
       docker build --pull --rm -t ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH .
-      docker push ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH
+      
+      # Check if the image was built successfully
+      if [ $? -eq 0 ]; then
+        echo "Docker image built successfully, proceeding to push."
+        docker push ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH
+      else
+        echo "Docker image build failed."
+        exit 1
+      fi
 
 outputArtifacts:
   - name: frontend
