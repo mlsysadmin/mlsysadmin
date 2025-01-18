@@ -9,32 +9,28 @@ env:
   exportedVariables:
     - BUILDRUN_HASH
 
-steps:
-  - type: Command
-    name: "Build Frontend Docker Image"
-    timeoutInSeconds: 1200
-    command: |
-      # Debugging: Print the values of OCI_BUILD_RUN_ID and BUILDRUN_HASH
-      echo "OCI_BUILD_RUN_ID: $OCI_BUILD_RUN_ID"
-      export BUILDRUN_HASH=$(echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7)
-      echo "BUILDRUN_HASH: $BUILDRUN_HASH"
-      
-      # Authenticate Docker to GitHub Container Registry
-      echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
-      
-      # Build Docker image for frontend
-      echo "Building Docker image..."
-      cd frontend
-      docker build --pull --rm -t ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH .
-      
-      # Check if the image was built successfully
-      if [ $? -eq 0 ]; then
-        echo "Docker image built successfully, proceeding to push."
-        docker push ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH
-      else
-        echo "Docker image build failed."
-        exit 1
-      fi
+- type: Command
+  name: "Build Frontend Docker Image"
+  timeoutInSeconds: 1200
+  command: |
+    echo "GITHUB_USERNAME: $GITHUB_USERNAME"
+    echo "GITHUB_TOKEN is set: ${#GITHUB_TOKEN}"
+    # Authenticate Docker to GitHub Container Registry
+    echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
+    
+    # Build Docker image for frontend
+    echo "Building Docker image..."
+    cd frontend
+    docker build --pull --rm -t ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH .
+    
+    # Check if the image was built successfully
+    if [ $? -eq 0 ]; then
+      echo "Docker image built successfully, proceeding to push."
+      docker push ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH
+    else
+      echo "Docker image build failed."
+      exit 1
+    fi
 
 outputArtifacts:
   - name: frontend
