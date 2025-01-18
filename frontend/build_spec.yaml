@@ -5,7 +5,8 @@ runAs: root
 shell: bash
 env:
   variables:
-    key: "value"
+    GITHUB_USERNAME: "your_github_username"
+    GITHUB_TOKEN: "your_github_token"
   exportedVariables:
     - BUILDRUN_HASH
 
@@ -14,8 +15,13 @@ steps:
     name: "Build Frontend Docker Image"
     timeoutInSeconds: 1200
     command: |
-      echo "GITHUB_USERNAME: $GITHUB_USERNAME"
-      echo "GITHUB_TOKEN is set: ${#GITHUB_TOKEN}"
+      # Debugging: Print GITHUB_USERNAME and GITHUB_TOKEN length
+      echo "GITHUB_USERNAME: mlsysadmin"
+      echo "GITHUB_TOKEN is set: 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"
+
+      # Check if BUILDRUN_HASH is set correctly
+      echo "BUILDRUN_HASH is: $BUILDRUN_HASH"
+
       # Authenticate Docker to GitHub Container Registry
       echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
       
@@ -23,7 +29,7 @@ steps:
       echo "Building Docker image..."
       cd frontend
       docker build --pull --rm -t ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH .
-      
+
       # Check if the image was built successfully
       if [ $? -eq 0 ]; then
         echo "Docker image built successfully, proceeding to push."
