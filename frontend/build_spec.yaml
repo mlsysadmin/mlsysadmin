@@ -3,41 +3,40 @@ component: build
 timeoutInSeconds: 6000
 runAs: root
 shell: bash
+
 env:
   variables:
-    GITHUB_USERNAME: "your_github_username"
-    GITHUB_TOKEN: "your_github_token"
+    GITHUB_USERNAME: "your-gh-username"
+    GITHUB_TOKEN: "${OCI_SECRET_GITHUB_TOKEN}"  # Store this in OCI Secrets!
   exportedVariables:
     - BUILDRUN_HASH
 
 steps:
   - type: Command
+    name: "Authenticate with GitHub Container Registry"
+    timeoutInSeconds: 60
+    command: |
+      echo "Logging in to GitHub Container Registry..."
+      echo "${GITHUB_TOKEN}" | docker login ghcr.io -u "${GITHUB_USERNAME}" --password-stdin
+
+  - type: Command
+    name: "Define Tagging"
+    timeoutInSeconds: 60
+    command: |
+      export BUILDRUN_HASH=$(echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7)
+      echo "BUILDRUN_HASH: $BUILDRUN_HASH"
+      echo "BUILDRUN_HASH=$BUILDRUN_HASH" >> $OCI_BUILD_ENV_FILE  # Ensures it’s available in later steps
+
+  - type: Command
     name: "Build Frontend Docker Image"
     timeoutInSeconds: 1200
     command: |
-      # Debugging: Print GITHUB_USERNAME and GITHUB_TOKEN length
-      echo "GITHUB_USERNAME: mlsysadmin"
-      echo "GITHUB_TOKEN is set: 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"
-
-      # Check if BUILDRUN_HASH is set correctly
-      echo "BUILDRUN_HASH is: $BUILDRUN_HASH"
-
-      # Authenticate Docker to GitHub Container Registry
-      echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USERNAME --password-stdin
-      
-      # Build Docker image for frontend
-      echo "Building Docker image..."
-      cd frontend
+      echo "Building Docker image for frontend..."
+      cd frontend || exit 1
       docker build --pull --rm -t ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH .
+      docker push ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH
 
-      # Check if the image was built successfully
-      if [ $? -eq 0 ]; then
-        echo "Docker image built successfully, proceeding to push."
-        docker push ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH
-      else
-        echo "Docker image build failed."
-        exit 1
-    outputArtifacts:
-      - name: frontend
-        type: DOCKER_IMAGE
-        location: ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH
+outputArtifacts:
+  - name: frontend
+    type: DOCKER_IMAGE
+    location: ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH
