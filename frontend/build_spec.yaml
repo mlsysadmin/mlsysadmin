@@ -6,18 +6,36 @@ shell: bash
 
 env:
   variables:
-    GITHUB_USERNAME: "your-gh-username"
-    GITHUB_TOKEN: "${OCI_SECRET_GITHUB_TOKEN}"  # Store this in OCI Secrets!
+    GITHUB_USERNAME: "your-gh-username"  # Replace with your actual GitHub username
+    GITHUB_TOKEN: "${OCI_SECRET_GITHUB_TOKEN}"  # Make sure this secret exists in OCI DevOps
   exportedVariables:
     - BUILDRUN_HASH
 
 steps:
   - type: Command
+    name: "Check Secrets"
+    timeoutInSeconds: 30
+    command: |
+      echo "Checking if GITHUB_TOKEN is set..."
+      if [[ -z "${GITHUB_TOKEN}" ]]; then
+        echo "ERROR: GITHUB_TOKEN is empty. Check OCI Secrets configuration."
+        exit 1
+      else
+        echo "GITHUB_TOKEN is set (length: ${#GITHUB_TOKEN})"
+      fi
+
+  - type: Command
     name: "Authenticate with GitHub Container Registry"
     timeoutInSeconds: 60
     command: |
       echo "Logging in to GitHub Container Registry..."
+      docker logout ghcr.io || true
       echo "${GITHUB_TOKEN}" | docker login ghcr.io -u "${GITHUB_USERNAME}" --password-stdin
+      if [[ $? -ne 0 ]]; then
+        echo "ERROR: Authentication to GitHub Container Registry failed!"
+        exit 1
+      fi
+      echo "Authentication successful."
 
   - type: Command
     name: "Define Tagging"
@@ -25,16 +43,32 @@ steps:
     command: |
       export BUILDRUN_HASH=$(echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7)
       echo "BUILDRUN_HASH: $BUILDRUN_HASH"
-      echo "BUILDRUN_HASH=$BUILDRUN_HASH" >> $OCI_BUILD_ENV_FILE  # Ensures it’s available in later steps
+      echo "BUILDRUN_HASH=$BUILDRUN_HASH" >> $OCI_BUILD_ENV_FILE  # Ensure it persists for later steps
 
   - type: Command
     name: "Build Frontend Docker Image"
     timeoutInSeconds: 1200
     command: |
       echo "Building Docker image for frontend..."
-      cd frontend || exit 1
+      cd frontend || { echo "ERROR: frontend directory not found!"; exit 1; }
       docker build --pull --rm -t ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH .
+      if [[ $? -ne 0 ]]; then
+        echo "ERROR: Docker build failed!"
+        exit 1
+      fi
+      echo "Docker build completed."
+
+  - type: Command
+    name: "Push Docker Image"
+    timeoutInSeconds: 600
+    command: |
+      echo "Pushing Docker image to GitHub Container Registry..."
       docker push ghcr.io/nrcbpbtrtyz0/kmlbroker:$BUILDRUN_HASH
+      if [[ $? -ne 0 ]]; then
+        echo "ERROR: Docker push failed!"
+        exit 1
+      fi
+      echo "Docker image pushed successfully."
 
 outputArtifacts:
   - name: frontend
