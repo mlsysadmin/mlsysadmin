@@ -29,7 +29,7 @@ steps:
     timeoutInSeconds: 60
     command: |
       echo "Logging in to GitHub Container Registry..."
-      echo "${GITHUB_TOKEN}" | docker login ghcr.io -u "${GITHUB_USERNAME}" --password-stdin --debug
+      echo "${GITHUB_TOKEN}" | docker login ghcr.io -u "${GITHUB_USERNAME}" --password-stdin
       if [[ $? -ne 0 ]]; then
         echo "ERROR: Authentication to GitHub Container Registry failed!"
         exit 1
