@@ -6,6 +6,7 @@ shell: bash
 env:
   variables:
     key: "value"
+
   exportedVariables:
     - BUILDRUN_HASH
 
@@ -14,19 +15,38 @@ steps:
     name: "Define Tagging"
     timeoutInSeconds: 60
     command: |
-      export BUILDRUN_HASH=$(echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7)
-      echo "BUILDRUN_HASH: $BUILDRUN_HASH"
+          export BUILDRUN_HASH=$(echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7)
+          echo "BUILDRUN_HASH: " $BUILDRUN_HASH
+
+    onFailure:
+      - type: Command
+        command: |
+          echo "Handling Failure in Frontend Build"
+        timeoutInSeconds: 1200
+        runAs: root                 
+      
+  - type: Command
+    name: "Build Frontend Container Image"
+    timeoutInSeconds: 3600
+    command: |
+      cd frontend
+      docker build --pull --rm -t kmlbroker:$BUILDRUN_HASH . || { echo "Frontend build failed"; exit 1; }
+      cd ..
+
 
   - type: Command
-    name: "Build Backend Docker Image"
-    timeoutInSeconds: 1200
+    name: "Build Backend Container Image"
+    timeoutInSeconds: 3600
     command: |
-      echo "Building Docker image for backend..."
       cd backend
-      docker build --pull --rm -t ghcr.io/nrcbpbtrtyz0/kmlbrokerbe:$BUILDRUN_HASH .
-      docker push ghcr.io/nrcbpbtrtyz0/kmlbrokerbe:$BUILDRUN_HASH
+      docker build --pull --rm -t kmlbrokerbe:$BUILDRUN_HASH . || { echo "Backend build failed"; exit 1; }
+      cd ..
+
 
 outputArtifacts:
-  - name: backend
+  - name: frontendImage
     type: DOCKER_IMAGE
-    location: ghcr.io/nrcbpbtrtyz0/kmlbrokerbe:$BUILDRUN_HASH
+    location: kmlbroker:${BUILDRUN_HASH}
+  - name: backendImage
+    type: DOCKER_IMAGE
+    location: kmlbrokerbe:${BUILDRUN_HASH}
